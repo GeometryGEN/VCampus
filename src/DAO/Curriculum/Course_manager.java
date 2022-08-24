@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.HashSet;
 import java.util.Iterator;
-
+//gsh
 public class Course_manager {
     private String id;
     private Connection conn;
