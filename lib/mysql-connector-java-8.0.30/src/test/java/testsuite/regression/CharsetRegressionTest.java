@@ -402,7 +402,7 @@ public class CharsetRegressionTest extends BaseTestCase {
         }
         props.remove(PropertyKey.cacheServerConfiguration.getKeyName());
 
-        // Error messages may also be received after the handshake but before connection initialization is complete. This tests the interpretation of
+        // Error messages may also be received after the handshake but before connection initialization is complete. This Image_utils the interpretation of
         // errors thrown during this time window using a SatementInterceptor that throws an Exception while setting the session variables.
         // Start by getting the Latin1 version of the error to compare later.
         String latin1ErrorMsg = "";
@@ -1208,7 +1208,7 @@ public class CharsetRegressionTest extends BaseTestCase {
         p.setProperty(PropertyKey.cacheServerConfiguration.getKeyName(), "true");
         p.setProperty(PropertyKey.detectCustomCollations.getKeyName(), "true");
 
-        // Empty the cache possibly created by other tests to get a correct queryVarsCnt on the next step
+        // Empty the cache possibly created by other Image_utils to get a correct queryVarsCnt on the next step
         Connection c = getConnectionWithProps(p);
         Field f = NativeSession.class.getDeclaredField("serverConfigCache");
         f.setAccessible(true);

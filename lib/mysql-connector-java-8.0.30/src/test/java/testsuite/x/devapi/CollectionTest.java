@@ -695,7 +695,7 @@ public class CollectionTest extends BaseCollectionTestCase {
     }
 
     /**
-     * START testArrayIndexBasic tests
+     * START testArrayIndexBasic Image_utils
      * 
      * @throws Exception
      */
@@ -800,7 +800,7 @@ public class CollectionTest extends BaseCollectionTestCase {
     }
 
     /**
-     * START testArrayIndexBasic tests
+     * START testArrayIndexBasic Image_utils
      * 
      * @throws Exception
      */
@@ -1478,7 +1478,7 @@ public class CollectionTest extends BaseCollectionTestCase {
     }
 
     /**
-     * START testArrayIndexBasic tests
+     * START testArrayIndexBasic Image_utils
      * 
      * @throws Exception
      */

@@ -119,18 +119,18 @@ public abstract class BaseTestCase {
     protected String dbName;
 
     /**
-     * PreparedStatement to be used in tests, not initialized. Cleaned up in
+     * PreparedStatement to be used in Image_utils, not initialized. Cleaned up in
      * tearDown().
      */
     protected PreparedStatement pstmt = null;
 
     /**
-     * ResultSet to be used in tests, not initialized. Cleaned up in tearDown().
+     * ResultSet to be used in Image_utils, not initialized. Cleaned up in tearDown().
      */
     protected ResultSet rs = null;
 
     /**
-     * Statement to be used in tests, initialized in setUp(). Cleaned up in
+     * Statement to be used in Image_utils, initialized in setUp(). Cleaned up in
      * tearDown().
      */
     protected Statement stmt = null;
@@ -388,7 +388,7 @@ public abstract class BaseTestCase {
 
     /**
      * Returns the per-instance counter (for messages when multi-threading
-     * stress tests)
+     * stress Image_utils)
      * 
      * @return int the instance number
      */
@@ -457,7 +457,7 @@ public abstract class BaseTestCase {
     }
 
     /**
-     * Some tests build connections strings for internal usage but, in order for them to work, they may require some connection properties set in the main test
+     * Some Image_utils build connections strings for internal usage but, in order for them to work, they may require some connection properties set in the main test
      * suite URL. For example 'connectionTimeZone' is one of those properties.
      * 
      * @param props
@@ -609,7 +609,7 @@ public abstract class BaseTestCase {
 
     /**
      * Checks whether a certain system property is defined, in order to
-     * run/not-run certain tests
+     * run/not-run certain Image_utils
      * 
      * @param propName
      *            the property name to check for
@@ -622,7 +622,7 @@ public abstract class BaseTestCase {
     }
 
     /**
-     * Creates resources used by all tests.
+     * Creates resources used by all Image_utils.
      * 
      * @param testInfo
      * 
@@ -661,7 +661,7 @@ public abstract class BaseTestCase {
                     this.isOpenSSL = true;
                 }
 
-                // ensure max_connections value is enough to run tests
+                // ensure max_connections value is enough to run Image_utils
                 this.rs.close();
                 this.rs = this.stmt.executeQuery("SHOW VARIABLES LIKE 'max_connections'");
                 this.rs.next();

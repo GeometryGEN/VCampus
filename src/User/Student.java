@@ -16,8 +16,55 @@ public class Student implements Serializable {
     int Student_age;         //年龄
     String Student_gender;   //性别
     String Student_email;    //邮箱
-    int Student_class;       //学生年级
+    String Student_class;    //学生年级
     double Student_money;    //用户余额
+
+    String nation;           //民族
+    String birthday;         //出生日期
+    String ID;               //身份证号
+    String Native_place;     //籍贯
+    String major;            //专业
+
+
+    public String getNative_place() {
+        return Native_place;
+    }
+
+    public void setNative_place(String native_place) {
+        Native_place = native_place;
+    }
+
+    public String getMajor() {
+        return major;
+    }
+
+    public void setMajor(String major) {
+        this.major = major;
+    }
+
+    public String getNation() {
+        return nation;
+    }
+
+    public void setNation(String nation) {
+        this.nation = nation;
+    }
+
+    public String getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getID() {
+        return ID;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
+    }
 
     public String getStudent_id() {
         return Student_id;
@@ -75,11 +122,11 @@ public class Student implements Serializable {
         Student_idcard = student_idcard;
     }
 
-    public int getStudent_class() {
+    public String getStudent_class() {
         return Student_class;
     }
 
-    public void setStudent_class(int student_class) {
+    public void setStudent_class(String student_class) {
         Student_class = student_class;
     }
 

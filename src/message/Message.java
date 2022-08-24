@@ -1,5 +1,8 @@
 package message;
+import utils.getIP;
+
 import java.io.Serializable;
+import java.net.InetAddress;
 
 /**
  * @author : [Tongwei_L]
@@ -16,6 +19,10 @@ public class Message implements Serializable {
     private String mesType;   // 消息类型
     private int code;         // 状态码
     private Object data;      // 数据
+
+    public static String returnIP(){
+        return getIP.getHostIp();
+    }
 
     public String getSender() {
         return sender;

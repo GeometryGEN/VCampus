@@ -1,4 +1,4 @@
-package UIviewer.login;
+package UIviewer;
 import ClientToServer.ClientToServer;
 import javax.swing.*;
 import java.awt.*;

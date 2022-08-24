@@ -1,7 +1,6 @@
 package ClientToServer;
 
-import DAO.Library.Book_borrower;
-import DAO.Library.Library_manager;
+import ServerToClient.ManageServerToClientThread;
 import message.Message;
 import message.MessageType;
 
@@ -9,7 +8,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
-import java.util.HashSet;
 
 /**
  * @author : [Tongwei_L]
@@ -19,10 +17,11 @@ import java.util.HashSet;
  */
 public class ClientToServerThread extends Thread {
     private Socket socket;
-    private String ID;
-    public ClientToServerThread(String id,Socket socket){
+    //volatile修饰符用来保证其它线程读取的总是该变量的最新的值
+    public volatile boolean exit = false;
+
+    public ClientToServerThread(Socket socket){
         this.socket=socket;
-        this.ID=id;
     }
 
     public Socket getSocket(){
@@ -30,31 +29,19 @@ public class ClientToServerThread extends Thread {
     }
 
     public void run(){
-        while (true){
+        while (!exit){
             try {
                 ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
                 Message message = (Message) ois.readObject();
                 //如果服务器没有发送Message对象，线程会一直堵塞在这里
-                if(message.getType()==MessageType.MESSAGE_LIBRARY_BORROW_SUCCEED){
-
-                }
-                else if(message.getType()==MessageType.MESSAGE_LIBRARY_BORROW_FAIL_RETURN_FIRST){
-
-                }
-                else if(message.getType()==MessageType.MESSAGE_LIBRARY_BORROW_FAIL_TOO_MANY){
-
-                }
-                else if(message.getType()==MessageType.MESSAGE_LIBRARY_RET_SUCCEED){
-
-                }
-
-                Message send = new Message();
-                ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
-
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
+        }
+        try {
+            socket.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
