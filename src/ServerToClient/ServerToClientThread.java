@@ -1,5 +1,7 @@
 package ServerToClient;
 
+import DAO.Curriculum.Course;
+import DAO.Curriculum.Course_manager;
 import DAO.Library.Book_admin;
 import DAO.Library.Book_borrower;
 import DAO.Library.Library_manager;
@@ -79,6 +81,11 @@ public class ServerToClientThread extends Thread{
                     sendback.setData(lib_manager.query_book(s));
                     oos.writeObject(sendback);
                 }
+                else if(m.getType()== MessageType.MESSAGE_LIBRARY_EXTEND){
+                    Book_borrower b=(Book_borrower)m.getData();
+                    sendback=new Library_manager(userid).extend(b);
+                    oos.writeObject(sendback);
+                }
                 else if(m.getType()== MessageType.MESSAGE_LIBRARY_ADMIN_ENTER)
                 {
                     Library_manager lib_manager = new Library_manager(userid);
@@ -112,8 +119,20 @@ public class ServerToClientThread extends Thread{
                     String id=(String)m.getData();
                     new Library_manager(userid).deletebook(id);
                 }
-                if(m.getType()==MessageType.MESSAGE_CURRICULUM_LIST){
-
+                if(m.getType()==MessageType.MESSAGE_CURRICULUM_LIST_ALL){
+                    sendback.setData(new Course_manager(userid).list_all_courses());
+                    sendback.setType(MessageType.MESSAGE_CURRICULUM_LIST_ALL_RET);
+                    oos.writeObject(sendback);
+                }
+                else if (m.getType()==MessageType.MESSAGE_CURRICULUM_LIST_MINE) {
+                    sendback.setData(new Course_manager(userid).list_my_courses());
+                    sendback.setType(MessageType.MESSAGE_CURRICULUM_LIST_MINE_RET);
+                    oos.writeObject(sendback);
+                }
+                else if(m.getType()==MessageType.MESSAGE_CURRICULUM_CHOOSE){
+                    Course c=(Course)m.getData();
+                    sendback=new Course_manager(userid).choose(c);
+                    oos.writeObject(sendback);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
