@@ -2,6 +2,7 @@ package ServerToClient;
 
 import DAO.Curriculum.Course;
 import DAO.Curriculum.Course_manager;
+import DAO.Curriculum.Opencourse;
 import DAO.Library.Book_admin;
 import DAO.Library.Book_borrower;
 import DAO.Library.Library_manager;
@@ -140,7 +141,22 @@ public class ServerToClientThread extends Thread{
                     sendback=new Course_manager(userid).choose(c);
                     oos.writeObject(sendback);
                 }
-
+                else if(m.getType()==MessageType.MESSAGE_CURRICULUM_APPLY){
+                    new Course_manager(userid).apply((Opencourse)m.getData());
+                }
+                else if(m.getType()==MessageType.MESSAGE_CURRICULUM_SHOW_STU) {
+                    sendback.setData(new Course_manager(userid).get_student((String) m.getData()));
+                    sendback.setType(MessageType.MESSAGE_CURRICULUM_SHOW_STU_RET);
+                    oos.writeObject(sendback);
+                }
+                else if(m.getType()==MessageType.MESSAGE_CURRICULUM_SHOW_SCHEDULE){
+                    sendback.setData(new Course_manager(userid).schedule((String) m.getData()));
+                    sendback.setType(MessageType.MESSAGE_CURRICULUM_SHOW_SCHEDULE_RET);
+                    oos.writeObject(sendback);
+                }
+                else if(m.getType()==MessageType.MESSAGE_CURRICULUM_DELETE){
+                    new Course_manager(userid).schedule((String) m.getData());
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
