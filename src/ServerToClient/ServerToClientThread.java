@@ -60,6 +60,12 @@ public class ServerToClientThread extends Thread{
                     sendback.setData(mybooks);
                     oos.writeObject(sendback);
                 }
+                else if(m.getType().equals(MessageType.MESSAGE_CLIENT_EXIT)){
+                    System.out.println(m.getSender()+"退出系统");
+                    ManageServerToClientThread.removeServerToClientThread(m.getSender());
+//                    socket.close();
+                    break;
+                }
                 else if(m.getType()== MessageType.MESSAGE_LIBRARY_BORROW)
                 {
                     Book_borrower book=(Book_borrower)m.getData();
