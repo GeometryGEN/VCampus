@@ -231,7 +231,7 @@ public class Library_manager {
         return pp;
     }
     public Message pay(Punishment p) throws SQLException{
-        String sql="select * from Students where Student_name= '?';";
+        String sql="select * from Students where name= '?';";
         Message msg=new Message();
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,p.Customer_iD);
@@ -249,7 +249,7 @@ public class Library_manager {
             }
         }
         else {
-            sql="select * from Teachers where Teacher_name= '?'";
+            sql="select * from Teachers where name= '?'";
             st=conn.prepareStatement(sql);
             st.setString(1,p.Customer_iD);
             rs=st.executeQuery();

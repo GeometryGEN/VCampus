@@ -75,7 +75,6 @@ public class LoginFrame extends JFrame{
         btnNewButton_1.setFont(myfont);
         btnNewButton_1.setBackground(new Color(34, 139, 34));
         btnNewButton_1.setForeground(new Color(248, 248, 255));
-        btnNewButton_1.setFocusPainted(false);
         btnNewButton_1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -101,7 +100,7 @@ public class LoginFrame extends JFrame{
         btnNewButton_2.setFont(myfont);
         btnNewButton_2.setBackground(new Color(34, 139, 34));
         btnNewButton_2.setForeground(new Color(248, 248, 255));
-        btnNewButton_2.setFocusPainted(false);
+
         btnNewButton_2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -127,7 +126,6 @@ public class LoginFrame extends JFrame{
         btnNewButton_3.setFont(myfont);
         btnNewButton_3.setBackground(new Color(34, 139, 34));
         btnNewButton_3.setForeground(new Color(248, 248, 255));
-        btnNewButton_3.setFocusPainted(false);
         btnNewButton_3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -154,7 +152,6 @@ public class LoginFrame extends JFrame{
         btnNewButton_4.setFont(myfont1);
         btnNewButton_4.setContentAreaFilled(false);//设置按钮透明
         btnNewButton_4.setBorder(null);//取消边框
-        btnNewButton_4.setFocusPainted(false);
         btnNewButton_4.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -174,7 +171,6 @@ public class LoginFrame extends JFrame{
         btnNewButton_5.setFont(myfont1);
         btnNewButton_5.setContentAreaFilled(false);//设置按钮透明
         btnNewButton_5.setBorder(null);//取消边框
-        btnNewButton_5.setFocusPainted(false);
         btnNewButton_5.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

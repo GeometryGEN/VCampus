@@ -1,4 +1,4 @@
-package UIviewer.login;
+package UIviewer;
 import ClientToServer.ClientToServer;
 import User.Student;
 import User.Teacher;
@@ -112,7 +112,6 @@ public class register {
         JButton b1=new JButton("确定注册");
         b1.setBounds(360,450,100,30);
         b1.setBackground(new Color(250,250,210));
-        b1.setFocusPainted(false);
 
         b1.addActionListener(new ActionListener() {
             @Override

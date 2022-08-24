@@ -1,5 +1,4 @@
 package UIviewer.Library;
-import ClientToServer.ClientToServer;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -7,7 +6,7 @@ import java.awt.event.ActionListener;
 public class readLib extends JFrame {
     private JPanel mainLib;
     CardLayout cardLayout=new CardLayout();
-    public static void readLibUI(ClientToServer ucs) {
+    public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
@@ -20,7 +19,7 @@ public class readLib extends JFrame {
         });
     }
 
-        readLib (){
+    public readLib (){
         setTitle("readLib");
         setBounds(0,0,1273,790);
         mainLib=new JPanel();
@@ -100,19 +99,12 @@ public class readLib extends JFrame {
         });
         mainLib.add(b3);
 
-        JButton b4=new JButton("退出图书馆");
+        JButton b4=new JButton("退出登录");
         b4.setBounds(910,100,250,50);
         b4.setFont(myfont1);
         b4.setContentAreaFilled(false);//设置按钮透明
         b4.setFocusPainted(false);
         b4.setForeground(new Color(248, 248, 255));
-            b4.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    // TODO Auto-generated method stub
-                dispose();
-                }
-            });
         mainLib.add(b4);
 
         /*
@@ -123,6 +115,7 @@ public class readLib extends JFrame {
         b5.setFocusPainted(false);
         b5.setForeground(new Color(248, 248, 255));
         mainLib.add(b5);
+
          */
 
         //按钮面板
@@ -131,7 +124,7 @@ public class readLib extends JFrame {
         p2.setBackground(new Color(57,106,57));
         mainLib.add(p2);
 
-        setLocationRelativeTo(null);
+        //setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //setVisible(true);
     }

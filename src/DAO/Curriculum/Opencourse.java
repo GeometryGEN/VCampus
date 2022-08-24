@@ -1,7 +1,7 @@
 package DAO.Curriculum;
 
 public class Opencourse {
-    String id,teacher,name,timestring,teacher_id;
+    String id,teacher,name,timestring;
     double point;
     int size;
 }

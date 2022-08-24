@@ -1,20 +1,17 @@
 package DAO.Curriculum;
 
-
-import ClientToServer.ManageClientToServerThread;
+import ClientToServer.ClientToServer;
+import DAO.Library.Book_borrower;
 import ServerToClient.ServerToClient;
-import User.Student;
 import connection.JDBC_Connector;
 import message.Message;
 import message.MessageType;
 
-import java.io.IOException;
-import java.io.ObjectOutputStream;
-import java.net.Socket;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.HashSet;
 import java.util.Iterator;
 //gsh
@@ -250,52 +247,15 @@ public class Course_manager {
             return message;
         }
     }
-    public void refuse(String id,String reason) throws IOException {
-        Message sendback=new Message();
-        Socket s= ManageClientToServerThread.getThread(id).getSocket();
-        ObjectOutputStream oos=new ObjectOutputStream(s.getOutputStream());
-        sendback.setType(MessageType.MESSAGE_CURRICULUM_APPLICATION_REFUSE);
-        sendback.setData(reason);
-        return;
-    }
-    public void approve(String id,Course course) throws SQLException {
-        Message sendback=new Message();
-        add(course);
-        sendback.setType(MessageType.MESSAGE_CURRICULUM_APPLICATION_APPROVE);
-        sendback.setData("已通过");
-        return;
-    }
-
-    public Message list_application(){
+    public Message handle(Course c) throws SQLException {
         Message message=new Message();
-        message.setType(MessageType.MESSAGE_CURRICULUM_APPLICATION_LIST_RET);
-        message.setData(ServerToClient.getOpencourses());
+
         return message;
     }
-    public HashSet<Student>get_student(String s) throws SQLException {
-        HashSet<Student>res=new HashSet<Student>();
-        String sql="select * from curriculum where name='?' or id='?';";
-        PreparedStatement st=conn.prepareStatement(sql);
-        st.setString(1,s);
-        st.setString(2,s);
-        ResultSet rs=st.executeQuery();
-        if(rs.next()){
-            String id=rs.getString("id");
-            sql="select * from elective where course_id='?';";
-            st=conn.prepareStatement(sql);
-            st.setString(1,id);
-            rs=st.executeQuery();
-            while(rs.next()){
-                sql="select * from students where Student_idcard='?';";
-                st=conn.prepareStatement(sql);
-                st.setString(1,id);
-                ResultSet rs1=st.executeQuery();
-                Student student = new Student();
-                student.setStudent_name(rs1.getString("Student_name"));
-                student.setStudent_id(rs1.getString("Student_id"));
-                res.add(student);
-            }
-        }
-        return res;
+    public Message list_application(){
+        Message message=new Message();
+        message.setType(MessageType.MESSAGE_CURRICULUM_APPLICATION_LIST);
+        message.setData(ServerToClient.getOpencourses());
+        return message;
     }
 }

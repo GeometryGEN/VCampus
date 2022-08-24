@@ -1,5 +1,7 @@
 package ServerToClient;
 
+import ClientToServer.ClientToServerThread;
+
 import java.util.HashMap;
 
 /**
