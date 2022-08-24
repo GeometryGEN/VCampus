@@ -4,7 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-
+import UIviewer.Library.readLib;
+import UIviewer.Library.adminLib;
 public class functionChoose {
     public static void functionChooseUI(ClientToServer ucs) {
         JFrame jf = new JFrame("functionChoose");
@@ -214,8 +215,14 @@ public class functionChoose {
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
                 try {
-
-
+                    if(ucs.getID()=="1"||ucs.getID()=="2")
+                    {
+                        readLib.readLibUI(ucs);
+                    }
+                    else
+                    {
+                        adminLib.adminLibUI(ucs);
+                    }
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }

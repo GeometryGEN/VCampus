@@ -16,6 +16,24 @@ public class myBook extends JPanel {
         pic1.setBounds(0,0 , 1300, 650);
         p11.add(pic1);
         add(p11);
+
+        JTable table=null;
+        String []index={"封面","书名","作者","出版社","可借/归还日期","馆藏地"};
+        Object [][] data=new Object[4][index.length];
+
+        data[0][0]="1";
+        data[0][1]="2";
+        data[0][2]="3";
+        data[0][3]="4";
+        data[0][4]="5";
+        data[0][5]="6";
+
+        data[0][0]="1";
+        data[0][1]="2";
+        data[0][2]="3";
+        data[0][3]="4";
+        data[0][4]="5";
+        data[0][5]="6";
     }
 
 }
