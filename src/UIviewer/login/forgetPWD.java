@@ -1,7 +1,5 @@
 package UIviewer.login;
-
 import ClientToServer.ClientToServer;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
