@@ -76,6 +76,7 @@ public class forgetPWD {
         JButton b1=new JButton("验证");
         b1.setBounds(360,410,100,30);
         b1.setBackground(new Color(250,250,210));
+        b1.setFocusPainted(false);
         b1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
