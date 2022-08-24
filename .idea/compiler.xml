@@ -10,8 +10,7 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="test824" target="17" />
-      <module name="vcampus1" target="17" />
+      <module name="vCampus" target="17" />
     </bytecodeTargetLevel>
   </component>
 </project>
