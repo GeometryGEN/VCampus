@@ -140,6 +140,7 @@ public class ServerToClientThread extends Thread{
                     sendback=new Course_manager(userid).choose(c);
                     oos.writeObject(sendback);
                 }
+
             } catch (Exception e) {
                 e.printStackTrace();
             }

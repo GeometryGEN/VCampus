@@ -1,5 +1,6 @@
 package DAO.Curriculum;
 
+import ClientToServer.ClientToServer;
 import DAO.Library.Book_borrower;
 import ServerToClient.ServerToClient;
 import connection.JDBC_Connector;
@@ -246,10 +247,15 @@ public class Course_manager {
             return message;
         }
     }
-    public void handle(Opencourse c) throws SQLException {
+    public Message handle(Course c) throws SQLException {
+        Message message=new Message();
 
+        return message;
     }
-    public void list_application(){
-
+    public Message list_application(){
+        Message message=new Message();
+        message.setType(MessageType.MESSAGE_CURRICULUM_APPLICATION_LIST);
+        message.setData(ServerToClient.getOpencourses());
+        return message;
     }
 }
