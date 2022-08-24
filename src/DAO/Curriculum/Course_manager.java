@@ -1,6 +1,7 @@
 package DAO.Curriculum;
 
 import DAO.Library.Book_borrower;
+import ServerToClient.ServerToClient;
 import connection.JDBC_Connector;
 import message.Message;
 import message.MessageType;
@@ -229,10 +230,26 @@ public class Course_manager {
         }
         return ans;
     }
-    public void apply(Opencourse c) throws SQLException {
-
+    public Message apply(Opencourse c) throws SQLException {
+        String sql="select * from curriculum where name='?';";
+        PreparedStatement st=conn.prepareStatement(sql);
+        st.setString(1,c.name);
+        ResultSet rs=st.executeQuery();
+        Message message=new Message();
+        if(rs.next()){
+            message.setType(MessageType.MESSAGE_CURRICULUM_APPLY_SUCCEED);
+            ServerToClient.add_opencourse(c);
+            return message;
+        }
+        else{
+            message.setType(MessageType.MESSAGE_CURRICULUM_APPLY_FAIL);
+            return message;
+        }
     }
     public void handle(Opencourse c) throws SQLException {
+
+    }
+    public void list_application(){
 
     }
 }
