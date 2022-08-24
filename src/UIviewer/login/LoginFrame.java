@@ -6,7 +6,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Color;
-import static UIviewer.register.registerUI;
+import static UIviewer.login.register.registerUI;
 import static UIviewer.login.forgetPWD.forgetPWDUI;
 
 public class LoginFrame extends JFrame{
