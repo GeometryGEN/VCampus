@@ -16,8 +16,8 @@ public class Teacher implements Serializable {
     String Teacher_gender;   //性别
     String Teacher_email;    //邮箱
     String Teacher_idcard;   //一卡通
-    String Teacher_title;       //老师职称
-    String Teacher_courses; //老师教授的所有课程
+    int Teacher_title;       //老师职称
+    List<String> Teacher_courses; //老师教授的所有课程
     double Teacher_money;    //用户余额
 
     public String getTeacher_name() {
@@ -76,19 +76,19 @@ public class Teacher implements Serializable {
         Teacher_idcard = teacher_idcard;
     }
 
-    public String getTeacher_title() {
+    public int getTeacher_title() {
         return Teacher_title;
     }
 
-    public void setTeacher_title(String teacher_title) {
+    public void setTeacher_title(int teacher_title) {
         Teacher_title = teacher_title;
     }
 
-    public String getTeacher_courses() {
+    public List<String> getTeacher_courses() {
         return Teacher_courses;
     }
 
-    public void setTeacher_courses(String teacher_courses) {
+    public void setTeacher_courses(List<String> teacher_courses) {
         Teacher_courses = teacher_courses;
     }
 

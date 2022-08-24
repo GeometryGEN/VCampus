@@ -35,25 +35,5 @@ public class Admin_utils {
         return false;
     }
 
-    public static String  returnAdminName(String username, String userpassword) {
-        try {
-            Connection connection=JDBC_Connector.ConnectMySQL();                  //连接数据库
-            Statement state = connection.createStatement();
-            String sql="select * from admins where Admin_idcard='"+username+"' and Admin_pwd='"+userpassword+"'";
-            ResultSet resultSet= state.executeQuery(sql);            //执行sql
-            String passWord = "";
-            while (resultSet.next()) {
-                passWord = resultSet.getString("Admin_pwd").trim();
-                if (passWord == userpassword || passWord.equals(userpassword)) {
-                    return resultSet.getString("Admin_name");
-                } else
-                    return null;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
 
 }

@@ -1,8 +1,11 @@
 package DAO.Login;
-import User.Student;
-import User.Teacher;
+
 import connection.JDBC_Connector;
-import java.sql.*;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 
 /**
  * @author : [Tongwei_L]
@@ -29,82 +32,6 @@ public class Teachers_utils {
             e.printStackTrace();
         }
         return false;
-    }
-
-    public static boolean addTeacher(Teacher s) throws SQLException {
-        Connection connection=JDBC_Connector.ConnectMySQL();                  //连接数据库
-        if(checkTeacherAccount(s.getTeacher_idcard(),s.getTeacher_pwd())){
-            System.out.println("教师已存在！");
-            return false;
-        }
-        String sql = "insert into teachers values(?,?,?,?,?,?,?,null,null,null)";
-        PreparedStatement ps = connection.prepareStatement(sql);
-        ps.setString(1,s.getTeacher_idcard());
-        ps.setString(2,s.getTeacher_id());
-        ps.setString(3,s.getTeacher_pwd());
-        ps.setString(4,s.getTeacher_name());
-        ps.setInt(5,s.getTeacher_age());
-        ps.setString(6,s.getTeacher_gender());
-        ps.setString(7,s.getTeacher_email());
-        boolean re = ps.executeUpdate()>0;
-        if(re)
-            System.out.println("教师"+s.getTeacher_name()+"添加成功！");
-        else
-            System.out.println("教师添加失败！");
-        JDBC_Connector.close(null, ps, connection);
-        return re;
-    }
-
-    public static boolean findForgetpwdTeacher(Teacher s) throws SQLException {
-        try {
-            Connection connection= JDBC_Connector.ConnectMySQL();                  //连接数据库
-            Statement state = connection.createStatement();
-            String sql="select * from teachers where Teacher_idcard='"+s.getTeacher_idcard()+"' and Teacher_email='"+s.getTeacher_email()+"'";
-            ResultSet resultSet= state.executeQuery(sql);            //执行sql
-            while (resultSet.next()) {
-                String Teacher_idcard = resultSet.getString("Teacher_idcard").trim();
-                String Teacher_email = resultSet.getString("Teacher_email").trim();
-                return Teacher_idcard.equals(s.getTeacher_idcard()) && Teacher_email.equals(s.getTeacher_email());
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
-
-    public static boolean changeTeacherPwd(String username, Teacher t) throws SQLException {
-        Connection connection=JDBC_Connector.ConnectMySQL();
-        String sql = "update teachers SET Teacher_pwd =? WHERE Teacher_idcard =" +username;
-        PreparedStatement ps = connection.prepareStatement(sql);
-        ps.setString(1,t.getTeacher_pwd());
-        boolean re = ps.executeUpdate()>0;
-        JDBC_Connector.close(null, ps, connection);
-        if(re)
-            System.out.println("教师"+username+"密码修改成功！");
-        else
-            System.out.println("教师"+username+"密码修改失败！");
-        JDBC_Connector.close(null, ps, connection);
-        return re;
-    }
-
-    public static String  returnTeacherName(String username, String userpassword) {
-        try {
-            Connection connection=JDBC_Connector.ConnectMySQL();                  //连接数据库
-            Statement state = connection.createStatement();
-            String sql="select * from teachers where Teacher_idcard='"+username+"' and Teacher_pwd='"+userpassword+"'";
-            ResultSet resultSet= state.executeQuery(sql);            //执行sql
-            String passWord = "";
-            while (resultSet.next()) {
-                passWord = resultSet.getString("Teacher_pwd").trim();
-                if (passWord == userpassword || passWord.equals(userpassword)) {
-                    return resultSet.getString("Teacher_name");
-                } else
-                    return null;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
     }
 
 }

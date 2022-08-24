@@ -264,13 +264,13 @@ See also com.mysql.cj.conf.PropertyDefinitions.SYSP_* variables for other test o
     <!-- Location of third-party libraries we don't distribute and extra source files. -->
     <property name="com.mysql.cj.extra.libs" value="lib" />
 
-    <!-- JVM used to execute the Image_utils. -->
+    <!-- JVM used to execute the tests. -->
     <property name="com.mysql.cj.testsuite.jvm" value="${com.mysql.cj.build.jdk}" />
 
     <!-- Include the prebuilt docs into packages. -->
     <property name="com.mysql.cj.dist.dir.prebuilt.docs" value="/tmp/connectorj/docs/prebuilt" />
 
-    <!-- This propertyset is used to forward Image_utils setup configurations as system variables to JUnit tasks. -->
+    <!-- This propertyset is used to forward tests setup configurations as system variables to JUnit tasks. -->
     <propertyset id="junit.system.properties">
         <propertyref prefix="com.mysql.cj.testsuite." />
     </propertyset>
@@ -370,7 +370,7 @@ See also com.mysql.cj.conf.PropertyDefinitions.SYSP_* variables for other test o
     </target>
 
 
-    <!-- Check provided JVM for running Image_utils. -->
+    <!-- Check provided JVM for running tests. -->
     <target name="-testsuite-jvm-check">
         <property name="com.mysql.cj.testsuite.jvm.java" value="${com.mysql.cj.testsuite.jvm}/bin/java" />
 
@@ -1250,7 +1250,7 @@ See also com.mysql.cj.conf.PropertyDefinitions.SYSP_* variables for other test o
         <replace file="${com.mysql.cj.build.dir.driver}/junit-frames.xsl" token="extralibs" value="${ant.home}/etc/junit-frames.xsl" />
     </target>
 
-    <!-- Run the full test suite, single test set or named Image_utils against one JVM and one server config. -->
+    <!-- Run the full test suite, single test set or named tests against one JVM and one server config. -->
     <target name="test"
             description="Runs the full test suite, single test set (variable 'com.mysql.cj.testsuite.test.class') or named tests (variables 'com.mysql.cj.testsuite.test.class' and 'com.mysql.cj.testsuite.test.methods') against one JVM and one server config."
             depends="-testsuite-jvm-check, compile-testsuite, -init-custom-xslt">

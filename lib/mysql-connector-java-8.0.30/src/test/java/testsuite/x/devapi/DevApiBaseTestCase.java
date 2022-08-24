@@ -57,11 +57,11 @@ import com.mysql.cj.xdevapi.UpdateResultBuilder;
 import testsuite.x.internal.InternalXBaseTestCase;
 
 /**
- * Utilities for Dev API Image_utils.
+ * Utilities for Dev API tests.
  */
 public class DevApiBaseTestCase extends InternalXBaseTestCase {
     /**
-     * Session for use in Image_utils.
+     * Session for use in tests.
      */
     Session session;
     Schema schema;
@@ -79,7 +79,7 @@ public class DevApiBaseTestCase extends InternalXBaseTestCase {
             rs = this.session.sql("SHOW VARIABLES LIKE 'collation_database'").execute();
             this.dbCollation = rs.fetchOne().getString(1);
 
-            // ensure max_connections value is enough to run Image_utils
+            // ensure max_connections value is enough to run tests
             int maxConnections = 0;
             int mysqlxMaxConnections = 0;
 

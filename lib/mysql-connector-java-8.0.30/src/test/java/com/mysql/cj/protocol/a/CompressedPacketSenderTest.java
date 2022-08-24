@@ -201,7 +201,7 @@ public class CompressedPacketSenderTest extends PacketSenderTestBase {
     }
 
     /**
-     * This Image_utils that the splitting of MySQL packets includes an additional empty packet to signal the end of the multi-packet sequence.
+     * This tests that the splitting of MySQL packets includes an additional empty packet to signal the end of the multi-packet sequence.
      * 
      * @throws IOException
      */

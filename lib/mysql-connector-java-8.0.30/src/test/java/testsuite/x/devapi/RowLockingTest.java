@@ -456,7 +456,7 @@ public class RowLockingTest extends BaseCollectionTestCase {
     }
 
     /**
-     * START collection.find() Image_utils
+     * START collection.find() tests
      * 
      * @throws Exception
      */

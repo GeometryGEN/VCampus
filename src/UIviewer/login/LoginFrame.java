@@ -1,13 +1,11 @@
 package UIviewer.login;
+
 import ClientToServer.ClientToServer;
-import java.awt.EventQueue;
+
 import javax.swing.*;
-import java.awt.Font;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.Color;
-import static UIviewer.register.registerUI;
-import static UIviewer.forgetPWD.forgetPWDUI;
 
 public class LoginFrame extends JFrame{
 
@@ -84,7 +82,7 @@ public class LoginFrame extends JFrame{
                     String pwd=String.valueOf(passwordField.getPassword());
                     if(ucs.checkStudent(username,pwd)) {
                         System.out.println(username+"登录成功！");
-                        UIviewer.functionChoose.functionChooseUI(ucs);
+                        UIviewer.functionChoose.functionChooseUI();
                     }else
                         JOptionPane.showMessageDialog(p1, "用户名或密码错误,请重试!");
                 } catch (Exception ex) {
@@ -110,7 +108,7 @@ public class LoginFrame extends JFrame{
                     String pwd=String.valueOf(passwordField.getPassword());
                     if(ucs.checkTeacher(username,pwd)) {
                         System.out.println(username+"登录成功！");
-                        UIviewer.functionChoose.functionChooseUI(ucs);
+                        UIviewer.functionChoose.functionChooseUI();
                     }else
                         JOptionPane.showMessageDialog(p1, "用户名或密码错误,请重试!");
                 } catch (Exception ex) {
@@ -126,6 +124,7 @@ public class LoginFrame extends JFrame{
         btnNewButton_3.setFont(myfont);
         btnNewButton_3.setBackground(new Color(34, 139, 34));
         btnNewButton_3.setForeground(new Color(248, 248, 255));
+
         btnNewButton_3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -135,7 +134,7 @@ public class LoginFrame extends JFrame{
                     String pwd=String.valueOf(passwordField.getPassword());
                     if(ucs.checkAdmin(username,pwd)) {
                         System.out.println(username+"登录成功！");
-                        UIviewer.functionChoose.functionChooseUI(ucs);
+                        functionChoose.functionChooseUI();
                     }else
                         JOptionPane.showMessageDialog(p1, "用户名或密码错误,请重试!");
                 } catch (Exception ex) {
@@ -143,6 +142,7 @@ public class LoginFrame extends JFrame{
                 }
             }
         });
+
 
         jf.getContentPane().add(btnNewButton_3);
         //注册
@@ -152,17 +152,19 @@ public class LoginFrame extends JFrame{
         btnNewButton_4.setFont(myfont1);
         btnNewButton_4.setContentAreaFilled(false);//设置按钮透明
         btnNewButton_4.setBorder(null);//取消边框
+
         btnNewButton_4.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
                 try {
-                    registerUI(ucs);
+
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
             }
         });
+
 
         jf.getContentPane().add(btnNewButton_4);
         //忘记密码
@@ -171,12 +173,13 @@ public class LoginFrame extends JFrame{
         btnNewButton_5.setFont(myfont1);
         btnNewButton_5.setContentAreaFilled(false);//设置按钮透明
         btnNewButton_5.setBorder(null);//取消边框
+
         btnNewButton_5.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
                 try {
-                    forgetPWDUI(ucs);
+
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -194,17 +197,19 @@ public class LoginFrame extends JFrame{
         //p1.setOpaque(false);
         jf.getContentPane().add(p1);
 
+
         jf.getContentPane().add(lblBackground); // 将组件添加到面板中
+
         jf.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         jf.setVisible(true);
-    }
+}
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
                     LoginFrame frame = new LoginFrame();
-                    // frame.setVisible(true);
+                   // frame.setVisible(true);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
