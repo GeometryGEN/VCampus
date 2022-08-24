@@ -251,24 +251,46 @@ public class Course_manager {
         }
     }
     public void refuse(String id,String reason) throws IOException {
-        Message sendback=new Message();
-        Socket s= ManageClientToServerThread.getThread(id).getSocket();
-        ObjectOutputStream oos=new ObjectOutputStream(s.getOutputStream());
-        sendback.setType(MessageType.MESSAGE_CURRICULUM_APPLICATION_REFUSE);
-        sendback.setData(reason);
+        Iterator it=ServerToClient.getOpencourses().iterator();
+        while(it.hasNext()){
+            Opencourse c=(Opencourse)it.next();
+            ServerToClient.getOpencourses().remove(c);
+            if(c.id==id)
+            {
+                c.result=reason;
+                c.status=1;
+            }
+            ServerToClient.getOpencourses().add(c);
+        }
         return;
     }
     public void approve(String id,Course course) throws SQLException {
-        Message sendback=new Message();
+        Iterator it=ServerToClient.getOpencourses().iterator();
+        while(it.hasNext()){
+            Opencourse c=(Opencourse)it.next();
+            ServerToClient.getOpencourses().remove(c);
+            if(c.id==id)
+            {
+                c.result="已通过";
+                c.status=2;
+            }
+            ServerToClient.getOpencourses().add(c);
+        }
         add(course);
-        sendback.setType(MessageType.MESSAGE_CURRICULUM_APPLICATION_APPROVE);
-        sendback.setData("已通过");
         return;
     }
-
-    public Message list_application(){
+    public HashSet<Opencourse>list_tea_opencourse(String id) throws SQLException{
+        HashSet<Opencourse>opencourses=new HashSet<Opencourse>();
+        Iterator it=ServerToClient.getOpencourses().iterator();
+        while(it.hasNext()){
+            Opencourse c=(Opencourse)it.next();
+            if(c.id==id) opencourses.add(c);
+        }
+        return opencourses;
+    }
+    public Message admin_list_application(){
         Message message=new Message();
-        message.setType(MessageType.MESSAGE_CURRICULUM_APPLICATION_LIST_RET);
+        message.setType(MessageType.MESSAGE_CURRICULUM_LIST_ADMIN_APPLICATION_RET);
         message.setData(ServerToClient.getOpencourses());
         return message;
     }

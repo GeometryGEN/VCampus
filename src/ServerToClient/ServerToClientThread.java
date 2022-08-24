@@ -55,10 +55,13 @@ public class ServerToClientThread extends Thread{
                 Message m = (Message) ois.readObject();
                 Message sendback = new Message();
                 ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+                //图书馆
                 if(m.getType()== MessageType.MESSAGE_LIBRARY_ENTER){
                     Library_manager lib_manager = new Library_manager(userid);
                     HashSet<Book_borrower> mybooks=lib_manager.list_my_book();
+                    sendback.setSender(userid);
                     sendback.setData(mybooks);
+                    sendback.setType(MessageType.MESSAGE_LIBRARY_ENTER_RET);
                     oos.writeObject(sendback);
                 }
                 else if(m.getType().equals(MessageType.MESSAGE_CLIENT_EXIT)){
@@ -126,6 +129,7 @@ public class ServerToClientThread extends Thread{
                     String id=(String)m.getData();
                     new Library_manager(userid).deletebook(id);
                 }
+                //选课
                 if(m.getType()==MessageType.MESSAGE_CURRICULUM_LIST_ALL){
                     sendback.setData(new Course_manager(userid).list_all_courses());
                     sendback.setType(MessageType.MESSAGE_CURRICULUM_LIST_ALL_RET);
@@ -157,6 +161,33 @@ public class ServerToClientThread extends Thread{
                 else if(m.getType()==MessageType.MESSAGE_CURRICULUM_DELETE){
                     new Course_manager(userid).schedule((String) m.getData());
                 }
+                else if(m.getType()==MessageType.MESSAGE_CURRICULUM_LIST_APPLICATION){
+                    sendback.setData(new Course_manager(userid).list_tea_opencourse((String) m.getData()));
+                    sendback.setType(MessageType.MESSAGE_CURRICULUM_LIST_APPLICATION_RET);
+                    oos.writeObject(sendback);
+                }
+                else if (m.getType()==MessageType.MESSAGE_CURRICULUM_QUERY) {
+                    String q=(String)m.getData();
+                    sendback.setData(new Course_manager(userid).query_courses(q));
+                    sendback.setType(MessageType.MESSAGE_CURRICULUM_QUERY_RET);
+                    oos.writeObject(sendback);
+                }
+                else if(m.getType()==MessageType.MESSAGE_CURRICULUM_LIST_ADMIN_APPLICATION){
+                    sendback=new Course_manager(userid).admin_list_application();
+                    oos.writeObject(sendback);
+                }
+                else if(m.getType()==MessageType.MESSAGE_CURRICULUM_APPLICATION_REFUSE){
+                    String reason=(String) m.getData();
+                    new Course_manager(userid).refuse(m.getGetter(),reason);
+                }
+                else if(m.getType()==MessageType.MESSAGE_CURRICULUM_APPLICATION_APPROVE){
+                    Course c=(Course) m.getData();
+                    new Course_manager(userid).approve(m.getGetter(),c);
+                }
+                //站内通信
+                //商店
+                //学籍管理
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
