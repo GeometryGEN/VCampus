@@ -1,6 +1,4 @@
 package UIviewer.status_manage;
-
-
 import net.coobird.thumbnailator.Thumbnails;
 
 import javax.swing.*;

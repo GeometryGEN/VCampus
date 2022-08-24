@@ -6,7 +6,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class functionChoose {
-
     public static void functionChooseUI(ClientToServer ucs) {
         JFrame jf = new JFrame("functionChoose");
         jf.setSize(1273,784);
@@ -126,6 +125,18 @@ public class functionChoose {
         l31.setBounds(449, 290, 300, 72);
         jf.getContentPane().add(l31);
         JButton btnNewButton_1 = new JButton("学籍管理");
+        btnNewButton_1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
+                try {
+
+
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
         btnNewButton_1.setBounds(335, 362, 300, 128);
         Font myfont = new Font("微软雅黑", Font.BOLD, 26);
         btnNewButton_1.setFont(myfont);
@@ -142,6 +153,18 @@ public class functionChoose {
         l32.setBounds(754, 290, 300, 72);
         jf.getContentPane().add(l32);
         JButton btnNewButton_2 = new JButton("选课系统");
+        btnNewButton_2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
+                try {
+
+
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
         btnNewButton_2.setBounds(640, 362, 300, 128);
         btnNewButton_2.setFont(myfont);
         btnNewButton_2.setBackground(new Color(220,220,220));
@@ -157,6 +180,18 @@ public class functionChoose {
         l33.setBounds(1059, 290, 300, 72);
         jf.getContentPane().add(l33);
         JButton btnNewButton_3 = new JButton("商店系统");
+        btnNewButton_3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
+                try {
+
+
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
         btnNewButton_3.setBounds(945, 362, 300, 128);
         btnNewButton_3.setFont(myfont);
         btnNewButton_3.setBackground(new Color(220,220,220));
@@ -174,6 +209,18 @@ public class functionChoose {
         l34.setBounds(449, 500, 300, 72);
         jf.getContentPane().add(l34);
         JButton btnNewButton_4 = new JButton("图书馆系统");
+        btnNewButton_4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
+                try {
+
+
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
         btnNewButton_4.setBounds(335, 572, 300, 128);
         btnNewButton_4.setFont(myfont);
         btnNewButton_4.setBackground(new Color(220,220,220));
@@ -191,6 +238,18 @@ public class functionChoose {
         l35.setBounds(754, 500, 300, 72);
         jf.getContentPane().add(l35);
         JButton btnNewButton_5 = new JButton("站内通信");
+        btnNewButton_5.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
+                try {
+
+
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
         btnNewButton_5.setBounds(640, 572, 300, 128);
         btnNewButton_5.setFont(myfont);
         btnNewButton_5.setBackground(new Color(220,220,220));
