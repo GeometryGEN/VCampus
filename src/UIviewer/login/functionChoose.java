@@ -84,6 +84,7 @@ public class functionChoose {
         btnNewButton_6.setFont(myfont2);
         btnNewButton_6.setBackground(new Color(248,248,255));
         btnNewButton_6.setContentAreaFilled(false);//设置按钮透明
+        btnNewButton_6.setFocusPainted(false);
         jf.getContentPane().add(btnNewButton_6);
 
         btnNewButton_6.addActionListener(new ActionListener() {
@@ -142,6 +143,7 @@ public class functionChoose {
         Font myfont = new Font("微软雅黑", Font.BOLD, 26);
         btnNewButton_1.setFont(myfont);
         btnNewButton_1.setBackground(new Color(220,220,220));
+        btnNewButton_1.setFocusPainted(false);
         jf.getContentPane().add(btnNewButton_1);
         JPanel p21 = new JPanel();
         p21.setBounds(335, 290, 300, 200);
@@ -154,6 +156,7 @@ public class functionChoose {
         l32.setBounds(754, 290, 300, 72);
         jf.getContentPane().add(l32);
         JButton btnNewButton_2 = new JButton("选课系统");
+        btnNewButton_2.setFocusPainted(false);
         btnNewButton_2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -181,6 +184,7 @@ public class functionChoose {
         l33.setBounds(1059, 290, 300, 72);
         jf.getContentPane().add(l33);
         JButton btnNewButton_3 = new JButton("商店系统");
+        btnNewButton_3.setFocusPainted(false);
         btnNewButton_3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -210,6 +214,7 @@ public class functionChoose {
         l34.setBounds(449, 500, 300, 72);
         jf.getContentPane().add(l34);
         JButton btnNewButton_4 = new JButton("图书馆系统");
+        btnNewButton_4.setFocusPainted(false);
         btnNewButton_4.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -245,6 +250,7 @@ public class functionChoose {
         l35.setBounds(754, 500, 300, 72);
         jf.getContentPane().add(l35);
         JButton btnNewButton_5 = new JButton("站内通信");
+        btnNewButton_5.setFocusPainted(false);
         btnNewButton_5.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
