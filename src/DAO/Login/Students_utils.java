@@ -53,13 +53,18 @@ public class Students_utils {
             System.out.println("学生已存在！");
             return false;
         }
-        String sql = "insert into students values(?,null,?,null,?,null,null,null,null)";
+        String sql = "insert into students values(?,?,?,?,?,?,?,null,null,null,null,null,null)";
+        //(Student_idcard,Student_id,Student_pwd,Student_name,Student_age,Student_gender,Student_email,Student_class,Student_money)
         PreparedStatement ps = connection.prepareStatement(sql);
         ps.setString(1,s.getStudent_idcard());
-        ps.setString(2,s.getStudent_pwd());
-        ps.setInt(3,s.getStudent_age());
+        ps.setString(2,s.getStudent_id());
+        ps.setString(3,s.getStudent_pwd());
+        ps.setString(4,s.getStudent_name());
+        ps.setInt(5,s.getStudent_age());
+        ps.setString(6,s.getStudent_gender());
+        ps.setString(7,s.getStudent_email());
         boolean re = ps.executeUpdate()>0;
-         if(re)
+        if(re)
             System.out.println("学生"+s.getStudent_idcard()+"添加成功！");
         else
             System.out.println("学生添加失败！");
@@ -86,29 +91,56 @@ public class Students_utils {
         return re;
     }
 
-    public static boolean changeStudentInfo(String username,Student s) throws SQLException {
+    public static boolean changeStudentPwd(String username,Student s) throws SQLException {
         Connection connection=JDBC_Connector.ConnectMySQL();
-        String sql = "update students where Student_idcard=?";
+        String sql = "update students SET Student_pwd =? WHERE Student_idcard =" +username;
         PreparedStatement ps = connection.prepareStatement(sql);
-        ps.setString(1,"11112222");
+        ps.setString(1,s.getStudent_pwd());
         boolean re = ps.executeUpdate()>0;
         JDBC_Connector.close(null, ps, connection);
         if(re)
-            System.out.println("学生"+username+"删除成功！");
+            System.out.println("学生"+username+"密码修改成功！");
         else
-            System.out.println("学生删除失败！");
+            System.out.println("学生"+username+"密码修改失败！");
         JDBC_Connector.close(null, ps, connection);
         return re;
     }
 
-
-    public static void main(String[] args) throws Exception {
-        Student s = new Student();
-        s.setStudent_idcard("11112222");
-        s.setStudent_pwd("22221111");
-        s.setStudent_age(11111);
-        addStudent(s);
-        deleteStudent("11112222");
-        System.out.println(findStudentAccount("213202128"));;
+    public static boolean findForgetpwdStudent(Student s) throws SQLException {
+        try {
+            Connection connection= JDBC_Connector.ConnectMySQL();                  //连接数据库
+            Statement state = connection.createStatement();
+            String sql="select * from students where Student_idcard='"+s.getStudent_idcard()+"' and Student_email='"+s.getStudent_email()+"'";
+            ResultSet resultSet= state.executeQuery(sql);            //执行sql
+            while (resultSet.next()) {
+                String Student_idcard = resultSet.getString("Student_idcard").trim();
+                String Student_email = resultSet.getString("Student_email").trim();
+                return Student_idcard.equals(s.getStudent_idcard()) && Student_email.equals(s.getStudent_email());
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
+
+    public static String  returnStudentName(String username, String userpassword) {
+        try {
+            Connection connection=JDBC_Connector.ConnectMySQL();                  //连接数据库
+            Statement state = connection.createStatement();
+            String sql="select * from students where Student_idcard='"+username+"' and Student_pwd='"+userpassword+"'";
+            ResultSet resultSet= state.executeQuery(sql);            //执行sql
+            String passWord = "";
+            while (resultSet.next()) {
+                passWord = resultSet.getString("Student_pwd").trim();
+                if (passWord == userpassword || passWord.equals(userpassword)) {
+                    return resultSet.getString("Student_name");
+                } else
+                    return null;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }

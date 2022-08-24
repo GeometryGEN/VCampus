@@ -1,10 +1,13 @@
 package UIviewer.login;
+import ClientToServer.ClientToServer;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class functionChoose {
 
-    public static void functionChooseUI() {
+    public static void functionChooseUI(ClientToServer ucs) {
         JFrame jf = new JFrame("functionChoose");
         jf.setSize(1273,784);
 
@@ -29,15 +32,26 @@ public class functionChoose {
         l4.setFont(font2);
         l4.setForeground(new Color(30,144,255));
         jf.getContentPane().add(l4);
-
-        String name="1";
+        String name=null;
+        if(ucs.getID().equals("1"))
+            name=ucs.getS().getStudent_name();
+        else if(ucs.getID().equals("2"))
+            name=ucs.getT().getTeacher_name();
+        else if(ucs.getID().equals("3"))
+            name=ucs.getA().getAdmin_name();
         JLabel l2 = new JLabel(" 姓名："+name);
         l2.setBounds(30, 210, 250, 60);
         Font font1 = new Font("微软雅黑", Font.PLAIN, 18);
         l2.setFont(font1);
         l2.setForeground(new Color(0,0,0));
         jf.getContentPane().add(l2);
-        String card="";
+        String card=null;
+        if(ucs.getID().equals("1"))
+            card=ucs.getS().getStudent_idcard();
+        else if(ucs.getID().equals("2"))
+            card=ucs.getT().getTeacher_idcard();
+        else if(ucs.getID().equals("3"))
+            card=ucs.getA().getAdmin_idcard();
         JLabel l3 = new JLabel(" 卡号："+card);
         l3.setBounds(30, 250, 250, 60);
         l3.setFont(font1);
@@ -71,6 +85,18 @@ public class functionChoose {
         btnNewButton_6.setBackground(new Color(248,248,255));
         btnNewButton_6.setContentAreaFilled(false);//设置按钮透明
         jf.getContentPane().add(btnNewButton_6);
+
+        btnNewButton_6.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
+                try {
+                    ucs.logout();
+                    jf.dispose();
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
 
         //横向图片
         JLabel l12 = new JLabel();
@@ -187,12 +213,8 @@ public class functionChoose {
         p2.setBounds(300, 0, 950, 784);
         p2.setBackground(new Color(245,245,245, 180));
         jf.getContentPane().add(p2);
-
-
-
-
         jf.setLocationRelativeTo(null);
-        jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         jf.setVisible(true);
     }
 

@@ -22,4 +22,8 @@ public class ManageClientToServerThread {
         return hm.get(id);
     }
 
+    public static void removeClientToServerThread(String id){
+        hm.remove(id);
+
+    }
 }

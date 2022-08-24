@@ -19,10 +19,11 @@ import java.util.HashSet;
  */
 public class ClientToServerThread extends Thread {
     private Socket socket;
-    private String ID;
-    public ClientToServerThread(String id,Socket socket){
+    //volatile修饰符用来保证其它线程读取的总是该变量的最新的值
+    public volatile boolean exit = false;
+
+    public ClientToServerThread(Socket socket){
         this.socket=socket;
-        this.ID=id;
     }
 
     public Socket getSocket(){
@@ -30,7 +31,7 @@ public class ClientToServerThread extends Thread {
     }
 
     public void run(){
-        while (true){
+        while (!exit){
             try {
                 ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
                 Message message = (Message) ois.readObject();

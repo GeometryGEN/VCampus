@@ -2,7 +2,6 @@ package utils;
 import java.net.Inet4Address;
 import java.net.InetAddress;
 import java.net.NetworkInterface;
-import java.net.UnknownHostException;
 import java.util.Enumeration;
 
 /**
@@ -32,10 +31,4 @@ public class getIP {
         }
         return null;
     }
-
-    public static void main(String[] args) throws UnknownHostException {
-
-        System.out.println(getHostIp());
-    }
-
 }
