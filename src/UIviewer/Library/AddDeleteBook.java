@@ -8,7 +8,7 @@ public class AddDeleteBook extends JPanel {
 
     public AddDeleteBook(){
         setLayout(null);
-
+//dddddd
         //录入信息
         JLabel l = new JLabel("   录入书籍");
         l.setBounds(200, 10, 290, 80);
