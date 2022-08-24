@@ -5,9 +5,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class myBook extends JPanel {
-
     public myBook(){
         setLayout(null);
+
         JPanel p11=new JPanel();
         p11.setBounds(0,0,1280,650);
         JLabel pic1 = new JLabel();

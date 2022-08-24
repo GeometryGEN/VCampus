@@ -118,7 +118,7 @@ public class adminLib extends JFrame {
         p2.setBackground(new Color(57,106,57));
         mainLib.add(p2);
 
-        //setLocationRelativeTo(null);
+        setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //setVisible(true);
     }
