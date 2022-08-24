@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="thumbnailator-0.4.17">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/net/coobird/thumbnailator/0.4.17/thumbnailator-0.4.17.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
