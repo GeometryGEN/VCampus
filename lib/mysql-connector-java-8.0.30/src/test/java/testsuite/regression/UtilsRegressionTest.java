@@ -56,7 +56,7 @@ import com.mysql.cj.util.TimeUtil;
 import testsuite.BaseTestCase;
 
 /**
- * Regression Image_utils for utility classes.
+ * Regression tests for utility classes.
  */
 public class UtilsRegressionTest extends BaseTestCase {
     /**

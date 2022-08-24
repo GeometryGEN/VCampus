@@ -1,4 +1,4 @@
-package UIviewer;
+package UIviewer.login;
 import ClientToServer.ClientToServer;
 import User.Student;
 import User.Teacher;

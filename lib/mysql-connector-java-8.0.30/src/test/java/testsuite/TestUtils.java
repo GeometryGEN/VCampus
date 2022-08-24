@@ -40,7 +40,7 @@ import java.util.Enumeration;
 import java.util.List;
 
 /**
- * Utility functions to use in Image_utils.
+ * Utility functions to use in tests.
  */
 
 public class TestUtils {

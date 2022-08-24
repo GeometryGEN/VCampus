@@ -30,7 +30,7 @@
 package com.mysql.cj;
 
 /**
- * Exposes protected {@link CharsetMapping} methods for use in Image_utils.
+ * Exposes protected {@link CharsetMapping} methods for use in tests.
  */
 public class CharsetMappingWrapper {
 

@@ -22,9 +22,4 @@ public class ManageClientToServerThread {
         return hm.get(id);
     }
 
-    //移除线程
-    public static void removeClientToServerThread(String id){
-        hm.remove(id);
-
-    }
 }
