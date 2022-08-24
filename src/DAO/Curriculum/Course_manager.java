@@ -106,7 +106,7 @@ public class Course_manager {
         }
         return courses;
     }
-    public HashSet<Course> list_my_courses(String id) throws SQLException {
+    public HashSet<Course> list_my_courses() throws SQLException {
         HashSet<Course> courses = new HashSet<Course>();
         String sql="select * from elective where stu_id='?' or tea_id='?';";
         PreparedStatement st=conn.prepareStatement(sql);
@@ -135,7 +135,7 @@ public class Course_manager {
         return courses;
     }
     public Message choose(Course c) throws SQLException {
-        HashSet<Course> courses = list_my_courses(id);
+        HashSet<Course> courses = list_my_courses();
         int [][][]a=new int[17][6][14];
         Iterator it = courses.iterator();
         while(it.hasNext()){
@@ -213,9 +213,20 @@ public class Course_manager {
         st.setString(1,s);
         st.executeUpdate();
     }
-    public String[][] schedule(String id) throws SQLException {
-        String [][]ans=new String[14][6];
-
+    public String[][][] schedule(String id) throws SQLException {
+        String [][][]ans=new String[17][14][6];
+        HashSet<Course>courses=list_my_courses();
+        Iterator it = courses.iterator();
+        while(it.hasNext()){
+            Course cc=(Course) it.next();
+            for(int p=1;p<=16;p++){
+                for(int q=1;q<=5;q++){
+                    for(int r=1;r<=13;r++){
+                        if(cc.class_time[p][q][r]==1) ans[p][q][r]=cc.name;
+                    }
+                }
+            }
+        }
         return ans;
     }
     public void apply(Opencourse c) throws SQLException {

@@ -9,6 +9,7 @@ import message.MessageType;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.sql.*;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -19,7 +20,7 @@ public class Library_manager {
     private String ID;
     private Connection conn;
     public Library_manager(String ID){
-    
+
         this.ID = ID;
         try {
             Connection conn= JDBC_Connector.ConnectMySQL();
@@ -148,7 +149,7 @@ public class Library_manager {
         return msg;
     }
     public Message ret(Book_borrower b) throws SQLException{
-    
+
         String sql;
         Message msg=new Message();
         msg.setType(MessageType.MESSAGE_LIBRARY_RET_SUCCEED);
@@ -183,6 +184,36 @@ public class Library_manager {
         sendback.setData(p);
         oos.writeObject(sendback);
     }
+    public Message extend(Book_borrower b) throws SQLException, ParseException {
+        String sql="select * from library where name= '?' and author='?'and borrow_to='?';";
+        PreparedStatement st=conn.prepareStatement(sql);
+        st.setString(1,b.name);
+        st.setString(2,b.author);
+        st.setString(3,ID);
+        ResultSet rs=st.executeQuery();
+        Message message=new Message();
+        if(rs.getInt("extended")==1)
+        {
+            message.setType(MessageType.MESSAGE_LIBRARY_EXTEND_FAIL);
+            return message;
+        }
+        while(rs.next()){
+            String ex=rs.getDate("expire_date").toString();
+            String bookid=rs.getString("id");
+            Date next=new SimpleDateFormat("yyyy-MM-dd").parse(ex);
+            Calendar rightNow = Calendar.getInstance();
+            rightNow.setTime(next);
+            rightNow.add(Calendar.DAY_OF_YEAR,30);//日期加30天
+            Date new_expire=rightNow.getTime();
+            sql="update library set expire_date=?, extended=1 where id='?'";
+            st=conn.prepareStatement(sql);
+            st.setString(1,new_expire.toString());
+            st.setString(2,bookid);
+            st.executeUpdate();
+        }
+        message.setType(MessageType.MESSAGE_LIBRARY_EXTEND_SUCCEED);
+        return message;
+    }
     public Punishment apply(Book_borrower b) throws SQLException {
         Punishment pp=new Punishment();
         String sql="select * from library where name= '?' and author='?'and borrow_to='?';";
@@ -191,9 +222,12 @@ public class Library_manager {
         st.setString(2,b.author);
         st.setString(3,ID);
         ResultSet rs=st.executeQuery();
-        pp.Book_id=rs.getString("ID");
-        pp.Customer_iD= ID;
-        pp.price=rs.getDouble("price");
+        while (rs.next())
+        {
+            pp.Book_id=rs.getString("ID");
+            pp.Customer_iD= ID;
+            pp.price=rs.getDouble("price");
+        }
         return pp;
     }
     public Message pay(Punishment p) throws SQLException{
@@ -240,7 +274,7 @@ public class Library_manager {
         return msg;
     }
     public void addbook(Book_admin book) throws SQLException{
-        String sql="insert into library(name,author,ID,place,price,publisher,country,available) value(?,?,?,?,?,?,?,1);";
+        String sql="insert into library(name,author,ID,place,price,publisher,country,available) values(?,?,?,?,?,?,?,1);";
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,book.name);
         st.setString(2,book.author);
