@@ -174,6 +174,20 @@ public class functionChoose {
         l34.setBounds(449, 500, 300, 72);
         jf.getContentPane().add(l34);
         JButton btnNewButton_4 = new JButton("图书馆系统");
+
+        btnNewButton_4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
+                try {
+
+
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+
         btnNewButton_4.setBounds(335, 572, 300, 128);
         btnNewButton_4.setFont(myfont);
         btnNewButton_4.setBackground(new Color(220,220,220));

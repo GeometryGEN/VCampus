@@ -115,7 +115,6 @@ public class readLib extends JFrame {
         b5.setFocusPainted(false);
         b5.setForeground(new Color(248, 248, 255));
         mainLib.add(b5);
-
          */
 
         //按钮面板
