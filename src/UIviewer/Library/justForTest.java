@@ -18,6 +18,7 @@ public class justForTest  {
     JTextField phonetext = new JTextField(11);
 
     public void puttogether() {
+        //111
         JFrame jf = new JFrame("表格");
         JPanel jp = new JPanel();
         jp.add(number);
