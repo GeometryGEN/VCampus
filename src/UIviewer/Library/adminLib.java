@@ -46,7 +46,7 @@ public class adminLib extends JFrame {
 //		给主要显示面板添加布局方式
         panel.setLayout(cardLayout);
 //		创建相应面板类的对象
-        bookSearch f1=new bookSearch();
+        AllBooks f1=new AllBooks();
 //		将面板添加到住面板中，注意:add()方法里有两个参数，第一个是要添加的对象，第二个给这个对象所放置的卡片
 //		起个名字，后面调用显示的时候要用到这个名字
         panel.add(f1,"f1");
