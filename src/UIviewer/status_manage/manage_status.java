@@ -54,7 +54,7 @@ public class manage_status extends JPanel {
         white_front_slice.setBounds((int)((90+icon1_width)*width_r),(int)((7+icon1_height)*height_r), (int)(width-2*(90+icon1_width)*width_r),(int)(40*height_r));
         add(white_front_slice);
         white_front_slice.setLayout(null);//设置绝对布局
-        //文字
+        //文字//
         JLabel front_title=new JLabel("学生基本信息管理");
         front_title.setBounds((int)(20*width_r), (int)(0*height_r), (int)(300*width_r), (int)(40*height_r));
         Font front_title_font = new Font("微软雅黑", Font.PLAIN, (int)(19*width_r));
