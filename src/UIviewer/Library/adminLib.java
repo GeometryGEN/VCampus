@@ -6,11 +6,25 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 public class adminLib extends JFrame {
     private JPanel mainLib;
+    static String name;
+
+    static void getName(String a)
+    {
+        name=a;
+    }
     CardLayout cardLayout=new CardLayout();
     public static void adminLibUI(ClientToServer ucs) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
+                    String name=null;
+                    if(ucs.getID().equals("1"))
+                        name=ucs.getS().getStudent_name();
+                    else if(ucs.getID().equals("2"))
+                        name=ucs.getT().getTeacher_name();
+                    else if(ucs.getID().equals("3"))
+                        name=ucs.getA().getAdmin_name();
+                    getName(name);
                     adminLib frame = new adminLib();
                     frame.setVisible(true);
                 } catch (Exception e) {
@@ -48,6 +62,14 @@ public class adminLib extends JFrame {
         logo.setIcon(icon);
         logo.setBounds(30, 10, 600, 75);
         mainLib.add(logo);
+
+            //文字
+            JLabel l1 = new JLabel("你好！"+name);
+            l1.setBounds(1100, 30, 200, 55);
+            l1.setForeground(new Color(248, 248, 255));
+            Font font = new Font("楷体", Font.BOLD, 20);
+            l1.setFont(font);
+            mainLib.add(l1);
 
         //上方面板
         JPanel p1 = new JPanel();
