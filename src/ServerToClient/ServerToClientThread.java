@@ -55,17 +55,18 @@ public class ServerToClientThread extends Thread{
                 Message m = (Message) ois.readObject();
                 Message sendback = new Message();
                 ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
-                if(m.getType()== MessageType.MESSAGE_LIBRARY_ENTER){
-                    Library_manager lib_manager = new Library_manager(userid);
-                    HashSet<Book_borrower> mybooks=lib_manager.list_my_book();
-                    sendback.setData(mybooks);
-                    oos.writeObject(sendback);
-                }
-                else if(m.getType().equals(MessageType.MESSAGE_CLIENT_EXIT)){
+                //退出系统
+                if(m.getType().equals(MessageType.MESSAGE_CLIENT_EXIT)){
                     System.out.println(m.getSender()+"退出系统");
                     ManageServerToClientThread.removeServerToClientThread(m.getSender());
 //                    socket.close();
                     break;
+                }
+                //图书馆
+                if(m.getType()== MessageType.MESSAGE_LIBRARY_ENTER){
+
+                    sendback=new Library_manager(userid).enter_info();
+                    oos.writeObject(sendback);
                 }
                 else if(m.getType()== MessageType.MESSAGE_LIBRARY_BORROW)
                 {
@@ -86,6 +87,7 @@ public class ServerToClientThread extends Thread{
                     String s=(String)m.getData();
                     Library_manager lib_manager = new Library_manager(userid);
                     sendback.setData(lib_manager.query_book(s));
+                    sendback.setType(MessageType.MESSAGE_LIBRARY_QUERY_RET);
                     oos.writeObject(sendback);
                 }
                 else if(m.getType()== MessageType.MESSAGE_LIBRARY_EXTEND){
@@ -93,14 +95,21 @@ public class ServerToClientThread extends Thread{
                     sendback=new Library_manager(userid).extend(b);
                     oos.writeObject(sendback);
                 }
-                else if(m.getType()== MessageType.MESSAGE_LIBRARY_ADMIN_ENTER)
-                {
-                    Library_manager lib_manager = new Library_manager(userid);
-                    sendback.setData(lib_manager.list_all_book());
+                else if(m.getType()== MessageType.MESSAGE_LIBRARY_LIST_MY_BOOK){
+                    sendback.setData(new Library_manager(userid).list_my_book());
+                    sendback.setType(MessageType.MESSAGE_LIBRARY_LIST_MY_BOOK_RET);
                     oos.writeObject(sendback);
                 }
-                else if(m.getType()==MessageType.MESSAGE_LIBRARY_ADMIN_RECEIVE){
-                    sendback.setData(ServerToClient.getPunish());
+                else if(m.getType()== MessageType.MESSAGE_LIBRARY_ADMIN_LIST)
+                {
+                    Library_manager lib_manager = new Library_manager(userid);
+                    sendback.setData(lib_manager.list_all_book((String)m.getData()));
+                    sendback.setType(MessageType.MESSAGE_LIBRARY_ADMIN_LIST_RET);
+                    oos.writeObject(sendback);
+                }
+                else if(m.getType()==MessageType.MESSAGE_LIBRARY_ADMIN_LIST_TICKETS){
+                    sendback.setData(new Library_manager(userid).admin_list_tickets());
+                    sendback.setType(MessageType.MESSAGE_LIBRARY_ADMIN_LIST_TICKETS_RET);
                     oos.writeObject(sendback);
                 }
                 else if(m.getType()== MessageType.MESSAGE_LIBRARY_ADMIN_HANDLE)
@@ -112,6 +121,11 @@ public class ServerToClientThread extends Thread{
                 {
                     Book_borrower b=(Book_borrower)m.getData();
                     ServerToClient.addPunish(new Library_manager(userid).apply(b));
+                }
+                else if(m.getType()== MessageType.MESSAGE_LIBRARY_LIST_MY_TICKET){
+                    sendback.setData(new Library_manager(userid).list_my_tickets());
+                    sendback.setType(MessageType.MESSAGE_LIBRARY_LIST_MY_TICKET_RET);
+                    oos.writeObject(sendback);
                 }
                 else if(m.getType()== MessageType.MESSAGE_LIBRARY_PAY){
                     Punishment p=(Punishment) m.getData();
@@ -126,6 +140,9 @@ public class ServerToClientThread extends Thread{
                     String id=(String)m.getData();
                     new Library_manager(userid).deletebook(id);
                 }
+
+
+                //选课
                 if(m.getType()==MessageType.MESSAGE_CURRICULUM_LIST_ALL){
                     sendback.setData(new Course_manager(userid).list_all_courses());
                     sendback.setType(MessageType.MESSAGE_CURRICULUM_LIST_ALL_RET);
@@ -157,6 +174,33 @@ public class ServerToClientThread extends Thread{
                 else if(m.getType()==MessageType.MESSAGE_CURRICULUM_DELETE){
                     new Course_manager(userid).schedule((String) m.getData());
                 }
+                else if(m.getType()==MessageType.MESSAGE_CURRICULUM_LIST_APPLICATION){
+                    sendback.setData(new Course_manager(userid).list_tea_opencourse((String) m.getData()));
+                    sendback.setType(MessageType.MESSAGE_CURRICULUM_LIST_APPLICATION_RET);
+                    oos.writeObject(sendback);
+                }
+                else if (m.getType()==MessageType.MESSAGE_CURRICULUM_QUERY) {
+                    String q=(String)m.getData();
+                    sendback.setData(new Course_manager(userid).query_courses(q));
+                    sendback.setType(MessageType.MESSAGE_CURRICULUM_QUERY_RET);
+                    oos.writeObject(sendback);
+                }
+                else if(m.getType()==MessageType.MESSAGE_CURRICULUM_LIST_ADMIN_APPLICATION){
+                    sendback=new Course_manager(userid).admin_list_application();
+                    oos.writeObject(sendback);
+                }
+                else if(m.getType()==MessageType.MESSAGE_CURRICULUM_APPLICATION_REFUSE){
+                    String reason=(String) m.getData();
+                    new Course_manager(userid).refuse(m.getGetter(),reason);
+                }
+                else if(m.getType()==MessageType.MESSAGE_CURRICULUM_APPLICATION_APPROVE){
+                    Course c=(Course) m.getData();
+                    new Course_manager(userid).approve(m.getGetter(),c);
+                }
+                //站内通信
+                //商店
+                //学籍管理
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
