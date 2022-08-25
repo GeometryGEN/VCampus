@@ -28,9 +28,17 @@ public class student_status extends JPanel {
         }
         image.setIcon(new ImageIcon("src/image/status_image_min.png"));
         status.add(image);
-        image.setBounds((int)(60*width_r),(int)(60*height_r),(int)((60+icon1_width)*width_r),(int)((60+icon1_height)*height_r));
-        return status;
+        image.setBounds((int)(60*width_r),(int)(85*height_r),(int)(icon1_width*width_r),(int)(icon1_height*height_r));
         //头像下名字
+        JLabel name_label=new JLabel("葛张样",JLabel.CENTER);
+        name_label.setBounds((int)(57*width_r), (int)((105+icon1_height)*height_r), (int)(110*width_r), (int)(15*height_r));
+        Font name_font = new Font("微软雅黑", Font.PLAIN, (int)(16*width_r));
+        name_label.setFont(name_font);
+        name_label.setForeground(new Color(0,0,0));
+        status.add(name_label);
+
+
+        return status;
     }
 
     public student_status(int width, int height) {
@@ -56,30 +64,30 @@ public class student_status extends JPanel {
         }
         logo.setIcon(new ImageIcon("src/image/student_manage_logo_min.png"));
         add(logo);
-        logo.setBounds((int)(30*width_r),(int)(3*height_r),(int)((30+icon1_width)*width_r),(int)((3+icon1_height)*height_r));
+        logo.setBounds((int)(30*width_r),(int)(5*height_r),(int)(icon1_width*width_r),(int)(icon1_height*height_r));
         //标题
         JLabel title=new JLabel("学生基本信息");
-        title.setBounds((int)((40+icon1_width)*width_r), (int)(2*width_r), (int)((135+icon1_width)*width_r), (int)((2+icon1_height)*height_r));
-        Font title_font = new Font("微软雅黑", Font.BOLD, 24);
+        title.setBounds((int)((40+icon1_width)*width_r), (int)(3*width_r), (int)(300*width_r), (int)(icon1_height*height_r));
+        Font title_font = new Font("微软雅黑", Font.BOLD, (int)(31*width_r));
         title.setFont(title_font);
         title.setForeground(new Color(255,255,255));
         add(title);
 
         //信息面板
         JPanel status_jpanel= status_panel(width_r,height_r);
-        status_jpanel.setBounds((int)((60+icon1_width)*width_r),(int)((47+icon1_height)*height_r), (int)(width-2*(60+icon1_width)*width_r),height);
+        status_jpanel.setBounds((int)((60+icon1_width)*width_r),(int)((47+icon1_height)*height_r), (int)(width-2*(60+icon1_width)*width_r),(int)((1080-47+icon1_height)*height_r));
         add(status_jpanel);
 
         //信息面板上透明条
         JPanel white_front_slice=new JPanel();
         white_front_slice.setBackground(new Color(124,136,204));
-        white_front_slice.setBounds((int)((90+icon1_width)*width_r),(int)((7+icon1_height)*height_r), (int)(width-2*(90+icon1_width)*width_r),(int)((12+icon1_height)*height_r));
+        white_front_slice.setBounds((int)((90+icon1_width)*width_r),(int)((7+icon1_height)*height_r), (int)(width-2*(90+icon1_width)*width_r),(int)(40*height_r));
         add(white_front_slice);
         white_front_slice.setLayout(null);//设置绝对布局
         //文字
         JLabel front_title=new JLabel("学生基本信息");
         front_title.setBounds((int)(20*width_r), (int)(0*height_r), (int)(300*width_r), (int)(40*height_r));
-        Font front_title_font = new Font("宋体", Font.BOLD, 15);
+        Font front_title_font = new Font("微软雅黑", Font.PLAIN, (int)(19*width_r));
         front_title.setFont(front_title_font);
         front_title.setForeground(new Color(255,255,255));
         white_front_slice.add(front_title);

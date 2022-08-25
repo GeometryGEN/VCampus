@@ -33,15 +33,15 @@ public class Library_manager {
     public Message enter_info() throws SQLException {
         Message message=new Message();
         message.setType(MessageType.MESSAGE_LIBRARY_ENTER_RET);
+        Info information=new Info();
         String sql="select * from students where Student_idcard='?';";
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,ID);
         ResultSet rs=st.executeQuery();
         if(rs.next()){
-            Student stu = new Student();
-            stu.setStudent_idcard(rs.getString("Student_idcard"));
-            stu.setStudent_name(rs.getString("Student_name"));
-            message.setData(stu);
+            information.id=rs.getString("Student_idcard");
+            information.name=rs.getString("Student_name");
+            message.setData(information);
         }
         else {
             sql="select * from teachers where Teacher_idcard='?';";
@@ -49,10 +49,9 @@ public class Library_manager {
             st.setString(1,ID);
             rs=st.executeQuery();
             if(rs.next()) {
-                Teacher tea = new Teacher();
-                tea.setTeacher_idcard(rs.getString("Teacher_idcard"));
-                tea.setTeacher_name(rs.getString("Teacher_name"));
-                message.setData(tea);
+                information.id=rs.getString("Teacher_idcard");
+                information.name=rs.getString("Teacher_name");
+                message.setData(information);
             }
             else{
                 sql="select * from teachers where Teacher_idcard='?';";
@@ -60,10 +59,9 @@ public class Library_manager {
                 st.setString(1,ID);
                 rs=st.executeQuery();
                 if(rs.next()){
-                    Admin admin=new Admin();
-                    admin.setAdmin_idcard(rs.getString("Admin_idcard"));
-                    admin.setAdmin_name(rs.getString("Admin_name"));
-                    message.setData(admin);
+                    information.id=rs.getString("Admin_idcard");
+                    information.name=rs.getString("Admin_name");
+                    message.setData(information);
                 }
             }
         }
@@ -80,6 +78,7 @@ public class Library_manager {
         {
             Book_borrower x=new Book_borrower();
             x.borrow_to=ID;
+            x.id=rs.getString("id");;
             x.name=rs.getString("name");
             x.author=rs.getString("author");
             x.date_borrow=sformat.format(rs.getDate("borrow_date"));
@@ -199,22 +198,34 @@ public class Library_manager {
 
         String sql;
         Message msg=new Message();
-        msg.setType(MessageType.MESSAGE_LIBRARY_RET_SUCCEED);
-        sql="update library set available = 1 where name= '?';";
+        sql="select expire_date from library where id='?';";
         PreparedStatement st=conn.prepareStatement(sql);
-        st.setString(1,b.name);
-        st.executeUpdate();
-        sql="update library set borrow_date = null where name= '?';";
+        st.setString(1,b.id);
+        ResultSet rs=st.executeQuery();
+        if(rs.next()){
+            Date today=new Date();
+//            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            if(rs.getDate("expire_date").compareTo(today)==-1){
+                msg.setType(MessageType.MESSAGE_LIBRARY_RET_SUCCEED);
+            }else{
+                msg.setType(MessageType.MESSAGE_LIBRARY_RET_LATE);
+            }
+        }
+        sql="update library set available = 1 where id= '?';";
         st=conn.prepareStatement(sql);
-        st.setString(1,b.name);
+        st.setString(1,b.id);
         st.executeUpdate();
-        sql="update library set expire_date = null where name= '?';";
+        sql="update library set borrow_date = null where id='?';";
         st=conn.prepareStatement(sql);
-        st.setString(1,b.name);
+        st.setString(1,b.id);
         st.executeUpdate();
-        sql="update library set borrow_to = null where name= '?';";
+        sql="update library set expire_date = null where id= '?';";
         st=conn.prepareStatement(sql);
-        st.setString(1,b.name);
+        st.setString(1,b.id);
+        st.executeUpdate();
+        sql="update library set borrow_to = null where id= '?';";
+        st=conn.prepareStatement(sql);
+        st.setString(1,b.id);
         st.executeUpdate();
         return msg;
     }
@@ -231,11 +242,9 @@ public class Library_manager {
         }
     }
     public Message extend(Book_borrower b) throws SQLException, ParseException {
-        String sql="select * from library where name= '?' and author='?'and borrow_to='?';";
+        String sql="select * from library where id= '?';";
         PreparedStatement st=conn.prepareStatement(sql);
-        st.setString(1,b.name);
-        st.setString(2,b.author);
-        st.setString(3,ID);
+        st.setString(1,b.id);
         ResultSet rs=st.executeQuery();
         Message message=new Message();
         if(rs.getInt("extended")==1)
