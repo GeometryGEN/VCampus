@@ -291,7 +291,13 @@ public class Course_manager {
     public Message admin_list_application(){
         Message message=new Message();
         message.setType(MessageType.MESSAGE_CURRICULUM_LIST_ADMIN_APPLICATION_RET);
-        message.setData(ServerToClient.getOpencourses());
+        HashSet<Opencourse>op=new HashSet<Opencourse>();
+        Iterator it=ServerToClient.getOpencourses().iterator();
+        while(it.hasNext()){
+            Opencourse opencourse=(Opencourse)it.next();
+            if(opencourse.status==0) op.add(opencourse);
+        }
+        message.setData(op);
         return message;
     }
     public HashSet<Student>get_student(String s) throws SQLException {

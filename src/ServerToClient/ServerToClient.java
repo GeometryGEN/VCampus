@@ -227,20 +227,6 @@ public class ServerToClient extends Thread{
     public static void addPunish(Punishment p) {
         ServerToClient.punish.add(p);
     }
-    public void send_ticket(String admin) throws IOException {
-        Socket socket=ManageServerToClientThread.getThread(admin).getSocket();
-        ObjectOutputStream oos=new ObjectOutputStream(socket.getOutputStream());
-        Iterator value = punish.iterator();
-        while(value.hasNext()){
-            Punishment p=(Punishment)value.next();
-            Message m=new Message();
-            m.setType(MessageType.MESSAGE_LIBRARY_ADMIN_RECEIVE);
-            m.setData(p);
-            oos.writeObject(m);
-            punish.remove(p);
-        }
-    }
-
     public static void main(String[] args) throws IOException {
         new ServerToClient();
     }
