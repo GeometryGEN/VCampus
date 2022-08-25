@@ -5,10 +5,14 @@ import net.coobird.thumbnailator.Thumbnails;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 
 public class student_status extends JPanel {
+    public static JButton jb;
+
     //信息面板
     public static JPanel status_panel(double width_r, double height_r, double width, double height,boolean flag){
         JPanel status=new JPanel();
@@ -110,6 +114,12 @@ public class student_status extends JPanel {
         int height=(int ) screensize.getHeight();//获得高度
         frame.setBounds(0,0,width,height);
         frame.setContentPane(new student_status(width,height));
+        jb.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.getContentPane().setVisible(false);
+            }
+        });
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setVisible(true);
     }

@@ -10,7 +10,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class manage_status extends JPanel {
-    static JButton jb2;
+    static JButton jb_back_to_search;
     public manage_status(int width,int height){
         double width_r=(double)(width)/1920;
         double height_r=(double)(height)/1080;
@@ -44,28 +44,36 @@ public class manage_status extends JPanel {
         add(title);
 
 
-        //切换到学生信息视图
+        //学生信息视图(初始为隐藏)
         JPanel status_jpanel=student_status.status_panel(width_r,height_r,width-2*(60+icon1_width)*width_r,(1080-70-icon1_height)*height_r,false);
         status_jpanel.setBounds((int)((60+icon1_width)*width_r),(int)((47+icon1_height)*height_r), (int)(width-2*(60+icon1_width)*width_r),(int)((1080-70-icon1_height)*height_r));
         add(status_jpanel);
+        status_jpanel.setVisible(false);
+        //搜索面板
+        JPanel search_panel=new JPanel();
+        search_panel.setBackground(new Color(255,255,255));
+        search_panel.setBorder(BorderFactory.createEtchedBorder());
+        search_panel.setLayout(null);//设置绝对布局
+        search_panel.setBounds((int)((60+icon1_width)*width_r),(int)((47+icon1_height)*height_r), (int)(width-2*(60+icon1_width)*width_r),(int)((1080-70-icon1_height)*height_r));
+        add(search_panel);
         //信息面板上透明条
         JPanel white_front_slice=new JPanel();
         white_front_slice.setBackground(new Color(124,136,204));
         white_front_slice.setBounds((int)((90+icon1_width)*width_r),(int)((7+icon1_height)*height_r), (int)(width-2*(90+icon1_width)*width_r),(int)(40*height_r));
         add(white_front_slice);
         white_front_slice.setLayout(null);//设置绝对布局
-        //文字//
+        //文字
         JLabel front_title=new JLabel("学生基本信息管理");
         front_title.setBounds((int)(20*width_r), (int)(0*height_r), (int)(300*width_r), (int)(40*height_r));
         Font front_title_font = new Font("微软雅黑", Font.PLAIN, (int)(19*width_r));
         front_title.setFont(front_title_font);
         front_title.setForeground(new Color(240,241,249));
         white_front_slice.add(front_title);
-        jb2.addActionListener(new ActionListener() {
+        jb_back_to_search.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 status_jpanel.setVisible(false);
-                white_front_slice.setVisible(false);
+                search_panel.setVisible(true);
             }
         });
 
