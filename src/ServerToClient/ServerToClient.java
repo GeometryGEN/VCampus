@@ -15,6 +15,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -32,6 +33,8 @@ public class ServerToClient extends Thread{
     private static HashSet<Punishment> punish=new HashSet<Punishment>();
     private static HashSet<Online>online=new HashSet<Online>();
     private static HashSet<Opencourse>opencourses=new HashSet<Opencourse>();
+    private static HashMap<String, ArrayList<Message>>QQbox=new HashMap<String, ArrayList<Message>>();
+    private static HashSet<Message>bulletin=new HashSet<Message>();
 
     public ServerToClient() throws IOException {
         try{
@@ -227,7 +230,31 @@ public class ServerToClient extends Thread{
     public static void addPunish(Punishment p) {
         ServerToClient.punish.add(p);
     }
+
+    public static ArrayList<Message> getQQbox(String id) {
+        return QQbox.get(id);
+    }
+
+    public static void addQQbox(String to,Message m) {
+        if(QQbox.containsKey(to)){
+            QQbox.get(to).add(m);
+        }
+        else {
+            ArrayList<Message>a=new ArrayList<>();
+            a.add(m);
+            QQbox.put(to,a);
+        }
+
+    }
+
     public static void main(String[] args) throws IOException {
         new ServerToClient();
+    }
+    public static HashSet<Message> getBulletin() {
+        return bulletin;
+    }
+
+    public static void addBulletin(Message s) {
+        ServerToClient.bulletin.add(s) ;
     }
 }

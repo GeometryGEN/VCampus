@@ -103,8 +103,13 @@ public class ServerToClientThread extends Thread{
                 else if(m.getType()== MessageType.MESSAGE_LIBRARY_ADMIN_LIST)
                 {
                     Library_manager lib_manager = new Library_manager(userid);
-                    sendback.setData(lib_manager.list_all_book((String)m.getData()));
+                    sendback.setData(lib_manager.list_all_book(""));
                     sendback.setType(MessageType.MESSAGE_LIBRARY_ADMIN_LIST_RET);
+                    oos.writeObject(sendback);
+                }
+                else if (m.getType()== MessageType.MESSAGE_LIBRARY_ADMIN_QUERY) {
+                    sendback.setData(new Library_manager(userid).list_all_book((String)m.getData()));
+                    sendback.setType(MessageType.MESSAGE_LIBRARY_ADMIN_QUERY_RET);
                     oos.writeObject(sendback);
                 }
                 else if(m.getType()==MessageType.MESSAGE_LIBRARY_ADMIN_LIST_TICKETS){
@@ -167,12 +172,12 @@ public class ServerToClientThread extends Thread{
                     oos.writeObject(sendback);
                 }
                 else if(m.getType()==MessageType.MESSAGE_CURRICULUM_SHOW_SCHEDULE){
-                    sendback.setData(new Course_manager(userid).schedule((String) m.getData()));
+                    sendback.setData(new Course_manager(userid).schedule());
                     sendback.setType(MessageType.MESSAGE_CURRICULUM_SHOW_SCHEDULE_RET);
                     oos.writeObject(sendback);
                 }
                 else if(m.getType()==MessageType.MESSAGE_CURRICULUM_DELETE){
-                    new Course_manager(userid).schedule((String) m.getData());
+                    new Course_manager(userid).delete((String) m.getData());
                 }
                 else if(m.getType()==MessageType.MESSAGE_CURRICULUM_LIST_APPLICATION){
                     sendback.setData(new Course_manager(userid).list_tea_opencourse((String) m.getData()));
@@ -198,7 +203,11 @@ public class ServerToClientThread extends Thread{
                     new Course_manager(userid).approve(m.getGetter(),c);
                 }
                 //站内通信
+                if(m.getType()==MessageType.MESSAGE_QICQ_SEND){
+
+                }
                 //商店
+
                 //学籍管理
 
             } catch (Exception e) {

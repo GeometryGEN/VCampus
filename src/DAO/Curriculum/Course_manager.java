@@ -184,7 +184,7 @@ public class Course_manager {
             message.setType(MessageType.MESSAGE_CURRICULUM_CHOOSE_FULL);
             return message;
         }
-        message.setType(MessageType.MESSAGE_LIBRARY_PAY_SUCCEED);
+        message.setType(MessageType.MESSAGE_CURRICULUM_CHOOSE_SUCCEED);
         sql="insert into elective(course_id,stu_id) value(?,?);";
         st=conn.prepareStatement(sql);
         st.setString(1,c.id);
@@ -218,7 +218,7 @@ public class Course_manager {
         st.setString(1,s);
         st.executeUpdate();
     }
-    public String[][][] schedule(String id) throws SQLException {
+    public String[][][] schedule() throws SQLException {
         String [][][]ans=new String[17][14][6];
         HashSet<Course>courses=list_my_courses();
         Iterator it = courses.iterator();
@@ -243,12 +243,11 @@ public class Course_manager {
         if(rs.next()){
             message.setType(MessageType.MESSAGE_CURRICULUM_APPLY_SUCCEED);
             ServerToClient.add_opencourse(c);
-            return message;
         }
         else{
             message.setType(MessageType.MESSAGE_CURRICULUM_APPLY_FAIL);
-            return message;
         }
+        return message;
     }
     public void refuse(String id,String reason) throws IOException {
         Iterator it=ServerToClient.getOpencourses().iterator();
