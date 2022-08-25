@@ -1,7 +1,11 @@
 package DAO.Library;
 
 import ServerToClient.ManageServerToClientThread;
+import ServerToClient.ServerToClient;
 import ServerToClient.ServerToClientThread;
+import User.Admin;
+import User.Student;
+import User.Teacher;
 import connection.JDBC_Connector;
 import message.Message;
 import message.MessageType;
@@ -11,10 +15,8 @@ import java.io.ObjectOutputStream;
 import java.sql.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
+import java.util.*;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.SimpleTimeZone;
 
 public class Library_manager {
     private String ID;
@@ -28,7 +30,45 @@ public class Library_manager {
             e.printStackTrace();
         }
     }
-
+    public Message enter_info() throws SQLException {
+        Message message=new Message();
+        message.setType(MessageType.MESSAGE_LIBRARY_ENTER_RET);
+        String sql="select * from students where Student_idcard='?';";
+        PreparedStatement st=conn.prepareStatement(sql);
+        st.setString(1,ID);
+        ResultSet rs=st.executeQuery();
+        if(rs.next()){
+            Student stu = new Student();
+            stu.setStudent_idcard(rs.getString("Student_idcard"));
+            stu.setStudent_name(rs.getString("Student_name"));
+            message.setData(stu);
+        }
+        else {
+            sql="select * from teachers where Teacher_idcard='?';";
+            st=conn.prepareStatement(sql);
+            st.setString(1,ID);
+            rs=st.executeQuery();
+            if(rs.next()) {
+                Teacher tea = new Teacher();
+                tea.setTeacher_idcard(rs.getString("Teacher_idcard"));
+                tea.setTeacher_name(rs.getString("Teacher_name"));
+                message.setData(tea);
+            }
+            else{
+                sql="select * from teachers where Teacher_idcard='?';";
+                st=conn.prepareStatement(sql);
+                st.setString(1,ID);
+                rs=st.executeQuery();
+                if(rs.next()){
+                    Admin admin=new Admin();
+                    admin.setAdmin_idcard(rs.getString("Admin_idcard"));
+                    admin.setAdmin_name(rs.getString("Admin_name"));
+                    message.setData(admin);
+                }
+            }
+        }
+        return message;
+    }
     public HashSet<Book_borrower> list_my_book() throws SQLException {
         HashSet<Book_borrower> books = new HashSet<Book_borrower>();
         String sql="select * from library where borrow_to =?;";
@@ -49,7 +89,7 @@ public class Library_manager {
         return books;
     }
     public HashSet<Book_borrower> query_book(String s) throws SQLException {
-        HashSet<Book_borrower> books = new HashSet<Book_borrower>();
+        HashSet<Book_borrower> books = new HashSet<>();
         String sql="select * from library where name like \'%?%\' " +
                 "or country like \'%?%\' or author like \'%?%\' or publisher like \'%?%\';";
         PreparedStatement st=conn.prepareStatement(sql);
@@ -63,7 +103,7 @@ public class Library_manager {
             Book_borrower x=new Book_borrower();
             x.name=rs.getString("name");
             x.author=rs.getString("author");
-            x.availble=rs.getInt("available");
+            x.available=rs.getInt("available");
             x.publisher=rs.getString("publisher");
             x.place=rs.getString("place");
             x.country=rs.getString("country");
@@ -72,11 +112,18 @@ public class Library_manager {
 
         return books;
     }
-    public HashSet<Book_admin> list_all_book() throws SQLException {
+    public HashSet<Book_admin> list_all_book(String s) throws SQLException {
         HashSet<Book_admin> books = new HashSet<Book_admin>();
-        String sql="select * from library ";
+        String sql="select * from library where id='%?%' or name='%?%' or author='%?%' " +
+                "or place='%?%' or publisher='%?%' or country='%?%' or borrow_to='%?%' ;";
         PreparedStatement st=conn.prepareStatement(sql);
-        st.setString(1,ID);
+        st.setString(1,s);
+        st.setString(2,s);
+        st.setString(3,s);
+        st.setString(4,s);
+        st.setString(5,s);
+        st.setString(6,s);
+        st.setString(7,s);
         ResultSet rs=st.executeQuery();
         while(rs.next())
         {
@@ -171,18 +218,17 @@ public class Library_manager {
         st.executeUpdate();
         return msg;
     }
-    public void handle(Punishment p) throws SQLException, IOException {
-        ServerToClientThread thread= ManageServerToClientThread.getThread(p.Customer_iD);
-        ObjectOutputStream oos = new ObjectOutputStream(thread.getSocket().getOutputStream());
-        Message sendback=new Message();
-        sendback.setType(MessageType.MESSAGE_LIBRARY_TICKET_BACK);
-        String sql="select * from library where ID= '?';";
-        PreparedStatement st=conn.prepareStatement(sql);
-        st.setString(1,p.Book_id);
-        ResultSet rs=st.executeQuery();
-        p.notice="因为丢失/损坏图书 <<"+rs.getString("name")+">>无法按时归还，处罚金"+String.valueOf(p.price);
-        sendback.setData(p);
-        oos.writeObject(sendback);
+    public void handle(Punishment punishment) throws SQLException, IOException {
+        Iterator it=ServerToClient.getPunish().iterator();
+        while(it.hasNext()){
+            Punishment p=(Punishment)it.next();
+            if(punishment.Book_id==p.Book_id&&punishment.Customer_iD==p.Customer_iD) {
+                ServerToClient.getPunish().remove(p);
+                p.status=1;
+                ServerToClient.getPunish().add(p);
+                return;
+            }
+        }
     }
     public Message extend(Book_borrower b) throws SQLException, ParseException {
         String sql="select * from library where name= '?' and author='?'and borrow_to='?';";
@@ -290,5 +336,23 @@ public class Library_manager {
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,id);
         st.executeUpdate();
+    }
+    public HashSet<Punishment>admin_list_tickets(){
+        HashSet<Punishment>punishments=new HashSet<>();
+        Iterator it=ServerToClient.getPunish().iterator();
+        while(it.hasNext()){
+            Punishment p=(Punishment)it.next();
+            if(p.status==0) punishments.add(p);
+        }
+        return punishments;
+    }
+    public HashSet<Punishment>list_my_tickets(){
+        HashSet<Punishment>punishments=new HashSet<>();
+        Iterator it=ServerToClient.getPunish().iterator();
+        while(it.hasNext()){
+            Punishment p=(Punishment)it.next();
+            if(p.Customer_iD==ID) punishments.add(p);
+        }
+        return punishments;
     }
 }
