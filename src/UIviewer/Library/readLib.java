@@ -4,13 +4,30 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
 public class readLib extends JFrame {
     private JPanel mainLib;
+
+    static String name;
+
+    static void getName(String a)
+    {
+        name=a;
+    }
+
     CardLayout cardLayout=new CardLayout();
     public static void readLibUI(ClientToServer ucs) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
+                        String name=null;
+                    if(ucs.getID().equals("1"))
+                        name=ucs.getS().getStudent_name();
+                    else if(ucs.getID().equals("2"))
+                        name=ucs.getT().getTeacher_name();
+                    else if(ucs.getID().equals("3"))
+                        name=ucs.getA().getAdmin_name();
+                    getName(name);
                     readLib frame = new readLib();
                     frame.setVisible(true);
                 } catch (Exception e) {
@@ -39,6 +56,8 @@ public class readLib extends JFrame {
         panel.add(f1,"f1");
         myBook f2=new myBook();
         panel.add(f2,"f2");
+        applyTicket f3=new applyTicket();
+        panel.add(f3,"f3");
 
         //图书馆标志与背景
         JLabel logo = new JLabel();
@@ -46,6 +65,14 @@ public class readLib extends JFrame {
         logo.setIcon(icon);
         logo.setBounds(30, 10, 600, 75);
         mainLib.add(logo);
+
+            //文字
+            JLabel l1 = new JLabel("你好！"+name);
+            l1.setBounds(1100, 30, 200, 55);
+            l1.setForeground(new Color(248, 248, 255));
+            Font font = new Font("楷体", Font.BOLD, 20);
+            l1.setFont(font);
+            mainLib.add(l1);
 
         //上方面板
         JPanel p1 = new JPanel();
@@ -95,7 +122,7 @@ public class readLib extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
-
+                cardLayout.show(panel, "f3");
             }
         });
         mainLib.add(b3);
@@ -114,6 +141,11 @@ public class readLib extends JFrame {
                 }
             });
         mainLib.add(b4);
+
+
+
+
+
 
         /*
         JButton b5=new JButton("退出登录");
