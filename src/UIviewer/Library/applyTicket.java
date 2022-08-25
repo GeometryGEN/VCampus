@@ -8,6 +8,8 @@ public class applyTicket extends JPanel {
     public applyTicket(){
         setLayout(null);
 
+
+
         JPanel p11=new JPanel();
         p11.setBounds(0,0,1280,650);
         JLabel pic1 = new JLabel();
@@ -16,6 +18,7 @@ public class applyTicket extends JPanel {
         pic1.setBounds(0,0 , 1300, 650);
         p11.add(pic1);
         add(p11);
+
 
     }
 

@@ -1,4 +1,6 @@
 package UIviewer.Library;
+import UIviewer.login.functionChoose;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -23,7 +25,7 @@ public class giveTicket extends JPanel {
         add(l1);
         JTextField textField1=new JTextField();
         textField1.setFont(new Font("宋体", Font.BOLD, 12));
-        textField1.setBounds(575, 160, 125, 25);
+        textField1.setBounds(575, 160, 150, 25);
         add(textField1);
         textField1.setColumns(10);
 
@@ -33,7 +35,7 @@ public class giveTicket extends JPanel {
         add(l2);
         JTextField textField2=new JTextField();
         textField2.setFont(new Font("宋体", Font.BOLD, 12));
-        textField2.setBounds(575, 200, 125, 25);
+        textField2.setBounds(575, 200, 150, 25);
         add(textField2);
         textField2.setColumns(10);
 
@@ -43,16 +45,36 @@ public class giveTicket extends JPanel {
         add(l3);
         JTextField textField3=new JTextField();
         textField3.setFont(new Font("宋体", Font.BOLD, 12));
-        textField3.setBounds(575, 240, 125, 25);
+        textField3.setBounds(575, 240, 150, 25);
         add(textField3);
         textField3.setColumns(10);
 
+        JLabel l4 = new JLabel("罚款备注:");
+        l4.setFont(new Font("宋体", Font.BOLD, 15));
+        l4.setBounds(500, 280, 250, 25);
+        add(l4);
+        JTextField textField4=new JTextField();
+        textField4.setFont(new Font("宋体", Font.BOLD, 12));
+        textField4.setBounds(575, 280, 150, 25);
+        add(textField4);
+        textField4.setColumns(10);
+
         JButton b1=new JButton("确定提交");
         b1.setFont(new Font("楷体", Font.BOLD, 18));
-        b1.setBounds(575,320,120,50);
+        b1.setBounds(575,360,120,50);
         b1.setBackground(new Color(250,250,210));
         add(b1);
+        b1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
+                try {
 
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
         //中间面板
         JPanel p3 = new JPanel();
         p3.setBounds(480, 0, 290, 620);

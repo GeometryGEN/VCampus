@@ -112,7 +112,7 @@ public class readLib extends JFrame {
         });
         mainLib.add(b2);
 
-        JButton b3=new JButton("罚款缴费");
+        JButton b3=new JButton("罚单缴费");
         b3.setBounds(640,100,250,50);
         b3.setFont(myfont1);
         b3.setContentAreaFilled(false);//设置按钮透明
