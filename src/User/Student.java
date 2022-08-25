@@ -17,6 +17,7 @@ public class Student implements Serializable {
     String Student_gender;   //性别
     String Student_email;    //邮箱
     String Student_class;       //学生年级
+    String Sclass;              //学生班级
     double Student_money;    //用户余额
 
     String nation;           //民族
@@ -24,7 +25,9 @@ public class Student implements Serializable {
     String ID;               //身份证号
     String Native_place;     //籍贯
     String major;            //专业
-
+    String Student_type;             //学生类别：本科生，研究生，博士生
+    String Due_graduate_date;       //预计毕业日期
+    String Campus;          //校区
 
     public String getNative_place() {
         return Native_place;
@@ -136,5 +139,37 @@ public class Student implements Serializable {
 
     public void setStudent_money(double student_money) {
         Student_money = student_money;
+    }
+
+    public String getStudent_type() {
+        return Student_type;
+    }
+
+    public void setStudent_type(String student_type) {
+        Student_type = student_type;
+    }
+
+    public String getSclass() {
+        return Sclass;
+    }
+
+    public void setSclass(String sclass) {
+        Sclass = sclass;
+    }
+
+    public String getDue_graduate_date() {
+        return Due_graduate_date;
+    }
+
+    public void setDue_graduate_date(String due_graduate_date) {
+        Due_graduate_date = due_graduate_date;
+    }
+
+    public String getCampus() {
+        return Campus;
+    }
+
+    public void setCampus(String campus) {
+        Campus = campus;
     }
 }
