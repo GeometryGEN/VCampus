@@ -87,6 +87,7 @@ public interface MessageType {
     String MESSAGE_CURRICULUM_LIST_ADMIN_APPLICATION_RET="33.8"; //返回管理员处的申请 data类型Hashset<Opencourse>
     String MESSAGE_CURRICULUM_QUERY="37"; //课程查询 data String(名称，教师，课程号)
     String MESSAGE_CURRICULUM_QUERY_RET="37.1"; //返回课程查询的结果 data类型Hashset<Course>
+    String MESSAGE_CURRICULUM_ADMIN_ARRANGEMENT="38";//管理员排课，安排教室和时间 Data类型Course
 
 
     //站内通信

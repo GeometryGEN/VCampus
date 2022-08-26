@@ -1,12 +1,14 @@
 package DAO.Shop;
 
+import java.io.Serializable;
+
 /**
  * @author : [Tongwei_L]
  * @version : [v1.0]
  * @description : [商店中的商品类]
  * @createTime : [2022.08.19 15:55]
  */
-public class Product {
+public class Product implements Serializable {
     String Product_name;
     int Product_id;
     double Product_price;

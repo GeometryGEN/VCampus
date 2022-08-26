@@ -260,22 +260,25 @@ public class ClientToServer {
             oos = new ObjectOutputStream(ManageClientToServerThread.getThread(s.getStudent_idcard()).getSocket().getOutputStream());     //得到Object对象
             oos.writeObject(message);
             ManageClientToServerThread.getThread(s.getStudent_idcard()).exit=true;
+            ManageClientToServerThread.getThread(s.getStudent_idcard()).interrupt();
             ManageClientToServerThread.removeClientToServerThread(s.getStudent_idcard());
-            System.out.println("学生"+s.getStudent_name()+s.getStudent_idcard()+"退出系统");
+            System.out.println("学生"+s.getStudent_name()+" "+s.getStudent_idcard()+"退出系统");
         } else if(ID.equals("2")){
             message.setSender(t.getTeacher_idcard());
             oos = new ObjectOutputStream(ManageClientToServerThread.getThread(t.getTeacher_idcard()).getSocket().getOutputStream());     //得到Object对象
             oos.writeObject(message);
             ManageClientToServerThread.getThread(t.getTeacher_idcard()).exit=true;
+            ManageClientToServerThread.getThread(t.getTeacher_idcard()).interrupt();
             ManageClientToServerThread.removeClientToServerThread(t.getTeacher_idcard());
-            System.out.println("老师"+t.getTeacher_name()+t.getTeacher_idcard()+"退出系统");
+            System.out.println("老师"+t.getTeacher_name()+" "+t.getTeacher_idcard()+"退出系统");
         } else if(ID.equals("3")){
             message.setSender(a.getAdmin_idcard());
             oos = new ObjectOutputStream(ManageClientToServerThread.getThread(a.getAdmin_idcard()).getSocket().getOutputStream());     //得到Object对象
             oos.writeObject(message);
             ManageClientToServerThread.getThread(a.getAdmin_idcard()).exit=true;
+            ManageClientToServerThread.getThread(a.getAdmin_idcard()).interrupt();
             ManageClientToServerThread.removeClientToServerThread(a.getAdmin_idcard());
-            System.out.println("管理员"+a.getAdmin_name()+a.getAdmin_idcard()+"退出系统");
+            System.out.println("管理员"+a.getAdmin_name()+" "+a.getAdmin_idcard()+"退出系统");
         }
     }
 

@@ -326,4 +326,12 @@ public class Course_manager {
         }
         return res;
     }
+    public void admin_arrange(Course c) throws SQLException {
+        String sql="update curriculum set classroom=?,time=? where id=?";
+        PreparedStatement st= conn.prepareStatement(sql);
+        st.setString(1,c.classroom);
+        st.setString(2,c.timestring);
+        st.setString(3,c.id);
+        st.executeUpdate();
+    }
 }

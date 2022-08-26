@@ -1,6 +1,9 @@
 package ServerToClient;
 
-public class Online {
+import java.io.Serial;
+import java.io.Serializable;
+
+public class Online implements Serializable {
     private String id;
     private int type; //0=student,1=teacher,2=admin
 

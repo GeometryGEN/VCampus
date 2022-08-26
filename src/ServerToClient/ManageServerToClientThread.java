@@ -23,6 +23,7 @@ public class ManageServerToClientThread {
     }
 
     public static void removeServerToClientThread(String id){
+   //    if(ManageServerToClientThread.hm.containsKey(id)) System.out.println("contains");
         hm.remove(id);
     }
 

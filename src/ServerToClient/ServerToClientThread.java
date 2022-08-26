@@ -55,6 +55,12 @@ public class ServerToClientThread extends Thread{
     }
 
     public void run(){
+        MyObjectOutputStream oos = null;
+        try {
+            oos = new MyObjectOutputStream(socket.getOutputStream());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         while (true){
             System.out.println("客户端和服务端 "+userid+" 保持通信，读取数据...");
             try {
@@ -62,13 +68,13 @@ public class ServerToClientThread extends Thread{
                 Message m = (Message) ois.readObject();
                 Message sendback = new Message();
                 System.out.println("enter choose");
-                MyObjectOutputStream oos = new MyObjectOutputStream(socket.getOutputStream());
+
                 //退出系统
                 if(m.getType().equals(MessageType.MESSAGE_CLIENT_EXIT)){
                     System.out.println(m.getSender()+"退出系统");
-                    ManageServerToClientThread.removeServerToClientThread(m.getSender());
                     ServerToClient.removeOnline(userid);
-//                  socket.close();
+                    socket.close();
+                    ManageServerToClientThread.removeServerToClientThread(m.getSender());
                     break;
                 }
                 //图书馆
@@ -213,6 +219,10 @@ public class ServerToClientThread extends Thread{
                     Course c=(Course) m.getData();
                     new Course_manager(userid).approve(m.getGetter(),c);
                 }
+                else if(m.getType().equals(MessageType.MESSAGE_CURRICULUM_ADMIN_ARRANGEMENT)){
+                    Course c=(Course) m.getData();
+                    new Course_manager(userid).admin_arrange(c);
+                }
                 //站内通信
                 if(m.getType().equals(MessageType.MESSAGE_QICQ_SEND_MSG)){
                      String getter=m.getGetter();
@@ -244,6 +254,7 @@ public class ServerToClientThread extends Thread{
                 else if(m.getType().equals(MessageType.MESSAGE_QICQ_LIST_APPLICATION)){
                     new QICQ_manager(userid).list_my_application();
                 }
+
                 //商店
 
                 //学籍管理
@@ -272,9 +283,11 @@ public class ServerToClientThread extends Thread{
                 }
             } catch (Exception e) {
                 e.printStackTrace();
+                break;
             }
 
         }
+        System.out.println("exit succeed");
     }
 
 }

@@ -36,6 +36,11 @@ public class ClientToServerThread extends Thread {
     }
 
     public void run(){
+        try {
+            MyObjectOutputStream oos = new MyObjectOutputStream(socket.getOutputStream());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         while (!exit){
             try {
                 MyObjectInputStream ois = new MyObjectInputStream(socket.getInputStream());
@@ -59,7 +64,7 @@ public class ClientToServerThread extends Thread {
                 }
                 //商店具体操作
                 Message send = new Message();
-                MyObjectOutputStream oos = new MyObjectOutputStream(socket.getOutputStream());
+
 
                 if(message.getType().equals(MessageType.RETURN_STUDENT_INFO_SUCCEED)){
                     Student stu = ((Student) message.getData());
@@ -67,6 +72,7 @@ public class ClientToServerThread extends Thread {
                 }
             } catch (Exception e) {
                 e.printStackTrace();
+                break;
             }
 
         }

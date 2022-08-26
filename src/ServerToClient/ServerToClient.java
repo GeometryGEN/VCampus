@@ -36,7 +36,7 @@ public class ServerToClient extends Thread{
     private Student s1;
     private Teacher t1;
     private static HashSet<Punishment> punish=new HashSet<Punishment>();
-    private static HashSet<Online>online=new HashSet<Online>();
+    private static HashMap<String, Integer>online=new HashMap<>();
     private static HashSet<Opencourse>opencourses=new HashSet<Opencourse>();
     private static HashMap<String, ArrayList<Message>>QQbox=new HashMap<String, ArrayList<Message>>();
     private static HashSet<Message>bulletin=new HashSet<Message>();
@@ -209,22 +209,16 @@ public class ServerToClient extends Thread{
         return punish;
     }
     public static String getOnline_admin () {
-        Iterator value = online.iterator();
-        while(value.hasNext()){
-            Online ol=(Online)value.next();
-            if(ol.getType()==2) return ol.getId();
+        for (String i : online.keySet()) {
+            if(online.get(i).equals(2)) return i;
         }
         return null;
     }
     public static void addOnline(String id,int ty){
-        online.add(new Online(id,ty));
+        online.put(id,ty);
     }
     public static void removeOnline(String id){
-        Iterator it=online.iterator();
-        while(it.hasNext()){
-            Online ol=(Online)it.next();
-            if(ol.getId().equals(id)) online.remove(ol);
-        }
+       online.remove(id);
     }
     public static void addPunish(Punishment p) {
         ServerToClient.punish.add(p);
@@ -273,12 +267,8 @@ public class ServerToClient extends Thread{
         }
     }
     public static boolean isOnline(String id){
-        Iterator it=online.iterator();
-        while (it.hasNext()){
-            Online ol=(Online)it.next();
-            if(ol.getId().equals(id)) return true;
-        }
-        return false;
+       if(online.containsKey(id)) return true;
+       else return false;
     }
 
     public static ArrayList<Application> getQQapplication(String id) {
