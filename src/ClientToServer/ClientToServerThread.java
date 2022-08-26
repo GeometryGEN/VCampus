@@ -1,7 +1,9 @@
 package ClientToServer;
 
+import DAO.Library.Book_admin;
 import DAO.Library.Book_borrower;
 import DAO.Library.Library_manager;
+import UIhandler.Library.Client_library;
 import message.Message;
 import message.MessageType;
 
@@ -47,6 +49,10 @@ public class ClientToServerThread extends Thread {
                 }
                 else if(message.getType()==MessageType.MESSAGE_LIBRARY_RET_SUCCEED){
 
+                }
+                else if(message.getType()==MessageType.MESSAGE_LIBRARY_ADMIN_LIST_RET){
+                    HashSet<Book_admin>books=(HashSet<Book_admin>)message.getData();
+                    Client_library.showAllBooks(books);
                 }
 
                 Message send = new Message();
