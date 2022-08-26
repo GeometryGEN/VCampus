@@ -7,4 +7,83 @@ public class Book_admin {
     String date_borrow,date_expire; //借阅、到期日期
     double price;
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public String getBorrow_to() {
+        return borrow_to;
+    }
+
+    public void setBorrow_to(String borrow_to) {
+        this.borrow_to = borrow_to;
+    }
+
+    public String getID() {
+        return ID;
+    }
+
+    public void setID(String ID) {
+        this.ID = ID;
+    }
+
+    public String getPlace() {
+        return place;
+    }
+
+    public void setPlace(String place) {
+        this.place = place;
+    }
+
+    public String getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getDate_borrow() {
+        return date_borrow;
+    }
+
+    public void setDate_borrow(String date_borrow) {
+        this.date_borrow = date_borrow;
+    }
+
+    public String getDate_expire() {
+        return date_expire;
+    }
+
+    public void setDate_expire(String date_expire) {
+        this.date_expire = date_expire;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
 }
