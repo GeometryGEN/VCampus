@@ -26,4 +26,8 @@ public class ManageClientToServerThread {
 //        if(ManageClientToServerThread.hm.containsKey(id)) System.out.println("contains");
         hm.remove(id);
     }
+
+    public static int getNum(){
+        return hm.size();
+    }
 }

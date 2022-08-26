@@ -48,9 +48,6 @@ public class manageStatus extends JPanel {
         title.setForeground(new Color(255,255,255));
         add(title);
 
-
-
-
         //搜索面板
         JPanel search_panel=new JPanel();
         search_panel.setBackground(new Color(255,255,255));

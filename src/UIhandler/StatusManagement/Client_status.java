@@ -17,9 +17,11 @@ import static java.lang.Thread.sleep;
 public class Client_status {
 
     public static volatile Student s = null;   //当前已登录账号的那个学生对象
+    public static String id;                   //当前已登录账号的那个学生对象id
     public static volatile Student s_s = null; //管理员查找的那个学生
+    public static String id_certain;           //管理员查找的那个学生id
     public static volatile Admin a;
-    public static String id;
+
     public static String getId() {
         return id;
     }
@@ -47,9 +49,12 @@ public class Client_status {
         Message message = new Message();
         message.setType(MessageType.RETURN_PHOTO);
         message.setSender(idcard);
-        MyObjectOutputStream oos= new MyObjectOutputStream(ManageClientToServerThread.getThread(id).getSocket().getOutputStream());
-        oos.writeObject(message);
-
+        System.out.println(id+"    @@@");
+        if(ManageClientToServerThread.getThread(id).getSocket()!=null) {
+            MyObjectOutputStream oos= new MyObjectOutputStream(ManageClientToServerThread.getThread(id).getSocket().getOutputStream());
+            System.out.println(id+"   2222222");
+            oos.writeObject(message);
+        }
     }
 
     public static Student returnStatusInfo(String idcard) throws Exception {
@@ -57,9 +62,11 @@ public class Client_status {
         message.setType(MessageType.RETURN_STUDENT_INFO);
         message.setSender(idcard);
         //得到Object对象
-        MyObjectOutputStream oos = new MyObjectOutputStream(ManageClientToServerThread.getThread(id).getSocket().getOutputStream());
-        //发送学生对象
-        oos.writeObject(message);
+        if(ManageClientToServerThread.getThread(id).getSocket()!=null){
+            MyObjectOutputStream oos = new MyObjectOutputStream(ManageClientToServerThread.getThread(id).getSocket().getOutputStream());
+            //发送学生对象
+            oos.writeObject(message);
+        }
         //等待接受学生
         while (s == null) Thread.onSpinWait();
         return s;
