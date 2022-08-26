@@ -1,8 +1,9 @@
 package DAO.Library;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Book_admin {
+public class Book_admin implements Serializable{
     String name,author,borrow_to,ID,place,publisher,country;
     String date_borrow,date_expire; //借阅、到期日期
     double price;

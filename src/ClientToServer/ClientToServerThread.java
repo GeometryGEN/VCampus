@@ -51,9 +51,11 @@ public class ClientToServerThread extends Thread {
                 else if(message.getType()==MessageType.MESSAGE_LIBRARY_RET_SUCCEED){
 
                 }
-                else if(message.getType()==MessageType.MESSAGE_LIBRARY_ADMIN_LIST_RET){
+                else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_ADMIN_LIST_RET)){
                     HashSet<Book_admin>books=(HashSet<Book_admin>)message.getData();
+                    System.out.println(books.size());
                     AllBooks.tableDate=Client_library.showAllBooks(books);
+
                 }
                 //商店具体操作
                 Message send = new Message();

@@ -18,15 +18,16 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.Date;
+import java.io.Serializable;
 
-public class Library_manager {
+public class Library_manager implements Serializable{
     private String ID;
-    private Connection conn;
+    private static Connection conn;
     public Library_manager(String ID){
 
         this.ID = ID;
         try {
-            Connection conn= JDBC_Connector.ConnectMySQL();
+            conn= JDBC_Connector.ConnectMySQL();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -114,16 +115,17 @@ public class Library_manager {
     }
     public HashSet<Book_admin> list_all_book(String s) throws SQLException {
         HashSet<Book_admin> books = new HashSet<Book_admin>();
-        String sql="select * from library where id='%?%' or name='%?%' or author='%?%' " +
-                "or place='%?%' or publisher='%?%' or country='%?%' or borrow_to='%?%' ;";
+        String sql="select * from library where id like ? or name like ? or author like ?" +
+                "or place like ? or publisher like ? or country like ? or borrow_to like ?;";
+        String parse="%"+s+"%";
         PreparedStatement st=conn.prepareStatement(sql);
-        st.setString(1,s);
-        st.setString(2,s);
-        st.setString(3,s);
-        st.setString(4,s);
-        st.setString(5,s);
-        st.setString(6,s);
-        st.setString(7,s);
+        st.setString(1,parse);
+        st.setString(2,parse);
+        st.setString(3,parse);
+        st.setString(4,parse);
+        st.setString(5,parse);
+        st.setString(6,parse);
+        st.setString(7,parse);
         ResultSet rs=st.executeQuery();
         while(rs.next())
         {
@@ -131,8 +133,6 @@ public class Library_manager {
             x.borrow_to=ID;
             x.name=rs.getString("name");
             x.author=rs.getString("author");
-            x.date_borrow=rs.getDate("borrow_date").toString();
-            x.date_expire=rs.getDate("expire_date").toString();
             x.borrow_to=rs.getString("borrow_to");
             x.price=rs.getDouble("price");
             x.ID=rs.getString("ID");
@@ -140,6 +140,10 @@ public class Library_manager {
             x.publisher=rs.getString("publisher");
             x.country=rs.getString("country");
             x.available=rs.getInt("available");
+            if(x.available==0){
+                x.date_borrow=myTime.dateToString(rs.getDate("borrow_date"));
+                x.date_expire=myTime.dateToString(rs.getDate("expire_date"));
+            }
             books.add(x);
         }
         return books;

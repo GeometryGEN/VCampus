@@ -20,12 +20,12 @@ import java.util.Iterator;
 //gsh
 public class Course_manager {
     private String id;
-    private Connection conn;
+    private static Connection conn;
     private int type;
     public Course_manager(String id) {
         this.id = id;
         try {
-            Connection conn= JDBC_Connector.ConnectMySQL();
+            conn= JDBC_Connector.ConnectMySQL();
         } catch (Exception e) {
             e.printStackTrace();
         }

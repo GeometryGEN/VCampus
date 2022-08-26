@@ -7,6 +7,7 @@ import DAO.Library.Book_admin;
 import DAO.Library.Book_borrower;
 import DAO.Library.Library_manager;
 import DAO.Library.Punishment;
+import DAO.QICQ.QICQ_manager;
 import DAO.StatusManagement.User_SM_utils;
 import User.Student;
 import message.Message;
@@ -58,22 +59,23 @@ public class ServerToClientThread extends Thread{
                 ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
                 Message m = (Message) ois.readObject();
                 Message sendback = new Message();
+                System.out.println("enter choose");
                 ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
                 //退出系统
                 if(m.getType().equals(MessageType.MESSAGE_CLIENT_EXIT)){
                     System.out.println(m.getSender()+"退出系统");
                     ManageServerToClientThread.removeServerToClientThread(m.getSender());
-                    ServerToClient.removeOnline(m.getSender());
-//                    socket.close();
+                    ServerToClient.removeOnline(userid);
+//                  socket.close();
                     break;
                 }
                 //图书馆
-                if(m.getType()== MessageType.MESSAGE_LIBRARY_ENTER){
+                if(m.getType().equals( MessageType.MESSAGE_LIBRARY_ENTER)){
 
                     sendback=new Library_manager(userid).enter_info();
                     oos.writeObject(sendback);
                 }
-                else if(m.getType()== MessageType.MESSAGE_LIBRARY_BORROW)
+                else if(m.getType().equals( MessageType.MESSAGE_LIBRARY_BORROW))
                 {
                     Book_borrower book=(Book_borrower)m.getData();
                     Library_manager lib_manager = new Library_manager(userid);
@@ -105,14 +107,14 @@ public class ServerToClientThread extends Thread{
                     sendback.setType(MessageType.MESSAGE_LIBRARY_LIST_MY_BOOK_RET);
                     oos.writeObject(sendback);
                 }
-                else if(m.getType()== MessageType.MESSAGE_LIBRARY_ADMIN_LIST)
+                else if(m.getType().equals( MessageType.MESSAGE_LIBRARY_ADMIN_LIST))
                 {
-                    System.out.println("server received");
                     Library_manager lib_manager = new Library_manager(userid);
                     sendback.setData(lib_manager.list_all_book(""));
                     sendback.setType(MessageType.MESSAGE_LIBRARY_ADMIN_LIST_RET);
+                    System.out.println("write");
                     oos.writeObject(sendback);
-                    System.out.println("server sendback");
+                    System.out.println("sendback");
                 }
                 else if (m.getType()== MessageType.MESSAGE_LIBRARY_ADMIN_QUERY) {
                     sendback.setData(new Library_manager(userid).list_all_book((String)m.getData()));
@@ -211,10 +213,34 @@ public class ServerToClientThread extends Thread{
                 }
                 //站内通信
                 if(m.getType()==MessageType.MESSAGE_QICQ_SEND_MSG){
-
+                     String getter=m.getGetter();
+                     if(ServerToClient.isOnline(getter)==true){
+                         new QICQ_manager(userid).send_online_message(m);
+                     }
+                     else {
+                         new QICQ_manager(userid).send_offline_message(m);
+                     }
                 }
                 else if(m.getType()==MessageType.MESSAGE_QICQ_SEND_FILE){
-
+                    String getter=m.getGetter();
+                    if(ServerToClient.isOnline(getter)==true){
+                        new QICQ_manager(userid).send_online_file(m);
+                    }
+                    else {
+                        new QICQ_manager(userid).send_offline_file(m);
+                    }
+                }
+                else if(m.getType()==MessageType.MESSAGE_QICQ_GET_ANNOUNCEMENT){
+                    new QICQ_manager(userid).list_announcement();
+                }
+                else if(m.getType()==MessageType.MESSAGE_QICQ_ADD_ANNOUNCEMENT){
+                    new QICQ_manager(userid).admin_add_announcement(m);
+                }
+                else if(m.getType()==MessageType.MESSAGE_QICQ_ADD_FRIEND){
+                    new QICQ_manager(userid).add_friend(m);
+                }
+                else if(m.getType()==MessageType.MESSAGE_QICQ_LIST_APPLICATION){
+                    new QICQ_manager(userid).list_my_application();
                 }
                 //商店
                 else if(m.getType().equals(MessageType.RETURN_STUDENT_INFO)){

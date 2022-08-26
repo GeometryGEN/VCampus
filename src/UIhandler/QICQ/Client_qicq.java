@@ -1,6 +1,7 @@
 package UIhandler.QICQ;
 
 import ClientToServer.ManageClientToServerThread;
+import DAO.QICQ.Application;
 import DAO.QICQ.Filetrans;
 import message.Message;
 import message.MessageType;
@@ -64,5 +65,18 @@ public class Client_qicq {
             e.printStackTrace();
         }
     }
+    public void get_message(String sender,String sendtime,String content){
 
+    }
+    public void add_friend(String myid,String myname,String number,String nickname) throws IOException {
+        Application app=new Application(myid,myname);
+        Message message=new Message();
+        message.setData(app);
+        app.setTo_id(number);
+        app.setTo_name(nickname);
+        message.setType(MessageType.MESSAGE_QICQ_ADD_FRIEND_START);
+        ObjectOutputStream oos=new ObjectOutputStream(ManageClientToServerThread.getThread(myid).
+                getSocket().getOutputStream());
+        oos.writeObject(message);
+    }
 }
