@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 public class AddDeleteBook extends JPanel {
 
+    public String[] addinfo=new String[7];
     public AddDeleteBook(){
         setLayout(null);
 //dddddd
@@ -112,6 +113,15 @@ public class AddDeleteBook extends JPanel {
                 String place=textField6.getText();
                 String publisher=textField7.getText();
 
+                addinfo[0]=textField1.getText();
+                addinfo[1]=textField2.getText();
+                addinfo[2]=textField3.getText();
+                addinfo[3]=textField4.getText();
+                addinfo[4]=textField5.getText();
+                addinfo[5]=textField6.getText();
+                addinfo[6]=textField7.getText();
+
+
             }
         });
 
@@ -139,6 +149,14 @@ public class AddDeleteBook extends JPanel {
         b2.setBounds(885,350,120,50);
         b2.setBackground(new Color(255,160,122));
         add(b2);
+        b2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
+                String delete_id=textField1.getText();
+
+            }
+        });
 
         //中间面板
         JPanel p0 = new JPanel();

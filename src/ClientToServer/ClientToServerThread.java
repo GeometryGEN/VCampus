@@ -2,6 +2,7 @@ package ClientToServer;
 import DAO.Library.Book_admin;
 import UIhandler.Library.Client_library;
 import UIhandler.StatusManagement.Client_status;
+import UIviewer.Library.AllBooks;
 import User.Student;
 import message.Message;
 import message.MessageType;
@@ -40,21 +41,21 @@ public class ClientToServerThread extends Thread {
                 MyObjectInputStream ois = new MyObjectInputStream(socket.getInputStream());
                 Message message = (Message) ois.readObject();
                 //如果服务器没有发送Message对象，线程会一直堵塞在这里
-                if(message.getType()==MessageType.MESSAGE_LIBRARY_BORROW_SUCCEED){
+                if(message.getType().equals(MessageType.MESSAGE_LIBRARY_BORROW_SUCCEED)){
 
                 }
-                else if(message.getType()==MessageType.MESSAGE_LIBRARY_BORROW_FAIL_RETURN_FIRST){
+                else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_BORROW_FAIL_RETURN_FIRST)){
 
                 }
-                else if(message.getType()==MessageType.MESSAGE_LIBRARY_BORROW_FAIL_TOO_MANY){
+                else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_BORROW_FAIL_TOO_MANY)){
 
                 }
-                else if(message.getType()==MessageType.MESSAGE_LIBRARY_RET_SUCCEED){
+                else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_RET_SUCCEED)){
 
                 }
-                else if(message.getType()==MessageType.MESSAGE_LIBRARY_ADMIN_LIST_RET){
+                else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_ADMIN_LIST_RET)){
                     HashSet<Book_admin>books=(HashSet<Book_admin>)message.getData();
-                    Client_library.showAllBooks(books);
+                    AllBooks.tableDate=Client_library.showAllBooks(books);
                 }
                 //商店具体操作
                 Message send = new Message();

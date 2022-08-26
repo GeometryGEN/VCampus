@@ -39,7 +39,7 @@ public class Client_library {
         oos.writeObject(message);
     }
     
-    public static String[][] showAllBooks(HashSet<Book_admin>books){
+    public static String[][] showAllBooks(HashSet<Book_admin>books)throws IOException{
         int n= books.size();
         System.out.println(n);
         String[][]a=new String[n][11];
@@ -48,7 +48,6 @@ public class Client_library {
         while(b.hasNext())
         {
             Book_admin book=(Book_admin) b.next();
-
                 a[count][0]=book.getID();
                 a[count][1]=book.getName();
                 a[count][2]=book.getAuthor();
@@ -69,4 +68,14 @@ public class Client_library {
         }
         return a;
     }
+
+/*
+    public static void AddBook()throws IOException
+    {
+        new String[]=UIviewer.Library.AddDeleteBook
+
+    }
+
+ */
 }
+
