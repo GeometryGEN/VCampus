@@ -3,9 +3,9 @@ package DAO.QICQ;
 public class Filetrans {
     String src;
     String dest;
-    int filelen;
+    long filelen;
     byte[] content;
-
+    String name;
     public String getSrc() {
         return src;
     }
@@ -22,7 +22,7 @@ public class Filetrans {
         this.dest = dest;
     }
 
-    public int getFilelen() {
+    public long getFilelen() {
         return filelen;
     }
 
@@ -36,5 +36,13 @@ public class Filetrans {
 
     public void setContent(byte[] content) {
         this.content = content;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

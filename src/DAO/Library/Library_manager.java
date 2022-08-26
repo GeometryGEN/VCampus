@@ -9,6 +9,7 @@ import User.Teacher;
 import connection.JDBC_Connector;
 import message.Message;
 import message.MessageType;
+import utils.myTime;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
@@ -138,6 +139,7 @@ public class Library_manager {
             x.place=rs.getString("place");
             x.publisher=rs.getString("publisher");
             x.country=rs.getString("country");
+            x.available=rs.getInt("available");
             books.add(x);
         }
         return books;
@@ -183,7 +185,7 @@ public class Library_manager {
             rightNow.setTime(today);
             rightNow.add(Calendar.DAY_OF_YEAR,30);//日期加30天
             Date expire=rightNow.getTime();
-            st.setString(1,expire.toString());
+            st.setString(1, myTime.dateToString(expire));
             st.setString(2,b.name);
             st.executeUpdate();
             sql="update set library borrow_to = ? where name= '?';";
@@ -253,7 +255,7 @@ public class Library_manager {
             return message;
         }
         while(rs.next()){
-            String ex=rs.getDate("expire_date").toString();
+            String ex=myTime.dateToString(rs.getDate("expire_date"));
             String bookid=rs.getString("id");
             Date next=new SimpleDateFormat("yyyy-MM-dd").parse(ex);
             Calendar rightNow = Calendar.getInstance();
@@ -262,7 +264,7 @@ public class Library_manager {
             Date new_expire=rightNow.getTime();
             sql="update library set expire_date=?, extended=1 where id='?'";
             st=conn.prepareStatement(sql);
-            st.setString(1,new_expire.toString());
+            st.setString(1,myTime.dateToString(new_expire));
             st.setString(2,bookid);
             st.executeUpdate();
         }
