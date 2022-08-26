@@ -4,6 +4,7 @@ import ClientToServer.ClientToServer;
 import net.coobird.thumbnailator.Thumbnails;
 
 import javax.swing.*;
+import javax.swing.event.AncestorListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -45,6 +46,9 @@ public class manage_status extends JPanel {
         add(title);
 
 
+
+
+
         //学生信息视图(初始为隐藏)
         JPanel status_jpanel=student_status.status_panel(ucs,width_r,height_r,width-2*(60+icon1_width)*width_r,(1080-70-icon1_height)*height_r,false);
         status_jpanel.setBounds((int)((60+icon1_width)*width_r),(int)((47+icon1_height)*height_r), (int)(width-2*(60+icon1_width)*width_r),(int)((1080-70-icon1_height)*height_r));
@@ -57,6 +61,43 @@ public class manage_status extends JPanel {
         search_panel.setLayout(null);//设置绝对布局
         search_panel.setBounds((int)((60+icon1_width)*width_r),(int)((47+icon1_height)*height_r), (int)(width-2*(60+icon1_width)*width_r),(int)((1080-70-icon1_height)*height_r));
         add(search_panel);
+        //图标
+        JLabel logo2=new JLabel();
+        int icon2_width=320;
+        int icon2_height=100;
+        try {
+            Thumbnails.of(new File("src/image/student_manage_logo.png"))
+                    .size((int)(icon2_width*width_r), (int)(icon2_height*width_r))
+                    .toFile(new File("src/image/student_manage_logo_mini.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        logo2.setIcon(new ImageIcon("src/image/student_manage_logo_mini.png"));
+        search_panel.add(logo2);
+        logo2.setBounds((int)((width-2*(60+icon1_width)*width_r)/2-icon2_width/2*width_r),(int)(200*height_r),(int)(icon2_width*width_r),(int)(icon2_height*height_r));
+        //搜索框
+        final JTextField search_text=new RoundJTextField(15);
+        search_text.setBounds((int)(300*width_r),(int)((250+icon2_height)*height_r),(int)((width-2*(60+icon1_width)*width_r-2*300*width_r)),(int)(100*height_r));
+        search_text.setFont(new Font("微软雅黑",Font.PLAIN,(int)(35*width_r)));
+        search_text.setHorizontalAlignment(JTextField.CENTER);
+        search_text.addFocusListener(new JTextFieldHintListener(search_text, "请输入要查询学生的一卡通号"));
+        search_panel.add(search_text);
+        //搜索按钮
+        JButton search_button=new RoundJButton();
+        search_button.setText("查询");
+        search_button.setBounds((int)(550*width_r),(int)((400+icon2_height)*height_r),(int)((width-2*(60+icon1_width)*width_r-2*550*width_r)),(int)(100*height_r));
+        search_button.setBackground(new Color(96,190,41));
+        search_button.setForeground(new Color(255,255,255));
+        search_button.setFont(new Font("微软雅黑",Font.PLAIN,(int)(39*width_r)));
+        search_panel.add(search_button);
+        search_button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
+
         //信息面板上透明条
         JPanel white_front_slice=new JPanel();
         white_front_slice.setBackground(new Color(124,136,204));
