@@ -1,5 +1,7 @@
 package DAO.QICQ;
 
-public class Friend {
+import java.io.Serializable;
+
+public class Friend implements Serializable {
     String id,name,type;
 }

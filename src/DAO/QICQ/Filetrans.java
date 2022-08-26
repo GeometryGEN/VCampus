@@ -1,6 +1,8 @@
 package DAO.QICQ;
 
-public class Filetrans {
+import java.io.Serializable;
+
+public class Filetrans implements Serializable {
     String src;
     String dest;
     long filelen;

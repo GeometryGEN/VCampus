@@ -73,11 +73,12 @@ public class Course_manager {
     }
     public HashSet<Course> query_courses(String s) throws SQLException {
         HashSet<Course> courses = new HashSet<Course>();
-        String sql="select * from curriculum where id='%?%' or name='%?%' or teacher='%?%';";
+        String sql="select * from curriculum where id like ? or name like ? or teacher like ?;";
+        String parse="%"+s+"%";
         PreparedStatement st=conn.prepareStatement(sql);
-        st.setString(1,s);
-        st.setString(2,s);
-        st.setString(3,s);
+        st.setString(1,parse);
+        st.setString(2,parse);
+        st.setString(3,parse);
         ResultSet rs=st.executeQuery();
         while (rs.next()){
             Course x=new Course();
@@ -113,7 +114,7 @@ public class Course_manager {
     }
     public HashSet<Course> list_my_courses() throws SQLException {
         HashSet<Course> courses = new HashSet<Course>();
-        String sql="select * from elective where stu_id='?' or tea_id='?';";
+        String sql="select * from elective where stu_id=? or tea_id=?;";
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,id);
         st.setString(2,id);
@@ -121,7 +122,7 @@ public class Course_manager {
         while(rs.next())
         {
             String course_id=rs.getString("course_id");
-            sql="select * from curriculum where stu_id='?';";
+            sql="select * from curriculum where stu_id=?;";
             st=conn.prepareStatement(sql);
             st.setString(1,course_id);
             ResultSet rs1=st.executeQuery();
@@ -170,13 +171,13 @@ public class Course_manager {
             message.setType(MessageType.MESSAGE_CURRICULUM_CHOOSE_CONFLICT);
             return message;
         }
-        String sql="select * from curriculum where id='?';";
+        String sql="select * from curriculum where id=?;";
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,c.id);
         ResultSet rs=st.executeQuery();
         int size=0;
         while (rs.next()) size=rs.getInt("size");
-        sql="select count(*) total from elective where course_id='?';";
+        sql="select count(*) total from elective where course_id=?;";
         st=conn.prepareStatement(sql);
         st.setString(1,c.id);
         rs=st.executeQuery();
@@ -193,7 +194,7 @@ public class Course_manager {
         return message;
     }
     public void drop(String s) throws SQLException {
-        String sql="delete from curriculum where course_id='?' and (stu_id='?' or tea_id='?');";
+        String sql="delete from curriculum where course_id=? and (stu_id=? or tea_id=?);";
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,s);
         st.setString(2,id);
@@ -213,7 +214,7 @@ public class Course_manager {
         st.executeUpdate();
     }
     public void delete(String s) throws SQLException {
-        String sql="delete from curriculum where id='?';";
+        String sql="delete from curriculum where id=?;";
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,s);
         st.executeUpdate();
@@ -235,7 +236,7 @@ public class Course_manager {
         return ans;
     }
     public Message apply(Opencourse c) throws SQLException {
-        String sql="select * from curriculum where name='?';";
+        String sql="select * from curriculum where name=?;";
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,c.name);
         ResultSet rs=st.executeQuery();
@@ -254,7 +255,7 @@ public class Course_manager {
         while(it.hasNext()){
             Opencourse c=(Opencourse)it.next();
             ServerToClient.getOpencourses().remove(c);
-            if(c.id==id)
+            if(c.id.equals(id))
             {
                 c.result=reason;
                 c.status=1;
@@ -268,7 +269,7 @@ public class Course_manager {
         while(it.hasNext()){
             Opencourse c=(Opencourse)it.next();
             ServerToClient.getOpencourses().remove(c);
-            if(c.id==id)
+            if(c.id.equals(id))
             {
                 c.result="已通过";
                 c.status=2;
@@ -283,7 +284,7 @@ public class Course_manager {
         Iterator it=ServerToClient.getOpencourses().iterator();
         while(it.hasNext()){
             Opencourse c=(Opencourse)it.next();
-            if(c.id==id) opencourses.add(c);
+            if(c.id.equals(id)) opencourses.add(c);
         }
         return opencourses;
     }
@@ -301,19 +302,19 @@ public class Course_manager {
     }
     public HashSet<Student>get_student(String s) throws SQLException {
         HashSet<Student>res=new HashSet<Student>();
-        String sql="select * from curriculum where name='?' or id='?';";
+        String sql="select * from curriculum where name=? or id=?;";
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,s);
         st.setString(2,s);
         ResultSet rs=st.executeQuery();
         if(rs.next()){
             String id=rs.getString("id");
-            sql="select * from elective where course_id='?';";
+            sql="select * from elective where course_id=?;";
             st=conn.prepareStatement(sql);
             st.setString(1,id);
             rs=st.executeQuery();
             while(rs.next()){
-                sql="select * from students where Student_idcard='?';";
+                sql="select * from students where Student_idcard=?;";
                 st=conn.prepareStatement(sql);
                 st.setString(1,id);
                 ResultSet rs1=st.executeQuery();
