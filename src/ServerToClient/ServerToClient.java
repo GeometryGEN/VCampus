@@ -183,6 +183,18 @@ public class ServerToClient extends Thread{
                         }
                     }
                 }
+                else if(s.getType().equals(MessageType.RETURN_STUDENT_INFO)){
+                    Student stu  = User_SM_utils.returnStudentAllInfo(((Student) s.getData()).getStudent_idcard());
+                    if(stu!=null){
+                        m.setData(stu);
+                        m.setType(MessageType.RETURN_STUDENT_INFO_SUCCEED);
+                        oos.writeObject(m);             //将message对象回复客户端
+                    } else{
+                        m.setType(MessageType.RETURN_STUDENT_INFO_FAILED);  //登录失败
+                        oos.writeObject(m);                        //将message对象回复客户端
+                        socket.close();
+                    }
+                }
 
             }
         }catch (Exception e){
@@ -259,5 +271,13 @@ public class ServerToClient extends Thread{
             a.add(f);
             QQfile.put(to,a);
         }
+    }
+    public static boolean isOnline(String id){
+        Iterator it=online.iterator();
+        while (it.hasNext()){
+            Online ol=(Online)it.next();
+            if(ol.getId().equals(id)) return true;
+        }
+        return false;
     }
 }

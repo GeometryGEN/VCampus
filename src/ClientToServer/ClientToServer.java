@@ -27,7 +27,7 @@ public class ClientToServer {
     private Socket socket;
 
     public String serverIP = Message.returnIP();
-//    public String serverIP = "116.62.195.230";
+   // public String serverIP = "192.168.43.81";
 
     public String getID() {
         return ID;
