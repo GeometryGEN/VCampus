@@ -10,7 +10,7 @@ import java.io.ObjectOutputStream;
 import java.util.HashSet;
 
 public class Client_library {
-    String id;
+    static String id;
     public static void borrow() throws IOException {
         Message message = new Message();
         Book_borrower b;

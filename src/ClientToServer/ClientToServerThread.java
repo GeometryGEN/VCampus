@@ -54,6 +54,7 @@ public class ClientToServerThread extends Thread {
                     HashSet<Book_admin>books=(HashSet<Book_admin>)message.getData();
                     Client_library.showAllBooks(books);
                 }
+                //商店具体操作
 
                 Message send = new Message();
                 ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());

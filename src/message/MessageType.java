@@ -104,4 +104,5 @@ public interface MessageType {
     String RETURN_STUDENT_INFO="100";           //得到学籍信息
     String RETURN_STUDENT_INFO_SUCCEED="101";   //得到学籍信息成功
     String RETURN_STUDENT_INFO_FAILED="102";    //得到学籍信息失败
+
 }

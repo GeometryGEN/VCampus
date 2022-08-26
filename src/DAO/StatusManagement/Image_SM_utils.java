@@ -81,7 +81,7 @@ public class Image_SM_utils {
         }
     }
 
-//    //测试
+    //测试
 //    public static void main(String[] args) throws SQLException {
 //        sendImageDB("C:\\Users\\28468\\Desktop\\11.png","111111","name");
 //        readDBImage("21");

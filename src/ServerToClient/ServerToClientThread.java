@@ -7,6 +7,8 @@ import DAO.Library.Book_admin;
 import DAO.Library.Book_borrower;
 import DAO.Library.Library_manager;
 import DAO.Library.Punishment;
+import DAO.StatusManagement.User_SM_utils;
+import User.Student;
 import message.Message;
 import message.MessageType;
 
@@ -207,9 +209,22 @@ public class ServerToClientThread extends Thread{
 
                 }
                 else if(m.getType()==MessageType.MESSAGE_QICQ_SEND_FILE){
-                    
+
                 }
                 //商店
+                else if(m.getType().equals(MessageType.RETURN_STUDENT_INFO)){
+                    Student stu  = User_SM_utils.returnStudentAllInfo(((Student) m.getData()).getStudent_idcard());
+                    if(stu!=null){
+                        m.setData(stu);
+                        m.setType(MessageType.RETURN_STUDENT_INFO_SUCCEED);
+                        oos.writeObject(m);             //将message对象回复客户端
+                    } else{
+                        m.setType(MessageType.RETURN_STUDENT_INFO_FAILED);  //登录失败
+                        oos.writeObject(m);                        //将message对象回复客户端
+                        socket.close();
+                    }
+                }
+
 
                 //学籍管理
 
