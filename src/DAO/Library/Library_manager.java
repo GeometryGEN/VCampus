@@ -36,7 +36,7 @@ public class Library_manager implements Serializable{
         Message message=new Message();
         message.setType(MessageType.MESSAGE_LIBRARY_ENTER_RET);
         Info information=new Info();
-        String sql="select * from students where Student_idcard='?';";
+        String sql="select * from students where Student_idcard=?;";
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,ID);
         ResultSet rs=st.executeQuery();
@@ -46,7 +46,7 @@ public class Library_manager implements Serializable{
             message.setData(information);
         }
         else {
-            sql="select * from teachers where Teacher_idcard='?';";
+            sql="select * from teachers where Teacher_idcard=?;";
             st=conn.prepareStatement(sql);
             st.setString(1,ID);
             rs=st.executeQuery();
@@ -56,7 +56,7 @@ public class Library_manager implements Serializable{
                 message.setData(information);
             }
             else{
-                sql="select * from teachers where Teacher_idcard='?';";
+                sql="select * from teachers where Teacher_idcard=?;";
                 st=conn.prepareStatement(sql);
                 st.setString(1,ID);
                 rs=st.executeQuery();
@@ -71,11 +71,10 @@ public class Library_manager implements Serializable{
     }
     public HashSet<Book_borrower> list_my_book() throws SQLException {
         HashSet<Book_borrower> books = new HashSet<Book_borrower>();
-        String sql="select * from library where borrow_to =?;";
+        String sql="select * from library where borrow_to=?;";
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,ID);
         ResultSet rs=st.executeQuery();
-        SimpleDateFormat sformat = new SimpleDateFormat("yyyy-MM-dd");
         while(rs.next())
         {
             Book_borrower x=new Book_borrower();
@@ -83,21 +82,22 @@ public class Library_manager implements Serializable{
             x.id=rs.getString("id");;
             x.name=rs.getString("name");
             x.author=rs.getString("author");
-            x.date_borrow=sformat.format(rs.getDate("borrow_date"));
-            x.date_expire=sformat.format(rs.getDate("expire_date"));
+            x.date_borrow=myTime.dateToString(rs.getDate("borrow_date"));
+            x.date_expire=myTime.dateToString(rs.getDate("expire_date"));
             books.add(x);
         }
         return books;
     }
     public HashSet<Book_borrower> query_book(String s) throws SQLException {
         HashSet<Book_borrower> books = new HashSet<>();
-        String sql="select * from library where name like \'%?%\' " +
-                "or country like \'%?%\' or author like \'%?%\' or publisher like \'%?%\';";
+        String sql="select * from library where name like ? " +
+                "or country like ? or author like ? or publisher like ?;";
+        String parse="%"+s+"%";
         PreparedStatement st=conn.prepareStatement(sql);
-        st.setString(1,s);
-        st.setString(2,s);
-        st.setString(3,s);
-        st.setString(4,s);
+        st.setString(1,parse);
+        st.setString(2,parse);
+        st.setString(3,parse);
+        st.setString(4,parse);
         ResultSet rs=st.executeQuery();
         while(rs.next())
         {
@@ -108,6 +108,10 @@ public class Library_manager implements Serializable{
             x.publisher=rs.getString("publisher");
             x.place=rs.getString("place");
             x.country=rs.getString("country");
+            x.available=rs.getInt("available");
+            if(x.available==1){
+                x.date_expire=myTime.dateToString(rs.getDate("expire_date"));
+            }
             books.add(x);
         }
 
@@ -174,16 +178,16 @@ public class Library_manager implements Serializable{
         if(flag==1)
         {
             msg.setType(MessageType.MESSAGE_LIBRARY_BORROW_SUCCEED);
-            sql="update set library available = 0 where name= '?';";
+            sql="update set library available = 0 where name= ?;";
             st=conn.prepareStatement(sql);
             st.setString(1,b.name);
             st.executeUpdate();
-            sql="update set library borrow_date = ? where name= '?';";
+            sql="update set library borrow_date = ? where name= ?;";
             st=conn.prepareStatement(sql);
             st.setString(1,today.toString());
             st.setString(2,b.name);
             st.executeUpdate();
-            sql="update set library expire_date = ? where name= '?';";
+            sql="update set library expire_date = ? where name= ?;";
             st=conn.prepareStatement(sql);
             Calendar rightNow = Calendar.getInstance();
             rightNow.setTime(today);
@@ -192,7 +196,7 @@ public class Library_manager implements Serializable{
             st.setString(1, myTime.dateToString(expire));
             st.setString(2,b.name);
             st.executeUpdate();
-            sql="update set library borrow_to = ? where name= '?';";
+            sql="update set library borrow_to = ? where name=?;";
             st=conn.prepareStatement(sql);
             st.setString(1,ID);
             st.setString(2,b.name);
@@ -204,7 +208,7 @@ public class Library_manager implements Serializable{
 
         String sql;
         Message msg=new Message();
-        sql="select expire_date from library where id='?';";
+        sql="select expire_date from library where id=?;";
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,b.id);
         ResultSet rs=st.executeQuery();
@@ -217,19 +221,19 @@ public class Library_manager implements Serializable{
                 msg.setType(MessageType.MESSAGE_LIBRARY_RET_LATE);
             }
         }
-        sql="update library set available = 1 where id= '?';";
+        sql="update library set available = 1 where id=?;";
         st=conn.prepareStatement(sql);
         st.setString(1,b.id);
         st.executeUpdate();
-        sql="update library set borrow_date = null where id='?';";
+        sql="update library set borrow_date = null where id=?;";
         st=conn.prepareStatement(sql);
         st.setString(1,b.id);
         st.executeUpdate();
-        sql="update library set expire_date = null where id= '?';";
+        sql="update library set expire_date = null where id=?;";
         st=conn.prepareStatement(sql);
         st.setString(1,b.id);
         st.executeUpdate();
-        sql="update library set borrow_to = null where id= '?';";
+        sql="update library set borrow_to = null where id=?;";
         st=conn.prepareStatement(sql);
         st.setString(1,b.id);
         st.executeUpdate();
@@ -239,7 +243,7 @@ public class Library_manager implements Serializable{
         Iterator it=ServerToClient.getPunish().iterator();
         while(it.hasNext()){
             Punishment p=(Punishment)it.next();
-            if(punishment.Book_id==p.Book_id&&punishment.Customer_iD==p.Customer_iD) {
+            if(punishment.Book_id.equals(p.Book_id)&&punishment.Customer_iD.equals(p.Customer_iD)) {
                 ServerToClient.getPunish().remove(p);
                 p.status=1;
                 ServerToClient.getPunish().add(p);
@@ -248,7 +252,7 @@ public class Library_manager implements Serializable{
         }
     }
     public Message extend(Book_borrower b) throws SQLException, ParseException {
-        String sql="select * from library where id= '?';";
+        String sql="select * from library where id=?;";
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,b.id);
         ResultSet rs=st.executeQuery();
@@ -266,7 +270,7 @@ public class Library_manager implements Serializable{
             rightNow.setTime(next);
             rightNow.add(Calendar.DAY_OF_YEAR,30);//日期加30天
             Date new_expire=rightNow.getTime();
-            sql="update library set expire_date=?, extended=1 where id='?'";
+            sql="update library set expire_date=?, extended=1 where id=?";
             st=conn.prepareStatement(sql);
             st.setString(1,myTime.dateToString(new_expire));
             st.setString(2,bookid);
@@ -277,7 +281,7 @@ public class Library_manager implements Serializable{
     }
     public Punishment apply(Book_borrower b) throws SQLException {
         Punishment pp=new Punishment();
-        String sql="select * from library where name= '?' and author='?'and borrow_to='?';";
+        String sql="select * from library where name=? and author=? and borrow_to=?;";
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,b.name);
         st.setString(2,b.author);
@@ -292,7 +296,7 @@ public class Library_manager implements Serializable{
         return pp;
     }
     public Message pay(Punishment p) throws SQLException{
-        String sql="select * from Students where Student_name= '?';";
+        String sql="select * from Students where Student_name=?;";
         Message msg=new Message();
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,p.Customer_iD);
@@ -300,7 +304,7 @@ public class Library_manager implements Serializable{
         if(rs.next()){
             double curmoney=rs.getDouble("Student_money")-p.price;
             if(curmoney>=0){
-                sql="update students set Student_money=? where name= '?';";
+                sql="update students set Student_money=? where name=?;";
                 st.setDouble(1,curmoney);
                 st.setString(2,p.Customer_iD);
                 msg.setType(MessageType.MESSAGE_LIBRARY_PAY_SUCCEED);
@@ -310,13 +314,13 @@ public class Library_manager implements Serializable{
             }
         }
         else {
-            sql="select * from Teachers where Teacher_name= '?'";
+            sql="select * from Teachers where Teacher_name=?";
             st=conn.prepareStatement(sql);
             st.setString(1,p.Customer_iD);
             rs=st.executeQuery();
             double curmoney=rs.getDouble("Teacher_money")-p.price;
             if(curmoney>=0){
-                sql="update teachers set Teacher_money=? where name= '?';";
+                sql="update teachers set Teacher_money=? where name=?;";
                 st.setDouble(1,curmoney);
                 st.setString(2,p.Customer_iD);
                 msg.setType(MessageType.MESSAGE_LIBRARY_PAY_SUCCEED);
@@ -325,9 +329,9 @@ public class Library_manager implements Serializable{
                 msg.setType(MessageType.MESSAGE_LIBRARY_PAY_FAIL);
             }
         }
-        if(msg.getType()==MessageType.MESSAGE_LIBRARY_PAY_SUCCEED)
+        if(msg.getType().equals(MessageType.MESSAGE_LIBRARY_PAY_SUCCEED))
         {
-            sql="delete from library where id= '?';";
+            sql="delete from library where id=?;";
             st=conn.prepareStatement(sql);
             st.setString(1,p.Book_id);
             st.executeUpdate();
@@ -347,7 +351,7 @@ public class Library_manager implements Serializable{
         st.executeUpdate();
     }
     public void deletebook(String id) throws SQLException{
-        String sql="delete from library where ID='?';";
+        String sql="delete from library where ID=?;";
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,id);
         st.executeUpdate();
@@ -366,7 +370,7 @@ public class Library_manager implements Serializable{
         Iterator it=ServerToClient.getPunish().iterator();
         while(it.hasNext()){
             Punishment p=(Punishment)it.next();
-            if(p.Customer_iD==ID) punishments.add(p);
+            if(p.Customer_iD.equals(ID)) punishments.add(p);
         }
         return punishments;
     }

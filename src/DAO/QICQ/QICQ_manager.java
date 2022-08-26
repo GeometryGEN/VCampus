@@ -33,7 +33,7 @@ public class QICQ_manager {
     }
     public HashMap<String,HashSet<Friend>> get_friends() throws SQLException {
         HashMap<String, HashSet<Friend>> friends = new HashMap<>();
-        String sql="select * from friends where user_id='?';";
+        String sql="select * from friends where user_id=?;";
         PreparedStatement st= conn.prepareStatement(sql);
         st.setString(1,id);
         ResultSet rs= st.executeQuery();
@@ -74,7 +74,7 @@ public class QICQ_manager {
     public void add_friend(Message message) throws IOException, SQLException {
         Message msg=new Message();
         Application app=(Application)message.getData();
-        String sql="select * from students,teachers where Student_idcard='?' or Teacher_idcard='?'";
+        String sql="select * from students,teachers where Student_idcard=? or Teacher_idcard=?";
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,app.to_id);
         st.setString(2,app.to_id);
