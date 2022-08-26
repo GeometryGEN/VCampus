@@ -12,6 +12,9 @@ import User.Student;
 import User.Teacher;
 import message.Message;
 import message.MessageType;
+import utils.MyObjectInputStream;
+import utils.MyObjectOutputStream;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -47,13 +50,13 @@ public class ServerToClient extends Thread{
                 // if(punish.size()!=0&&getOnline_admin()!=null) send_ticket(getOnline_admin());
                 Socket socket = ss.accept();
                 //得到socket关联的对象输入流
-                ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
+                MyObjectInputStream ois = new MyObjectInputStream(socket.getInputStream());
                 //读取客户端发送的老师/同学/管理员对象
                 Message s = (Message) ois.readObject();
                 //创建Message对象，准备回复客户端
                 Message m=new Message();
                 //得到socket关联的对象输出流
-                ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+                MyObjectOutputStream oos = new MyObjectOutputStream(socket.getOutputStream());
                 if(s.getType().equals(MessageType.MESSAGE_STUDENT_LOGIN)) {
                     Student stu = (Student) s.getData();
                     if(Students_utils.checkStudentAccount(stu.getStudent_idcard(),stu.getStudent_pwd())){

@@ -7,6 +7,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import UIviewer.Library.readLib;
 import UIviewer.Library.adminLib;
+import UIviewer.status_manage.manage_status;
 import UIviewer.status_manage.student_status;
 
 public class functionChoose {
@@ -146,8 +147,11 @@ public class functionChoose {
                     int height=(int ) screensize.getHeight();//获得高度
                     jf.setBounds(0,0,width,height);
                     jf.remove(fc_panel);
-
-                    jf.setContentPane(new student_status(ucs,width,height));
+                    if(ucs.getID().equals("1"))
+                        jf.setContentPane(new student_status(ucs,width,height));
+                    else if(ucs.getID().equals("3")){
+                        jf.setContentPane(new manage_status(ucs,width,height));
+                    }
                     jb.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent e) {

@@ -20,6 +20,8 @@ import java.net.Socket;
 import java.util.HashSet;
 
 import DAO.StatusManagement.Image_SM_utils;
+import utils.MyObjectInputStream;
+import utils.MyObjectOutputStream;
 
 /**
  * @author : [Tongwei_L]
@@ -56,11 +58,11 @@ public class ServerToClientThread extends Thread{
         while (true){
             System.out.println("客户端和服务端 "+userid+" 保持通信，读取数据...");
             try {
-                ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
+                MyObjectInputStream ois = new MyObjectInputStream(socket.getInputStream());
                 Message m = (Message) ois.readObject();
                 Message sendback = new Message();
                 System.out.println("enter choose");
-                ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
+                MyObjectOutputStream oos = new MyObjectOutputStream(socket.getOutputStream());
                 //退出系统
                 if(m.getType().equals(MessageType.MESSAGE_CLIENT_EXIT)){
                     System.out.println(m.getSender()+"退出系统");
@@ -243,8 +245,10 @@ public class ServerToClientThread extends Thread{
                     new QICQ_manager(userid).list_my_application();
                 }
                 //商店
+
+                //学籍管理
                 else if(m.getType().equals(MessageType.RETURN_STUDENT_INFO)){
-                    Student stu  = User_SM_utils.returnStudentAllInfo(((Student) m.getData()).getStudent_idcard());
+                    Student stu  = User_SM_utils.returnStudentAllInfo( m.getSender());
                     if(stu!=null){
                         sendback.setData(stu);
                         sendback.setType(MessageType.RETURN_STUDENT_INFO_SUCCEED);
@@ -255,8 +259,6 @@ public class ServerToClientThread extends Thread{
                         socket.close();
                     }
                 }
-
-                //学籍管理
                 else if(m.getType().equals(MessageType.RETURN_PHOTO)){
                     boolean sign = Image_SM_utils.readDBImage(m.getSender());
                     if(sign){
@@ -268,7 +270,6 @@ public class ServerToClientThread extends Thread{
                         socket.close();
                     }
                 }
-
             } catch (Exception e) {
                 e.printStackTrace();
             }

@@ -24,7 +24,9 @@ public class student_status extends JPanel {
         JLabel image = new JLabel();
         int icon1_width=320;
         int icon1_height=150;
+        Client_status.setId(IDcard);
         Client_status.getphoto(IDcard);
+
         try {
             Thumbnails.of(new File("src/image/"+IDcard+".jpg"))
                     .size((int)(icon1_width*width_r), (int)(icon1_height*width_r))
@@ -36,7 +38,7 @@ public class student_status extends JPanel {
         status.add(image);
         image.setBounds((int)(60*width_r),(int)(145*height_r),(int)(icon1_width*width_r),(int)(icon1_height*height_r));
         //头像下名字
-
+        System.out.println(Client_status.getId());
         String name = Client_status.returnStatusInfo(IDcard).getStudent_name();
         JLabel name_label=new JLabel(name,JLabel.CENTER);
         name_label.setBounds((int)(57*width_r), (int)((165+icon1_height)*height_r), (int)(110*width_r), (int)(15*height_r));

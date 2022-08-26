@@ -38,6 +38,11 @@ public class User_SM_utils {
                 s.setBirthday(rs.getString(11));
                 s.setNative_place(rs.getString(12));
                 s.setMajor(rs.getString(13));
+                s.setStudent_type(rs.getString(14));
+                s.setDue_graduate_date(rs.getString(15));
+                s.setCampus(rs.getString(16));
+                s.setSclass(rs.getString(17));
+                s.setID(rs.getString(18));
                 return s;
             }
             JDBC_Connector.close(rs, ps, connection);
