@@ -4,6 +4,7 @@ import DAO.Library.Punishment;
 import DAO.Login.Admin_utils;
 import DAO.Login.Students_utils;
 import DAO.Login.Teachers_utils;
+import DAO.QICQ.Application;
 import DAO.QICQ.Filetrans;
 import DAO.StatusManagement.User_SM_utils;
 import User.Admin;
@@ -37,6 +38,7 @@ public class ServerToClient extends Thread{
     private static HashMap<String, ArrayList<Message>>QQbox=new HashMap<String, ArrayList<Message>>();
     private static HashSet<Message>bulletin=new HashSet<Message>();
     private static HashMap<String,ArrayList<Filetrans>>QQfile=new HashMap<String,ArrayList<Filetrans>>();
+    private static HashMap<String,ArrayList<Application>>QQapplication=new HashMap<>();
     public ServerToClient() throws IOException {
         try{
             System.out.println("服务器在"+MessageType.PORT+"端口监听中，"+"IP地址为"+Message.returnIP());
@@ -227,12 +229,20 @@ public class ServerToClient extends Thread{
     public static void addOnline(String id,int ty){
         online.add(new Online(id,ty));
     }
+    public static void removeOnline(String id){
+        Iterator it=online.iterator();
+        while(it.hasNext()){
+            Online ol=(Online)it.next();
+            if(ol.getId().equals(id)) online.remove(ol);
+        }
+    }
     public static void addPunish(Punishment p) {
         ServerToClient.punish.add(p);
     }
 
     public static ArrayList<Message> getQQbox(String id) {
-        return QQbox.get(id);
+        if(QQbox.containsKey(id)) return QQbox.get(id);
+        else return new ArrayList<Message>();
     }
 
     public static void addQQbox(String to,Message m) {
@@ -279,5 +289,21 @@ public class ServerToClient extends Thread{
             if(ol.getId().equals(id)) return true;
         }
         return false;
+    }
+
+    public static ArrayList<Application> getQQapplication(String id) {
+        if(QQapplication.containsKey(id)) return QQapplication.get(id);
+        else return new ArrayList<Application>();
+    }
+
+    public static void addQQapplication(String to,Application app) {
+        if(QQapplication.containsKey(to)){
+            QQapplication.get(to).add(app);
+        }
+        else {
+            ArrayList<Application>a=new ArrayList<>();
+            a.add(app);
+            QQapplication.put(to,a);
+        }
     }
 }

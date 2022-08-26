@@ -61,6 +61,7 @@ public class ServerToClientThread extends Thread{
                 if(m.getType().equals(MessageType.MESSAGE_CLIENT_EXIT)){
                     System.out.println(m.getSender()+"退出系统");
                     ManageServerToClientThread.removeServerToClientThread(m.getSender());
+                    ServerToClient.removeOnline(m.getSender());
 //                    socket.close();
                     break;
                 }

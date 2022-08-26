@@ -1,5 +1,6 @@
 package DAO.QICQ;
 
+import DAO.Library.Info;
 import ServerToClient.ManageServerToClientThread;
 import ServerToClient.ServerToClient;
 import connection.JDBC_Connector;
@@ -13,6 +14,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -68,17 +70,55 @@ public class QICQ_manager {
         String to=msg.getGetter();
         ServerToClient.addQQbox(to,msg);
     }
-    public void add_friend(Friend friend){
+    public void add_friend(Friend friend) throws IOException, SQLException {
         Message msg=new Message();
         msg.setGetter(friend.id);
         msg.setSendTime(myTime.getCurrentTime());
         msg.setType(MessageType.MESSAGE_QICQ_ADD_FRIEND);
+        String sql="select * from students where id='?';";
+        PreparedStatement st=conn.prepareStatement(sql);
+        st.setString(1,id);
+        ResultSet rs=st.executeQuery();
 
-        if(ServerToClient.isOnline(friend.id)){
-
+        if(rs.next()){
+            Application app=new Application(id,rs.getString("student_name"));
+            msg.setData(app);
         }
         else {
-
+            sql="select * from teachers where id='?';";
+            st=conn.prepareStatement(sql);
+            st.setString(1,id);
+            rs=st.executeQuery();
+            if(rs.next()){
+                Application app=new Application(id,rs.getString("teacher_name"));
+                msg.setData(app);
+            }
+        }
+        if(ServerToClient.isOnline(friend.id)){
+            send_online_message(msg);
+        }
+        else {
+            send_offline_message(msg);
         }
     }
+    public ArrayList<Application> list_my_application(){
+        ArrayList<Application>app=ServerToClient.getQQapplication(id);
+        return app;
+    }
+    public void admin_announcement(Message m) {
+        ServerToClient.addBulletin(m);
+    }
+    public void list_announcement(){
+
+    }
+    public void accept_new_friend(Friend friend){
+
+    }
+    public void deny_new_friend(Friend friend){
+
+    }
+    public void list_my_mailbox(){
+
+    }
+
 }

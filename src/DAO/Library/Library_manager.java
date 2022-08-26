@@ -139,6 +139,7 @@ public class Library_manager {
             x.place=rs.getString("place");
             x.publisher=rs.getString("publisher");
             x.country=rs.getString("country");
+            x.available=rs.getInt("available");
             books.add(x);
         }
         return books;

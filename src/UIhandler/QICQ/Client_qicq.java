@@ -9,7 +9,7 @@ import utils.myTime;
 import java.io.*;
 
 public class Client_qicq {
-    public void send_file(String src,String sender,String getter){
+    public void send_file(String src,String sender,String getter,String filename){
         Message message=new Message();
         message.setSender(sender);
         message.setGetter(getter);
@@ -22,6 +22,7 @@ public class Client_qicq {
             fileInputStream.read(filebytes);
             Filetrans file=new Filetrans();
             file.setContent(filebytes);
+            file.setName(filename);
             message.setData(file);
         } catch (IOException e) {
             e.printStackTrace();
@@ -62,9 +63,6 @@ public class Client_qicq {
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-    public void get_message(Message message) throws IOException {
-
     }
 
 }
