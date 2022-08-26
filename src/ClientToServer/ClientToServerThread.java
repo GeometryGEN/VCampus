@@ -22,6 +22,7 @@ import java.util.HashSet;
  */
 public class ClientToServerThread extends Thread {
     private Socket socket;
+
     //volatile修饰符用来保证其它线程读取的总是该变量的最新的值
     public volatile boolean exit = false;
 

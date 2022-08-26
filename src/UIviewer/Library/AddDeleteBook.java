@@ -100,7 +100,20 @@ public class AddDeleteBook extends JPanel {
         b1.setBounds(235,420,120,50);
         b1.setBackground(new Color(255,160,122));
         add(b1);
+        b1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
+                String id=textField1.getText();
+                String name=textField2.getText();
+                String author=textField3.getText();
+                double price=Double.valueOf(textField4.getText());
+                String country=textField5.getText();
+                String place=textField6.getText();
+                String publisher=textField7.getText();
 
+            }
+        });
 
         //中间面板
         JPanel p = new JPanel();

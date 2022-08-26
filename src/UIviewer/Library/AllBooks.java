@@ -10,7 +10,8 @@ public class AllBooks extends JPanel {
     public static String[][] tableDate;
     public AllBooks(){
         setLayout(null);
-        String[] tableTitle = {"书名", "作者", "价格", "是否可借","借出日期","国家","借书人","归还日期","馆藏地","书籍编号","出版社"};
+        //System.out.println(tableDate[1][1]);
+        String[] tableTitle = {"书籍编号","书名", "作者","出版社","国家","价格", "是否可借","借出日期","借书人","归还日期","馆藏地"};
         //数据
         DefaultTableModel dtm = new DefaultTableModel(tableDate, tableTitle);
         JTable table_want = new JTable(dtm);
