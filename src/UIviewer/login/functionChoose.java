@@ -1,5 +1,6 @@
 package UIviewer.login;
 import ClientToServer.ClientToServer;
+import UIhandler.Library.Client_library;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -250,6 +251,8 @@ public class functionChoose {
                     }
                     else
                     {
+                        Client_library.setId(ucs.getIDcard());
+                        Client_library.RequireshowAllBooks();
                         adminLib.adminLibUI(ucs);
                     }
                 } catch (Exception ex) {
