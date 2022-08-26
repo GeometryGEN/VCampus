@@ -13,7 +13,8 @@ import java.io.IOException;
 
 public class manage_status extends JPanel {
     static JButton jb_back_to_search;
-    JPanel status_jpanel;
+    static public JPanel search_panel;
+    static public JPanel status_jpanel;
     public manage_status(ClientToServer ucs, int width, int height) throws Exception {
         double width_r=(double)(width)/1920;
         double height_r=(double)(height)/1080;
@@ -50,7 +51,7 @@ public class manage_status extends JPanel {
 
 
         //搜索面板
-        JPanel search_panel=new JPanel();
+        search_panel=new JPanel();
         search_panel.setBackground(new Color(255,255,255));
         search_panel.setBorder(BorderFactory.createEtchedBorder());
         search_panel.setLayout(null);//设置绝对布局
@@ -98,13 +99,6 @@ public class manage_status extends JPanel {
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 }
-            }
-        });
-        jb_back_to_search.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                status_jpanel.setVisible(false);
-                search_panel.setVisible(true);
             }
         });
 

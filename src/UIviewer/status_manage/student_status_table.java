@@ -174,6 +174,14 @@ public class student_status_table extends JPanel{
             manage_status.jb_back_to_search.setForeground(new Color(255,255,255));
             manage_status.jb_back_to_search.setFont(new Font("微软雅黑",Font.PLAIN,(int)(22*width_r)));
             add(manage_status.jb_back_to_search);
+
+            manage_status.jb_back_to_search.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    manage_status.status_jpanel.setVisible(false);
+                    manage_status.search_panel.setVisible(true);
+                }
+            });
             jb3=new JButton("提交学籍信息");
             jb3.setBounds((int)(360*width_r),(int)(650*height_r),(int)(170*width_r),(int)(50*height_r));
             jb3.setBackground(new Color(33,150,243));
