@@ -18,7 +18,7 @@ public class Image_utils {
     }
     // 读取表中图片获取输出流
     public static void readBin2Image(InputStream in,String id) {
-        String path = "E:\\course_design\\src\\image";
+        String path = "E:\\Vcampus\\src\\image";
         File file = new File(path);
         if (!file.exists()) {
             new File(path).mkdir();

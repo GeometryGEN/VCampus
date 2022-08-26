@@ -1,5 +1,9 @@
 package UIviewer.status_manage;
 
+import ClientToServer.ClientToServer;
+import UIhandler.StatusManagement.Client_status;
+import User.Student;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -67,7 +71,7 @@ public class student_status_table extends JPanel{
         text30.setEditable(false);
         text32.setEditable(false);
     }
-    public student_status_table(double width_r,double height_r,double width, double height,boolean flag){
+    public student_status_table(ClientToServer ucs, double width_r, double height_r, double width, double height, boolean flag) throws Exception {
         setBackground(new Color(255,255,255));
         setBorder(BorderFactory.createEtchedBorder());
         setBorder(BorderFactory.createLineBorder(new Color(232,237,239)));
@@ -82,72 +86,70 @@ public class student_status_table extends JPanel{
         add(title_label);
 
         //信息表格
-        //int text_height=65;
-        //int text_width1=230;
-        //int text_width2=310;
+        Student sinfo = Client_status.returnStatusInfo(ucs.getIDcard());
         text1= text_title("一卡通号",width_r, height_r,50,80);
         add(text1);
-        text2= text_info("213201939",width_r,height_r,280,80);
+        text2= text_info(sinfo.getStudent_idcard(),width_r,height_r,280,80);
         add(text2);
         text3= text_title("学号",width_r, height_r,590,80);
         add(text3);
-        text4= text_info("09020114",width_r,height_r,820,80);
+        text4= text_info(sinfo.getStudent_id(),width_r,height_r,820,80);
         add(text4);
         text5= text_title("姓名",width_r, height_r,50,145);
         add(text5);
-        text6= text_info("葛张样",width_r,height_r,280,145);
+        text6= text_info(sinfo.getStudent_name(),width_r,height_r,280,145);
         add(text6);
         text7= text_title("年龄",width_r, height_r,590,145);
         add(text7);
-        text8= text_info("20",width_r,height_r,820,145);
+        text8= text_info(Integer.toString(sinfo.getStudent_age()),width_r,height_r,820,145);
         add(text8);
         text9= text_title("性别",width_r, height_r,50,210);
         add(text9);
-        text10= text_info("男",width_r,height_r,280,210);
+        text10= text_info(sinfo.getStudent_gender(),width_r,height_r,280,210);
         add(text10);
         text11= text_title("民族",width_r, height_r,590,210);
         add(text11);
-        text12= text_info("汉族",width_r,height_r,820,210);
+        text12= text_info(sinfo.getNation(),width_r,height_r,820,210);
         add(text12);
         text13= text_title("身份证号",width_r, height_r,50,275);
         add(text13);
-        text14= text_info("33068220011130",width_r,height_r,280,275);
+        text14= text_info(sinfo.getID(),width_r,height_r,280,275);
         add(text14);
         text15= text_title("出生日期",width_r, height_r,590,275);
         add(text15);
-        text16= text_info("2001-11-30",width_r,height_r,820,275);
+        text16= text_info(sinfo.getBirthday(),width_r,height_r,820,275);
         add(text16);
         text17= text_title("籍贯",width_r, height_r,50,340);
         add(text17);
-        text18= text_info("上虞",width_r,height_r,280,340);
+        text18= text_info(sinfo.getNative_place(),width_r,height_r,280,340);
         add(text18);
         text19= text_title("专业",width_r, height_r,590,340);
         add(text19);
-        text20= text_info("计算机科学与技术",width_r,height_r,820,340);
+        text20= text_info(sinfo.getMajor(),width_r,height_r,820,340);
         add(text20);
         text21= text_title("入学年级",width_r, height_r,50,405);
         add(text21);
-        text22= text_info("2020",width_r,height_r,280,405);
+        text22= text_info(sinfo.getStudent_class(),width_r,height_r,280,405);
         add(text22);
         text23= text_title("学生类别",width_r, height_r,590,405);
         add(text23);
-        text24= text_info("本科生",width_r,height_r,820,405);
+        text24= text_info(sinfo.getStudent_type(),width_r,height_r,820,405);
         add(text24);
         text25= text_title("班级",width_r, height_r,50,470);
         add(text25);
-        text26= text_info("090201",width_r,height_r,280,470);
+        text26= text_info(sinfo.getSclass(),width_r,height_r,280,470);
         add(text26);
         text27= text_title("校区",width_r, height_r,590,470);
         add(text27);
-        text28= text_info("九龙湖校区",width_r,height_r,820,470);
+        text28= text_info(sinfo.getCampus(),width_r,height_r,820,470);
         add(text28);
         text29= text_title("预计毕业日期",width_r, height_r,50,535);
         add(text29);
-        text30= text_info("2024-07-30",width_r,height_r,280,535);
+        text30= text_info(sinfo.getDue_graduate_date(),width_r,height_r,280,535);
         add(text30);
         text31= text_title("邮箱",width_r, height_r,590,535);
         add(text31);
-        text32= text_info("1036762050@qq.com",width_r,height_r,820,535);
+        text32= text_info(sinfo.getStudent_email(),width_r,height_r,820,535);
         add(text32);
 
         if(!flag){
@@ -199,4 +201,5 @@ public class student_status_table extends JPanel{
             add(student_status.jb);
         }
     }
+
 }

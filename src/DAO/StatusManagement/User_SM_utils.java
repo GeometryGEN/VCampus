@@ -47,6 +47,4 @@ public class User_SM_utils {
         return null;
     }
 
-
-
 }

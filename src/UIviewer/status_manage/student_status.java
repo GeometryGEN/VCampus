@@ -1,8 +1,10 @@
 package UIviewer.status_manage;
 
-
+import ClientToServer.ClientToServer;
+import UIhandler.Shop.Client_shop;
+import UIhandler.StatusManagement.Client_status;
 import net.coobird.thumbnailator.Thumbnails;
-
+import ClientToServer.ManageClientToServerThread;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -14,7 +16,7 @@ public class student_status extends JPanel {
     public static JButton jb;
 
     //信息面板
-    public static JPanel status_panel(double width_r, double height_r, double width, double height,boolean flag){
+    public static JPanel status_panel(ClientToServer ucs, double width_r, double height_r, double width, double height, boolean flag) throws Exception {
         JPanel status=new JPanel();
         status.setBackground(new Color(255,255,255));
         status.setBorder(BorderFactory.createEtchedBorder());
@@ -23,18 +25,25 @@ public class student_status extends JPanel {
         JLabel image = new JLabel();
         int icon1_width=320;
         int icon1_height=150;
+        Client_status.getphoto(ucs.getIDcard());
         try {
-            Thumbnails.of(new File("src/image/status_image.png"))
+            Thumbnails.of(new File("src/image/"+ucs.getIDcard()+".jpg"))
                     .size((int)(icon1_width*width_r), (int)(icon1_height*width_r))
-                    .toFile(new File("src/image/status_image_min.png"));
+                    .toFile(new File("src/image/"+ucs.getIDcard()+"_min.jpg"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        image.setIcon(new ImageIcon("src/image/status_image_min.png"));
+        image.setIcon(new ImageIcon("src/image/"+ucs.getIDcard()+"_min.jpg"));
         status.add(image);
         image.setBounds((int)(60*width_r),(int)(145*height_r),(int)(icon1_width*width_r),(int)(icon1_height*height_r));
         //头像下名字
-        JLabel name_label=new JLabel("葛张样",JLabel.CENTER);//替换为该同学名字
+        String name = switch (ucs.getID()) {
+            case "1" -> ucs.getS().getStudent_name();
+            case "2" -> ucs.getT().getTeacher_name();
+            case "3" -> ucs.getA().getAdmin_name();
+            default -> null;
+        };
+        JLabel name_label=new JLabel(name,JLabel.CENTER);
         name_label.setBounds((int)(57*width_r), (int)((165+icon1_height)*height_r), (int)(110*width_r), (int)(15*height_r));
         Font name_font = new Font("微软雅黑", Font.PLAIN, (int)(16*width_r));
         name_label.setFont(name_font);
@@ -42,14 +51,14 @@ public class student_status extends JPanel {
         status.add(name_label);
 
         //添加表格
-        JPanel table_jpanel = new student_status_table(width_r,height_r,45*height_r,height-100*height_r,flag);
+        JPanel table_jpanel = new student_status_table(ucs,width_r,height_r,45*height_r,height-100*height_r,flag);
         table_jpanel.setBounds((int)((icon1_width-90)*width_r),(int)(85*height_r), (int)(width-(icon1_width-30)*width_r),(int)(height-140*height_r));
         status.add(table_jpanel);
 
         return status;
     }
 
-    public student_status(int width, int height) {
+    public student_status(ClientToServer ucs,int width, int height) throws Exception {
         double width_r=(double)(width)/1920;
         double height_r=(double)(height)/1080;
         //设置屏幕大小、背景颜色
@@ -57,7 +66,6 @@ public class student_status extends JPanel {
         setBackground(new Color(255,255,255));
         //设置绝对布局
         setLayout(null);
-
 
         //SEU logo
         JLabel logo = new JLabel();
@@ -82,7 +90,7 @@ public class student_status extends JPanel {
         add(title);
 
         //信息面板
-        JPanel status_jpanel= status_panel(width_r,height_r,width-2*(60+icon1_width)*width_r,(1080-70-icon1_height)*height_r,true);
+        JPanel status_jpanel= status_panel(ucs,width_r,height_r,width-2*(60+icon1_width)*width_r,(1080-70-icon1_height)*height_r,true);
         status_jpanel.setBounds((int)((60+icon1_width)*width_r),(int)((47+icon1_height)*height_r), (int)(width-2*(60+icon1_width)*width_r),(int)((1080-70-icon1_height)*height_r));
         add(status_jpanel);
 
@@ -107,20 +115,22 @@ public class student_status extends JPanel {
         add(blue_back);
 
     }
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("student_status");
-        Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
-        int width=(int ) screensize.getWidth(); //得到宽度
-        int height=(int ) screensize.getHeight();//获得高度
-        frame.setBounds(0,0,width,height);
-        frame.setContentPane(new student_status(width,height));
-        jb.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                frame.getContentPane().setVisible(false);
-            }
-        });
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
-    }
+
+
+    //    public static void main(String[] args) {
+//        JFrame frame = new JFrame("student_status");
+//        Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
+//        int width=(int ) screensize.getWidth(); //得到宽度
+//        int height=(int ) screensize.getHeight();//获得高度
+//        frame.setBounds(0,0,width,height);
+//        frame.setContentPane(new student_status(ucs,width,height));
+//        jb.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                frame.getContentPane().setVisible(false);
+//            }
+//        });
+//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        frame.setVisible(true);
+//    }
 }

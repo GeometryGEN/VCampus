@@ -44,7 +44,7 @@ public class Image_SM_utils {
         }
     }
     // 读取数据库中图片
-    public static void readDBImage(String id) throws SQLException {
+    public static boolean readDBImage(String id) throws SQLException {
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -58,32 +58,19 @@ public class Image_SM_utils {
                 String name = rs.getString(2);
                 InputStream in = rs.getBinaryStream("photo");
                 Image_utils.readBin2Image(in,id);
+                System.out.println("图片读取成功！");
+                JDBC_Connector.close(rs,ps,conn);
+                return true;
             }
         } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            System.out.println("图片读取成功！");
-            JDBC_Connector.close(rs,ps,conn);
-            if (rs != null) {
-                try {
-                    rs.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-            if (ps != null) {
-                try {
-                    ps.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
+            return false;
         }
+        return true;
     }
 
     //测试
 //    public static void main(String[] args) throws SQLException {
-//        sendImageDB("C:\\Users\\28468\\Desktop\\11.png","111111","name");
-//        readDBImage("21");
-//    }
+//////        sendImageDB("C:\\Users\\28468\\Desktop\\11.png","111111","name");
+////        readDBImage("111111");
+////    }
 }

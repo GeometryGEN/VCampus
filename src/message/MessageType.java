@@ -105,4 +105,8 @@ public interface MessageType {
     String RETURN_STUDENT_INFO_SUCCEED="101";   //得到学籍信息成功
     String RETURN_STUDENT_INFO_FAILED="102";    //得到学籍信息失败
 
+    String RETURN_PHOTO="103";          //得到图片
+    String RETURN_PHOTO_SUCCEED="104";  //得到图片成功
+    String RETURN_PHOTO_FAILED="105";   //得到图片失败
+
 }

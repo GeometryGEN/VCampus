@@ -18,6 +18,8 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.HashSet;
 
+import DAO.StatusManagement.Image_SM_utils;
+
 /**
  * @author : [Tongwei_L]
  * @version : [v1.0]
@@ -215,18 +217,28 @@ public class ServerToClientThread extends Thread{
                 else if(m.getType().equals(MessageType.RETURN_STUDENT_INFO)){
                     Student stu  = User_SM_utils.returnStudentAllInfo(((Student) m.getData()).getStudent_idcard());
                     if(stu!=null){
-                        m.setData(stu);
-                        m.setType(MessageType.RETURN_STUDENT_INFO_SUCCEED);
-                        oos.writeObject(m);             //将message对象回复客户端
+                        sendback.setData(stu);
+                        sendback.setType(MessageType.RETURN_STUDENT_INFO_SUCCEED);
+                        oos.writeObject(sendback);             //将message对象回复客户端
                     } else{
-                        m.setType(MessageType.RETURN_STUDENT_INFO_FAILED);  //登录失败
-                        oos.writeObject(m);                        //将message对象回复客户端
+                        sendback.setType(MessageType.RETURN_STUDENT_INFO_FAILED);  //登录失败
+                        oos.writeObject(sendback);                        //将message对象回复客户端
                         socket.close();
                     }
                 }
 
-
                 //学籍管理
+                else if(m.getType().equals(MessageType.RETURN_PHOTO)){
+                    boolean sign = Image_SM_utils.readDBImage(m.getSender());
+                    if(sign){
+                        sendback.setType(MessageType.RETURN_PHOTO_SUCCEED);
+                        oos.writeObject(sendback);             //将message对象回复客户端
+                    } else{
+                        sendback.setType(MessageType.RETURN_PHOTO_FAILED);  //失败
+                        oos.writeObject(sendback);                        //将message对象回复客户端
+                        socket.close();
+                    }
+                }
 
             } catch (Exception e) {
                 e.printStackTrace();

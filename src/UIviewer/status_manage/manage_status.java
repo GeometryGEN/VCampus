@@ -1,5 +1,6 @@
 package UIviewer.status_manage;
 
+import ClientToServer.ClientToServer;
 import net.coobird.thumbnailator.Thumbnails;
 
 import javax.swing.*;
@@ -11,7 +12,7 @@ import java.io.IOException;
 
 public class manage_status extends JPanel {
     static JButton jb_back_to_search;
-    public manage_status(int width,int height){
+    public manage_status(ClientToServer ucs, int width, int height) throws Exception {
         double width_r=(double)(width)/1920;
         double height_r=(double)(height)/1080;
         //设置屏幕大小、背景颜色
@@ -45,7 +46,7 @@ public class manage_status extends JPanel {
 
 
         //学生信息视图(初始为隐藏)
-        JPanel status_jpanel=student_status.status_panel(width_r,height_r,width-2*(60+icon1_width)*width_r,(1080-70-icon1_height)*height_r,false);
+        JPanel status_jpanel=student_status.status_panel(ucs,width_r,height_r,width-2*(60+icon1_width)*width_r,(1080-70-icon1_height)*height_r,false);
         status_jpanel.setBounds((int)((60+icon1_width)*width_r),(int)((47+icon1_height)*height_r), (int)(width-2*(60+icon1_width)*width_r),(int)((1080-70-icon1_height)*height_r));
         add(status_jpanel);
         status_jpanel.setVisible(true);
@@ -85,14 +86,14 @@ public class manage_status extends JPanel {
         add(blue_back);
     }
 
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("manage_status");
-        Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
-        int width=(int ) screensize.getWidth(); //得到宽度
-        int height=(int ) screensize.getHeight();//获得高度
-        frame.setBounds(0,0,width,height);
-        frame.setContentPane(new manage_status(width,height));
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
-    }
+//    public static void main(String[] args) {
+//        JFrame frame = new JFrame("manage_status");
+//        Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
+//        int width=(int ) screensize.getWidth(); //得到宽度
+//        int height=(int ) screensize.getHeight();//获得高度
+//        frame.setBounds(0,0,width,height);
+//        frame.setContentPane(new manage_status(ucs,width,height));
+//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        frame.setVisible(true);
+//    }
 }

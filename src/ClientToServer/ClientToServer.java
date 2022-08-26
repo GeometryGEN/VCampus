@@ -29,6 +29,15 @@ public class ClientToServer {
     public String serverIP = Message.returnIP();
 //    public String serverIP = "116.62.195.230";
 
+    public String getIDcard(){
+        return switch (ID) {
+            case "1" -> s.getStudent_idcard();
+            case "2" -> t.getTeacher_idcard();
+            case "3" -> a.getAdmin_idcard();
+            default -> null;
+        };
+    }
+
     public String getID() {
         return ID;
     }
@@ -232,29 +241,6 @@ public class ClientToServer {
         Message ms = (Message) ois.readObject();
         if(ms.getType().equals(MessageType.RESET_PASSWORD_SUCCEED))
             return true;
-        else{
-            socket.close();
-            return false;
-        }
-    }
-
-    public boolean returnStatusInfo(String idcard) throws Exception {
-        s.setStudent_idcard(idcard);
-        socket = new Socket(serverIP,MessageType.PORT);
-        //得到Object对象
-        ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());
-        //发送学生对象
-        Message send=new Message();
-        send.setType(MessageType.RETURN_STUDENT_INFO);
-        send.setData(s);
-        oos.writeObject(send);
-        //读取从服务端回复的Message对象
-        ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());
-        Message ms = (Message) ois.readObject();
-        if(ms.getType().equals(MessageType.RETURN_STUDENT_INFO_SUCCEED)){
-            s = (Student) ms.getData();
-            return true;
-        }
         else{
             socket.close();
             return false;

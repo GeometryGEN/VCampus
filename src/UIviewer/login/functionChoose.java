@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import UIviewer.Library.readLib;
 import UIviewer.Library.adminLib;
+import UIviewer.status_manage.student_status;
+
 public class functionChoose {
     public static void functionChooseUI(ClientToServer ucs) {
         JFrame jf = new JFrame("functionChoose");
@@ -132,7 +134,21 @@ public class functionChoose {
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
                 try {
-
+                    JButton jb = new JButton();
+                    JFrame frame = new JFrame("student_status");
+                    Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
+                    int width=(int ) screensize.getWidth(); //得到宽度
+                    int height=(int ) screensize.getHeight();//获得高度
+                    frame.setBounds(0,0,width,height);
+                    frame.setContentPane(new student_status(ucs,width,height));
+                    jb.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            frame.getContentPane().setVisible(false);
+                        }
+                    });
+                    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    frame.setVisible(true);
 
                 } catch (Exception ex) {
                     ex.printStackTrace();
