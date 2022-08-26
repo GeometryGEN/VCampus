@@ -1,5 +1,4 @@
 package UIhandler.QICQ;
 
-public class Manager {
-
+public class Client_qicq {
 }
