@@ -96,8 +96,8 @@ public interface MessageType {
     String MESSAGE_ONLINE_FRIEND_RET="41.3";
     String MESSAGE_OFFLINE_FRIEND="41.4";
     String MESSAGE_OFFLINE_FRIEND_RET="41.5";
-    String MESSAGE_QICQ_SEND="42";
-
+    String MESSAGE_QICQ_SEND_MSG="42";
+    String MESSAGE_QICQ_SEND_FILE="42";
 
 
 

@@ -20,7 +20,6 @@ public class Message implements Serializable {
     private int code;         // 状态码
     private Object data;      // 数据
 
-    private Filetrans file;  //文件
     public static String returnIP(){
         return getIP.getHostIp();
     }
@@ -79,13 +78,5 @@ public class Message implements Serializable {
 
     public void setData(Object data) {
         this.data = data;
-    }
-
-    public Filetrans getFile() {
-        return file;
-    }
-
-    public void setFile(Filetrans file) {
-        this.file = file;
     }
 }

@@ -4,6 +4,7 @@ import DAO.Library.Punishment;
 import DAO.Login.Admin_utils;
 import DAO.Login.Students_utils;
 import DAO.Login.Teachers_utils;
+import DAO.QICQ.Filetrans;
 import DAO.StatusManagement.User_SM_utils;
 import User.Admin;
 import User.Student;
@@ -35,7 +36,7 @@ public class ServerToClient extends Thread{
     private static HashSet<Opencourse>opencourses=new HashSet<Opencourse>();
     private static HashMap<String, ArrayList<Message>>QQbox=new HashMap<String, ArrayList<Message>>();
     private static HashSet<Message>bulletin=new HashSet<Message>();
-
+    private static HashMap<String,ArrayList<Filetrans>>QQfile=new HashMap<String,ArrayList<Filetrans>>();
     public ServerToClient() throws IOException {
         try{
             System.out.println("服务器在"+MessageType.PORT+"端口监听中，"+"IP地址为"+Message.returnIP());
@@ -256,5 +257,20 @@ public class ServerToClient extends Thread{
 
     public static void addBulletin(Message s) {
         ServerToClient.bulletin.add(s) ;
+    }
+
+    public static ArrayList<Filetrans> getQQfile(String id) {
+        return QQfile.get(id);
+    }
+
+    public static void addQQfile(String to,Filetrans f) {
+        if(QQfile.containsKey(to)){
+            QQfile.get(to).add(f);
+        }
+        else {
+            ArrayList<Filetrans>a=new ArrayList<>();
+            a.add(f);
+            QQfile.put(to,a);
+        }
     }
 }

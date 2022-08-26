@@ -203,8 +203,11 @@ public class ServerToClientThread extends Thread{
                     new Course_manager(userid).approve(m.getGetter(),c);
                 }
                 //站内通信
-                if(m.getType()==MessageType.MESSAGE_QICQ_SEND){
+                if(m.getType()==MessageType.MESSAGE_QICQ_SEND_MSG){
 
+                }
+                else if(m.getType()==MessageType.MESSAGE_QICQ_SEND_FILE){
+                    
                 }
                 //商店
 
