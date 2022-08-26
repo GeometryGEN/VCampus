@@ -9,6 +9,7 @@ import UIviewer.Library.adminLib;
 import UIviewer.status_manage.student_status;
 
 public class functionChoose {
+    public static JButton back_from_status;
     public static void functionChooseUI(ClientToServer ucs) {
         JFrame jf = new JFrame("functionChoose");
         jf.setSize(1273,784);
@@ -122,7 +123,7 @@ public class functionChoose {
         jf.getContentPane().add(p1);
 
         //五个按钮
-        //右下面板
+        //右下面板，学籍管理模块
         JLabel l31 = new JLabel();
         ImageIcon icon31 = new ImageIcon("src/image/icon_72 (1).png");
         l31.setIcon(icon31);
@@ -149,6 +150,13 @@ public class functionChoose {
                     });
                     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                     frame.setVisible(true);
+                    //返回功能选择模块
+                    back_from_status.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+
+                        }
+                    });
 
                 } catch (Exception ex) {
                     ex.printStackTrace();

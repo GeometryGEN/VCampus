@@ -13,36 +13,31 @@ import java.io.File;
 import java.io.IOException;
 
 public class student_status extends JPanel {
-    public static JButton jb;
 
     //信息面板
-    public static JPanel status_panel(ClientToServer ucs, double width_r, double height_r, double width, double height, boolean flag) throws Exception {
+    public static JPanel status_panel(ClientToServer ucs, double width_r, double height_r, double width, double height,String IDcard) throws Exception {
         JPanel status=new JPanel();
         status.setBackground(new Color(255,255,255));
         status.setBorder(BorderFactory.createEtchedBorder());
         status.setLayout(null);//设置绝对布局
-        //信息面板头像，替换为照片
+        //个人照片
         JLabel image = new JLabel();
         int icon1_width=320;
         int icon1_height=150;
-        Client_status.getphoto(ucs.getIDcard());
+        Client_status.getphoto(IDcard);
         try {
-            Thumbnails.of(new File("src/image/"+ucs.getIDcard()+".jpg"))
+            Thumbnails.of(new File("src/image/"+IDcard+".jpg"))
                     .size((int)(icon1_width*width_r), (int)(icon1_height*width_r))
-                    .toFile(new File("src/image/"+ucs.getIDcard()+"_min.jpg"));
+                    .toFile(new File("src/image/"+IDcard+"_min.jpg"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        image.setIcon(new ImageIcon("src/image/"+ucs.getIDcard()+"_min.jpg"));
+        image.setIcon(new ImageIcon("src/image/"+IDcard+"_min.jpg"));
         status.add(image);
         image.setBounds((int)(60*width_r),(int)(145*height_r),(int)(icon1_width*width_r),(int)(icon1_height*height_r));
         //头像下名字
-        String name = switch (ucs.getID()) {
-            case "1" -> ucs.getS().getStudent_name();
-            case "2" -> ucs.getT().getTeacher_name();
-            case "3" -> ucs.getA().getAdmin_name();
-            default -> null;
-        };
+
+        String name = Client_status.returnStatusInfo(IDcard).getStudent_name();
         JLabel name_label=new JLabel(name,JLabel.CENTER);
         name_label.setBounds((int)(57*width_r), (int)((165+icon1_height)*height_r), (int)(110*width_r), (int)(15*height_r));
         Font name_font = new Font("微软雅黑", Font.PLAIN, (int)(16*width_r));
@@ -51,7 +46,7 @@ public class student_status extends JPanel {
         status.add(name_label);
 
         //添加表格
-        JPanel table_jpanel = new student_status_table(ucs,width_r,height_r,45*height_r,height-100*height_r,flag);
+        JPanel table_jpanel = new student_status_table(ucs,width_r,height_r,45*height_r,height-100*height_r,IDcard);
         table_jpanel.setBounds((int)((icon1_width-90)*width_r),(int)(85*height_r), (int)(width-(icon1_width-30)*width_r),(int)(height-140*height_r));
         status.add(table_jpanel);
 
@@ -90,7 +85,7 @@ public class student_status extends JPanel {
         add(title);
 
         //信息面板
-        JPanel status_jpanel= status_panel(ucs,width_r,height_r,width-2*(60+icon1_width)*width_r,(1080-70-icon1_height)*height_r,true);
+        JPanel status_jpanel= status_panel(ucs,width_r,height_r,width-2*(60+icon1_width)*width_r,(1080-70-icon1_height)*height_r,ucs.getIDcard());
         status_jpanel.setBounds((int)((60+icon1_width)*width_r),(int)((47+icon1_height)*height_r), (int)(width-2*(60+icon1_width)*width_r),(int)((1080-70-icon1_height)*height_r));
         add(status_jpanel);
 

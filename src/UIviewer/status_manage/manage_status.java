@@ -13,6 +13,7 @@ import java.io.IOException;
 
 public class manage_status extends JPanel {
     static JButton jb_back_to_search;
+    JPanel status_jpanel;
     public manage_status(ClientToServer ucs, int width, int height) throws Exception {
         double width_r=(double)(width)/1920;
         double height_r=(double)(height)/1080;
@@ -48,12 +49,6 @@ public class manage_status extends JPanel {
 
 
 
-
-        //学生信息视图(初始为隐藏)
-        JPanel status_jpanel=student_status.status_panel(ucs,width_r,height_r,width-2*(60+icon1_width)*width_r,(1080-70-icon1_height)*height_r,false);
-        status_jpanel.setBounds((int)((60+icon1_width)*width_r),(int)((47+icon1_height)*height_r), (int)(width-2*(60+icon1_width)*width_r),(int)((1080-70-icon1_height)*height_r));
-        add(status_jpanel);
-        status_jpanel.setVisible(true);
         //搜索面板
         JPanel search_panel=new JPanel();
         search_panel.setBackground(new Color(255,255,255));
@@ -93,10 +88,25 @@ public class manage_status extends JPanel {
         search_button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                //学生信息视图
+                try {
+                    status_jpanel = student_status.status_panel(ucs,width_r,height_r,width-2*(60+icon1_width)*width_r,(1080-70-icon1_height)*height_r,search_text.getText());
+                    status_jpanel.setBounds((int)((60+icon1_width)*width_r),(int)((47+icon1_height)*height_r), (int)(width-2*(60+icon1_width)*width_r),(int)((1080-70-icon1_height)*height_r));
+                    add(status_jpanel);
+                    search_panel.setVisible(false);
+                    status_jpanel.setVisible(true);
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
-
+        jb_back_to_search.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                status_jpanel.setVisible(false);
+                search_panel.setVisible(true);
+            }
+        });
 
         //信息面板上透明条
         JPanel white_front_slice=new JPanel();
@@ -111,13 +121,6 @@ public class manage_status extends JPanel {
         front_title.setFont(front_title_font);
         front_title.setForeground(new Color(240,241,249));
         white_front_slice.add(front_title);
-        jb_back_to_search.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                status_jpanel.setVisible(false);
-                search_panel.setVisible(true);
-            }
-        });
 
 
         //上方蓝色背景

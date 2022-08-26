@@ -2,6 +2,7 @@ package UIviewer.status_manage;
 
 import ClientToServer.ClientToServer;
 import UIhandler.StatusManagement.Client_status;
+import UIviewer.login.functionChoose;
 import User.Student;
 
 import javax.swing.*;
@@ -71,7 +72,7 @@ public class student_status_table extends JPanel{
         text30.setEditable(false);
         text32.setEditable(false);
     }
-    public student_status_table(ClientToServer ucs, double width_r, double height_r, double width, double height, boolean flag) throws Exception {
+    public student_status_table(ClientToServer ucs, double width_r, double height_r, double width, double height,String IDcard) throws Exception {
         setBackground(new Color(255,255,255));
         setBorder(BorderFactory.createEtchedBorder());
         setBorder(BorderFactory.createLineBorder(new Color(232,237,239)));
@@ -86,7 +87,7 @@ public class student_status_table extends JPanel{
         add(title_label);
 
         //信息表格
-        Student sinfo = Client_status.returnStatusInfo(ucs.getIDcard());
+        Student sinfo = Client_status.returnStatusInfo(IDcard);
         text1= text_title("一卡通号",width_r, height_r,50,80);
         add(text1);
         text2= text_info(sinfo.getStudent_idcard(),width_r,height_r,280,80);
@@ -152,7 +153,7 @@ public class student_status_table extends JPanel{
         text32= text_info(sinfo.getStudent_email(),width_r,height_r,820,535);
         add(text32);
 
-        if(!flag){
+        if(ucs.getID()=="3"){
             jb1=new JButton("修改学籍信息");
             jb1.setBounds((int)(360*width_r),(int)(650*height_r),(int)(170*width_r),(int)(50*height_r));
             jb1.setBackground(new Color(33,150,243));
@@ -192,13 +193,13 @@ public class student_status_table extends JPanel{
                 }
             });
         }
-        else{
-            student_status.jb=new JButton("返回功能选择");
-            student_status.jb.setBounds((int)(470*width_r),(int)(650*height_r),(int)(170*width_r),(int)(50*height_r));
-            student_status.jb.setBackground(new Color(96,190,41));
-            student_status.jb.setForeground(new Color(255,255,255));
-            student_status.jb.setFont(new Font("微软雅黑",Font.PLAIN,(int)(22*width_r)));
-            add(student_status.jb);
+        else if(ucs.getID()=="1"){
+            functionChoose.back_from_status=new JButton("返回功能选择");
+            functionChoose.back_from_status.setBounds((int)(470*width_r),(int)(650*height_r),(int)(170*width_r),(int)(50*height_r));
+            functionChoose.back_from_status.setBackground(new Color(96,190,41));
+            functionChoose.back_from_status.setForeground(new Color(255,255,255));
+            functionChoose.back_from_status.setFont(new Font("微软雅黑",Font.PLAIN,(int)(22*width_r)));
+            add(functionChoose.back_from_status);
         }
     }
 
