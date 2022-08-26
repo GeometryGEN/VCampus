@@ -26,4 +26,8 @@ public class ManageClientToServerThread {
         hm.remove(id);
 
     }
+
+    public static int getNum(){
+        return hm.size();
+    }
 }

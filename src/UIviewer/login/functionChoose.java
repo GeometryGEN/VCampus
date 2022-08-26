@@ -161,12 +161,12 @@ public class functionChoose {
                     jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                     jf.setVisible(true);
                     //返回功能选择模块
-                    back_from_status.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-
-                        }
-                    });
+//                    back_from_status.addActionListener(new ActionListener() {
+//                        @Override
+//                        public void actionPerformed(ActionEvent e) {
+//
+//                        }
+//                    });
 
                 } catch (Exception ex) {
                     ex.printStackTrace();
