@@ -87,4 +87,12 @@ public class Book_admin {
     public void setPrice(double price) {
         this.price = price;
     }
+
+    public int getAvailable() {
+        return available;
+    }
+
+    public void setAvailable(int available) {
+        this.available = available;
+    }
 }
