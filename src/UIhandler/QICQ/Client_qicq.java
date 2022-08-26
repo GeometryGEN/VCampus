@@ -41,4 +41,9 @@ public class Client_qicq {
             e.printStackTrace();
         }
     }
+    public void get_file(Message message,String dest) throws IOException {
+        FileOutputStream fileOutputStream = new FileOutputStream(dest);
+        Filetrans file=(Filetrans)message.getData();
+        fileOutputStream.write(file.getContent());
+    }
 }

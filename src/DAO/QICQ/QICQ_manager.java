@@ -1,8 +1,12 @@
 package DAO.QICQ;
 
+import ServerToClient.ManageServerToClientThread;
+import ServerToClient.Online;
 import message.Message;
 
 import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.HashSet;
 
 public class QICQ_manager {
@@ -19,8 +23,9 @@ public class QICQ_manager {
         HashSet<Friend>friends=new HashSet<>();
         return friends;
     }
-    public void send_online_file(Message msg)
-    {
-
+    public void send_online_file(Message msg) throws IOException {
+        String to=msg.getGetter();
+        ObjectOutputStream oos=new ObjectOutputStream(ManageServerToClientThread.getThread(to).getSocket().getOutputStream());
+        oos.writeObject(msg);
     }
 }
