@@ -1,6 +1,8 @@
 package DAO.Curriculum;
 
-public class Opencourse {
+import java.io.Serializable;
+
+public class Opencourse implements Serializable {
     String id,teacher,name,timestring,teacher_id;
     double point;
     int size;

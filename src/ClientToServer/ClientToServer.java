@@ -165,7 +165,7 @@ public class ClientToServer {
         send.setType(MessageType.MESSAGE_STUDENT_REGISTER);
         send.setData(st);
         oos.writeObject(send);                                                         //发送学生对象
-        ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());        //读取从服务端回复的Message对象
+        MyObjectInputStream ois = new MyObjectInputStream(socket.getInputStream());        //读取从服务端回复的Message对象
         Message ms = (Message) ois.readObject();
         if(ms.getType().equals(MessageType.MESSAGE_STUDENT_REGISTER_SUCCEED))
             return true;
@@ -182,7 +182,7 @@ public class ClientToServer {
         send.setType(MessageType.MESSAGE_TEACHER_REGISTER);
         send.setData(te);
         oos.writeObject(send);                                                         //发送学生对象
-        ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());        //读取从服务端回复的Message对象
+        MyObjectInputStream ois = new MyObjectInputStream(socket.getInputStream());        //读取从服务端回复的Message对象
         Message ms = (Message) ois.readObject();
         if(ms.getType().equals(MessageType.MESSAGE_TEACHER_REGISTER_SUCCEED))
             return true;
@@ -211,7 +211,7 @@ public class ClientToServer {
             send.setSender("学生");
         }
         oos.writeObject(send);                                                         //发送学生对象
-        ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());        //读取从服务端回复的Message对象
+        MyObjectInputStream ois = new MyObjectInputStream(socket.getInputStream());        //读取从服务端回复的Message对象
         Message ms = (Message) ois.readObject();
         if(ms.getType().equals(MessageType.HAVE_FIND_CERTAIN))
             return true;
@@ -240,7 +240,7 @@ public class ClientToServer {
             send.setSender("学生");
         }
         oos.writeObject(send);                                                         //发送学生对象
-        ObjectInputStream ois = new ObjectInputStream(socket.getInputStream());        //读取从服务端回复的Message对象
+        MyObjectInputStream ois = new MyObjectInputStream(socket.getInputStream());        //读取从服务端回复的Message对象
         Message ms = (Message) ois.readObject();
         if(ms.getType().equals(MessageType.RESET_PASSWORD_SUCCEED))
             return true;

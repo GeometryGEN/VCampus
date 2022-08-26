@@ -5,6 +5,8 @@ import DAO.Library.Book_admin;
 import DAO.Library.Book_borrower;
 import message.Message;
 import message.MessageType;
+import utils.MyObjectOutputStream;
+
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.HashSet;
@@ -23,7 +25,7 @@ public class Client_library {
 
         //message.setData(b);
         message.setType(MessageType.MESSAGE_LIBRARY_BORROW);
-        ObjectOutputStream oos= new ObjectOutputStream(ManageClientToServerThread.getThread(id).getSocket().getOutputStream());
+        MyObjectOutputStream oos= new MyObjectOutputStream(ManageClientToServerThread.getThread(id).getSocket().getOutputStream());
         oos.writeObject(message);
     }
 
@@ -31,7 +33,7 @@ public class Client_library {
         Message message=new Message();
         System.out.println("ok");
         message.setType(MessageType.MESSAGE_LIBRARY_ADMIN_LIST);
-        ObjectOutputStream oos= new ObjectOutputStream(ManageClientToServerThread.getThread(id).getSocket().getOutputStream());
+        MyObjectOutputStream oos= new MyObjectOutputStream(ManageClientToServerThread.getThread(id).getSocket().getOutputStream());
         oos.writeObject(message);
     }
     public static String[][] showAllBooks(HashSet<Book_admin>books){

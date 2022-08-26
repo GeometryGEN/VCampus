@@ -1,6 +1,8 @@
 package DAO.Library;
 
-public class Punishment {
+import java.io.Serializable;
+
+public class Punishment implements Serializable {
     String Customer_iD;  //处罚用户id
     String Book_id;  //赔偿书目id
     String notice;  //处罚通知

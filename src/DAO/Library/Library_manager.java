@@ -36,7 +36,7 @@ public class Library_manager implements Serializable{
         Message message=new Message();
         message.setType(MessageType.MESSAGE_LIBRARY_ENTER_RET);
         Info information=new Info();
-        String sql="select * from students where Student_idcard='?';";
+        String sql="select * from students where Student_idcard=?;";
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,ID);
         ResultSet rs=st.executeQuery();
@@ -46,7 +46,7 @@ public class Library_manager implements Serializable{
             message.setData(information);
         }
         else {
-            sql="select * from teachers where Teacher_idcard='?';";
+            sql="select * from teachers where Teacher_idcard=?;";
             st=conn.prepareStatement(sql);
             st.setString(1,ID);
             rs=st.executeQuery();
@@ -56,7 +56,7 @@ public class Library_manager implements Serializable{
                 message.setData(information);
             }
             else{
-                sql="select * from teachers where Teacher_idcard='?';";
+                sql="select * from teachers where Teacher_idcard=?;";
                 st=conn.prepareStatement(sql);
                 st.setString(1,ID);
                 rs=st.executeQuery();
@@ -71,11 +71,10 @@ public class Library_manager implements Serializable{
     }
     public HashSet<Book_borrower> list_my_book() throws SQLException {
         HashSet<Book_borrower> books = new HashSet<Book_borrower>();
-        String sql="select * from library where borrow_to =?;";
+        String sql="select * from library where borrow_to=?;";
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,ID);
         ResultSet rs=st.executeQuery();
-        SimpleDateFormat sformat = new SimpleDateFormat("yyyy-MM-dd");
         while(rs.next())
         {
             Book_borrower x=new Book_borrower();
@@ -83,8 +82,8 @@ public class Library_manager implements Serializable{
             x.id=rs.getString("id");;
             x.name=rs.getString("name");
             x.author=rs.getString("author");
-            x.date_borrow=sformat.format(rs.getDate("borrow_date"));
-            x.date_expire=sformat.format(rs.getDate("expire_date"));
+            x.date_borrow=myTime.dateToString(rs.getDate("borrow_date"));
+            x.date_expire=myTime.dateToString(rs.getDate("expire_date"));
             books.add(x);
         }
         return books;
