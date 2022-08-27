@@ -2,7 +2,9 @@ package ClientToServer;
 import DAO.Library.Book_admin;
 import DAO.Library.Book_borrower;
 import DAO.Library.Punishment;
+import DAO.Shop.Product;
 import UIhandler.Library.Client_library;
+import UIhandler.Shop.Client_shop;
 import UIhandler.StatusManagement.Client_status;
 import UIviewer.Library.AllBooks;
 import UIviewer.Library.myBook;
@@ -20,7 +22,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.HashSet;
-
+import java.util.List;
 /**
  * @author : [Tongwei_L]
  * @version : [v1.0]
@@ -83,22 +85,41 @@ public class ClientToServerThread extends Thread {
                 //商店具体操作
                 Message send = new Message();
 
-
-                if(message.getType().equals(MessageType.RETURN_STUDENT_INFO_SUCCEED)){
+                if(message.getType().equals(MessageType.RETURN_ALL_PRODUCT_SUCCEED)){
+                    List<Product> ps = ((List<Product>) message.getData());
+                    Client_shop.setProducts(ps);
+                }
+                else if(message.getType().equals(MessageType.FIND_PRODUCT_SUCCEED)){
+                    List<Product> ps = ((List<Product>) message.getData());
+                    Client_shop.setCheckproducts(ps);
+                }
+                else if(message.getType().equals(MessageType.FIND_TYPE_PRODUCT_SUCCEED)){
+                    List<Product> ps = ((List<Product>) message.getData());
+                    Client_shop.setCheckproductsType(ps);
+                }
+                else if(message.getType().equals(MessageType.FIND_PRODUCT_SUCCEED_ZERO)){
+                    List<Product> ps = ((List<Product>) message.getData());
+                    Client_shop.setSign(false);
+                }
+                else if(message.getType().equals(MessageType.DELETE_PRODUCT_SUCCEED)){
+                    Client_shop.setSign_delete("2");
+                }
+                else if(message.getType().equals(MessageType.DELETE_PRODUCT_FAILED)){
+                    Client_shop.setSign_delete("3");
+                }
+                else if(message.getType().equals(MessageType.RETURN_STUDENT_INFO_SUCCEED)){
                     Student stu = ((Student) message.getData());
-                    System.out.println("得到学生信息成功:"+stu.getStudent_idcard());
                     Client_status.setS(stu);
                 }
                else if(message.getType().equals(MessageType.ADMIN_RETURN_STUDENT_INFO_SUCCEED)){
                     Student stu = ((Student) message.getData());
-                    System.out.println("ADMIN得到学生信息成功:"+stu.getStudent_idcard());
                     Client_status.setS_s(stu);
                 }
             } catch (InterruptedIOException e){
                 break;
             }
             catch (Exception e) {
-               // e.printStackTrace();
+                e.printStackTrace();
             }
 
         }

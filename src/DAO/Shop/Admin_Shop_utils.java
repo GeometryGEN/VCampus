@@ -14,30 +14,6 @@ import java.util.List;
  */
 public class Admin_Shop_utils {
 
-    public static List<Product> checkProduct(String product_name) throws SQLException {
-        List<Product> list = new ArrayList<>();
-        Connection connection= JDBC_Connector.ConnectMySQL();    //连接数据库
-        Statement state = connection.createStatement();
-        String sql="select * from products";
-        ResultSet rs= state.executeQuery(sql);            //执行sql
-        while(rs.next()) {
-            Product temp = new Product();
-            String name = rs.getString("Product_name");
-            if(name.equals(product_name)){
-                temp.setProduct_name(product_name);
-                temp.setProduct_id(rs.getInt("Product_id"));
-                temp.setProduct_price(rs.getDouble("Product_price"));
-                temp.setProduct_currentNumbers(rs.getInt("Product_currentNumbers"));
-                temp.setProduct_takeaway(rs.getBoolean("Product_takeaway"));
-                temp.setProduct_sumNumbers(rs.getInt("Product_sumNumbers"));
-                temp.setProduct_type(rs.getString("Product_type"));
-                temp.setProduct_toshop(rs.getInt("Product_toshop"));
-                list.add(temp);
-            }
-        }
-        return list;
-    }
-
     public static boolean addProduct(Product p) throws SQLException {
         Connection connection=JDBC_Connector.ConnectMySQL();                  //连接数据库
         String sql = "insert into products values(?,?,?,?,?,?,?,?)";
@@ -59,20 +35,20 @@ public class Admin_Shop_utils {
         return re;
     }
 
-//    public static boolean deleteProduct(Product p) throws SQLException {
-//        Connection connection=JDBC_Connector.ConnectMySQL();
-//        String sql = "delete from products where Product_idcard=?";
-//        PreparedStatement ps = connection.prepareStatement(sql);
-//        ps.setString(1,username);
-//        boolean re = ps.executeUpdate()>0;
-//        JDBC_Connector.close(null, ps, connection);
-//        if(re)
-//            System.out.println("学生"+username+"删除成功！");
-//        else
-//            System.out.println("学生删除失败！");
-//        JDBC_Connector.close(null, ps, connection);
-//        return re;
-//    }
+    public static boolean deleteProduct(String id) throws SQLException {
+        Connection connection=JDBC_Connector.ConnectMySQL();
+        String sql = "delete from products where Product_id=?";
+        PreparedStatement ps = connection.prepareStatement(sql);
+        ps.setString(1,id);
+        boolean re = ps.executeUpdate()>0;
+        JDBC_Connector.close(null, ps, connection);
+        if(re)
+            System.out.println("删除成功！");
+        else
+            System.out.println("删除失败！");
+        JDBC_Connector.close(null, ps, connection);
+        return re;
+    }
 
 
     public static void main(String[] args) throws Exception {
@@ -81,10 +57,10 @@ public class Admin_Shop_utils {
 //            System.out.println(list.get(i).getProduct_name());
 //        }
 //        Product p = new Product();
-//        p.setProduct_id(11);
+//        p.setProduct_id(15);
 //        p.setProduct_takeaway(false);
 //        p.setProduct_name("冰绿茶");
-//        addProduct(p);
+//        deleteProduct("15");
     }
 
 }

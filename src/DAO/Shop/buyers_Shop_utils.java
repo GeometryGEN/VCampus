@@ -2,10 +2,7 @@ package DAO.Shop;
 
 import connection.JDBC_Connector;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,26 +14,24 @@ import java.util.List;
  */
 public class buyers_Shop_utils {
 
+    //模糊查找
     public static List<Product> checkProduct(String product_name) throws SQLException {
         List<Product> list = new ArrayList<>();
         Connection connection= JDBC_Connector.ConnectMySQL();    //连接数据库
         Statement state = connection.createStatement();
-        String sql="select * from products";
+        String sql="select * from products WHERE Product_name LIKE '%" + product_name + "%' ";
         ResultSet rs= state.executeQuery(sql);            //执行sql
         while(rs.next()) {
             Product temp = new Product();
-            String name = rs.getString("Product_name");
-            if(name.equals(product_name)){
-                temp.setProduct_name(product_name);
-                temp.setProduct_id(rs.getInt("Product_id"));
-                temp.setProduct_price(rs.getDouble("Product_price"));
-                temp.setProduct_currentNumbers(rs.getInt("Product_currentNumbers"));
-                temp.setProduct_takeaway(rs.getBoolean("Product_takeaway"));
-                temp.setProduct_sumNumbers(rs.getInt("Product_sumNumbers"));
-                temp.setProduct_type(rs.getString("Product_type"));
-                temp.setProduct_toshop(rs.getInt("Product_toshop"));
-                list.add(temp);
-            }
+            temp.setProduct_name(rs.getString("product_name"));
+            temp.setProduct_id(rs.getInt("Product_id"));
+            temp.setProduct_price(rs.getDouble("Product_price"));
+            temp.setProduct_currentNumbers(rs.getInt("Product_currentNumbers"));
+            temp.setProduct_takeaway(rs.getBoolean("Product_takeaway"));
+            temp.setProduct_sumNumbers(rs.getInt("Product_sumNumbers"));
+            temp.setProduct_type(rs.getString("Product_type"));
+            temp.setProduct_toshop(rs.getInt("Product_toshop"));
+            list.add(temp);
         }
         return list;
     }
@@ -62,8 +57,29 @@ public class buyers_Shop_utils {
         return list;
     }
 
+    public static List<Product> findTypeProduct(String type) throws SQLException {
+        List<Product> list = new ArrayList<>();
+        Connection connection= JDBC_Connector.ConnectMySQL();    //连接数据库
+        Statement state = connection.createStatement();
+        String sql="select * from products WHERE Product_type LIKE '%" + type + "%' ";
+        ResultSet rs= state.executeQuery(sql);            //执行sql
+        while(rs.next()) {
+            Product temp = new Product();
+            temp.setProduct_name(rs.getString("product_name"));
+            temp.setProduct_id(rs.getInt("Product_id"));
+            temp.setProduct_price(rs.getDouble("Product_price"));
+            temp.setProduct_currentNumbers(rs.getInt("Product_currentNumbers"));
+            temp.setProduct_takeaway(rs.getBoolean("Product_takeaway"));
+            temp.setProduct_sumNumbers(rs.getInt("Product_sumNumbers"));
+            temp.setProduct_type(rs.getString("Product_type"));
+            temp.setProduct_toshop(rs.getInt("Product_toshop"));
+            list.add(temp);
+        }
+        return list;
+    }
+
     public static void main(String[] args) throws Exception {
-        List<Product> list = returnAllProduct();
+        List<Product> list = findTypeProduct("饮料");
         for (int i = 0; i < list.size(); i++) {
             System.out.println(list.get(i).getProduct_name());
         }

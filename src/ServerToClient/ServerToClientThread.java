@@ -9,6 +9,9 @@ import DAO.Library.Library_manager;
 import DAO.Library.Punishment;
 import DAO.QICQ.Application;
 import DAO.QICQ.QICQ_manager;
+import DAO.Shop.Admin_Shop_utils;
+import DAO.Shop.Product;
+import DAO.Shop.buyers_Shop_utils;
 import DAO.StatusManagement.User_SM_utils;
 import User.Student;
 import message.Message;
@@ -19,6 +22,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.util.HashSet;
+import java.util.List;
 
 import DAO.StatusManagement.Image_SM_utils;
 import utils.MyObjectInputStream;
@@ -271,18 +275,62 @@ public class ServerToClientThread extends Thread{
                     new QICQ_manager(userid).deny_new_friend((Application)m.getData());
                 }
                 //商店
+                else if(m.getType().equals(MessageType.RETURN_ALL_PRODUCT)){
+                    List<Product> ps  = buyers_Shop_utils.returnAllProduct();
+                    if(ps.size()!=0){
+                        sendback.setData(ps);
+                        sendback.setType(MessageType.RETURN_ALL_PRODUCT_SUCCEED);
+                        oos.writeObject(sendback);
+                    } else{
+                        sendback.setType(MessageType.RETURN_ALL_PRODUCT_FAILED);
+                        oos.writeObject(sendback);
+                        socket.close();
+                    }
+                }
+                else if(m.getType().equals(MessageType.FIND_PRODUCT)){
+                    List<Product> ps  = buyers_Shop_utils.checkProduct(m.getSender());
+                    if(ps.size()!=0){
+                        sendback.setData(ps);
+                        sendback.setType(MessageType.FIND_PRODUCT_SUCCEED);
+                        oos.writeObject(sendback);
+                    } else{
+                        sendback.setType(MessageType.FIND_PRODUCT_SUCCEED_ZERO);
+                        oos.writeObject(sendback);
+                        socket.close();
+                    }
+                }
+                else if(m.getType().equals(MessageType.DELETE_PRODUCT)){
+                    if(Admin_Shop_utils.deleteProduct(m.getSender())){
+                        sendback.setType(MessageType.DELETE_PRODUCT_SUCCEED);
+                        oos.writeObject(sendback);
+                    } else{
+                        sendback.setType(MessageType.DELETE_PRODUCT_FAILED);
+                        oos.writeObject(sendback);
+                        socket.close();
+                    }
+                }
+                else if(m.getType().equals(MessageType.FIND_TYPE_PRODUCT)){
+                    List<Product> ps  = buyers_Shop_utils.findTypeProduct(m.getSender());
+                    if(ps.size()!=0){
+                        sendback.setData(ps);
+                        sendback.setType(MessageType.FIND_TYPE_PRODUCT_SUCCEED);
+                        oos.writeObject(sendback);
+                    } else{
+                        sendback.setType(MessageType.FIND_TYPE_PRODUCT_FAILED);
+                        oos.writeObject(sendback);
+                        socket.close();
+                    }
+                }
 
                 //学籍管理
                 else if(m.getType().equals(MessageType.RETURN_STUDENT_INFO)){
                     System.out.println("RETURN_STUDENT_INFO: ServerToClientThread.java");
                     Student stu  = User_SM_utils.returnStudentAllInfo( m.getSender());
                     if(stu!=null){
-                        System.out.println("得到学生信息:"+stu.getStudent_idcard());
                         sendback.setData(stu);
                         sendback.setType(MessageType.RETURN_STUDENT_INFO_SUCCEED);
                         oos.writeObject(sendback);             //将message对象回复客户端
                     } else{
-                        System.out.println("得到学生信息失败");
                         sendback.setType(MessageType.RETURN_STUDENT_INFO_FAILED);  //登录失败
                         oos.writeObject(sendback);                        //将message对象回复客户端
                         socket.close();
@@ -292,12 +340,10 @@ public class ServerToClientThread extends Thread{
                     System.out.println("ADMIN_RETURN_STUDENT_INFO: ServerToClientThread.java");
                     Student stu  = User_SM_utils.returnStudentAllInfo( m.getSender());
                     if(stu!=null){
-                        System.out.println("管理员得到学生信息:"+stu.getStudent_idcard());
                         sendback.setData(stu);
                         sendback.setType(MessageType.ADMIN_RETURN_STUDENT_INFO_SUCCEED);
                         oos.writeObject(sendback);             //将message对象回复客户端
                     } else{
-                        System.out.println("得到学生信息失败");
                         sendback.setType(MessageType.ADMIN_RETURN_STUDENT_INFO_FAILED);  //登录失败
                         oos.writeObject(sendback);                        //将message对象回复客户端
                         socket.close();

@@ -126,8 +126,19 @@ public interface MessageType {
     String RETURN_ALL_PRODUCT_SUCCEED="107";  //成功
     String RETURN_ALL_PRODUCT_FAILED="108";   //失败
 
+    String FIND_PRODUCT="106.5";          //请求模糊查找商品
+    String FIND_PRODUCT_SUCCEED="110.5";        //成功
+    String FIND_PRODUCT_SUCCEED_ZERO="110.0";  //成功且为0
+    String FIND_PRODUCT_FAILED="111.5";         //失败
+
     String DELETE_PRODUCT="109";          //请求删除特定商品
     String DELETE_PRODUCT_SUCCEED="110";  //成功
     String DELETE_PRODUCT_FAILED="111";   //失败
+
+
+    String FIND_TYPE_PRODUCT="112";             //查找商品根据分类
+    String FIND_TYPE_PRODUCT_SUCCEED="113";     //成功
+    String FIND_TYPE_PRODUCT_FAILED="114";      //成功且为0
+
 
 }
