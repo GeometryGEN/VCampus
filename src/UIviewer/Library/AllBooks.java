@@ -14,7 +14,7 @@ import UIhandler.Library.Client_library;
 
 public class AllBooks extends JPanel {
 
-    public static String[][] tableDate;
+    public static volatile String[][] tableDate=null;
     public AllBooks(){
         setLayout(null);
                 //System.out.println(tableDate[1][1]);

@@ -5,6 +5,8 @@ import DAO.Library.Book_admin;
 import DAO.Library.Book_borrower;
 import DAO.Library.Punishment;
 import UIviewer.Library.AddDeleteBook;
+import UIviewer.Library.AllBooks;
+import UIviewer.Library.myBook;
 import message.Message;
 import message.MessageType;
 import utils.MyObjectOutputStream;
@@ -20,7 +22,8 @@ public class Client_library {
     static String id;
     static Socket socket;
     static MyObjectOutputStream oos;
-
+    public static volatile String[][] ret_show_all_books=null;
+    public static volatile String[][] ret_my_books=null;
     public static Socket getSocket() {
         return socket;
     }
@@ -55,31 +58,37 @@ public class Client_library {
     public static String[][] showAllBooks(HashSet<Book_admin>books)throws IOException{
         int n= books.size();
         System.out.println(n);
-        String[][]a=new String[n][11];
+        ret_show_all_books=new String[n][11];
         Iterator b= books.iterator();
         int count=0;
         while(b.hasNext())
         {
             Book_admin book=(Book_admin) b.next();
-                a[count][0]=book.getID();
-                a[count][1]=book.getName();
-                a[count][2]=book.getAuthor();
-                a[count][3]=book.getPublisher();
-                a[count][4]=book.getCountry();
-                a[count][5]=String.valueOf(book.getPrice());
+            ret_show_all_books[count][0]=book.getID();
+            ret_show_all_books[count][1]=book.getName();
+            ret_show_all_books[count][2]=book.getAuthor();
+            ret_show_all_books[count][3]=book.getPublisher();
+            ret_show_all_books[count][4]=book.getCountry();
+            ret_show_all_books[count][5]=String.valueOf(book.getPrice());
             if(book.getAvailable()==1) {
-                a[count][6]="可借";
+                ret_show_all_books[count][6]="可借";
             }
             else{
-                a[count][6]="借出";
+                ret_show_all_books[count][6]="借出";
             }
-                a[count][7]=book.getDate_borrow();
-                a[count][8]=book.getBorrow_to();
-                a[count][9]=book.getDate_expire();
-                a[count][10]=book.getPlace();
+            ret_show_all_books[count][7]=book.getDate_borrow();
+            ret_show_all_books[count][8]=book.getBorrow_to();
+            ret_show_all_books[count][9]=book.getDate_expire();
+            ret_show_all_books[count][10]=book.getPlace();
             count++;
         }
-        return a;
+        if(AllBooks.tableDate ==null)
+        {
+            Thread.onSpinWait();
+            System.out.println("waiting...");
+        }
+        System.out.println("returned books");
+        return ret_show_all_books;
     }
 
     //增加书籍的请求和处理
@@ -111,29 +120,35 @@ public class Client_library {
         Message message=new Message();
         message.setType(MessageType.MESSAGE_LIBRARY_LIST_MY_BOOK);
         oos.writeObject(message);
+        if(myBook.myBook==null)
+        {
+            Thread.onSpinWait();
+            System.out.println("waiting...");
+        }
     }
 
-    public static String[][] showMyBooks(HashSet<Book_borrower>books)throws IOException{
+    public static String[][] showMyBooks(HashSet<Book_borrower>books) throws IOException, InterruptedException {
         int n= books.size();
-        String[][]a=new String[n][10];
+        ret_my_books=new String[n][10];
         Iterator b= books.iterator();
         int count=0;
         while(b.hasNext())
         {
             Book_borrower book=(Book_borrower) b.next();
-            a[count][0]=book.getId();
-            a[count][1]=book.getName();
-            a[count][2]=book.getAuthor();
-            a[count][3]=book.getPublisher();
-            a[count][4]=book.getCountry();
-            a[count][5]=book.getPlace();
-            a[count][6]=book.getDate_borrow();
-            a[count][7]=book.getDate_expire();
-            a[count][8]="";
-            a[count][9]="";
+            ret_my_books[count][0]=book.getId();
+            ret_my_books[count][1]=book.getName();
+            ret_my_books[count][2]=book.getAuthor();
+            ret_my_books[count][3]=book.getPublisher();
+            ret_my_books[count][4]=book.getCountry();
+            ret_my_books[count][5]=book.getPlace();
+            ret_my_books[count][6]=book.getDate_borrow();
+            ret_my_books[count][7]=book.getDate_expire();
+            ret_my_books[count][8]="";
+            ret_my_books[count][9]="";
             count++;
         }
-        return a;
+
+        return ret_my_books;
     }
 
 //查看自己的罚单
@@ -196,6 +211,7 @@ public class Client_library {
             a[count][9]="";
             count++;
         }
+
         return a;
     }
 }

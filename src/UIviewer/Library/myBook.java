@@ -6,7 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class myBook extends JPanel {
-    public static String[][] myBook;
+    public volatile static String[][] myBook=null;
     public myBook(){
         setLayout(null);
 
