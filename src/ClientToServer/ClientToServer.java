@@ -172,7 +172,7 @@ public class ClientToServer {
 
     public boolean registerStudent(Student st) throws Exception{
         socket = new Socket(serverIP,MessageType.PORT);
-        ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());     //得到Object对象
+        MyObjectOutputStream oos = new MyObjectOutputStream(socket.getOutputStream());     //得到Object对象
         Message send=new Message();
         send.setType(MessageType.MESSAGE_STUDENT_REGISTER);
         send.setData(st);
@@ -189,7 +189,7 @@ public class ClientToServer {
 
     public boolean registerTeacher(Teacher te) throws Exception{
         socket = new Socket(serverIP,MessageType.PORT);
-        ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());     //得到Object对象
+        MyObjectOutputStream oos = new MyObjectOutputStream(socket.getOutputStream());     //得到Object对象
         Message send=new Message();
         send.setType(MessageType.MESSAGE_TEACHER_REGISTER);
         send.setData(te);
@@ -206,7 +206,7 @@ public class ClientToServer {
 
     public boolean forgetpwd(String card, String email, String select) throws Exception{
         socket = new Socket(serverIP,MessageType.PORT);
-        ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());     //得到Object对象
+        MyObjectOutputStream oos = new MyObjectOutputStream(socket.getOutputStream());     //得到Object对象
         Message send=new Message();
         send.setType(MessageType.TO_FIND_CERTAIN);
         if(select.equals("教师")){
@@ -235,7 +235,7 @@ public class ClientToServer {
 
     public boolean resetPwd(String card, String new_pwd, String select) throws Exception{
         socket = new Socket(serverIP,MessageType.PORT);
-        ObjectOutputStream oos = new ObjectOutputStream(socket.getOutputStream());     //得到Object对象
+        MyObjectOutputStream oos = new MyObjectOutputStream(socket.getOutputStream());     //得到Object对象
         Message send=new Message();
         send.setType(MessageType.RESET_PASSWORD);
         if(select.equals("教师")){
@@ -266,7 +266,7 @@ public class ClientToServer {
         Message message = new Message();
         message.setType(MessageType.MESSAGE_CLIENT_EXIT);
         message.setUid(ID);
-        ObjectOutputStream oos = null;
+        MyObjectOutputStream oos;
         if(ID.equals("1")){
             message.setSender(s.getStudent_idcard());
             oos = new MyObjectOutputStream(ManageClientToServerThread.getThread(s.getStudent_idcard()).getSocket().getOutputStream());     //得到Object对象

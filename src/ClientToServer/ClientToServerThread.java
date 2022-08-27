@@ -27,7 +27,7 @@ public class ClientToServerThread extends Thread {
 
     //volatile修饰符用来保证其它线程读取的总是该变量的最新的值
     public volatile boolean exit = false;
-
+    private static MyObjectInputStream ois=null;
     public ClientToServerThread(Socket socket){
         this.socket=socket;
     }
@@ -38,13 +38,13 @@ public class ClientToServerThread extends Thread {
 
     public void run(){
         try {
-            MyObjectOutputStream oos = new MyObjectOutputStream(socket.getOutputStream());
+            //MyObjectOutputStream oos = new MyObjectOutputStream(socket.getOutputStream());
+            ois = new MyObjectInputStream(socket.getInputStream());
         } catch (IOException e) {
             e.printStackTrace();
         }
         while (!exit){
             try {
-                MyObjectInputStream ois = new MyObjectInputStream(socket.getInputStream());
                 Message message = (Message) ois.readObject();
                 //如果服务器没有发送Message对象，线程会一直堵塞在这里
                 if(message.getType().equals(MessageType.MESSAGE_LIBRARY_BORROW_SUCCEED)){
@@ -75,7 +75,7 @@ public class ClientToServerThread extends Thread {
                 break;
             }
             catch (Exception e) {
-                e.printStackTrace();
+               // e.printStackTrace();
             }
 
         }
