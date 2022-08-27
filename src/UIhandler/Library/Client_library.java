@@ -111,7 +111,7 @@ public class Client_library {
     public static void RequireNewPunishment(Punishment p)throws IOException{
         Message message=new Message();
         message.setData(p);
-        message.setType(MessageType.MESSAGE_LIBRARY_ADMIN_HANDLE);
+        message.setType(MessageType.MESSAGE_LIBRARY_ADMIN_GIVE_TICKET);
         oos.writeObject(message);
     }
 
@@ -161,6 +161,7 @@ public class Client_library {
 
     public static String[][] showMyPunishments(HashSet<Punishment>myPunishments)throws IOException{
         int n= myPunishments.size();
+        System.out.println(n);
         String[][]a=new String[n][5];
         Iterator b= myPunishments.iterator();
         int count=0;
@@ -183,10 +184,12 @@ public class Client_library {
         message.setData(searchInfo);
         message.setType(MessageType.MESSAGE_LIBRARY_ADMIN_QUERY);
         oos.writeObject(message);
+        System.out.println("message 1");
     }
 
     public static String[][] showSearchResult(HashSet<Book_borrower>books)throws IOException{
         int n= books.size();
+        System.out.println(n);
         String[][]a=new String[n][10];
         Iterator b= books.iterator();
         int count=0;

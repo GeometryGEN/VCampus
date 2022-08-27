@@ -77,6 +77,7 @@ public class ClientToServerThread extends Thread {
                     applyTicket.myPunish=Client_library.showMyPunishments(myPunishments);
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_QUERY_RET)){
+                    System.out.println("ttt");
                     HashSet<Book_borrower> searchResult=(HashSet<Book_borrower>) message.getData();
                     UIviewer.Library.searchResult.searchResult=Client_library.showSearchResult(searchResult);
                 }

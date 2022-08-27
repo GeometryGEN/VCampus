@@ -1,5 +1,6 @@
 package UIviewer.Library;
 import UIhandler.Library.Client_library;
+import UIviewer.Library.readLib;
 
 import javax.swing.*;
 import java.awt.*;
@@ -62,10 +63,7 @@ public class bookSearch extends JPanel {
                 try {
                     String searchInfo=textField.getText();
                     Client_library.RequireSearchResult(searchInfo);
-
-
-
-
+                    readLib.searchresult();
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
