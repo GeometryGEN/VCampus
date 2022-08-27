@@ -80,8 +80,9 @@ public class Client_library {
         return a;
     }
 
-    public static void RequireAddBook()throws IOException{
+    public static void RequireAddBook(Book_admin b)throws IOException{
         Message message=new Message();
+        message.setData(b);
         message.setType(MessageType.MESSAGE_LIBRARY_ADMIN_ADD);
         oos.writeObject(message);
     }

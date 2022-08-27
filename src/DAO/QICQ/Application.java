@@ -14,7 +14,8 @@ public class Application implements Serializable {
         this.from_name = from_name;
         this.status = 0;
     }
-
+    public Application() {
+    }
     public String getTo_id() {
         return to_id;
     }

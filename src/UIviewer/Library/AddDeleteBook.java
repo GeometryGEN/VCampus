@@ -1,4 +1,5 @@
 package UIviewer.Library;
+import DAO.Library.Book_admin;
 import UIhandler.Library.Client_library;
 
 import javax.swing.*;
@@ -116,7 +117,10 @@ public class AddDeleteBook extends JPanel {
                 addinfo[5]=textField6.getText();
                 addinfo[6]=textField7.getText();
                 try {
-                    Client_library.RequireAddBook();
+                    Book_admin b=new Book_admin();
+                    b.setAuthor();
+                    b.setCountry();
+                    Client_library.RequireAddBook(b);
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }

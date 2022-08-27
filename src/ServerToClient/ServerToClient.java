@@ -42,6 +42,7 @@ public class ServerToClient extends Thread{
     private static HashSet<Message>bulletin=new HashSet<Message>();
     private static HashMap<String,ArrayList<Filetrans>>QQfile=new HashMap<String,ArrayList<Filetrans>>();
     private static HashMap<String,ArrayList<Application>>QQapplication=new HashMap<>();
+    private static HashMap<String,ArrayList<String>>new_message=new HashMap<>();
     public ServerToClient() throws IOException {
         try{
             System.out.println("服务器在"+MessageType.PORT+"端口监听中，"+"IP地址为"+Message.returnIP());
@@ -284,6 +285,22 @@ public class ServerToClient extends Thread{
             ArrayList<Application>a=new ArrayList<>();
             a.add(app);
             QQapplication.put(to,a);
+        }
+    }
+
+    public static ArrayList<String> getNew_message(String id) {
+        if(new_message.containsKey(id)) return new_message.get(id);
+        else return new ArrayList<String>();
+    }
+
+    public static void addNew_message(String to,String from) {
+        if(new_message.containsKey(to)){
+            new_message.get(to).add(from);
+        }
+        else {
+            ArrayList<String>a=new ArrayList<>();
+            a.add(from);
+            new_message.put(to,a);
         }
     }
 }

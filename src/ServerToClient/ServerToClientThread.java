@@ -37,7 +37,8 @@ public class ServerToClientThread extends Thread{
         this.socket=socket;
         this.userid=userid;
     }
-
+    MyObjectOutputStream oos = null;
+    MyObjectInputStream ois = null;
     public Socket getSocket() {
         return socket;
     }
@@ -55,16 +56,16 @@ public class ServerToClientThread extends Thread{
     }
 
     public void run(){
-        MyObjectOutputStream oos = null;
+
         try {
             oos = new MyObjectOutputStream(socket.getOutputStream());
+            ois = new MyObjectInputStream(socket.getInputStream());
         } catch (IOException e) {
             e.printStackTrace();
         }
         while (true){
             System.out.println("客户端和服务端 "+userid+" 保持通信，读取数据...");
             try {
-                MyObjectInputStream ois = new MyObjectInputStream(socket.getInputStream());
                 Message m = (Message) ois.readObject();
                 Message sendback = new Message();
                 System.out.println("enter choose");
@@ -75,6 +76,7 @@ public class ServerToClientThread extends Thread{
                     ServerToClient.removeOnline(userid);
                     socket.close();
                     ManageServerToClientThread.removeServerToClientThread(m.getSender());
+                    interrupt();
                     break;
                 }
                 //图书馆
@@ -283,13 +285,12 @@ public class ServerToClientThread extends Thread{
                         socket.close();
                     }
                 }
-            } catch (Exception e) {
+            } catch (Exception e){
                 e.printStackTrace();
-                break;
             }
 
         }
-        System.out.println("exit succeed");
+        System.out.println(userid+" exit succeed");
     }
 
 }

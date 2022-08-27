@@ -58,17 +58,32 @@ public class QICQ_manager {
         ObjectOutputStream oos=new ObjectOutputStream(ManageServerToClientThread.getThread(to).getSocket().getOutputStream());
         oos.writeObject(msg);
     }
-    public void send_offline_file(Message msg) throws IOException {
+    public void send_offline_file(Message msg) throws IOException, SQLException {
         String to=msg.getGetter();
+
         ServerToClient.addQQfile(to,(Filetrans)msg.getData());
     }
-    public void send_online_message(Message msg) throws IOException{
+    public void send_online_message(Message msg) throws IOException, SQLException {
         String to=msg.getGetter();
         ObjectOutputStream oos=new ObjectOutputStream(ManageServerToClientThread.getThread(to).getSocket().getOutputStream());
+        String sql="insert into message(sender,getter,sendtime,content) values(?,?,?,?);";
+        PreparedStatement st=conn.prepareStatement(sql);
+        st.setString(1,msg.getSender());
+        st.setString(2,msg.getGetter());
+        st.setString(3,msg.getSendTime());
+        st.setString(4,(String)msg.getData());
+        st.executeUpdate();
         oos.writeObject(msg);
     }
-    public void send_offline_message(Message msg) throws IOException{
+    public void send_offline_message(Message msg) throws IOException, SQLException {
         String to=msg.getGetter();
+        String sql="insert into message(sender,getter,sendtime,content) values(?,?,?,?);";
+        PreparedStatement st=conn.prepareStatement(sql);
+        st.setString(1,msg.getSender());
+        st.setString(2,msg.getGetter());
+        st.setString(3,msg.getSendTime());
+        st.setString(4,(String)msg.getData());
+        st.executeUpdate();
         ServerToClient.addQQbox(to,msg);
     }
     public void add_friend(Message message) throws IOException, SQLException {
@@ -82,7 +97,9 @@ public class QICQ_manager {
         if(rs.next()){
             msg.setGetter(app.to_id);
             msg.setSendTime(myTime.getCurrentTime());
+            ServerToClient.addQQapplication(app.to_id,app);
             msg.setType(MessageType.MESSAGE_QICQ_ADD_FRIEND);
+
             if(ServerToClient.isOnline(app.to_id)!=-1){
                 send_online_message(msg);
             }
@@ -97,8 +114,18 @@ public class QICQ_manager {
         }
 
     }
-    public ArrayList<Application> list_my_application(){
-        ArrayList<Application>app=ServerToClient.getQQapplication(id);
+    public ArrayList<Application> list_my_application() throws SQLException {
+        ArrayList<Application>app=new ArrayList<>();
+        String sql="select * from new_friend order by sendtime where sender=?";
+        PreparedStatement st=conn.prepareStatement(sql);
+        st.setString(1,id);
+        ResultSet rs=st.executeQuery();
+        while(rs.next()){
+            Application a=new Application();
+            a.status=rs.getInt("status");
+            a.to_id=rs.getString("getter");
+            app.add(a);
+        }
         return app;
     }
     public void admin_add_announcement(Message m) {
