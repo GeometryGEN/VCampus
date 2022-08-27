@@ -1,4 +1,6 @@
 package UIviewer.Library;
+import DAO.Library.Punishment;
+import UIhandler.Library.Client_library;
 import UIviewer.login.functionChoose;
 
 import javax.swing.*;
@@ -49,7 +51,7 @@ public class giveTicket extends JPanel {
         add(textField3);
         textField3.setColumns(10);
 
-        JLabel l4 = new JLabel("罚款备注:");
+        JLabel l4 = new JLabel("书籍编号:");
         l4.setFont(new Font("宋体", Font.BOLD, 15));
         l4.setBounds(500, 280, 250, 25);
         add(l4);
@@ -59,9 +61,19 @@ public class giveTicket extends JPanel {
         add(textField4);
         textField4.setColumns(10);
 
+        JLabel l5 = new JLabel("罚款备注:");
+        l5.setFont(new Font("宋体", Font.BOLD, 15));
+        l5.setBounds(500, 320, 250, 25);
+        add(l5);
+        JTextField textField5=new JTextField();
+        textField5.setFont(new Font("宋体", Font.BOLD, 12));
+        textField5.setBounds(575, 320, 150, 25);
+        add(textField5);
+        textField5.setColumns(10);
+
         JButton b1=new JButton("确定提交");
         b1.setFont(new Font("楷体", Font.BOLD, 18));
-        b1.setBounds(575,360,120,50);
+        b1.setBounds(575,400,120,50);
         b1.setBackground(new Color(250,250,210));
         add(b1);
         b1.addActionListener(new ActionListener() {
@@ -69,7 +81,14 @@ public class giveTicket extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
                 try {
-
+                    Punishment p=new Punishment();
+                    p.setPunishmentID(textField1.getText());
+                    p.setPrice(Double.valueOf(textField2.getText()));
+                    p.setCustomer_iD(textField3.getText());
+                    p.setBook_id(textField4.getText());
+                    p.setNotice(textField5.getText());
+                    p.setStatus(0);
+                    Client_library.RequireNewPunishment(p);
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }

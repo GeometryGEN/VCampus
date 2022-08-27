@@ -1,8 +1,10 @@
 package ClientToServer;
 import DAO.Library.Book_admin;
+import DAO.Library.Book_borrower;
 import UIhandler.Library.Client_library;
 import UIhandler.StatusManagement.Client_status;
 import UIviewer.Library.AllBooks;
+import UIviewer.Library.myBook;
 import User.Student;
 import message.Message;
 import message.MessageType;
@@ -62,6 +64,9 @@ public class ClientToServerThread extends Thread {
                 else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_ADMIN_LIST_RET)){
                     HashSet<Book_admin>books=(HashSet<Book_admin>)message.getData();
                     AllBooks.tableDate=Client_library.showAllBooks(books);
+                } else if (message.getType().equals(MessageType.MESSAGE_LIBRARY_LIST_MY_BOOK_RET)) {
+                    HashSet<Book_borrower>book1=(HashSet<Book_borrower>) message.getData();
+                    myBook.myBook=Client_library.showMyBooks(book1);
                 }
                 //商店具体操作
                 Message send = new Message();

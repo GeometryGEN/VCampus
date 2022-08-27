@@ -1,9 +1,12 @@
 package UIviewer.Library;
 import ClientToServer.ClientToServer;
+import UIhandler.Library.Client_library;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class readLib extends JFrame {
     private JPanel mainLib;
@@ -107,6 +110,11 @@ public class readLib extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
+                try {
+                    Client_library.RequireMyBooks();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
                 cardLayout.show(panel, "f2");
             }
         });

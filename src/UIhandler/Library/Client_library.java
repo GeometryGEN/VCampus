@@ -3,6 +3,7 @@ package UIhandler.Library;
 import ClientToServer.ManageClientToServerThread;
 import DAO.Library.Book_admin;
 import DAO.Library.Book_borrower;
+import DAO.Library.Punishment;
 import UIviewer.Library.AddDeleteBook;
 import message.Message;
 import message.MessageType;
@@ -89,7 +90,6 @@ public class Client_library {
         oos.writeObject(message);
     }
 
-
     //删除书籍的请求和处理
     public static void RequireDeleteBook(String deleteID) throws IOException {
         Message message=new Message();
@@ -98,5 +98,41 @@ public class Client_library {
         oos.writeObject(message);
     }
 
+    //管理员新开一个罚单
+    public static void RequireNewPunishment(Punishment p)throws IOException{
+        Message message=new Message();
+        message.setData(p);
+        message.setType(MessageType.MESSAGE_LIBRARY_ADMIN_HANDLE);
+        oos.writeObject(message);
+    }
+
+    //用户查看自己图书
+    public static void RequireMyBooks()throws IOException{
+        Message message=new Message();
+        message.setType(MessageType.MESSAGE_LIBRARY_LIST_MY_BOOK);
+        oos.writeObject(message);
+    }
+
+    public static String[][] showMyBooks(HashSet<Book_borrower>books)throws IOException{
+        int n= books.size();
+        String[][]a=new String[n][9];
+        Iterator b= books.iterator();
+        int count=0;
+        while(b.hasNext())
+        {
+            Book_admin book=(Book_admin) b.next();
+            a[count][0]=book.getID();
+            a[count][1]=book.getName();
+            a[count][2]=book.getAuthor();
+            a[count][3]=book.getPublisher();
+            a[count][4]=book.getCountry();
+            a[count][5]=String.valueOf(book.getPrice());
+            a[count][6]=book.getPlace();
+            a[count][7]=book.getDate_borrow();
+            a[count][8]=book.getDate_expire();
+            count++;
+        }
+        return a;
+    }
 }
 
