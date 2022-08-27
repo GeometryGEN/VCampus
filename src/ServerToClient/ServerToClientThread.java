@@ -7,6 +7,7 @@ import DAO.Library.Book_admin;
 import DAO.Library.Book_borrower;
 import DAO.Library.Library_manager;
 import DAO.Library.Punishment;
+import DAO.QICQ.Application;
 import DAO.QICQ.QICQ_manager;
 import DAO.StatusManagement.User_SM_utils;
 import User.Student;
@@ -256,7 +257,21 @@ public class ServerToClientThread extends Thread{
                 else if(m.getType().equals(MessageType.MESSAGE_QICQ_LIST_APPLICATION)){
                     new QICQ_manager(userid).list_my_application();
                 }
-
+                else if(m.getType().equals(MessageType.MESSAGE_QICQ_LIST_FRIENDS)){
+                    new QICQ_manager(userid).get_friends();
+                }
+                else if(m.getType().equals(MessageType.MESSAGE_QICQ_LIST_APPLICATION_HANDLE)){
+                    new QICQ_manager(userid).list_my_application_handled();
+                }
+                else if(m.getType().equals(MessageType.MESSAGE_QICQ_GET_MESSAGE)){
+                    new QICQ_manager(userid).list_my_message_with((String)m.getData());
+                }
+                else if(m.getType().equals(MessageType.MESSAGE_QICQ_ACCEPT_NEW_FRIEND)){
+                    new QICQ_manager(userid).accept_new_friend((Application)m.getData());
+                }
+                else if(m.getType().equals(MessageType.MESSAGE_QICQ_DENY_NEW_FRIEND)){
+                    new QICQ_manager(userid).deny_new_friend((Application)m.getData());
+                }
                 //商店
 
                 //学籍管理
