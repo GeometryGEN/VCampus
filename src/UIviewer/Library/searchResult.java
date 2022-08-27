@@ -26,6 +26,6 @@ public class searchResult extends JPanel {
         jsp.setBounds(0,0,1280,680);
         add(jsp);
         table_want.setRowHeight(30);
-        table_want.getColumnModel().getColumn(10).setCellRenderer(new MyButtonRender4());
+        table_want.getColumnModel().getColumn(9).setCellRenderer(new MyButtonRender4());
     }
 }
