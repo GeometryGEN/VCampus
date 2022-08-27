@@ -115,24 +115,89 @@ public class Client_library {
 
     public static String[][] showMyBooks(HashSet<Book_borrower>books)throws IOException{
         int n= books.size();
-        String[][]a=new String[n][9];
+        String[][]a=new String[n][10];
         Iterator b= books.iterator();
         int count=0;
         while(b.hasNext())
         {
-            Book_admin book=(Book_admin) b.next();
-            a[count][0]=book.getID();
+            Book_borrower book=(Book_borrower) b.next();
+            a[count][0]=book.getId();
             a[count][1]=book.getName();
             a[count][2]=book.getAuthor();
             a[count][3]=book.getPublisher();
             a[count][4]=book.getCountry();
-            a[count][5]=String.valueOf(book.getPrice());
-            a[count][6]=book.getPlace();
-            a[count][7]=book.getDate_borrow();
-            a[count][8]=book.getDate_expire();
+            a[count][5]=book.getPlace();
+            a[count][6]=book.getDate_borrow();
+            a[count][7]=book.getDate_expire();
+            a[count][8]="";
+            a[count][9]="";
+            count++;
+        }
+        return a;
+    }
+
+//查看自己的罚单
+    public static void RequireMyPunishments()throws IOException{
+        Message message=new Message();
+        message.setType(MessageType.MESSAGE_LIBRARY_LIST_MY_TICKET);
+        oos.writeObject(message);
+    }
+
+
+    public static String[][] showMyPunishments(HashSet<Punishment>myPunishments)throws IOException{
+        int n= myPunishments.size();
+        String[][]a=new String[n][5];
+        Iterator b= myPunishments.iterator();
+        int count=0;
+        while(b.hasNext())
+        {
+            Punishment punishment=(Punishment) b.next();
+            a[count][0]=punishment.getPunishmentID();
+            a[count][1]=String.valueOf(punishment.getPrice());
+            a[count][2]=punishment.getBook_id();
+            a[count][3]=punishment.getNotice();
+            a[count][4]="";
+            count++;
+        }
+        return a;
+    }
+
+    //搜索书籍
+    public static void RequireSearchResult(String searchInfo)throws IOException{
+        Message message=new Message();
+        message.setData(searchInfo);
+        message.setType(MessageType.MESSAGE_LIBRARY_ADMIN_QUERY);
+        oos.writeObject(message);
+    }
+
+    public static String[][] showSearchResult(HashSet<Book_borrower>books)throws IOException{
+        int n= books.size();
+        String[][]a=new String[n][10];
+        Iterator b= books.iterator();
+        int count=0;
+        while(b.hasNext())
+        {
+            Book_borrower book=(Book_borrower) b.next();
+            a[count][0]=book.getId();
+            a[count][1]=book.getName();
+            a[count][2]=book.getAuthor();
+            a[count][3]=book.getPublisher();
+            a[count][4]=book.getCountry();
+            if(book.getAvailable()==1)
+            {
+                a[count][5]="可借";
+            }
+            else {
+                a[count][5]="借出";
+            }
+            a[count][6]=book.getDate_borrow();
+            a[count][7]=book.getDate_expire();
+            a[count][8]=book.getPlace();
+            a[count][9]="";
             count++;
         }
         return a;
     }
 }
+
 

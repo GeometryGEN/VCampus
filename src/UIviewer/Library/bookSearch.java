@@ -1,4 +1,6 @@
 package UIviewer.Library;
+import UIhandler.Library.Client_library;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -58,6 +60,11 @@ public class bookSearch extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
                 try {
+                    String searchInfo=textField.getText();
+                    Client_library.RequireSearchResult(searchInfo);
+
+
+
 
                 } catch (Exception ex) {
                     ex.printStackTrace();

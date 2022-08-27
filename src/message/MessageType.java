@@ -61,8 +61,8 @@ public interface MessageType {
     String MESSAGE_LIBRARY_PAY_SUCCEED="30.1"; //用户交罚款成功
     String MESSAGE_LIBRARY_PAY_FAIL="30.2";//用户交罚款失败，钱不够
 
-    //选课
 
+    //选课
     String MESSAGE_CURRICULUM_LIST_ALL="31";  //请求所有的课程 无data
     String MESSAGE_CURRICULUM_LIST_ALL_RET="31.1"; //返回所有课程 data类型Hashset<Course>
     String MESSAGE_CURRICULUM_LIST_MINE="31.5";  //展示用户所选课程 无data
