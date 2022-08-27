@@ -74,9 +74,7 @@ public class ServerToClientThread extends Thread{
                 if(m.getType().equals(MessageType.MESSAGE_CLIENT_EXIT)){
                     System.out.println(m.getSender()+"退出系统");
                     ServerToClient.removeOnline(userid);
-                    socket.close();
                     ManageServerToClientThread.removeServerToClientThread(m.getSender());
-                    interrupt();
                     break;
                 }
                 //图书馆
@@ -289,6 +287,11 @@ public class ServerToClientThread extends Thread{
                 e.printStackTrace();
             }
 
+        }
+        try {
+            socket.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
         System.out.println(userid+" exit succeed");
     }

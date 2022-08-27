@@ -10,6 +10,7 @@ import utils.MyObjectInputStream;
 import utils.MyObjectOutputStream;
 
 import java.io.IOException;
+import java.io.InterruptedIOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
@@ -70,11 +71,18 @@ public class ClientToServerThread extends Thread {
                     Student stu = ((Student) message.getData());
                     Client_status.setS(stu);
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
+            } catch (InterruptedIOException e){
                 break;
             }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
 
+        }
+        try {
+            socket.close();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
