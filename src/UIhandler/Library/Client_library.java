@@ -3,10 +3,10 @@ package UIhandler.Library;
 import ClientToServer.ManageClientToServerThread;
 import DAO.Library.Book_admin;
 import DAO.Library.Book_borrower;
+import UIviewer.Library.AddDeleteBook;
 import message.Message;
 import message.MessageType;
 import utils.MyObjectOutputStream;
-
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
@@ -80,13 +80,23 @@ public class Client_library {
         return a;
     }
 
-/*
-    public static void AddBook()throws IOException
-    {
-        new String[]=UIviewer.Library.AddDeleteBook
-
+    public static void RequireAddBook()throws IOException{
+        Message message=new Message();
+        message.setType(MessageType.MESSAGE_LIBRARY_ADMIN_ADD);
+        oos.writeObject(message);
     }
 
- */
+    public static void AddBook()throws IOException
+    {
+        Book_admin book=new Book_admin();
+        book.setID(AddDeleteBook.addinfo[0]);
+        book.setName(AddDeleteBook.addinfo[1]);
+        book.setAuthor(AddDeleteBook.addinfo[2]);
+        book.setPrice(Double.valueOf(AddDeleteBook.addinfo[3]));
+        book.setCountry(AddDeleteBook.addinfo[4]);
+        book.setPlace(AddDeleteBook.addinfo[5]);
+        book.setPublisher(AddDeleteBook.addinfo[6]);
+        book.setAvailable(1);
+    }
 }
 
