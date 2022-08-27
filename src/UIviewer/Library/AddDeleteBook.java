@@ -1,8 +1,11 @@
 package UIviewer.Library;
+import UIhandler.Library.Client_library;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 public class AddDeleteBook extends JPanel {
 
@@ -112,6 +115,11 @@ public class AddDeleteBook extends JPanel {
                 addinfo[4]=textField5.getText();
                 addinfo[5]=textField6.getText();
                 addinfo[6]=textField7.getText();
+                try {
+                    Client_library.RequireAddBook();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
 
