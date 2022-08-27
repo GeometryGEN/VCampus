@@ -9,7 +9,9 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 public class readLib extends JFrame {
-    private JPanel mainLib;
+    public JPanel mainLib;
+
+    public static JPanel panel = new JPanel();;
 
     static String name;
 
@@ -18,7 +20,13 @@ public class readLib extends JFrame {
         name=a;
     }
 
-    CardLayout cardLayout=new CardLayout();
+    public static void searchresult() {
+        cardLayout.show(panel,"f4");
+    }
+
+
+
+    public static CardLayout cardLayout=new CardLayout();
     public static void readLibUI(ClientToServer ucs) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -40,6 +48,7 @@ public class readLib extends JFrame {
         });
     }
 
+
         readLib (){
         setTitle("readLib");
         setBounds(0,0,1273,790);
@@ -47,7 +56,7 @@ public class readLib extends JFrame {
         setContentPane(mainLib);
         mainLib.setLayout(null);
 
-        JPanel panel = new JPanel();
+
         panel.setBounds(0, 150, 1273, 790);
         mainLib.add(panel);
 //		给主要显示面板添加布局方式
