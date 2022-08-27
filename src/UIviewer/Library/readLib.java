@@ -61,6 +61,8 @@ public class readLib extends JFrame {
         panel.add(f2,"f2");
         applyTicket f3=new applyTicket();
         panel.add(f3,"f3");
+        searchResult f4=new searchResult();
+        panel.add(f4,"f4");
 
         //图书馆标志与背景
         JLabel logo = new JLabel();
@@ -130,6 +132,11 @@ public class readLib extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
+                try {
+                    Client_library.RequireMyPunishments();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
                 cardLayout.show(panel, "f3");
             }
         });

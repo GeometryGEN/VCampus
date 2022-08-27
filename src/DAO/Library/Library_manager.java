@@ -305,8 +305,14 @@ public class Library_manager implements Serializable{
             double curmoney=rs.getDouble("Student_money")-p.price;
             if(curmoney>=0){
                 sql="update students set Student_money=? where name=?;";
+                st=conn.prepareStatement(sql);
                 st.setDouble(1,curmoney);
                 st.setString(2,p.Customer_iD);
+                st.executeUpdate();
+                sql="update ticket set status=1 where id=?";
+                st=conn.prepareStatement(sql);
+                st.setString(1,p.punishmentID);
+                st.executeUpdate();
                 msg.setType(MessageType.MESSAGE_LIBRARY_PAY_SUCCEED);
             }
             else {
@@ -321,8 +327,14 @@ public class Library_manager implements Serializable{
             double curmoney=rs.getDouble("Teacher_money")-p.price;
             if(curmoney>=0){
                 sql="update teachers set Teacher_money=? where name=?;";
+                st=conn.prepareStatement(sql);
                 st.setDouble(1,curmoney);
                 st.setString(2,p.Customer_iD);
+                st.executeUpdate();
+                sql="update ticket set status=1 where id=?";
+                st=conn.prepareStatement(sql);
+                st.setString(1,p.punishmentID);
+                st.executeUpdate();
                 msg.setType(MessageType.MESSAGE_LIBRARY_PAY_SUCCEED);
             }
             else {
@@ -365,13 +377,31 @@ public class Library_manager implements Serializable{
         }
         return punishments;
     }
-    public HashSet<Punishment>list_my_tickets(){
+    public HashSet<Punishment>list_my_tickets() throws SQLException {
+        String sql="select * from ticket where customer=?;";
+        PreparedStatement st=conn.prepareStatement(sql);
+        st.setString(1,ID);
+        ResultSet rs=st.executeQuery();
         HashSet<Punishment>punishments=new HashSet<>();
-        Iterator it=ServerToClient.getPunish().iterator();
-        while(it.hasNext()){
-            Punishment p=(Punishment)it.next();
-            if(p.Customer_iD.equals(ID)) punishments.add(p);
+        while(rs.next()){
+            Punishment p = new Punishment();
+            p.status=rs.getInt("status");
+            p.notice=rs.getString("notice");
+            p.price=rs.getDouble("price");
+            p.punishmentID=rs.getString("id");
+            p.Customer_iD=ID;
+            punishments.add(p);
         }
         return punishments;
     }
+    public void admin_give_ticket(Punishment p) throws SQLException {
+        String sql="insert into ticket(id,customer,notice,price,status) values(?,?,?,?,0);";
+        PreparedStatement st=conn.prepareStatement(sql);
+        st.setString(1,p.punishmentID);
+        st.setString(2,p.Customer_iD);
+        st.setString(3,p.notice);
+        st.setDouble(4,p.price);
+        st.executeUpdate();
+    }
+
 }

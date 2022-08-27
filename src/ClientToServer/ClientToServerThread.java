@@ -1,10 +1,13 @@
 package ClientToServer;
 import DAO.Library.Book_admin;
 import DAO.Library.Book_borrower;
+import DAO.Library.Punishment;
 import UIhandler.Library.Client_library;
 import UIhandler.StatusManagement.Client_status;
 import UIviewer.Library.AllBooks;
 import UIviewer.Library.myBook;
+import UIviewer.Library.applyTicket;
+import UIviewer.Library.searchResult;
 import User.Student;
 import message.Message;
 import message.MessageType;
@@ -64,9 +67,18 @@ public class ClientToServerThread extends Thread {
                 else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_ADMIN_LIST_RET)){
                     HashSet<Book_admin>books=(HashSet<Book_admin>)message.getData();
                     AllBooks.tableDate=Client_library.showAllBooks(books);
-                } else if (message.getType().equals(MessageType.MESSAGE_LIBRARY_LIST_MY_BOOK_RET)) {
-                    HashSet<Book_borrower>book1=(HashSet<Book_borrower>) message.getData();
-                    myBook.myBook=Client_library.showMyBooks(book1);
+                }
+                else if (message.getType().equals(MessageType.MESSAGE_LIBRARY_LIST_MY_BOOK_RET)) {
+                    HashSet<Book_borrower>mybook=(HashSet<Book_borrower>) message.getData();
+                    myBook.myBook=Client_library.showMyBooks(mybook);
+                }
+                else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_LIST_MY_TICKET_RET)){
+                    HashSet<Punishment>myPunishments=(HashSet<Punishment>) message.getData();
+                    applyTicket.myPunish=Client_library.showMyPunishments(myPunishments);
+                }
+                else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_QUERY_RET)){
+                    HashSet<Book_borrower> searchResult=(HashSet<Book_borrower>) message.getData();
+                    UIviewer.Library.searchResult.searchResult=Client_library.showSearchResult(searchResult);
                 }
                 //商店具体操作
                 Message send = new Message();

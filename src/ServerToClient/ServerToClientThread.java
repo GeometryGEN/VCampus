@@ -142,10 +142,8 @@ public class ServerToClientThread extends Thread{
                     Punishment p=(Punishment) m.getData();
                     new Library_manager(userid).handle(p);
                 }
-                else if(m.getType().equals( MessageType.MESSAGE_LIBRARY_APPLICATION))
-                {
-                    Book_borrower b=(Book_borrower)m.getData();
-                    ServerToClient.addPunish(new Library_manager(userid).apply(b));
+                else if(m.getType().equals(MessageType.MESSAGE_LIBRARY_ADMIN_GIVE_TICKET)){
+                    new Library_manager(userid).admin_give_ticket((Punishment)m.getData());
                 }
                 else if(m.getType().equals(MessageType.MESSAGE_LIBRARY_LIST_MY_TICKET)){
                     sendback.setData(new Library_manager(userid).list_my_tickets());
