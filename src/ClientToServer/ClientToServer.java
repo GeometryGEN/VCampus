@@ -100,7 +100,7 @@ public class ClientToServer {
             ClientToServerThread ctst = new ClientToServerThread(socket);        //创建一个和服务器端保持通信的线程
             ctst.start();                                                        //启动线程
             ManageClientToServerThread.addThread(id,ctst);
-
+            Client_library.setSocket(socket);
             return true;
         }
         else{
@@ -129,6 +129,7 @@ public class ClientToServer {
             ClientToServerThread ctst = new ClientToServerThread(socket);
             //启动线程
             ctst.start();
+            Client_library.setSocket(socket);
             ManageClientToServerThread.addThread(id,ctst);
             return true;
         }
