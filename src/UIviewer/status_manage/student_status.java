@@ -24,12 +24,11 @@ public class student_status extends JPanel {
         JLabel image = new JLabel();
         int icon1_width=320;
         int icon1_height=150;
-        if(ucs.getIDcard().equals(IDcard)){
-            Client_status.setId(IDcard);
-        }else {
-            Client_status.setId(ucs.getIDcard());
-        }
+
+        Client_status.setId(ucs.getIDcard());  //否则查找学生，id为自身的，识别线程
+
         Client_status.getphoto(IDcard);
+
         try {
             Thumbnails.of(new File("src/image/"+IDcard+".jpg"))
                     .size((int)(icon1_width*width_r), (int)(icon1_height*width_r))

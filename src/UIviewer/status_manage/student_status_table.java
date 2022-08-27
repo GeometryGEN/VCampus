@@ -180,6 +180,7 @@ public class student_status_table extends JPanel{
                 public void actionPerformed(ActionEvent e) {
                     manage_status.status_jpanel.setVisible(false);
                     manage_status.search_panel.setVisible(true);
+                    Client_status.resetS_S();
                 }
             });
             jb3=new JButton("提交学籍信息");

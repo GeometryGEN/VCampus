@@ -55,7 +55,6 @@ public class Image_SM_utils {
             ps.setString(1, id);
             rs = ps.executeQuery();
             while (rs.next()) {
-                String name = rs.getString(2);
                 InputStream in = rs.getBinaryStream("photo");
                 Image_utils.readBin2Image(in,id);
                 System.out.println("图片读取成功！");
@@ -69,8 +68,10 @@ public class Image_SM_utils {
     }
 
 
-    public static void main(String[] args) throws SQLException {
-        sendImageDB("C:\\Users\\28468\\Desktop\\11.png","213202128","name");
-//        readDBImage("111111");
-    }
+//    public static void main(String[] args) throws SQLException {
+//        sendImageDB("C:\\Users\\28468\\Desktop\\1111.jpg","09020201","09020201");
+//        sendImageDB("C:\\Users\\28468\\Desktop\\2222.jpg","09020202","09020202");
+//        sendImageDB("C:\\Users\\28468\\Desktop\\3333.jpg","09020203","09020203");
+////        readDBImage("111111");
+//    }
 }

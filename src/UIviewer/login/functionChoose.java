@@ -158,7 +158,7 @@ public class functionChoose {
                             jf.getContentPane().setVisible(false);
                         }
                     });
-                    jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                    jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                     jf.setVisible(true);
                     //返回功能选择模块
 //                    back_from_status.addActionListener(new ActionListener() {
