@@ -276,13 +276,31 @@ public class ServerToClientThread extends Thread{
 
                 //学籍管理
                 else if(m.getType().equals(MessageType.RETURN_STUDENT_INFO)){
+                    System.out.println("RETURN_STUDENT_INFO: ServerToClientThread.java");
                     Student stu  = User_SM_utils.returnStudentAllInfo( m.getSender());
                     if(stu!=null){
+                        System.out.println("得到学生信息:"+stu.getStudent_idcard());
                         sendback.setData(stu);
                         sendback.setType(MessageType.RETURN_STUDENT_INFO_SUCCEED);
                         oos.writeObject(sendback);             //将message对象回复客户端
                     } else{
+                        System.out.println("得到学生信息失败");
                         sendback.setType(MessageType.RETURN_STUDENT_INFO_FAILED);  //登录失败
+                        oos.writeObject(sendback);                        //将message对象回复客户端
+                        socket.close();
+                    }
+                }
+                else if(m.getType().equals(MessageType.ADMIN_RETURN_STUDENT_INFO)){
+                    System.out.println("ADMIN_RETURN_STUDENT_INFO: ServerToClientThread.java");
+                    Student stu  = User_SM_utils.returnStudentAllInfo( m.getSender());
+                    if(stu!=null){
+                        System.out.println("管理员得到学生信息:"+stu.getStudent_idcard());
+                        sendback.setData(stu);
+                        sendback.setType(MessageType.ADMIN_RETURN_STUDENT_INFO_SUCCEED);
+                        oos.writeObject(sendback);             //将message对象回复客户端
+                    } else{
+                        System.out.println("得到学生信息失败");
+                        sendback.setType(MessageType.ADMIN_RETURN_STUDENT_INFO_FAILED);  //登录失败
                         oos.writeObject(sendback);                        //将message对象回复客户端
                         socket.close();
                     }

@@ -37,6 +37,14 @@ public class Client_status {
         Client_status.s = s;
     }
 
+    public static Student getS_s() {
+        return s_s;
+    }
+
+    public static void setS_s(Student s_s) {
+        Client_status.s_s = s_s;
+    }
+
     public Admin getA() {
         return a;
     }
@@ -71,7 +79,7 @@ public class Client_status {
     //记得查找另一个学生时让对象为null
     public static Student returnStatus_Admin(String idcard) throws Exception {
         Message message = new Message();
-        message.setType(MessageType.RETURN_STUDENT_INFO);
+        message.setType(MessageType.ADMIN_RETURN_STUDENT_INFO);
         message.setSender(idcard);
         //得到Object对象
         MyObjectOutputStream oos = new MyObjectOutputStream(ManageClientToServerThread.getThread(id).getSocket().getOutputStream());

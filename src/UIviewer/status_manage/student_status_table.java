@@ -85,9 +85,13 @@ public class student_status_table extends JPanel{
         title_label.setFont(title_font);
         title_label.setForeground(new Color(102,102,102));
         add(title_label);
-
+        Student sinfo = new Student();
+        if(ucs.getID().equals("3")){
+            sinfo = Client_status.returnStatus_Admin(IDcard);
+        }else{
+            sinfo = Client_status.returnStatusInfo(IDcard);
+        }
         //信息表格
-        Student sinfo = Client_status.returnStatusInfo(IDcard);
         text1= text_title("一卡通号",width_r, height_r,50,80);
         add(text1);
         text2= text_info(sinfo.getStudent_idcard(),width_r,height_r,280,80);

@@ -74,7 +74,13 @@ public class ClientToServerThread extends Thread {
 
                 if(message.getType().equals(MessageType.RETURN_STUDENT_INFO_SUCCEED)){
                     Student stu = ((Student) message.getData());
+                    System.out.println("得到学生信息成功:"+stu.getStudent_idcard());
                     Client_status.setS(stu);
+                }
+               else if(message.getType().equals(MessageType.ADMIN_RETURN_STUDENT_INFO_SUCCEED)){
+                    Student stu = ((Student) message.getData());
+                    System.out.println("ADMIN得到学生信息成功:"+stu.getStudent_idcard());
+                    Client_status.setS_s(stu);
                 }
             } catch (InterruptedIOException e){
                 break;

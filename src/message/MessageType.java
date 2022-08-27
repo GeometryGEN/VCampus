@@ -118,4 +118,16 @@ public interface MessageType {
     String RETURN_PHOTO_SUCCEED="104";  //得到图片成功
     String RETURN_PHOTO_FAILED="105";   //得到图片失败
 
+    String ADMIN_RETURN_STUDENT_INFO="100.1";           //管理员得到学籍信息
+    String ADMIN_RETURN_STUDENT_INFO_SUCCEED="101.1";   //管理员得到学籍信息成功
+    String ADMIN_RETURN_STUDENT_INFO_FAILED="102.1";    //管理员得到学籍信息失败
+
+    String RETURN_ALL_PRODUCT="106";          //请求得到所有商品
+    String RETURN_ALL_PRODUCT_SUCCEED="107";  //成功
+    String RETURN_ALL_PRODUCT_FAILED="108";   //失败
+
+    String DELETE_PRODUCT="109";          //请求删除特定商品
+    String DELETE_PRODUCT_SUCCEED="110";  //成功
+    String DELETE_PRODUCT_FAILED="111";   //失败
+
 }
