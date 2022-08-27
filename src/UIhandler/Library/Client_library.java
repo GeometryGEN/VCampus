@@ -43,6 +43,7 @@ public class Client_library {
         oos.writeObject(message);
     }
 
+    //管理员查看所有图书的请求和处理
     public static void RequireshowAllBooks()throws IOException{
         Message message=new Message();
         System.out.println("ok");
@@ -80,6 +81,7 @@ public class Client_library {
         return a;
     }
 
+    //增加书籍的请求和处理
     public static void RequireAddBook(Book_admin b)throws IOException{
         Message message=new Message();
         message.setData(b);
@@ -87,17 +89,14 @@ public class Client_library {
         oos.writeObject(message);
     }
 
-    public static void AddBook()throws IOException
-    {
-        Book_admin book=new Book_admin();
-        book.setID(AddDeleteBook.addinfo[0]);
-        book.setName(AddDeleteBook.addinfo[1]);
-        book.setAuthor(AddDeleteBook.addinfo[2]);
-        book.setPrice(Double.valueOf(AddDeleteBook.addinfo[3]));
-        book.setCountry(AddDeleteBook.addinfo[4]);
-        book.setPlace(AddDeleteBook.addinfo[5]);
-        book.setPublisher(AddDeleteBook.addinfo[6]);
-        book.setAvailable(1);
+
+    //删除书籍的请求和处理
+    public static void RequireDeleteBook(String deleteID) throws IOException {
+        Message message=new Message();
+        message.setData(deleteID);
+        message.setType(MessageType.MESSAGE_LIBRARY_ADMIN_DELETE);
+        oos.writeObject(message);
     }
+
 }
 

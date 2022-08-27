@@ -11,6 +11,7 @@ import java.io.IOException;
 public class AddDeleteBook extends JPanel {
 
     public static String[] addinfo=new String[7];
+    public static String deleteID;
     public AddDeleteBook(){
         setLayout(null);
 //dddddd
@@ -117,10 +118,16 @@ public class AddDeleteBook extends JPanel {
                 addinfo[5]=textField6.getText();
                 addinfo[6]=textField7.getText();
                 try {
-                    Book_admin b=new Book_admin();
-                    b.setAuthor();
-                    b.setCountry();
-                    Client_library.RequireAddBook(b);
+                    Book_admin book=new Book_admin();
+                    book.setID(AddDeleteBook.addinfo[0]);
+                    book.setName(AddDeleteBook.addinfo[1]);
+                    book.setAuthor(AddDeleteBook.addinfo[2]);
+                    book.setPrice(Double.valueOf(AddDeleteBook.addinfo[3]));
+                    book.setCountry(AddDeleteBook.addinfo[4]);
+                    book.setPlace(AddDeleteBook.addinfo[5]);
+                    book.setPublisher(AddDeleteBook.addinfo[6]);
+                    book.setAvailable(1);
+                    Client_library.RequireAddBook(book);
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
@@ -152,8 +159,12 @@ public class AddDeleteBook extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
-                String delete_id=textField1.getText();
-
+                deleteID=textField8.getText();
+                try {
+                    Client_library.RequireDeleteBook(deleteID);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
 

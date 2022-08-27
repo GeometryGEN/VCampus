@@ -1,9 +1,13 @@
 package UIviewer.Library;
 import ClientToServer.ClientToServer;
+import UIhandler.Library.Client_library;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+
 public class adminLib extends JFrame {
     private JPanel mainLib;
     static String name;
@@ -90,6 +94,11 @@ public class adminLib extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
                 cardLayout.show(panel, "f1");
+                try {
+                    Client_library.RequireshowAllBooks();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
         mainLib.add(b1);
