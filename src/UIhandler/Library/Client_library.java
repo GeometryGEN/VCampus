@@ -9,6 +9,7 @@ import utils.MyObjectOutputStream;
 
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.net.Socket;
 import java.util.HashSet;
 import java.util.Iterator;
 import utils.MyObjectInputStream;
@@ -16,6 +17,17 @@ import utils.MyObjectOutputStream;
 
 public class Client_library {
     static String id;
+    static Socket socket;
+    static MyObjectOutputStream oos;
+
+    public static Socket getSocket() {
+        return socket;
+    }
+
+    public static void setSocket(Socket socket) throws IOException {
+        Client_library.socket = socket;
+        oos=new MyObjectOutputStream(socket.getOutputStream());
+    }
 
     public static void setId(String id) {
         Client_library.id = id;
@@ -35,7 +47,6 @@ public class Client_library {
         Message message=new Message();
         System.out.println("ok");
         message.setType(MessageType.MESSAGE_LIBRARY_ADMIN_LIST);
-        MyObjectOutputStream oos= new MyObjectOutputStream(ManageClientToServerThread.getThread(id).getSocket().getOutputStream());
         oos.writeObject(message);
     }
     

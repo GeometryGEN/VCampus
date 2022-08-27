@@ -266,9 +266,9 @@ public class ServerToClient extends Thread{
             QQfile.put(to,a);
         }
     }
-    public static boolean isOnline(String id){
-       if(online.containsKey(id)) return true;
-       else return false;
+    public static int isOnline(String id){
+       if(online.containsKey(id)) return online.get(id);
+       else return -1;
     }
 
     public static ArrayList<Application> getQQapplication(String id) {

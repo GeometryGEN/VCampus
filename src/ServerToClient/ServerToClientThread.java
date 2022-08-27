@@ -79,9 +79,11 @@ public class ServerToClientThread extends Thread{
                 }
                 //图书馆
                 if(m.getType().equals( MessageType.MESSAGE_LIBRARY_ENTER)){
-
-                    sendback=new Library_manager(userid).enter_info();
-                    oos.writeObject(sendback);
+                    /*if(ServerToClient.isOnline(userid)==2){
+                        sendback.setData(new Library_manager(userid).list_all_book(""));
+                        sendback.setType(MessageType.MESSAGE_LIBRARY_ADMIN_LIST_RET);
+                        oos.writeObject(sendback);
+                    }*/
                 }
                 else if(m.getType().equals( MessageType.MESSAGE_LIBRARY_BORROW))
                 {
@@ -226,7 +228,7 @@ public class ServerToClientThread extends Thread{
                 //站内通信
                 if(m.getType().equals(MessageType.MESSAGE_QICQ_SEND_MSG)){
                      String getter=m.getGetter();
-                     if(ServerToClient.isOnline(getter)==true){
+                     if(ServerToClient.isOnline(getter)!=-1){
                          new QICQ_manager(userid).send_online_message(m);
                      }
                      else {
@@ -235,7 +237,7 @@ public class ServerToClientThread extends Thread{
                 }
                 else if(m.getType().equals(MessageType.MESSAGE_QICQ_SEND_FILE)){
                     String getter=m.getGetter();
-                    if(ServerToClient.isOnline(getter)==true){
+                    if(ServerToClient.isOnline(getter)!=-1){
                         new QICQ_manager(userid).send_online_file(m);
                     }
                     else {

@@ -261,7 +261,8 @@ public class functionChoose {
                     else
                     {
                         Client_library.setId(ucs.getIDcard());
-                        Client_library.RequireshowAllBooks();
+
+                     //   Client_library.RequireshowAllBooks();
                         adminLib.adminLibUI(ucs);
                     }
                 } catch (Exception ex) {

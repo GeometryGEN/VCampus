@@ -2,6 +2,7 @@ package ClientToServer;
 import DAO.Login.Admin_utils;
 import DAO.Login.Students_utils;
 import DAO.Login.Teachers_utils;
+import UIhandler.Library.Client_library;
 import User.*;
 import message.Message;
 import message.MessageType;
@@ -12,6 +13,8 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+
+import static UIhandler.Library.Client_library.RequireshowAllBooks;
 
 /**
  * @author : [Tongwei_L]
@@ -72,6 +75,13 @@ public class ClientToServer {
         this.a = a;
     }
 
+    public Socket getSocket() {
+        return socket;
+    }
+
+    public void setSocket(Socket socket) {
+        this.socket = socket;
+    }
 
     public boolean checkStudent(String id, String pwd) throws Exception {
         s.setStudent_idcard(id);
@@ -150,6 +160,8 @@ public class ClientToServer {
             //启动线程
             ctst.start();
             ManageClientToServerThread.addThread(id,ctst);
+            Client_library.setSocket(socket);
+            RequireshowAllBooks();
             return true;
         }
         else{

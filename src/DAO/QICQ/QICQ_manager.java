@@ -83,7 +83,7 @@ public class QICQ_manager {
             msg.setGetter(app.to_id);
             msg.setSendTime(myTime.getCurrentTime());
             msg.setType(MessageType.MESSAGE_QICQ_ADD_FRIEND);
-            if(ServerToClient.isOnline(app.to_id)){
+            if(ServerToClient.isOnline(app.to_id)!=-1){
                 send_online_message(msg);
             }
             else {
