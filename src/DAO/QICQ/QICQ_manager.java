@@ -43,6 +43,12 @@ public class QICQ_manager {
             String group=rs.getString("relation");
             friend.name=rs.getString("nickname");
             friend.id=rs.getString("friend_id");
+            sql="select * from message where sender=? and getter=? and isread=0;";
+            st= conn.prepareStatement(sql);
+            st.setString(1, friend.id);
+            st.setString(2,id);
+            rs= st.executeQuery();
+            if(rs.next()) friend.unread=1;
             if(friends.containsKey(group)){
                 friends.get(group).add(friend);
             }
@@ -235,9 +241,10 @@ public class QICQ_manager {
         Socket socket=ManageServerToClientThread.getThread(id).getSocket();
         ObjectOutputStream oos=new ObjectOutputStream(socket.getOutputStream());
         oos.writeObject(sendback);
-        sql="update message set isread=1 where (sender=? and getter=?) or (sender=? and getter=?);";
+        sql="update message set isread=1 where (sender=? and getter=?);";
         st= conn.prepareStatement(sql);
-        st.setString(1,id);
+        st.setString(1,to_id);
+        st.setString(2,id);
         st.executeUpdate();
     }
 

@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Friend implements Serializable {
     String id,name,type;
-    int unread; //0=没有未读消息 1=有未读消息
+    int unread; //0=此朋友处没有未读消息 1=次朋友处有未读消息
 
     public String getId() {
         return id;
