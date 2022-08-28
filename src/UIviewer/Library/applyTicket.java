@@ -36,7 +36,11 @@ public class applyTicket extends JPanel {
         String[] tableTitle = {"罚单编号","罚单金额","书籍编号","罚单备注","缴费"};
         //数据
         DefaultTableModel dtm = new DefaultTableModel(myPunish, tableTitle);
-        JTable table_want = new JTable(dtm);
+        JTable table_want = new JTable(dtm){
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
         //支持滚动
         JScrollPane jsp = new JScrollPane(table_want);
         jsp.setBounds(0,0,1280,680);

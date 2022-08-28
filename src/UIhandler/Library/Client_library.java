@@ -133,8 +133,8 @@ public class Client_library {
             myBook.myBook[count][4]=book.getCountry();
             myBook.myBook[count][5]=book.getDate_borrow();
             myBook.myBook[count][6]=book.getDate_expire();
-            myBook.myBook[count][7]="";
-            myBook.myBook[count][8]="";
+            myBook.myBook[count][7]="     归还";
+            myBook.myBook[count][8]="     续借";
             count++;
         }
     }
@@ -180,7 +180,7 @@ public class Client_library {
     public static void showSearchResult(HashSet<Book_borrower>books)throws IOException{
         int n= books.size();
         System.out.println(n);
-        searchResult.searchresult=new String[n][10];
+        searchResult.searchresult=new String[n][9];
         Iterator b= books.iterator();
         int count=0;
         while(b.hasNext())
@@ -210,8 +210,21 @@ public class Client_library {
         message.setData(rBook);
         message.setType(MessageType.MESSAGE_LIBRARY_RET);
         oos.writeObject(message);
-        System.out.println("search  "+rBook);
     }
+
+    public static void reqireExtend(Book_borrower eBook)throws IOException{
+        Message message=new Message();
+        message.setData(eBook);
+        message.setType(MessageType.MESSAGE_LIBRARY_EXTEND);
+        oos.writeObject(message);
+    }
+    public static void reqireBorrow(Book_borrower bBook)throws IOException{
+        Message message=new Message();
+        message.setData(bBook);
+        message.setType(MessageType.MESSAGE_LIBRARY_BORROW);
+        oos.writeObject(message);
+    }
+
 }
 
 

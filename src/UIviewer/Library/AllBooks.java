@@ -21,7 +21,12 @@ public class AllBooks extends JPanel {
         String[] tableTitle = {"书籍编号","书名", "作者","出版社","国家","价格", "是否可借","借出日期","借书人","归还日期","馆藏地"};
         //数据
         DefaultTableModel dtm = new DefaultTableModel(tableDate, tableTitle);
-        JTable table_want = new JTable(dtm);
+        JTable table_want = new JTable(dtm)
+        {
+         public boolean isCellEditable(int row, int column) {
+          return false;
+         }
+        };;
         table_want.setRowHeight(30);
         Font myfont1 = new Font("宋体", Font.PLAIN, 14);
         table_want.setFont(myfont1);
