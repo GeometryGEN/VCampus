@@ -68,9 +68,6 @@ public class ClientToServerThread extends Thread {
                 else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_BORROW_FAIL_TOO_MANY)){
 
                 }
-                else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_RET_SUCCEED)){
-
-                }
                 else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_ADMIN_LIST_RET)){
                     HashSet<Book_admin>books=(HashSet<Book_admin>)message.getData();
                     Client_library.showAllBooks(books);
@@ -93,11 +90,17 @@ public class ClientToServerThread extends Thread {
                     System.out.println("还书成功");
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_RET_LATE)){
-                    JOptionPane.showMessageDialog(null,"延期还书，还书失败!");
+                    JOptionPane.showMessageDialog(null,"还书迟了，请记得按时还书!");
                     System.out.println("还书延期");
                 }
-
-
+                else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_EXTEND_SUCCEED)){
+                    JOptionPane.showMessageDialog(null,"续借成功!");
+                    System.out.println("续借成功");
+                }
+                else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_EXTEND_FAIL)){
+                    JOptionPane.showMessageDialog(null,"续借失败!");
+                    System.out.println("续借失败");
+                }
 
 
 

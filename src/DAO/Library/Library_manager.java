@@ -240,19 +240,21 @@ public class Library_manager implements Serializable{
         st.setString(1,b.id);
         ResultSet rs=st.executeQuery();
         Message message=new Message();
-        if(rs.getInt("extended")==1)
-        {
-            message.setType(MessageType.MESSAGE_LIBRARY_EXTEND_FAIL);
-            return message;
-        }
         while(rs.next()){
+            if(rs.getInt("extended")==1)
+            {
+                message.setType(MessageType.MESSAGE_LIBRARY_EXTEND_FAIL);
+                return message;
+            }
             String ex=myTime.dateToString(rs.getDate("expire_date"));
             String bookid=rs.getString("id");
+            System.out.println("original "+ex);
             Date next=new SimpleDateFormat("yyyy-MM-dd").parse(ex);
             Calendar rightNow = Calendar.getInstance();
             rightNow.setTime(next);
             rightNow.add(Calendar.DAY_OF_YEAR,30);//日期加30天
             Date new_expire=rightNow.getTime();
+            System.out.println(myTime.dateToString(new_expire));
             sql="update library set expire_date=?, extended=1 where id=?";
             st=conn.prepareStatement(sql);
             st.setString(1,myTime.dateToString(new_expire));
