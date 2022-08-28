@@ -182,28 +182,16 @@ public class Library_manager implements Serializable{
         if(flag==1)
         {
             msg.setType(MessageType.MESSAGE_LIBRARY_BORROW_SUCCEED);
-            sql="update set library available = 0 where id= ?;";
+            sql="update library set available = 0,borrow_date = ?,expire_date =?, borrow_to=? where id= ?;";
             st=conn.prepareStatement(sql);
-            st.setString(1,b.getId());
-            st.executeUpdate();
-            sql="update set library borrow_date = ? where id= ?;";
-            st=conn.prepareStatement(sql);
-            st.setString(1,today.toString());
-            st.setString(2,b.getId());
-            st.executeUpdate();
-            sql="update set library expire_date = ? where id= ?;";
-            st=conn.prepareStatement(sql);
+            st.setString(1,myTime.dateToString(today));
             Calendar rightNow = Calendar.getInstance();
             rightNow.setTime(today);
             rightNow.add(Calendar.DAY_OF_YEAR,30);//日期加30天
             Date expire=rightNow.getTime();
-            st.setString(1, myTime.dateToString(expire));
-            st.setString(2,b.getId());
-            st.executeUpdate();
-            sql="update set library borrow_to = ? where id=?;";
-            st=conn.prepareStatement(sql);
-            st.setString(1,ID);
-            st.setString(2,b.getId());
+            st.setString(2, myTime.dateToString(expire));
+            st.setString(3,ID);
+            st.setString(4,b.getId());
             st.executeUpdate();
         }
         return msg;
@@ -346,7 +334,7 @@ public class Library_manager implements Serializable{
         return msg;
     }
     public void addbook(Book_admin book) throws SQLException{
-        String sql="insert into library(name,author,ID,place,price,publisher,country,available) values(?,?,?,?,?,?,?,1);";
+        String sql="insert into library(name,author,ID,place,price,publisher,country,extended) values(?,?,?,?,?,?,?,1,0);";
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,book.name);
         st.setString(2,book.author);
