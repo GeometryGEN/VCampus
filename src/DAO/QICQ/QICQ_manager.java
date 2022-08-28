@@ -43,6 +43,12 @@ public class QICQ_manager {
             String group=rs.getString("relation");
             friend.name=rs.getString("nickname");
             friend.id=rs.getString("friend_id");
+            sql="select * from message where sender=? and getter=? and isread=0;";
+            st= conn.prepareStatement(sql);
+            st.setString(1, friend.id);
+            st.setString(2,id);
+            rs= st.executeQuery();
+            if(rs.next()) friend.unread=1;
             if(friends.containsKey(group)){
                 friends.get(group).add(friend);
             }
@@ -60,6 +66,7 @@ public class QICQ_manager {
     }
     public void send_online_file(Message msg) throws IOException {
         String to=msg.getGetter();
+        msg.setType(MessageType.MESSAGE_QICQ_RECERIVE_FILE);
         MyObjectOutputStream oos=new MyObjectOutputStream(ManageServerToClientThread.getThread(to).getSocket().getOutputStream());
         oos.writeObject(msg);
     }
@@ -69,8 +76,9 @@ public class QICQ_manager {
     }
     public void send_online_message(Message msg) throws IOException, SQLException {
         String to=msg.getGetter();
+        msg.setType(MessageType.MESSAGE_QICQ_RECERIVE_MESSAGE);
         ObjectOutputStream oos=new ObjectOutputStream(ManageServerToClientThread.getThread(to).getSocket().getOutputStream());
-        String sql="insert into message(sender,getter,sendtime,content) values(?,?,?,?);";
+        String sql="insert into message(sender,getter,sendtime,content,isread) values(?,?,?,?,0);";
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,msg.getSender());
         st.setString(2,msg.getGetter());
@@ -81,7 +89,7 @@ public class QICQ_manager {
     }
     public void send_offline_message(Message msg) throws IOException, SQLException {
         String to=msg.getGetter();
-        String sql="insert into message(sender,getter,sendtime,content) values(?,?,?,?);";
+        String sql="insert into message(sender,getter,sendtime,content,isread) values(?,?,?,?,0);";
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,msg.getSender());
         st.setString(2,msg.getGetter());
@@ -233,6 +241,11 @@ public class QICQ_manager {
         Socket socket=ManageServerToClientThread.getThread(id).getSocket();
         ObjectOutputStream oos=new ObjectOutputStream(socket.getOutputStream());
         oos.writeObject(sendback);
+        sql="update message set isread=1 where (sender=? and getter=?);";
+        st= conn.prepareStatement(sql);
+        st.setString(1,to_id);
+        st.setString(2,id);
+        st.executeUpdate();
     }
 
 }

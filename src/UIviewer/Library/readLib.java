@@ -20,12 +20,6 @@ public class readLib extends JFrame {
         name=a;
     }
     static searchResult f4=new searchResult();
-    public static void searchresult() {
-        f4.show_result();
-        cardLayout.show(panel,"f4");
-    }
-
-
 
     public static CardLayout cardLayout=new CardLayout();
     public static void readLibUI(ClientToServer ucs) {
@@ -67,10 +61,10 @@ public class readLib extends JFrame {
 //		将面板添加到住面板中，注意:add()方法里有两个参数，第一个是要添加的对象，第二个给这个对象所放置的卡片
 //		起个名字，后面调用显示的时候要用到这个名字
         panel.add(f1,"f1");
-        myBook f2=new myBook();
-        panel.add(f2,"f2");
-        applyTicket f3=new applyTicket();
-        panel.add(f3,"f3");
+//        myBook f2=new myBook();
+//        panel.add(f2,"f2");
+//        applyTicket f3=new applyTicket();
+ //       panel.add(f3,"f3");
         panel.add(f4,"f4");
 
         //图书馆标志与背景
@@ -123,12 +117,14 @@ public class readLib extends JFrame {
                 // TODO Auto-generated method stub
                 try {
                     Client_library.RequireMyBooks();
-                    while(Client_library.ret_my_books==null) ;
-                    f2.list_books();
+                    while(myBook.myBook==null) ;
+                    myBook f2=new myBook();
+                    panel.add(f2,"f2");
+                    cardLayout.show(panel, "f2");
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
-                cardLayout.show(panel, "f2");
+
             }
         });
         mainLib.add(b2);
@@ -146,7 +142,8 @@ public class readLib extends JFrame {
                 try {
                     Client_library.RequireMyPunishments();
                     while(applyTicket.myPunish==null) ;
-                    f3.show_ticket();
+                    applyTicket f3= new applyTicket();
+                    panel.add(f3,"f3");
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
@@ -169,21 +166,6 @@ public class readLib extends JFrame {
                 }
             });
         mainLib.add(b4);
-
-
-
-
-
-
-        /*
-        JButton b5=new JButton("退出登录");
-        b5.setBounds(980,100,200,50);
-        b5.setFont(myfont1);
-        b5.setContentAreaFilled(false);//设置按钮透明
-        b5.setFocusPainted(false);
-        b5.setForeground(new Color(248, 248, 255));
-        mainLib.add(b5);
-         */
 
         //按钮面板
         JPanel p2 = new JPanel();

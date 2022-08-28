@@ -1,9 +1,13 @@
 package ClientToServer;
+import javax.swing.*;
+import java.awt.*;
 import DAO.Library.Book_admin;
 import DAO.Library.Book_borrower;
 import DAO.Library.Punishment;
+import DAO.QICQ.Friend;
 import DAO.Shop.Product;
 import UIhandler.Library.Client_library;
+import UIhandler.QICQ.Client_qicq;
 import UIhandler.Shop.Client_shop;
 import UIhandler.StatusManagement.Client_status;
 import UIviewer.Library.AllBooks;
@@ -21,6 +25,7 @@ import java.io.InterruptedIOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 /**
@@ -63,12 +68,9 @@ public class ClientToServerThread extends Thread {
                 else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_BORROW_FAIL_TOO_MANY)){
 
                 }
-                else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_RET_SUCCEED)){
-
-                }
                 else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_ADMIN_LIST_RET)){
                     HashSet<Book_admin>books=(HashSet<Book_admin>)message.getData();
-                    AllBooks.tableDate=Client_library.showAllBooks(books);
+                    Client_library.showAllBooks(books);
                 }
                 else if (message.getType().equals(MessageType.MESSAGE_LIBRARY_LIST_MY_BOOK_RET)) {
                     HashSet<Book_borrower>mybook=(HashSet<Book_borrower>) message.getData();
@@ -83,6 +85,37 @@ public class ClientToServerThread extends Thread {
                     HashSet<Book_borrower> searchResult=(HashSet<Book_borrower>) message.getData();
                     Client_library.showSearchResult(searchResult);
                 }
+                else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_RET_SUCCEED)){
+                    JOptionPane.showMessageDialog(null,"还书成功!");
+                }
+                else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_RET_LATE)){
+                    JOptionPane.showMessageDialog(null,"还书迟了，请记得按时还书!");
+                }
+                else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_EXTEND_SUCCEED)){
+                    JOptionPane.showMessageDialog(null,"续借成功!");
+                }
+                else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_EXTEND_FAIL)){
+                    JOptionPane.showMessageDialog(null,"续借失败!");
+                }
+                else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_BORROW_SUCCEED)){
+                    JOptionPane.showMessageDialog(null,"借阅成功!");
+                    System.out.println("1111111111111");
+                }
+                else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_BORROW_FAIL_TOO_MANY)){
+                    JOptionPane.showMessageDialog(null,"个人借书超数，借书失败！");
+                }
+                else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_BORROW_FAIL_RETURN_FIRST)){
+                    JOptionPane.showMessageDialog(null,"请先归还超期图书！");
+                }
+                else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_PAY_SUCCEED)){
+                    JOptionPane.showMessageDialog(null,"缴费成功！");
+                }
+                else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_PAY_FAIL)){
+                    JOptionPane.showMessageDialog(null,"余额不足，缴费失败！");
+                }
+
+
+
                 //商店具体操作
                 Message send = new Message();
 
@@ -128,6 +161,14 @@ public class ClientToServerThread extends Thread {
                     Student stu = ((Student) message.getData());
                     Client_status.setS_s(stu);
                 }
+
+               //站内通信
+                if(message.getType().equals(MessageType.MESSAGE_QICQ_LIST_FRIENDS_RET)){
+                    HashMap<String,HashSet<Friend>>friends=(HashMap<String,HashSet<Friend>>)message.getData();
+                    Client_qicq.show_friend(friends);
+                }
+
+
             } catch (InterruptedIOException e){
                 break;
             }

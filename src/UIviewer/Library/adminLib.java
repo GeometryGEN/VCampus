@@ -81,6 +81,7 @@ public class adminLib extends JFrame {
         p1.setBackground(new Color(5,44,5));
         mainLib.add(p1);
 
+
         //按钮
         JButton b1=new JButton("查看图书状态");
         b1.setBounds(100,100,250,50);
@@ -93,12 +94,17 @@ public class adminLib extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
-                cardLayout.show(panel, "f1");
+
                 try {
                     Client_library.RequireshowAllBooks();
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
+                while(AllBooks.tableDate==null) ;
+                AllBooks f5=new AllBooks();
+
+                panel.add(f5,"f5");
+                cardLayout.show(panel, "f5");
             }
         });
         mainLib.add(b1);

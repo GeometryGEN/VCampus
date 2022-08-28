@@ -182,28 +182,16 @@ public class Library_manager implements Serializable{
         if(flag==1)
         {
             msg.setType(MessageType.MESSAGE_LIBRARY_BORROW_SUCCEED);
-            sql="update set library available = 0 where name= ?;";
+            sql="update library set available = 0,borrow_date = ?,expire_date =?, borrow_to=? where id= ?;";
             st=conn.prepareStatement(sql);
-            st.setString(1,b.name);
-            st.executeUpdate();
-            sql="update set library borrow_date = ? where name= ?;";
-            st=conn.prepareStatement(sql);
-            st.setString(1,today.toString());
-            st.setString(2,b.name);
-            st.executeUpdate();
-            sql="update set library expire_date = ? where name= ?;";
-            st=conn.prepareStatement(sql);
+            st.setString(1,myTime.dateToString(today));
             Calendar rightNow = Calendar.getInstance();
             rightNow.setTime(today);
             rightNow.add(Calendar.DAY_OF_YEAR,30);//日期加30天
             Date expire=rightNow.getTime();
-            st.setString(1, myTime.dateToString(expire));
-            st.setString(2,b.name);
-            st.executeUpdate();
-            sql="update set library borrow_to = ? where name=?;";
-            st=conn.prepareStatement(sql);
-            st.setString(1,ID);
-            st.setString(2,b.name);
+            st.setString(2, myTime.dateToString(expire));
+            st.setString(3,ID);
+            st.setString(4,b.getId());
             st.executeUpdate();
         }
         return msg;
@@ -220,27 +208,18 @@ public class Library_manager implements Serializable{
             Date today=new Date();
 //            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
             if(rs.getDate("expire_date").compareTo(today)==-1){
-                msg.setType(MessageType.MESSAGE_LIBRARY_RET_SUCCEED);
-            }else{
                 msg.setType(MessageType.MESSAGE_LIBRARY_RET_LATE);
+            }else{
+                msg.setType(MessageType.MESSAGE_LIBRARY_RET_SUCCEED);
             }
         }
-        sql="update library set available = 1 where id=?;";
-        st=conn.prepareStatement(sql);
-        st.setString(1,b.id);
-        st.executeUpdate();
-        sql="update library set borrow_date = null where id=?;";
-        st=conn.prepareStatement(sql);
-        st.setString(1,b.id);
-        st.executeUpdate();
-        sql="update library set expire_date = null where id=?;";
-        st=conn.prepareStatement(sql);
-        st.setString(1,b.id);
-        st.executeUpdate();
-        sql="update library set borrow_to = null where id=?;";
-        st=conn.prepareStatement(sql);
-        st.setString(1,b.id);
-        st.executeUpdate();
+        String sql1="update library set available = 1,borrow_date = null,expire_date = null," +
+                "borrow_to = null where id=? ;";
+        PreparedStatement st1=conn.prepareStatement(sql1);
+        st1.setString(1,b.id);
+        int affect=st1.executeUpdate();
+        System.out.println(affect);
+        System.out.println(msg.getType());
         return msg;
     }
     public void handle(Punishment punishment) throws SQLException, IOException {
@@ -261,19 +240,21 @@ public class Library_manager implements Serializable{
         st.setString(1,b.id);
         ResultSet rs=st.executeQuery();
         Message message=new Message();
-        if(rs.getInt("extended")==1)
-        {
-            message.setType(MessageType.MESSAGE_LIBRARY_EXTEND_FAIL);
-            return message;
-        }
         while(rs.next()){
+            if(rs.getInt("extended")==1)
+            {
+                message.setType(MessageType.MESSAGE_LIBRARY_EXTEND_FAIL);
+                return message;
+            }
             String ex=myTime.dateToString(rs.getDate("expire_date"));
             String bookid=rs.getString("id");
+            System.out.println("original "+ex);
             Date next=new SimpleDateFormat("yyyy-MM-dd").parse(ex);
             Calendar rightNow = Calendar.getInstance();
             rightNow.setTime(next);
             rightNow.add(Calendar.DAY_OF_YEAR,30);//日期加30天
             Date new_expire=rightNow.getTime();
+            System.out.println(myTime.dateToString(new_expire));
             sql="update library set expire_date=?, extended=1 where id=?";
             st=conn.prepareStatement(sql);
             st.setString(1,myTime.dateToString(new_expire));
@@ -355,7 +336,7 @@ public class Library_manager implements Serializable{
         return msg;
     }
     public void addbook(Book_admin book) throws SQLException{
-        String sql="insert into library(name,author,ID,place,price,publisher,country,available) values(?,?,?,?,?,?,?,1);";
+        String sql="insert into library(name,author,ID,place,price,publisher,country,extended) values(?,?,?,?,?,?,?,1,0);";
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,book.name);
         st.setString(2,book.author);

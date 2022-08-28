@@ -74,7 +74,7 @@ public class ServerToClientThread extends Thread{
             try {
                 Message m = (Message) ois.readObject();
                 Message sendback = new Message();
-                System.out.println("enter choose");
+                System.out.println(m.getType());
 
                 //退出系统
                 if(m.getType().equals(MessageType.MESSAGE_CLIENT_EXIT)){
@@ -91,7 +91,7 @@ public class ServerToClientThread extends Thread{
                         oos.writeObject(sendback);
                     }*/
                 }
-                else if(m.getType().equals( MessageType.MESSAGE_LIBRARY_BORROW))
+                else if(m.getType().equals(MessageType.MESSAGE_LIBRARY_BORROW))
                 {
                     Book_borrower book=(Book_borrower)m.getData();
                     Library_manager lib_manager = new Library_manager(userid);

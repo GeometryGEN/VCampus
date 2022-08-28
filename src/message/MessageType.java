@@ -109,6 +109,8 @@ public interface MessageType {
     String MESSAGE_QICQ_LIST_FRIENDS_RET="45.1";
     String MESSAGE_QICQ_ACCEPT_NEW_FRIEND="46";
     String MESSAGE_QICQ_DENY_NEW_FRIEND="46.5";
+    String MESSAGE_QICQ_RECERIVE_MESSAGE="47";
+    String MESSAGE_QICQ_RECERIVE_FILE="47.5";
 
     String RETURN_STUDENT_INFO="100";           //得到学籍信息
     String RETURN_STUDENT_INFO_SUCCEED="101";   //得到学籍信息成功
