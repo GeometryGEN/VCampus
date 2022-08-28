@@ -22,8 +22,8 @@ public class student_status extends JPanel {
         status.setLayout(null);//设置绝对布局
         //个人照片
         JLabel image = new JLabel();
-        int icon1_width=320;
-        int icon1_height=150;
+        int icon1_width=160;
+        int icon1_height=320;
 
         Client_status.setId(ucs.getIDcard());  //否则查找学生，id为自身的，识别线程
 
@@ -38,19 +38,19 @@ public class student_status extends JPanel {
         }
         image.setIcon(new ImageIcon("src/image/"+IDcard+"_min.jpg"));
         status.add(image);
-        image.setBounds((int)(60*width_r),(int)(145*height_r),(int)(icon1_width*width_r),(int)(icon1_height*height_r));
+        image.setBounds((int)(40*width_r),(int)(145*height_r),(int)(icon1_width*width_r),(int)(icon1_height*height_r));
         //头像下名字
         String name = Client_status.returnStatusInfo(IDcard).getStudent_name();
         JLabel name_label=new JLabel(name,JLabel.CENTER);
-        name_label.setBounds((int)(57*width_r), (int)((165+icon1_height)*height_r), (int)(110*width_r), (int)(15*height_r));
-        Font name_font = new Font("微软雅黑", Font.PLAIN, (int)(16*width_r));
+        name_label.setBounds((int)(57*width_r), (int)((155+icon1_height)*height_r), (int)(110*width_r), (int)(45*height_r));
+        Font name_font = new Font("微软雅黑", Font.PLAIN, (int)(26*width_r));
         name_label.setFont(name_font);
         name_label.setForeground(new Color(0,0,0));
         status.add(name_label);
 
         //添加表格
-        JPanel table_jpanel = new student_status_table(ucs,width_r,height_r,45*height_r,height-100*height_r,IDcard);
-        table_jpanel.setBounds((int)((icon1_width-90)*width_r),(int)(85*height_r), (int)(width-(icon1_width-30)*width_r),(int)(height-140*height_r));
+        JPanel table_jpanel = new student_status_table(ucs,width_r,height_r,width-(icon1_width+60)*width_r,height-140*height_r,IDcard);
+        table_jpanel.setBounds((int)((icon1_width+60)*width_r),(int)(85*height_r), (int)(width-(icon1_width+100)*width_r),(int)(height-140*height_r));
         status.add(table_jpanel);
 
         return status;
