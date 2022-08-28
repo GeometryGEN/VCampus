@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class myBook extends JPanel {
-    public volatile static String[][] myBook=null;
+    public volatile String[][] myBook=null;
     public myBook(){
         /*setLayout(null);
         String[] tableTitle = {"书籍编号","书名", "作者","出版社","国家","借出日期","应还日期","归还","续借"};

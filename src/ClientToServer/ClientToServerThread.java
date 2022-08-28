@@ -73,12 +73,11 @@ public class ClientToServerThread extends Thread {
                 else if (message.getType().equals(MessageType.MESSAGE_LIBRARY_LIST_MY_BOOK_RET)) {
                     HashSet<Book_borrower>mybook=(HashSet<Book_borrower>) message.getData();
                     Client_library.showMyBooks(mybook);
-                    //myBook.myBook=Client_library.showMyBooks(mybook);
 
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_LIST_MY_TICKET_RET)){
                     HashSet<Punishment>myPunishments=(HashSet<Punishment>) message.getData();
-                   Client_library.showMyPunishments(myPunishments);
+                    Client_library.showMyPunishments(myPunishments);
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_QUERY_RET)){
                     HashSet<Book_borrower> searchResult=(HashSet<Book_borrower>) message.getData();
