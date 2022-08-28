@@ -162,7 +162,7 @@ public class ClientToServer {
             ctst.start();
             ManageClientToServerThread.addThread(id,ctst);
             Client_library.setSocket(socket);
-            RequireshowAllBooks();
+            //RequireshowAllBooks();
             return true;
         }
         else{

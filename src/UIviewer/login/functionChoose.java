@@ -5,6 +5,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+
+import UIviewer.Library.AllBooks;
 import UIviewer.Library.readLib;
 import UIviewer.Library.adminLib;
 import UIviewer.status_manage.manage_status;
@@ -264,7 +266,8 @@ public class functionChoose {
                     {
                         Client_library.setId(ucs.getIDcard());
 
-                     //   Client_library.RequireshowAllBooks();
+                        Client_library.RequireshowAllBooks();
+                        while (AllBooks.tableDate==null);
                         adminLib.adminLibUI(ucs);
                     }
                 } catch (Exception ex) {
