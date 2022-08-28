@@ -82,6 +82,8 @@ public class Library_manager implements Serializable{
             x.id=rs.getString("id");;
             x.name=rs.getString("name");
             x.author=rs.getString("author");
+            x.country=rs.getString("country");
+            x.publisher=rs.getString("publisher");
             x.date_borrow=myTime.dateToString(rs.getDate("borrow_date"));
             x.date_expire=myTime.dateToString(rs.getDate("expire_date"));
             books.add(x);
@@ -91,17 +93,19 @@ public class Library_manager implements Serializable{
     public HashSet<Book_borrower> query_book(String s) throws SQLException {
         HashSet<Book_borrower> books = new HashSet<>();
         String sql="select * from library where name like ? " +
-                "or country like ? or author like ? or publisher like ?;";
+                "or country like ? or author like ? or publisher like ? or id like ?;";
         String parse="%"+s+"%";
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,parse);
         st.setString(2,parse);
         st.setString(3,parse);
         st.setString(4,parse);
+        st.setString(5,parse);
         ResultSet rs=st.executeQuery();
         while(rs.next())
         {
             Book_borrower x=new Book_borrower();
+            x.id=rs.getString("ID");
             x.name=rs.getString("name");
             x.author=rs.getString("author");
             x.available=rs.getInt("available");
@@ -109,7 +113,7 @@ public class Library_manager implements Serializable{
             x.place=rs.getString("place");
             x.country=rs.getString("country");
             x.available=rs.getInt("available");
-            if(x.available==1){
+            if(x.available==0){
                 x.date_expire=myTime.dateToString(rs.getDate("expire_date"));
             }
             books.add(x);

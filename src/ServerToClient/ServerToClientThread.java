@@ -127,9 +127,7 @@ public class ServerToClientThread extends Thread{
                     Library_manager lib_manager = new Library_manager(userid);
                     sendback.setData(lib_manager.list_all_book(""));
                     sendback.setType(MessageType.MESSAGE_LIBRARY_ADMIN_LIST_RET);
-                    System.out.println("write");
                     oos.writeObject(sendback);
-                    System.out.println("sendback");
                 }
                 else if (m.getType().equals( MessageType.MESSAGE_LIBRARY_ADMIN_QUERY)) {
                     sendback.setData(new Library_manager(userid).list_all_book((String)m.getData()));

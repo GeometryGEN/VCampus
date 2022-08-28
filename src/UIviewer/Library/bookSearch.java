@@ -63,6 +63,7 @@ public class bookSearch extends JPanel {
                 try {
                     String searchInfo=textField.getText();
                     Client_library.RequireSearchResult(searchInfo);
+                    while(searchResult.searchresult==null);
                     readLib.searchresult();
                 } catch (Exception ex) {
                     ex.printStackTrace();

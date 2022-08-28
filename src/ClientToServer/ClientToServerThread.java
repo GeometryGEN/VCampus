@@ -72,15 +72,17 @@ public class ClientToServerThread extends Thread {
                 }
                 else if (message.getType().equals(MessageType.MESSAGE_LIBRARY_LIST_MY_BOOK_RET)) {
                     HashSet<Book_borrower>mybook=(HashSet<Book_borrower>) message.getData();
-                    myBook.myBook=Client_library.showMyBooks(mybook);
+                    Client_library.showMyBooks(mybook);
+                    //myBook.myBook=Client_library.showMyBooks(mybook);
+
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_LIST_MY_TICKET_RET)){
                     HashSet<Punishment>myPunishments=(HashSet<Punishment>) message.getData();
-                    applyTicket.myPunish=Client_library.showMyPunishments(myPunishments);
+                   Client_library.showMyPunishments(myPunishments);
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_QUERY_RET)){
                     HashSet<Book_borrower> searchResult=(HashSet<Book_borrower>) message.getData();
-                    UIviewer.Library.searchResult.searchResult=Client_library.showSearchResult(searchResult);
+                    Client_library.showSearchResult(searchResult);
                 }
                 //商店具体操作
                 Message send = new Message();
@@ -119,7 +121,7 @@ public class ClientToServerThread extends Thread {
                 break;
             }
             catch (Exception e) {
-                e.printStackTrace();
+               // e.printStackTrace();
             }
 
         }

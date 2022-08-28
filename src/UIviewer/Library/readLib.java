@@ -19,8 +19,9 @@ public class readLib extends JFrame {
     {
         name=a;
     }
-
+    static searchResult f4=new searchResult();
     public static void searchresult() {
+        f4.show_result();
         cardLayout.show(panel,"f4");
     }
 
@@ -70,7 +71,6 @@ public class readLib extends JFrame {
         panel.add(f2,"f2");
         applyTicket f3=new applyTicket();
         panel.add(f3,"f3");
-        searchResult f4=new searchResult();
         panel.add(f4,"f4");
 
         //图书馆标志与背景
@@ -123,6 +123,8 @@ public class readLib extends JFrame {
                 // TODO Auto-generated method stub
                 try {
                     Client_library.RequireMyBooks();
+                    while(Client_library.ret_my_books==null) ;
+                    f2.list_books();
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
@@ -143,6 +145,8 @@ public class readLib extends JFrame {
                 // TODO Auto-generated method stub
                 try {
                     Client_library.RequireMyPunishments();
+                    while(applyTicket.myPunish==null) ;
+                    f3.show_ticket();
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
