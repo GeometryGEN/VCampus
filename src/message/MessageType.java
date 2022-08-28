@@ -152,4 +152,16 @@ public interface MessageType {
     String ADD_PRODUCT_FAILED="117";      //失败
 
 
+    String CHECK_BUYED_PRODUCT="118";
+    String CHECK_BUYED_PRODUCT_SUCCEED="119";     //成功
+    String CHECK_BUYED_PRODUCT_FAILED="120";      //失败
+
+    String CHECK_READYTOBUY_PRODUCT="118.1";
+    String CHECK_READYTOBUY_PRODUCT_SUCCEED="118.2";     //成功
+    String CHECK_READYTOBUY_PRODUCT_FAILED="118.3";      //失败
+
+    String CHECK_CERTAIN_PRODUCT="118.11";
+    String CHECK_CERTAIN__PRODUCT_SUCCEED="118.21";     //成功
+    String CHECK_CERTAIN__PRODUCT_FAILED="118.31";      //失败
+
 }

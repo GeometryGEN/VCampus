@@ -135,6 +135,29 @@ public class ClientToServerThread extends Thread {
                     List<Product> ps = ((List<Product>) message.getData());
                     Client_shop.setSign(false);
                 }
+                else if(message.getType().equals(MessageType.CHECK_BUYED_PRODUCT_SUCCEED)){
+                    String ps = (String) message.getData();
+                    Client_shop.setBuyed(ps);
+                }
+                else if(message.getType().equals(MessageType.CHECK_BUYED_PRODUCT_FAILED)){
+                    Client_shop.setBuyed(null);
+                }
+                else if(message.getType().equals(MessageType.CHECK_READYTOBUY_PRODUCT_SUCCEED)){
+                    String ps = (String) message.getData();
+                    Client_shop.setReadyToBuy(ps);
+                }
+                else if(message.getType().equals(MessageType.CHECK_CERTAIN__PRODUCT_SUCCEED)){
+                    Product ps = (Product) message.getData();
+                    Client_shop.setSign_Certain("2");
+                    Client_shop.setCertainProducts(ps);
+                }
+                else if(message.getType().equals(MessageType.CHECK_CERTAIN__PRODUCT_FAILED)){
+                    Client_shop.setSign_Certain("2");
+                    Client_shop.setCertainProducts(null);
+                }
+                else if(message.getType().equals(MessageType.CHECK_READYTOBUY_PRODUCT_FAILED)){
+                    Client_shop.setReadyToBuy(null);
+                }
                 else if(message.getType().equals(MessageType.DELETE_PRODUCT_SUCCEED)){
                     Client_shop.setSign_delete("2");
                 }

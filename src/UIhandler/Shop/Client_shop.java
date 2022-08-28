@@ -1,5 +1,6 @@
 package UIhandler.Shop;
 
+import java.io.IOException;
 import java.util.List;
 import ClientToServer.ManageClientToServerThread;
 import DAO.Shop.Product;
@@ -13,9 +14,15 @@ public class Client_shop {
 
     public static String id;    //区分 1：学生  2：老师  3：管理员
 
-    public static String idcard;                   //当前已登录账号的那个对象一卡通
+    public static String idcard;         //当前已登录账号的那个对象一卡通
 
+    public static String Buyed;          //商品 1 正在找  2 成功  3 失败
+
+    public static String ReadyToBuy;          //商品 1 正在找  2 成功  3 失败
     public static List<Product> products;          //存放所有商品
+
+    public static Product CertainProducts;          //存放特定商品
+    public static String sign_Certain;              //商品 1 正在找  2 成功  3 失败
 
     public static String sign_delete;             //商品是否删除成功的标志 1 正在删除  2 成功  3 失败
     public static Boolean sign_zero ;              //查找了但数据库有-1 或者没有-0
@@ -29,6 +36,9 @@ public class Client_shop {
 
     //////////////////记得每次点击按钮先reset null
 
+    public static void resetCertainProduct_sign(){
+        sign_Certain="1";
+    }
     public static void resetSign_add(){
         sign_add="1";
     }
@@ -40,10 +50,21 @@ public class Client_shop {
         sign_delete="1";
     }
 
+    public static void resetBuyed(){
+        Buyed="1";
+    }
+
+    public static void resetReadytoBuy(){
+        ReadyToBuy="1";
+    }
+
     public static void resetSign_zero(){
         sign_zero=true;
     }
 
+    public static void resetCertainProducts(){
+        products=null;
+    }
     public static void resetAllProducts(){
         products.clear();
     }
@@ -54,6 +75,38 @@ public class Client_shop {
 
     public static void resetCheckedtypeProducts(){
         checkproductsType.clear();
+    }
+
+    public static Product getCertainProducts() {
+        return CertainProducts;
+    }
+
+    public static void setCertainProducts(Product certainProducts) {
+        CertainProducts = certainProducts;
+    }
+
+    public static String getSign_Certain() {
+        return sign_Certain;
+    }
+
+    public static void setSign_Certain(String sign_Certain) {
+        Client_shop.sign_Certain = sign_Certain;
+    }
+
+    public static String getBuyed() {
+        return Buyed;
+    }
+
+    public static void setBuyed(String buyed) {
+        Buyed = buyed;
+    }
+
+    public static String getReadyToBuy() {
+        return ReadyToBuy;
+    }
+
+    public static void setReadyToBuy(String readyToBuy) {
+        ReadyToBuy = readyToBuy;
     }
 
     public static String getSign_add() {
@@ -138,9 +191,9 @@ public class Client_shop {
         message.setType(MessageType.RETURN_ALL_PRODUCT);
         //得到Object对象
         MyObjectOutputStream oos = new MyObjectOutputStream(ManageClientToServerThread.getThread(idcard).getSocket().getOutputStream());
-        //发送学生对象
+        //发送对象
         oos.writeObject(message);
-        //等待接受学生
+        //等待接受
         while (products.size() == 0) Thread.onSpinWait();
         return products;
     }
@@ -151,15 +204,32 @@ public class Client_shop {
         message.setSender(name);
         //得到Object对象
         MyObjectOutputStream oos = new MyObjectOutputStream(ManageClientToServerThread.getThread(idcard).getSocket().getOutputStream());
-        //发送学生对象
+        //发送对象
         oos.writeObject(message);
-        //等待接受学生
+        //等待接受
         while (checkproducts.size() == 0 && sign_zero) Thread.onSpinWait();
         return checkproducts;
     }
 
+    //返回的Product 可能为null!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    public static Product checkCertainProduct(int id_product) throws Exception {
+        resetCertainProducts();
+        resetCertainProduct_sign();
+        Message message = new Message();
+        message.setType(MessageType.CHECK_CERTAIN_PRODUCT);
+        message.setSender(String.valueOf(id_product));
+        //得到Object对象
+        MyObjectOutputStream oos = new MyObjectOutputStream(ManageClientToServerThread.getThread(idcard).getSocket().getOutputStream());
+        //发送对象
+        oos.writeObject(message);
+        //等待接受
+        while ( sign_Certain.equals("1")) Thread.onSpinWait();
+        return CertainProducts;
+    }
+
     //商品Product_id唯一
     public static Boolean deleteProduct(String id) throws Exception {
+        resetSign_delete();
         Message message = new Message();
         message.setType(MessageType.DELETE_PRODUCT);
         message.setSender(id);
@@ -173,6 +243,8 @@ public class Client_shop {
     }
 
     public static List<Product> checktypeProduct(String type_name) throws Exception {
+        resetCheckedProducts();
+        resetSign_find_tpye();
         Message message = new Message();
         message.setType(MessageType.FIND_TYPE_PRODUCT);
         message.setSender(type_name);
@@ -186,6 +258,7 @@ public class Client_shop {
     }
 
     public static Boolean addProduct(Product p) throws Exception{
+        resetSign_add();
         Message message = new Message();
         message.setType(MessageType.ADD_PRODUCT);
         message.setData(p);
@@ -198,5 +271,45 @@ public class Client_shop {
         return sign_add.equals("2");
     }
 
+    public static String checkBuyed(String idcard) throws IOException {
+        resetBuyed();
+        Message message = new Message();
+        message.setType(MessageType.CHECK_BUYED_PRODUCT);
+        message.setSender(idcard);
+        //得到Object对象
+        MyObjectOutputStream oos = new MyObjectOutputStream(ManageClientToServerThread.getThread(idcard).getSocket().getOutputStream());
+        //发送学生对象
+        oos.writeObject(message);
+        //等待接受学生
+        while (Buyed.equals("1")) Thread.onSpinWait();
+        return Buyed;
+    }
 
+    public static String readyToBuy(String idcard) throws IOException {
+        resetReadytoBuy();
+        Message message = new Message();
+        message.setType(MessageType.CHECK_READYTOBUY_PRODUCT);
+        message.setSender(idcard);
+        //得到Object对象
+        MyObjectOutputStream oos = new MyObjectOutputStream(ManageClientToServerThread.getThread(idcard).getSocket().getOutputStream());
+        //发送学生对象
+        oos.writeObject(message);
+        //等待接受学生
+        while (ReadyToBuy.equals("1")) Thread.onSpinWait();
+        return ReadyToBuy;
+    }
+
+    //List可能为空
+    public static List<Product> get_ReadyToBuy_Info(String info){
+
+    }
+    public static int get_ReadyToBuy_Info_number(String info){
+
+    }
+    public static List<Product> get_Buyed_Info(String info){
+
+    }
+    public static int get_Buyed_Info_number(String info){
+
+    }
 }

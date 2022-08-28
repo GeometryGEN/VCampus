@@ -298,6 +298,42 @@ public class ServerToClientThread extends Thread{
                         socket.close();
                     }
                 }
+                else if(m.getType().equals(MessageType.CHECK_CERTAIN_PRODUCT)){
+                    Product ps  = buyers_Shop_utils.checkCertainProduct(Integer.parseInt(m.getSender()));
+                    if(ps!=null){
+                        sendback.setData(ps);
+                        sendback.setType(MessageType.CHECK_CERTAIN__PRODUCT_SUCCEED);
+                        oos.writeObject(sendback);
+                    } else{
+                        sendback.setType(MessageType.CHECK_CERTAIN__PRODUCT_FAILED);
+                        oos.writeObject(sendback);
+                        socket.close();
+                    }
+                }
+                else if(m.getType().equals(MessageType.CHECK_BUYED_PRODUCT)){
+                    String info  = buyers_Shop_utils.getBuyed(m.getSender());
+                    if(info!=null){
+                        sendback.setData(info);
+                        sendback.setType(MessageType.CHECK_BUYED_PRODUCT_SUCCEED);
+                        oos.writeObject(sendback);
+                    } else{
+                        sendback.setType(MessageType.CHECK_BUYED_PRODUCT_FAILED);
+                        oos.writeObject(sendback);
+                        socket.close();
+                    }
+                }
+                else if(m.getType().equals(MessageType.CHECK_READYTOBUY_PRODUCT)){
+                    String info  = buyers_Shop_utils.getReadytoBuy(m.getSender());
+                    if(info!=null){
+                        sendback.setData(info);
+                        sendback.setType(MessageType.CHECK_READYTOBUY_PRODUCT_SUCCEED);
+                        oos.writeObject(sendback);
+                    } else{
+                        sendback.setType(MessageType.CHECK_READYTOBUY_PRODUCT_FAILED);
+                        oos.writeObject(sendback);
+                        socket.close();
+                    }
+                }
                 else if(m.getType().equals(MessageType.DELETE_PRODUCT)){
                     if(Admin_Shop_utils.deleteProduct(m.getSender())){
                         sendback.setType(MessageType.DELETE_PRODUCT_SUCCEED);
