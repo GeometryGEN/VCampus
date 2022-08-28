@@ -6,9 +6,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class applyTicket extends JPanel {
-    public static volatile String[][] myPunish;
+    public static volatile String[][] myPunish=null;
     public applyTicket(){
-        setLayout(null);
+        /*setLayout(null);
 
         String[] tableTitle = {"罚单编号","罚单金额","书籍编号","罚单备注","缴费"};
         //数据
@@ -28,7 +28,7 @@ public class applyTicket extends JPanel {
         pic1.setIcon(icon1);
         pic1.setBounds(0,0 , 1300, 650);
         p11.add(pic1);
-        add(p11);
+        add(p11);*/
     }
     public void show_ticket(){
         setLayout(null);
