@@ -1,6 +1,9 @@
 package UIviewer.Library;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.io.IOException;
 import java.util.*;
 
 import java.awt.Robot;
@@ -10,6 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Timer;
 
+import DAO.Library.Book_borrower;
 import UIhandler.Library.Client_library;
 
 public class searchResult extends JPanel {
@@ -25,6 +29,42 @@ public class searchResult extends JPanel {
         JScrollPane jsp = new JScrollPane(table_want);
         jsp.setBounds(0,0,1280,680);
         add(jsp);
+        table_want.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if(table_want.getSelectedColumn()==8){
+                    Book_borrower book=new Book_borrower();
+                    try {
+                        String id= (String) table_want.getValueAt(table_want.getSelectedRow(),0);
+                        book.setId(id);
+                        System.out.println(id);
+                        Client_library.reqireBorrow(book);
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                }
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
         table_want.setRowHeight(30);
         //table_want.getColumnModel().getColumn(8).setCellRenderer(new MyButtonRender4());
     }

@@ -88,8 +88,13 @@ public class ClientToServerThread extends Thread {
                     HashSet<Book_borrower> searchResult=(HashSet<Book_borrower>) message.getData();
                     Client_library.showSearchResult(searchResult);
                 }
-                else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_EXTEND_SUCCEED)){
-
+                else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_RET_SUCCEED)){
+                    JOptionPane.showMessageDialog(null,"还书成功!");
+                    System.out.println("还书成功");
+                }
+                else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_RET_LATE)){
+                    JOptionPane.showMessageDialog(null,"延期还书，还书失败!");
+                    System.out.println("还书延期");
                 }
 
 
@@ -135,9 +140,7 @@ public class ClientToServerThread extends Thread {
                     HashMap<String,HashSet<Friend>>friends=(HashMap<String,HashSet<Friend>>)message.getData();
                     Client_qicq.show_friend(friends);
                 }
-                else if(message.getType().equals(MessageType.MESSAGE_QICQ_RECERIVE_MESSAGE)){
-                    JOptionPane.showMessageDialog(null,"");
-                }
+
 
             } catch (InterruptedIOException e){
                 break;
