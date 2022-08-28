@@ -182,7 +182,7 @@ public class Library_manager implements Serializable{
         if(flag==1)
         {
             msg.setType(MessageType.MESSAGE_LIBRARY_BORROW_SUCCEED);
-            sql="update library set available = 0,borrow_date = ?,expire_date =?, borrow_to=? where id= ?;";
+            sql="update library set available=0, borrow_date=?, expire_date=?, borrow_to=? where id= ?;";
             st=conn.prepareStatement(sql);
             st.setString(1,myTime.dateToString(today));
             Calendar rightNow = Calendar.getInstance();
@@ -194,6 +194,7 @@ public class Library_manager implements Serializable{
             st.setString(4,b.getId());
             st.executeUpdate();
         }
+        System.out.println(msg.getType());
         return msg;
     }
     public Message ret(Book_borrower b) throws SQLException{
@@ -218,8 +219,6 @@ public class Library_manager implements Serializable{
         PreparedStatement st1=conn.prepareStatement(sql1);
         st1.setString(1,b.id);
         int affect=st1.executeUpdate();
-        System.out.println(affect);
-        System.out.println(msg.getType());
         return msg;
     }
     public void handle(Punishment punishment) throws SQLException, IOException {
@@ -281,15 +280,16 @@ public class Library_manager implements Serializable{
         return pp;
     }
     public Message pay(Punishment p) throws SQLException{
-        String sql="select * from Students where Student_name=?;";
         Message msg=new Message();
+        String sql="select * from students where Student_idcard=?;";
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,p.Customer_iD);
+        System.out.println("punish  "+p.Customer_iD);
         ResultSet rs=st.executeQuery();
         if(rs.next()){
             double curmoney=rs.getDouble("Student_money")-p.price;
             if(curmoney>=0){
-                sql="update students set Student_money=? where name=?;";
+                sql="update students set Student_money=? where Student_idcard=?;";
                 st=conn.prepareStatement(sql);
                 st.setDouble(1,curmoney);
                 st.setString(2,p.Customer_iD);
@@ -305,13 +305,14 @@ public class Library_manager implements Serializable{
             }
         }
         else {
-            sql="select * from Teachers where Teacher_name=?";
+            sql="select * from teachers where Teacher_idcard=?";
             st=conn.prepareStatement(sql);
             st.setString(1,p.Customer_iD);
             rs=st.executeQuery();
+            rs.next();
             double curmoney=rs.getDouble("Teacher_money")-p.price;
             if(curmoney>=0){
-                sql="update teachers set Teacher_money=? where name=?;";
+                sql="update teachers set Teacher_money=? where Teacher_idcard=?;";
                 st=conn.prepareStatement(sql);
                 st.setDouble(1,curmoney);
                 st.setString(2,p.Customer_iD);
@@ -326,17 +327,10 @@ public class Library_manager implements Serializable{
                 msg.setType(MessageType.MESSAGE_LIBRARY_PAY_FAIL);
             }
         }
-        if(msg.getType().equals(MessageType.MESSAGE_LIBRARY_PAY_SUCCEED))
-        {
-            sql="delete from library where id=?;";
-            st=conn.prepareStatement(sql);
-            st.setString(1,p.Book_id);
-            st.executeUpdate();
-        }
         return msg;
     }
     public void addbook(Book_admin book) throws SQLException{
-        String sql="insert into library(name,author,ID,place,price,publisher,country,extended) values(?,?,?,?,?,?,?,1,0);";
+        String sql="insert into library(name,author,ID,place,price,publisher,country,available,extended) values(?,?,?,?,?,?,?,1,0);";
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,book.name);
         st.setString(2,book.author);
@@ -363,7 +357,7 @@ public class Library_manager implements Serializable{
         return punishments;
     }
     public HashSet<Punishment>list_my_tickets() throws SQLException {
-        String sql="select * from ticket where customer=?;";
+        String sql="select * from ticket where customer=? and status=0;";
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,ID);
         ResultSet rs=st.executeQuery();
@@ -374,6 +368,7 @@ public class Library_manager implements Serializable{
             p.notice=rs.getString("notice");
             p.price=rs.getDouble("price");
             p.punishmentID=rs.getString("id");
+            p.setBook_id(rs.getString("book"));
             p.Customer_iD=ID;
             punishments.add(p);
         }

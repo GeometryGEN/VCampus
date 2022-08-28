@@ -199,6 +199,31 @@ public class student_status_table extends JPanel{
                 public void actionPerformed(ActionEvent e) {
                     int result=JOptionPane.showConfirmDialog(null, "确认提交本次修改内容吗", "提示", JOptionPane.OK_CANCEL_OPTION);
                     if(JOptionPane.OK_OPTION==result){
+                        Student temp = new Student();
+                        String idcard=text2.getText().trim();temp.setStudent_idcard(idcard);
+                        String id=text4.getText().trim();temp.setStudent_id(id);
+                        String name=text6.getText().trim();temp.setStudent_name(name);
+                        String age=text8.getText().trim();temp.setStudent_age(Integer.parseInt(age));
+                        String gender=text10.getText().trim();temp.setStudent_gender(gender);
+                        String nation=text12.getText().trim();temp.setNation(nation);
+                        String shenfenzheng=text14.getText().trim();temp.setID(shenfenzheng);
+                        String birthday=text16.getText().trim();    temp.setBirthday(birthday);
+                        String natibe_place=text18.getText().trim();temp.setNative_place(natibe_place);
+                        String major=text20.getText().trim();temp.setMajor(major);
+                        String Class=text22.getText().trim();temp.setStudent_class(Class);
+                        String type=text24.getText().trim(); temp.setStudent_type(type);
+                        String Sclass=text26.getText().trim();temp.setSclass(Sclass);
+                        String campus=text28.getText().trim();temp.setCampus(campus);
+                        String due_gradute=text30.getText().trim();temp.setDue_graduate_date(due_gradute);
+                        String email=text32.getText().trim();temp.setStudent_email(email);
+                        try {
+                            if(Client_status.renewInfo(temp))
+                                JOptionPane.showMessageDialog(null, "修改学生信息成功!");
+                            else
+                                JOptionPane.showMessageDialog(null, "修改学生信息失败!");
+                        } catch (Exception ex) {
+                            throw new RuntimeException(ex);
+                        }
                         switch_to_unedit();
                         jb3.setVisible(false);
                         jb1.setVisible(true);
@@ -206,7 +231,7 @@ public class student_status_table extends JPanel{
                 }
             });
         }
-        else if(ucs.getID()=="1"){
+        else if(ucs.getID().equals("1")){
             functionChoose.back_from_student_status =new JButton("返回功能选择");
             functionChoose.back_from_student_status.setBounds((int)(470*width_r),(int)(650*height_r),(int)(170*width_r),(int)(50*height_r));
             functionChoose.back_from_student_status.setBackground(new Color(96,190,41));
@@ -216,6 +241,7 @@ public class student_status_table extends JPanel{
             functionChoose.back_from_student_status.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
+                    Client_status.resetS();
                     functionChoose.jf.setContentPane(functionChoose.fc_panel);
                 }
             });

@@ -26,9 +26,9 @@ public class student_status extends JPanel {
         int icon1_height=320;
 
         Client_status.setId(ucs.getIDcard());  //否则查找学生，id为自身的，识别线程
-
         Client_status.getphoto(IDcard);
-
+        File po = new File("src/image/"+IDcard+".jpg");
+        while (!po.exists()) Thread.onSpinWait();
         try {
             Thumbnails.of(new File("src/image/"+IDcard+".jpg"))
                     .size((int)(icon1_width*width_r), (int)(icon1_height*width_r))

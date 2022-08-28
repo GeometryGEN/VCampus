@@ -59,16 +59,7 @@ public class ClientToServerThread extends Thread {
             try {
                 Message message = (Message) ois.readObject();
                 //如果服务器没有发送Message对象，线程会一直堵塞在这里
-                if(message.getType().equals(MessageType.MESSAGE_LIBRARY_BORROW_SUCCEED)){
-
-                }
-                else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_BORROW_FAIL_RETURN_FIRST)){
-
-                }
-                else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_BORROW_FAIL_TOO_MANY)){
-
-                }
-                else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_ADMIN_LIST_RET)){
+                if(message.getType().equals(MessageType.MESSAGE_LIBRARY_ADMIN_LIST_RET)){
                     HashSet<Book_admin>books=(HashSet<Book_admin>)message.getData();
                     Client_library.showAllBooks(books);
                 }
@@ -140,6 +131,18 @@ public class ClientToServerThread extends Thread {
                 }
                 else if(message.getType().equals(MessageType.DELETE_PRODUCT_FAILED)){
                     Client_shop.setSign_delete("3");
+                }
+                else if(message.getType().equals(MessageType.ADD_PRODUCT_SUCCEED)){
+                    Client_shop.setSign_add("2");
+                }
+                else if(message.getType().equals(MessageType.ADD_PRODUCT_FAILED)){
+                    Client_shop.setSign_add("3");
+                }
+                else if(message.getType().equals(MessageType.RENEW_STUDENT_INFO_SUCCEED)){
+                    Client_status.setSign_renew("2");
+                }
+                else if(message.getType().equals(MessageType.RENEW_STUDENT_INFO_FAILED)){
+                    Client_status.setSign_renew("3");
                 }
                 else if(message.getType().equals(MessageType.RETURN_STUDENT_INFO_SUCCEED)){
                     Student stu = ((Student) message.getData());

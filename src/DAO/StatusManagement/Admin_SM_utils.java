@@ -15,25 +15,27 @@ import java.sql.SQLException;
  */
 public class Admin_SM_utils {
 
+    //可能空格有问题
     public static boolean changeStudentInfo(String useridcard, Student s) throws SQLException {
         Connection connection= JDBC_Connector.ConnectMySQL();
-        String sql = "update students SET Student_idcard =? Student_id =? Student_pwd =? Student_name =? Student_age =? " +
-                "Student_gender =? Student_email =? Student_class =? Student_money =? Student_nation =? Student_birthday =? " +
-                "Student_native_place =? Student_major =? WHERE Student_idcard =" +useridcard;
+        String sql = "update students set Student_id= ?,Student_name= ?,Student_age= ?,Student_gender= ?,Student_email= ?,Student_class= ?,Student_nation= ?,Student_birthday= ?,Student_native_place= ?,Student_major= ?,Student_type= ?,Student_Due_graduate_date= ?,Student_Campus= ?,Student_Sclass= ?,Students_shenfenzheng= ? where Student_idcard=? ";
         PreparedStatement ps = connection.prepareStatement(sql);
-        ps.setString(1,s.getStudent_idcard());
-        ps.setString(2,s.getStudent_id());
-        ps.setString(3,s.getStudent_pwd());
-        ps.setString(4,s.getStudent_name());
-        ps.setInt(5,s.getStudent_age());
-        ps.setString(6,s.getStudent_gender());
-        ps.setString(7,s.getStudent_email());
-        ps.setString(8,s.getStudent_class());
-        ps.setDouble(9,s.getStudent_money());
-        ps.setString(10,s.getNation());
-        ps.setString(11,s.getBirthday());
-        ps.setString(12,s.getNative_place());
-        ps.setString(13,s.getMajor());
+        ps.setString(1,s.getStudent_id());
+        ps.setString(2,s.getStudent_name());
+        ps.setInt(3,s.getStudent_age());
+        ps.setString(4,s.getStudent_gender());
+        ps.setString(5,s.getStudent_email());
+        ps.setString(6,s.getStudent_class());
+        ps.setString(7,s.getNation());
+        ps.setString(8,s.getBirthday());
+        ps.setString(9,s.getNative_place());
+        ps.setString(10,s.getMajor());
+        ps.setString(11,s.getStudent_type());
+        ps.setString(12,s.getDue_graduate_date());
+        ps.setString(13,s.getCampus());
+        ps.setString(14,s.getSclass());
+        ps.setString(15,s.getID());
+        ps.setString(16,s.getStudent_idcard());
         boolean re = ps.executeUpdate()>0;
         JDBC_Connector.close(null, ps, connection);
         if(re)
