@@ -20,6 +20,7 @@ public class Client_shop {
     public static String sign_delete;             //商品是否删除成功的标志 1 正在删除  2 成功  3 失败
     public static Boolean sign_zero ;              //查找了但数据库有-1 或者没有-0
 
+    public static String sign_add;             //商品是否add成功的标志 1 正在add  2 成功  3 失败
     public static String sign_find_type;          //商品找到的标志 1 正在找  2 成功  3 失败
     public static List<Product> checkproducts;     //查找得到的商品
 
@@ -28,6 +29,9 @@ public class Client_shop {
 
     //////////////////记得每次点击按钮先reset null
 
+    public static void resetSign_add(){
+        sign_add="1";
+    }
     public static void resetSign_delete(){
         sign_find_type="1";
     }
@@ -50,6 +54,14 @@ public class Client_shop {
 
     public static void resetCheckedtypeProducts(){
         checkproductsType.clear();
+    }
+
+    public static String getSign_add() {
+        return sign_add;
+    }
+
+    public static void setSign_add(String sign_add) {
+        Client_shop.sign_add = sign_add;
     }
 
     public static String getSign_find_type() {
@@ -116,10 +128,12 @@ public class Client_shop {
         Client_shop.products = products;
     }
 
+    //刚开始登录界面就显示所有的商品
     public static List<Product> returnAllProduct() throws Exception {
         setSign(true);
         setSign_delete("1");
         setSign_find_type("1");
+        setSign_add("1");
         Message message = new Message();
         message.setType(MessageType.RETURN_ALL_PRODUCT);
         //得到Object对象
@@ -170,5 +184,19 @@ public class Client_shop {
         while (sign_find_type.equals("1")) Thread.onSpinWait();
         return checkproductsType;
     }
+
+    public static Boolean addProduct(Product p) throws Exception{
+        Message message = new Message();
+        message.setType(MessageType.ADD_PRODUCT);
+        message.setData(p);
+        //得到Object对象
+        MyObjectOutputStream oos = new MyObjectOutputStream(ManageClientToServerThread.getThread(idcard).getSocket().getOutputStream());
+        //发送学生对象
+        oos.writeObject(message);
+        //等待接受学生
+        while (sign_add.equals("1")) Thread.onSpinWait();
+        return sign_add.equals("2");
+    }
+
 
 }

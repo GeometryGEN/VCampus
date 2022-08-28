@@ -122,6 +122,11 @@ public interface MessageType {
     String ADMIN_RETURN_STUDENT_INFO_SUCCEED="101.1";   //管理员得到学籍信息成功
     String ADMIN_RETURN_STUDENT_INFO_FAILED="102.1";    //管理员得到学籍信息失败
 
+    String RENEW_STUDENT_INFO="100.11";           //RENEW学籍信息
+    String RENEW_STUDENT_INFO_SUCCEED="101.11";   //RENEW学籍信息成功
+    String RENEW_STUDENT_INFO_FAILED="102.11";    //RENEW学籍信息失败
+
+
     String RETURN_ALL_PRODUCT="106";          //请求得到所有商品
     String RETURN_ALL_PRODUCT_SUCCEED="107";  //成功
     String RETURN_ALL_PRODUCT_FAILED="108";   //失败
@@ -139,6 +144,10 @@ public interface MessageType {
     String FIND_TYPE_PRODUCT="112";             //查找商品根据分类
     String FIND_TYPE_PRODUCT_SUCCEED="113";     //成功
     String FIND_TYPE_PRODUCT_FAILED="114";      //成功且为0
+
+    String ADD_PRODUCT="115";             //add商品
+    String ADD_PRODUCT_SUCCEED="116";     //成功
+    String ADD_PRODUCT_FAILED="117";      //失败
 
 
 }

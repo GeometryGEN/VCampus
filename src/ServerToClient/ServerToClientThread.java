@@ -12,6 +12,7 @@ import DAO.QICQ.QICQ_manager;
 import DAO.Shop.Admin_Shop_utils;
 import DAO.Shop.Product;
 import DAO.Shop.buyers_Shop_utils;
+import DAO.StatusManagement.Admin_SM_utils;
 import DAO.StatusManagement.User_SM_utils;
 import User.Student;
 import message.Message;
@@ -319,7 +320,16 @@ public class ServerToClientThread extends Thread{
                         socket.close();
                     }
                 }
-
+                else if(m.getType().equals(MessageType.ADD_PRODUCT)){
+                    if(Admin_Shop_utils.addProduct((Product) m.getData())){
+                        sendback.setType(MessageType.ADD_PRODUCT_SUCCEED);
+                        oos.writeObject(sendback);
+                    } else{
+                        sendback.setType(MessageType.ADD_PRODUCT_FAILED);
+                        oos.writeObject(sendback);
+                        socket.close();
+                    }
+                }
                 //学籍管理
                 else if(m.getType().equals(MessageType.RETURN_STUDENT_INFO)){
                     System.out.println("RETURN_STUDENT_INFO: ServerToClientThread.java");
@@ -335,7 +345,6 @@ public class ServerToClientThread extends Thread{
                     }
                 }
                 else if(m.getType().equals(MessageType.ADMIN_RETURN_STUDENT_INFO)){
-                    System.out.println("ADMIN_RETURN_STUDENT_INFO: ServerToClientThread.java");
                     Student stu  = User_SM_utils.returnStudentAllInfo( m.getSender());
                     if(stu!=null){
                         sendback.setData(stu);
@@ -354,6 +363,18 @@ public class ServerToClientThread extends Thread{
                         oos.writeObject(sendback);             //将message对象回复客户端
                     } else{
                         sendback.setType(MessageType.RETURN_PHOTO_FAILED);  //失败
+                        oos.writeObject(sendback);                        //将message对象回复客户端
+                        socket.close();
+                    }
+                }
+                else if(m.getType().equals(MessageType.RENEW_STUDENT_INFO)){
+                    Student st = (Student)m.getData();
+                    Boolean stu  = Admin_SM_utils.changeStudentInfo(st.getStudent_idcard(),st);
+                    if(stu){
+                        sendback.setType(MessageType.RENEW_STUDENT_INFO_SUCCEED);
+                        oos.writeObject(sendback);             //将message对象回复客户端
+                    } else{
+                        sendback.setType(MessageType.RENEW_STUDENT_INFO_FAILED);  //登录失败
                         oos.writeObject(sendback);                        //将message对象回复客户端
                         socket.close();
                     }

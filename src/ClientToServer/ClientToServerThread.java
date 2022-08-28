@@ -108,6 +108,18 @@ public class ClientToServerThread extends Thread {
                 else if(message.getType().equals(MessageType.DELETE_PRODUCT_FAILED)){
                     Client_shop.setSign_delete("3");
                 }
+                else if(message.getType().equals(MessageType.ADD_PRODUCT_SUCCEED)){
+                    Client_shop.setSign_add("2");
+                }
+                else if(message.getType().equals(MessageType.ADD_PRODUCT_FAILED)){
+                    Client_shop.setSign_add("3");
+                }
+                else if(message.getType().equals(MessageType.RENEW_STUDENT_INFO_SUCCEED)){
+                    Client_status.setSign_renew("2");
+                }
+                else if(message.getType().equals(MessageType.RENEW_STUDENT_INFO_FAILED)){
+                    Client_status.setSign_renew("3");
+                }
                 else if(message.getType().equals(MessageType.RETURN_STUDENT_INFO_SUCCEED)){
                     Student stu = ((Student) message.getData());
                     Client_status.setS(stu);

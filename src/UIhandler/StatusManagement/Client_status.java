@@ -16,12 +16,23 @@ public class Client_status {
     public static String id_certain;           //管理员查找的那个学生id
     public static volatile Admin a;
 
+    public static String sign_renew;             //是否更新成功的标志 1 正在更新  2 成功  3 失败
+
     public static void resetS(){
         s=null;
     }
     public static void resetS_S(){
         s_s=null;
     }
+
+    public static String getSign_renew() {
+        return sign_renew;
+    }
+
+    public static void setSign_renew(String sign_renew) {
+        Client_status.sign_renew = sign_renew;
+    }
+
     public static String getId() {
         return id;
     }
@@ -75,6 +86,21 @@ public class Client_status {
         while (s == null) Thread.onSpinWait();
         return s;
     }
+
+    public static Boolean renewInfo(Student s) throws Exception {
+        setSign_renew("1");
+        Message message = new Message();
+        message.setType(MessageType.RENEW_STUDENT_INFO);
+        message.setData(s);
+        //得到Object对象
+        MyObjectOutputStream oos = new MyObjectOutputStream(ManageClientToServerThread.getThread(id).getSocket().getOutputStream());
+        //发送学生对象
+        oos.writeObject(message);
+        //等待接受学生
+        while (sign_renew.equals("1")) Thread.onSpinWait();
+        return sign_renew.equals("2");
+    }
+
 
     //记得查找另一个学生时让对象为null
     public static Student returnStatus_Admin(String idcard) throws Exception {
