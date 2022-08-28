@@ -86,6 +86,7 @@ public class LoginFrame extends JFrame{
                     if(ucs.checkStudent(username,pwd)) {
                         System.out.println(username+"登录成功！");
                         functionChoose.functionChooseUI(ucs);
+                        jf.dispose();
                     }else
                         JOptionPane.showMessageDialog(p1, "用户名或密码错误,请重试!");
                 } catch (Exception ex) {
@@ -112,6 +113,7 @@ public class LoginFrame extends JFrame{
                     if(ucs.checkTeacher(username,pwd)) {
                         System.out.println(username+"登录成功！");
                         functionChoose.functionChooseUI(ucs);
+                        jf.dispose();
                     }else
                         JOptionPane.showMessageDialog(p1, "用户名或密码错误,请重试!");
                 } catch (Exception ex) {
@@ -138,6 +140,7 @@ public class LoginFrame extends JFrame{
                     if(ucs.checkAdmin(username,pwd)) {
                         System.out.println(username+"登录成功！");
                         functionChoose.functionChooseUI(ucs);
+                        jf.dispose();
                     }else
                         JOptionPane.showMessageDialog(p1, "用户名或密码错误,请重试!");
                 } catch (Exception ex) {

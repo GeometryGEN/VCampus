@@ -34,7 +34,7 @@ public class myBook extends JPanel {
         jsp.setBounds(0,0,1280,680);
         add(jsp);
         table_want.setRowHeight(30);
-        table_want.getColumnModel().getColumn(7).setCellRenderer(new MyButtonRender());
+        table_want.getColumnModel().getColumn(7).setCellRenderer(new MyButtonRender("10010"));
         table_want.getColumnModel().getColumn(8).setCellRenderer(new MyButtonRender1());
     }
 }

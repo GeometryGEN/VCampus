@@ -47,6 +47,7 @@ public class Client_library {
 
     //管理员查看所有图书的请求和处理
     public static void RequireshowAllBooks()throws IOException{
+        AllBooks.tableDate=null;
         Message message=new Message();
         System.out.println("ok");
         message.setType(MessageType.MESSAGE_LIBRARY_ADMIN_LIST);
@@ -79,11 +80,6 @@ public class Client_library {
             ret_show_all_books[count][9]=book.getDate_expire();
             ret_show_all_books[count][10]=book.getPlace();
             count++;
-        }
-        if(AllBooks.tableDate ==null)
-        {
-            Thread.onSpinWait();
-            System.out.println("waiting...");
         }
         System.out.println("returned books");
         return ret_show_all_books;
@@ -205,6 +201,14 @@ public class Client_library {
             searchResult.searchresult[count][8]="";
             count++;
         }
+    }
+
+    public static void reqireReturn(Book_borrower rBook)throws IOException{
+        Message message=new Message();
+        message.setData(rBook);
+        message.setType(MessageType.MESSAGE_LIBRARY_RET);
+        oos.writeObject(message);
+        System.out.println("search  "+rBook);
     }
 }
 
