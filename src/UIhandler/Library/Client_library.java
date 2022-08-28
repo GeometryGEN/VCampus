@@ -20,8 +20,6 @@ public class Client_library {
     static String id;
     static Socket socket;
     static MyObjectOutputStream oos;
-    public static volatile String[][] ret_show_all_books=null;
-    public static volatile String[][] ret_my_books=null;
     public static Socket getSocket() {
         return socket;
     }
@@ -49,7 +47,6 @@ public class Client_library {
     public static void RequireshowAllBooks()throws IOException{
         AllBooks.tableDate=null;
         Message message=new Message();
-        System.out.println("ok");
         message.setType(MessageType.MESSAGE_LIBRARY_ADMIN_LIST);
         oos.writeObject(message);
     }

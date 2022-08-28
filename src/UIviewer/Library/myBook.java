@@ -32,6 +32,7 @@ public class myBook extends JPanel {
                     try {
                         String id= (String) table_want.getValueAt(table_want.getSelectedRow(),0);
                         System.out.println(id);
+                        book.setId(id);
                         Client_library.reqireReturn(book);
                     } catch (IOException ex) {
                         throw new RuntimeException(ex);
@@ -70,7 +71,7 @@ public class myBook extends JPanel {
         setLayout(null);
         String[] tableTitle = {"书籍编号","书名", "作者","出版社","国家","借出日期","应还日期","归还","续借"};
         //数据
-        DefaultTableModel dtm = new DefaultTableModel(Client_library.ret_my_books, tableTitle);
+        DefaultTableModel dtm = new DefaultTableModel(myBook, tableTitle);
         JTable table_want = new JTable(dtm){
             public boolean isCellEditable(int row, int column) {
                 return false;
