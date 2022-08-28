@@ -89,9 +89,16 @@ public class giveTicket extends JPanel {
                     p.setNotice(textField5.getText());
                     p.setStatus(0);
                     Client_library.RequireNewPunishment(p);
+                    JOptionPane.showMessageDialog(null,"罚单提交成功！");
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
+                textField1.setText("");
+                textField2.setText("");
+                textField3.setText("");
+                textField4.setText("");
+                textField5.setText("");
+
             }
         });
         //中间面板
@@ -117,8 +124,5 @@ public class giveTicket extends JPanel {
         pic1.setBounds(0,0 , 1300, 650);
         p11.add(pic1);
         add(p11);
-
-
     }
-
 }

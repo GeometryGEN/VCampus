@@ -33,7 +33,7 @@ public class ClientToServer {
     private Socket socket;
 
     public String serverIP = Message.returnIP();
-   // public String serverIP = "192.168.43.81";
+    //public String serverIP = "192.168.43.108";
 
     public String getIDcard(){
         return switch (ID) {

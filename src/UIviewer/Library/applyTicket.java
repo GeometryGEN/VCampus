@@ -4,6 +4,7 @@ import DAO.Library.Punishment;
 import UIhandler.Library.Client_library;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -79,6 +80,31 @@ public class applyTicket extends JPanel {
         pic1.setBounds(0,0 , 1300, 650);
         p11.add(pic1);
         add(p11);
+
+        //调整美化
+        table_want.setFont(new Font("宋体",Font.BOLD,16));
+        try {
+            DefaultTableCellRenderer tcr = new DefaultTableCellRenderer() {
+                @Override
+                public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                    if (column!=4) {
+                        setBackground(Color.white);
+                    }else {
+                        setBackground(new Color(60,179,113));
+                        //setForeground(new Color(255,255,255));
+                        //setFont(new Font("微软雅黑",Font.BOLD,18));
+                    }
+                    return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+                }
+            };
+
+            for (int i = 0; i < table_want.getColumnCount(); i++)
+            {
+                table_want.getColumn(table_want.getColumnName(i)).setCellRenderer(tcr);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
 }

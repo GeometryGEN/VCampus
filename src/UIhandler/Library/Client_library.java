@@ -125,8 +125,8 @@ public class Client_library {
             myBook.myBook[count][4]=book.getCountry();
             myBook.myBook[count][5]=book.getDate_borrow();
             myBook.myBook[count][6]=book.getDate_expire();
-            myBook.myBook[count][7]="     归还";
-            myBook.myBook[count][8]="     续借";
+            myBook.myBook[count][7]="        归还";
+            myBook.myBook[count][8]="        续借";
             count++;
         }
     }
@@ -153,7 +153,7 @@ public class Client_library {
             applyTicket.myPunish[count][1]=String.valueOf(punishment.getPrice());
             applyTicket.myPunish[count][2]=punishment.getBook_id();
             applyTicket.myPunish[count][3]=punishment.getNotice();
-            applyTicket.myPunish[count][4]="       缴费";
+            applyTicket.myPunish[count][4]="            缴费";
             count++;
         }
 
@@ -188,11 +188,16 @@ public class Client_library {
                 searchResult.searchresult[count][5]="可借";
             }
             else {
-                searchResult.searchresult[count][5]="借出";
+                searchResult.searchresult[count][5]="已借出";
             }
             searchResult.searchresult[count][6]=book.getDate_expire();
             searchResult.searchresult[count][7]=book.getPlace();
-            searchResult.searchresult[count][8]="      借阅";
+            if(book.getAvailable()==1) {
+                searchResult.searchresult[count][8] = "     借阅";
+            }
+            else{
+                searchResult.searchresult[count][8] = "";
+            }
             count++;
         }
     }

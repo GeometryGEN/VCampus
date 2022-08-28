@@ -15,10 +15,14 @@ public class readLib extends JFrame {
 
     static String name;
 
+    public static JButton b2=new JButton("我的借阅");
+
     static void getName(String a)
     {
         name=a;
     }
+
+
     static searchResult f4=new searchResult();
 
     public static CardLayout cardLayout=new CardLayout();
@@ -105,7 +109,7 @@ public class readLib extends JFrame {
         });
         mainLib.add(b1);
 
-        JButton b2=new JButton("我的借阅");
+
         b2.setBounds(370,100,250,50);
         b2.setFont(myfont1);
         b2.setContentAreaFilled(false);//设置按钮透明
@@ -177,4 +181,17 @@ public class readLib extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //setVisible(true);
     }
+
+public static void refreshMyBook(){
+    try {
+        Client_library.RequireMyBooks();
+        while(myBook.myBook==null) ;
+        myBook f2=new myBook();
+        panel.add(f2,"f2");
+        cardLayout.show(panel, "f2");
+    } catch (IOException ex) {
+        throw new RuntimeException(ex);
+    }
+}
+
 }
