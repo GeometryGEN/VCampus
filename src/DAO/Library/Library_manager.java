@@ -182,28 +182,28 @@ public class Library_manager implements Serializable{
         if(flag==1)
         {
             msg.setType(MessageType.MESSAGE_LIBRARY_BORROW_SUCCEED);
-            sql="update set library available = 0 where name= ?;";
+            sql="update set library available = 0 where id= ?;";
             st=conn.prepareStatement(sql);
-            st.setString(1,b.name);
+            st.setString(1,b.getId());
             st.executeUpdate();
-            sql="update set library borrow_date = ? where name= ?;";
+            sql="update set library borrow_date = ? where id= ?;";
             st=conn.prepareStatement(sql);
             st.setString(1,today.toString());
-            st.setString(2,b.name);
+            st.setString(2,b.getId());
             st.executeUpdate();
-            sql="update set library expire_date = ? where name= ?;";
+            sql="update set library expire_date = ? where id= ?;";
             st=conn.prepareStatement(sql);
             Calendar rightNow = Calendar.getInstance();
             rightNow.setTime(today);
             rightNow.add(Calendar.DAY_OF_YEAR,30);//日期加30天
             Date expire=rightNow.getTime();
             st.setString(1, myTime.dateToString(expire));
-            st.setString(2,b.name);
+            st.setString(2,b.getId());
             st.executeUpdate();
-            sql="update set library borrow_to = ? where name=?;";
+            sql="update set library borrow_to = ? where id=?;";
             st=conn.prepareStatement(sql);
             st.setString(1,ID);
-            st.setString(2,b.name);
+            st.setString(2,b.getId());
             st.executeUpdate();
         }
         return msg;

@@ -10,12 +10,12 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 public class myBook extends JPanel {
-    public volatile String[][] myBook=null;
+    public static volatile String[][] myBook=null;
     public myBook(){
         setLayout(null);
         String[] tableTitle = {"书籍编号","书名", "作者","出版社","国家","借出日期","应还日期","归还","续借"};
         //数据
-        DefaultTableModel dtm = new DefaultTableModel(Client_library.ret_my_books, tableTitle);
+        DefaultTableModel dtm = new DefaultTableModel(myBook, tableTitle);
         JTable table_want = new JTable(dtm);
         //支持滚动
         JScrollPane jsp = new JScrollPane(table_want);
@@ -23,7 +23,8 @@ public class myBook extends JPanel {
         add(jsp);
         table_want.setRowHeight(30);
         //table_want.getColumnModel().getColumn(7).setCellRenderer(new MyButtonRender());
-        table_want.getColumnModel().getColumn(8).setCellRenderer(new MyButtonRender1());
+        //table_want.getColumnModel().getColumn(8).setCellRenderer(new MyButtonRender1());
+        System.out.println("my book listed");
     }
     public void list_books(){
         setLayout(null);

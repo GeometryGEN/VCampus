@@ -67,10 +67,10 @@ public class readLib extends JFrame {
 //		将面板添加到住面板中，注意:add()方法里有两个参数，第一个是要添加的对象，第二个给这个对象所放置的卡片
 //		起个名字，后面调用显示的时候要用到这个名字
         panel.add(f1,"f1");
-        myBook f2=new myBook();
-        panel.add(f2,"f2");
-        applyTicket f3=new applyTicket();
-        panel.add(f3,"f3");
+//        myBook f2=new myBook();
+//        panel.add(f2,"f2");
+//        applyTicket f3=new applyTicket();
+ //       panel.add(f3,"f3");
         panel.add(f4,"f4");
 
         //图书馆标志与背景
@@ -123,12 +123,14 @@ public class readLib extends JFrame {
                 // TODO Auto-generated method stub
                 try {
                     Client_library.RequireMyBooks();
-                    while(Client_library.ret_my_books==null) ;
-                    f2.list_books();
+                    while(myBook.myBook==null) ;
+                    myBook f2=new myBook();
+                    panel.add(f2,"f2");
+                    cardLayout.show(panel, "f2");
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
-                cardLayout.show(panel, "f2");
+
             }
         });
         mainLib.add(b2);
@@ -146,7 +148,8 @@ public class readLib extends JFrame {
                 try {
                     Client_library.RequireMyPunishments();
                     while(applyTicket.myPunish==null) ;
-                    f3.show_ticket();
+                    applyTicket f3= new applyTicket();
+                    panel.add(f3,"f3");
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }

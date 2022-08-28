@@ -102,6 +102,7 @@ public class Client_library {
 
     //管理员新开一个罚单
     public static void RequireNewPunishment(Punishment p)throws IOException{
+        applyTicket.myPunish=null;
         Message message=new Message();
         message.setData(p);
         message.setType(MessageType.MESSAGE_LIBRARY_ADMIN_GIVE_TICKET);
@@ -110,31 +111,30 @@ public class Client_library {
 
     //用户查看自己图书
     public static void RequireMyBooks()throws IOException{
-        ret_my_books=null;
+        myBook.myBook=null;
         Message message=new Message();
         message.setType(MessageType.MESSAGE_LIBRARY_LIST_MY_BOOK);
         oos.writeObject(message);
-        System.out.println("my books:");
     }
 
     public static void showMyBooks(HashSet<Book_borrower>books) throws IOException, InterruptedException {
         int n= books.size();
-        ret_my_books=new String[n][10];
+        myBook.myBook=new String[n][10];
         System.out.println(n);
         Iterator b= books.iterator();
         int count=0;
         while(b.hasNext())
         {
             Book_borrower book=(Book_borrower) b.next();
-            ret_my_books[count][0]=book.getId();
-            ret_my_books[count][1]=book.getName();
-            ret_my_books[count][2]=book.getAuthor();
-            ret_my_books[count][3]=book.getPublisher();
-            ret_my_books[count][4]=book.getCountry();
-            ret_my_books[count][5]=book.getDate_borrow();
-            ret_my_books[count][6]=book.getDate_expire();
-            ret_my_books[count][7]="";
-            ret_my_books[count][8]="";
+            myBook.myBook[count][0]=book.getId();
+            myBook.myBook[count][1]=book.getName();
+            myBook.myBook[count][2]=book.getAuthor();
+            myBook.myBook[count][3]=book.getPublisher();
+            myBook.myBook[count][4]=book.getCountry();
+            myBook.myBook[count][5]=book.getDate_borrow();
+            myBook.myBook[count][6]=book.getDate_expire();
+            myBook.myBook[count][7]="";
+            myBook.myBook[count][8]="";
             count++;
         }
     }

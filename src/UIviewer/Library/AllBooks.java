@@ -30,8 +30,15 @@ public class AllBooks extends JPanel {
         jsp.setBounds(0,0,1280,680);
         jsp.setBackground(new Color(255, 240, 245, 180));
         add(jsp);
-        jsp.setOpaque(false);
-        jsp.getViewport().setOpaque(false);
+
+
+
+
+        //jsp.setOpaque(false);
+        //jsp.getViewport().setOpaque(false);
+
+
+
         JPanel p11=new JPanel();
         p11.setBounds(0,0,1280,650);
         JLabel pic1 = new JLabel();
