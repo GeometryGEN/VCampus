@@ -31,7 +31,10 @@ public class applyTicket extends JPanel {
                     Punishment punishment=new Punishment();
                     try {
                         String id= (String) table_want.getValueAt(table_want.getSelectedRow(),0);
+                        double p= Double.parseDouble((String)table_want.getValueAt(table_want.getSelectedRow(),1));
+                        punishment.setCustomer_iD(Client_library.getId());
                         punishment.setPunishmentID(id);
+                        punishment.setPrice(p);
                         System.out.println(id);
                         Client_library.reqirePay(punishment);
                     } catch (IOException ex) {

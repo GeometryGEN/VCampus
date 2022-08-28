@@ -59,16 +59,7 @@ public class ClientToServerThread extends Thread {
             try {
                 Message message = (Message) ois.readObject();
                 //如果服务器没有发送Message对象，线程会一直堵塞在这里
-                if(message.getType().equals(MessageType.MESSAGE_LIBRARY_BORROW_SUCCEED)){
-
-                }
-                else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_BORROW_FAIL_RETURN_FIRST)){
-
-                }
-                else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_BORROW_FAIL_TOO_MANY)){
-
-                }
-                else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_ADMIN_LIST_RET)){
+                if(message.getType().equals(MessageType.MESSAGE_LIBRARY_ADMIN_LIST_RET)){
                     HashSet<Book_admin>books=(HashSet<Book_admin>)message.getData();
                     Client_library.showAllBooks(books);
                 }

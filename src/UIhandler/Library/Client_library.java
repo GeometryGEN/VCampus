@@ -24,6 +24,10 @@ public class Client_library {
         return socket;
     }
 
+    public static String getId() {
+        return id;
+    }
+
     public static void setSocket(Socket socket) throws IOException {
         Client_library.socket = socket;
         oos=new MyObjectOutputStream(socket.getOutputStream());
@@ -33,15 +37,6 @@ public class Client_library {
         Client_library.id = id;
     }
 
-    public static void borrow() throws IOException {
-        Message message = new Message();
-        Book_borrower b;
-
-        //message.setData(b);
-        message.setType(MessageType.MESSAGE_LIBRARY_BORROW);
-        MyObjectOutputStream oos= new MyObjectOutputStream(ManageClientToServerThread.getThread(id).getSocket().getOutputStream());
-        oos.writeObject(message);
-    }
 
     //管理员查看所有图书的请求和处理
     public static void RequireshowAllBooks()throws IOException{

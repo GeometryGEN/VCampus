@@ -262,6 +262,7 @@ public class functionChoose {
                 try {
                     if(ucs.getID()=="1"||ucs.getID()=="2")
                     {
+                        Client_library.setId(ucs.getIDcard());
                         readLib.readLibUI(ucs);
                     }
                     else
