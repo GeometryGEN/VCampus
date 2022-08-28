@@ -225,19 +225,8 @@ public class Library_manager implements Serializable{
                 msg.setType(MessageType.MESSAGE_LIBRARY_RET_LATE);
             }
         }
-        sql="update library set available = 1 where id=?;";
-        st=conn.prepareStatement(sql);
-        st.setString(1,b.id);
-        st.executeUpdate();
-        sql="update library set borrow_date = null where id=?;";
-        st=conn.prepareStatement(sql);
-        st.setString(1,b.id);
-        st.executeUpdate();
-        sql="update library set expire_date = null where id=?;";
-        st=conn.prepareStatement(sql);
-        st.setString(1,b.id);
-        st.executeUpdate();
-        sql="update library set borrow_to = null where id=?;";
+        sql="update library set available = 1,borrow_date = null,expire_date = null," +
+                "borrow_to = null where id=?;";
         st=conn.prepareStatement(sql);
         st.setString(1,b.id);
         st.executeUpdate();

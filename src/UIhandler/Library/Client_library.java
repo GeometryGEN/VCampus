@@ -54,35 +54,34 @@ public class Client_library {
         oos.writeObject(message);
     }
     
-    public static String[][] showAllBooks(HashSet<Book_admin>books)throws IOException{
+    public static void showAllBooks(HashSet<Book_admin>books)throws IOException{
         int n= books.size();
         System.out.println(n);
-        ret_show_all_books=new String[n][11];
+        AllBooks.tableDate=new String[n][11];
         Iterator b= books.iterator();
         int count=0;
         while(b.hasNext())
         {
             Book_admin book=(Book_admin) b.next();
-            ret_show_all_books[count][0]=book.getID();
-            ret_show_all_books[count][1]=book.getName();
-            ret_show_all_books[count][2]=book.getAuthor();
-            ret_show_all_books[count][3]=book.getPublisher();
-            ret_show_all_books[count][4]=book.getCountry();
-            ret_show_all_books[count][5]=String.valueOf(book.getPrice());
+            AllBooks.tableDate[count][0]=book.getID();
+            AllBooks.tableDate[count][1]=book.getName();
+            AllBooks.tableDate[count][2]=book.getAuthor();
+            AllBooks.tableDate[count][3]=book.getPublisher();
+            AllBooks.tableDate[count][4]=book.getCountry();
+            AllBooks.tableDate[count][5]=String.valueOf(book.getPrice());
             if(book.getAvailable()==1) {
-                ret_show_all_books[count][6]="可借";
+                AllBooks.tableDate[count][6]="可借";
             }
             else{
-                ret_show_all_books[count][6]="借出";
+                AllBooks.tableDate[count][6]="借出";
             }
-            ret_show_all_books[count][7]=book.getDate_borrow();
-            ret_show_all_books[count][8]=book.getBorrow_to();
-            ret_show_all_books[count][9]=book.getDate_expire();
-            ret_show_all_books[count][10]=book.getPlace();
+            AllBooks.tableDate[count][7]=book.getDate_borrow();
+            AllBooks.tableDate[count][8]=book.getBorrow_to();
+            AllBooks.tableDate[count][9]=book.getDate_expire();
+            AllBooks.tableDate[count][10]=book.getPlace();
             count++;
         }
         System.out.println("returned books");
-        return ret_show_all_books;
     }
 
     //增加书籍的请求和处理

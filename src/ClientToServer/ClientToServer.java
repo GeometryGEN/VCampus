@@ -3,6 +3,7 @@ import DAO.Login.Admin_utils;
 import DAO.Login.Students_utils;
 import DAO.Login.Teachers_utils;
 import UIhandler.Library.Client_library;
+import UIhandler.QICQ.Client_qicq;
 import User.*;
 import message.Message;
 import message.MessageType;
@@ -101,6 +102,7 @@ public class ClientToServer {
             ctst.start();                                                        //启动线程
             ManageClientToServerThread.addThread(id,ctst);
             Client_library.setSocket(socket);
+            Client_qicq.setSocket(socket);
             return true;
         }
         else{
@@ -130,6 +132,7 @@ public class ClientToServer {
             //启动线程
             ctst.start();
             Client_library.setSocket(socket);
+            Client_qicq.setSocket(socket);
             ManageClientToServerThread.addThread(id,ctst);
             return true;
         }
@@ -162,6 +165,7 @@ public class ClientToServer {
             ctst.start();
             ManageClientToServerThread.addThread(id,ctst);
             Client_library.setSocket(socket);
+            Client_qicq.setSocket(socket);
             //RequireshowAllBooks();
             return true;
         }

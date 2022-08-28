@@ -5,7 +5,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.net.Socket;
 
+import UIhandler.QICQ.Client_qicq;
 import UIviewer.Library.AllBooks;
 import UIviewer.Library.readLib;
 import UIviewer.Library.adminLib;
@@ -265,7 +267,6 @@ public class functionChoose {
                     else
                     {
                         Client_library.setId(ucs.getIDcard());
-
                         Client_library.RequireshowAllBooks();
                         while (AllBooks.tableDate==null);
                         adminLib.adminLibUI(ucs);
@@ -298,8 +299,15 @@ public class functionChoose {
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
                 try {
+                    Client_qicq.setId(ucs.getIDcard());
+                    if(ucs.getID()=="1"||ucs.getID()=="2")
+                    {
 
+                    }
+                    else
+                    {
 
+                    }
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }

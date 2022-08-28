@@ -2,8 +2,10 @@ package ClientToServer;
 import DAO.Library.Book_admin;
 import DAO.Library.Book_borrower;
 import DAO.Library.Punishment;
+import DAO.QICQ.Friend;
 import DAO.Shop.Product;
 import UIhandler.Library.Client_library;
+import UIhandler.QICQ.Client_qicq;
 import UIhandler.Shop.Client_shop;
 import UIhandler.StatusManagement.Client_status;
 import UIviewer.Library.AllBooks;
@@ -21,6 +23,7 @@ import java.io.InterruptedIOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 /**
@@ -116,6 +119,16 @@ public class ClientToServerThread extends Thread {
                     Student stu = ((Student) message.getData());
                     Client_status.setS_s(stu);
                 }
+
+               //站内通信
+                if(message.getType().equals(MessageType.MESSAGE_QICQ_LIST_FRIENDS_RET)){
+                    HashMap<String,HashSet<Friend>>friends=(HashMap<String,HashSet<Friend>>)message.getData();
+                    Client_qicq.show_friend(friends);
+                }
+                else if(message.getType().equals(MessageType.MESSAGE_QICQ_RECERIVE_MESSAGE)){
+
+                }
+
             } catch (InterruptedIOException e){
                 break;
             }

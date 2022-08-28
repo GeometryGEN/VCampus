@@ -3,14 +3,30 @@ package UIhandler.QICQ;
 import ClientToServer.ManageClientToServerThread;
 import DAO.QICQ.Application;
 import DAO.QICQ.Filetrans;
+import DAO.QICQ.Friend;
 import message.Message;
 import message.MessageType;
+import utils.MyObjectInputStream;
+import utils.MyObjectOutputStream;
 import utils.myTime;
 
 import java.io.*;
+import java.net.Socket;
+import java.util.HashMap;
+import java.util.HashSet;
 
 public class Client_qicq {
-    public void send_file(String src,String sender,String getter,String filename){
+    static String id;
+    static MyObjectOutputStream oos;
+    public static void setSocket(Socket socket) throws IOException {
+        oos=new MyObjectOutputStream(socket.getOutputStream());
+    }
+
+    public static void setId(String id) {
+        Client_qicq.id = id;
+    }
+
+    public void send_file(String src, String sender, String getter, String filename){
         Message message=new Message();
         message.setSender(sender);
         message.setGetter(getter);
@@ -79,4 +95,15 @@ public class Client_qicq {
                 getSocket().getOutputStream());
         oos.writeObject(message);
     }
+    public void Require_friend_list() throws IOException {
+        Message message=new Message();
+        message.setType(MessageType.MESSAGE_QICQ_LIST_FRIENDS);
+        ObjectOutputStream oos=new ObjectOutputStream(ManageClientToServerThread.getThread(id).
+                getSocket().getOutputStream());
+        oos.writeObject(message);
+    }
+    public static void show_friend(HashMap<String, HashSet<Friend>>friend){
+
+    }
+
 }
