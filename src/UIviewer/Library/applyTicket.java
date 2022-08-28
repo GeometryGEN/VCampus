@@ -19,7 +19,7 @@ public class applyTicket extends JPanel {
         jsp.setBounds(0,0,1280,680);
         add(jsp);
         table_want.setRowHeight(30);
-        table_want.getColumnModel().getColumn(4).setCellRenderer(new MyButtonRender2());
+        //table_want.getColumnModel().getColumn(4).setCellRenderer(new MyButtonRender2());
 
         JPanel p11=new JPanel();
         p11.setBounds(0,0,1280,650);
@@ -30,6 +30,7 @@ public class applyTicket extends JPanel {
         p11.add(pic1);
         add(p11);
     }
+
     public void show_ticket(){
         setLayout(null);
 
