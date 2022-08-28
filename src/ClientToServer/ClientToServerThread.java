@@ -1,4 +1,6 @@
 package ClientToServer;
+import javax.swing.*;
+import java.awt.*;
 import DAO.Library.Book_admin;
 import DAO.Library.Book_borrower;
 import DAO.Library.Punishment;
@@ -86,6 +88,14 @@ public class ClientToServerThread extends Thread {
                     HashSet<Book_borrower> searchResult=(HashSet<Book_borrower>) message.getData();
                     Client_library.showSearchResult(searchResult);
                 }
+                else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_EXTEND_SUCCEED)){
+
+                }
+
+
+
+
+
                 //商店具体操作
                 Message send = new Message();
 
@@ -126,7 +136,7 @@ public class ClientToServerThread extends Thread {
                     Client_qicq.show_friend(friends);
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_QICQ_RECERIVE_MESSAGE)){
-
+                    JOptionPane.showMessageDialog(null,"");
                 }
 
             } catch (InterruptedIOException e){

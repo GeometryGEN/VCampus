@@ -31,6 +31,7 @@ public class myBook extends JPanel {
                     Book_borrower book=new Book_borrower();
                     try {
                         String id= (String) table_want.getValueAt(table_want.getSelectedRow(),0);
+                        book.setId(id);
                         System.out.println(id);
                         Client_library.reqireReturn(book);
                     } catch (IOException ex) {
@@ -41,6 +42,7 @@ public class myBook extends JPanel {
                     Book_borrower book=new Book_borrower();
                     try {
                         String id= (String) table_want.getValueAt(table_want.getSelectedRow(),0);
+                        book.setId(id);
                         System.out.println(id);
                         Client_library.reqireExtend(book);
                     } catch (IOException ex) {
