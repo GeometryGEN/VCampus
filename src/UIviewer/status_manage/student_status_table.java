@@ -207,12 +207,18 @@ public class student_status_table extends JPanel{
             });
         }
         else if(ucs.getID()=="1"){
-            functionChoose.back_from_status=new JButton("返回功能选择");
-            functionChoose.back_from_status.setBounds((int)(470*width_r),(int)(650*height_r),(int)(170*width_r),(int)(50*height_r));
-            functionChoose.back_from_status.setBackground(new Color(96,190,41));
-            functionChoose.back_from_status.setForeground(new Color(255,255,255));
-            functionChoose.back_from_status.setFont(new Font("微软雅黑",Font.PLAIN,(int)(22*width_r)));
-            add(functionChoose.back_from_status);
+            functionChoose.back_from_student_status =new JButton("返回功能选择");
+            functionChoose.back_from_student_status.setBounds((int)(470*width_r),(int)(650*height_r),(int)(170*width_r),(int)(50*height_r));
+            functionChoose.back_from_student_status.setBackground(new Color(96,190,41));
+            functionChoose.back_from_student_status.setForeground(new Color(255,255,255));
+            functionChoose.back_from_student_status.setFont(new Font("微软雅黑",Font.PLAIN,(int)(22*width_r)));
+            add(functionChoose.back_from_student_status);
+            functionChoose.back_from_student_status.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    functionChoose.jf.setContentPane(functionChoose.fc_panel);
+                }
+            });
         }
     }
 

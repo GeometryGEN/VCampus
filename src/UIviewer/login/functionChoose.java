@@ -11,11 +11,13 @@ import UIviewer.status_manage.manage_status;
 import UIviewer.status_manage.student_status;
 
 public class functionChoose {
-    public static JButton back_from_status;
+    public static JButton back_from_student_status;
+    public static JFrame jf;
+    public static JPanel fc_panel;
     public static void functionChooseUI(ClientToServer ucs) {
-        JFrame jf = new JFrame("functionChoose");
+        jf = new JFrame("functionChoose");
         jf.setSize(1273,784);
-        JPanel fc_panel = new JPanel();
+        fc_panel = new JPanel();
         fc_panel.setLayout(null);
         fc_panel.setBounds(0,0,1273,784);
         jf.setContentPane(fc_panel);
