@@ -95,8 +95,7 @@ public class ServerToClientThread extends Thread{
                 {
                     Book_borrower book=(Book_borrower)m.getData();
                     Library_manager lib_manager = new Library_manager(userid);
-                    sendback=lib_manager.borrow(book);
-                    oos.writeObject(sendback);
+                    oos.writeObject(lib_manager.borrow(book));
                 }
                 else if(m.getType().equals(MessageType.MESSAGE_LIBRARY_RET))
                 {

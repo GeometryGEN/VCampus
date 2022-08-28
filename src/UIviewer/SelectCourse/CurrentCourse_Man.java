@@ -2,43 +2,21 @@ package UIviewer.SelectCourse;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-public class ConsultCourse_stuInfo extends JPanel {
+public class CurrentCourse_Man extends JPanel {
 
-
-    public ConsultCourse_stuInfo()
+    public CurrentCourse_Man()
     {
         setLayout(null);
-        JPanel p11=new JPanel();
-        p11.setBounds(0,0,1273,784);
+        JPanel p18=new JPanel();
+        p18.setBounds(0,0,1273,784);
 
-        /*//小头像
-        JLabel touxiang = new JLabel();
-        ImageIcon icon = new ImageIcon("src/image/logodz.png");
-        touxiang.setIcon(icon);
-        touxiang.setBounds(20, 20, 100, 100);
-        jf.getContentPane().add(touxiang);*/
-
-        //文字
         JLabel l1 = new JLabel("  你好！");
         l1.setBounds(170, 100, 100, 75);
         Font font = new Font("楷体", Font.BOLD, 22);
         l1.setFont(font);
         //l1.setForeground(new Color(111,222,0));
         add(l1);
-
-/*
-        //左侧面板
-        JPanel p3 = new JPanel();
-        p3.setBounds(20, 150, 260, 300);
-        p3.setBackground(new Color(225,255,255, 180));
-        // p3.setBorder(new MyLineBorder(new Color(225,255,255),180,true));
-        jf.getContentPane().add(p3);
-
- */
-
 
         //信息面板
         JLabel l4 = new JLabel("      基本信息");
@@ -62,32 +40,36 @@ public class ConsultCourse_stuInfo extends JPanel {
         l3.setForeground(new Color(0, 0, 0));
         add(l3);
 
+        /*JLabel l12 = new JLabel();
+        ImageIcon icon5 = new ImageIcon("src/image/banner3.png");
+        l12.setIcon(icon5);
+        l12.setBounds(310, 70, 1000, 125);
+        add(l12);*/
 
-        JButton btnNewButton_6 = new JButton("安全返回");
-        btnNewButton_6.setBounds(680, 525, 200, 40);
-        Font myfont2 = new Font("微软雅黑", Font.PLAIN, 18);
-        btnNewButton_6.setFont(myfont2);
-        btnNewButton_6.setBackground(new Color(248, 248, 255));
-        //btnNewButton_1.setForeground(new Color(248, 248, 255));
-        btnNewButton_6.setContentAreaFilled(true);//设置按钮透明
-        //btnNewButton_6.setBorder(null);//取消边框
-
-        add(btnNewButton_6);
-
-
-        //左侧面板
         JPanel p1 = new JPanel();
         p1.setBounds(0, 0, 310, 784);
         p1.setBackground(new Color(135, 206, 250, 180));
         add(p1);
 
-
-        //文本编辑框（输入课程编号或课程名字）
-        JLabel lblNewLabel = new JLabel("查看学生选课情况:");
-        lblNewLabel.setFont(new Font("宋体", Font.BOLD, 35));
-        lblNewLabel.setBounds(400, 55, 335, 35);
+        //搜索功能
+        JLabel lblNewLabel = new JLabel("课程信息:");
+        lblNewLabel.setFont(new Font("宋体", Font.BOLD, 25));
+        lblNewLabel.setBounds(370, 115, 275, 35);
         add(lblNewLabel);
 
+        JTextField textField1 = new JTextField();
+        textField1.setFont(new Font("宋体", Font.BOLD, 18));
+        textField1.setBounds(520, 115, 375, 35);
+        add(textField1);
+        textField1.setColumns(10);
+
+        JButton btnNewButton_10 = new JButton("确认删除");
+        btnNewButton_10.setBounds(980, 115, 100, 40);
+        Font myfont9 = new Font("微软雅黑", Font.PLAIN, 12);
+        btnNewButton_10.setFont(myfont9);
+        btnNewButton_10.setBackground(new Color(248, 248, 255));
+        btnNewButton_10.setContentAreaFilled(true);//设置按钮透明
+        add(btnNewButton_10);
 
         //右下面板
         JPanel p3 = new JPanel();
@@ -102,18 +84,14 @@ public class ConsultCourse_stuInfo extends JPanel {
         p2.setBackground(new Color(245, 245, 245, 180));
         add(p2);
 
-
-
         //横向图片
         JLabel l16 = new JLabel();
-        ImageIcon icon7 = new ImageIcon("src/image/background3.jpg");
+        ImageIcon icon7 = new ImageIcon("src/image/background2.jpg");
         l16.setIcon(icon7);
         l16.setBounds(0, 0, 1273, 790);
         add(l16);
 
-        add(p11);
-
+        add(p18);
 
     }
-
 }
