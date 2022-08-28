@@ -68,7 +68,7 @@ public class ClientToServerThread extends Thread {
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_ADMIN_LIST_RET)){
                     HashSet<Book_admin>books=(HashSet<Book_admin>)message.getData();
-                    AllBooks.tableDate=Client_library.showAllBooks(books);
+                    Client_library.showAllBooks(books);
                 }
                 else if (message.getType().equals(MessageType.MESSAGE_LIBRARY_LIST_MY_BOOK_RET)) {
                     HashSet<Book_borrower>mybook=(HashSet<Book_borrower>) message.getData();

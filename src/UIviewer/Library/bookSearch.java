@@ -7,6 +7,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import static UIviewer.Library.readLib.cardLayout;
+import static UIviewer.Library.readLib.panel;
+
 public class bookSearch extends JPanel {
 
     public bookSearch(){
@@ -64,7 +67,9 @@ public class bookSearch extends JPanel {
                     String searchInfo=textField.getText();
                     Client_library.RequireSearchResult(searchInfo);
                     while(searchResult.searchresult==null);
-                    readLib.searchresult();
+                    searchResult ff=new searchResult();
+                    panel.add(ff,"ff");
+                    cardLayout.show(panel,"ff");
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }

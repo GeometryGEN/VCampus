@@ -16,7 +16,7 @@ public class searchResult extends JPanel {
 
     public static volatile String[][] searchresult=null;
     public searchResult(){
-        /*setLayout(null);
+        setLayout(null);
         String[] tableTitle = {"书籍编号","书名", "作者","出版社","国家", "是否可借","归还日期","馆藏地","借阅"};
         //数据
         DefaultTableModel dtm = new DefaultTableModel(searchresult, tableTitle);
@@ -26,7 +26,7 @@ public class searchResult extends JPanel {
         jsp.setBounds(0,0,1280,680);
         add(jsp);
         table_want.setRowHeight(30);
-        table_want.getColumnModel().getColumn(8).setCellRenderer(new MyButtonRender4());*/
+        table_want.getColumnModel().getColumn(8).setCellRenderer(new MyButtonRender4());
     }
     public void show_result(){
         setLayout(null);
