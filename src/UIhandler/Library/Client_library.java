@@ -111,6 +111,7 @@ public class Client_library {
 
     //用户查看自己图书
     public static void RequireMyBooks()throws IOException{
+        ret_my_books=null;
         Message message=new Message();
         message.setType(MessageType.MESSAGE_LIBRARY_LIST_MY_BOOK);
         oos.writeObject(message);
@@ -141,6 +142,7 @@ public class Client_library {
 
 //查看自己的罚单
     public static void RequireMyPunishments()throws IOException{
+        applyTicket.myPunish=null;
         Message message=new Message();
         message.setType(MessageType.MESSAGE_LIBRARY_LIST_MY_TICKET);
         oos.writeObject(message);
@@ -168,6 +170,7 @@ public class Client_library {
 
     //搜索书籍
     public static void RequireSearchResult(String searchInfo)throws IOException{
+        searchResult.searchresult=null;
         Message message=new Message();
         message.setData(searchInfo);
         message.setType(MessageType.MESSAGE_LIBRARY_QUERY);
@@ -177,7 +180,7 @@ public class Client_library {
 
     public static void showSearchResult(HashSet<Book_borrower>books)throws IOException{
         int n= books.size();
-    //    System.out.println(n);
+        System.out.println(n);
         searchResult.searchresult=new String[n][10];
         Iterator b= books.iterator();
         int count=0;

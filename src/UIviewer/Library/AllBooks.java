@@ -16,8 +16,7 @@ public class AllBooks extends JPanel {
 
     public static volatile String[][] tableDate=null;
     public AllBooks(){
-        setLayout(null);
-
+       setLayout(null);
         //System.out.println(tableDate[1][1]);
                 String[] tableTitle = {"书籍编号","书名", "作者","出版社","国家","价格", "是否可借","借出日期","借书人","归还日期","馆藏地"};
                 //数据
@@ -33,8 +32,6 @@ public class AllBooks extends JPanel {
                 add(jsp);
         jsp.setOpaque(false);
         jsp.getViewport().setOpaque(false);
-
-
         JPanel p11=new JPanel();
         p11.setBounds(0,0,1280,650);
         JLabel pic1 = new JLabel();
