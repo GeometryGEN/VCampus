@@ -221,7 +221,12 @@ public class Client_library {
         message.setType(MessageType.MESSAGE_LIBRARY_BORROW);
         oos.writeObject(message);
     }
-
+    public static void reqirePay(Punishment punishment)throws IOException{
+        Message message=new Message();
+        message.setData(punishment);
+        message.setType(MessageType.MESSAGE_LIBRARY_PAY);
+        oos.writeObject(message);
+    }
 }
 
 

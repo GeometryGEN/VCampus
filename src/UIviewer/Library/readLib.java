@@ -20,12 +20,6 @@ public class readLib extends JFrame {
         name=a;
     }
     static searchResult f4=new searchResult();
-    public static void searchresult() {
-        f4.show_result();
-        cardLayout.show(panel,"f4");
-    }
-
-
 
     public static CardLayout cardLayout=new CardLayout();
     public static void readLibUI(ClientToServer ucs) {
@@ -172,21 +166,6 @@ public class readLib extends JFrame {
                 }
             });
         mainLib.add(b4);
-
-
-
-
-
-
-        /*
-        JButton b5=new JButton("退出登录");
-        b5.setBounds(980,100,200,50);
-        b5.setFont(myfont1);
-        b5.setContentAreaFilled(false);//设置按钮透明
-        b5.setFocusPainted(false);
-        b5.setForeground(new Color(248, 248, 255));
-        mainLib.add(b5);
-         */
 
         //按钮面板
         JPanel p2 = new JPanel();

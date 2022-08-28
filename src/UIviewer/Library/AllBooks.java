@@ -26,7 +26,7 @@ public class AllBooks extends JPanel {
          public boolean isCellEditable(int row, int column) {
           return false;
          }
-        };;
+        };
         table_want.setRowHeight(30);
         Font myfont1 = new Font("宋体", Font.PLAIN, 14);
         table_want.setFont(myfont1);

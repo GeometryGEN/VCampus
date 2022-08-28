@@ -87,19 +87,31 @@ public class ClientToServerThread extends Thread {
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_RET_SUCCEED)){
                     JOptionPane.showMessageDialog(null,"还书成功!");
-                    System.out.println("还书成功");
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_RET_LATE)){
                     JOptionPane.showMessageDialog(null,"还书迟了，请记得按时还书!");
-                    System.out.println("还书延期");
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_EXTEND_SUCCEED)){
                     JOptionPane.showMessageDialog(null,"续借成功!");
-                    System.out.println("续借成功");
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_EXTEND_FAIL)){
                     JOptionPane.showMessageDialog(null,"续借失败!");
-                    System.out.println("续借失败");
+                }
+                else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_BORROW_SUCCEED)){
+                    JOptionPane.showMessageDialog(null,"借阅成功!");
+                    System.out.println("1111111111111");
+                }
+                else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_BORROW_FAIL_TOO_MANY)){
+                    JOptionPane.showMessageDialog(null,"个人借书超数，借书失败！");
+                }
+                else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_BORROW_FAIL_RETURN_FIRST)){
+                    JOptionPane.showMessageDialog(null,"请先归还超期图书！");
+                }
+                else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_PAY_SUCCEED)){
+                    JOptionPane.showMessageDialog(null,"缴费成功！");
+                }
+                else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_PAY_FAIL)){
+                    JOptionPane.showMessageDialog(null,"余额不足，缴费失败！");
                 }
 
 
