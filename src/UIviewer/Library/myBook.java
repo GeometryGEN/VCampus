@@ -36,7 +36,16 @@ public class myBook extends JPanel {
                     } catch (IOException ex) {
                         throw new RuntimeException(ex);
                     }
-                    System.out.println(table_want.getSelectedRow());
+                }
+                if(table_want.getSelectedColumn()==8){
+                    Book_borrower book=new Book_borrower();
+                    try {
+                        String id= (String) table_want.getValueAt(table_want.getSelectedRow(),0);
+                        System.out.println(id);
+                        Client_library.reqireExtend(book);
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
                 }
             }
 

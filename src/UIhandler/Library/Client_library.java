@@ -161,7 +161,7 @@ public class Client_library {
             applyTicket.myPunish[count][1]=String.valueOf(punishment.getPrice());
             applyTicket.myPunish[count][2]=punishment.getBook_id();
             applyTicket.myPunish[count][3]=punishment.getNotice();
-            applyTicket.myPunish[count][4]="";
+            applyTicket.myPunish[count][4]="       缴费";
             count++;
         }
 
@@ -200,7 +200,7 @@ public class Client_library {
             }
             searchResult.searchresult[count][6]=book.getDate_expire();
             searchResult.searchresult[count][7]=book.getPlace();
-            searchResult.searchresult[count][8]="";
+            searchResult.searchresult[count][8]="      借阅";
             count++;
         }
     }
