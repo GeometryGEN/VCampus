@@ -4,6 +4,8 @@ import ClientToServer.ManageClientToServerThread;
 import DAO.QICQ.Application;
 import DAO.QICQ.Filetrans;
 import DAO.QICQ.Friend;
+import UIviewer.QQ.friend_list;
+import UIviewer.QQ.friend_slice;
 import message.Message;
 import message.MessageType;
 import utils.MyObjectInputStream;
@@ -104,7 +106,9 @@ public class Client_qicq {
         oos.writeObject(message);
     }
     public static void show_friend(HashMap<String, ArrayList<Friend>>friend){
-
+        for(String tag: friend.keySet()){
+            friend_list.add(tag,friend.get(tag));
+        }
     }
 
 }
