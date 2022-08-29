@@ -231,7 +231,8 @@ public class ServerToClientThread extends Thread{
                 if(m.getType().equals(MessageType.MESSAGE_QICQ_SEND_MSG)){
                      String getter=m.getGetter();
                      if(ServerToClient.isOnline(getter)!=-1){
-                         new QICQ_manager(userid).send_online_message(m);
+                         sendback=new QICQ_manager(userid).send_online_message(m);
+                         oos.writeObject(sendback);
                      }
                      else {
                          new QICQ_manager(userid).send_offline_message(m);
@@ -240,14 +241,16 @@ public class ServerToClientThread extends Thread{
                 else if(m.getType().equals(MessageType.MESSAGE_QICQ_SEND_FILE)){
                     String getter=m.getGetter();
                     if(ServerToClient.isOnline(getter)!=-1){
-                        new QICQ_manager(userid).send_online_file(m);
+                        sendback=new QICQ_manager(userid).send_online_file(m);
+                        oos.writeObject(sendback);
                     }
                     else {
                         new QICQ_manager(userid).send_offline_file(m);
                     }
                 }
                 else if(m.getType().equals(MessageType.MESSAGE_QICQ_GET_ANNOUNCEMENT)){
-                    new QICQ_manager(userid).list_announcement();
+                    sendback=new QICQ_manager(userid).list_announcement();
+                    oos.writeObject(sendback);
                 }
                 else if(m.getType().equals(MessageType.MESSAGE_QICQ_ADD_ANNOUNCEMENT)){
                     new QICQ_manager(userid).admin_add_announcement(m);
@@ -256,16 +259,19 @@ public class ServerToClientThread extends Thread{
                     new QICQ_manager(userid).add_friend(m);
                 }
                 else if(m.getType().equals(MessageType.MESSAGE_QICQ_LIST_APPLICATION)){
-                    new QICQ_manager(userid).list_my_application();
+                    sendback=new QICQ_manager(userid).list_my_application();
+                    oos.writeObject(sendback);
                 }
                 else if(m.getType().equals(MessageType.MESSAGE_QICQ_LIST_FRIENDS)){
-                    new QICQ_manager(userid).get_friends();
+                    sendback=new QICQ_manager(userid).get_friends();
+                    oos.writeObject(sendback);
                 }
                 else if(m.getType().equals(MessageType.MESSAGE_QICQ_LIST_APPLICATION_HANDLE)){
                     new QICQ_manager(userid).list_my_application_handled();
                 }
                 else if(m.getType().equals(MessageType.MESSAGE_QICQ_GET_MESSAGE)){
-                    new QICQ_manager(userid).list_my_message_with((String)m.getData());
+                    sendback=new QICQ_manager(userid).list_my_message_with((String)m.getData());
+                    oos.writeObject(sendback);
                 }
                 else if(m.getType().equals(MessageType.MESSAGE_QICQ_ACCEPT_NEW_FRIEND)){
                     new QICQ_manager(userid).accept_new_friend((Application)m.getData());
