@@ -166,6 +166,7 @@ public class functionChoose {
                 try {
                     ucs.logout();
                     jf.dispose();
+                    LoginFrame.jf.setVisible(true);
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -273,15 +274,11 @@ public class functionChoose {
                 try {
                     if(ucs.getID()=="1")
                     {
-                        Client_library.setId(ucs.getIDcard());
-                        readLib.readLibUI(ucs);
+
                     }
                     else
                     {
-                        Client_library.setId(ucs.getIDcard());
-                        Client_library.RequireshowAllBooks();
-                        while (AllBooks.tableDate==null);
-                        adminLib.adminLibUI(ucs);
+
                     }
 
                 } catch (Exception ex) {
@@ -359,18 +356,24 @@ public class functionChoose {
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
                 try {
+                    jf.setBounds(0,0,width,height);
+                    jf.remove(fc_panel);
                     if(ucs.getID()=="1"||ucs.getID()=="2")
                     {
                         Client_library.setId(ucs.getIDcard());
-                        readLib.readLibUI(ucs);
+                        jf.setContentPane(new readLib(ucs));
+                        jf.setTitle("readLib");
                     }
                     else
                     {
                         Client_library.setId(ucs.getIDcard());
                         Client_library.RequireshowAllBooks();
                         while (AllBooks.tableDate==null);
-                        adminLib.adminLibUI(ucs);
+                        jf.setContentPane(new adminLib(ucs));
+                        jf.setTitle("adminLib");
                     }
+                    jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                    jf.setVisible(true);
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -464,5 +467,4 @@ public class functionChoose {
         jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         jf.setVisible(true);
     }
-
 }
