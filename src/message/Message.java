@@ -20,8 +20,17 @@ public class Message implements Serializable {
     private int code;         // 状态码
     private Object data;      // 数据
 
+    private double money;    //钱
     public static String returnIP(){
         return getIP.getHostIp();
+    }
+
+    public double getMoney() {
+        return money;
+    }
+
+    public void setMoney(double money) {
+        this.money = money;
     }
 
     public String getSender() {

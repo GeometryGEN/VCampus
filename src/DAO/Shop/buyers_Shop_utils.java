@@ -53,6 +53,20 @@ public class buyers_Shop_utils {
         return s;
     }
 
+    public static String getBuyedNum(String idcard) throws SQLException {
+        Connection connection= JDBC_Connector.ConnectMySQL();    //连接数据库
+        String sql="select * from buyedproducted where Stu_Tea_id=?";
+        PreparedStatement ps = connection.prepareStatement(sql);
+        ps.setString(1, idcard);
+        ResultSet rs = ps.executeQuery();
+        String s = null;
+        if (rs.next()) {
+            s=rs.getString("buyedproductedNum");
+        }
+        JDBC_Connector.close(rs, ps, connection);
+        return s;
+    }
+
     public static String getReadytoBuy(String idcard) throws SQLException {
         Connection connection= JDBC_Connector.ConnectMySQL();    //连接数据库
         String sql="select * from buyedproducted where Stu_Tea_id=?";
@@ -66,6 +80,21 @@ public class buyers_Shop_utils {
         JDBC_Connector.close(rs, ps, connection);
         return s;
     }
+
+    public static String getReadytoBuyNum(String idcard) throws SQLException {
+        Connection connection= JDBC_Connector.ConnectMySQL();    //连接数据库
+        String sql="select * from buyedproducted where Stu_Tea_id=?";
+        PreparedStatement ps = connection.prepareStatement(sql);
+        ps.setString(1, idcard);
+        ResultSet rs = ps.executeQuery();
+        String s = null;
+        if (rs.next()) {
+            s=rs.getString("readytoBuyProductsNum");
+        }
+        JDBC_Connector.close(rs, ps, connection);
+        return s;
+    }
+
 
     public static List<Product> returnAllProduct() throws SQLException {
         List<Product> list = new ArrayList<>();
@@ -134,12 +163,83 @@ public class buyers_Shop_utils {
         return temp;
     }
 
+    //更新用户余额，更新商品num,更新物品ready buy
+    public static Boolean buyCertainProduct(String idcard, int id,int num, double money) throws SQLException {
+        Connection connection= JDBC_Connector.ConnectMySQL();    //连接数据库
+        String sql = "update students set Student_money= ? where Student_idcard=? ";
+        PreparedStatement ps = connection.prepareStatement(sql);
+        ps.setDouble(1,money);
+        ps.setString(2,idcard);
+        boolean re = ps.executeUpdate()>0;
+        if(re){
+            sql="update products set Product_currentNumbers= ? where Product_id=? ";
+            ps = connection.prepareStatement(sql);
+            ps.setInt(1, num);
+            ps.setInt(2, id);
+            re = ps.executeUpdate()>0;
+            if (re) {
+                sql="select * from buyedproducted where Stu_Tea_id=?";
+                ps = connection.prepareStatement(sql);
+                ps.setString(1, idcard);
+                ResultSet rs = ps.executeQuery();
+                String s1=null;
+                String s2=null;
+                if (rs.next()) {
+                    s1=rs.getString("buyedProducted");
+                    s2=rs.getString("buyedproductedNum");
+                }
+                sql="update buyedproducted set buyedProducted= ?, buyedproductedNum= ? where Stu_Tea_id=? ";
+                ps = connection.prepareStatement(sql);
+                ps.setString(1,s1+"@"+id );
+                ps.setString(2, s2+"@"+num);
+                ps.setString(3, idcard);
+                re = ps.executeUpdate()>0;
+                if(re){
+                    JDBC_Connector.close(null, ps, connection);
+                    return true;
+                }
+            }else {
+                JDBC_Connector.close(null, ps, connection);
+                return false;
+            }
+        }
+        JDBC_Connector.close(null, ps, connection);
+        return false;
+    }
+
+    public static Boolean addToShopCar(String idcard, int id,int num) throws SQLException {
+        Connection connection= JDBC_Connector.ConnectMySQL();    //连接数据库
+        String sql="select * from buyedproducted where Stu_Tea_id=?";
+        PreparedStatement ps = connection.prepareStatement(sql);
+        ps.setString(1, idcard);
+        ResultSet rs = ps.executeQuery();
+        String s1=null;
+        String s2=null;
+        if (rs.next()) {
+            s1=rs.getString("readytoBuyProducts");
+            s2=rs.getString("readytoBuyProductsNum");
+        }
+        sql="update buyedproducted set readytoBuyProducts= ?, readytoBuyProductsNum= ? where Stu_Tea_id=? ";
+        ps = connection.prepareStatement(sql);
+        ps.setString(1,s1+"#"+id );
+        ps.setString(2, s2+"#"+num);
+        ps.setString(3, idcard);
+        Boolean re = ps.executeUpdate()>0;
+        if(re){
+            JDBC_Connector.close(rs, ps, connection);
+            return true;
+        }
+        else {
+            JDBC_Connector.close(rs, ps, connection);
+            return false;
+        }
+    }
 
 //    public static void main(String[] args) throws Exception {
-//        if(checkCertainProduct(111)!=null)
-//            System.out.println(checkCertainProduct(1).getProduct_name());
-//        else
-//            System.out.println("checkCertainProduct(1).getProduct_name()");
+////        if(checkCertainProduct(111)!=null)
+//            System.out.println(addToShopCar("09020201",1,2));
+////        else
+////            System.out.println("checkCertainProduct(1).getProduct_name()");
 ////        List<Product> list = findTypeProduct("饮料");
 ////        for (int i = 0; i < list.size(); i++) {
 ////            System.out.println(list.get(i).getProduct_name());
