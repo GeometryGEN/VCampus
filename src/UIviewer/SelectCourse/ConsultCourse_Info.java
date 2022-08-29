@@ -76,7 +76,7 @@ public class ConsultCourse_Info extends JPanel {
         DefaultTableModel dtm=new DefaultTableModel(search_result,tableTitle);
         JTable table_want=new JTable(dtm);
         JScrollPane jsp=new JScrollPane(table_want);
-        jsp.setBounds(0,0,1280,680);
+        jsp.setBounds(0,0,1280,240);
         add(jsp);
         table_want.setRowHeight(40);
         //add(table_want);
@@ -90,21 +90,21 @@ public class ConsultCourse_Info extends JPanel {
 
         //查询按钮
         JButton btnNewButton_9 = new JButton("查询");
-        btnNewButton_9.setBounds(900, 335, 150, 60);
+        btnNewButton_9.setBounds(920, 495, 150, 40);
         Font myfont = new Font("微软雅黑", Font.BOLD, 20);
         btnNewButton_9.setFont(myfont);
-        btnNewButton_9.setBackground(new Color(0, 220, 220));
+        btnNewButton_9.setBackground(new Color(220, 220, 220));
         add(btnNewButton_9);
 
         //文本编辑框（输入课程编号或课程名字）
         JLabel lblNewLabel = new JLabel("课程信息:");
         lblNewLabel.setFont(new Font("宋体", Font.BOLD, 35));
-        lblNewLabel.setBounds(400, 135, 275, 35);
+        lblNewLabel.setBounds(300, 495, 275, 35);
         add(lblNewLabel);
 
         JTextField textField = new JTextField();
         textField.setFont(new Font("宋体", Font.BOLD, 25));
-        textField.setBounds(595, 135, 275, 35);
+        textField.setBounds(495, 495, 325, 35);
         add(textField);
         textField.setColumns(10);
         //五个按钮
