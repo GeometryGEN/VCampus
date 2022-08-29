@@ -66,10 +66,6 @@ public class bookSearch extends JPanel {
                 try {
                     String searchInfo=textField.getText();
                     Client_library.RequireSearchResult(searchInfo);
-                    while(searchResult.searchresult==null);
-                    searchResult ff=new searchResult();
-                    panel.add(ff,"ff");
-                    cardLayout.show(panel,"ff");
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }

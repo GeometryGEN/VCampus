@@ -11,14 +11,19 @@ import utils.MyObjectOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import utils.MyObjectInputStream;
 import utils.MyObjectOutputStream;
 
+import static UIviewer.Library.readLib.cardLayout;
+import static UIviewer.Library.readLib.panel;
+
 public class Client_library {
     static String id;
     static Socket socket;
+    public static String lastsearch;
     static MyObjectOutputStream oos;
     public static Socket getSocket() {
         return socket;
@@ -46,32 +51,29 @@ public class Client_library {
         oos.writeObject(message);
     }
     
-    public static void showAllBooks(HashSet<Book_admin>books)throws IOException{
+    public static void showAllBooks(ArrayList<Book_admin>books)throws IOException{
         int n= books.size();
         System.out.println(n);
         AllBooks.tableDate=new String[n][11];
-        Iterator b= books.iterator();
-        int count=0;
-        while(b.hasNext())
+        for(int i=0;i<n;i++)
         {
-            Book_admin book=(Book_admin) b.next();
-            AllBooks.tableDate[count][0]=book.getID();
-            AllBooks.tableDate[count][1]=book.getName();
-            AllBooks.tableDate[count][2]=book.getAuthor();
-            AllBooks.tableDate[count][3]=book.getPublisher();
-            AllBooks.tableDate[count][4]=book.getCountry();
-            AllBooks.tableDate[count][5]=String.valueOf(book.getPrice());
+            Book_admin book=(Book_admin) books.get(i);
+            AllBooks.tableDate[i][0]=book.getID();
+            AllBooks.tableDate[i][1]=book.getName();
+            AllBooks.tableDate[i][2]=book.getAuthor();
+            AllBooks.tableDate[i][3]=book.getPublisher();
+            AllBooks.tableDate[i][4]=book.getCountry();
+            AllBooks.tableDate[i][5]=String.valueOf(book.getPrice());
             if(book.getAvailable()==1) {
-                AllBooks.tableDate[count][6]="可借";
+                AllBooks.tableDate[i][6]="可借";
             }
             else{
-                AllBooks.tableDate[count][6]="借出";
+                AllBooks.tableDate[i][6]="借出";
             }
-            AllBooks.tableDate[count][7]=book.getDate_borrow();
-            AllBooks.tableDate[count][8]=book.getBorrow_to();
-            AllBooks.tableDate[count][9]=book.getDate_expire();
-            AllBooks.tableDate[count][10]=book.getPlace();
-            count++;
+            AllBooks.tableDate[i][7]=book.getDate_borrow();
+            AllBooks.tableDate[i][8]=book.getBorrow_to();
+            AllBooks.tableDate[i][9]=book.getDate_expire();
+            AllBooks.tableDate[i][10]=book.getPlace();
         }
         System.out.println("returned books");
     }
@@ -109,26 +111,26 @@ public class Client_library {
         oos.writeObject(message);
     }
 
-    public static void showMyBooks(HashSet<Book_borrower>books) throws IOException, InterruptedException {
+    public static void showMyBooks(ArrayList<Book_borrower>books) throws IOException, InterruptedException {
         int n= books.size();
         myBook.myBook=new String[n][10];
         System.out.println(n);
-        Iterator b= books.iterator();
-        int count=0;
-        while(b.hasNext())
+       for(int i=0;i<n;i++)
         {
-            Book_borrower book=(Book_borrower) b.next();
-            myBook.myBook[count][0]=book.getId();
-            myBook.myBook[count][1]=book.getName();
-            myBook.myBook[count][2]=book.getAuthor();
-            myBook.myBook[count][3]=book.getPublisher();
-            myBook.myBook[count][4]=book.getCountry();
-            myBook.myBook[count][5]=book.getDate_borrow();
-            myBook.myBook[count][6]=book.getDate_expire();
-            myBook.myBook[count][7]="        归还";
-            myBook.myBook[count][8]="        续借";
-            count++;
+            Book_borrower book=(Book_borrower) books.get(i);
+            myBook.myBook[i][0]=book.getId();
+            myBook.myBook[i][1]=book.getName();
+            myBook.myBook[i][2]=book.getAuthor();
+            myBook.myBook[i][3]=book.getPublisher();
+            myBook.myBook[i][4]=book.getCountry();
+            myBook.myBook[i][5]=book.getDate_borrow();
+            myBook.myBook[i][6]=book.getDate_expire();
+            myBook.myBook[i][7]="        归还";
+            myBook.myBook[i][8]="        续借";
         }
+        myBook f2=new myBook();
+        panel.add(f2,"f2");
+        cardLayout.show(panel, "f2");
     }
 
 //查看自己的罚单
@@ -140,27 +142,27 @@ public class Client_library {
     }
 
 
-    public static void showMyPunishments(HashSet<Punishment>myPunishments)throws IOException{
+    public static void showMyPunishments(ArrayList<Punishment>myPunishments)throws IOException{
         int n= myPunishments.size();
         System.out.println(n);
         applyTicket.myPunish=new String[n][5];
-        Iterator b= myPunishments.iterator();
-        int count=0;
-        while(b.hasNext())
+        for(int i=0;i<n;i++)
         {
-            Punishment punishment=(Punishment) b.next();
-            applyTicket.myPunish[count][0]=punishment.getPunishmentID();
-            applyTicket.myPunish[count][1]=String.valueOf(punishment.getPrice());
-            applyTicket.myPunish[count][2]=punishment.getBook_id();
-            applyTicket.myPunish[count][3]=punishment.getNotice();
-            applyTicket.myPunish[count][4]="            缴费";
-            count++;
+            Punishment punishment=myPunishments.get(i);
+            applyTicket.myPunish[i][0]=punishment.getPunishmentID();
+            applyTicket.myPunish[i][1]=String.valueOf(punishment.getPrice());
+            applyTicket.myPunish[i][2]=punishment.getBook_id();
+            applyTicket.myPunish[i][3]=punishment.getNotice();
+            applyTicket.myPunish[i][4]="            缴费";
         }
-
+        applyTicket f3= new applyTicket();
+        panel.add(f3,"f3");
+        cardLayout.show(panel, "f3");
     }
 
     //搜索书籍
     public static void RequireSearchResult(String searchInfo)throws IOException{
+        lastsearch=searchInfo;
         searchResult.searchresult=null;
         Message message=new Message();
         message.setData(searchInfo);
@@ -169,7 +171,7 @@ public class Client_library {
         System.out.println("search  "+searchInfo);
     }
 
-    public static void showSearchResult(HashSet<Book_borrower>books)throws IOException{
+    public static void showSearchResult(ArrayList<Book_borrower> books)throws IOException{
         int n= books.size();
         System.out.println(n);
         searchResult.searchresult=new String[n][9];
@@ -200,6 +202,10 @@ public class Client_library {
             }
             count++;
         }
+        while(searchResult.searchresult==null);
+        searchResult search=new searchResult();
+        panel.add(search,"search");
+        cardLayout.show(panel,"search");
     }
 
     public static void reqireReturn(Book_borrower rBook)throws IOException{

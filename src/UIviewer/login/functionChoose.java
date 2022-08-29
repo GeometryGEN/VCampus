@@ -6,6 +6,8 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.net.Socket;
+import UIviewer.Shopping.shoppinghall;
+import UIviewer.Shopping.shop;
 
 import UIhandler.QICQ.Client_qicq;
 import UIviewer.Library.AllBooks;
@@ -202,7 +204,18 @@ public class functionChoose {
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
                 try {
-
+                    if(ucs.getID()=="1")
+                    {
+                        Client_library.setId(ucs.getIDcard());
+                        readLib.readLibUI(ucs);
+                    }
+                    else
+                    {
+                        Client_library.setId(ucs.getIDcard());
+                        Client_library.RequireshowAllBooks();
+                        while (AllBooks.tableDate==null);
+                        adminLib.adminLibUI(ucs);
+                    }
 
                 } catch (Exception ex) {
                     ex.printStackTrace();
@@ -230,8 +243,7 @@ public class functionChoose {
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
                 try {
-
-
+                    shoppinghall.shoppingUI(ucs);
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
