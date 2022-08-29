@@ -411,27 +411,11 @@ public class functionChoose {
                     Client_qicq.setId(ucs.getIDcard());
                     if(ucs.getID()=="1"||ucs.getID()=="2")
                     {
-
-                        JFrame frame = new JFrame("SEU QQ");
-                        Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
-                        int width=(int ) screensize.getWidth(); //得到宽度
-                        int height=(int ) screensize.getHeight();//获得高度
-                        frame.setBounds(0,0,width,height);
-                        frame.setContentPane(new main_panel(ucs,width,height));
-                        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                        frame.setVisible(true);
+                        jf.setContentPane(new main_panel(ucs,width,height));
                     }
                     else
                     {
-
-                        JFrame frame = new JFrame("SEU QQ");
-                        Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
-                        int width=(int ) screensize.getWidth(); //得到宽度
-                        int height=(int ) screensize.getHeight();//获得高度
-                        frame.setBounds(0,0,width,height);
-                        frame.setContentPane(new main_panel(ucs,width,height));
-                        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                        frame.setVisible(true);
+                        jf.setContentPane(new main_panel(ucs,width,height));
                     }
                 } catch (Exception ex) {
                     ex.printStackTrace();

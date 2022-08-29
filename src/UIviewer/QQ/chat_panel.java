@@ -31,6 +31,22 @@ public class chat_panel extends JPanel {
         send_button.setForeground(new Color(255,255,255));
         send_button.setBounds((int)((width-send_button_width-1)*width_r),(int)((height/4-send_button_height-30)*height_r),(int)(send_button_width*width_r),(int)(send_button_height*height_r));
         type_panel.add(send_button);
+        //关闭该聊天框按钮
+        JButton close_button= new JButton();
+        int close_button_height=70;
+        int close_button_width=140;
+        close_button.setBackground(new Color(211,10,11));
+        close_button.setFont(new Font("宋体",Font.PLAIN,(int)(25*width_r)));
+        close_button.setText("关闭");
+        close_button.setForeground(new Color(255,255,255));
+        close_button.setBounds((int)((width-2*send_button_width-1.5)*width_r),(int)((height/4-send_button_height-30)*height_r),(int)(send_button_width*width_r),(int)(send_button_height*height_r));
+        type_panel.add(close_button);
+        close_button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+            }
+        });
         //输入消息框
         JTextArea type_field=new JTextArea();
         type_field.setBounds(0,0,(int)(width*width_r),(int)((height/4-1)*height_r));

@@ -2,8 +2,13 @@ package UIviewer.QQ;
 
 import DAO.QICQ.Friend;
 import UIhandler.QICQ.Client_qicq;
+import UIhandler.StatusManagement.Client_status;
+import UIviewer.login.functionChoose;
+import UIviewer.status_manage.RoundJButton;
 
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -22,7 +27,7 @@ public class friend_list extends JPanel{
     private static Friend[] friendList= new Friend[50];
     private static String[] tagList= new String[50];
     private static int count=1;
-    private void update(){//更新UI界面；
+    public void update(){//更新UI界面；
         this.updateUI();
     }
     public static void add(String tag, ArrayList<Friend> arrayList){
@@ -30,24 +35,29 @@ public class friend_list extends JPanel{
         int num=arrayList.size();
         roll_panel.add(tag1);
         friend_slice[] slice= new friend_slice[10];
+        System.out.println(num);
         for(int i=0;i<num;i++){
             friendList[count]=arrayList.get(i);
             tagList[count]=tag;
             count++;
             slice[i]=new friend_slice(width-1,height/number_per_page,width_r,height_r,arrayList.get(i).getName());
+            System.out.println(i);
+                System.out.println(arrayList.get(i).getName());
             roll_panel.add(slice[i]);
+            roll_panel.updateUI();
         }
-        int clickF=0;
         tag1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent e) {
                 if(slice[0].isVisible()==true) {
                     for (int i = 0; i < num; i++) {
                         slice[i].setVisible(false);
+                        roll_panel.updateUI();
                     }
                 }
                 else{
                     for (int i = 0; i < num; i++) {
                         slice[i].setVisible(true);
+                        roll_panel.updateUI();
                     }
                 }
             }
@@ -55,28 +65,10 @@ public class friend_list extends JPanel{
 
     }
 
-    private void clickBlack2(JLabel []jb){//点击标签，将后面的标签全部设为不可视；x
-        for(int i=1;i<jb.length;i++){
-            try{
-                jb[i].setVisible(false);
-            }catch(Exception e){
-                e.printStackTrace();
-            }
-        }
-        update();
-    }
-    private void clickBlack(JLabel []jb){//点击标签，将后面的标签全部设为可视；
-        for(int i=1;i<jb.length;i++){
-            try{
-                jb[i].setVisible(true);
-            }catch(Exception e){
-                e.printStackTrace();
-            }
-
-        }
-        update();
-    }
    friend_list(/*ClientToServer ucs,*/int width, int height,double width_r,double height_r,int x,int y){
+
+
+
         this.width=width;
         this.height=height;
         this.width_r=width_r;
@@ -89,25 +81,6 @@ public class friend_list extends JPanel{
         roll_panel.setBackground(new Color(255,255,255));
         roll_panel.setSize((int)(width*width_r),(int)((height-200)*height_r));
         roll_panel.setLayout(new BoxLayout(roll_panel, BoxLayout.Y_AXIS));
-        //好友列表
-//        JLabel friend1=new friend_slice(width-1,height/number_per_page,width_r,height_r);
-//        roll_panel.add(Box.createVerticalStrut((int)(10*width_r)));
-//        roll_panel.add(friend1);
-//        JLabel friend2=new friend_slice(width-1,height/number_per_page,width_r,height_r);
-//        roll_panel.add(Box.createVerticalStrut((int)(10*width_r)));
-//        roll_panel.add(friend2);
-//        JLabel friend3=new friend_slice(width-1,height/number_per_page,width_r,height_r);
-//        roll_panel.add(Box.createVerticalStrut((int)(10*width_r)));
-//        roll_panel.add(friend3);
-//       JLabel friend4=new friend_slice(width-1,height/number_per_page,width_r,height_r);
-//       roll_panel.add(Box.createVerticalStrut((int)(10*width_r)));
-//       roll_panel.add(friend4);
-//       JLabel friend5=new friend_slice(width-1,height/number_per_page,width_r,height_r);
-//       roll_panel.add(Box.createVerticalStrut((int)(10*width_r)));
-//       roll_panel.add(friend5);
-//       JLabel friend6=new friend_slice(width-1,height/number_per_page,width_r,height_r);
-//       roll_panel.add(Box.createVerticalStrut((int)(10*width_r)));
-//       roll_panel.add(friend6);
        try {
            Client_qicq.Require_friend_list();
        } catch (IOException e) {
