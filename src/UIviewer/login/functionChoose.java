@@ -173,7 +173,7 @@ public class functionChoose {
         //横向图片
         JLabel l12 = new JLabel();
         ImageIcon icon5 = new ImageIcon("src/image/banner3.png");
-        int icon5_width= 1000;
+        int icon5_width= 1020;
         int icon5_height=125;
         try {
             Thumbnails.of(new File("src/image/banner3.png"))
@@ -183,7 +183,7 @@ public class functionChoose {
             throw new RuntimeException(e);
         }
         l12.setIcon(new ImageIcon("src/image/banner3_min.png"));
-        l12.setBounds((int) (310*width_r), (int) (70*height_r), (int) (1000*width_r), (int) (125*height_r));
+        l12.setBounds((int) (310*width_r), (int) (70*height_r), (int) (1020*width_r), (int) (125*height_r));
         fc_panel.add(l12);
 
         //文字
