@@ -1,6 +1,7 @@
 package UIhandler.Shop;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import ClientToServer.ManageClientToServerThread;
 import DAO.Shop.Product;
@@ -18,7 +19,13 @@ public class Client_shop {
 
     public static String Buyed;          //商品 1 正在找  2 成功  3 失败
 
+    public static String Now_Buy_product;  //商品 1 正在找  2 成功  3 失败
+
+    public static String sign_Now_Buy_money_enough;  //商品 1 正在找  2 成功  3 失败
+    public static String Buyed_num;      //商品 1 正在找  2 成功  3 失败
     public static String ReadyToBuy;          //商品 1 正在找  2 成功  3 失败
+
+    public static String ReadyToBuy_num;      //商品 1 正在找  2 成功  3 失败
     public static List<Product> products;          //存放所有商品
 
     public static Product CertainProducts;          //存放特定商品
@@ -44,6 +51,20 @@ public class Client_shop {
     }
     public static void resetSign_delete(){
         sign_find_type="1";
+    }
+
+    public static void resetNow_Buy_money_enough(){
+        sign_Now_Buy_money_enough="1";
+    }
+    public static void resetNowBuyProduct(){
+        Now_Buy_product="1";
+    }
+    public static void resetBuyedNum(){
+        Buyed_num="1";
+    }
+
+    public static void resetReadyToBuyNum(){
+        ReadyToBuy_num="1";
     }
 
     public static void resetSign_find_tpye(){
@@ -83,6 +104,38 @@ public class Client_shop {
 
     public static void setCertainProducts(Product certainProducts) {
         CertainProducts = certainProducts;
+    }
+
+    public static String getBuyed_num() {
+        return Buyed_num;
+    }
+
+    public static void setBuyed_num(String buyed_num) {
+        Buyed_num = buyed_num;
+    }
+
+    public static String getSign_Now_Buy_money_enough() {
+        return sign_Now_Buy_money_enough;
+    }
+
+    public static void setSign_Now_Buy_money_enough(String sign_Now_Buy_money_enough) {
+        Client_shop.sign_Now_Buy_money_enough = sign_Now_Buy_money_enough;
+    }
+
+    public static String getReadyToBuy_num() {
+        return ReadyToBuy_num;
+    }
+
+    public static void setReadyToBuy_num(String readyToBuy_num) {
+        ReadyToBuy_num = readyToBuy_num;
+    }
+
+    public static String getNow_Buy_product() {
+        return Now_Buy_product;
+    }
+
+    public static void setNow_Buy_product(String now_Buy_product) {
+        Now_Buy_product = now_Buy_product;
     }
 
     public static String getSign_Certain() {
@@ -271,10 +324,43 @@ public class Client_shop {
         return sign_add.equals("2");
     }
 
+    //购买商品  ui里先进行判断够不够，余额够不够，这里只更改信息 money为修改之后的钱, num为当前数量，修改后的!!!!!
+    public static Boolean buyProduct(String user_idcard, String id, int num, double money) throws Exception {
+        Message message = new Message();
+        message.setType(MessageType.BUY_CERTAIN_PRODUCT);
+        message.setGetter(user_idcard); //用户id
+        message.setSender(id);  //商品id
+        message.setCode(num);   //商品数量
+        message.setMoney(money); //商品总价格
+        //得到Object对象
+        MyObjectOutputStream oos = new MyObjectOutputStream(ManageClientToServerThread.getThread(idcard).getSocket().getOutputStream());
+        //发送学生对象
+        oos.writeObject(message);
+        //等待接受学生
+        while (Now_Buy_product.equals("1")) Thread.onSpinWait();
+
+        return Now_Buy_product.equals("2");
+    }
+
+
     public static String checkBuyed(String idcard) throws IOException {
         resetBuyed();
         Message message = new Message();
         message.setType(MessageType.CHECK_BUYED_PRODUCT);
+        message.setSender(idcard);
+        //得到Object对象
+        MyObjectOutputStream oos = new MyObjectOutputStream(ManageClientToServerThread.getThread(idcard).getSocket().getOutputStream());
+        //发送学生对象
+        oos.writeObject(message);
+        //等待接受学生
+        while (Buyed.equals("1")) Thread.onSpinWait();
+        return Buyed;
+    }
+
+    public static String checkBuyedNum(String idcard) throws IOException {
+        resetBuyed();
+        Message message = new Message();
+        message.setType(MessageType.CHECK_BUYED_PRODUCT_NUM);
         message.setSender(idcard);
         //得到Object对象
         MyObjectOutputStream oos = new MyObjectOutputStream(ManageClientToServerThread.getThread(idcard).getSocket().getOutputStream());
@@ -299,20 +385,20 @@ public class Client_shop {
         return ReadyToBuy;
     }
 
-    //List可能为空
-
-    /*
-    public static List<Product> get_ReadyToBuy_Info(String info){
-
+    public static String readyToBuyNum(String idcard) throws IOException {
+        resetReadyToBuyNum();
+        Message message = new Message();
+        message.setType(MessageType.CHECK_READYTOBUY_PRODUCT_NUM);
+        message.setSender(idcard);
+        //得到Object对象
+        MyObjectOutputStream oos = new MyObjectOutputStream(ManageClientToServerThread.getThread(idcard).getSocket().getOutputStream());
+        //发送学生对象
+        oos.writeObject(message);
+        //等待接受学生
+        while (ReadyToBuy.equals("1")) Thread.onSpinWait();
+        return ReadyToBuy;
     }
-    public static int get_ReadyToBuy_Info_number(String info){
 
-    }
-    public static List<Product> get_Buyed_Info(String info){
 
-    }
-    public static int get_Buyed_Info_number(String info){
 
-    }
-     */
 }

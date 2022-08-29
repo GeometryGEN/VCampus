@@ -13,8 +13,6 @@ import java.io.IOException;
 public class myBook extends JPanel {
     public static volatile String[][] myBook=null;
 
-
-
     public myBook(){
         setLayout(null);
         String[] tableTitle = {"书籍编号","书名", "作者","出版社","国家","借出日期","应还日期","归还","续借"};
@@ -58,6 +56,7 @@ public class myBook extends JPanel {
             @Override
             public void mousePressed(MouseEvent e) {
 
+
             }
 
             @Override
@@ -67,7 +66,28 @@ public class myBook extends JPanel {
 
             @Override
             public void mouseEntered(MouseEvent e) {
+                try {
+                    DefaultTableCellRenderer tcr = new DefaultTableCellRenderer() {
+                        @Override
+                        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                            if (column!=8&&column!=7) {
+                                setBackground(Color.white);
+                            }else {
+                                setBackground(new Color(255,255,255));
+                                //setForeground(new Color(255,255,255));
+                                //setFont(new Font("微软雅黑",Font.BOLD,18));
+                            }
+                            return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+                        }
+                    };
 
+                    for (int i = 0; i < table_want.getColumnCount(); i++)
+                    {
+                        table_want.getColumn(table_want.getColumnName(i)).setCellRenderer(tcr);
+                    }
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
             }
 
             @Override
