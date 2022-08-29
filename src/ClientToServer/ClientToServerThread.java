@@ -77,7 +77,7 @@ public class ClientToServerThread extends Thread {
                     Client_library.showSearchResult(searchResult);
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_RET_SUCCEED)){
-                    //JOptionPane.showMessageDialog(null,"还书成功!");
+                    JOptionPane.showMessageDialog(null,"还书成功!");
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_RET_LATE)){
                     JOptionPane.showMessageDialog(null,"还书迟了，请记得按时还书!");
