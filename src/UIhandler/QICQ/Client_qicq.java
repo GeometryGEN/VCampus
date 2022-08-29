@@ -12,6 +12,7 @@ import utils.myTime;
 
 import java.io.*;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -102,7 +103,7 @@ public class Client_qicq {
                 getSocket().getOutputStream());
         oos.writeObject(message);
     }
-    public static void show_friend(HashMap<String, HashSet<Friend>>friend){
+    public static void show_friend(HashMap<String, ArrayList<Friend>>friend){
 
     }
 

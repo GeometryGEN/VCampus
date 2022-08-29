@@ -227,7 +227,7 @@ public class ClientToServerThread extends Thread {
 
                //站内通信
                 if(message.getType().equals(MessageType.MESSAGE_QICQ_LIST_FRIENDS_RET)){
-                    HashMap<String,HashSet<Friend>>friends=(HashMap<String,HashSet<Friend>>)message.getData();
+                    HashMap<String,ArrayList<Friend>>friends=(HashMap<String,ArrayList<Friend>>)message.getData();
                     Client_qicq.show_friend(friends);
                 }
 
