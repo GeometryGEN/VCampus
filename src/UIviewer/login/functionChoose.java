@@ -27,14 +27,15 @@ public class functionChoose {
         Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
         int width=(int ) screensize.getWidth(); //得到宽度
         int height=(int ) screensize.getHeight();//获得高度
-        double width_r=width/1280;
-        double height_r=height/784;
+        double width_r=(double)(width)/1273;
+        double height_r=(double)(height)/784;
         jf = new JFrame("functionChoose");
         jf.setSize(width,height);
         //jf.setSize(1273,784);
         fc_panel = new JPanel();
         fc_panel.setLayout(null);
         fc_panel.setBounds(0,0,width,height);
+        fc_panel.setBackground(new Color(245,245,245, 180));
         jf.setContentPane(fc_panel);
 
         //两个修改参数
@@ -438,7 +439,7 @@ public class functionChoose {
 
         //右侧面板
         JPanel p2 = new JPanel();
-        p2.setBounds((int) (300*width_r), 0, (int) (950*width_r), (int) (784*height_r));
+        p2.setBounds((int) (300*width_r), 0, (int) (950*width_r), (int) (790*height_r));
         p2.setBackground(new Color(245,245,245, 180));
         fc_panel.add(p2);
         jf.setLocationRelativeTo(null);
