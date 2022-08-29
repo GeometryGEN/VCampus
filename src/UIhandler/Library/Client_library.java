@@ -75,7 +75,9 @@ public class Client_library {
             AllBooks.tableDate[i][9]=book.getDate_expire();
             AllBooks.tableDate[i][10]=book.getPlace();
         }
-        System.out.println("returned books");
+        AllBooks all=new AllBooks();
+        UIviewer.Library.adminLib.panel.add(all,"all");
+        UIviewer.Library.adminLib.cardLayout.show(panel, "all");
     }
 
     //增加书籍的请求和处理

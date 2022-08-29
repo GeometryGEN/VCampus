@@ -11,12 +11,12 @@ import java.io.IOException;
 public class adminLib extends JFrame {
     private JPanel mainLib;
     static String name;
-
+    public static JPanel panel = new JPanel();
     static void getName(String a)
     {
         name=a;
     }
-    CardLayout cardLayout=new CardLayout();
+    public static CardLayout cardLayout=new CardLayout();
     public static void adminLibUI(ClientToServer ucs) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -43,8 +43,6 @@ public class adminLib extends JFrame {
         mainLib=new JPanel();
         setContentPane(mainLib);
         mainLib.setLayout(null);
-
-        JPanel panel = new JPanel();
         panel.setBounds(0, 150, 1273, 790);
         mainLib.add(panel);
 //		给主要显示面板添加布局方式
@@ -100,11 +98,6 @@ public class adminLib extends JFrame {
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
-                while(AllBooks.tableDate==null) ;
-                AllBooks f5=new AllBooks();
-
-                panel.add(f5,"f5");
-                cardLayout.show(panel, "f5");
             }
         });
         mainLib.add(b1);

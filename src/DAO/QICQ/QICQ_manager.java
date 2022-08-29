@@ -23,10 +23,11 @@ import java.util.HashSet;
 public class QICQ_manager {
     String id;
     private static Connection conn;
-
+    private static MyObjectOutputStream oos=null;
     public QICQ_manager(String id) {
         this.id = id;
         try {
+            oos=new MyObjectOutputStream(ManageServerToClientThread.getThread(id).getSocket().getOutputStream());
             conn= JDBC_Connector.ConnectMySQL();
         } catch (Exception e) {
             e.printStackTrace();
@@ -61,13 +62,13 @@ public class QICQ_manager {
         Message msg=new Message();
         msg.setType(MessageType.MESSAGE_QICQ_LIST_FRIENDS_RET);
         msg.setData(friends);
-        MyObjectOutputStream oos=new MyObjectOutputStream(ManageServerToClientThread.getThread(id).getSocket().getOutputStream());
+    //    MyObjectOutputStream oos=new MyObjectOutputStream(ManageServerToClientThread.getThread(to).getSocket().getOutputStream());
         oos.writeObject(msg);
     }
     public void send_online_file(Message msg) throws IOException {
         String to=msg.getGetter();
         msg.setType(MessageType.MESSAGE_QICQ_RECERIVE_FILE);
-        MyObjectOutputStream oos=new MyObjectOutputStream(ManageServerToClientThread.getThread(to).getSocket().getOutputStream());
+     //   MyObjectOutputStream oos=new MyObjectOutputStream(ManageServerToClientThread.getThread(to).getSocket().getOutputStream());
         oos.writeObject(msg);
     }
     public void send_offline_file(Message msg) throws IOException, SQLException {
@@ -77,7 +78,7 @@ public class QICQ_manager {
     public void send_online_message(Message msg) throws IOException, SQLException {
         String to=msg.getGetter();
         msg.setType(MessageType.MESSAGE_QICQ_RECERIVE_MESSAGE);
-        ObjectOutputStream oos=new ObjectOutputStream(ManageServerToClientThread.getThread(to).getSocket().getOutputStream());
+      //  ObjectOutputStream oos=new ObjectOutputStream(ManageServerToClientThread.getThread(to).getSocket().getOutputStream());
         String sql="insert into message(sender,getter,sendtime,content,isread) values(?,?,?,?,0);";
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,msg.getSender());
@@ -128,7 +129,7 @@ public class QICQ_manager {
             else {
                 Message msg=new Message();
                 msg.setType(MessageType.MESSAGE_QICQ_ADD_FRIEND_FAIL_CANNOT_FIND_USER);
-                MyObjectOutputStream oos=new MyObjectOutputStream(ManageServerToClientThread.getThread(id).getSocket().getOutputStream());
+        //        MyObjectOutputStream oos=new MyObjectOutputStream(ManageServerToClientThread.getThread(id).getSocket().getOutputStream());
                 oos.writeObject(msg);
             }
 
@@ -150,7 +151,7 @@ public class QICQ_manager {
         Message msg=new Message();
         msg.setData(app);
         msg.setType(MessageType.MESSAGE_QICQ_LIST_APPLICATION_RET);
-        MyObjectOutputStream oos=new MyObjectOutputStream(ManageServerToClientThread.getThread(id).getSocket().getOutputStream());
+     //   MyObjectOutputStream oos=new MyObjectOutputStream(ManageServerToClientThread.getThread(id).getSocket().getOutputStream());
         oos.writeObject(msg);
     }
     public void list_my_application_handled() throws SQLException, IOException {
@@ -168,7 +169,7 @@ public class QICQ_manager {
         Message msg=new Message();
         msg.setData(app);
         msg.setType(MessageType.MESSAGE_QICQ_LIST_APPLICATION_HANDLE_RET);
-        MyObjectOutputStream oos=new MyObjectOutputStream(ManageServerToClientThread.getThread(id).getSocket().getOutputStream());
+    //    MyObjectOutputStream oos=new MyObjectOutputStream(ManageServerToClientThread.getThread(id).getSocket().getOutputStream());
         oos.writeObject(msg);
     }
     public void admin_add_announcement(Message m) throws SQLException {
@@ -195,7 +196,7 @@ public class QICQ_manager {
         message.setType(MessageType.MESSAGE_QICQ_GET_ANNOUNCEMENT_RET);
         message.setData(bulletin);
         Socket socket=ManageServerToClientThread.getThread(id).getSocket();
-        ObjectOutputStream oos=new ObjectOutputStream(socket.getOutputStream());
+    //    ObjectOutputStream oos=new ObjectOutputStream(socket.getOutputStream());
         oos.writeObject(message);
     }
     public void accept_new_friend(Application application) throws SQLException {
@@ -239,7 +240,7 @@ public class QICQ_manager {
         sendback.setType(MessageType.MESSAGE_QICQ_GET_MESSAGE_RET);
         sendback.setData(messages);
         Socket socket=ManageServerToClientThread.getThread(id).getSocket();
-        ObjectOutputStream oos=new ObjectOutputStream(socket.getOutputStream());
+    //    ObjectOutputStream oos=new ObjectOutputStream(socket.getOutputStream());
         oos.writeObject(sendback);
         sql="update message set isread=1 where (sender=? and getter=?);";
         st= conn.prepareStatement(sql);

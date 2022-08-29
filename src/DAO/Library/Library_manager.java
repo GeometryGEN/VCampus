@@ -194,7 +194,6 @@ public class Library_manager implements Serializable{
             st.setString(4,b.getId());
             st.executeUpdate();
         }
-        System.out.println(msg.getType());
         return msg;
     }
     public Message ret(Book_borrower b) throws SQLException{
