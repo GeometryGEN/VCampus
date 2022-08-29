@@ -1,64 +1,40 @@
 package UIviewer.Library;
 import ClientToServer.ClientToServer;
 import UIhandler.Library.Client_library;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-
-public class readLib extends JFrame {
-    public JPanel mainLib;
-
+import UIviewer.login.functionChoose;
+public class readLib extends JPanel {
     public static JPanel panel = new JPanel();;
-
     static String name;
-
+    public static JButton b1=new JButton("馆藏查询");
     public static JButton b2=new JButton("我的借阅");
     public static JButton b3=new JButton("罚单缴费");
-
     static void getName(String a)
     {
         name=a;
     }
-
-
     static searchResult f4=new searchResult();
-
     public static CardLayout cardLayout=new CardLayout();
-    public static void readLibUI(ClientToServer ucs) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                        String name=null;
-                    if(ucs.getID().equals("1"))
-                        name=ucs.getS().getStudent_name();
-                    else if(ucs.getID().equals("2"))
-                        name=ucs.getT().getTeacher_name();
-                    else if(ucs.getID().equals("3"))
-                        name=ucs.getA().getAdmin_name();
-                    getName(name);
-                    readLib frame = new readLib();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
 
 
-        readLib (){
-        setTitle("readLib");
-        setBounds(0,0,1273,790);
-        mainLib=new JPanel();
-        setContentPane(mainLib);
-        mainLib.setLayout(null);
-
+        public readLib(ClientToServer ucs){
+            String name=null;
+            if(ucs.getID().equals("1"))
+                name=ucs.getS().getStudent_name();
+            else if(ucs.getID().equals("2"))
+                name=ucs.getT().getTeacher_name();
+            else if(ucs.getID().equals("3"))
+                name=ucs.getA().getAdmin_name();
+            getName(name);
+        setBounds(0,0,1280,790);
+        setLayout(null);
 
         panel.setBounds(0, 150, 1273, 790);
-        mainLib.add(panel);
+        add(panel);
 //		给主要显示面板添加布局方式
         panel.setLayout(cardLayout);
 //		创建相应面板类的对象
@@ -66,10 +42,6 @@ public class readLib extends JFrame {
 //		将面板添加到住面板中，注意:add()方法里有两个参数，第一个是要添加的对象，第二个给这个对象所放置的卡片
 //		起个名字，后面调用显示的时候要用到这个名字
         panel.add(f1,"f1");
-//        myBook f2=new myBook();
-//        panel.add(f2,"f2");
-//        applyTicket f3=new applyTicket();
- //       panel.add(f3,"f3");
         panel.add(f4,"f4");
 
         //图书馆标志与背景
@@ -77,24 +49,24 @@ public class readLib extends JFrame {
         ImageIcon icon = new ImageIcon("src/image/logonew.png");
         logo.setIcon(icon);
         logo.setBounds(30, 10, 600, 75);
-        mainLib.add(logo);
+        add(logo);
 
-            //文字
+        //文字
             JLabel l1 = new JLabel("你好！"+name);
             l1.setBounds(1100, 30, 200, 55);
             l1.setForeground(new Color(248, 248, 255));
             Font font = new Font("楷体", Font.BOLD, 20);
             l1.setFont(font);
-            mainLib.add(l1);
+            add(l1);
 
         //上方面板
         JPanel p1 = new JPanel();
         p1.setBounds(0, 0, 1280, 100);
         p1.setBackground(new Color(5,44,5));
-        mainLib.add(p1);
+        add(p1);
 
         //按钮
-        JButton b1=new JButton("馆藏查询");
+
         b1.setBounds(100,100,250,50);
         Font myfont1 = new Font("微软雅黑", Font.BOLD, 18);
         b1.setFont(myfont1);
@@ -108,7 +80,7 @@ public class readLib extends JFrame {
                 cardLayout.show(panel, "f1");
             }
         });
-        mainLib.add(b1);
+        add(b1);
 
 
         b2.setBounds(370,100,250,50);
@@ -127,7 +99,7 @@ public class readLib extends JFrame {
                 }
             }
         });
-        mainLib.add(b2);
+        add(b2);
 
         b3.setBounds(640,100,250,50);
         b3.setFont(myfont1);
@@ -146,7 +118,7 @@ public class readLib extends JFrame {
 
             }
         });
-        mainLib.add(b3);
+        add(b3);
 
         JButton b4=new JButton("退出图书馆");
         b4.setBounds(910,100,250,50);
@@ -158,32 +130,19 @@ public class readLib extends JFrame {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     // TODO Auto-generated method stub
-                dispose();
+                functionChoose.jf.setContentPane(functionChoose.fc_panel);
+                functionChoose.jf.setTitle("functionChoose");
                 }
             });
-        mainLib.add(b4);
+        add(b4);
 
         //按钮面板
         JPanel p2 = new JPanel();
         p2.setBounds(0, 100, 1280, 50);
         p2.setBackground(new Color(57,106,57));
-        mainLib.add(p2);
+        add(p2);
 
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //setVisible(true);
+        setVisible(true);
     }
-
-public static void refreshMyBook(){
-    try {
-        Client_library.RequireMyBooks();
-        while(myBook.myBook==null) ;
-        myBook f2=new myBook();
-        panel.add(f2,"f2");
-        cardLayout.show(panel, "f2");
-    } catch (IOException ex) {
-        throw new RuntimeException(ex);
-    }
-}
 
 }

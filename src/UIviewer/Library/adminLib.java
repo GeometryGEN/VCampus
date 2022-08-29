@@ -1,15 +1,14 @@
 package UIviewer.Library;
 import ClientToServer.ClientToServer;
 import UIhandler.Library.Client_library;
-
+import UIviewer.login.functionChoose;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
-public class adminLib extends JFrame {
-    private JPanel mainLib;
+public class adminLib extends JPanel {
     static String name;
     public static JPanel panel = new JPanel();
     static void getName(String a)
@@ -17,34 +16,20 @@ public class adminLib extends JFrame {
         name=a;
     }
     public static CardLayout cardLayout=new CardLayout();
-    public static void adminLibUI(ClientToServer ucs) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    String name=null;
-                    if(ucs.getID().equals("1"))
-                        name=ucs.getS().getStudent_name();
-                    else if(ucs.getID().equals("2"))
-                        name=ucs.getT().getTeacher_name();
-                    else if(ucs.getID().equals("3"))
-                        name=ucs.getA().getAdmin_name();
-                    getName(name);
-                    adminLib frame = new adminLib();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
-        adminLib (){
-        setTitle("adminLib");
+
+        public adminLib(ClientToServer ucs){
+            String name=null;
+            if(ucs.getID().equals("1"))
+                name=ucs.getS().getStudent_name();
+            else if(ucs.getID().equals("2"))
+                name=ucs.getT().getTeacher_name();
+            else if(ucs.getID().equals("3"))
+                name=ucs.getA().getAdmin_name();
+            getName(name);
         setBounds(0,0,1273,790);
-        mainLib=new JPanel();
-        setContentPane(mainLib);
-        mainLib.setLayout(null);
+        setLayout(null);
         panel.setBounds(0, 150, 1273, 790);
-        mainLib.add(panel);
+        add(panel);
 //		给主要显示面板添加布局方式
         panel.setLayout(cardLayout);
 //		创建相应面板类的对象
@@ -63,22 +48,21 @@ public class adminLib extends JFrame {
         ImageIcon icon = new ImageIcon("src/image/logonew.png");
         logo.setIcon(icon);
         logo.setBounds(30, 10, 600, 75);
-        mainLib.add(logo);
+        add(logo);
 
-            //文字
+       //文字
             JLabel l1 = new JLabel("你好！"+name);
             l1.setBounds(1100, 30, 200, 55);
             l1.setForeground(new Color(248, 248, 255));
             Font font = new Font("楷体", Font.BOLD, 20);
             l1.setFont(font);
-            mainLib.add(l1);
+            add(l1);
 
         //上方面板
         JPanel p1 = new JPanel();
         p1.setBounds(0, 0, 1280, 100);
         p1.setBackground(new Color(5,44,5));
-        mainLib.add(p1);
-
+        add(p1);
 
         //按钮
         JButton b1=new JButton("查看图书状态");
@@ -98,9 +82,13 @@ public class adminLib extends JFrame {
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
+                while(AllBooks.tableDate==null) ;
+                AllBooks f5=new AllBooks();
+                panel.add(f5,"f5");
+                cardLayout.show(panel, "f5");
             }
         });
-        mainLib.add(b1);
+        add(b1);
 
         JButton b2=new JButton("录入/删除书籍");
         b2.setBounds(370,100,250,50);
@@ -115,7 +103,7 @@ public class adminLib extends JFrame {
                 cardLayout.show(panel, "f2");
             }
         });
-        mainLib.add(b2);
+        add(b2);
 
         JButton b3=new JButton("开罚单");
         b3.setBounds(640,100,250,50);
@@ -130,7 +118,7 @@ public class adminLib extends JFrame {
                 cardLayout.show(panel, "f3");
             }
         });
-        mainLib.add(b3);
+        add(b3);
 
         JButton b4=new JButton("退出图书馆");
         b4.setBounds(910,100,250,50);
@@ -142,21 +130,17 @@ public class adminLib extends JFrame {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     // TODO Auto-generated method stub
-                    dispose();
+                    functionChoose.jf.setContentPane(functionChoose.fc_panel);
+                    functionChoose.jf.setTitle("functionChoose");
                 }
             });
-        mainLib.add(b4);
-
-
+        add(b4);
 
         //按钮面板
         JPanel p2 = new JPanel();
         p2.setBounds(0, 100, 1280, 50);
         p2.setBackground(new Color(57,106,57));
-        mainLib.add(p2);
+        add(p2);
 
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //setVisible(true);
     }
 }

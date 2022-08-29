@@ -16,6 +16,7 @@ public class LoginFrame extends JFrame{
     private JTextField textField;
     private JPasswordField passwordField;
 
+    public static JFrame jf = new JFrame("Login");
     public LoginFrame(){
         //随机背景图片
         JLabel lblBackground = new JLabel(); // 创建一个标签组件对象
@@ -24,7 +25,7 @@ public class LoginFrame extends JFrame{
         lblBackground.setIcon(icon); // 设置标签组件要显示的图标
         lblBackground.setBounds(0, 0, icon.getIconWidth(), icon.getIconHeight()); // 设置组件的显示位置及大小
 
-        JFrame jf = new JFrame("Login");
+
         jf.setBounds(0, 0, icon.getIconWidth(), icon.getIconHeight());
         jf.setLocationRelativeTo(null);
 
@@ -86,7 +87,7 @@ public class LoginFrame extends JFrame{
                     if(ucs.checkStudent(username,pwd)) {
                         System.out.println(username+"登录成功！");
                         functionChoose.functionChooseUI(ucs);
-                        jf.dispose();
+                        jf.setVisible(false);
                     }else
                         JOptionPane.showMessageDialog(p1, "用户名或密码错误,请重试!");
                 } catch (Exception ex) {
@@ -113,7 +114,7 @@ public class LoginFrame extends JFrame{
                     if(ucs.checkTeacher(username,pwd)) {
                         System.out.println(username+"登录成功！");
                         functionChoose.functionChooseUI(ucs);
-                        jf.dispose();
+                        jf.setVisible(false);
                     }else
                         JOptionPane.showMessageDialog(p1, "用户名或密码错误,请重试!");
                 } catch (Exception ex) {
@@ -140,7 +141,7 @@ public class LoginFrame extends JFrame{
                     if(ucs.checkAdmin(username,pwd)) {
                         System.out.println(username+"登录成功！");
                         functionChoose.functionChooseUI(ucs);
-                        jf.dispose();
+                        jf.setVisible(false);
                     }else
                         JOptionPane.showMessageDialog(p1, "用户名或密码错误,请重试!");
                 } catch (Exception ex) {
@@ -200,11 +201,11 @@ public class LoginFrame extends JFrame{
         //panel1.BackColor = Color.FromArgb(80, 255, 0, 0);
         //p1.setOpaque(false);
         jf.getContentPane().add(p1);
-
         jf.getContentPane().add(lblBackground); // 将组件添加到面板中
         jf.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         jf.setVisible(true);
     }
+
 
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
