@@ -69,8 +69,8 @@ public class Library_manager implements Serializable{
         }
         return message;
     }
-    public HashSet<Book_borrower> list_my_book() throws SQLException {
-        HashSet<Book_borrower> books = new HashSet<Book_borrower>();
+    public ArrayList<Book_borrower> list_my_book() throws SQLException {
+        ArrayList<Book_borrower> books = new ArrayList<Book_borrower>();
         String sql="select * from library  where borrow_to=? order by expire_date;";
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,ID);
@@ -90,8 +90,8 @@ public class Library_manager implements Serializable{
         }
         return books;
     }
-    public HashSet<Book_borrower> query_book(String s) throws SQLException {
-        HashSet<Book_borrower> books = new HashSet<>();
+    public ArrayList<Book_borrower> query_book(String s) throws SQLException {
+        ArrayList<Book_borrower> books = new ArrayList<>();
         String sql="select * from library where name like ? " +
                 "or country like ? or author like ? or publisher like ? or id like ? order by name;";
         String parse="%"+s+"%";
@@ -121,8 +121,8 @@ public class Library_manager implements Serializable{
 
         return books;
     }
-    public HashSet<Book_admin> list_all_book(String s) throws SQLException {
-        HashSet<Book_admin> books = new HashSet<Book_admin>();
+    public ArrayList<Book_admin> list_all_book(String s) throws SQLException {
+        ArrayList<Book_admin> books = new ArrayList<Book_admin>();
         String sql="select * from library where id like ? or name like ? or author like ?" +
                 "or place like ? or publisher like ? or country like ? or borrow_to like ? order by name;";
         String parse="%"+s+"%";
@@ -347,8 +347,8 @@ public class Library_manager implements Serializable{
         st.setString(1,id);
         st.executeUpdate();
     }
-    public HashSet<Punishment>admin_list_tickets(){
-        HashSet<Punishment>punishments=new HashSet<>();
+    public ArrayList<Punishment>admin_list_tickets(){
+        ArrayList<Punishment>punishments=new ArrayList<>();
         Iterator it=ServerToClient.getPunish().iterator();
         while(it.hasNext()){
             Punishment p=(Punishment)it.next();
@@ -356,12 +356,12 @@ public class Library_manager implements Serializable{
         }
         return punishments;
     }
-    public HashSet<Punishment>list_my_tickets() throws SQLException {
+    public ArrayList<Punishment>list_my_tickets() throws SQLException {
         String sql="select * from ticket where customer=? and status=0 order by id+0 ;";
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,ID);
         ResultSet rs=st.executeQuery();
-        HashSet<Punishment>punishments=new HashSet<>();
+        ArrayList<Punishment>punishments=new ArrayList<>();
         while(rs.next()){
             Punishment p = new Punishment();
             p.status=rs.getInt("status");

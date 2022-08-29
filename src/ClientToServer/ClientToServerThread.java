@@ -22,6 +22,7 @@ import java.io.InterruptedIOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -60,20 +61,20 @@ public class ClientToServerThread extends Thread {
                 Message message = (Message) ois.readObject();
                 //如果服务器没有发送Message对象，线程会一直堵塞在这里
                 if(message.getType().equals(MessageType.MESSAGE_LIBRARY_ADMIN_LIST_RET)){
-                    HashSet<Book_admin>books=(HashSet<Book_admin>)message.getData();
+                    ArrayList<Book_admin> books=(ArrayList<Book_admin>)message.getData();
                     Client_library.showAllBooks(books);
                 }
                 else if (message.getType().equals(MessageType.MESSAGE_LIBRARY_LIST_MY_BOOK_RET)) {
-                    HashSet<Book_borrower>mybook=(HashSet<Book_borrower>) message.getData();
+                    ArrayList<Book_borrower>mybook=(ArrayList<Book_borrower>) message.getData();
                     Client_library.showMyBooks(mybook);
 
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_LIST_MY_TICKET_RET)){
-                    HashSet<Punishment>myPunishments=(HashSet<Punishment>) message.getData();
+                    ArrayList<Punishment>myPunishments=(ArrayList<Punishment>) message.getData();
                     Client_library.showMyPunishments(myPunishments);
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_QUERY_RET)){
-                    HashSet<Book_borrower> searchResult=(HashSet<Book_borrower>) message.getData();
+                    ArrayList<Book_borrower> searchResult=(ArrayList<Book_borrower>) message.getData();
                     Client_library.showSearchResult(searchResult);
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_RET_SUCCEED)){
