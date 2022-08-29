@@ -36,7 +36,7 @@ public class myBook extends JPanel {
                         System.out.println(id);
                         Client_library.reqireReturn(book);
                         //自动刷新
-                        readLib.refreshMyBook();
+                        //readLib.refreshMyBook();
                     } catch (IOException ex) {
                         throw new RuntimeException(ex);
                     }

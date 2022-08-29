@@ -300,7 +300,9 @@ public class Client_shop {
     }
 
     //List可能为空
-    /*public static List<Product> get_ReadyToBuy_Info(String info){
+
+    /*
+    public static List<Product> get_ReadyToBuy_Info(String info){
 
     }
     public static int get_ReadyToBuy_Info_number(String info){
@@ -311,5 +313,7 @@ public class Client_shop {
     }
     public static int get_Buyed_Info_number(String info){
 
-    }*/
+    }
+    、
+     */
 }
