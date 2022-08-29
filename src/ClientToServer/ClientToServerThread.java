@@ -77,7 +77,7 @@ public class ClientToServerThread extends Thread {
                     Client_library.showSearchResult(searchResult);
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_RET_SUCCEED)){
-                    JOptionPane.showMessageDialog(null,"还书成功!");
+                    //JOptionPane.showMessageDialog(null,"还书成功!");
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_RET_LATE)){
                     JOptionPane.showMessageDialog(null,"还书迟了，请记得按时还书!");
@@ -90,7 +90,7 @@ public class ClientToServerThread extends Thread {
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_BORROW_SUCCEED)){
                     JOptionPane.showMessageDialog(null,"借阅成功!");
-                    System.out.println("1111111111111");
+                    //System.out.println("1111111111111");
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_BORROW_FAIL_TOO_MANY)){
                     JOptionPane.showMessageDialog(null,"个人借书超数，借书失败！");

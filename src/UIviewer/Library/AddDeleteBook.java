@@ -128,9 +128,19 @@ public class AddDeleteBook extends JPanel {
                     book.setPublisher(AddDeleteBook.addinfo[6]);
                     book.setAvailable(1);
                     Client_library.RequireAddBook(book);
+                    JOptionPane.showMessageDialog(null,"图书录入成功！");
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
+                textField1.setText("");
+                textField2.setText("");
+                textField3.setText("");
+                textField4.setText("");
+                textField5.setText("");
+                textField6.setText("");
+                textField7.setText("");
+
+
             }
         });
 
@@ -162,9 +172,11 @@ public class AddDeleteBook extends JPanel {
                 deleteID=textField8.getText();
                 try {
                     Client_library.RequireDeleteBook(deleteID);
+                    JOptionPane.showMessageDialog(null,"图书删除成功！");
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
+                textField8.setText("");
             }
         });
 
@@ -192,5 +204,4 @@ public class AddDeleteBook extends JPanel {
         p12.add(pic2);
         add(p12);
     }
-
 }
