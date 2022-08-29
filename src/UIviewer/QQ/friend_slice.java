@@ -23,10 +23,9 @@ public class friend_slice extends JLabel {
         update();
     }
 
-    public friend_slice(int width, int height, double width_r, double height_r){
+    public friend_slice(int width, int height, double width_r, double height_r,String s){
         setOpaque(true);
         setBackground(new Color(255,255,255));
-        //setSize((int)(width*width_r),(int)(height*height_r));
         int icon1_width=(int)((height-2*20)*height_r);
         try {
             Thumbnails.of(new File("src/image/QQ/qq_image_3.jpg"))
@@ -36,7 +35,7 @@ public class friend_slice extends JLabel {
             throw new RuntimeException(e);
         }
         setIcon(new ImageIcon("src/image/QQ/qq_image_3_min.png"));
-        setText("海阔天空"+"                                                 ");
+        setText(s+"                                                 ");
         setFont(new Font("宋体", Font.BOLD, (int)(25*width_r)));
         setHorizontalTextPosition(JLabel.RIGHT);
         JLabel jLabel=this;//为后续按钮提供指针

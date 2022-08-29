@@ -8,6 +8,8 @@ import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.IOException;
 import java.net.Socket;
+
+import UIviewer.QQ.main_panel;
 import UIviewer.Shopping.shoppinghall;
 import UIviewer.Shopping.shop;
 
@@ -410,10 +412,26 @@ public class functionChoose {
                     if(ucs.getID()=="1"||ucs.getID()=="2")
                     {
 
+                        JFrame frame = new JFrame("SEU QQ");
+                        Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
+                        int width=(int ) screensize.getWidth(); //得到宽度
+                        int height=(int ) screensize.getHeight();//获得高度
+                        frame.setBounds(0,0,width,height);
+                        frame.setContentPane(new main_panel(ucs,width,height));
+                        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                        frame.setVisible(true);
                     }
                     else
                     {
 
+                        JFrame frame = new JFrame("SEU QQ");
+                        Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
+                        int width=(int ) screensize.getWidth(); //得到宽度
+                        int height=(int ) screensize.getHeight();//获得高度
+                        frame.setBounds(0,0,width,height);
+                        frame.setContentPane(new main_panel(ucs,width,height));
+                        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                        frame.setVisible(true);
                     }
                 } catch (Exception ex) {
                     ex.printStackTrace();
