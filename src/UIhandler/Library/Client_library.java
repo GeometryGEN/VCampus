@@ -16,9 +16,13 @@ import java.util.Iterator;
 import utils.MyObjectInputStream;
 import utils.MyObjectOutputStream;
 
+import static UIviewer.Library.readLib.cardLayout;
+import static UIviewer.Library.readLib.panel;
+
 public class Client_library {
     static String id;
     static Socket socket;
+    public static String lastsearch;
     static MyObjectOutputStream oos;
     public static Socket getSocket() {
         return socket;
@@ -129,6 +133,9 @@ public class Client_library {
             myBook.myBook[count][8]="        续借";
             count++;
         }
+        myBook f2=new myBook();
+        panel.add(f2,"f2");
+        cardLayout.show(panel, "f2");
     }
 
 //查看自己的罚单
@@ -156,11 +163,14 @@ public class Client_library {
             applyTicket.myPunish[count][4]="            缴费";
             count++;
         }
-
+        applyTicket f3= new applyTicket();
+        panel.add(f3,"f3");
+        cardLayout.show(panel, "f3");
     }
 
     //搜索书籍
     public static void RequireSearchResult(String searchInfo)throws IOException{
+        lastsearch=searchInfo;
         searchResult.searchresult=null;
         Message message=new Message();
         message.setData(searchInfo);
@@ -200,6 +210,10 @@ public class Client_library {
             }
             count++;
         }
+        while(searchResult.searchresult==null);
+        searchResult search=new searchResult();
+        panel.add(search,"search");
+        cardLayout.show(panel,"search");
     }
 
     public static void reqireReturn(Book_borrower rBook)throws IOException{

@@ -16,6 +16,7 @@ public class readLib extends JFrame {
     static String name;
 
     public static JButton b2=new JButton("我的借阅");
+    public static JButton b3=new JButton("罚单缴费");
 
     static void getName(String a)
     {
@@ -121,19 +122,13 @@ public class readLib extends JFrame {
                 // TODO Auto-generated method stub
                 try {
                     Client_library.RequireMyBooks();
-                    while(myBook.myBook==null) ;
-                    myBook f2=new myBook();
-                    panel.add(f2,"f2");
-                    cardLayout.show(panel, "f2");
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
-
             }
         });
         mainLib.add(b2);
 
-        JButton b3=new JButton("罚单缴费");
         b3.setBounds(640,100,250,50);
         b3.setFont(myfont1);
         b3.setContentAreaFilled(false);//设置按钮透明
@@ -145,13 +140,10 @@ public class readLib extends JFrame {
                 // TODO Auto-generated method stub
                 try {
                     Client_library.RequireMyPunishments();
-                    while(applyTicket.myPunish==null) ;
-                    applyTicket f3= new applyTicket();
-                    panel.add(f3,"f3");
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
-                cardLayout.show(panel, "f3");
+
             }
         });
         mainLib.add(b3);

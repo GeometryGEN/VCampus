@@ -314,6 +314,5 @@ public class Client_shop {
     public static int get_Buyed_Info_number(String info){
 
     }
-    、
      */
 }

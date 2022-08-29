@@ -10,10 +10,7 @@ import UIhandler.Library.Client_library;
 import UIhandler.QICQ.Client_qicq;
 import UIhandler.Shop.Client_shop;
 import UIhandler.StatusManagement.Client_status;
-import UIviewer.Library.AllBooks;
-import UIviewer.Library.myBook;
-import UIviewer.Library.applyTicket;
-import UIviewer.Library.searchResult;
+import UIviewer.Library.*;
 import User.Student;
 import message.Message;
 import message.MessageType;
@@ -28,6 +25,9 @@ import java.net.Socket;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+
+import static UIviewer.Library.readLib.*;
+
 /**
  * @author : [Tongwei_L]
  * @version : [v1.0]
@@ -78,28 +78,52 @@ public class ClientToServerThread extends Thread {
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_RET_SUCCEED)){
                     JOptionPane.showMessageDialog(null,"还书成功!");
+                    try {
+                        Client_library.RequireMyBooks();
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_RET_LATE)){
-                    JOptionPane.showMessageDialog(null,"还书迟了，请记得按时还书!");
+                    JOptionPane.showMessageDialog(null,"逾期还书，请记得按时还书!");
+                    try {
+                        Client_library.RequireMyBooks();
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_EXTEND_SUCCEED)){
                     JOptionPane.showMessageDialog(null,"续借成功!");
+                    try {
+                        Client_library.RequireMyBooks();
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_EXTEND_FAIL)){
-                    JOptionPane.showMessageDialog(null,"续借失败!");
+                    JOptionPane.showMessageDialog(null,"续借失败，已经续借一次!");
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_BORROW_SUCCEED)){
                     JOptionPane.showMessageDialog(null,"借阅成功!");
-                    //System.out.println("1111111111111");
+                    try {
+                        Client_library.RequireSearchResult(Client_library.lastsearch);
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_BORROW_FAIL_TOO_MANY)){
                     JOptionPane.showMessageDialog(null,"个人借书超数，借书失败！");
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_BORROW_FAIL_RETURN_FIRST)){
-                    JOptionPane.showMessageDialog(null,"请先归还超期图书！");
+                    JOptionPane.showMessageDialog(null,"请先归还逾期未还的图书！");
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_PAY_SUCCEED)){
                     JOptionPane.showMessageDialog(null,"缴费成功！");
+                    try {
+                        Client_library.RequireMyPunishments();
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_PAY_FAIL)){
                     JOptionPane.showMessageDialog(null,"余额不足，缴费失败！");

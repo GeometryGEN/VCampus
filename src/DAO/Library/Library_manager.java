@@ -71,7 +71,7 @@ public class Library_manager implements Serializable{
     }
     public HashSet<Book_borrower> list_my_book() throws SQLException {
         HashSet<Book_borrower> books = new HashSet<Book_borrower>();
-        String sql="select * from library where borrow_to=?;";
+        String sql="select * from library  where borrow_to=? order by expire_date;";
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,ID);
         ResultSet rs=st.executeQuery();
@@ -93,7 +93,7 @@ public class Library_manager implements Serializable{
     public HashSet<Book_borrower> query_book(String s) throws SQLException {
         HashSet<Book_borrower> books = new HashSet<>();
         String sql="select * from library where name like ? " +
-                "or country like ? or author like ? or publisher like ? or id like ?;";
+                "or country like ? or author like ? or publisher like ? or id like ? order by name;";
         String parse="%"+s+"%";
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,parse);
@@ -124,7 +124,7 @@ public class Library_manager implements Serializable{
     public HashSet<Book_admin> list_all_book(String s) throws SQLException {
         HashSet<Book_admin> books = new HashSet<Book_admin>();
         String sql="select * from library where id like ? or name like ? or author like ?" +
-                "or place like ? or publisher like ? or country like ? or borrow_to like ?;";
+                "or place like ? or publisher like ? or country like ? or borrow_to like ? order by name;";
         String parse="%"+s+"%";
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,parse);
@@ -357,7 +357,7 @@ public class Library_manager implements Serializable{
         return punishments;
     }
     public HashSet<Punishment>list_my_tickets() throws SQLException {
-        String sql="select * from ticket where customer=? and status=0;";
+        String sql="select * from ticket where customer=? and status=0 order by id+0 ;";
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,ID);
         ResultSet rs=st.executeQuery();
