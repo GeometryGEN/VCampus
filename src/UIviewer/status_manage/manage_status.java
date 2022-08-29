@@ -1,6 +1,8 @@
 package UIviewer.status_manage;
 
 import ClientToServer.ClientToServer;
+import UIhandler.StatusManagement.Client_status;
+import UIviewer.login.functionChoose;
 import net.coobird.thumbnailator.Thumbnails;
 
 import javax.swing.*;
@@ -99,6 +101,21 @@ public class manage_status extends JPanel {
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 }
+            }
+        });
+        //返回功能选择模块
+        functionChoose.back_from_student_status =new RoundJButton();
+        functionChoose.back_from_student_status.setText("返回功能选择");
+        functionChoose.back_from_student_status.setBounds((int)(550*width_r),(int)((550+icon2_height)*height_r),(int)((width-2*(60+icon1_width)*width_r-2*550*width_r)),(int)(100*height_r));
+        functionChoose.back_from_student_status.setBackground(new Color(199,84,80));
+        functionChoose.back_from_student_status.setForeground(new Color(255,255,255));
+        functionChoose.back_from_student_status.setFont(new Font("微软雅黑",Font.PLAIN,(int)(39*width_r)));
+        search_panel.add(functionChoose.back_from_student_status);
+        functionChoose.back_from_student_status.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Client_status.resetS();
+                functionChoose.jf.setContentPane(functionChoose.fc_panel);
             }
         });
 

@@ -15,9 +15,13 @@ public class main_panel extends JPanel {
         //设置绝对布局
         setLayout(null);
 
+        //聊天面板
+        chat_panel chatPanel=new chat_panel(1920/3*2,1080,width_r,height_r,1920/3,0);
+        add(chatPanel);
         //好友面板
-        friend_list friend_list_panel=new friend_list(/*ucs,*/(int)(1920/3),1080,width_r,height_r,0,0);
+        friend_list friend_list_panel=new friend_list(1920/3,1080,width_r,height_r,0,0);
         add(friend_list_panel);
+
 
     }
     public static void main(String[] args) {

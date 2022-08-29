@@ -147,7 +147,6 @@ public class functionChoose {
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
                 try {
-                    JButton jb = new JButton();
                     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
                     int width=(int ) screensize.getWidth(); //得到宽度
                     int height=(int ) screensize.getHeight();//获得高度
@@ -158,21 +157,8 @@ public class functionChoose {
                     else if(ucs.getID().equals("3")){
                         jf.setContentPane(new manage_status(ucs,width,height));
                     }
-                    jb.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            jf.getContentPane().setVisible(false);
-                        }
-                    });
                     jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                     jf.setVisible(true);
-                    //返回功能选择模块
-//                    back_from_status.addActionListener(new ActionListener() {
-//                        @Override
-//                        public void actionPerformed(ActionEvent e) {
-//
-//                        }
-//                    });
 
                 } catch (Exception ex) {
                     ex.printStackTrace();
