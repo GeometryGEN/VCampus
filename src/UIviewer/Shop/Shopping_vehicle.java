@@ -1,6 +1,7 @@
 package UIviewer.Shop;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -76,6 +77,24 @@ public class Shopping_vehicle extends JPanel{
         l12.setIcon(icon5);
         l12.setBounds(310, 70, 1000, 125);
         add(l12);*/
+
+
+
+        JTable table;
+        JScrollPane scrollPane;
+        DefaultTableModel tableModel;
+        scrollPane=new JScrollPane();
+        String[] columnNames={"商品名称","数量","单价","确认购买"};
+        String [][] tableValues={
+
+        };
+        tableModel=new DefaultTableModel(tableValues,columnNames);
+        table=new JTable(tableModel);
+        scrollPane.setViewportView(table);
+        //add(scrollPane,BorderLayout.CENTER);
+        setBounds(300,280,400,300);
+        setVisible(true);
+        p11.add(table);
 
 
         //左侧面板
