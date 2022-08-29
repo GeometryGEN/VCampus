@@ -16,6 +16,7 @@ public class tag_slice extends JLabel {
     public tag_slice(int width,int height,double width_r,double height_r,String s){
         setOpaque(true);
         setSize((int)(width*width_r),(int)(height*height_r));
+        setBackground(new Color(255,255,255));
         setText("     "+s+"                                                                                            ");
         setFont(new Font("宋体",Font.PLAIN,(int)(24*width_r)));
         JLabel jLabel=this;//为后续按钮提供指针

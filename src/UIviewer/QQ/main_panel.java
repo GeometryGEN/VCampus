@@ -1,9 +1,11 @@
 package UIviewer.QQ;
 
 import ClientToServer.ClientToServer;
+import UIhandler.QICQ.Client_qicq;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 
 public class main_panel extends JPanel {
     public main_panel(/*ClientToServer ucs,*/ int width, int height){
@@ -14,10 +16,19 @@ public class main_panel extends JPanel {
         setBackground(new Color(255,255,255));
         //设置绝对布局
         setLayout(null);
-
+        //聊天面板
+        chat_panel chatPanel=new chat_panel(1920/3*2,1080,width_r,height_r,1920/3,0);
+        add(chatPanel);
         //好友面板
-        friend_list friend_list_panel=new friend_list(/*ucs,*/(int)(1920/3),1080,width_r,height_r,0,0);
+        try {
+            Client_qicq.Require_friend_list();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+        friend_list friend_list_panel=new friend_list(1920/3,1080,width_r,height_r,0,0);
         add(friend_list_panel);
+
 
     }
     public static void main(String[] args) {

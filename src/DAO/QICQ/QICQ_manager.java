@@ -33,8 +33,8 @@ public class QICQ_manager {
         }
     }
     public void get_friends() throws SQLException, IOException {
-        HashMap<String, HashSet<Friend>> friends = new HashMap<>();
-        String sql="select * from friends where user_id=?;";
+        HashMap<String, ArrayList<Friend>> friends = new HashMap<>();
+        String sql="select * from friends where user_id=? order by friend_id+0;";
         PreparedStatement st= conn.prepareStatement(sql);
         st.setString(1,id);
         ResultSet rs= st.executeQuery();
@@ -53,7 +53,7 @@ public class QICQ_manager {
                 friends.get(group).add(friend);
             }
             else {
-                HashSet<Friend> f = new HashSet<>();
+                ArrayList<Friend> f = new ArrayList<>();
                 f.add(friend);
                 friends.put(group,f);
             }
