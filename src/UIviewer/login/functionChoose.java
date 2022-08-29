@@ -244,6 +244,7 @@ public class functionChoose {
                 // TODO Auto-generated method stub
                 try {
                     shoppinghall.shoppingUI(ucs);
+
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }

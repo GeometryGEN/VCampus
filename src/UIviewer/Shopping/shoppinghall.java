@@ -31,7 +31,7 @@ public class shoppinghall extends JFrame {
             public void run() {
                 try {
                     String name = null;
-                    double money=12;
+                    double money=ucs.getS().getStudent_money();
                     if (ucs.getID().equals("1"))
                         name = ucs.getS().getStudent_name();
                     else if (ucs.getID().equals("2"))
@@ -41,6 +41,7 @@ public class shoppinghall extends JFrame {
 
                     getName(name);
                     getMoney(money);
+
                     shoppinghall frame = new shoppinghall();
                     frame.setVisible(true);
                 } catch (Exception e) {
@@ -49,7 +50,6 @@ public class shoppinghall extends JFrame {
             }
         });
     }
-
 
     shoppinghall() {
         setTitle("shopping_hall");

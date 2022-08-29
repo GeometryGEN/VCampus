@@ -143,4 +143,25 @@ public class Students_utils {
         return null;
     }
 
+    public static double  returnStudentmoney(String username, String userpassword) {
+        try {
+            Connection connection=JDBC_Connector.ConnectMySQL();                  //连接数据库
+            Statement state = connection.createStatement();
+            String sql="select * from students where Student_idcard='"+username+"' and Student_pwd='"+userpassword+"'";
+            ResultSet resultSet= state.executeQuery(sql);            //执行sql
+            String passWord = "";
+            while (resultSet.next()) {
+                passWord = resultSet.getString("Student_pwd").trim();
+                if (passWord == userpassword || passWord.equals(userpassword)) {
+                    return resultSet.getDouble("Student_money");
+                } else
+                    return -1;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return -1;
+    }
+
+
 }
