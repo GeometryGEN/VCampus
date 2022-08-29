@@ -215,7 +215,7 @@ public class Library_manager implements Serializable{
             }
         }
         String sql1="update library set available = 1,borrow_date = null,expire_date = null," +
-                "borrow_to = null,extended=1, where id=? ;";
+                "borrow_to = null, extended = 0 where id=?;";
         PreparedStatement st1=conn.prepareStatement(sql1);
         st1.setString(1,b.id);
         int affect=st1.executeUpdate();

@@ -35,7 +35,7 @@ public interface MessageType {
     String MESSAGE_LIBRARY_ADMIN_LIST_RET="22.1";  //返回管理员看到的图书 data类型Hashset<Book_admin>
     String MESSAGE_LIBRARY_ADMIN_QUERY="22.2"; //管理员查询图书馆内书籍 data类型String
     String MESSAGE_LIBRARY_ADMIN_QUERY_RET="22.3";  //返回管理员查到的图书 data类型Hashset<Book_admin>
-    String MESSAGE_LIBRARY_LIST_MY_BOOK="22.3"; //查询用户借阅的书籍 无data
+    String MESSAGE_LIBRARY_LIST_MY_BOOK="22.5"; //查询用户借阅的书籍 无data
     String MESSAGE_LIBRARY_LIST_MY_BOOK_RET="22.4"; //返回用户借阅的书籍  data类型Hashset<Book_borrower>
     String MESSAGE_LIBRARY_ADMIN_HANDLE="23";  //管理员处理罚单 data类型
     String MESSAGE_LIBRARY_ADMIN_ADD="23.1";  //管理员添加图书馆内书籍 data类型Book_admin
