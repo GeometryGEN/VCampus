@@ -21,12 +21,21 @@ public class functionChoose {
     public static JFrame jf;
     public static JPanel fc_panel;
     public static void functionChooseUI(ClientToServer ucs) {
+        Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
+        int width=(int ) screensize.getWidth(); //得到宽度
+        int height=(int ) screensize.getHeight();//获得高度
+        double width_r=width/1920;
+        double height_r=height/1080;
         jf = new JFrame("functionChoose");
-        jf.setSize(1273,784);
+        jf.setSize(width,height);
+        //jf.setSize(1273,784);
         fc_panel = new JPanel();
         fc_panel.setLayout(null);
         fc_panel.setBounds(0,0,1273,784);
         jf.setContentPane(fc_panel);
+
+        //两个修改参数
+        //所有的width乘上1920/1273*width_r
 
         //小头像
         JLabel touxiang = new JLabel();
@@ -149,9 +158,6 @@ public class functionChoose {
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
                 try {
-                    Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
-                    int width=(int ) screensize.getWidth(); //得到宽度
-                    int height=(int ) screensize.getHeight();//获得高度
                     jf.setBounds(0,0,width,height);
                     jf.remove(fc_panel);
                     if(ucs.getID().equals("1"))
