@@ -66,6 +66,7 @@ public class ServerToClientThread extends Thread{
         try {
             oos = new MyObjectOutputStream(socket.getOutputStream());
             ois = new MyObjectInputStream(socket.getInputStream());
+            QICQ_manager.oos=oos;
         } catch (IOException e) {
             e.printStackTrace();
         }

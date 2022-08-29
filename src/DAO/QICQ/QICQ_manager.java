@@ -23,7 +23,7 @@ import java.util.HashSet;
 public class QICQ_manager {
     String id;
     private static Connection conn;
-    private static MyObjectOutputStream oos=null;
+    public static MyObjectOutputStream oos=null;
     public QICQ_manager(String id) {
         this.id = id;
         try {
