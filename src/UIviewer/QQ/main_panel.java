@@ -52,14 +52,4 @@ public class main_panel extends JPanel {
 
 
     }
-    public static void main(String[] args) {
-        JFrame frame = new JFrame("SEU QQ");
-        Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
-        int width=(int ) screensize.getWidth(); //得到宽度
-        int height=(int ) screensize.getHeight();//获得高度
-        frame.setBounds(0,0,width,height);
-        //frame.setContentPane(new main_panel(ucs,width,height));
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setVisible(true);
-    }
 }
