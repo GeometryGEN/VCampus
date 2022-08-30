@@ -63,7 +63,7 @@ public class Choosing_Course extends JPanel {
                                 {
                                     String id=(String)table_want.getValueAt(table_want.getSelectedRow(),0);
                                     choose.setId(id);
-                                    Client_curriculum.requireChosen(choose);
+                                    Client_curriculum.requireToChoose(choose);
                                 }catch(IOException ex){
                                         throw new RuntimeException(ex);
                                 }

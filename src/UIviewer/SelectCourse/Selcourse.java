@@ -75,7 +75,11 @@ public class Selcourse extends JFrame {
         btnNewButton_2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(panel,"f2");
+                try {
+                    Client_curriculum.RequireMyChoice();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
         main_win.add(btnNewButton_2);

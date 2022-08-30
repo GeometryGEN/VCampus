@@ -16,7 +16,7 @@ public class ConsultCourse_Chosen extends JPanel {
         p11.setBounds(0,0,1273,790);
 
 
-        String[] tableTitle={"课程编号","课程名","时间","任课老师","地点"};
+        String[] tableTitle={"课程编号","课程名","时间","学分","任课老师","地点"};
         DefaultTableModel dtm=new DefaultTableModel(consultCourse_chosen,tableTitle);
         JTable table_want=new JTable(dtm);
         //支持滚动
