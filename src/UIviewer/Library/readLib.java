@@ -9,6 +9,7 @@ import java.io.File;
 import java.io.IOException;
 import UIviewer.login.functionChoose;
 import net.coobird.thumbnailator.Thumbnails;
+import ClientToServer.myInfo;
 
 public class readLib extends JPanel {
     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
@@ -29,15 +30,8 @@ public class readLib extends JPanel {
     public static CardLayout cardLayout=new CardLayout();
 
 
-        public readLib(ClientToServer ucs){
-            setBackground(Color.red);
-            String name=null;
-            if(ucs.getID().equals("1"))
-                name=ucs.getS().getStudent_name();
-            else if(ucs.getID().equals("2"))
-                name=ucs.getT().getTeacher_name();
-            else if(ucs.getID().equals("3"))
-                name=ucs.getA().getAdmin_name();
+        public readLib(){
+            String name=myInfo.getName();
             getName(name);
         setBounds(0,0, (int) (1273*width_r), (int) (784*height_r));
         setLayout(null);

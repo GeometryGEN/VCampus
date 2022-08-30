@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import ClientToServer.myInfo;
 
 public class adminLib extends JPanel {
     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
@@ -25,14 +26,8 @@ public class adminLib extends JPanel {
     }
     public static CardLayout cardLayout=new CardLayout();
 
-        public adminLib(ClientToServer ucs){
-            String name=null;
-            if(ucs.getID().equals("1"))
-                name=ucs.getS().getStudent_name();
-            else if(ucs.getID().equals("2"))
-                name=ucs.getT().getTeacher_name();
-            else if(ucs.getID().equals("3"))
-                name=ucs.getA().getAdmin_name();
+        public adminLib(){
+            String name=myInfo.getName();
             getName(name);
         setBounds(0,0, (int) (1273*width_r), (int) (790*height_r));
         setLayout(null);

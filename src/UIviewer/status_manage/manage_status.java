@@ -17,7 +17,7 @@ public class manage_status extends JPanel {
     static JButton jb_back_to_search;
     static public JPanel search_panel;
     static public JPanel status_jpanel;
-    public manage_status(ClientToServer ucs, int width, int height) throws Exception {
+    public manage_status(int width, int height) throws Exception {
         double width_r=(double)(width)/1920;
         double height_r=(double)(height)/1080;
         //设置屏幕大小、背景颜色
@@ -93,7 +93,7 @@ public class manage_status extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 //学生信息视图
                 try {
-                    status_jpanel = student_status.status_panel(ucs,width_r,height_r,width-2*(60+icon1_width)*width_r,(1080-70-icon1_height)*height_r,search_text.getText());
+                    status_jpanel = student_status.status_panel(width_r,height_r,width-2*(60+icon1_width)*width_r,(1080-70-icon1_height)*height_r,search_text.getText());
                     status_jpanel.setBounds((int)((60+icon1_width)*width_r),(int)((47+icon1_height)*height_r), (int)(width-2*(60+icon1_width)*width_r),(int)((1080-70-icon1_height)*height_r));
                     add(status_jpanel,0);
                     search_panel.setVisible(false);

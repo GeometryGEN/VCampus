@@ -27,7 +27,7 @@ public class functionChoose {
     public static JButton back_from_student_status;
     public static JFrame jf;
     public static JPanel fc_panel;
-    public static void functionChooseUI(ClientToServer ucs) {
+    public static void functionChooseUI() {
         Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
         int width=(int ) screensize.getWidth(); //得到宽度
         int height=(int ) screensize.getHeight();//获得高度
@@ -166,7 +166,7 @@ public class functionChoose {
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
                 try {
-                    ucs.logout();
+                    ClientToServer.logout();
                     jf.dispose();
                     LoginFrame.jf.setVisible(true);
                     LoginFrame.passwordField.setText("");
@@ -230,10 +230,10 @@ public class functionChoose {
                 try {
                     jf.setBounds(0,0,width,height);
                     jf.remove(fc_panel);
-                    if(ucs.getID().equals("1"))
-                        jf.setContentPane(new student_status(ucs,width,height));
-                    else if(ucs.getID().equals("3")){
-                        jf.setContentPane(new manage_status(ucs,width,height));
+                    if(myInfo.getType()!=3)
+                        jf.setContentPane(new student_status(width,height));
+                    else {
+                        jf.setContentPane(new manage_status(width,height));
                     }
                     jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                     jf.setVisible(true);
@@ -275,12 +275,15 @@ public class functionChoose {
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
                 try {
-                    if(ucs.getID()=="1")
+                    if(myInfo.getType()==1)
                     {
 
                     }
-                    else
+                    else if(myInfo.getType()==2)
                     {
+
+                    }
+                    else {
 
                     }
 
@@ -321,7 +324,7 @@ public class functionChoose {
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
                 try {
-                    shoppinghall.shoppingUI(ucs);
+                    shoppinghall.shoppingUI();
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -361,18 +364,18 @@ public class functionChoose {
                 try {
                     jf.setBounds(0,0,width,height);
                     jf.remove(fc_panel);
-                    if(ucs.getID()=="1"||ucs.getID()=="2")
+                    if(myInfo.getType()!=3)
                     {
-                        Client_library.setId(ucs.getIDcard());
-                        jf.setContentPane(new readLib(ucs));
+                        Client_library.setId(myInfo.getId());
+                        jf.setContentPane(new readLib());
                         jf.setTitle("readLib");
                     }
                     else
                     {
-                        Client_library.setId(ucs.getIDcard());
+                        Client_library.setId(myInfo.getId());
                         Client_library.RequireshowAllBooks();
                         while (AllBooks.tableDate==null);
-                        jf.setContentPane(new adminLib(ucs));
+                        jf.setContentPane(new adminLib());
                         jf.setTitle("adminLib");
                     }
                     jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -414,15 +417,15 @@ public class functionChoose {
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
                 try {
-                    Client_qicq.setId(ucs.getIDcard());
-                    if(ucs.getID()=="1"||ucs.getID()=="2")
+                    Client_qicq.setId(myInfo.getId());
+                    if(myInfo.getType()!=3)
                     {
-                        jf.setContentPane(new main_panel(ucs,width,height).mjp);
+                        jf.setContentPane(new main_panel(width,height).mjp);
                         jf.setTitle("userqq");
                     }
                     else
                     {
-                        jf.setContentPane(new main_panel(ucs,width,height).mjp);
+                        jf.setContentPane(new main_panel(width,height).mjp);
                         jf.setTitle("adminqq");
                     }
                 } catch (Exception ex) {

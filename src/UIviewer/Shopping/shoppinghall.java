@@ -7,6 +7,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import ClientToServer.myInfo;
 
 public class shoppinghall extends JFrame {
     public JPanel mainLib;
@@ -26,19 +27,12 @@ public class shoppinghall extends JFrame {
 
     public static CardLayout cardLayout = new CardLayout();
 
-    public static void shoppingUI(ClientToServer ucs) {
+    public static void shoppingUI() {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    String name = null;
+                    String name = myInfo.getName();
                     double money=12;
-                    if (ucs.getID().equals("1"))
-                        name = ucs.getS().getStudent_name();
-                    else if (ucs.getID().equals("2"))
-                        name = ucs.getT().getTeacher_name();
-                    else if (ucs.getID().equals("3"))
-                        name = ucs.getA().getAdmin_name();
-
                     getName(name);
                     getMoney(money);
                     shoppinghall frame = new shoppinghall();
