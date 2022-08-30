@@ -59,7 +59,7 @@ public class Declare_Course extends JPanel{
         jf.getContentPane().add(l11);*/
 
 
-        JButton btnNewButton_6 = new JButton("安全返回");
+        /*JButton btnNewButton_6 = new JButton("安全返回");
         btnNewButton_6.setBounds(1040, 45, 100, 30);
         Font myfont2 = new Font("微软雅黑", Font.PLAIN, 16);
         btnNewButton_6.setFont(myfont2);
@@ -68,7 +68,7 @@ public class Declare_Course extends JPanel{
         btnNewButton_6.setContentAreaFilled(true);//设置按钮透明
         //btnNewButton_6.setBorder(null);//取消边框
 
-        add(btnNewButton_6);
+        add(btnNewButton_6);*/
 
         //横向图片
        /* JLabel l12 = new JLabel();
@@ -137,27 +137,6 @@ public class Declare_Course extends JPanel{
         add(textField3);
         textField3.setColumns(10);
 
-        /*JLabel lblNewLabel4 = new JLabel("上课教室:");
-        lblNewLabel4.setFont(new Font("宋体", Font.BOLD, 30));
-        lblNewLabel4.setBounds(400, 425, 275, 35);
-        add(lblNewLabel4);
-
-        JTextField textField4= new JTextField();
-        textField4.setFont(new Font("宋体", Font.BOLD, 22));
-        textField4.setBounds(600, 425, 275, 35);
-        add(textField4);
-        textField4.setColumns(10);
-
-        JLabel lblNewLabel5 = new JLabel("上课时间:");
-        lblNewLabel5.setFont(new Font("宋体", Font.BOLD, 30));
-        lblNewLabel5.setBounds(400, 525, 275, 35);
-        add(lblNewLabel5);
-
-        JTextField textField5= new JTextField();
-        textField5.setFont(new Font("宋体", Font.BOLD, 22));
-        textField5.setBounds(600, 525, 275, 35);
-        add(textField5);
-        textField5.setColumns(10);*/
 
         JButton btnNewButton_7 = new JButton("申报");
         btnNewButton_7.setBounds(680, 605, 150, 30);

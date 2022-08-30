@@ -29,7 +29,7 @@ public class Choosing_Course extends JPanel {
         JTable table_want=new JTable(dtm);
         //支持滚动
         JScrollPane jsp=new JScrollPane(table_want);
-        jsp.setBounds(0,0,1280,680);
+        jsp.setBounds(0,0,1280,480);
         add(jsp);
 
         //调整美化

@@ -37,7 +37,7 @@ public class Stu_Info extends JPanel {
 
 
 
-        JButton btnNewButton_6 = new JButton("安全返回");
+        JButton btnNewButton_6 = new JButton("确认修改");
         btnNewButton_6.setBounds(530, 525, 200, 40);
         Font myfont2 = new Font("微软雅黑", Font.PLAIN, 18);
         btnNewButton_6.setFont(myfont2);
