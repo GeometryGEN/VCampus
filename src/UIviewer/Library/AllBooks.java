@@ -32,20 +32,19 @@ public class AllBooks extends JPanel {
           return false;
          }
         };
-        table_want.setOpaque(false);
+        //table_want.setOpaque(false);
         table_want.setRowHeight((int) (30*height_r));
         Font myfont1 = new Font("宋体", Font.PLAIN, (int) (14*width_r));
         table_want.setFont(myfont1);
         //table_want.setForeground(new Color(255,255,255));
 
         //支持滚动
-        JScrollPane jsp = new JScrollPane();
-        jsp.setViewportView(table_want);
-        jsp.getViewport().setOpaque(false);//将JScrollPane设置为透明
-        jsp.setOpaque(false);//将中间的viewport设置为透明
-        jsp.setBounds(0,0, (int) (1280*width_r), (int) (680*height_r));
+        JScrollPane jsp = new JScrollPane(table_want);
+        //jsp.setViewportView(table_want);
+        //jsp.getViewport().setOpaque(false);//将JScrollPane设置为透明
+        //jsp.setOpaque(false);//将中间的viewport设置为透明
+        jsp.setBounds(0,0, (int) (1273*width_r), (int) (600*height_r));
         jsp.setBackground(new Color(255, 240, 245, 80));
-
         add(jsp);
 
 
