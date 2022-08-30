@@ -144,6 +144,7 @@ public class adminLib extends JPanel {
                     // TODO Auto-generated method stub
                     functionChoose.jf.setContentPane(functionChoose.fc_panel);
                     functionChoose.jf.setTitle("functionChoose");
+                    cardLayout.show(panel, "f1");
                 }
             });
         add(b4);
