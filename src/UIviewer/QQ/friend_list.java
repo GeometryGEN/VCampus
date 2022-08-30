@@ -65,7 +65,7 @@ public class friend_list extends JPanel{
 
     }
 
-   friend_list(ClientToServer ucs, int width, int height, double width_r, double height_r, int x, int y){
+   friend_list( int width, int height, double width_r, double height_r, int x, int y){
         this.ucs=ucs;
         roll_panel=new JPanel();
         this.width=width;

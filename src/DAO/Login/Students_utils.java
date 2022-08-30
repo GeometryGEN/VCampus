@@ -12,26 +12,41 @@ import connection.JDBC_Connector;
  */
 public class Students_utils {
 
-    public static boolean checkStudentAccount(String username, String userpassword) {
+    public static boolean checkStudentAccount(String username, String userpassword)  {
         try {
             Connection connection=JDBC_Connector.ConnectMySQL();                  //连接数据库
-            Statement state = connection.createStatement();
-            String sql="select * from students where Student_idcard='"+username+"' and Student_pwd='"+userpassword+"'";
-            ResultSet resultSet= state.executeQuery(sql);            //执行sql
-            String passWord = "";
-            while (resultSet.next()) {
-                passWord = resultSet.getString("Student_pwd").trim();
-                if (passWord == userpassword || passWord.equals(userpassword)) {
-                    return true;
-                } else
-                    return false;
+            String sql="select * from students where Student_idcard=? and Student_pwd=?;";
+            PreparedStatement  state = connection.prepareStatement(sql);
+            state.setString(1,username);
+            state.setString(2,userpassword);
+            ResultSet resultSet= state.executeQuery();            //执行sql
+            if (resultSet.next()) {
+                return true;
             }
-        } catch (SQLException e) {
+            else{
+                return false;
+            }
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return false;
     }
-
+    public static String getname(String userid){
+        String name = null;
+        try {
+            Connection connection=JDBC_Connector.ConnectMySQL();                  //连接数据库
+            String sql="select Student_name from students where Student_idcard=?;";
+            PreparedStatement state = connection.prepareStatement(sql);
+            state.setString(1,userid);
+            ResultSet rs= state.executeQuery();            //执行sql
+            if (rs.next()) {
+                name=rs.getString(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return name;
+    }
     public static boolean findStudentAccount(String username) {
         Boolean re = null;
         try {

@@ -134,10 +134,10 @@ public class giveTicket extends JPanel {
         add(p12);
 
         JPanel p11=new JPanel();
-        p11.setBounds(0,0, (int) (1280*width_r), (int) (650*height_r));
+        p11.setBounds(0,0, (int) (1260*width_r), (int) (650*height_r));
         JLabel pic1 = new JLabel();
         ImageIcon icon1 = new ImageIcon("src/image/main3.jpg");
-        int icon3_width= 1280;
+        int icon3_width= 1300;
         int icon3_height=650;
         try {
             Thumbnails.of(new File("src/image/main3.jpg"))
@@ -147,7 +147,7 @@ public class giveTicket extends JPanel {
             throw new RuntimeException(e);
         }
         pic1.setIcon(new ImageIcon("src/image/main3_min.jpg"));
-        pic1.setBounds(0,0 , (int) (1280*width_r), (int) (650*height_r));
+        pic1.setBounds(0,0 , (int) (1260*width_r), (int) (650*height_r));
         p11.add(pic1);
         add(p11);
     }
