@@ -47,6 +47,7 @@ public class QICQ_manager {
             st.setString(2,id);
             ResultSet rs1= st.executeQuery();
             if(rs1.next()) friend.unread=1;
+            else friend.unread=0;
             if(friends.containsKey(group)){
                 friends.get(group).add(friend);
             }

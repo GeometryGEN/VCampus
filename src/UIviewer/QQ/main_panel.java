@@ -38,8 +38,8 @@ public class main_panel {
         functionChoose.back_from_student_status.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
                 functionChoose.jf.setContentPane(functionChoose.fc_panel);
+                functionChoose.jf.setTitle("functionChoose");
             }
         });
         //好友列表
