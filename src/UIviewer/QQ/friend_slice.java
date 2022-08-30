@@ -2,6 +2,7 @@ package UIviewer.QQ;
 
 import ClientToServer.ClientToServer;
 import DAO.QICQ.Friend;
+import UIhandler.QICQ.Client_qicq;
 import net.coobird.thumbnailator.Thumbnails;
 
 import javax.swing.*;
@@ -52,6 +53,11 @@ public class friend_slice extends JLabel {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent e) {
                 //聊天面板
+                try {
+                    Client_qicq.get_message(friend.getId());
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
                 if(main_panel.cpn!=null){
                     main_panel.mjp.remove(main_panel.cpn);
                 }

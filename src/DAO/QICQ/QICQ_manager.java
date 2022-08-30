@@ -157,7 +157,7 @@ public class QICQ_manager {
     }
     public Message list_my_application() throws SQLException, IOException {
         ArrayList<Application>app=new ArrayList<>();
-        String sql="select * from new_friend order by sendtime where sender=?";
+        String sql="select * from new_friend where sender=? order by sendtime";
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,id);
         ResultSet rs=st.executeQuery();
@@ -176,7 +176,7 @@ public class QICQ_manager {
     }
     public void list_my_application_handled() throws SQLException, IOException {
         ArrayList<Application>app=new ArrayList<>();
-        String sql="select * from new_friend order by sendtime where getter=?";
+        String sql="select * from new_friend where getter=? order by sendtime";
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,id);
         ResultSet rs=st.executeQuery();
@@ -240,7 +240,7 @@ public class QICQ_manager {
         st.executeUpdate();
     }
     public Message list_my_message_with(String to_id) throws IOException, SQLException {
-        String sql="select * from message order by sendtime where (sender=? and getter=?) or (sender=? and getter=?);";
+        String sql="select * from message where (sender=? and getter=?) or (sender=? and getter=?) order by sendtime;";
         PreparedStatement st= conn.prepareStatement(sql);
         st.setString(1,id);
         st.setString(2,to_id);

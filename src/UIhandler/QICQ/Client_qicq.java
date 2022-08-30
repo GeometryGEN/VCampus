@@ -82,7 +82,7 @@ public class Client_qicq {
             e.printStackTrace();
         }
     }
-    public void get_message(String id) throws IOException {
+    public static void get_message(String id) throws IOException {
         Message message=new Message();
         message.setData(id);
         message.setType(MessageType.MESSAGE_QICQ_GET_MESSAGE);
