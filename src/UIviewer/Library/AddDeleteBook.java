@@ -199,13 +199,13 @@ public class AddDeleteBook extends JPanel {
         int icon1_width= 630;
         int icon1_height=650;
         try {
-            Thumbnails.of(new File("src/image/bg17.png"))
+            Thumbnails.of(new File("src/image/bg17.jpg"))
                     .size((int)(icon1_width*width_r), (int)(icon1_height*height_r))
-                    .toFile(new File("src/image/bg17_min.png"));
+                    .toFile(new File("src/image/bg17_min.jpg"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        pic1.setIcon(new ImageIcon("src/image/bg17_min.png"));
+        pic1.setIcon(new ImageIcon("src/image/bg17_min.jpg"));
         pic1.setBounds(0,0 , (int) (630*width_r), (int) (650*height_r));
         p11.add(pic1);
         add(p11);
@@ -217,13 +217,13 @@ public class AddDeleteBook extends JPanel {
         int icon2_width= 660;
         int icon2_height=650;
         try {
-            Thumbnails.of(new File("src/image/bg17.png"))
+            Thumbnails.of(new File("src/image/bg17.jpg"))
                     .size((int)(icon2_width*width_r), (int)(icon2_height*height_r))
-                    .toFile(new File("src/image/bg17_min.png"));
+                    .toFile(new File("src/image/bg17_min.jpg"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        pic2.setIcon(new ImageIcon("src/image/bg17_min.png"));
+        pic2.setIcon(new ImageIcon("src/image/bg17_min.jpg"));
         pic2.setBounds((int) (630*width_r),0, (int) (660*width_r), (int) (650*height_r));
         p12.add(pic2);
         add(p12);

@@ -122,32 +122,32 @@ public class giveTicket extends JPanel {
         int icon2_width= 685;
         int icon2_height=660;
         try {
-            Thumbnails.of(new File("src/image/bg13.png"))
+            Thumbnails.of(new File("src/image/bg13.jpg"))
                     .size((int)(icon2_width*width_r), (int)(icon2_height*height_r))
-                    .toFile(new File("src/image/bg13_min.png"));
+                    .toFile(new File("src/image/bg13_min.jpg"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        pic2.setIcon(new ImageIcon("src/image/bg13_min.png"));
-        pic2.setBounds(300,0 , 685, 660);
+        pic2.setIcon(new ImageIcon("src/image/bg13_min.jpg"));
+        pic2.setBounds((int) (300*width_r),0 , (int) (685*width_r), (int) (660*height_r));
         p12.add(pic2);
         add(p12);
 
         JPanel p11=new JPanel();
-        p11.setBounds(0,0, (int) (1300*width_r), (int) (650*height_r));
+        p11.setBounds(0,0, (int) (1280*width_r), (int) (650*height_r));
         JLabel pic1 = new JLabel();
         ImageIcon icon1 = new ImageIcon("src/image/main3.jpg");
-        int icon3_width= 1300;
+        int icon3_width= 1280;
         int icon3_height=650;
         try {
-            Thumbnails.of(new File("src/image/main3.png"))
-                    .size((int)(icon2_width*width_r), (int)(icon2_height*height_r))
-                    .toFile(new File("src/image/main3_min.png"));
+            Thumbnails.of(new File("src/image/main3.jpg"))
+                    .size((int)(icon3_width*width_r), (int)(icon3_height*height_r))
+                    .toFile(new File("src/image/main3_min.jpg"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        pic2.setIcon(new ImageIcon("src/image/main3_min.png"));
-        pic1.setBounds(0,0 , (int) (1300*width_r), (int) (650*height_r));
+        pic1.setIcon(new ImageIcon("src/image/main3_min.jpg"));
+        pic1.setBounds(0,0 , (int) (1280*width_r), (int) (650*height_r));
         p11.add(pic1);
         add(p11);
     }

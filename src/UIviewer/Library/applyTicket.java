@@ -86,13 +86,13 @@ public class applyTicket extends JPanel {
         int icon1_width= 1300;
         int icon1_height=650;
         try {
-            Thumbnails.of(new File("src/image/main4.png"))
+            Thumbnails.of(new File("src/image/main4.jpg"))
                     .size((int)(icon1_width*width_r), (int)(icon1_height*height_r))
-                    .toFile(new File("src/image/main4_min.png"));
+                    .toFile(new File("src/image/main4_min.jpg"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        pic1.setIcon(new ImageIcon("src/image/main4_min.png"));
+        pic1.setIcon(new ImageIcon("src/image/main4_min.jpg"));
         pic1.setBounds(0,0 , (int) (1300*width_r), (int) (650*height_r));
         p11.add(pic1);
         add(p11);
