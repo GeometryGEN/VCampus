@@ -4,6 +4,7 @@ import ClientToServer.ManageClientToServerThread;
 import DAO.QICQ.Application;
 import DAO.QICQ.Filetrans;
 import DAO.QICQ.Friend;
+import UIviewer.QQ.chat_panel;
 import UIviewer.QQ.friend_list;
 import UIviewer.QQ.friend_slice;
 import message.Message;
@@ -89,7 +90,7 @@ public class Client_qicq {
         oos.writeObject(message);
     }
     public static void show_message(ArrayList<Message> messages){
-
+        chat_panel.show_message(messages);
     }
     public void add_friend(String myid,String myname,String number,String nickname) throws IOException {
         Application app=new Application(myid,myname);
