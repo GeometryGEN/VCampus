@@ -1,17 +1,21 @@
 package UIviewer.SelectCourse;
 
+import UIhandler.Currirulum.Client_curriculum;
 import UIviewer.Shop.Consult_goods;
+import UIviewer.login.functionChoose;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.net.URL;
 
 public class Selcourse extends JFrame {
 
     private JPanel main_win;
-    CardLayout cardLayout=new CardLayout();
+    public static CardLayout cardLayout=new CardLayout();
+    public static JPanel panel=new JPanel();
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -32,7 +36,6 @@ public class Selcourse extends JFrame {
        setContentPane(main_win);
        main_win.setLayout(null);
 
-        JPanel panel=new JPanel();
         panel.setBounds(0,100,1273,790);
         main_win.add(panel);
         panel.setLayout(cardLayout);
@@ -46,19 +49,6 @@ public class Selcourse extends JFrame {
         panel.add(f4,"f4");
         My_Coursetable f5=new My_Coursetable();
         panel.add(f5,"f5");
-
-
-        //东南大学标志图片
-        //文字
-        /*JLabel l1=new JLabel("欢迎使用东南大学选课系统!");
-        l1.setBounds(480,220,390,80);
-        Font font = new Font("黑体", Font.BOLD, 27);
-        l1.setFont(font);
-        //l1.setForeground(new Color(111,222,0));
-        main_win.add(l1);*/
-
-//测试
-
 
 
         //六个按钮
@@ -112,6 +102,11 @@ public class Selcourse extends JFrame {
         btnNewButton_4.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                try {
+                    Client_curriculum.RequireallCourse();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
                 cardLayout.show(panel,"f4");
             }
         });
@@ -135,6 +130,15 @@ public class Selcourse extends JFrame {
         btnNewButton_6.setBounds(940, 50, 160, 50);
         btnNewButton_6.setFont(myfont);
         btnNewButton_6.setBackground(new Color(	250 ,240, 230));
+
+        btnNewButton_6.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                functionChoose.jf.setContentPane(functionChoose.fc_panel);
+                functionChoose.jf.setTitle("functionChoose");
+                setVisible(false);
+            }
+        });
         main_win.add(btnNewButton_6);
 
         /*JPanel p2=new JPanel();
@@ -148,8 +152,8 @@ public class Selcourse extends JFrame {
         l15.setBounds(0, 0, 1273, 790);
         main_win.add(l15);
 
-
-       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //setVisible(true);
     }
 

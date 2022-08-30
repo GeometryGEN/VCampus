@@ -12,6 +12,9 @@ import java.net.Socket;
 import java.util.List;
 import UIhandler.Shop.Client_shop;
 import UIviewer.QQ.main_panel;
+import UIviewer.SelectCourse.Selcourse;
+import UIviewer.SelectCourse.Selcourse_director;
+import UIviewer.SelectCourse.Selcourse_teacher;
 import UIviewer.Shopping.shoppinghall;
 import UIviewer.Shopping.shop;
 
@@ -280,14 +283,14 @@ public class functionChoose {
                 try {
                     if(myInfo.getType()==1)
                     {
-
+                        new Selcourse();
                     }
                     else if(myInfo.getType()==2)
                     {
-
+                        new Selcourse_teacher();
                     }
                     else {
-
+                        new Selcourse_director();
                     }
 
                 } catch (Exception ex) {
