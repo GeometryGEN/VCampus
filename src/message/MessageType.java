@@ -76,8 +76,8 @@ public interface MessageType {
     String MESSAGE_CURRICULUM_APPLY_FAIL="33.2";//教师申请失败 已经有这门课程 无data
     String MESSAGE_CURRICULUM_LIST_APPLICATION="33.3"; //教师看到自己的申请，无data
     String MESSAGE_CURRICULUM_LIST_APPLICATION_RET="33.4"; //返回教师看到自己的申请，data类型HashSet<Opencourse>
-    String MESSAGE_CURRICULUM_APPLICATION_APPROVE="33.5";  //同意加课，Message包getter里写课程id，data是课程Course类型
-    String MESSAGE_CURRICULUM_APPLICATION_REFUSE="33.6";  //拒绝加课，Message包getter里写课程id，data里写原因String类型
+    String MESSAGE_CURRICULUM_APPLICATION_APPROVE="33.5";  //同意加课，Message包getter里写凯克课程id，data是课程Course类型
+    String MESSAGE_CURRICULUM_APPLICATION_REFUSE="33.6";  //拒绝加课，Message包getter里写开课课程id，data里写原因String类型
     String MESSAGE_CURRICULUM_SHOW_STU="34";  //请求展示这门课的学生 data类型String课程id
     String MESSAGE_CURRICULUM_SHOW_STU_RET="34.1"; //返回这门课的学生 data类型Hashset<Student>
     String MESSAGE_CURRICULUM_SHOW_SCHEDULE="35";  //请求展示课表
