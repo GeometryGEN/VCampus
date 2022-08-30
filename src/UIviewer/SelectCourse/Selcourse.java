@@ -1,5 +1,6 @@
 package UIviewer.SelectCourse;
 
+import UIhandler.Currirulum.Client_curriculum;
 import UIviewer.Shop.Consult_goods;
 import UIviewer.login.functionChoose;
 
@@ -7,6 +8,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.net.URL;
 
 public class Selcourse extends JFrame {
@@ -100,6 +102,11 @@ public class Selcourse extends JFrame {
         btnNewButton_4.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                try {
+                    Client_curriculum.RequireallCourse();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
                 cardLayout.show(panel,"f4");
             }
         });

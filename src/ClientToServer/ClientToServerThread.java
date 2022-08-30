@@ -237,7 +237,9 @@ public class ClientToServerThread extends Thread {
                 if(message.getType().equals(MessageType.MESSAGE_CURRICULUM_QUERY_RET)){
                     Client_curriculum.showConsultResult((ArrayList<Course>)message.getData());
                 }
-
+                if(message.getType().equals(MessageType.MESSAGE_CURRICULUM_LIST_ALL_RET)){
+                    Client_curriculum.showallCourse((ArrayList<Course>)message.getData());
+                }
             } catch (InterruptedIOException e){
                 break;
             }

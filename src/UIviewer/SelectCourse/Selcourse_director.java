@@ -1,5 +1,6 @@
 package UIviewer.SelectCourse;
 
+import UIhandler.Currirulum.Client_curriculum;
 import UIviewer.Shop.main_shop;
 import UIviewer.login.functionChoose;
 
@@ -7,6 +8,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+
 
 public class Selcourse_director extends JFrame {
     private JPanel Sel_main;
@@ -76,6 +79,7 @@ public class Selcourse_director extends JFrame {
         btnNewButton_2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 cardLayout.show(panel,"f2");
             }
         });
@@ -110,6 +114,7 @@ public class Selcourse_director extends JFrame {
         btnNewButton_5.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                setVisible(false);
                 functionChoose.jf.setContentPane(functionChoose.fc_panel);
                 functionChoose.jf.setTitle("functionChoose");
             }
@@ -130,8 +135,8 @@ public class Selcourse_director extends JFrame {
         logo.setBounds(0, 0, 1273, 790);
         Sel_main.add(logo);
 
-       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
     }
 
 }

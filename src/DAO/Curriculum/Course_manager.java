@@ -104,7 +104,7 @@ public class Course_manager {
             Course x=new Course();
             x.name=rs.getString("name");
             x.teacher=rs.getString("teacher");
-            x.classroom=rs.getString("author");
+            x.classroom=rs.getString("classroom");
             x.point=rs.getDouble("point");
             x.size=rs.getInt("size");
             x.id=rs.getString("id");

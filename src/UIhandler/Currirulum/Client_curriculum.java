@@ -49,7 +49,7 @@ public static void requireChosen(Course curri)throws IOException{
 
     public static void showallCourse(ArrayList<Course>allchoosing)throws IOException{
         int n=allchoosing.size();
-        Choosing_Course.selectcourse=new String[n][5];
+        Choosing_Course.selectcourse=new String[n][6];
         Iterator b=allchoosing.iterator();
         int count=0;
         while(b.hasNext())
@@ -61,14 +61,11 @@ public static void requireChosen(Course curri)throws IOException{
             Choosing_Course.selectcourse[count][3]=course.getTeacher();
             Choosing_Course.selectcourse[count][4]=course.getClassroom();
             Choosing_Course.selectcourse[count][5]="     选择";
-
             count++;
         }
-
-        while(Choosing_Course.selectcourse==null);
         Choosing_Course search=new Choosing_Course();
-        panel.add(search,"search");
-        cardLayout.show(panel,"search");
+        UIviewer.SelectCourse.Selcourse.panel.add(search,"search");
+        UIviewer.SelectCourse.Selcourse.cardLayout.show(UIviewer.SelectCourse.Selcourse.panel,"search");
     }
     //查询课程信息
     public static void RequireConsultResult(String consultInfo)throws IOException{

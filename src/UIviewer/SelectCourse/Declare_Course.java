@@ -1,5 +1,6 @@
 package UIviewer.SelectCourse;
 
+import ClientToServer.myInfo;
 import DAO.Curriculum.Opencourse;
 import UIhandler.Currirulum.Client_curriculum;
 
@@ -37,14 +38,14 @@ public class Declare_Course extends JPanel{
         add(l4);
 
         String name = "1";
-        JLabel l2 = new JLabel(" 姓名：" + name);
+        JLabel l2 = new JLabel(" 姓名：" + myInfo.getName());
         l2.setBounds(30, 300, 250, 60);
         Font font1 = new Font("微软雅黑", Font.PLAIN, 18);
         l2.setFont(font1);
         l2.setForeground(new Color(0, 0, 0));
         add(l2);
         String card = "";
-        JLabel l3 = new JLabel(" 卡号：" + card);
+        JLabel l3 = new JLabel(" 卡号：" + myInfo.getId());
         l3.setBounds(30, 410, 250, 60);
         l3.setFont(font1);
         l3.setForeground(new Color(0, 0, 0));

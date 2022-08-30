@@ -129,6 +129,7 @@ public class Selcourse_teacher extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 functionChoose.jf.setContentPane(functionChoose.fc_panel);
                 functionChoose.jf.setTitle("functionChoose");
+                setVisible(false);
             }
 
         });
@@ -143,6 +144,6 @@ public class Selcourse_teacher extends JFrame {
 
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+        setVisible(true);
     }
 }
