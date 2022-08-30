@@ -1,10 +1,7 @@
 package UIviewer.Shopping;
-import DAO.Library.Book_borrower;
 import DAO.Shop.Product;
-import UIhandler.Shop.Client_shop;
-import UIviewer.Shopping.shoppinghall;
 import UIhandler.Library.Client_library;
-import UIviewer.Library.readLib;
+import UIhandler.Shop.Client_shop;
 import java.util.List;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -14,15 +11,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.io.IOException;
+import static UIviewer.Shopping.shopCustomer.cardLayout;
+import static UIviewer.Shopping.shopCustomer.panel;
 
-import static UIviewer.Shopping.shoppinghall.cardLayout;
-import static UIviewer.Shopping.shoppinghall.panel;
-import static UIviewer.login.register.registerUI;
+public class ShoppingHall extends JPanel {
+    Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
+    int width=(int ) screensize.getWidth(); //得到宽度
+    int height=(int ) screensize.getHeight();//获得高度
+    double width_r=(double)(width)/1273;
+    double height_r=(double)(height)/784;
 
-public class shop extends JPanel {
-    public static volatile String[][] shoptable;
-
+    public static volatile String[][] shoptable={{"旺仔牛奶","1","5","10","加入购物车","购买"}};
     public static void resetshoptable(){
         shoptable=null;
     }
@@ -32,13 +31,29 @@ public class shop extends JPanel {
     }
 
     public static void setShoptable(String[][] shoptable) {
-        shop.shoptable = shoptable;
+        ShoppingHall.shoptable = shoptable;
     }
 
-    public shop() {
+    public ShoppingHall() {
         setLayout(null);
+
+        JTextField textField=new JTextField();
+        textField.setFont(new Font("微软雅黑", Font.BOLD, (int) (18*width_r)));
+        textField.setBounds((int) (30*width_r), (int) (50*height_r), (int) (280*width_r), (int) (40*height_r));
+        add(textField);
+        textField.setColumns((int) (10*height_r));
+
+        JButton b11=new JButton("检索");
+        b11.setBounds((int) (120*width_r), (int) (100*height_r), (int) (80*width_r), (int) (40*height_r));
+        Font myfont = new Font("楷体", Font.BOLD, (int) (20*width_r));
+        b11.setFont(myfont);
+        b11.setBackground(new Color(255,127,80));
+        b11.setForeground(new Color(255,255,255));
+        b11.setFocusPainted(false);
+        add(b11);
+
         JButton btnNewButton_1 = new JButton("零食");
-        btnNewButton_1.setBounds(30, 50, 100, 30);
+        btnNewButton_1.setBounds(30, 150, 100, 30);
         Font myfont1 = new Font("宋体 ", Font.PLAIN, 18);
         btnNewButton_1.setFont(myfont1);
         btnNewButton_1.setContentAreaFilled(false);//设置按钮透明
@@ -48,33 +63,17 @@ public class shop extends JPanel {
         btnNewButton_1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    resetshoptable();
-                    List<Product> ps = Client_shop.checktypeProduct("零食");
-                    String[][] changed_ps = new String[ps.size()][];
-                    for(int i = 0;i<ps.size();i++){
-                        String[] temp=new String[4];
-                        temp[0]=ps.get(i).getProduct_name();
-                        temp[1]=String.valueOf(ps.get(i).getProduct_currentNumbers());
-                        temp[2]=ps.get(i).getProduct_type();
-                        temp[3]=String.valueOf(ps.get(i).getProduct_id());
-                        changed_ps[i]=temp;
-                    }
-                    shop.setShoptable(changed_ps);
-//                    shoppingcar f11=new shoppingcar();
-//                    shoppingcar.setShopping_res(changed_ps);
-//                    panel.add(f11, "f11");
-//                    cardLayout.show(panel, "f11");
-
-                } catch (Exception ex) {
-                    throw new RuntimeException(ex);
-                }
+                String[][]temp={{"1111"}};
+                setShoptable(temp);
+                ShoppingHall f11=new ShoppingHall();
+                panel.add(f11,"f11");
+                cardLayout.show(panel, "f11");
             }
         });
         add(btnNewButton_1);
 
         JButton btnNewButton_2 = new JButton("饼干");
-        btnNewButton_2.setBounds(200, 50, 100, 30);
+        btnNewButton_2.setBounds(200, 150, 100, 30);
         btnNewButton_2.setFont(myfont1);
         btnNewButton_2.setContentAreaFilled(false);//设置按钮透明
         btnNewButton_2.setForeground(new Color(255,255,255));
@@ -89,7 +88,7 @@ public class shop extends JPanel {
         add(btnNewButton_2);
 
         JButton btnNewButton_3 = new JButton("图书");
-        btnNewButton_3.setBounds(30, 120, 100, 30);
+        btnNewButton_3.setBounds(30, 220, 100, 30);
         btnNewButton_3.setFont(myfont1);
         btnNewButton_3.setContentAreaFilled(false);//设置按钮透明
         btnNewButton_3.setForeground(new Color(255,255,255));
@@ -104,7 +103,7 @@ public class shop extends JPanel {
         add(btnNewButton_3);
 
         JButton btnNewButton_4 = new JButton("薯片");
-        btnNewButton_4.setBounds(200, 120, 100, 30);
+        btnNewButton_4.setBounds(200, 220, 100, 30);
         btnNewButton_4.setFont(myfont1);
         btnNewButton_4.setContentAreaFilled(false);//设置按钮透明
         btnNewButton_4.setForeground(new Color(255,255,255));
@@ -119,7 +118,7 @@ public class shop extends JPanel {
         add(btnNewButton_4);
 
         JButton btnNewButton_5 = new JButton("话梅");
-        btnNewButton_5.setBounds(30, 190, 100, 30);
+        btnNewButton_5.setBounds(30, 290, 100, 30);
         btnNewButton_5.setFont(myfont1);
         btnNewButton_5.setContentAreaFilled(false);//设置按钮透明
         btnNewButton_5.setForeground(new Color(255,255,255));
@@ -134,7 +133,7 @@ public class shop extends JPanel {
         add(btnNewButton_5);
 
         JButton btnNewButton_6 = new JButton("衬衫");
-        btnNewButton_6.setBounds(200, 190, 100, 30);
+        btnNewButton_6.setBounds(200, 290, 100, 30);
         btnNewButton_6.setFont(myfont1);
         btnNewButton_6.setContentAreaFilled(false);//设置按钮透明
         btnNewButton_6.setForeground(new Color(255,255,255));
@@ -149,7 +148,7 @@ public class shop extends JPanel {
         add(btnNewButton_6);
 
         JButton btnNewButton_7 = new JButton("薯片");
-        btnNewButton_7.setBounds(30, 260, 100, 30);
+        btnNewButton_7.setBounds(30, 360, 100, 30);
         btnNewButton_7.setFont(myfont1);
         btnNewButton_7.setContentAreaFilled(false);//设置按钮透明
         btnNewButton_7.setForeground(new Color(255,255,255));
@@ -164,7 +163,7 @@ public class shop extends JPanel {
         add(btnNewButton_7);
 
         JButton btnNewButton_8 = new JButton("泡面");
-        btnNewButton_8.setBounds(200, 260, 100, 30);
+        btnNewButton_8.setBounds(200, 360, 100, 30);
         btnNewButton_8.setFont(myfont1);
         btnNewButton_8.setContentAreaFilled(false);//设置按钮透明
         btnNewButton_8.setForeground(new Color(255,255,255));
@@ -190,8 +189,9 @@ public class shop extends JPanel {
 
 
 
-        String[] tableTitle = {"图片","商品信息","价格","剩余数量","加入购物车","购买"};
+        String[] tableTitle = {"商品名称","商品编号","价格","剩余数量","加入购物车","购买"};
         //数据
+
         DefaultTableModel dtm = new DefaultTableModel(shoptable, tableTitle);
         JTable table_want = new JTable(dtm){
             public boolean isCellEditable(int row, int column) {
@@ -200,77 +200,72 @@ public class shop extends JPanel {
         };
 
 
-        table_want.getColumnModel().getColumn(0).setPreferredWidth(300);
-        table_want.getColumnModel().getColumn(1).setPreferredWidth(260);
-        table_want.getColumnModel().getColumn(2).setPreferredWidth(180);
-        table_want.getColumnModel().getColumn(3).setPreferredWidth(180);
-        table_want.getColumnModel().getColumn(4).setPreferredWidth(100);
-        table_want.getColumnModel().getColumn(5).setPreferredWidth(120);
 
-
-
-        table_want.addMouseListener(new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                if(table_want.getSelectedColumn()==4){
-                    System.out.println("car");
-                }
-
-                if(table_want.getSelectedColumn()==5){
-                    System.out.println("buy");
-                }
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-
-
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                try {
-                    DefaultTableCellRenderer tcr = new DefaultTableCellRenderer() {
-                        @Override
-                        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-                            if (column!=8&&column!=7) {
-                                setBackground(Color.white);
-                            }else {
-                                setBackground(new Color(255,255,255));
-                                //setForeground(new Color(255,255,255));
-                                //setFont(new Font("微软雅黑",Font.BOLD,18));
-                            }
-                            return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-                        }
-                    };
-
-                    for (int i = 0; i < table_want.getColumnCount(); i++)
-                    {
-                        table_want.getColumn(table_want.getColumnName(i)).setCellRenderer(tcr);
+        //调整美化
+        table_want.setFont(new Font("宋体",Font.BOLD, (int) (16*width_r)));
+        try {
+            DefaultTableCellRenderer tcr = new DefaultTableCellRenderer() {
+                @Override
+                public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                    if (column!=4&&column!=5) {
+                        setBackground(Color.white);
+                    }else {
+                        setBackground(new Color(250,128,114,100));
+                        //setForeground(new Color(255,255,255));
+                        //setFont(new Font("微软雅黑",Font.BOLD,18));
                     }
-                } catch (Exception ex) {
-                    ex.printStackTrace();
+                    return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
                 }
+            };
+
+            for (int i = 0; i < table_want.getColumnCount(); i++)
+            {
+                table_want.getColumn(table_want.getColumnName(i)).setCellRenderer(tcr);
             }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
 
-            @Override
-            public void mouseExited(MouseEvent e) {
 
-            }
-        });
-        //支持滚动
-        JScrollPane jsp = new JScrollPane(table_want);
-        jsp.setBounds(340,0,940,680);
-        add(jsp);
-        table_want.setRowHeight(30);
+            table_want.addMouseListener(new MouseListener() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    if (table_want.getSelectedColumn() == 4) {
+                        System.out.println("car");
+                    }
 
-        setVisible(true);
+                    if (table_want.getSelectedColumn() == 5) {
+                        System.out.println("buy");
+                    }
+                }
 
+                @Override
+                public void mousePressed(MouseEvent e) {
+
+
+                }
+
+                @Override
+                public void mouseReleased(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mouseEntered(MouseEvent e) {
+
+                }
+
+                @Override
+                public void mouseExited(MouseEvent e) {
+
+                }
+            });
+            //支持滚动
+            JScrollPane jsp = new JScrollPane(table_want);
+            jsp.setBounds(340, 0, 940, 680);
+            add(jsp);
+            table_want.setRowHeight(30);
+            setVisible(true);
         }
 }
 

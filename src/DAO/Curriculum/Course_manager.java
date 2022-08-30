@@ -90,6 +90,7 @@ public class Course_manager {
             x.size=rs.getInt("size");
             x.id=rs.getString("id");
             x.class_time=change(rs.getString("time"));
+            x.setTimestring(rs.getString("time"));
             courses.add(x);
         }
         return courses;
@@ -109,6 +110,7 @@ public class Course_manager {
             x.size=rs.getInt("size");
             x.id=rs.getString("id");
             x.class_time=change(rs.getString("time"));
+            x.setTimestring(rs.getString("time"));
             courses.add(x);
         }
         return courses;
@@ -123,19 +125,20 @@ public class Course_manager {
         while(rs.next())
         {
             String course_id=rs.getString("course_id");
-            sql="select * from curriculum where stu_id=?;";
+            sql="select * from curriculum where id=?;";
             st=conn.prepareStatement(sql);
             st.setString(1,course_id);
             ResultSet rs1=st.executeQuery();
             while(rs1.next()){
                 Course x=new Course();
-                x.name=rs.getString("name");
-                x.teacher=rs.getString("teacher");
-                x.classroom=rs.getString("author");
-                x.point=rs.getDouble("point");
-                x.size=rs.getInt("size");
-                x.id=rs.getString("id");
-                x.class_time=change(rs.getString("time"));
+                x.name=rs1.getString("name");
+                x.teacher=rs1.getString("teacher");
+                x.classroom=rs1.getString("classroom");
+                x.point=rs1.getDouble("point");
+                x.size=rs1.getInt("size");
+                x.id=rs1.getString("id");
+                x.setTimestring(rs1.getString("time"));
+                x.class_time=change(rs1.getString("time"));
                 courses.add(x);
             }
         }

@@ -15,13 +15,15 @@ import UIviewer.QQ.main_panel;
 import UIviewer.SelectCourse.Selcourse;
 import UIviewer.SelectCourse.Selcourse_director;
 import UIviewer.SelectCourse.Selcourse_teacher;
-import UIviewer.Shopping.shoppinghall;
-import UIviewer.Shopping.shop;
+//import UIviewer.Shopping.shoppinghall;
+//import UIviewer.Shopping.shop;
 
 import UIhandler.QICQ.Client_qicq;
 import UIviewer.Library.AllBooks;
 import UIviewer.Library.readLib;
 import UIviewer.Library.adminLib;
+import UIviewer.Shopping.shopAdmin;
+import UIviewer.Shopping.shopCustomer;
 import UIviewer.status_manage.manage_status;
 import UIviewer.status_manage.student_status;
 import net.coobird.thumbnailator.Thumbnails;
@@ -330,32 +332,30 @@ public class functionChoose {
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
                 try {
+                    jf.setBounds(0,0,width,height);
+                    jf.remove(fc_panel);
                     if(myInfo.getType()!=3)
                     {
-                        Client_shop.setId(String.valueOf(myInfo.getType()));
-                        Client_shop.setIdcard(myInfo.getId());
-
-                        List<Product> ps = Client_shop.returnAllProduct();
-                        String[][] changed_ps = new String[ps.size()][];
-                        for(int i = 0;i<ps.size();i++){
-                            String[] temp=new String[4];
-                            temp[0]=ps.get(i).getProduct_name();
-                            temp[1]=String.valueOf(ps.get(i).getProduct_currentNumbers());
-                            temp[2]=ps.get(i).getProduct_type();
-                            temp[3]=String.valueOf(ps.get(i).getProduct_id());
-                            changed_ps[i]=temp;
-                        }
-                        shop.setShoptable(changed_ps);
-                        shoppinghall.shoppingUI();
-                    } else {
-
+                        //Client_library.setId(myInfo.getId());
+                        jf.setContentPane(new shopCustomer());
+                        jf.setTitle("shopCustomer");
                     }
-                    shoppinghall.shoppingUI();
+                    else
+                    {
+                        //Client_library.setId(myInfo.getId());
+                        //Client_library.RequireshowAllBooks();
+                        //while (AllBooks.tableDate==null);
+                        jf.setContentPane(new shopAdmin());
+                        jf.setTitle("shopAdmin");
+                    }
+                    jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                    jf.setVisible(true);
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
             }
         });
+
         btnNewButton_3.setBounds((int) (945*width_r), (int) (362*height_r), (int) (300*width_r), (int) (128*height_r));
         btnNewButton_3.setFont(myfont);
         btnNewButton_3.setBackground(new Color(220,220,220));

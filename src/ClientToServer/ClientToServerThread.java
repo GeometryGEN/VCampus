@@ -238,11 +238,23 @@ public class ClientToServerThread extends Thread {
                 if(message.getType().equals(MessageType.MESSAGE_CURRICULUM_QUERY_RET)){
                     Client_curriculum.showConsultResult((ArrayList<Course>)message.getData());
                 }
-                if(message.getType().equals(MessageType.MESSAGE_CURRICULUM_LIST_ALL_RET)){
+                else if(message.getType().equals(MessageType.MESSAGE_CURRICULUM_LIST_ALL_RET)){
                     Client_curriculum.showallCourse((ArrayList<Course>)message.getData());
                 }
-                if(message.getType().equals(MessageType.MESSAGE_CURRICULUM_LIST_ALL_RET)){
+                else if(message.getType().equals(MessageType.MESSAGE_CURRICULUM_LIST_APPLICATION_RET)){
                     Client_curriculum.showApplyResult((ArrayList<Opencourse>)message.getData());
+                }
+                else if(message.getType().equals(MessageType.MESSAGE_CURRICULUM_LIST_MINE_RET)){
+                    Client_curriculum.showMyChoice((ArrayList<Course>)message.getData());
+                }
+                else if(message.getType().equals(MessageType.MESSAGE_CURRICULUM_CHOOSE_SUCCEED)){
+                    JOptionPane.showMessageDialog(null,"选课成功");
+                }
+                else if(message.getType().equals(MessageType.MESSAGE_CURRICULUM_CHOOSE_FULL)){
+                    JOptionPane.showMessageDialog(null,"选课失败，课程已满");
+                }
+                else if(message.getType().equals(MessageType.MESSAGE_CURRICULUM_CHOOSE_CONFLICT)){
+                    JOptionPane.showMessageDialog(null,"选课失败，课程冲突");
                 }
             } catch (InterruptedIOException e){
                 break;

@@ -34,14 +34,37 @@ public class Client_curriculum {
 
 
 
-    public static void requireChosen(Course curri)throws IOException{
+    public static void requireToChoose(Course curri)throws IOException{
             Message message=new Message();
             message.setData(curri);
-            message.setType(MessageType.MESSAGE_CURRICULUM_LIST_MINE);
+            message.setType(MessageType.MESSAGE_CURRICULUM_CHOOSE);
             oos.writeObject(message);
     }
+    public static void RequireMyChoice() throws IOException {
+        Message message=new Message();
+        message.setData(myInfo.getId());
+        message.setType(MessageType.MESSAGE_CURRICULUM_LIST_MINE);
+        oos.writeObject(message);
+    }
     public static void showMyChoice(ArrayList<Course>courses){
-
+        int n=courses.size();
+        ConsultCourse_Chosen.consultCourse_chosen=new String[n][6];
+        Iterator b=courses.iterator();
+        int count=0;
+        while(b.hasNext())
+        {
+            Course curri=(Course) b.next();
+            ConsultCourse_Chosen.consultCourse_chosen[count][0]=curri.getId();
+            ConsultCourse_Chosen.consultCourse_chosen[count][1]=curri.getName();
+            ConsultCourse_Chosen.consultCourse_chosen[count][2]=curri.getTimestring();
+            ConsultCourse_Chosen.consultCourse_chosen[count][3]=String.valueOf(curri.getPoint());
+            ConsultCourse_Chosen.consultCourse_chosen[count][4]=curri.getTeacher();
+            ConsultCourse_Chosen.consultCourse_chosen[count][5]=curri.getClassroom();
+            count++;
+        }
+        ConsultCourse_Chosen chosen=new ConsultCourse_Chosen();
+        Selcourse.panel.add(chosen,"chosen");
+        Selcourse.cardLayout.show(Selcourse.panel,"chosen");
     }
     //显示所有的课程进行选择
     public static void RequireallCourse()throws IOException{
@@ -74,7 +97,6 @@ public class Client_curriculum {
     //查询课程信息
     public static void RequireConsultResult(String consultInfo)throws IOException{
         lastconsult=consultInfo;
-        Search_result search_result=null;
         Message message=new Message();
         message.setData(consultInfo);
         message.setType(MessageType.MESSAGE_CURRICULUM_QUERY);
@@ -135,8 +157,8 @@ public class Client_curriculum {
             count++;
         }
         Check_Coustatus cc =new Check_Coustatus();
-        Selcourse_director.panel.add(cc,"apply");
-        Selcourse_director.cardLayout.show(Selcourse_director.panel,"apply");
+        Selcourse_teacher.panel.add(cc,"apply");
+        Selcourse_teacher.cardLayout.show(Selcourse_director.panel,"apply");
 
     }
     public static void Require_my_apply() throws IOException {
