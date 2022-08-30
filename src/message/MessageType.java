@@ -113,6 +113,8 @@ public interface MessageType {
     String MESSAGE_QICQ_RECERIVE_FILE="47.5";
     String MESSAGE_QICQ_FRIEND_ONLINE="48";
     String MESSAGE_QICQ_FRIEND_ONLINE_RET="48.5";
+    String MESSAGE_QICQ_FRIEND_OFFLINE="48.2";
+    String MESSAGE_QICQ_FRIEND_OFFLINE_RET="48.6";
 
     String RETURN_STUDENT_INFO="100";           //得到学籍信息
     String RETURN_STUDENT_INFO_SUCCEED="101";   //得到学籍信息成功

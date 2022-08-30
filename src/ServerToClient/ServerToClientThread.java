@@ -276,6 +276,9 @@ public class ServerToClientThread extends Thread{
                 else if(m.getType().equals(MessageType.MESSAGE_QICQ_FRIEND_ONLINE)){
                     new QICQ_manager(userid).friend_is_online((String)m.getData());
                 }
+                else if(m.getType().equals(MessageType.MESSAGE_QICQ_FRIEND_OFFLINE)){
+                    new QICQ_manager(userid).friend_is_offline((String)m.getData());
+                }
                 //商店
                 else if(m.getType().equals(MessageType.RETURN_ALL_PRODUCT)){
                     List<Product> ps  = buyers_Shop_utils.returnAllProduct();
