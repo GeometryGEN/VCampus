@@ -1,6 +1,7 @@
 package UIviewer.QQ;
 
 import ClientToServer.ClientToServer;
+import DAO.QICQ.Friend;
 import UIhandler.QICQ.Client_qicq;
 import UIhandler.StatusManagement.Client_status;
 import UIviewer.login.functionChoose;
@@ -11,11 +12,14 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class main_panel {
     public static JPanel mjp;
     public static JButton close_button;
     public static chat_panel cpn;
+    public HashMap<String, ArrayList<Friend>> friend;
 
     public main_panel(int width, int height){
         double width_r=(double)(width)/1920;
@@ -38,11 +42,13 @@ public class main_panel {
         functionChoose.back_from_student_status.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                functionChoose.jf.remove(functionChoose.jf.getContentPane());
                 functionChoose.jf.setContentPane(functionChoose.fc_panel);
                 functionChoose.jf.setTitle("functionChoose");
             }
         });
         //好友列表
+
         friend_list friend_list_panel=new friend_list(1920/3,1080,width_r,height_r,0,0);
         mjp.add(friend_list_panel);
         friend_list_panel.setVisible(true);

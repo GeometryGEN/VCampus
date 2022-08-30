@@ -11,6 +11,15 @@ import java.awt.event.MouseListener;
 public class shoppingcar extends JPanel{
 
     public static volatile String[][] shopping_res=null;
+
+    public static String[][] getShopping_res() {
+        return shopping_res;
+    }
+
+    public static void setShopping_res(String[][] shopping_res) {
+        shoppingcar.shopping_res = shopping_res;
+    }
+
     public shoppingcar()
     {
         setLayout(null);

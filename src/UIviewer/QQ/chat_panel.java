@@ -1,5 +1,9 @@
 package UIviewer.QQ;
 
+import ClientToServer.ClientToServer;
+import DAO.QICQ.Friend;
+import UIhandler.QICQ.Client_qicq;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -8,7 +12,7 @@ import java.awt.event.ActionListener;
 public class chat_panel extends JPanel {
     private JPanel type_panel;
     private JPanel record_panel;
-    public chat_panel(int width,int height,double width_r,double height_r,int x,int y){
+    public chat_panel(ClientToServer ucs, int width, int height, double width_r, double height_r, int x, int y, Friend friend){
         setLayout(null);
         setBounds((int)(x*width_r),(int)(y*height_r),(int)(width*width_r),(int)(height*height_r));
         setBackground(new Color(224,224,224));
@@ -59,6 +63,8 @@ public class chat_panel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //发送信息函数
+                Client_qicq.send_message(type_field.getText(),ucs.getIDcard(),friend.getId());
+                type_field.setText("");
             }
         });
 
@@ -68,6 +74,7 @@ public class chat_panel extends JPanel {
         record_panel.setBounds(0,0,(int)(width*width_r),(int)(height/4*3*height_r));
         record_panel.setBorder(BorderFactory.createLineBorder(new Color(234,234,234)));
         record_panel.setBackground(new Color(245,246,247));
+
         add(record_panel);
     }
 }

@@ -91,7 +91,8 @@ public class Client_shop {
     }
 
     public static void resetCheckedProducts(){
-        checkproducts.clear();
+        if(checkproducts!=null)
+            checkproducts.clear();
     }
 
     public static void resetCheckedtypeProducts(){
@@ -247,7 +248,7 @@ public class Client_shop {
         //发送对象
         oos.writeObject(message);
         //等待接受
-        while (products.size() == 0) Thread.onSpinWait();
+        while (products==null) Thread.onSpinWait();
         return products;
     }
 
