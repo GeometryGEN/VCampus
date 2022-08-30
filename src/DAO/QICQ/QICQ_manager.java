@@ -10,12 +10,10 @@ import utils.myTime;
 
 import java.io.IOException;
 import java.net.Socket;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Date;
 
 public class QICQ_manager {
     String id;
@@ -31,6 +29,23 @@ public class QICQ_manager {
     public void friend_is_online(String id) throws SQLException, IOException {
         Message msg=new Message();
         msg.setType(MessageType.MESSAGE_QICQ_FRIEND_ONLINE_RET);
+        msg.setData(id);
+        String sql="select * from friends where user_id=?;";
+        PreparedStatement st=conn.prepareStatement(sql);
+        st.setString(1,id);
+        ResultSet rs=st.executeQuery();
+        while(rs.next()){
+            String friend_id=rs.getString("friend_id");
+            if(ServerToClient.isOnline(friend_id)!=-1){
+                MyObjectOutputStream oos=new MyObjectOutputStream(ManageServerToClientThread
+                        .getThread(friend_id).getSocket().getOutputStream());
+                oos.writeObject(msg);
+            }
+        }
+    }
+    public void friend_is_offline(String id) throws SQLException, IOException {
+        Message msg=new Message();
+        msg.setType(MessageType.MESSAGE_QICQ_FRIEND_OFFLINE_RET);
         msg.setData(id);
         String sql="select * from friends where user_id=?;";
         PreparedStatement st=conn.prepareStatement(sql);
@@ -256,7 +271,7 @@ public class QICQ_manager {
             x.setData(rs.getString("content"));
             x.setSender(rs.getString("sender"));
             x.setGetter(rs.getString("getter"));
-            x.setSendTime(myTime.datetimeToString(rs.getTimestamp("sendtime")));
+            x.setSendTime(rs.getString("sendtime"));
             messages.add(x);
         }
         Message sendback=new Message();
