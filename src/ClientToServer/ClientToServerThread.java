@@ -1,12 +1,16 @@
 package ClientToServer;
 import javax.swing.*;
 import java.awt.*;
+
+import DAO.Curriculum.Course;
+import DAO.Curriculum.Opencourse;
 import DAO.Library.Book_admin;
 import DAO.Library.Book_borrower;
 import DAO.Library.Punishment;
 import DAO.QICQ.Friend;
 import DAO.Shop.Product;
 import DAO.Shop.ProductPair;
+import UIhandler.Currirulum.Client_curriculum;
 import UIhandler.Library.Client_library;
 import UIhandler.QICQ.Client_qicq;
 import UIhandler.Shop.Client_shop;
@@ -39,8 +43,9 @@ public class ClientToServerThread extends Thread {
     //volatile修饰符用来保证其它线程读取的总是该变量的最新的值
     public volatile boolean exit = false;
     private static MyObjectInputStream ois=null;
-    public ClientToServerThread(Socket socket){
-        this.socket=socket;
+    public ClientToServerThread(MyObjectInputStream mis,Socket s){
+        ois=mis;
+        socket=s;
     }
 
     public Socket getSocket(){
@@ -48,12 +53,6 @@ public class ClientToServerThread extends Thread {
     }
 
     public void run(){
-        try {
-            //MyObjectOutputStream oos = new MyObjectOutputStream(socket.getOutputStream());
-            ois = new MyObjectInputStream(socket.getInputStream());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         while (!exit){
             try {
                 Message message = (Message) ois.readObject();
@@ -236,6 +235,16 @@ public class ClientToServerThread extends Thread {
                 }
                 System.out.println("next");
 
+                //选课
+                if(message.getType().equals(MessageType.MESSAGE_CURRICULUM_QUERY_RET)){
+                    Client_curriculum.showConsultResult((ArrayList<Course>)message.getData());
+                }
+                if(message.getType().equals(MessageType.MESSAGE_CURRICULUM_LIST_ALL_RET)){
+                    Client_curriculum.showallCourse((ArrayList<Course>)message.getData());
+                }
+                if(message.getType().equals(MessageType.MESSAGE_CURRICULUM_LIST_ALL_RET)){
+                    Client_curriculum.showApplyResult((ArrayList<Opencourse>)message.getData());
+                }
             } catch (InterruptedIOException e){
                 break;
             }
@@ -245,11 +254,6 @@ public class ClientToServerThread extends Thread {
             catch (Exception e) {
                 e.printStackTrace();
             }
-        }
-        try {
-            socket.close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         }
     }
 

@@ -1,15 +1,20 @@
 package UIviewer.SelectCourse;
 
+import UIhandler.Currirulum.Client_curriculum;
 import UIviewer.Shop.main_shop;
+import UIviewer.login.functionChoose;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+
 
 public class Selcourse_director extends JFrame {
     private JPanel Sel_main;
-    CardLayout cardLayout=new CardLayout();
+    public static CardLayout cardLayout=new CardLayout();
+    public static JPanel panel=new JPanel();
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -29,7 +34,6 @@ public class Selcourse_director extends JFrame {
         Sel_main=new JPanel();
         setContentPane(Sel_main);
         Sel_main.setLayout(null);
-        JPanel panel=new JPanel();
         panel.setBounds(0,100,1273,790);
         Sel_main.add(panel);
         panel.setLayout(cardLayout);
@@ -68,13 +72,14 @@ public class Selcourse_director extends JFrame {
         add(btnNewButton_1);
 
         // 按钮2
-        JButton btnNewButton_2 = new JButton("学生信息管理");
+        JButton btnNewButton_2 = new JButton("排课");
         btnNewButton_2.setBounds(340, 50, 200, 50);
         btnNewButton_2.setFont(myfont);
         btnNewButton_2.setBackground(new Color(245, 222, 179));
         btnNewButton_2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
                 cardLayout.show(panel,"f2");
             }
         });
@@ -105,6 +110,15 @@ public class Selcourse_director extends JFrame {
         btnNewButton_5.setBounds(940, 50, 200, 50);
         btnNewButton_5.setFont(myfont);
         btnNewButton_5.setBackground(new Color(245, 222, 179));
+
+        btnNewButton_5.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                functionChoose.jf.setContentPane(functionChoose.fc_panel);
+                functionChoose.jf.setTitle("functionChoose");
+            }
+        });
         add(btnNewButton_5);
 
        /* //按钮6
@@ -121,8 +135,8 @@ public class Selcourse_director extends JFrame {
         logo.setBounds(0, 0, 1273, 790);
         Sel_main.add(logo);
 
-       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
     }
 
 }

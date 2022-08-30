@@ -4,6 +4,7 @@ import ClientToServer.ManageClientToServerThread;
 import DAO.QICQ.Application;
 import DAO.QICQ.Filetrans;
 import DAO.QICQ.Friend;
+import UIviewer.QQ.chat_panel;
 import UIviewer.QQ.friend_list;
 import UIviewer.QQ.friend_slice;
 import message.Message;
@@ -21,8 +22,8 @@ import java.util.HashSet;
 public class Client_qicq {
     static String id;
     static MyObjectOutputStream oos=null;
-    public static void setSocket(Socket socket) throws IOException {
-        oos=new MyObjectOutputStream(socket.getOutputStream());
+    public static void setOps(MyObjectOutputStream mos) throws IOException {
+        oos=mos;
     }
 
     public static void setId(String id) {
@@ -69,7 +70,7 @@ public class Client_qicq {
         Filetrans file=(Filetrans)message.getData();
         fileOutputStream.write(file.getContent());
     }
-    public void send_message(String content,String sender,String getter){
+    public static void send_message(String content, String sender, String getter){
         Message message=new Message();
         message.setSender(sender);
         message.setGetter(getter);
@@ -82,14 +83,14 @@ public class Client_qicq {
             e.printStackTrace();
         }
     }
-    public void get_message(String id) throws IOException {
+    public static void get_message(String id) throws IOException {
         Message message=new Message();
         message.setData(id);
         message.setType(MessageType.MESSAGE_QICQ_GET_MESSAGE);
         oos.writeObject(message);
     }
     public static void show_message(ArrayList<Message> messages){
-
+        chat_panel.show_message(messages);
     }
     public void add_friend(String myid,String myname,String number,String nickname) throws IOException {
         Application app=new Application(myid,myname);

@@ -26,8 +26,9 @@ public class ClientToServer {
     private Student s = new Student();
     private Teacher t = new Teacher();
     private Admin a = new Admin();
-    private Socket socket;
-
+    private static Socket socket;
+    public static MyObjectOutputStream oos=null;
+    public MyObjectInputStream ois=null;
     public String serverIP = Message.returnIP();
     //public String serverIP = "192.168.43.108";
 
@@ -84,23 +85,23 @@ public class ClientToServer {
         s.setStudent_idcard(id);
         s.setStudent_pwd(pwd);
         socket = new Socket(serverIP, MessageType.PORT);
-        MyObjectOutputStream oos = new MyObjectOutputStream(socket.getOutputStream());     //得到Object对象
+        oos = new MyObjectOutputStream(socket.getOutputStream());     //得到Object对象
         Message send = new Message();
         send.setType(MessageType.MESSAGE_STUDENT_LOGIN);
         send.setData(s);
         oos.writeObject(send);                                                         //发送学生对象
-        MyObjectInputStream ois = new MyObjectInputStream(socket.getInputStream());        //读取从服务端回复的Message对象
+        ois = new MyObjectInputStream(socket.getInputStream());        //读取从服务端回复的Message对象
         Message ms = (Message) ois.readObject();
         if (ms.getType().equals(MessageType.MESSAGE_LOGIN_SUCCEED)) {
             ID = "1";
             String name = (String) ms.getData();
             myInfo.setall(id, 1, name);
-            ClientToServerThread ctst = new ClientToServerThread(socket);        //创建一个和服务器端保持通信的线程
+            ClientToServerThread ctst = new ClientToServerThread(ois,socket);        //创建一个和服务器端保持通信的线程
             ctst.start();                                                        //启动线程
             ManageClientToServerThread.addThread(id, ctst);
-            Client_library.setSocket(socket);
-            Client_qicq.setSocket(socket);
-            Client_curriculum.setOos(socket);
+            Client_curriculum.setOos(oos);
+            Client_library.setOos(oos);
+            Client_qicq.setOps(oos);
             return true;
         } else {
             socket.close();
@@ -114,24 +115,24 @@ public class ClientToServer {
 //        t.setTeacher_name(Teachers_utils.returnTeacherName(id,pwd));
         socket = new Socket(serverIP, MessageType.PORT);
         //得到Object对象
-        MyObjectOutputStream oos = new MyObjectOutputStream(socket.getOutputStream());
+        oos = new MyObjectOutputStream(socket.getOutputStream());
         //发送老师对象
         Message send = new Message();
         send.setType(MessageType.MESSAGE_TEACHER_LOGIN);
         send.setData(t);
         oos.writeObject(send);
-        MyObjectInputStream ois = new MyObjectInputStream(socket.getInputStream());
+        ois = new MyObjectInputStream(socket.getInputStream());
         Message ms = (Message) ois.readObject();
         if (ms.getType().equals(MessageType.MESSAGE_LOGIN_SUCCEED)) {
             ID = "2";
             myInfo.setall(id, 2, (String) ms.getData());
             //创建一个和服务器端保持通信的线程
-            ClientToServerThread ctst = new ClientToServerThread(socket);
+            ClientToServerThread ctst = new ClientToServerThread(ois,socket);
             //启动线程
             ctst.start();
-            Client_library.setSocket(socket);
-            Client_qicq.setSocket(socket);
-            Client_curriculum.setOos(socket);
+            Client_curriculum.setOos(oos);
+            Client_library.setOos(oos);
+            Client_qicq.setOps(oos);
             ManageClientToServerThread.addThread(id, ctst);
             return true;
         } else {
@@ -146,25 +147,25 @@ public class ClientToServer {
         //     a.setAdmin_name(Admin_utils.returnAdminName(id,pwd));
         socket = new Socket(serverIP, MessageType.PORT);
         //得到Object对象
-        MyObjectOutputStream oos = new MyObjectOutputStream(socket.getOutputStream());
+        oos = new MyObjectOutputStream(socket.getOutputStream());
         //发送管理员对象
         Message send = new Message();
         send.setType(MessageType.MESSAGE_ADMIN_LOGIN);
         send.setData(a);
         oos.writeObject(send);
         //读取从服务端回复的Message对象
-        MyObjectInputStream ois = new MyObjectInputStream(socket.getInputStream());
+        ois = new MyObjectInputStream(socket.getInputStream());
         Message ms = (Message) ois.readObject();
         if (ms.getType().equals(MessageType.MESSAGE_LOGIN_SUCCEED)) {
             ID = "3";
             myInfo.setall(id, 3, (String) ms.getData());
             //创建一个和服务器端保持通信的线程
-            ClientToServerThread ctst = new ClientToServerThread(socket);
+            ClientToServerThread ctst = new ClientToServerThread(ois,socket);
             //启动线程
             ctst.start();
-            Client_curriculum.setOos(socket);
-            Client_library.setSocket(socket);
-            Client_qicq.setSocket(socket);
+            Client_curriculum.setOos(oos);
+            Client_library.setOos(oos);
+            Client_qicq.setOps(oos);
             ManageClientToServerThread.addThread(id, ctst);
             return true;
         } else {
@@ -175,12 +176,12 @@ public class ClientToServer {
 
     public boolean registerStudent(Student st) throws Exception {
         socket = new Socket(serverIP, MessageType.PORT);
-        MyObjectOutputStream oos = new MyObjectOutputStream(socket.getOutputStream());     //得到Object对象
+        oos = new MyObjectOutputStream(socket.getOutputStream());     //得到Object对象
         Message send = new Message();
         send.setType(MessageType.MESSAGE_STUDENT_REGISTER);
         send.setData(st);
         oos.writeObject(send);                                                         //发送学生对象
-        MyObjectInputStream ois = new MyObjectInputStream(socket.getInputStream());        //读取从服务端回复的Message对象
+        ois = new MyObjectInputStream(socket.getInputStream());        //读取从服务端回复的Message对象
         Message ms = (Message) ois.readObject();
         if (ms.getType().equals(MessageType.MESSAGE_STUDENT_REGISTER_SUCCEED))
             return true;
@@ -192,12 +193,12 @@ public class ClientToServer {
 
     public boolean registerTeacher(Teacher te) throws Exception {
         socket = new Socket(serverIP, MessageType.PORT);
-        MyObjectOutputStream oos = new MyObjectOutputStream(socket.getOutputStream());     //得到Object对象
+        oos = new MyObjectOutputStream(socket.getOutputStream());     //得到Object对象
         Message send = new Message();
         send.setType(MessageType.MESSAGE_TEACHER_REGISTER);
         send.setData(te);
         oos.writeObject(send);                                                         //发送学生对象
-        MyObjectInputStream ois = new MyObjectInputStream(socket.getInputStream());        //读取从服务端回复的Message对象
+        ois = new MyObjectInputStream(socket.getInputStream());        //读取从服务端回复的Message对象
         Message ms = (Message) ois.readObject();
         if (ms.getType().equals(MessageType.MESSAGE_TEACHER_REGISTER_SUCCEED))
             return true;
@@ -209,7 +210,7 @@ public class ClientToServer {
 
     public boolean forgetpwd(String card, String email, String select) throws Exception {
         socket = new Socket(serverIP, MessageType.PORT);
-        MyObjectOutputStream oos = new MyObjectOutputStream(socket.getOutputStream());     //得到Object对象
+        oos = new MyObjectOutputStream(socket.getOutputStream());     //得到Object对象
         Message send = new Message();
         send.setType(MessageType.TO_FIND_CERTAIN);
         if (select.equals("教师")) {
@@ -226,7 +227,7 @@ public class ClientToServer {
             send.setSender("学生");
         }
         oos.writeObject(send);                                                         //发送学生对象
-        MyObjectInputStream ois = new MyObjectInputStream(socket.getInputStream());        //读取从服务端回复的Message对象
+        ois = new MyObjectInputStream(socket.getInputStream());        //读取从服务端回复的Message对象
         Message ms = (Message) ois.readObject();
         if (ms.getType().equals(MessageType.HAVE_FIND_CERTAIN))
             return true;
@@ -238,7 +239,7 @@ public class ClientToServer {
 
     public boolean resetPwd(String card, String new_pwd, String select) throws Exception {
         socket = new Socket(serverIP, MessageType.PORT);
-        MyObjectOutputStream oos = new MyObjectOutputStream(socket.getOutputStream());     //得到Object对象
+        oos = new MyObjectOutputStream(socket.getOutputStream());     //得到Object对象
         Message send = new Message();
         send.setType(MessageType.RESET_PASSWORD);
         if (select.equals("教师")) {
@@ -255,7 +256,7 @@ public class ClientToServer {
             send.setSender("学生");
         }
         oos.writeObject(send);                                                         //发送学生对象
-        MyObjectInputStream ois = new MyObjectInputStream(socket.getInputStream());        //读取从服务端回复的Message对象
+        ois = new MyObjectInputStream(socket.getInputStream());        //读取从服务端回复的Message对象
         Message ms = (Message) ois.readObject();
         if (ms.getType().equals(MessageType.RESET_PASSWORD_SUCCEED))
             return true;
@@ -268,10 +269,8 @@ public class ClientToServer {
     public static void logout() throws IOException {
         Message message = new Message();
         message.setType(MessageType.MESSAGE_CLIENT_EXIT);
-        MyObjectOutputStream oos;
         message.setSender(myInfo.getId());
-        oos = new MyObjectOutputStream(ManageClientToServerThread
-                .getThread(myInfo.getId()).getSocket().getOutputStream());     //得到Object对象
+             //得到Object对象
         oos.writeObject(message);
         ManageClientToServerThread.getThread(myInfo.getId()).exit = true;
         ManageClientToServerThread.getThread(myInfo.getId()).interrupt();
@@ -283,6 +282,5 @@ public class ClientToServer {
             System.out.println("老师：" + myInfo.getName() + " " + myInfo.getId() + "退出系统");
         if(myInfo.getType()==3)
             System.out.println("管理员：" + myInfo.getName() + " " + myInfo.getId() + "退出系统");
-
     }
 }

@@ -1,5 +1,6 @@
 package UIviewer.QQ;
 
+import ClientToServer.ClientToServer;
 import DAO.QICQ.Friend;
 import UIhandler.QICQ.Client_qicq;
 import UIhandler.StatusManagement.Client_status;
@@ -12,6 +13,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import javax.swing.*;
 
 public class friend_list extends JPanel{
@@ -24,8 +26,6 @@ public class friend_list extends JPanel{
     private static double width_r;
     private static double height_r;
    // private static int[] clickF=new int[50];
-    private static Friend[] friendList= new Friend[50];
-    private static String[] tagList= new String[50];
     //private static int count;
     public void update(){//更新UI界面；
         this.updateUI();
@@ -41,7 +41,7 @@ public class friend_list extends JPanel{
            // friendList[count]=arrayList.get(i);
             //tagList[count]=tag;
             //count++;
-            slice[i]=new friend_slice(width-1,height/number_per_page,width_r,height_r,arrayList.get(i).getName());
+            slice[i]=new friend_slice(width-1,height/number_per_page,width_r,height_r,arrayList.get(i));
             roll_panel.add(slice[i]);
             roll_panel.updateUI();
         }
@@ -64,7 +64,7 @@ public class friend_list extends JPanel{
 
     }
 
-   friend_list(/*ClientToServer ucs,*/int width, int height,double width_r,double height_r,int x,int y){
+   friend_list( int width, int height, double width_r, double height_r, int x, int y){
         roll_panel=new JPanel();
         this.width=width;
         this.height=height;
@@ -78,11 +78,6 @@ public class friend_list extends JPanel{
         roll_panel.setBackground(new Color(255,255,255));
         roll_panel.setSize((int)(width*width_r),(int)((height-200)*height_r));
         roll_panel.setLayout(new BoxLayout(roll_panel, BoxLayout.Y_AXIS));
-       try {
-           Client_qicq.Require_friend_list();
-       } catch (IOException e) {
-           throw new RuntimeException(e);
-       }
        JScrollPane scrollPane=new JScrollPane(roll_panel);
        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER );//不显示水平滚动条；
        scrollPane.setBorder(BorderFactory.createLineBorder(new Color(244,244,244)));

@@ -1,5 +1,8 @@
 package UIviewer.QQ;
 
+import ClientToServer.ClientToServer;
+import DAO.QICQ.Friend;
+import UIhandler.QICQ.Client_qicq;
 import net.coobird.thumbnailator.Thumbnails;
 
 import javax.swing.*;
@@ -23,7 +26,7 @@ public class friend_slice extends JLabel {
         update();
     }
 
-    public friend_slice(int width, int height, double width_r, double height_r,String s){
+    public friend_slice( int width, int height, double width_r, double height_r, Friend friend){
         setOpaque(true);
         setBackground(new Color(255,255,255));
         int icon1_width=(int)((height-2*20)*height_r);
@@ -35,7 +38,13 @@ public class friend_slice extends JLabel {
             throw new RuntimeException(e);
         }
         setIcon(new ImageIcon("src/image/QQ/qq_image_3_min.png"));
-        setText(s+"                                                 ");
+        if(friend.getOnline()==1){
+            setText(friend.getName()+"                                                 ");
+        }
+        else{
+            setText(friend.getName()+"[离线请留言]                                             ");
+            setForeground(new Color(138,138,138));
+        }
         setFont(new Font("宋体", Font.BOLD, (int)(25*width_r)));
         setHorizontalTextPosition(JLabel.RIGHT);
         JLabel jLabel=this;//为后续按钮提供指针
@@ -44,10 +53,15 @@ public class friend_slice extends JLabel {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent e) {
                 //聊天面板
+                try {
+                    Client_qicq.get_message(friend.getId());
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
                 if(main_panel.cpn!=null){
                     main_panel.mjp.remove(main_panel.cpn);
                 }
-                chat_panel chatPanel=new chat_panel(1920/3*2,1080,width_r,height_r,1920/3,0);
+                chat_panel chatPanel=new chat_panel(1920/3*2,1080,width_r,height_r,1920/3,0,friend);
                 main_panel.mjp.add(chatPanel);
                 main_panel.cpn=chatPanel;
                 main_panel.mjp.updateUI();

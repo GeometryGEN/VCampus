@@ -1,98 +1,50 @@
 package UIviewer.SelectCourse;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+//可以修改课程的时间、地点、课容量
 public class Stu_Info extends JPanel {
+
+    public static volatile String[][] student_inf=null;
     public Stu_Info()
     {
         setLayout(null);
-        JPanel p11=new JPanel();
-        p11.setBounds(0,0,1273,784);
 
-        //文字
-        JLabel l1 = new JLabel("  你好！");
-        l1.setBounds(170, 100, 100, 75);
-        Font font = new Font("楷体", Font.BOLD, 22);
-        l1.setFont(font);
-        //l1.setForeground(new Color(111,222,0));
-        add(l1);
+       String[] tableTitle={"课程编号","课程名","课容量","时间","任课老师","地点"};
+        DefaultTableModel dtm=new DefaultTableModel(student_inf,tableTitle);
+        JTable table_want = new JTable(dtm){
+            public boolean isCellEditable(int row, int column) {
+                return true;
+            }
+        };
 
-        //信息面板
-        JLabel l4 = new JLabel("      基本信息");
-        l4.setBounds(23, 205, 250, 60);
-        Font font2 = new Font("楷体", Font.BOLD, 25);
-        l4.setFont(font2);
-        l4.setForeground(new Color(94, 38, 18));
-        add(l4);
+        table_want.getColumnModel().getColumn(0).setPreferredWidth(160);
+        table_want.getColumnModel().getColumn(1).setPreferredWidth(200);
+        table_want.getColumnModel().getColumn(2).setPreferredWidth(100);
+        table_want.getColumnModel().getColumn(3).setPreferredWidth(260);
+        table_want.getColumnModel().getColumn(4).setPreferredWidth(200);
+        table_want.getColumnModel().getColumn(5).setPreferredWidth(220);
 
-        String name = "1";
-        JLabel l2 = new JLabel(" 姓名：" + name);
-        l2.setBounds(30, 300, 250, 60);
-        Font font1 = new Font("微软雅黑", Font.PLAIN, 18);
-        l2.setFont(font1);
-        l2.setForeground(new Color(0, 0, 0));
-        add(l2);
-        String card = "";
-        JLabel l3 = new JLabel(" 卡号：" + card);
-        l3.setBounds(30, 410, 250, 60);
-        l3.setFont(font1);
-        l3.setForeground(new Color(0, 0, 0));
-        add(l3);
+        JScrollPane jsp=new JScrollPane(table_want);
+        jsp.setBounds(0,0,1280,420);
+        add(jsp);
+        table_want.setRowHeight(40);
+        setVisible(true);
 
 
-        JLabel lblNewLabel = new JLabel("学生信息:");
-        lblNewLabel.setFont(new Font("宋体", Font.BOLD, 35));
-        lblNewLabel.setBounds(400, 75, 275, 35);
-        add(lblNewLabel);
 
-        JButton btnNewButton_6 = new JButton("安全返回");
-        btnNewButton_6.setBounds(680, 525, 200, 40);
+        JButton btnNewButton_6 = new JButton("确认修改");
+        btnNewButton_6.setBounds(530, 525, 200, 40);
         Font myfont2 = new Font("微软雅黑", Font.PLAIN, 18);
         btnNewButton_6.setFont(myfont2);
         btnNewButton_6.setBackground(new Color(248, 248, 255));
         //btnNewButton_1.setForeground(new Color(248, 248, 255));
         btnNewButton_6.setContentAreaFilled(true);//设置按钮透明
-
         add(btnNewButton_6);
-
-        //横向图片
-        /*JLabel l12 = new JLabel();
-        ImageIcon icon5 = new ImageIcon("src/image/banner3.png");
-        l12.setIcon(icon5);
-        l12.setBounds(310, 70, 1000, 125);
-        add(l12);*/
-
-
-        //左侧面板
-        JPanel p1 = new JPanel();
-        p1.setBounds(0, 0, 310, 784);
-        p1.setBackground(new Color(135, 206, 250, 180));
-        add(p1);
-
-
-        //右下面板
-        JPanel p3 = new JPanel();
-        p3.setBounds(310, 0, 950, 685);
-        p3.setBackground(new Color(211, 211, 211, 100));
-        add(p3);
-
-        //右侧面板
-        JPanel p2 = new JPanel();
-        p2.setBounds(310, 0, 950, 1000);
-        p2.setBackground(new Color(245, 245, 245, 180));
-        add(p2);
-
-        //横向图片
-        JLabel l16 = new JLabel();
-        ImageIcon icon7 = new ImageIcon("src/image/background4.jpg");
-        l16.setIcon(icon7);
-        l16.setBounds(0, 0, 1273, 790);
-        p11.add(l16);
-
-        add(p11);
-
     }
 
 }

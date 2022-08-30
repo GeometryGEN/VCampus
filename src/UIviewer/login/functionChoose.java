@@ -12,6 +12,9 @@ import java.net.Socket;
 import java.util.List;
 import UIhandler.Shop.Client_shop;
 import UIviewer.QQ.main_panel;
+import UIviewer.SelectCourse.Selcourse;
+import UIviewer.SelectCourse.Selcourse_director;
+import UIviewer.SelectCourse.Selcourse_teacher;
 import UIviewer.Shopping.shoppinghall;
 import UIviewer.Shopping.shop;
 
@@ -280,14 +283,14 @@ public class functionChoose {
                 try {
                     if(myInfo.getType()==1)
                     {
-
+                        new Selcourse();
                     }
                     else if(myInfo.getType()==2)
                     {
-
+                        new Selcourse_teacher();
                     }
                     else {
-
+                        new Selcourse_director();
                     }
 
                 } catch (Exception ex) {
@@ -441,13 +444,14 @@ public class functionChoose {
                     Client_qicq.setId(myInfo.getId());
                     if(myInfo.getType()!=3)
                     {
+                        //Client_qicq.Require_friend_list();
                         jf.setContentPane(new main_panel(width,height).mjp);
                         jf.setTitle("userqq");
                     }
                     else
                     {
-                        jf.setContentPane(new main_panel(width,height).mjp);
-                        jf.setTitle("adminqq");
+                        //jf.setContentPane(new main_panel(width,height).mjp);
+                        //jf.setTitle("adminqq");
                     }
                 } catch (Exception ex) {
                     ex.printStackTrace();

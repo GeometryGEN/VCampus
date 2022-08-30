@@ -74,7 +74,7 @@ public class Course_manager {
     }
     public ArrayList<Course> query_courses(String s) throws SQLException {
         ArrayList<Course> courses = new ArrayList<Course>();
-        String sql="select * from curriculum where id like ? or name like ? or teacher like ?;";
+        String sql="select * from curriculum where id like ? or name like ? or teacher like ? order by id;";
         String parse="%"+s+"%";
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,parse);
@@ -85,7 +85,7 @@ public class Course_manager {
             Course x=new Course();
             x.name=rs.getString("name");
             x.teacher=rs.getString("teacher");
-            x.classroom=rs.getString("author");
+            x.classroom=rs.getString("classroom");
             x.point=rs.getDouble("point");
             x.size=rs.getInt("size");
             x.id=rs.getString("id");
@@ -96,7 +96,7 @@ public class Course_manager {
     }
     public ArrayList<Course> list_all_courses() throws SQLException {
         ArrayList<Course> courses = new ArrayList<Course>();
-        String sql="select * from curriculum;";
+        String sql="select * from curriculum order by id;";
         PreparedStatement st=conn.prepareStatement(sql);
         ResultSet rs=st.executeQuery();
         while(rs.next())
@@ -104,7 +104,7 @@ public class Course_manager {
             Course x=new Course();
             x.name=rs.getString("name");
             x.teacher=rs.getString("teacher");
-            x.classroom=rs.getString("author");
+            x.classroom=rs.getString("classroom");
             x.point=rs.getDouble("point");
             x.size=rs.getInt("size");
             x.id=rs.getString("id");
@@ -115,7 +115,7 @@ public class Course_manager {
     }
     public ArrayList<Course> list_my_courses() throws SQLException {
         ArrayList<Course> courses = new ArrayList<Course>();
-        String sql="select * from elective where stu_id=? or tea_id=?;";
+        String sql="select * from elective where stu_id=? or tea_id=? order by course_id;";
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,id);
         st.setString(2,id);
@@ -291,7 +291,7 @@ public class Course_manager {
     }
     public ArrayList<Opencourse> list_tea_opencourse(String id) throws SQLException{
         ArrayList<Opencourse>opencourses=new ArrayList<>();
-        String sql="select * from opencourses where teacher_id=?";
+        String sql="select * from opencourse where teacher_id=?";
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,id);
         ResultSet rs=st.executeQuery();
@@ -312,7 +312,7 @@ public class Course_manager {
         Message message=new Message();
         message.setType(MessageType.MESSAGE_CURRICULUM_LIST_ADMIN_APPLICATION_RET);
         ArrayList<Opencourse>opencourses=new ArrayList<>();
-        String sql="select * from opencourses where status=0";
+        String sql="select * from opencourse where status=0";
         PreparedStatement st=conn.prepareStatement(sql);
         ResultSet rs=st.executeQuery();
         while(rs.next()){
@@ -338,7 +338,7 @@ public class Course_manager {
         ResultSet rs=st.executeQuery();
         if(rs.next()){
             String id=rs.getString("id");
-            sql="select * from elective where course_id=?;";
+            sql="select * from elective where course_id=? order by stu_id;";
             st=conn.prepareStatement(sql);
             st.setString(1,id);
             rs=st.executeQuery();

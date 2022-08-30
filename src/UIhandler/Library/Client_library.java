@@ -22,20 +22,15 @@ import static UIviewer.Library.readLib.panel;
 
 public class Client_library {
     static String id;
-    static Socket socket;
     public static String lastsearch;
-    static MyObjectOutputStream oos;
-    public static Socket getSocket() {
-        return socket;
-    }
+    public static MyObjectOutputStream oos=null;
 
     public static String getId() {
         return id;
     }
 
-    public static void setSocket(Socket socket) throws IOException {
-        Client_library.socket = socket;
-        oos=new MyObjectOutputStream(socket.getOutputStream());
+    public static void setOos(MyObjectOutputStream mos){
+        oos=mos;
     }
 
     public static void setId(String id) {

@@ -1,9 +1,13 @@
 package UIviewer.SelectCourse;
 
+import UIhandler.Currirulum.Client_curriculum;
+import UIviewer.login.functionChoose;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.nio.channels.spi.AbstractInterruptibleChannel;
 
 public class Selcourse_teacher extends JFrame {
@@ -41,7 +45,7 @@ public class Selcourse_teacher extends JFrame {
         ConsultCourse_stuInfo f2=new ConsultCourse_stuInfo();
         panel.add(f2,"f2");
 
-        ChooseCourse_guidance f3=new ChooseCourse_guidance();
+        Check_Coustatus f3=new Check_Coustatus();
         panel.add(f3,"f3");
 
         Declare_Course f4=new Declare_Course();
@@ -79,14 +83,18 @@ public class Selcourse_teacher extends JFrame {
         Sel_main.add(btnNewButton_2);
 
         // 按钮3
-        JButton btnNewButton_3 = new JButton("选课帮助");
+        JButton btnNewButton_3 = new JButton("申报课程状态");
         btnNewButton_3.setBounds(400, 50, 160, 50);
         btnNewButton_3.setFont(myfont);
         btnNewButton_3.setBackground(new Color(250, 240, 230));
         btnNewButton_3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(panel,"f3");
+                try {
+                    Client_curriculum.Require_my_apply();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
         Sel_main.add(btnNewButton_3);
@@ -122,6 +130,15 @@ public class Selcourse_teacher extends JFrame {
         btnNewButton_6.setBounds(940, 50, 160, 50);
         btnNewButton_6.setFont(myfont);
         btnNewButton_6.setBackground(new Color(250, 240, 230));
+        btnNewButton_6.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                functionChoose.jf.setContentPane(functionChoose.fc_panel);
+                functionChoose.jf.setTitle("functionChoose");
+                setVisible(false);
+            }
+
+        });
         Sel_main.add(btnNewButton_6);
 
         //东南大学标志图片
@@ -133,6 +150,6 @@ public class Selcourse_teacher extends JFrame {
 
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
+        setVisible(true);
     }
 }

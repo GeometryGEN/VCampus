@@ -41,12 +41,14 @@ public class ServerToClientThread extends Thread{
     private Socket socket;
     private String userid;//连接到服务器的用户id
 
-    public ServerToClientThread(Socket socket,String userid){
-        this.socket=socket;
+    public ServerToClientThread(MyObjectOutputStream mos,MyObjectInputStream mis,String userid,Socket s){
+        this.oos=mos;
+        this.ois=mis;
         this.userid=userid;
+        socket=s;
     }
-    MyObjectOutputStream oos = null;
-    MyObjectInputStream ois = null;
+    public MyObjectOutputStream oos;
+    public MyObjectInputStream ois;
     public Socket getSocket() {
         return socket;
     }
@@ -64,14 +66,6 @@ public class ServerToClientThread extends Thread{
     }
 
     public void run(){
-
-        try {
-            oos = new MyObjectOutputStream(socket.getOutputStream());
-            ois = new MyObjectInputStream(socket.getInputStream());
-            QICQ_manager.oos=oos;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         while (true){
             System.out.println("客户端和服务端 "+userid+" 保持通信，读取数据...");
             try {
@@ -233,8 +227,8 @@ public class ServerToClientThread extends Thread{
                 if(m.getType().equals(MessageType.MESSAGE_QICQ_SEND_MSG)){
                      String getter=m.getGetter();
                      if(ServerToClient.isOnline(getter)!=-1){
-                         sendback=new QICQ_manager(userid).send_online_message(m);
-                         oos.writeObject(sendback);
+                         new QICQ_manager(userid).send_online_message(m);
+
                      }
                      else {
                          new QICQ_manager(userid).send_offline_message(m);
@@ -243,8 +237,8 @@ public class ServerToClientThread extends Thread{
                 else if(m.getType().equals(MessageType.MESSAGE_QICQ_SEND_FILE)){
                     String getter=m.getGetter();
                     if(ServerToClient.isOnline(getter)!=-1){
-                        sendback=new QICQ_manager(userid).send_online_file(m);
-                        oos.writeObject(sendback);
+                        new QICQ_manager(userid).send_online_file(m);
+
                     }
                     else {
                         new QICQ_manager(userid).send_offline_file(m);
@@ -460,11 +454,7 @@ public class ServerToClientThread extends Thread{
             }
 
         }
-        try {
-            socket.close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+
         System.out.println(userid+" exit succeed");
     }
 
