@@ -211,7 +211,7 @@ public class AddDeleteBook extends JPanel {
         add(p11);
 
         JPanel p12=new JPanel();
-        p12.setBounds((int) (630*width_r),0, (int) (660*width_r), (int) (650*height_r));
+        p12.setBounds((int) (620*width_r),0, (int) (660*width_r), (int) (650*height_r));
         JLabel pic2 = new JLabel();
         ImageIcon icon2 = new ImageIcon("src/image/bg17.jpg");
         int icon2_width= 660;
@@ -224,7 +224,7 @@ public class AddDeleteBook extends JPanel {
             throw new RuntimeException(e);
         }
         pic2.setIcon(new ImageIcon("src/image/bg17_min.jpg"));
-        pic2.setBounds((int) (630*width_r),0, (int) (660*width_r), (int) (650*height_r));
+        pic2.setBounds((int) (620*width_r),0, (int) (660*width_r), (int) (650*height_r));
         p12.add(pic2);
         add(p12);
     }

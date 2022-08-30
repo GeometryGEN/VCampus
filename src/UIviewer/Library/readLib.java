@@ -30,6 +30,7 @@ public class readLib extends JPanel {
 
 
         public readLib(ClientToServer ucs){
+            setBackground(Color.red);
             String name=null;
             if(ucs.getID().equals("1"))
                 name=ucs.getS().getStudent_name();
@@ -38,10 +39,11 @@ public class readLib extends JPanel {
             else if(ucs.getID().equals("3"))
                 name=ucs.getA().getAdmin_name();
             getName(name);
-        setBounds(0,0, (int) (1280*width_r), (int) (790*height_r));
+        setBounds(0,0, (int) (1273*width_r), (int) (784*height_r));
         setLayout(null);
 
-        panel.setBounds(0, (int) (150*height_r), (int) (1280*width_r), (int) (790*height_r));
+        panel.setBounds(0, (int) (150*height_r), (int) (1273*width_r), (int) (634*height_r));
+        panel.setBackground(new Color(0,0,0));
         add(panel);
 //		给主要显示面板添加布局方式
         panel.setLayout(cardLayout);
