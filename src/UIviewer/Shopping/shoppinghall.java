@@ -1,6 +1,7 @@
 package UIviewer.Shopping;
 import ClientToServer.ClientToServer;
 import UIhandler.Library.Client_library;
+import UIhandler.Shop.Client_shop;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,10 +15,19 @@ public class shoppinghall extends JFrame {
     public static JPanel panel = new JPanel();
     ;
 
+    static String idcard;
     static String name;
     static double money;
 
     public static JButton b2 = new JButton("我的购物车");
+
+    public static String getIdcard() {
+        return idcard;
+    }
+
+    public static void setIdcard(String idcard) {
+        shoppinghall.idcard = idcard;
+    }
 
     static void getName(String a) {
         name = a;
@@ -38,7 +48,7 @@ public class shoppinghall extends JFrame {
                         name = ucs.getT().getTeacher_name();
                     else if (ucs.getID().equals("3"))
                         name = ucs.getA().getAdmin_name();
-
+                    setIdcard(ucs.getIDcard());
                     getName(name);
                     getMoney(money);
                     shoppinghall frame = new shoppinghall();
@@ -82,7 +92,7 @@ public class shoppinghall extends JFrame {
         mainLib.add(logo);
 
         //文字
-        JLabel l1 = new JLabel("你好！" + name+",您的余额为:"+String.valueOf(money)+"元。");
+        JLabel l1 = new JLabel("你好！" + name+",您的余额为:"+ money +"元。");
         l1.setBounds(920, 30, 450, 55);
         l1.setForeground(new Color(248, 248, 255));
         Font font = new Font("楷体", Font.BOLD, 20);
@@ -107,7 +117,19 @@ public class shoppinghall extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
-                cardLayout.show(panel, "f1");
+                shop f11=new shop();
+                String[][] temp={{"1","2"}};
+                shop.setShoptable(temp);
+                panel.add(f11,"f11");
+                //panel.setLayout(cardLayout);
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException ex) {
+                    throw new RuntimeException(ex);
+                }
+//                while (shop.shoptable==null);
+                cardLayout.show(panel,"f11");
+                System.out.println("111111");
             }
         });
         mainLib.add(b1);
@@ -122,7 +144,17 @@ public class shoppinghall extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
+                shoppingcar f11=new shoppingcar();
+                try {
+                    String Buyedid=Client_shop.checkBuyed(idcard);
+//                    String Buyednum=Client_shop.checkBuyedNum(idcard);
+   //                shoppingcar.setShopping_res();
+                    panel.add(f11, "f11");
+                    cardLayout.show(panel, "f11");
 
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
         mainLib.add(b2);

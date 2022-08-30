@@ -23,6 +23,10 @@ import static UIviewer.login.register.registerUI;
 public class shop extends JPanel {
     public static volatile String[][] shoptable;
 
+    public static void resetshoptable(){
+        shoptable=null;
+    }
+
     public static String[][] getShoptable() {
         return shoptable;
     }
@@ -45,8 +49,8 @@ public class shop extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    Client_shop.checktypeProduct("零食");
-                    List<Product> ps = Client_shop.returnAllProduct();
+                    resetshoptable();
+                    List<Product> ps = Client_shop.checktypeProduct("零食");
                     String[][] changed_ps = new String[ps.size()][];
                     for(int i = 0;i<ps.size();i++){
                         String[] temp=new String[4];
@@ -56,7 +60,11 @@ public class shop extends JPanel {
                         temp[3]=String.valueOf(ps.get(i).getProduct_id());
                         changed_ps[i]=temp;
                     }
-                    shoptable=changed_ps;
+                    shop.setShoptable(changed_ps);
+//                    shoppingcar f11=new shoppingcar();
+//                    shoppingcar.setShopping_res(changed_ps);
+//                    panel.add(f11, "f11");
+//                    cardLayout.show(panel, "f11");
 
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);

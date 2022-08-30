@@ -91,7 +91,8 @@ public class Client_shop {
     }
 
     public static void resetCheckedProducts(){
-        checkproducts.clear();
+        if(checkproducts!=null)
+            checkproducts.clear();
     }
 
     public static void resetCheckedtypeProducts(){

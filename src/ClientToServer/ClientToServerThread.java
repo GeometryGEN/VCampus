@@ -17,10 +17,7 @@ import message.MessageType;
 import utils.MyObjectInputStream;
 import utils.MyObjectOutputStream;
 
-import java.io.IOException;
-import java.io.InterruptedIOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -147,6 +144,7 @@ public class ClientToServerThread extends Thread {
                 else if(message.getType().equals(MessageType.FIND_TYPE_PRODUCT_SUCCEED)){
                     List<Product> ps = ((List<Product>) message.getData());
                     Client_shop.setCheckproductsType(ps);
+                    Client_shop.setSign_find_type("2");
                 }
                 else if(message.getType().equals(MessageType.FIND_PRODUCT_SUCCEED_ZERO)){
                     List<Product> ps = ((List<Product>) message.getData());
@@ -239,7 +237,11 @@ public class ClientToServerThread extends Thread {
 
             } catch (InterruptedIOException e){
                 break;
-            } catch (Exception e) {
+            }
+//            catch (EOFException e) {
+//                System.out.println("已从流中读完,安全退出");
+//            }
+            catch (Exception e) {
                 e.printStackTrace();
             }
         }
