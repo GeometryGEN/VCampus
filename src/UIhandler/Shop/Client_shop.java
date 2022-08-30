@@ -288,7 +288,7 @@ public class Client_shop {
         return sign_add.equals("2");
     }
 
-    //购买商品  ui里先进行判断够不够，余额够不够，这里只更改信息 money为修改之后的钱, num为当前数量，修改后的!!!!!
+    //购买商品  ui里先进行判断够不够，余额够不够，这里只更改信息 money为修改之后的钱
     public static Boolean buyProduct(String user_idcard, String id, int num, double money) throws Exception {
         resetNow_Buy_product();
         Message message = new Message();

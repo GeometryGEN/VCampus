@@ -312,7 +312,7 @@ public class ServerToClientThread extends Thread{
                     } else{
                         sendback.setType(MessageType.CHECK_CERTAIN__PRODUCT_FAILED);
                         oos.writeObject(sendback);
-//                        socket.close();
+                        socket.close();
                     }
                 }
                 else if(m.getType().equals(MessageType.CHECK_BUYED_PRODUCT)){
