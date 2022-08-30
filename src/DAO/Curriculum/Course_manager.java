@@ -72,8 +72,8 @@ public class Course_manager {
         }
         return a;
     }
-    public HashSet<Course> query_courses(String s) throws SQLException {
-        HashSet<Course> courses = new HashSet<Course>();
+    public ArrayList<Course> query_courses(String s) throws SQLException {
+        ArrayList<Course> courses = new ArrayList<Course>();
         String sql="select * from curriculum where id like ? or name like ? or teacher like ?;";
         String parse="%"+s+"%";
         PreparedStatement st=conn.prepareStatement(sql);
@@ -94,8 +94,8 @@ public class Course_manager {
         }
         return courses;
     }
-    public HashSet<Course> list_all_courses() throws SQLException {
-        HashSet<Course> courses = new HashSet<Course>();
+    public ArrayList<Course> list_all_courses() throws SQLException {
+        ArrayList<Course> courses = new ArrayList<Course>();
         String sql="select * from curriculum;";
         PreparedStatement st=conn.prepareStatement(sql);
         ResultSet rs=st.executeQuery();
@@ -113,8 +113,8 @@ public class Course_manager {
         }
         return courses;
     }
-    public HashSet<Course> list_my_courses() throws SQLException {
-        HashSet<Course> courses = new HashSet<Course>();
+    public ArrayList<Course> list_my_courses() throws SQLException {
+        ArrayList<Course> courses = new ArrayList<Course>();
         String sql="select * from elective where stu_id=? or tea_id=?;";
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,id);
@@ -142,7 +142,7 @@ public class Course_manager {
         return courses;
     }
     public Message choose(Course c) throws SQLException {
-        HashSet<Course> courses = list_my_courses();
+        ArrayList<Course> courses = list_my_courses();
         int [][][]a=new int[17][6][14];
         Iterator it = courses.iterator();
         while(it.hasNext()){
@@ -222,7 +222,7 @@ public class Course_manager {
     }
     public String[][][] schedule() throws SQLException {
         String [][][]ans=new String[17][14][6];
-        HashSet<Course>courses=list_my_courses();
+        ArrayList<Course>courses=list_my_courses();
         Iterator it = courses.iterator();
         while(it.hasNext()){
             Course cc=(Course) it.next();
@@ -329,8 +329,8 @@ public class Course_manager {
         message.setData(opencourses);
         return message;
     }
-    public HashSet<Student>get_student(String s) throws SQLException {
-        HashSet<Student>res=new HashSet<Student>();
+    public ArrayList<Student>get_student(String s) throws SQLException {
+        ArrayList<Student>res=new ArrayList<Student>();
         String sql="select * from curriculum where name=? or id=?;";
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,s);

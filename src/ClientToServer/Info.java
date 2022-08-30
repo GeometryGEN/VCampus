@@ -1,31 +1,37 @@
 package ClientToServer;
 
 public class Info {
-    String id;
-    int type; //1-学生 2-老师 3-管理员
-    String name;
+    static String id;
+    static int type; //1-学生 2-老师 3-管理员
+    static String name;
 
-    public String getId() {
+    public static String getId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public static void setId(String id1) {
+        id = id1;
     }
 
-    public int getType() {
+    public static int getType() {
         return type;
     }
 
-    public void setType(int type) {
-        this.type = type;
+    public static void setType(int ty) {
+        type = ty;
     }
 
-    public String getName() {
+    public static String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public static void setName(String n1) {
+        name = n1;
+    }
+
+    public static void setall(String id, int type, String name){
+        setName(name);
+        setId(id);
+        setType(type);
     }
 }
