@@ -167,6 +167,7 @@ public class functionChoose {
                     ucs.logout();
                     jf.dispose();
                     LoginFrame.jf.setVisible(true);
+                    LoginFrame.passwordField.setText("");
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }

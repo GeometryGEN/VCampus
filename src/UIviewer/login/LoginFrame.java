@@ -14,7 +14,7 @@ public class LoginFrame extends JFrame{
     private ClientToServer ucs = new ClientToServer();
     private JPanel p1;
     private JTextField textField;
-    private JPasswordField passwordField;
+    public static JPasswordField passwordField;
 
     public static JFrame jf = new JFrame("Login");
     public LoginFrame(){
