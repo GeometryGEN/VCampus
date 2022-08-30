@@ -77,7 +77,7 @@ public class Client_library {
         }
         AllBooks fa=new AllBooks();
         UIviewer.Library.adminLib.panel.add(fa,"fa");
-        UIviewer.Library.adminLib.cardLayout.show(panel, "fa");
+        UIviewer.Library.adminLib.cardLayout.show(UIviewer.Library.adminLib.panel,"fa");
     }
 
     //增加书籍的请求和处理
