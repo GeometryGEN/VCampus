@@ -6,6 +6,7 @@ import DAO.Library.Book_borrower;
 import DAO.Library.Punishment;
 import DAO.QICQ.Friend;
 import DAO.Shop.Product;
+import DAO.Shop.ProductPair;
 import UIhandler.Library.Client_library;
 import UIhandler.QICQ.Client_qicq;
 import UIhandler.Shop.Client_shop;
@@ -151,34 +152,32 @@ public class ClientToServerThread extends Thread {
                     Client_shop.setSign(false);
                 }
                 else if(message.getType().equals(MessageType.CHECK_BUYED_PRODUCT_SUCCEED)){
-                    String ps = (String) message.getData();
-                    Client_shop.setBuyed(ps);
+                    List<ProductPair> s  = (List<ProductPair>) message.getData();
+                    Client_shop.setBuyed(s);
+                    Client_shop.setSign_zero(false);
                 }
                 else if(message.getType().equals(MessageType.CHECK_BUYED_PRODUCT_FAILED)){
                     Client_shop.setBuyed(null);
-                }
-                else if(message.getType().equals(MessageType.CHECK_BUYED_PRODUCT_NUM_SUCCEED)){
-                    String ps = (String) message.getData();
-                    Client_shop.setBuyed_num(ps);
-                }
-                else if(message.getType().equals(MessageType.CHECK_BUYED_PRODUCT_NUM_FAILED)){
-                    Client_shop.setBuyed_num(null);
-                }
-                else if(message.getType().equals(MessageType.CHECK_READYTOBUY_PRODUCT_SUCCEED)){
-                    String ps = (String) message.getData();
-                    Client_shop.setReadyToBuy(ps);
-                }
-                else if(message.getType().equals(MessageType.CHECK_READYTOBUY_PRODUCT_FAILED)){
-                    Client_shop.setReadyToBuy(null);
+                    Client_shop.setSign_zero(false);
                 }
 
-                else if(message.getType().equals(MessageType.CHECK_READYTOBUY_PRODUCT_NUM_SUCCEED)){
-                    String ps = (String) message.getData();
-                    Client_shop.setReadyToBuy_num(ps);
+                else if(message.getType().equals(MessageType.CHECK_READYTOBUY_PRODUCT_SUCCEED)){
+                    List<ProductPair> s  = (List<ProductPair>) message.getData();
+                    Client_shop.setBuyed(s);
+                    Client_shop.setSign_zero(false);
                 }
-                else if(message.getType().equals(MessageType.CHECK_READYTOBUY_PRODUCT_NUM_FAILED)){
-                    Client_shop.setReadyToBuy_num(null);
+                else if(message.getType().equals(MessageType.CHECK_READYTOBUY_PRODUCT_FAILED)){
+                    Client_shop.setBuyed(null);
+                    Client_shop.setSign_zero(false);
                 }
+
+                else if(message.getType().equals(MessageType.DELETE_READYTPBUY_PRODUCT_SUCCEED)){
+                    Client_shop.setSign_delete("2");
+                }
+                else if(message.getType().equals(MessageType.DELETE_READYTPBUY_PRODUCT_FAILED)){
+                    Client_shop.setSign_delete("3");
+                }
+
 
                 else if(message.getType().equals(MessageType.CHECK_CERTAIN__PRODUCT_SUCCEED)){
                     Product ps = (Product) message.getData();
@@ -191,10 +190,12 @@ public class ClientToServerThread extends Thread {
                 }
 
                 else if(message.getType().equals(MessageType.BUY_CERTAIN__PRODUCT_SUCCEED)){
-                    Client_shop.setNow_Buy_product("2");
+                    String ps = (String) message.getData();
+                    Client_shop.setNow_Buy_product(ps);
                 }
                 else if(message.getType().equals(MessageType.BUY_CERTAIN__PRODUCT_FAILED)){
-                    Client_shop.setNow_Buy_product("3");
+                    String ps = (String) message.getData();
+                    Client_shop.setNow_Buy_product(ps);
                 }
 
                 else if(message.getType().equals(MessageType.DELETE_PRODUCT_SUCCEED)){

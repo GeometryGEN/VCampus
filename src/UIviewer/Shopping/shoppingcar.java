@@ -20,8 +20,7 @@ public class shoppingcar extends JPanel{
         shoppingcar.shopping_res = shopping_res;
     }
 
-    public shoppingcar()
-    {
+    public shoppingcar() {
         setLayout(null);
         String[] tableTitle={"图片","商品信息","价格","数量","购买","删除"};
         DefaultTableModel dtm=new DefaultTableModel(shopping_res,tableTitle);

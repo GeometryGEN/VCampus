@@ -60,6 +60,7 @@ public class shop extends JPanel {
                         temp[3]=String.valueOf(ps.get(i).getProduct_id());
                         changed_ps[i]=temp;
                     }
+                    System.out.println(changed_ps[0][0]+"1111111");
                     shop.setShoptable(changed_ps);
 //                    shoppingcar f11=new shoppingcar();
 //                    shoppingcar.setShopping_res(changed_ps);

@@ -1,5 +1,6 @@
 package UIviewer.Shopping;
 import ClientToServer.ClientToServer;
+import DAO.Shop.ProductPair;
 import UIhandler.Library.Client_library;
 import UIhandler.Shop.Client_shop;
 
@@ -8,6 +9,8 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.List;
+
 import ClientToServer.myInfo;
 
 public class shoppinghall extends JFrame {
@@ -19,8 +22,6 @@ public class shoppinghall extends JFrame {
     static String idcard;
     static String name;
     static double money;
-
-    public static JButton b2 = new JButton("我的购物车");
 
     public static String getIdcard() {
         return idcard;
@@ -41,9 +42,8 @@ public class shoppinghall extends JFrame {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    String name = myInfo.getName();
                     double money=12;
-                    name = myInfo.getName();
+                    String name = myInfo.getName();
                     setIdcard(myInfo.getId());
                     getName(name);
                     getMoney(money);
@@ -130,7 +130,7 @@ public class shoppinghall extends JFrame {
         });
         mainLib.add(b1);
 
-
+        JButton b2 = new JButton("我的购物车");
         b2.setBounds(370, 100, 250, 50);
         b2.setFont(myfont1);
         b2.setContentAreaFilled(false);//设置按钮透明
@@ -142,14 +142,18 @@ public class shoppinghall extends JFrame {
                 // TODO Auto-generated method stub
                 shoppingcar f11=new shoppingcar();
                 try {
-                    String Buyedid=Client_shop.checkBuyed(idcard);
+
+                    List<ProductPair> Buyedid=Client_shop.checkBuyed(idcard);
+                    System.out.println(Buyedid);
 //                    String Buyednum=Client_shop.checkBuyedNum(idcard);
-   //                shoppingcar.setShopping_res();
+//                    System.out.println(Buyednum);
+                   //shoppingcar.setShopping_res();
                     panel.add(f11, "f11");
                     cardLayout.show(panel, "f11");
 
                 } catch (IOException ex) {
-                    throw new RuntimeException(ex);
+//                    throw new RuntimeException(ex);
+                    System.out.println("1111111111111111");
                 }
             }
         });

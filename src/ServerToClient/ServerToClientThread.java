@@ -11,6 +11,7 @@ import DAO.QICQ.Application;
 import DAO.QICQ.QICQ_manager;
 import DAO.Shop.Admin_Shop_utils;
 import DAO.Shop.Product;
+import DAO.Shop.ProductPair;
 import DAO.Shop.buyers_Shop_utils;
 import DAO.StatusManagement.Admin_SM_utils;
 import DAO.StatusManagement.User_SM_utils;
@@ -22,6 +23,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
@@ -316,13 +318,13 @@ public class ServerToClientThread extends Thread{
                     } else{
                         sendback.setType(MessageType.CHECK_CERTAIN__PRODUCT_FAILED);
                         oos.writeObject(sendback);
-                        socket.close();
+//                        socket.close();
                     }
                 }
                 else if(m.getType().equals(MessageType.CHECK_BUYED_PRODUCT)){
-                    String info  = buyers_Shop_utils.getBuyed(m.getSender());
-                    if(info!=null){
-                        sendback.setData(info);
+                    List<ProductPair> s = buyers_Shop_utils.getBuyedandNum(m.getSender());
+                    if(s.size()!=0){
+                        sendback.setData(s);
                         sendback.setType(MessageType.CHECK_BUYED_PRODUCT_SUCCEED);
                         oos.writeObject(sendback);
                     } else{
@@ -331,42 +333,33 @@ public class ServerToClientThread extends Thread{
                         socket.close();
                     }
                 }
-                else if(m.getType().equals(MessageType.CHECK_BUYED_PRODUCT_NUM)){
-                    String info  = buyers_Shop_utils.getBuyedNum(m.getSender());
-                    if(info!=null){
-                        sendback.setData(info);
-                        sendback.setType(MessageType.CHECK_BUYED_PRODUCT_NUM_SUCCEED);
-                        oos.writeObject(sendback);
-                    } else{
-                        sendback.setType(MessageType.CHECK_BUYED_PRODUCT_NUM_FAILED);  //相当于为0
-                        oos.writeObject(sendback);
-                        socket.close();
-                    }
-                }
                 else if(m.getType().equals(MessageType.CHECK_READYTOBUY_PRODUCT)){
-                    String info  = buyers_Shop_utils.getReadytoBuy(m.getSender());
-                    if(info!=null){
-                        sendback.setData(info);
+                    List<ProductPair> s = buyers_Shop_utils.getReadytoBuyandNum(m.getSender());
+                    if(s.size()!=0){
+                        sendback.setData(s);
                         sendback.setType(MessageType.CHECK_READYTOBUY_PRODUCT_SUCCEED);
                         oos.writeObject(sendback);
                     } else{
-                        sendback.setType(MessageType.CHECK_READYTOBUY_PRODUCT_FAILED);
+                        sendback.setType(MessageType.CHECK_READYTOBUY_PRODUCT_FAILED);  //相当于为0
                         oos.writeObject(sendback);
                         socket.close();
                     }
                 }
-                else if(m.getType().equals(MessageType.CHECK_READYTOBUY_PRODUCT_NUM)){
-                    String info  = buyers_Shop_utils.getReadytoBuyNum(m.getSender());
-                    if(info!=null){
-                        sendback.setData(info);
-                        sendback.setType(MessageType.CHECK_READYTOBUY_PRODUCT_NUM_SUCCEED);
+
+                else if(m.getType().equals(MessageType.DELETE_READYTPBUY_PRODUCT)){
+                    String idcard = m.getSender();
+                    ProductPair s = (ProductPair) m.getData();
+                    boolean b = buyers_Shop_utils.deleteShopCar(idcard,s.getId(),s.getNum());
+                    if(b){
+                        sendback.setType(MessageType.DELETE_READYTPBUY_PRODUCT_SUCCEED);
                         oos.writeObject(sendback);
                     } else{
-                        sendback.setType(MessageType.CHECK_READYTOBUY_PRODUCT_NUM_FAILED);
+                        sendback.setType(MessageType.DELETE_READYTPBUY_PRODUCT_FAILED);  //相当于为0
                         oos.writeObject(sendback);
-                        socket.close();
+//                        socket.close();
                     }
                 }
+
                 else if(m.getType().equals(MessageType.DELETE_PRODUCT)){
                     if(Admin_Shop_utils.deleteProduct(m.getSender())){
                         sendback.setType(MessageType.DELETE_PRODUCT_SUCCEED);
@@ -400,8 +393,8 @@ public class ServerToClientThread extends Thread{
                     }
                 }
                 else if(m.getType().equals(MessageType.BUY_CERTAIN_PRODUCT)){
-                    Boolean ps  = buyers_Shop_utils.buyCertainProduct(m.getGetter(),Integer.parseInt(m.getSender()),m.getCode(),m.getMoney());
-                    if(ps){
+                    String ps  = buyers_Shop_utils.buyCertainProduct(m.getGetter(),Integer.parseInt(m.getSender()),m.getCode(),m.getMoney());
+                    if(ps.equals("购买成功")){
                         sendback.setData(ps);
                         sendback.setType(MessageType.BUY_CERTAIN__PRODUCT_SUCCEED);
                         oos.writeObject(sendback);

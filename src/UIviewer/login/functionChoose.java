@@ -327,8 +327,7 @@ public class functionChoose {
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
                 try {
-                    if(myInfo.getType()!=3)
-                    {
+                    if(myInfo.getType()!=3) {
                         Client_shop.setId(String.valueOf(myInfo.getType()));
                         Client_shop.setIdcard(myInfo.getId());
 
@@ -347,7 +346,6 @@ public class functionChoose {
                     } else {
 
                     }
-                    shoppinghall.shoppingUI();
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }

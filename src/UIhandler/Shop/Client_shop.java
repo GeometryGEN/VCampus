@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import ClientToServer.ManageClientToServerThread;
 import DAO.Shop.Product;
+import DAO.Shop.ProductPair;
 import User.Admin;
 import User.Student;
 import message.Message;
@@ -16,19 +17,12 @@ public class Client_shop {
     public static String id;    //区分 1：学生  2：老师  3：管理员
 
     public static String idcard;         //当前已登录账号的那个对象一卡通
-
-    public static String Buyed;          //商品 1 正在找  2 成功  3 失败
-
-    public static String Now_Buy_product;  //商品 1 正在找  2 成功  3 失败
-
-    public static String sign_Now_Buy_money_enough;  //商品 1 正在找  2 成功  3 失败
-    public static String Buyed_num;      //商品 1 正在找  2 成功  3 失败
-    public static String ReadyToBuy;          //商品 1 正在找  2 成功  3 失败
-
-    public static String ReadyToBuy_num;      //商品 1 正在找  2 成功  3 失败
+    public static List<ProductPair> Buyed;               //商品 1 正在找  2 成功  3 失败
+    public static List<ProductPair> ReadyToBuy;          //商品 1 正在找  2 成功  3 失败
     public static List<Product> products;          //存放所有商品
-
     public static Product CertainProducts;          //存放特定商品
+
+    public static String Now_Buy_product;     //要买的商品
     public static String sign_Certain;              //商品 1 正在找  2 成功  3 失败
 
     public static String sign_delete;             //商品是否删除成功的标志 1 正在删除  2 成功  3 失败
@@ -43,6 +37,9 @@ public class Client_shop {
 
     //////////////////记得每次点击按钮先reset null
 
+    public static void resetNow_Buy_product(){
+        sign_Certain="正在买";
+    }
     public static void resetCertainProduct_sign(){
         sign_Certain="1";
     }
@@ -53,30 +50,16 @@ public class Client_shop {
         sign_find_type="1";
     }
 
-    public static void resetNow_Buy_money_enough(){
-        sign_Now_Buy_money_enough="1";
-    }
-    public static void resetNowBuyProduct(){
-        Now_Buy_product="1";
-    }
-    public static void resetBuyedNum(){
-        Buyed_num="1";
-    }
-
-    public static void resetReadyToBuyNum(){
-        ReadyToBuy_num="1";
-    }
-
     public static void resetSign_find_tpye(){
         sign_delete="1";
     }
 
     public static void resetBuyed(){
-        Buyed="1";
+        Buyed=null;
     }
 
     public static void resetReadytoBuy(){
-        ReadyToBuy="1";
+        ReadyToBuy=null;
     }
 
     public static void resetSign_zero(){
@@ -84,19 +67,17 @@ public class Client_shop {
     }
 
     public static void resetCertainProducts(){
-        products=null;
+        CertainProducts=null;
     }
     public static void resetAllProducts(){
-        products.clear();
+        products=null;
     }
-
     public static void resetCheckedProducts(){
-        if(checkproducts!=null)
-            checkproducts.clear();
+            checkproducts=null;
     }
 
     public static void resetCheckedtypeProducts(){
-        checkproductsType.clear();
+        checkproductsType=null;
     }
 
     public static Product getCertainProducts() {
@@ -107,38 +88,6 @@ public class Client_shop {
         CertainProducts = certainProducts;
     }
 
-    public static String getBuyed_num() {
-        return Buyed_num;
-    }
-
-    public static void setBuyed_num(String buyed_num) {
-        Buyed_num = buyed_num;
-    }
-
-    public static String getSign_Now_Buy_money_enough() {
-        return sign_Now_Buy_money_enough;
-    }
-
-    public static void setSign_Now_Buy_money_enough(String sign_Now_Buy_money_enough) {
-        Client_shop.sign_Now_Buy_money_enough = sign_Now_Buy_money_enough;
-    }
-
-    public static String getReadyToBuy_num() {
-        return ReadyToBuy_num;
-    }
-
-    public static void setReadyToBuy_num(String readyToBuy_num) {
-        ReadyToBuy_num = readyToBuy_num;
-    }
-
-    public static String getNow_Buy_product() {
-        return Now_Buy_product;
-    }
-
-    public static void setNow_Buy_product(String now_Buy_product) {
-        Now_Buy_product = now_Buy_product;
-    }
-
     public static String getSign_Certain() {
         return sign_Certain;
     }
@@ -147,19 +96,19 @@ public class Client_shop {
         Client_shop.sign_Certain = sign_Certain;
     }
 
-    public static String getBuyed() {
+    public static List<ProductPair> getBuyed() {
         return Buyed;
     }
 
-    public static void setBuyed(String buyed) {
+    public static void setBuyed(List<ProductPair> buyed) {
         Buyed = buyed;
     }
 
-    public static String getReadyToBuy() {
+    public static List<ProductPair> getReadyToBuy() {
         return ReadyToBuy;
     }
 
-    public static void setReadyToBuy(String readyToBuy) {
+    public static void setReadyToBuy(List<ProductPair> readyToBuy) {
         ReadyToBuy = readyToBuy;
     }
 
@@ -227,8 +176,24 @@ public class Client_shop {
         Client_shop.idcard = idcard;
     }
 
+    public static Boolean getSign_zero() {
+        return sign_zero;
+    }
+
+    public static void setSign_zero(Boolean sign_zero) {
+        Client_shop.sign_zero = sign_zero;
+    }
+
     public static List<Product> getProducts() {
         return products;
+    }
+
+    public static String getNow_Buy_product() {
+        return Now_Buy_product;
+    }
+
+    public static void setNow_Buy_product(String now_Buy_product) {
+        Now_Buy_product = now_Buy_product;
     }
 
     public static void setProducts(List<Product> products) {
@@ -280,7 +245,6 @@ public class Client_shop {
         while ( sign_Certain.equals("1")) Thread.onSpinWait();
         return CertainProducts;
     }
-
     //商品Product_id唯一
     public static Boolean deleteProduct(String id) throws Exception {
         resetSign_delete();
@@ -295,7 +259,6 @@ public class Client_shop {
         while (sign_delete.equals("1")) Thread.onSpinWait();
         return sign_delete.equals("2");
     }
-
     public static List<Product> checktypeProduct(String type_name) throws Exception {
         resetCheckedProducts();
         resetSign_find_tpye();
@@ -327,6 +290,7 @@ public class Client_shop {
 
     //购买商品  ui里先进行判断够不够，余额够不够，这里只更改信息 money为修改之后的钱, num为当前数量，修改后的!!!!!
     public static Boolean buyProduct(String user_idcard, String id, int num, double money) throws Exception {
+        resetNow_Buy_product();
         Message message = new Message();
         message.setType(MessageType.BUY_CERTAIN_PRODUCT);
         message.setGetter(user_idcard); //用户id
@@ -338,14 +302,13 @@ public class Client_shop {
         //发送学生对象
         oos.writeObject(message);
         //等待接受学生
-        while (Now_Buy_product.equals("1")) Thread.onSpinWait();
+        while (Now_Buy_product.equals("正在买")) Thread.onSpinWait();
 
-        return Now_Buy_product.equals("2");
+        return Now_Buy_product.equals("购买成功");
     }
-
-
-    public static String checkBuyed(String idcard) throws IOException {
+    public static List<ProductPair> checkBuyed(String idcard) throws IOException {
         resetBuyed();
+        resetSign_zero();
         Message message = new Message();
         message.setType(MessageType.CHECK_BUYED_PRODUCT);
         message.setSender(idcard);
@@ -354,26 +317,13 @@ public class Client_shop {
         //发送学生对象
         oos.writeObject(message);
         //等待接受学生
-        while (Buyed.equals("1")) Thread.onSpinWait();
+        while (sign_zero) Thread.onSpinWait();
         return Buyed;
     }
 
-    public static String checkBuyedNum(String idcard) throws IOException {
-        resetBuyed();
-        Message message = new Message();
-        message.setType(MessageType.CHECK_BUYED_PRODUCT_NUM);
-        message.setSender(idcard);
-        //得到Object对象
-        MyObjectOutputStream oos = new MyObjectOutputStream(ManageClientToServerThread.getThread(idcard).getSocket().getOutputStream());
-        //发送学生对象
-        oos.writeObject(message);
-        //等待接受学生
-        while (Buyed.equals("1")) Thread.onSpinWait();
-        return Buyed;
-    }
-
-    public static String readyToBuy(String idcard) throws IOException {
+    public static List<ProductPair> checkReadyToBuy(String idcard) throws IOException {
         resetReadytoBuy();
+        resetSign_zero();
         Message message = new Message();
         message.setType(MessageType.CHECK_READYTOBUY_PRODUCT);
         message.setSender(idcard);
@@ -382,24 +332,24 @@ public class Client_shop {
         //发送学生对象
         oos.writeObject(message);
         //等待接受学生
-        while (ReadyToBuy.equals("1")) Thread.onSpinWait();
+        while (sign_zero) Thread.onSpinWait();
         return ReadyToBuy;
     }
 
-    public static String readyToBuyNum(String idcard) throws IOException {
-        resetReadyToBuyNum();
+    public static Boolean deleteReadyToBuy(String idcard, int id, int num) throws IOException {
+        resetSign_delete();
+        ProductPair p = new ProductPair();p.setNum(num);p.setId(id);
         Message message = new Message();
-        message.setType(MessageType.CHECK_READYTOBUY_PRODUCT_NUM);
+        message.setType(MessageType.DELETE_READYTPBUY_PRODUCT);
+        message.setData(p);
         message.setSender(idcard);
         //得到Object对象
         MyObjectOutputStream oos = new MyObjectOutputStream(ManageClientToServerThread.getThread(idcard).getSocket().getOutputStream());
         //发送学生对象
         oos.writeObject(message);
         //等待接受学生
-        while (ReadyToBuy.equals("1")) Thread.onSpinWait();
-        return ReadyToBuy;
+        while (sign_delete.equals("1")) Thread.onSpinWait();
+        return false;
     }
-
-
 
 }
