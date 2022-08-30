@@ -1,7 +1,9 @@
 package UIviewer.SelectCourse;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 import java.awt.*;
 import java.util.Date;
 import java.awt.event.ActionEvent;
@@ -10,13 +12,15 @@ import java.awt.event.ActionListener;
 
 public class My_Coursetable extends JPanel{
 
+    public static volatile  String[][] tableDate=null;
+    TableColumn column;
     public My_Coursetable()
     {
         setLayout(null);
-        JPanel p11=new JPanel();
-        p11.setBounds(0,0,1273,784);
+        /*JPanel p11=new JPanel();
+        p11.setBounds(0,0,1273,784);*/
 
-        JLabel l1 = new JLabel("  你好！");
+        /*JLabel l1 = new JLabel("  你好！");
         l1.setBounds(170, 100, 100, 75);
         Font font = new Font("楷体", Font.BOLD, 22);
         l1.setFont(font);
@@ -43,14 +47,52 @@ public class My_Coursetable extends JPanel{
         l3.setFont(font1);
         l3.setForeground(new Color(0, 0, 0));
         add(l3);
+*/
 
-        /*JLabel l12 = new JLabel();
-        ImageIcon icon5 = new ImageIcon("src/image/banner3.png");
-        l12.setIcon(icon5);
-        l12.setBounds(310, 70, 1000, 125);
-        add(l12);*/
+        JTable table;
+        JScrollPane scrollPane;
+        DefaultTableModel tableModel;
 
-        JPanel p1 = new JPanel();
+
+
+        String[] columnNames={"节数","星期一","星期二","星期三","星期四","星期五"};
+        String [][] tableValues={
+                {"第一节"},{"第二节"},{"第三节"},{"第四节"},
+                {"第五节"},{"第六节"},{"第七节"},{"第八节"},
+                {"第九节"},{"第十节"},{"第十一节"},{"第十二节"},
+                {"第十三节"}
+        };
+        tableModel=new DefaultTableModel(tableValues,columnNames);
+        table=new JTable(tableModel);
+        //scrollPane.setViewportView(table);
+        scrollPane=new JScrollPane(table);
+        /*DefaultTableCellRenderer renderer=new DefaultTableCellRenderer();
+        renderer.setPreferredSize(new Dimension(0,0));
+        table.getTableHeader().setDefaultRenderer(renderer);*/
+        table.setRowHeight(48);//设置行宽
+
+        //table.setAutoResizeMode(JTable.AUTO_RESIZE_SUBSEQUENT_COLUMNS);
+        for(int i=0;i<6;i++)
+        {
+            column=table.getColumnModel().getColumn(i);
+            if(i==0)
+            {
+                column.setPreferredWidth(150);
+            }
+            else {
+                column.setPreferredWidth(200);
+            }
+
+        }
+        //add(scrollPane,BorderLayout.CENTER);
+        scrollPane.setBounds(0,0,1000,1000);
+        add(scrollPane);
+        setVisible(true);
+        //add(table);
+
+
+
+       /* JPanel p1 = new JPanel();
         p1.setBounds(0, 0, 310, 784);
         p1.setBackground(new Color(135, 206, 250, 180));
         add(p1);
@@ -64,7 +106,7 @@ public class My_Coursetable extends JPanel{
         JPanel p2 = new JPanel();
         p2.setBounds(310, 0, 950, 1000);
         p2.setBackground(new Color(245, 245, 245, 180));
-        add(p2);
+        add(p2);*/
 
 
         /*String[] tableTitle={"节数","星期一","星期二","星期三","星期四","星期五"};
@@ -89,18 +131,14 @@ public class My_Coursetable extends JPanel{
         add(table_want);*/
 
 
-        JLabel l16 = new JLabel();
+        /*JLabel l16 = new JLabel();
         ImageIcon icon7 = new ImageIcon("src/image/background2.jpg");
         l16.setIcon(icon7);
         l16.setBounds(0, 0, 1273, 790);
-        p11.add(l16);
+        p11.add(l16);*/
 
-        JTable table;
-        setBounds(310,300,375,120);
-        Object[][]tableData=
-                {
 
-                };
+        //setBounds(310,300,375,120);
         /*Object [][]tableData= {
                 new Object[]{"第一节", " ", " ", " ", " ", " "},
                 new Object[]{"第二节", " ", " ", " ", " ", " "},
@@ -116,13 +154,25 @@ public class My_Coursetable extends JPanel{
                 new Object[]{"第十二节"," "," "," "," "," "},
                 new Object[]{"第十三节"," "," "," "," "," "},
         };*/
-        Object[] columnTitle={"节数","星期一","星期二","星期三","星期四","星期五"};
+        /*String[] columnTitle={"节数","星期一","星期二","星期三","星期四","星期五"};
+        DefaultTableModel dtm = new DefaultTableModel(tableDate, columnTitle);
+        JTable table_want = new JTable(dtm) {
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        table_want.setRowHeight(60);
+        Font myfont5 = new Font("宋体", Font.PLAIN, 14);
+        table_want.setFont(myfont5);
+        //支持滚动
+        JScrollPane jsp = new JScrollPane(table_want);
+        jsp.setBounds(0,0,1280,680);
+        jsp.setBackground(new Color(255, 240, 245, 180));
+        add(jsp);
+        add(table_want);*/
 
-        table=new JTable(tableData,columnTitle);
-        add(new JScrollPane(table));
-        add(table);
 
-        add(p11);
+        //add(p11);
     }
 
 }

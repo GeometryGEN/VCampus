@@ -194,7 +194,6 @@ public class Library_manager implements Serializable{
             st.setString(4,b.getId());
             st.executeUpdate();
         }
-        System.out.println(msg.getType());
         return msg;
     }
     public Message ret(Book_borrower b) throws SQLException{
@@ -375,12 +374,13 @@ public class Library_manager implements Serializable{
         return punishments;
     }
     public void admin_give_ticket(Punishment p) throws SQLException {
-        String sql="insert into ticket(id,customer,notice,price,status) values(?,?,?,?,0);";
+        String sql="insert into ticket(id,customer,notice,book,price,status) values(?,?,?,?,?,0);";
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,p.punishmentID);
         st.setString(2,p.Customer_iD);
         st.setString(3,p.notice);
-        st.setDouble(4,p.price);
+        st.setString(4,p.Book_id);
+        st.setDouble(5,p.price);
         st.executeUpdate();
     }
 

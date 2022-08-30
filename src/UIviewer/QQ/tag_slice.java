@@ -13,9 +13,8 @@ public class tag_slice extends JLabel {
     private void exchangeExited(JLabel jLabel) {
         jLabel.setBackground(new Color(255,255,255));
     }
-    public tag_slice(int width,int height,double width_r,double height_r,String s){
+    public tag_slice(double width_r,double height_r,String s){
         setOpaque(true);
-        setSize((int)(width*width_r),(int)(height*height_r));
         setBackground(new Color(255,255,255));
         setText("     "+s+"                                                                                            ");
         setFont(new Font("宋体",Font.PLAIN,(int)(24*width_r)));

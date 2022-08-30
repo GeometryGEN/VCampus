@@ -137,9 +137,9 @@ public class Selcourse extends JFrame {
         btnNewButton_6.setBackground(new Color(	250 ,240, 230));
         main_win.add(btnNewButton_6);
 
-        JPanel p2=new JPanel();
+        /*JPanel p2=new JPanel();
         p2.setBounds(0,100,1273,784);
-        main_win.add(p2);
+        main_win.add(p2);*/
 
         //东南大学标志图片
         JLabel l15 = new JLabel();

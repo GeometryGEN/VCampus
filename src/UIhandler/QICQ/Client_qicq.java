@@ -4,6 +4,8 @@ import ClientToServer.ManageClientToServerThread;
 import DAO.QICQ.Application;
 import DAO.QICQ.Filetrans;
 import DAO.QICQ.Friend;
+import UIviewer.QQ.friend_list;
+import UIviewer.QQ.friend_slice;
 import message.Message;
 import message.MessageType;
 import utils.MyObjectInputStream;
@@ -18,7 +20,7 @@ import java.util.HashSet;
 
 public class Client_qicq {
     static String id;
-    static MyObjectOutputStream oos;
+    static MyObjectOutputStream oos=null;
     public static void setSocket(Socket socket) throws IOException {
         oos=new MyObjectOutputStream(socket.getOutputStream());
     }
@@ -74,9 +76,7 @@ public class Client_qicq {
         message.setSendTime(myTime.getCurrentTime());
         message.setType(MessageType.MESSAGE_QICQ_SEND_MSG);
         message.setData(content);
-        ObjectOutputStream oos= null;
         try {
-            oos = new ObjectOutputStream(ManageClientToServerThread.getThread(sender).getSocket().getOutputStream());
             oos.writeObject(message);
         } catch (IOException e) {
             e.printStackTrace();
@@ -92,19 +92,19 @@ public class Client_qicq {
         app.setTo_id(number);
         app.setTo_name(nickname);
         message.setType(MessageType.MESSAGE_QICQ_ADD_FRIEND_START);
-        ObjectOutputStream oos=new ObjectOutputStream(ManageClientToServerThread.getThread(myid).
-                getSocket().getOutputStream());
         oos.writeObject(message);
     }
     public static void Require_friend_list() throws IOException {
         Message message=new Message();
         message.setType(MessageType.MESSAGE_QICQ_LIST_FRIENDS);
-        ObjectOutputStream oos=new ObjectOutputStream(ManageClientToServerThread.getThread(id).
-                getSocket().getOutputStream());
         oos.writeObject(message);
     }
     public static void show_friend(HashMap<String, ArrayList<Friend>>friend){
-
+        for(String tag: friend.keySet()){
+            System.out.println(tag);
+            friend_list.add(tag,friend.get(tag));
+            //friend_list.update();
+        }
     }
 
 }

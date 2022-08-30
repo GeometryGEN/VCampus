@@ -2,6 +2,7 @@ package ClientToServer;
 import DAO.Login.Admin_utils;
 import DAO.Login.Students_utils;
 import DAO.Login.Teachers_utils;
+import UIhandler.Currirulum.Client_curriculum;
 import UIhandler.Library.Client_library;
 import UIhandler.QICQ.Client_qicq;
 import User.*;
@@ -104,6 +105,7 @@ public class ClientToServer {
             ManageClientToServerThread.addThread(id,ctst);
             Client_library.setSocket(socket);
             Client_qicq.setSocket(socket);
+            Client_curriculum.setOos(socket);
             return true;
         }
         else{
@@ -134,6 +136,7 @@ public class ClientToServer {
             ctst.start();
             Client_library.setSocket(socket);
             Client_qicq.setSocket(socket);
+            Client_curriculum.setOos(socket);
             ManageClientToServerThread.addThread(id,ctst);
             return true;
         }
@@ -164,10 +167,10 @@ public class ClientToServer {
             ClientToServerThread ctst = new ClientToServerThread(socket);
             //启动线程
             ctst.start();
-            ManageClientToServerThread.addThread(id,ctst);
+            Client_curriculum.setOos(socket);
             Client_library.setSocket(socket);
             Client_qicq.setSocket(socket);
-            //RequireshowAllBooks();
+            ManageClientToServerThread.addThread(id,ctst);
             return true;
         }
         else{

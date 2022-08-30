@@ -1,6 +1,5 @@
 package UIviewer.login;
 import ClientToServer.ClientToServer;
-import DAO.Shop.Product;
 import UIhandler.Library.Client_library;
 import javax.swing.*;
 import java.awt.*;
@@ -9,9 +8,8 @@ import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.IOException;
 import java.net.Socket;
-import java.util.List;
 
-import UIhandler.Shop.Client_shop;
+import UIviewer.QQ.main_panel;
 import UIviewer.Shopping.shoppinghall;
 import UIviewer.Shopping.shop;
 
@@ -22,8 +20,6 @@ import UIviewer.Library.adminLib;
 import UIviewer.status_manage.manage_status;
 import UIviewer.status_manage.student_status;
 import net.coobird.thumbnailator.Thumbnails;
-
-import UIviewer.Shopping.shop;
 
 public class functionChoose {
     public static JButton back_from_student_status;
@@ -170,6 +166,8 @@ public class functionChoose {
                 try {
                     ucs.logout();
                     jf.dispose();
+                    LoginFrame.jf.setVisible(true);
+                    LoginFrame.passwordField.setText("");
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -277,15 +275,11 @@ public class functionChoose {
                 try {
                     if(ucs.getID()=="1")
                     {
-                        Client_library.setId(ucs.getIDcard());
-                        readLib.readLibUI(ucs);
+
                     }
                     else
                     {
-                        Client_library.setId(ucs.getIDcard());
-                        Client_library.RequireshowAllBooks();
-                        while (AllBooks.tableDate==null);
-                        adminLib.adminLibUI(ucs);
+
                     }
 
                 } catch (Exception ex) {
@@ -325,26 +319,7 @@ public class functionChoose {
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
                 try {
-                    if(ucs.getID().equals("1")||ucs.getID().equals("2"))
-                    {
-                        Client_shop.setId(ucs.getID());
-                        Client_shop.setIdcard(ucs.getIDcard());
-                        List<Product> ps = Client_shop.returnAllProduct();
-                        String[][] changed_ps = new String[ps.size()][];
-                        for(int i = 0;i<ps.size();i++){
-                            String[] temp=new String[4];
-                            temp[0]=ps.get(i).getProduct_name();
-                            temp[1]=String.valueOf(ps.get(i).getProduct_currentNumbers());
-                            temp[2]=ps.get(i).getProduct_type();
-                            temp[3]=String.valueOf(ps.get(i).getProduct_id());
-                            changed_ps[i]=temp;
-                        }
-                        shop.setShoptable(changed_ps);
-                        shoppinghall.shoppingUI(ucs);
-                    } else {
-
-                    }
-
+                    shoppinghall.shoppingUI(ucs);
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -382,18 +357,24 @@ public class functionChoose {
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
                 try {
+                    jf.setBounds(0,0,width,height);
+                    jf.remove(fc_panel);
                     if(ucs.getID()=="1"||ucs.getID()=="2")
                     {
                         Client_library.setId(ucs.getIDcard());
-                        readLib.readLibUI(ucs);
+                        jf.setContentPane(new readLib(ucs));
+                        jf.setTitle("readLib");
                     }
                     else
                     {
                         Client_library.setId(ucs.getIDcard());
                         Client_library.RequireshowAllBooks();
                         while (AllBooks.tableDate==null);
-                        adminLib.adminLibUI(ucs);
+                        jf.setContentPane(new adminLib(ucs));
+                        jf.setTitle("adminLib");
                     }
+                    jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                    jf.setVisible(true);
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -434,11 +415,11 @@ public class functionChoose {
                     Client_qicq.setId(ucs.getIDcard());
                     if(ucs.getID()=="1"||ucs.getID()=="2")
                     {
-
+                        jf.setContentPane(new main_panel(ucs,width,height));
                     }
                     else
                     {
-
+                        jf.setContentPane(new main_panel(ucs,width,height));
                     }
                 } catch (Exception ex) {
                     ex.printStackTrace();
@@ -471,5 +452,4 @@ public class functionChoose {
         jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         jf.setVisible(true);
     }
-
 }
