@@ -415,11 +415,11 @@ public class functionChoose {
                     Client_qicq.setId(ucs.getIDcard());
                     if(ucs.getID()=="1"||ucs.getID()=="2")
                     {
-                        jf.setContentPane(new main_panel(ucs,width,height));
+                        jf.setContentPane(new main_panel(ucs,width,height).mjp);
                     }
                     else
                     {
-                        jf.setContentPane(new main_panel(ucs,width,height));
+                        jf.setContentPane(new main_panel(ucs,width,height).mjp);
                     }
                 } catch (Exception ex) {
                     ex.printStackTrace();
