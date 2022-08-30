@@ -40,11 +40,18 @@ public class friend_slice extends JLabel {
         setHorizontalTextPosition(JLabel.RIGHT);
         JLabel jLabel=this;//为后续按钮提供指针
         //鼠标移进去变色，移出复原
-        jLabel.addMouseListener(new MouseListener() {
+        jLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
-            public void mouseClicked(MouseEvent e) {
-                JOptionPane.showMessageDialog(null,"Hello");
-
+            public void mouseClicked(java.awt.event.MouseEvent e) {
+                //聊天面板
+                if(main_panel.cpn!=null){
+                    main_panel.mjp.remove(main_panel.cpn);
+                }
+                chat_panel chatPanel=new chat_panel(1920/3*2,1080,width_r,height_r,1920/3,0);
+                main_panel.mjp.add(chatPanel);
+                main_panel.cpn=chatPanel;
+                main_panel.mjp.updateUI();
+                System.out.println(3);
             }
 
             @Override

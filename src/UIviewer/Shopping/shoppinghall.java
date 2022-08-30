@@ -1,35 +1,23 @@
 package UIviewer.Shopping;
 import ClientToServer.ClientToServer;
-import DAO.Shop.Product;
 import UIhandler.Library.Client_library;
-import UIhandler.Shop.Client_shop;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
-import java.util.List;
 
 public class shoppinghall extends JFrame {
     public JPanel mainLib;
 
     public static JPanel panel = new JPanel();
-
-    public static volatile String[][] ps;
+    ;
 
     static String name;
     static double money;
 
     public static JButton b2 = new JButton("我的购物车");
-
-    public static String[][] getPs() {
-        return ps;
-    }
-
-    public static void setPs(String[][] ps) {
-        shoppinghall.ps = ps;
-    }
 
     static void getName(String a) {
         name = a;
@@ -43,13 +31,14 @@ public class shoppinghall extends JFrame {
             public void run() {
                 try {
                     String name = null;
-                    double money=ucs.getS().getStudent_money();
+                    double money=12;
                     if (ucs.getID().equals("1"))
                         name = ucs.getS().getStudent_name();
                     else if (ucs.getID().equals("2"))
                         name = ucs.getT().getTeacher_name();
                     else if (ucs.getID().equals("3"))
                         name = ucs.getA().getAdmin_name();
+
                     getName(name);
                     getMoney(money);
                     shoppinghall frame = new shoppinghall();
@@ -61,19 +50,21 @@ public class shoppinghall extends JFrame {
         });
     }
 
-    public shoppinghall() {
+
+    shoppinghall() {
         setTitle("shopping_hall");
         setBounds(0, 0, 1273, 790);
         mainLib = new JPanel();
         setContentPane(mainLib);
         mainLib.setLayout(null);
+
+
         panel.setBounds(0, 150, 1273, 790);
         mainLib.add(panel);
 //		给主要显示面板添加布局方式
         panel.setLayout(cardLayout);
 //		创建相应面板类的对象
         shop f1 = new shop();
-        shop.setShoptable(ps);
 //		将面板添加到住面板中，注意:add()方法里有两个参数，第一个是要添加的对象，第二个给这个对象所放置的卡片
 //		起个名字，后面调用显示的时候要用到这个名字
         panel.add(f1, "f1");
@@ -91,7 +82,7 @@ public class shoppinghall extends JFrame {
         mainLib.add(logo);
 
         //文字
-        JLabel l1 = new JLabel("你好！" + name+",您的余额为:"+ money +"元。");
+        JLabel l1 = new JLabel("你好！" + name+",您的余额为:"+String.valueOf(money)+"元。");
         l1.setBounds(920, 30, 450, 55);
         l1.setForeground(new Color(248, 248, 255));
         Font font = new Font("楷体", Font.BOLD, 20);

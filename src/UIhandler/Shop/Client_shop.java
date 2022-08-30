@@ -50,7 +50,7 @@ public class Client_shop {
         sign_add="1";
     }
     public static void resetSign_delete(){
-        sign_delete="1";
+        sign_find_type="1";
     }
 
     public static void resetNow_Buy_money_enough(){
@@ -68,7 +68,7 @@ public class Client_shop {
     }
 
     public static void resetSign_find_tpye(){
-        sign_find_type="1";
+        sign_delete="1";
     }
 
     public static void resetBuyed(){
@@ -95,8 +95,7 @@ public class Client_shop {
     }
 
     public static void resetCheckedtypeProducts(){
-        if (checkproductsType!=null)
-            checkproductsType.clear();
+        checkproductsType.clear();
     }
 
     public static Product getCertainProducts() {
@@ -248,7 +247,7 @@ public class Client_shop {
         //发送对象
         oos.writeObject(message);
         //等待接受
-        while (products == null) Thread.onSpinWait();
+        while (products.size() == 0) Thread.onSpinWait();
         return products;
     }
 
@@ -297,7 +296,7 @@ public class Client_shop {
     }
 
     public static List<Product> checktypeProduct(String type_name) throws Exception {
-        resetCheckedtypeProducts();
+        resetCheckedProducts();
         resetSign_find_tpye();
         Message message = new Message();
         message.setType(MessageType.FIND_TYPE_PRODUCT);

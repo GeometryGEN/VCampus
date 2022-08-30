@@ -88,7 +88,6 @@ public class ClientToServer {
     public boolean checkStudent(String id, String pwd) throws Exception {
         s.setStudent_idcard(id);
         s.setStudent_pwd(pwd);
-        s.setStudent_money(Students_utils.returnStudentmoney(id,pwd));
         s.setStudent_name(Students_utils.returnStudentName(id,pwd));
         socket = new Socket(serverIP,MessageType.PORT);
         MyObjectOutputStream oos = new MyObjectOutputStream(socket.getOutputStream());     //得到Object对象

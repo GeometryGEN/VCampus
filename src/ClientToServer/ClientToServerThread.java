@@ -147,10 +147,6 @@ public class ClientToServerThread extends Thread {
                 else if(message.getType().equals(MessageType.FIND_TYPE_PRODUCT_SUCCEED)){
                     List<Product> ps = ((List<Product>) message.getData());
                     Client_shop.setCheckproductsType(ps);
-                    Client_shop.setSign_find_type("2");
-                }
-                else if(message.getType().equals(MessageType.FIND_TYPE_PRODUCT_FAILED)){
-                    Client_shop.setSign_find_type("3");
                 }
                 else if(message.getType().equals(MessageType.FIND_PRODUCT_SUCCEED_ZERO)){
                     List<Product> ps = ((List<Product>) message.getData());
@@ -225,30 +221,27 @@ public class ClientToServerThread extends Thread {
                     Student stu = ((Student) message.getData());
                     Client_status.setS(stu);
                 }
-               else if(message.getType().equals(MessageType.ADMIN_RETURN_STUDENT_INFO_SUCCEED)){
+                else if(message.getType().equals(MessageType.ADMIN_RETURN_STUDENT_INFO_SUCCEED)){
                     Student stu = ((Student) message.getData());
                     Client_status.setS_s(stu);
                 }
-
-               //站内通信
+                //站内通信
                 if(message.getType().equals(MessageType.MESSAGE_QICQ_LIST_FRIENDS_RET)){
-                    System.out.println("received");
-                    HashMap<String,ArrayList<Friend>>friends=(HashMap<String,ArrayList<Friend>>)message.getData();
-                    Client_qicq.show_friend(friends);
+                     System.out.println("received");
+                     HashMap<String,ArrayList<Friend>>friends=(HashMap<String,ArrayList<Friend>>)message.getData();
+                     Client_qicq.show_friend(friends);
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_QICQ_GET_MESSAGE_RET)){
-                    ArrayList<Message>messages=(ArrayList<Message>)message.getData();
-                    Client_qicq.show_message(messages);
+                     ArrayList<Message>messages=(ArrayList<Message>)message.getData();
+                     Client_qicq.show_message(messages);
                 }
-
+                System.out.println("next");
 
             } catch (InterruptedIOException e){
                 break;
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-            catch (Exception e) {
-               // e.printStackTrace();
-            }
-
         }
         try {
             socket.close();

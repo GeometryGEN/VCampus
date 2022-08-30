@@ -436,11 +436,13 @@ public class functionChoose {
                     Client_qicq.setId(ucs.getIDcard());
                     if(ucs.getID()=="1"||ucs.getID()=="2")
                     {
-                        jf.setContentPane(new main_panel(ucs,width,height));
+                        jf.setContentPane(new main_panel(ucs,width,height).mjp);
+                        jf.setTitle("userqq");
                     }
                     else
                     {
-                        jf.setContentPane(new main_panel(ucs,width,height));
+                        jf.setContentPane(new main_panel(ucs,width,height).mjp);
+                        jf.setTitle("adminqq");
                     }
                 } catch (Exception ex) {
                     ex.printStackTrace();

@@ -1,8 +1,5 @@
 package UIviewer.Shopping;
 import DAO.Library.Book_borrower;
-import DAO.Shop.Product;
-import UIhandler.Shop.Client_shop;
-import UIviewer.Library.AllBooks;
 import UIviewer.Shopping.shoppinghall;
 import UIhandler.Library.Client_library;
 import UIviewer.Library.readLib;
@@ -16,7 +13,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
-import java.util.List;
 
 import static UIviewer.Shopping.shoppinghall.cardLayout;
 import static UIviewer.Shopping.shoppinghall.panel;
@@ -82,6 +78,96 @@ public class shop extends JPanel {
         });
         add(btnNewButton_2);
 
+        JButton btnNewButton_3 = new JButton("图书");
+        btnNewButton_3.setBounds(30, 120, 100, 30);
+        btnNewButton_3.setFont(myfont1);
+        btnNewButton_3.setContentAreaFilled(false);//设置按钮透明
+        btnNewButton_3.setForeground(new Color(255,255,255));
+        btnNewButton_3.setBorder(null);//取消边框
+        btnNewButton_3.setFocusPainted(false);
+        btnNewButton_3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null,"XXX,你妈妈给你带来了你最爱的旺仔雪饼！");
+            }
+        });
+        add(btnNewButton_3);
+
+        JButton btnNewButton_4 = new JButton("薯片");
+        btnNewButton_4.setBounds(200, 120, 100, 30);
+        btnNewButton_4.setFont(myfont1);
+        btnNewButton_4.setContentAreaFilled(false);//设置按钮透明
+        btnNewButton_4.setForeground(new Color(255,255,255));
+        btnNewButton_4.setBorder(null);//取消边框
+        btnNewButton_4.setFocusPainted(false);
+        btnNewButton_4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null,"XXX,你妈妈给你带来了你最爱的旺仔雪饼！");
+            }
+        });
+        add(btnNewButton_4);
+
+        JButton btnNewButton_5 = new JButton("话梅");
+        btnNewButton_5.setBounds(30, 190, 100, 30);
+        btnNewButton_5.setFont(myfont1);
+        btnNewButton_5.setContentAreaFilled(false);//设置按钮透明
+        btnNewButton_5.setForeground(new Color(255,255,255));
+        btnNewButton_5.setBorder(null);//取消边框
+        btnNewButton_5.setFocusPainted(false);
+        btnNewButton_5.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null,"XXX,你妈妈给你带来了你最爱的旺仔雪饼！");
+            }
+        });
+        add(btnNewButton_5);
+
+        JButton btnNewButton_6 = new JButton("衬衫");
+        btnNewButton_6.setBounds(200, 190, 100, 30);
+        btnNewButton_6.setFont(myfont1);
+        btnNewButton_6.setContentAreaFilled(false);//设置按钮透明
+        btnNewButton_6.setForeground(new Color(255,255,255));
+        btnNewButton_6.setBorder(null);//取消边框
+        btnNewButton_6.setFocusPainted(false);
+        btnNewButton_6.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null,"XXX,你妈妈给你带来了你最爱的旺仔雪饼！");
+            }
+        });
+        add(btnNewButton_6);
+
+        JButton btnNewButton_7 = new JButton("薯片");
+        btnNewButton_7.setBounds(30, 260, 100, 30);
+        btnNewButton_7.setFont(myfont1);
+        btnNewButton_7.setContentAreaFilled(false);//设置按钮透明
+        btnNewButton_7.setForeground(new Color(255,255,255));
+        btnNewButton_7.setBorder(null);//取消边框
+        btnNewButton_7.setFocusPainted(false);
+        btnNewButton_7.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null,"XXX,你妈妈给你带来了你最爱的旺仔雪饼！");
+            }
+        });
+        add(btnNewButton_7);
+
+        JButton btnNewButton_8 = new JButton("泡面");
+        btnNewButton_8.setBounds(200, 260, 100, 30);
+        btnNewButton_8.setFont(myfont1);
+        btnNewButton_8.setContentAreaFilled(false);//设置按钮透明
+        btnNewButton_8.setForeground(new Color(255,255,255));
+        btnNewButton_8.setBorder(null);//取消边框
+        btnNewButton_8.setFocusPainted(false);
+        btnNewButton_8.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null,"XXX,你妈妈给你带来了你最爱的旺仔雪饼！");
+            }
+        });
+        add(btnNewButton_8);
+
         //左侧面板
         JPanel p1=new JPanel();
         p1 = new JPanel();
@@ -110,7 +196,7 @@ public class shop extends JPanel {
         table_want.getColumnModel().getColumn(3).setPreferredWidth(180);
         table_want.getColumnModel().getColumn(4).setPreferredWidth(100);
         table_want.getColumnModel().getColumn(5).setPreferredWidth(120);
-        table_want.setVisible(true);
+
 
 
         table_want.addMouseListener(new MouseListener() {
@@ -175,6 +261,6 @@ public class shop extends JPanel {
 
         setVisible(true);
 
-    }
+        }
 }
 

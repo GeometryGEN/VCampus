@@ -265,7 +265,6 @@ public class ServerToClientThread extends Thread{
                 else if(m.getType().equals(MessageType.MESSAGE_QICQ_LIST_FRIENDS)){
                     sendback=new QICQ_manager(userid).get_friends();
                     oos.writeObject(sendback);
-                    System.out.println(sendback.getType());
                 }
                 else if(m.getType().equals(MessageType.MESSAGE_QICQ_LIST_APPLICATION_HANDLE)){
                     new QICQ_manager(userid).list_my_application_handled();
@@ -280,7 +279,6 @@ public class ServerToClientThread extends Thread{
                 else if(m.getType().equals(MessageType.MESSAGE_QICQ_DENY_NEW_FRIEND)){
                     new QICQ_manager(userid).deny_new_friend((Application)m.getData());
                 }
-
                 //商店
                 else if(m.getType().equals(MessageType.RETURN_ALL_PRODUCT)){
                     List<Product> ps  = buyers_Shop_utils.returnAllProduct();
