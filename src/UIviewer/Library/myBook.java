@@ -11,6 +11,11 @@ import java.awt.event.MouseListener;
 import java.io.IOException;
 
 public class myBook extends JPanel {
+    Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
+    int width=(int ) screensize.getWidth(); //得到宽度
+    int height=(int ) screensize.getHeight();//获得高度
+    double width_r=(double)(width)/1273;
+    double height_r=(double)(height)/784;
     public static volatile String[][] myBook=null;
 
     public myBook(){
@@ -97,12 +102,12 @@ public class myBook extends JPanel {
         });
         //支持滚动
         JScrollPane jsp = new JScrollPane(table_want);
-        jsp.setBounds(0,0,1280,680);
+        jsp.setBounds(0,0, (int) (1280*width_r), (int) (680*height_r));
         add(jsp);
-        table_want.setRowHeight(30);
+        table_want.setRowHeight((int) (30*height_r));
 
         //调整美化
-        table_want.setFont(new Font("宋体",Font.BOLD,16));
+        table_want.setFont(new Font("宋体",Font.BOLD, (int) (16*width_r)));
         try {
             DefaultTableCellRenderer tcr = new DefaultTableCellRenderer() {
                 @Override

@@ -16,12 +16,13 @@ import UIhandler.Library.Client_library;
 public class AllBooks extends JPanel {
 
     public static volatile String[][] tableDate=null;
+    Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
+    int width=(int ) screensize.getWidth(); //得到宽度
+    int height=(int ) screensize.getHeight();//获得高度
+    double width_r=(double)(width)/1273;
+    double height_r=(double)(height)/784;
     public AllBooks(){
      setLayout(null);
-
-
-
-
         String[] tableTitle = {"书籍编号","书名", "作者","出版社","国家","价格", "是否可借","借出日期","借书人","归还日期","馆藏地"};
         //数据
         DefaultTableModel dtm = new DefaultTableModel(tableDate, tableTitle);
@@ -32,8 +33,8 @@ public class AllBooks extends JPanel {
          }
         };
         table_want.setOpaque(false);
-        table_want.setRowHeight(30);
-        Font myfont1 = new Font("宋体", Font.PLAIN, 14);
+        table_want.setRowHeight((int) (30*height_r));
+        Font myfont1 = new Font("宋体", Font.PLAIN, (int) (14*width_r));
         table_want.setFont(myfont1);
         //table_want.setForeground(new Color(255,255,255));
 
@@ -42,7 +43,7 @@ public class AllBooks extends JPanel {
         jsp.setViewportView(table_want);
         jsp.getViewport().setOpaque(false);//将JScrollPane设置为透明
         jsp.setOpaque(false);//将中间的viewport设置为透明
-        jsp.setBounds(0,0,1280,680);
+        jsp.setBounds(0,0, (int) (1280*width_r), (int) (680*height_r));
         jsp.setBackground(new Color(255, 240, 245, 80));
 
         add(jsp);
@@ -51,23 +52,13 @@ public class AllBooks extends JPanel {
 
         //左侧面板
         JPanel p1 = new JPanel();
-        p1.setBounds(0, 0, 1280, 650);
+        p1.setBounds(0, 0, (int) (1280*width_r), (int) (650*height_r));
         //p1.setBackground(null);
         p1.setBackground(new Color(255, 240, 245, 10));
         //panel1.BackColor = Color.FromArgb(80, 255, 0, 0);
         //p1.setOpaque(false);
         add(p1);
-/*
-     JPanel p11=new JPanel();
-     p11.setBounds(0,0,1280,650);
-     JLabel pic1 = new JLabel();
-     ImageIcon icon1 = new ImageIcon("src/image/background4.jpg");
-     pic1.setIcon(icon1);
-     pic1.setBounds(0,0 , 1300, 650);
-     p11.add(pic1);
-     add(p11);
 
- */
 
 
 
