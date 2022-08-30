@@ -41,8 +41,9 @@ public class ClientToServerThread extends Thread {
     //volatile修饰符用来保证其它线程读取的总是该变量的最新的值
     public volatile boolean exit = false;
     private static MyObjectInputStream ois=null;
-    public ClientToServerThread(Socket socket){
-        this.socket=socket;
+    public ClientToServerThread(MyObjectInputStream mis,Socket s){
+        ois=mis;
+        socket=s;
     }
 
     public Socket getSocket(){
@@ -50,12 +51,6 @@ public class ClientToServerThread extends Thread {
     }
 
     public void run(){
-        try {
-            //MyObjectOutputStream oos = new MyObjectOutputStream(socket.getOutputStream());
-            ois = new MyObjectInputStream(socket.getInputStream());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         while (!exit){
             try {
                 Message message = (Message) ois.readObject();
@@ -242,11 +237,6 @@ public class ClientToServerThread extends Thread {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
-        try {
-            socket.close();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
         }
     }
 

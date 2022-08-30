@@ -66,7 +66,7 @@ public class ServerToClient extends Thread{
                         m.setData(Students_utils.getname(stu.getStudent_idcard()));
                         oos.writeObject(m);
                         //创建一个线程，和客户端通信，该线程持有socket对象
-                        ServerToClientThread stct = new ServerToClientThread(socket,stu.getStudent_idcard());
+                        ServerToClientThread stct = new ServerToClientThread(oos,ois,stu.getStudent_idcard(),socket);
                         stct.start();
                         //放入线程集合中
                         ManageServerToClientThread.addThread(stu.getStudent_idcard(),stct);
@@ -86,7 +86,7 @@ public class ServerToClient extends Thread{
                         m.setData(Teachers_utils.returnTeacherName(t.getTeacher_idcard(),t.getTeacher_pwd()));
                         oos.writeObject(m);
                         //创建一个线程，和客户端通信，该线程持有socket对象
-                        ServerToClientThread stct = new ServerToClientThread(socket,t.getTeacher_idcard());
+                        ServerToClientThread stct = new ServerToClientThread(oos,ois,t.getTeacher_idcard(),socket);
                         addOnline(t.getTeacher_id(),1);
                         stct.start();
                         //放入线程集合中
@@ -106,7 +106,7 @@ public class ServerToClient extends Thread{
                         //将message对象回复客户端
                         oos.writeObject(m);
                         //创建一个线程，和客户端通信，该线程持有socket对象
-                        ServerToClientThread stct = new ServerToClientThread(socket,a.getAdmin_idcard());
+                        ServerToClientThread stct = new ServerToClientThread(oos,ois,a.getAdmin_idcard(),socket);
                         stct.start();
                         //放入线程集合中
                         ManageServerToClientThread.addThread(a.getAdmin_idcard(),stct);

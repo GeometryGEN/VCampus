@@ -20,6 +20,16 @@ public class Message implements Serializable {
     private int code;         // 状态码
     private Object data;      // 数据
 
+    public Message() {
+        sender=null;
+        getter=null;
+        sendTime=null;
+        uid=null;
+        mesType=null;
+        code=0;
+        data=null;
+    }
+
     private double money;    //钱
     public static String returnIP(){
         return getIP.getHostIp();

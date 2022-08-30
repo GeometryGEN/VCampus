@@ -14,7 +14,7 @@ public class Client_curriculum {
         this.id = id;
     }
 
-    public static void setOos(Socket s) throws IOException {
-        oos = new MyObjectOutputStream( s.getOutputStream());
+    public static void setOos(MyObjectOutputStream mos) throws IOException {
+        oos=mos;
     }
 }

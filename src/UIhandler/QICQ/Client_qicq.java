@@ -21,8 +21,8 @@ import java.util.HashSet;
 public class Client_qicq {
     static String id;
     static MyObjectOutputStream oos=null;
-    public static void setSocket(Socket socket) throws IOException {
-        oos=new MyObjectOutputStream(socket.getOutputStream());
+    public static void setOps(MyObjectOutputStream mos) throws IOException {
+        oos=mos;
     }
 
     public static void setId(String id) {
