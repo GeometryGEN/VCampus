@@ -30,10 +30,17 @@ public class Search_result extends JPanel{
                 return false;
             }
         };
+        table_want.getColumnModel().getColumn(0).setPreferredWidth(120);
+        table_want.getColumnModel().getColumn(1).setPreferredWidth(200);
+        table_want.getColumnModel().getColumn(2).setPreferredWidth(340);
+        table_want.getColumnModel().getColumn(3).setPreferredWidth(100);
+        table_want.getColumnModel().getColumn(4).setPreferredWidth(220);
+        table_want.getColumnModel().getColumn(5).setPreferredWidth(160);
         //支持滚动
         JScrollPane jsp = new JScrollPane(table_want);
         jsp.setBounds(0,0,1280,680);
         add(jsp);
+        setVisible(true);
 
         table_want.setFont(new Font("宋体",Font.BOLD,16));
         try {

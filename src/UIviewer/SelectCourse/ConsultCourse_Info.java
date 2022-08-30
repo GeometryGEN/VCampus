@@ -13,68 +13,9 @@ public class ConsultCourse_Info extends JPanel {
     public ConsultCourse_Info()
     {
         setLayout(null);
-        //JPanel p17=new JPanel();
-        //p17.setBounds(0,0,1273,784);
-
-        /*JLabel touxiang = new JLabel();
-        ImageIcon icon = new ImageIcon("src/image/logodz.png");
-        touxiang.setIcon(icon);
-        touxiang.setBounds(20, 200, 305, 96);
-        p17.add(touxiang);*/
-
-        //文字
-        /*JLabel l1 = new JLabel("  你好！");
-        l1.setBounds(170, 100, 100, 75);
-        Font font = new Font("楷体", Font.BOLD, 22);
-        l1.setFont(font);
-        //l1.setForeground(new Color(111,222,0));
-        add(l1);*/
 
 
-        //信息面板
-       /* JLabel l4 = new JLabel("      基本信息");
-        l4.setBounds(23, 205, 250, 60);
-        Font font2 = new Font("楷体", Font.BOLD, 25);
-        l4.setFont(font2);
-        l4.setForeground(new Color(94, 38, 18));
-        add(l4);*/
-
-       /* String name = "1";
-        JLabel l2 = new JLabel(" 姓名：" + name);
-        l2.setBounds(30, 300, 250, 60);
-        Font font1 = new Font("微软雅黑", Font.PLAIN, 18);
-        l2.setFont(font1);
-        l2.setForeground(new Color(0, 0, 0));
-        add(l2);
-        String card = "";
-        JLabel l3 = new JLabel(" 卡号：" + card);
-        l3.setBounds(30, 410, 250, 60);
-        l3.setFont(font1);
-        l3.setForeground(new Color(0, 0, 0));
-        add(l3);*/
-
-        //label背景
-        /*JLabel l11 = new JLabel();
-        ImageIcon icon4 = new ImageIcon("src/image/PPT背景图5.jpg");
-        l11.setIcon(icon4);
-        l11.setBounds(15, 130, 285, 620);
-        p11.add(l11);
-
-        //东南大学标志图片
-        JLabel logo = new JLabel();
-        ImageIcon icon1 = new ImageIcon("src/image/logo-mini.png");
-        logo.setIcon(icon1);
-        logo.setBounds(315, 5, 210, 65);
-        p11.add(logo);*/
-
-        //横向图片
-        /*JLabel l12 = new JLabel();
-        ImageIcon icon5 = new ImageIcon("src/image/banner3.png");
-        l12.setIcon(icon5);
-        l12.setBounds(310, 70, 1000, 125);
-        add(l12);*/
-
-        String[] tableTitle={"课程编号","课程名","时间","任课老师","地点","学分"};
+        String[] tableTitle={"课程编号","课程名","时间","学分","老师","地点"};
         DefaultTableModel dtm=new DefaultTableModel(search_result,tableTitle);
         JTable table_want=new JTable(dtm);
         table_want.getColumnModel().getColumn(0).setPreferredWidth(120);
@@ -83,10 +24,12 @@ public class ConsultCourse_Info extends JPanel {
         table_want.getColumnModel().getColumn(3).setPreferredWidth(220);
         table_want.getColumnModel().getColumn(4).setPreferredWidth(160);
         table_want.getColumnModel().getColumn(5).setPreferredWidth(100);
+
         JScrollPane jsp=new JScrollPane(table_want);
         jsp.setBounds(0,0,1280,420);
         add(jsp);
         table_want.setRowHeight(40);
+        setVisible(true);
         //add(table_want);
 
 
