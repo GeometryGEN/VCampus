@@ -45,12 +45,13 @@ public class QICQ_manager {
             st= conn.prepareStatement(sql);
             st.setString(1, friend.id);
             st.setString(2,id);
-            rs= st.executeQuery();
-            if(rs.next()) friend.unread=1;
+            ResultSet rs1= st.executeQuery();
+            if(rs1.next()) friend.unread=1;
             if(friends.containsKey(group)){
                 friends.get(group).add(friend);
             }
             else {
+                System.out.println(group);
                 ArrayList<Friend> f = new ArrayList<>();
                 f.add(friend);
                 friends.put(group,f);

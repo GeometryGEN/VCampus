@@ -101,6 +101,7 @@ public class Client_qicq {
     }
     public static void show_friend(HashMap<String, ArrayList<Friend>>friend){
         for(String tag: friend.keySet()){
+            System.out.println(tag);
             friend_list.add(tag,friend.get(tag));
         }
     }
