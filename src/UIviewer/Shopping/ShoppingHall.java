@@ -64,6 +64,7 @@ public class ShoppingHall extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String[][]temp={{"1111"}};
+                setShoptable(temp);
                 ShoppingHall f11=new ShoppingHall();
                 panel.add(f11,"f11");
                 cardLayout.show(panel, "f11");
