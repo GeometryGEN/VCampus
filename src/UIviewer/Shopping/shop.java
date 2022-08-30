@@ -34,7 +34,7 @@ public class shop extends JPanel {
     }
 
     public shop() {
-            setLayout(null);
+        setLayout(null);
         JButton btnNewButton_1 = new JButton("零食");
         btnNewButton_1.setBounds(30, 50, 100, 30);
         Font myfont1 = new Font("宋体 ", Font.PLAIN, 18);
@@ -121,7 +121,7 @@ public class shop extends JPanel {
                 }
 
                 if(table_want.getSelectedColumn()==5){
-                   System.out.println("buy");
+                    System.out.println("buy");
                 }
             }
 
@@ -175,6 +175,6 @@ public class shop extends JPanel {
 
         setVisible(true);
 
-        }
+    }
 }
 
