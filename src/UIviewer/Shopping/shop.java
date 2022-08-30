@@ -1,5 +1,8 @@
 package UIviewer.Shopping;
 import DAO.Library.Book_borrower;
+import DAO.Shop.Product;
+import UIhandler.Shop.Client_shop;
+import UIviewer.Library.AllBooks;
 import UIviewer.Shopping.shoppinghall;
 import UIhandler.Library.Client_library;
 import UIviewer.Library.readLib;
@@ -13,16 +16,26 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
+import java.util.List;
 
 import static UIviewer.Shopping.shoppinghall.cardLayout;
 import static UIviewer.Shopping.shoppinghall.panel;
 import static UIviewer.login.register.registerUI;
 
 public class shop extends JPanel {
-    public static volatile String[][] shoptable={{"1","2","3","4","购物车","购买"}};
+    public static volatile String[][] shoptable;
+
+    public static String[][] getShoptable() {
+        return shoptable;
+    }
+
+    public static void setShoptable(String[][] shoptable) {
+        shop.shoptable = shoptable;
+    }
+
     public shop() {
             setLayout(null);
-        JButton btnNewButton_1 = new JButton("牛奶");
+        JButton btnNewButton_1 = new JButton("零食");
         btnNewButton_1.setBounds(30, 50, 100, 30);
         Font myfont1 = new Font("宋体 ", Font.PLAIN, 18);
         btnNewButton_1.setFont(myfont1);
@@ -33,7 +46,23 @@ public class shop extends JPanel {
         btnNewButton_1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null,"XXX,你妈妈给你带来了你最爱的旺仔牛奶！");
+                try {
+                    Client_shop.checktypeProduct("零食");
+                    List<Product> ps = Client_shop.returnAllProduct();
+                    String[][] changed_ps = new String[ps.size()][];
+                    for(int i = 0;i<ps.size();i++){
+                        String[] temp=new String[4];
+                        temp[0]=ps.get(i).getProduct_name();
+                        temp[1]=String.valueOf(ps.get(i).getProduct_currentNumbers());
+                        temp[2]=ps.get(i).getProduct_type();
+                        temp[3]=String.valueOf(ps.get(i).getProduct_id());
+                        changed_ps[i]=temp;
+                    }
+                    shoptable=changed_ps;
+
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
         add(btnNewButton_1);
@@ -81,7 +110,7 @@ public class shop extends JPanel {
         table_want.getColumnModel().getColumn(3).setPreferredWidth(180);
         table_want.getColumnModel().getColumn(4).setPreferredWidth(100);
         table_want.getColumnModel().getColumn(5).setPreferredWidth(120);
-
+        table_want.setVisible(true);
 
 
         table_want.addMouseListener(new MouseListener() {

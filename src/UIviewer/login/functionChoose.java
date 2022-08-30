@@ -1,5 +1,6 @@
 package UIviewer.login;
 import ClientToServer.ClientToServer;
+import DAO.Shop.Product;
 import UIhandler.Library.Client_library;
 import javax.swing.*;
 import java.awt.*;
@@ -8,6 +9,9 @@ import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.IOException;
 import java.net.Socket;
+import java.util.List;
+
+import UIhandler.Shop.Client_shop;
 import UIviewer.Shopping.shoppinghall;
 import UIviewer.Shopping.shop;
 
@@ -18,6 +22,8 @@ import UIviewer.Library.adminLib;
 import UIviewer.status_manage.manage_status;
 import UIviewer.status_manage.student_status;
 import net.coobird.thumbnailator.Thumbnails;
+
+import UIviewer.Shopping.shop;
 
 public class functionChoose {
     public static JButton back_from_student_status;
@@ -319,7 +325,25 @@ public class functionChoose {
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
                 try {
-                    shoppinghall.shoppingUI(ucs);
+                    if(ucs.getID().equals("1")||ucs.getID().equals("2"))
+                    {
+                        Client_shop.setId(ucs.getID());
+                        Client_shop.setIdcard(ucs.getIDcard());
+                        List<Product> ps = Client_shop.returnAllProduct();
+                        String[][] changed_ps = new String[ps.size()][];
+                        for(int i = 0;i<ps.size();i++){
+                            String[] temp=new String[4];
+                            temp[0]=ps.get(i).getProduct_name();
+                            temp[1]=String.valueOf(ps.get(i).getProduct_currentNumbers());
+                            temp[2]=ps.get(i).getProduct_type();
+                            temp[3]=String.valueOf(ps.get(i).getProduct_id());
+                            changed_ps[i]=temp;
+                        }
+                        shop.setShoptable(changed_ps);
+                        shoppinghall.shoppingUI(ucs);
+                    } else {
+
+                    }
 
                 } catch (Exception ex) {
                     ex.printStackTrace();
