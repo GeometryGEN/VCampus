@@ -30,6 +30,23 @@ public class QICQ_manager {
             e.printStackTrace();
         }
     }
+    public void friend_is_online(String id) throws SQLException, IOException {
+        Message msg=new Message();
+        msg.setType(MessageType.MESSAGE_QICQ_FRIEND_ONLINE_RET);
+        msg.setData(id);
+        String sql="select * from friends where user_id=?;";
+        PreparedStatement st=conn.prepareStatement(sql);
+        st.setString(1,id);
+        ResultSet rs=st.executeQuery();
+        while(rs.next()){
+            String friend_id=rs.getString("friend_id");
+            if(ServerToClient.isOnline(friend_id)!=-1){
+                MyObjectOutputStream oos=new MyObjectOutputStream(ManageServerToClientThread
+                        .getThread(friend_id).getSocket().getOutputStream());
+                oos.writeObject(msg);
+            }
+        }
+    }
     public Message get_friends() throws SQLException, IOException {
         HashMap<String, ArrayList<Friend>> friends = new HashMap<>();
         String sql="select * from friends where user_id=? order by friend_id+0;";
@@ -41,6 +58,8 @@ public class QICQ_manager {
             String group=rs.getString("relation");
             friend.name=rs.getString("nickname");
             friend.id=rs.getString("friend_id");
+            if(ServerToClient.isOnline(friend.id)!=-1) friend.setOnline(1);
+            else friend.setOnline(0);
             sql="select * from message where sender=? and getter=? and isread=0;";
             st= conn.prepareStatement(sql);
             st.setString(1, friend.id);
