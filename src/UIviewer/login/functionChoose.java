@@ -327,10 +327,10 @@ public class functionChoose {
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
                 try {
-                    if(ucs.getID().equals("1")||ucs.getID().equals("2"))
+                    if(myInfo.getType()!=3)
                     {
-                        Client_shop.setId(ucs.getID());
-                        Client_shop.setIdcard(ucs.getIDcard());
+                        Client_shop.setId(String.valueOf(myInfo.getType()));
+                        Client_shop.setIdcard(myInfo.getId());
 
                         List<Product> ps = Client_shop.returnAllProduct();
                         String[][] changed_ps = new String[ps.size()][];
@@ -343,7 +343,7 @@ public class functionChoose {
                             changed_ps[i]=temp;
                         }
                         shop.setShoptable(changed_ps);
-                        shoppinghall.shoppingUI(ucs);
+                        shoppinghall.shoppingUI();
                     } else {
 
                     }
@@ -387,7 +387,6 @@ public class functionChoose {
                 try {
                     jf.setBounds(0,0,width,height);
                     jf.remove(fc_panel);
-                    if(ucs.getID().equals("1")||ucs.getID().equals("2"))
                     if(myInfo.getType()!=3)
                     {
                         Client_library.setId(myInfo.getId());

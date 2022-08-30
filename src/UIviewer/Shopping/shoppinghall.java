@@ -43,13 +43,8 @@ public class shoppinghall extends JFrame {
                 try {
                     String name = myInfo.getName();
                     double money=12;
-                    if (ucs.getID().equals("1"))
-                        name = ucs.getS().getStudent_name();
-                    else if (ucs.getID().equals("2"))
-                        name = ucs.getT().getTeacher_name();
-                    else if (ucs.getID().equals("3"))
-                        name = ucs.getA().getAdmin_name();
-                    setIdcard(ucs.getIDcard());
+                    name = myInfo.getName();
+                    setIdcard(myInfo.getId());
                     getName(name);
                     getMoney(money);
                     shoppinghall frame = new shoppinghall();
