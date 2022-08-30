@@ -45,8 +45,6 @@ public class friend_list extends JPanel{
             roll_panel.add(slice[i]);
             roll_panel.updateUI();
         }
-
-
         tag1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent e) {
                 if(slice[0].isVisible()==true) {
