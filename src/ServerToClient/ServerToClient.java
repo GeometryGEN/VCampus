@@ -63,6 +63,7 @@ public class ServerToClient extends Thread{
                     if(Students_utils.checkStudentAccount(stu.getStudent_idcard(),stu.getStudent_pwd())){
                         m.setType(MessageType.MESSAGE_LOGIN_SUCCEED);
                         //将message对象回复客户端
+                        m.setData(Students_utils.getname(stu.getStudent_idcard()));
                         oos.writeObject(m);
                         //创建一个线程，和客户端通信，该线程持有socket对象
                         ServerToClientThread stct = new ServerToClientThread(socket,stu.getStudent_idcard());
@@ -82,6 +83,7 @@ public class ServerToClient extends Thread{
                     if(Teachers_utils.checkTeacherAccount(t.getTeacher_idcard(), t.getTeacher_pwd())){
                         m.setType(MessageType.MESSAGE_LOGIN_SUCCEED);
                         //将message对象回复客户端
+                        m.setData(Teachers_utils.returnTeacherName(t.getTeacher_idcard(),t.getTeacher_pwd()));
                         oos.writeObject(m);
                         //创建一个线程，和客户端通信，该线程持有socket对象
                         ServerToClientThread stct = new ServerToClientThread(socket,t.getTeacher_idcard());
@@ -100,6 +102,7 @@ public class ServerToClient extends Thread{
                     Admin a = (Admin) s.getData();
                     if(Admin_utils.checkAdminAccount(a.getAdmin_idcard(), a.getAdmin_pwd())){
                         m.setType(MessageType.MESSAGE_LOGIN_SUCCEED);
+                        m.setData(Admin_utils.returnAdminName(a.getAdmin_idcard(),a.getAdmin_pwd()));
                         //将message对象回复客户端
                         oos.writeObject(m);
                         //创建一个线程，和客户端通信，该线程持有socket对象

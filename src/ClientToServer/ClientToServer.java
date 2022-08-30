@@ -1,6 +1,5 @@
 package ClientToServer;
 import DAO.Login.Admin_utils;
-import DAO.Login.Students_utils;
 import DAO.Login.Teachers_utils;
 import UIhandler.Currirulum.Client_curriculum;
 import UIhandler.Library.Client_library;
@@ -12,11 +11,7 @@ import utils.MyObjectInputStream;
 import utils.MyObjectOutputStream;
 
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.net.Socket;
-
-import static UIhandler.Library.Client_library.RequireshowAllBooks;
 
 /**
  * @author : [Tongwei_L]
@@ -88,7 +83,6 @@ public class ClientToServer {
     public boolean checkStudent(String id, String pwd) throws Exception {
         s.setStudent_idcard(id);
         s.setStudent_pwd(pwd);
-        s.setStudent_name(Students_utils.returnStudentName(id,pwd));
         socket = new Socket(serverIP,MessageType.PORT);
         MyObjectOutputStream oos = new MyObjectOutputStream(socket.getOutputStream());     //得到Object对象
         Message send=new Message();
@@ -99,6 +93,8 @@ public class ClientToServer {
         Message ms = (Message) ois.readObject();
         if(ms.getType().equals(MessageType.MESSAGE_LOGIN_SUCCEED)){
             ID="1";
+            String name=(String) ms.getData();
+            myInfo.setall(id,1,name);
             ClientToServerThread ctst = new ClientToServerThread(socket);        //创建一个和服务器端保持通信的线程
             ctst.start();                                                        //启动线程
             ManageClientToServerThread.addThread(id,ctst);
@@ -116,7 +112,7 @@ public class ClientToServer {
     public boolean checkTeacher(String id, String pwd) throws Exception {
         t.setTeacher_idcard(id);
         t.setTeacher_pwd(pwd);
-        t.setTeacher_name(Teachers_utils.returnTeacherName(id,pwd));
+//        t.setTeacher_name(Teachers_utils.returnTeacherName(id,pwd));
         socket = new Socket(serverIP,MessageType.PORT);
         //得到Object对象
         MyObjectOutputStream oos = new MyObjectOutputStream(socket.getOutputStream());
@@ -129,6 +125,7 @@ public class ClientToServer {
         Message ms = (Message) ois.readObject();
         if(ms.getType().equals(MessageType.MESSAGE_LOGIN_SUCCEED)){
             ID="2";
+            myInfo.setall(id,2,(String) ms.getData());
             //创建一个和服务器端保持通信的线程
             ClientToServerThread ctst = new ClientToServerThread(socket);
             //启动线程
@@ -148,7 +145,7 @@ public class ClientToServer {
     public boolean checkAdmin(String id, String pwd) throws Exception {
         a.setAdmin_idcard(id);
         a.setAdmin_pwd(pwd);
-        a.setAdmin_name(Admin_utils.returnAdminName(id,pwd));
+   //     a.setAdmin_name(Admin_utils.returnAdminName(id,pwd));
         socket = new Socket(serverIP,MessageType.PORT);
         //得到Object对象
         MyObjectOutputStream oos = new MyObjectOutputStream(socket.getOutputStream());
@@ -162,6 +159,7 @@ public class ClientToServer {
         Message ms = (Message) ois.readObject();
         if(ms.getType().equals(MessageType.MESSAGE_LOGIN_SUCCEED)){
             ID="3";
+            myInfo.setall(id,3,(String)ms.getData());
             //创建一个和服务器端保持通信的线程
             ClientToServerThread ctst = new ClientToServerThread(socket);
             //启动线程
@@ -178,7 +176,7 @@ public class ClientToServer {
         }
     }
 
-    public boolean registerStudent(Student st) throws Exception{
+    public boolean registerStudent(Student st) throws Exception {
         socket = new Socket(serverIP,MessageType.PORT);
         MyObjectOutputStream oos = new MyObjectOutputStream(socket.getOutputStream());     //得到Object对象
         Message send=new Message();

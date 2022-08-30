@@ -21,6 +21,8 @@ import UIviewer.status_manage.manage_status;
 import UIviewer.status_manage.student_status;
 import net.coobird.thumbnailator.Thumbnails;
 
+import ClientToServer.myInfo;
+
 public class functionChoose {
     public static JButton back_from_student_status;
     public static JFrame jf;
@@ -74,26 +76,26 @@ public class functionChoose {
         l4.setFont(font2);
         l4.setForeground(new Color(30,144,255));
         fc_panel.add(l4);
-        String name=null;
-        if(ucs.getID().equals("1"))
+        String name= myInfo.getName();
+        /*if(ucs.getID().equals("1"))
             name=ucs.getS().getStudent_name();
         else if(ucs.getID().equals("2"))
             name=ucs.getT().getTeacher_name();
         else if(ucs.getID().equals("3"))
-            name=ucs.getA().getAdmin_name();
+            name=ucs.getA().getAdmin_name();*/
         JLabel l2 = new JLabel(" 姓名："+name);
         l2.setBounds((int) (30*width_r), (int) (210*height_r), (int) (250*width_r), (int) (60*height_r));
         Font font1 = new Font("微软雅黑", Font.PLAIN, (int) (18*width_r));
         l2.setFont(font1);
         l2.setForeground(new Color(0,0,0));
         fc_panel.add(l2);
-        String card=null;
-        if(ucs.getID().equals("1"))
+        String card=myInfo.getId();
+        /*if(ucs.getID().equals("1"))
             card=ucs.getS().getStudent_idcard();
         else if(ucs.getID().equals("2"))
             card=ucs.getT().getTeacher_idcard();
         else if(ucs.getID().equals("3"))
-            card=ucs.getA().getAdmin_idcard();
+            card=ucs.getA().getAdmin_idcard();*/
         JLabel l3 = new JLabel(" 卡号："+card);
         l3.setBounds((int) (30*width_r), (int) (250*height_r), (int) (250*width_r), (int) (60*height_r));
         l3.setFont(font1);

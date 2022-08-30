@@ -1,6 +1,6 @@
 package ClientToServer;
 
-public class Info {
+public class myInfo {
     static String id;
     static int type; //1-学生 2-老师 3-管理员
     static String name;
