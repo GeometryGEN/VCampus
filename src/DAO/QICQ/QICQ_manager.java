@@ -56,12 +56,10 @@ public class QICQ_manager {
             String group=rs.getString("relation");
             friend.name=rs.getString("nickname");
             friend.id=rs.getString("friend_id");
-            System.out.println(friend.id);
             if(ServerToClient.isOnline(friend.id)!=-1) {
                 friend.setOnline(1);
                 System.out.println(friend.id+" ok");
             }
-
             else friend.setOnline(0);
             sql="select * from message where sender=? and getter=? and isread=0;";
             st= conn.prepareStatement(sql);
