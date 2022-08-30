@@ -91,13 +91,12 @@ public static void requireChosen(Course curri)throws IOException{
             Search_result.search_result[count][0]=curri.getId();
             Search_result.search_result[count][1]=curri.getName();
             Search_result.search_result[count][2]=curri.getTimestring();
-            Search_result.search_result[count][3]=curri.getTeacher();
-            Search_result.search_result[count][4]=curri.getClassroom();
-            Search_result.search_result[count][5]=String.valueOf(curri.getPoint());
+            Search_result.search_result[count][3]=String.valueOf(curri.getPoint());
+            Search_result.search_result[count][4]=curri.getTeacher();
+            Search_result.search_result[count][5]=curri.getClassroom();
 
             count++;
         }
-        while(Search_result.search_result==null);
         Search_result search=new Search_result();
         panel.add(search,"search");
         cardLayout.show(panel,"search");

@@ -129,6 +129,7 @@ public class Selcourse extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 functionChoose.jf.setContentPane(functionChoose.fc_panel);
                 functionChoose.jf.setTitle("functionChoose");
+                setVisible(false);
             }
         });
         main_win.add(btnNewButton_6);
@@ -144,8 +145,8 @@ public class Selcourse extends JFrame {
         l15.setBounds(0, 0, 1273, 790);
         main_win.add(l15);
 
-
-       setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         //setVisible(true);
     }
 

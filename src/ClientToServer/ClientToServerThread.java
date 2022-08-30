@@ -1,11 +1,14 @@
 package ClientToServer;
 import javax.swing.*;
 import java.awt.*;
+
+import DAO.Curriculum.Course;
 import DAO.Library.Book_admin;
 import DAO.Library.Book_borrower;
 import DAO.Library.Punishment;
 import DAO.QICQ.Friend;
 import DAO.Shop.Product;
+import UIhandler.Currirulum.Client_curriculum;
 import UIhandler.Library.Client_library;
 import UIhandler.QICQ.Client_qicq;
 import UIhandler.Shop.Client_shop;
@@ -229,6 +232,11 @@ public class ClientToServerThread extends Thread {
                      Client_qicq.show_message(messages);
                 }
                 System.out.println("next");
+
+                //选课
+                if(message.getType().equals(MessageType.MESSAGE_CURRICULUM_QUERY_RET)){
+                    Client_curriculum.showConsultResult((ArrayList<Course>)message.getData());
+                }
 
             } catch (InterruptedIOException e){
                 break;
