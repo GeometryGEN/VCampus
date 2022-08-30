@@ -25,6 +25,8 @@ public class functionChoose {
     public static JButton back_from_student_status;
     public static JFrame jf;
     public static JPanel fc_panel;
+
+    static JPanel chatpl;
     public static void functionChooseUI(ClientToServer ucs) {
         Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
         int width=(int ) screensize.getWidth(); //得到宽度
@@ -413,14 +415,17 @@ public class functionChoose {
                 // TODO Auto-generated method stub
                 try {
                     Client_qicq.setId(ucs.getIDcard());
+                    if(chatpl==null){
+                        chatpl=new main_panel(ucs,width,height).mjp;
+                        Client_qicq.Require_friend_list();
+                    }
+                    jf.setContentPane(chatpl);
                     if(ucs.getID()=="1"||ucs.getID()=="2")
                     {
-                        jf.setContentPane(new main_panel(ucs,width,height).mjp);
                         jf.setTitle("userqq");
                     }
                     else
                     {
-                        jf.setContentPane(new main_panel(ucs,width,height).mjp);
                         jf.setTitle("adminqq");
                     }
                 } catch (Exception ex) {

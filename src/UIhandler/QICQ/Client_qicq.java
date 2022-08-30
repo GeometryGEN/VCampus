@@ -69,7 +69,7 @@ public class Client_qicq {
         Filetrans file=(Filetrans)message.getData();
         fileOutputStream.write(file.getContent());
     }
-    public void send_message(String content,String sender,String getter){
+    public static void send_message(String content, String sender, String getter){
         Message message=new Message();
         message.setSender(sender);
         message.setGetter(getter);
