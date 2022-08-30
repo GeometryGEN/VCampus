@@ -24,6 +24,7 @@ import UIviewer.status_manage.student_status;
 import net.coobird.thumbnailator.Thumbnails;
 
 public class functionChoose {
+
     public static JButton back_from_student_status;
     public static JFrame jf;
     public static JPanel fc_panel;
@@ -380,7 +381,7 @@ public class functionChoose {
                 try {
                     jf.setBounds(0,0,width,height);
                     jf.remove(fc_panel);
-                    if(ucs.getID()=="1"||ucs.getID()=="2")
+                    if(ucs.getID().equals("1")||ucs.getID().equals("2"))
                     {
                         Client_library.setId(ucs.getIDcard());
                         jf.setContentPane(new readLib(ucs));

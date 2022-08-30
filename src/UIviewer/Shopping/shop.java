@@ -1,9 +1,11 @@
 package UIviewer.Shopping;
 import DAO.Library.Book_borrower;
+import DAO.Shop.Product;
+import UIhandler.Shop.Client_shop;
 import UIviewer.Shopping.shoppinghall;
 import UIhandler.Library.Client_library;
 import UIviewer.Library.readLib;
-
+import java.util.List;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
