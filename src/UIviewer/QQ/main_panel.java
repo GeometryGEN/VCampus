@@ -17,7 +17,7 @@ public class main_panel {
     public static JButton close_button;
     public static chat_panel cpn;
 
-    public main_panel(ClientToServer ucs, int width, int height){
+    public main_panel(int width, int height){
         double width_r=(double)(width)/1920;
         double height_r=(double)(height)/1080;
         mjp=new JPanel();

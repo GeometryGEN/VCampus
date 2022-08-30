@@ -23,12 +23,14 @@ import UIviewer.status_manage.manage_status;
 import UIviewer.status_manage.student_status;
 import net.coobird.thumbnailator.Thumbnails;
 
+import ClientToServer.myInfo;
+
 public class functionChoose {
 
     public static JButton back_from_student_status;
     public static JFrame jf;
     public static JPanel fc_panel;
-    public static void functionChooseUI(ClientToServer ucs) {
+    public static void functionChooseUI() {
         Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
         int width=(int ) screensize.getWidth(); //得到宽度
         int height=(int ) screensize.getHeight();//获得高度
@@ -77,26 +79,26 @@ public class functionChoose {
         l4.setFont(font2);
         l4.setForeground(new Color(30,144,255));
         fc_panel.add(l4);
-        String name=null;
-        if(ucs.getID().equals("1"))
+        String name= myInfo.getName();
+        /*if(ucs.getID().equals("1"))
             name=ucs.getS().getStudent_name();
         else if(ucs.getID().equals("2"))
             name=ucs.getT().getTeacher_name();
         else if(ucs.getID().equals("3"))
-            name=ucs.getA().getAdmin_name();
+            name=ucs.getA().getAdmin_name();*/
         JLabel l2 = new JLabel(" 姓名："+name);
         l2.setBounds((int) (30*width_r), (int) (210*height_r), (int) (250*width_r), (int) (60*height_r));
         Font font1 = new Font("微软雅黑", Font.PLAIN, (int) (18*width_r));
         l2.setFont(font1);
         l2.setForeground(new Color(0,0,0));
         fc_panel.add(l2);
-        String card=null;
-        if(ucs.getID().equals("1"))
+        String card=myInfo.getId();
+        /*if(ucs.getID().equals("1"))
             card=ucs.getS().getStudent_idcard();
         else if(ucs.getID().equals("2"))
             card=ucs.getT().getTeacher_idcard();
         else if(ucs.getID().equals("3"))
-            card=ucs.getA().getAdmin_idcard();
+            card=ucs.getA().getAdmin_idcard();*/
         JLabel l3 = new JLabel(" 卡号："+card);
         l3.setBounds((int) (30*width_r), (int) (250*height_r), (int) (250*width_r), (int) (60*height_r));
         l3.setFont(font1);
@@ -167,7 +169,7 @@ public class functionChoose {
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
                 try {
-                    ucs.logout();
+                    ClientToServer.logout();
                     jf.dispose();
                     LoginFrame.jf.setVisible(true);
                     LoginFrame.passwordField.setText("");
@@ -231,10 +233,10 @@ public class functionChoose {
                 try {
                     jf.setBounds(0,0,width,height);
                     jf.remove(fc_panel);
-                    if(ucs.getID().equals("1"))
-                        jf.setContentPane(new student_status(ucs,width,height));
-                    else if(ucs.getID().equals("3")){
-                        jf.setContentPane(new manage_status(ucs,width,height));
+                    if(myInfo.getType()!=3)
+                        jf.setContentPane(new student_status(width,height));
+                    else {
+                        jf.setContentPane(new manage_status(width,height));
                     }
                     jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                     jf.setVisible(true);
@@ -276,12 +278,15 @@ public class functionChoose {
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
                 try {
-                    if(ucs.getID()=="1")
+                    if(myInfo.getType()==1)
                     {
 
                     }
-                    else
+                    else if(myInfo.getType()==2)
                     {
+
+                    }
+                    else {
 
                     }
 
@@ -342,6 +347,7 @@ public class functionChoose {
                     } else {
 
                     }
+                    shoppinghall.shoppingUI();
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -382,17 +388,18 @@ public class functionChoose {
                     jf.setBounds(0,0,width,height);
                     jf.remove(fc_panel);
                     if(ucs.getID().equals("1")||ucs.getID().equals("2"))
+                    if(myInfo.getType()!=3)
                     {
-                        Client_library.setId(ucs.getIDcard());
-                        jf.setContentPane(new readLib(ucs));
+                        Client_library.setId(myInfo.getId());
+                        jf.setContentPane(new readLib());
                         jf.setTitle("readLib");
                     }
                     else
                     {
-                        Client_library.setId(ucs.getIDcard());
+                        Client_library.setId(myInfo.getId());
                         Client_library.RequireshowAllBooks();
                         while (AllBooks.tableDate==null);
-                        jf.setContentPane(new adminLib(ucs));
+                        jf.setContentPane(new adminLib());
                         jf.setTitle("adminLib");
                     }
                     jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -434,15 +441,15 @@ public class functionChoose {
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
                 try {
-                    Client_qicq.setId(ucs.getIDcard());
-                    if(ucs.getID()=="1"||ucs.getID()=="2")
+                    Client_qicq.setId(myInfo.getId());
+                    if(myInfo.getType()!=3)
                     {
-                        jf.setContentPane(new main_panel(ucs,width,height).mjp);
+                        jf.setContentPane(new main_panel(width,height).mjp);
                         jf.setTitle("userqq");
                     }
                     else
                     {
-                        jf.setContentPane(new main_panel(ucs,width,height).mjp);
+                        jf.setContentPane(new main_panel(width,height).mjp);
                         jf.setTitle("adminqq");
                     }
                 } catch (Exception ex) {

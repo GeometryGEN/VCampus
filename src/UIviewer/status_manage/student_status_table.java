@@ -10,7 +10,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
+import ClientToServer.myInfo;
 public class student_status_table extends JPanel{
     public JButton jb1,jb2,jb3;
     public JTextField text1,text2,text3,text4,text5,text6,text7,text8,text9,text10,text11,text12,text13,text14,text15,text16,text17,text18,text19,text20,text21,text22,text23,text24,text25,text26,text27,text28,text29,text30,text31,text32;
@@ -72,7 +72,7 @@ public class student_status_table extends JPanel{
         text30.setEditable(false);
         text32.setEditable(false);
     }
-    public student_status_table(ClientToServer ucs, double width_r, double height_r, double width, double height,String IDcard) throws Exception {
+    public student_status_table(double width_r, double height_r, double width, double height,String IDcard) throws Exception {
         setBackground(new Color(255,255,255));
         setBorder(BorderFactory.createEtchedBorder());
         setBorder(BorderFactory.createLineBorder(new Color(232,237,239)));
@@ -86,7 +86,7 @@ public class student_status_table extends JPanel{
         title_label.setForeground(new Color(102,102,102));
         add(title_label);
         Student sinfo = new Student();
-        if(ucs.getID().equals("3")){
+        if(myInfo.getType()==3){
             sinfo = Client_status.returnStatus_Admin(IDcard);
         }else{
             sinfo = Client_status.returnStatusInfo(IDcard);
@@ -157,7 +157,7 @@ public class student_status_table extends JPanel{
         text32= text_info(sinfo.getStudent_email(),width_r,height_r,820,535);
         add(text32);
 
-        if(ucs.getID()=="3"){
+        if(myInfo.getType()==3){
             jb1=new JButton("修改学籍信息");
             jb1.setBounds((int)(360*width_r),(int)(650*height_r),(int)(170*width_r),(int)(50*height_r));
             jb1.setBackground(new Color(33,150,243));
@@ -231,7 +231,7 @@ public class student_status_table extends JPanel{
                 }
             });
         }
-        else if(ucs.getID().equals("1")){
+        else if(myInfo.getType()==1){
             functionChoose.back_from_student_status =new JButton("返回功能选择");
             functionChoose.back_from_student_status.setBounds((int)(470*width_r),(int)(650*height_r),(int)(170*width_r),(int)(50*height_r));
             functionChoose.back_from_student_status.setBackground(new Color(96,190,41));

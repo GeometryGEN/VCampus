@@ -64,9 +64,9 @@ public interface MessageType {
 
     //选课
     String MESSAGE_CURRICULUM_LIST_ALL="31";  //请求所有的课程 无data
-    String MESSAGE_CURRICULUM_LIST_ALL_RET="31.1"; //返回所有课程 data类型Hashset<Course>
+    String MESSAGE_CURRICULUM_LIST_ALL_RET="31.1"; //返回所有课程 data类型Arraylist<Course>
     String MESSAGE_CURRICULUM_LIST_MINE="31.5";  //展示用户所选课程 无data
-    String MESSAGE_CURRICULUM_LIST_MINE_RET="31.6"; //返回用户所选课程 data类型Hashset<Course>
+    String MESSAGE_CURRICULUM_LIST_MINE_RET="31.6"; //返回用户所选课程 data类型Arraylist<Course>
     String MESSAGE_CURRICULUM_CHOOSE="32"; //请求选课 data类型Course
     String MESSAGE_CURRICULUM_CHOOSE_SUCCEED="32.1"; //选课成功 无data
     String MESSAGE_CURRICULUM_CHOOSE_CONFLICT="32.2";//选课失败 课程冲突 无data
@@ -75,18 +75,18 @@ public interface MessageType {
     String MESSAGE_CURRICULUM_APPLY_SUCCEED="33.1"; //教师申请成功 无data
     String MESSAGE_CURRICULUM_APPLY_FAIL="33.2";//教师申请失败 已经有这门课程 无data
     String MESSAGE_CURRICULUM_LIST_APPLICATION="33.3"; //教师看到自己的申请，无data
-    String MESSAGE_CURRICULUM_LIST_APPLICATION_RET="33.4"; //返回教师看到自己的申请，data类型HashSet<Opencourse>
-    String MESSAGE_CURRICULUM_APPLICATION_APPROVE="33.5";  //同意加课，Message包getter里写课程id，data是课程Course类型
-    String MESSAGE_CURRICULUM_APPLICATION_REFUSE="33.6";  //拒绝加课，Message包getter里写课程id，data里写原因String类型
+    String MESSAGE_CURRICULUM_LIST_APPLICATION_RET="33.4"; //返回教师看到自己的申请，data类型Arraylist<Opencourse>
+    String MESSAGE_CURRICULUM_APPLICATION_APPROVE="33.5";  //同意加课，Message包getter里写凯克课程id，data是课程Course类型
+    String MESSAGE_CURRICULUM_APPLICATION_REFUSE="33.6";  //拒绝加课，Message包getter里写开课课程id，data里写原因String类型
     String MESSAGE_CURRICULUM_SHOW_STU="34";  //请求展示这门课的学生 data类型String课程id
-    String MESSAGE_CURRICULUM_SHOW_STU_RET="34.1"; //返回这门课的学生 data类型Hashset<Student>
+    String MESSAGE_CURRICULUM_SHOW_STU_RET="34.1"; //返回这门课的学生 data类型Arraylist<Student>
     String MESSAGE_CURRICULUM_SHOW_SCHEDULE="35";  //请求展示课表
     String MESSAGE_CURRICULUM_SHOW_SCHEDULE_RET="35.1"; //返回课表 data类型String[17][6][14]
     String MESSAGE_CURRICULUM_DELETE="36"; //删除课 data类型String课程id
     String MESSAGE_CURRICULUM_LIST_ADMIN_APPLICATION="33.7";  //管理员展示申请
-    String MESSAGE_CURRICULUM_LIST_ADMIN_APPLICATION_RET="33.8"; //返回管理员处的申请 data类型Hashset<Opencourse>
+    String MESSAGE_CURRICULUM_LIST_ADMIN_APPLICATION_RET="33.8"; //返回管理员处的申请 data类型Arraylist<Opencourse>
     String MESSAGE_CURRICULUM_QUERY="37"; //课程查询 data String(名称，教师，课程号)
-    String MESSAGE_CURRICULUM_QUERY_RET="37.1"; //返回课程查询的结果 data类型Hashset<Course>
+    String MESSAGE_CURRICULUM_QUERY_RET="37.1"; //返回课程查询的结果 data类型Arraylist<Course>
     String MESSAGE_CURRICULUM_ADMIN_ARRANGEMENT="38";//管理员排课，安排教室和时间 Data类型Course
 
 

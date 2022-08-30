@@ -20,6 +20,11 @@ import UIhandler.Library.Client_library;
 public class searchResult extends JPanel {
 
     public static volatile String[][] searchresult=null;
+    Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
+    int width=(int ) screensize.getWidth(); //得到宽度
+    int height=(int ) screensize.getHeight();//获得高度
+    double width_r=(double)(width)/1273;
+    double height_r=(double)(height)/784;
     public searchResult() {
         setLayout(null);
         String[] tableTitle = {"书籍编号", "书名", "作者", "出版社", "国家", "是否可借", "归还日期", "馆藏地", "借阅"};
@@ -34,11 +39,11 @@ public class searchResult extends JPanel {
 
         //支持滚动
         JScrollPane jsp = new JScrollPane(table_want);
-        jsp.setBounds(0, 0, 1280, 680);
+        jsp.setBounds(0, 0, (int) (1280*width_r), (int) (680*height_r));
         add(jsp);
 
         //调整美化
-        table_want.setFont(new Font("宋体",Font.BOLD,16));
+        table_want.setFont(new Font("宋体",Font.BOLD, (int) (16*width_r)));
         try {
             DefaultTableCellRenderer tcr = new DefaultTableCellRenderer() {
                 @Override
@@ -99,7 +104,6 @@ public class searchResult extends JPanel {
 
             }
         });
-        table_want.setRowHeight(30);
+        table_want.setRowHeight((int) (30*height_r));
     }
-
-    }
+}

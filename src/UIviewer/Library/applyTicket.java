@@ -2,6 +2,7 @@ package UIviewer.Library;
 import DAO.Library.Book_borrower;
 import DAO.Library.Punishment;
 import UIhandler.Library.Client_library;
+import net.coobird.thumbnailator.Thumbnails;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -11,10 +12,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.io.File;
 import java.io.IOException;
 
 public class applyTicket extends JPanel {
     public static volatile String[][] myPunish=null;
+    Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
+    int width=(int ) screensize.getWidth(); //得到宽度
+    int height=(int ) screensize.getHeight();//获得高度
+    double width_r=(double)(width)/1273;
+    double height_r=(double)(height)/784;
     public applyTicket(){
         setLayout(null);
         String[] tableTitle = {"罚单编号","罚单金额","书籍编号","罚单备注","缴费"};
@@ -67,22 +74,31 @@ public class applyTicket extends JPanel {
         });
         //支持滚动
         JScrollPane jsp = new JScrollPane(table_want);
-        jsp.setBounds(0,0,1280,680);
+        jsp.setBounds(0,0, (int) (1280*width_r), (int) (680*height_r));
         add(jsp);
-        table_want.setRowHeight(30);
+        table_want.setRowHeight((int) (30*height_r));
 
 
         JPanel p11=new JPanel();
-        p11.setBounds(0,0,1280,650);
+        p11.setBounds(0,0, (int) (1280*width_r), (int) (650*height_r));
         JLabel pic1 = new JLabel();
         ImageIcon icon1 = new ImageIcon("src/image/main4.jpg");
-        pic1.setIcon(icon1);
-        pic1.setBounds(0,0 , 1300, 650);
+        int icon1_width= 1300;
+        int icon1_height=650;
+        try {
+            Thumbnails.of(new File("src/image/main4.jpg"))
+                    .size((int)(icon1_width*width_r), (int)(icon1_height*height_r))
+                    .toFile(new File("src/image/main4_min.jpg"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        pic1.setIcon(new ImageIcon("src/image/main4_min.jpg"));
+        pic1.setBounds(0,0 , (int) (1300*width_r), (int) (650*height_r));
         p11.add(pic1);
         add(p11);
 
         //调整美化
-        table_want.setFont(new Font("宋体",Font.BOLD,16));
+        table_want.setFont(new Font("宋体",Font.BOLD, (int) (16*width_r)));
         try {
             DefaultTableCellRenderer tcr = new DefaultTableCellRenderer() {
                 @Override

@@ -15,6 +15,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 //gsh
@@ -71,8 +72,8 @@ public class Course_manager {
         }
         return a;
     }
-    public HashSet<Course> query_courses(String s) throws SQLException {
-        HashSet<Course> courses = new HashSet<Course>();
+    public ArrayList<Course> query_courses(String s) throws SQLException {
+        ArrayList<Course> courses = new ArrayList<Course>();
         String sql="select * from curriculum where id like ? or name like ? or teacher like ?;";
         String parse="%"+s+"%";
         PreparedStatement st=conn.prepareStatement(sql);
@@ -93,8 +94,8 @@ public class Course_manager {
         }
         return courses;
     }
-    public HashSet<Course> list_all_courses() throws SQLException {
-        HashSet<Course> courses = new HashSet<Course>();
+    public ArrayList<Course> list_all_courses() throws SQLException {
+        ArrayList<Course> courses = new ArrayList<Course>();
         String sql="select * from curriculum;";
         PreparedStatement st=conn.prepareStatement(sql);
         ResultSet rs=st.executeQuery();
@@ -112,8 +113,8 @@ public class Course_manager {
         }
         return courses;
     }
-    public HashSet<Course> list_my_courses() throws SQLException {
-        HashSet<Course> courses = new HashSet<Course>();
+    public ArrayList<Course> list_my_courses() throws SQLException {
+        ArrayList<Course> courses = new ArrayList<Course>();
         String sql="select * from elective where stu_id=? or tea_id=?;";
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,id);
@@ -141,7 +142,7 @@ public class Course_manager {
         return courses;
     }
     public Message choose(Course c) throws SQLException {
-        HashSet<Course> courses = list_my_courses();
+        ArrayList<Course> courses = list_my_courses();
         int [][][]a=new int[17][6][14];
         Iterator it = courses.iterator();
         while(it.hasNext()){
@@ -221,7 +222,7 @@ public class Course_manager {
     }
     public String[][][] schedule() throws SQLException {
         String [][][]ans=new String[17][14][6];
-        HashSet<Course>courses=list_my_courses();
+        ArrayList<Course>courses=list_my_courses();
         Iterator it = courses.iterator();
         while(it.hasNext()){
             Course cc=(Course) it.next();
@@ -243,65 +244,93 @@ public class Course_manager {
         Message message=new Message();
         if(rs.next()){
             message.setType(MessageType.MESSAGE_CURRICULUM_APPLY_SUCCEED);
-            ServerToClient.add_opencourse(c);
+            sql="select count(*) from opencourse;";
+            st= conn.prepareStatement(sql);
+            rs=st.executeQuery();
+            String newid=String.valueOf(rs.getInt(1));
+            //ServerToClient.add_opencourse(c);
+            sql="insert into opencourse(name,teacher_name,teacher_id,point,size,status,id) values(?,?,?,?,?,0,?);";
+            st= conn.prepareStatement(sql);
+            st.setString(1,c.getName());
+            st.setString(2,c.getTeacher_id());
+            st.setString(3,c.getTeacher());
+            st.setDouble(4,c.getPoint());
+            st.setInt(5,c.getSize());
+            st.setString(6,newid);
+            st.executeUpdate();
         }
         else{
             message.setType(MessageType.MESSAGE_CURRICULUM_APPLY_FAIL);
         }
         return message;
     }
-    public void refuse(String id,String reason) throws IOException {
-        Iterator it=ServerToClient.getOpencourses().iterator();
-        while(it.hasNext()){
-            Opencourse c=(Opencourse)it.next();
-            ServerToClient.getOpencourses().remove(c);
-            if(c.id.equals(id))
-            {
-                c.result=reason;
-                c.status=1;
-            }
-            ServerToClient.getOpencourses().add(c);
-        }
-        return;
+    public void refuse(String course_id,String reason) throws IOException, SQLException {
+        String sql="update opencourse set status=1, comment=? where id=?;";
+        PreparedStatement st= conn.prepareStatement(sql);
+        st.setString(1,reason);
+        st.setString(2,course_id);
+        st.executeUpdate();
+
     }
-    public void approve(String id,Course course) throws SQLException {
-        Iterator it=ServerToClient.getOpencourses().iterator();
-        while(it.hasNext()){
-            Opencourse c=(Opencourse)it.next();
-            ServerToClient.getOpencourses().remove(c);
-            if(c.id.equals(id))
-            {
-                c.result="已通过";
-                c.status=2;
-            }
-            ServerToClient.getOpencourses().add(c);
-        }
-        add(course);
-        return;
+    public void approve(String course_id,Course c) throws SQLException {
+        String sql="update opencourse set status=2, comment=? where id=?;";
+        PreparedStatement st= conn.prepareStatement(sql);
+        st.setString(1,"同意开课");
+        st.setString(2,course_id);
+        st.executeUpdate();
+        sql="insert into curriculum(name,time,point,teacher,size,id,classroom) values(?,?,?,?,?,?,?);";
+        st= conn.prepareStatement(sql);
+        st.setString(1,c.name);
+        st.setString(2,c.timestring);
+        st.setDouble(3,c.point);
+        st.setString(4,c.teacher);
+        st.setInt(5,c.size);
+        st.setString(6,c.id);
+        st.setString(7,c.classroom);
+        st.executeUpdate();
     }
-    public HashSet<Opencourse>list_tea_opencourse(String id) throws SQLException{
-        HashSet<Opencourse>opencourses=new HashSet<Opencourse>();
-        Iterator it=ServerToClient.getOpencourses().iterator();
-        while(it.hasNext()){
-            Opencourse c=(Opencourse)it.next();
-            if(c.id.equals(id)) opencourses.add(c);
+    public ArrayList<Opencourse> list_tea_opencourse(String id) throws SQLException{
+        ArrayList<Opencourse>opencourses=new ArrayList<>();
+        String sql="select * from opencourses where teacher_id=?";
+        PreparedStatement st=conn.prepareStatement(sql);
+        st.setString(1,id);
+        ResultSet rs=st.executeQuery();
+        while(rs.next()){
+            Opencourse c=new Opencourse();
+            c.setName(rs.getString("name"));
+            c.setTeacher(rs.getString("teacher_name"));
+            c.setPoint(rs.getDouble("point"));
+            c.setSize(rs.getInt("size"));
+            c.status=rs.getInt("status");
+            c.result=rs.getString("comment");
+            c.setTeacher_id(rs.getString("teacher_id"));
+            opencourses.add(c);
         }
         return opencourses;
     }
-    public Message admin_list_application(){
+    public Message admin_list_application() throws SQLException {
         Message message=new Message();
         message.setType(MessageType.MESSAGE_CURRICULUM_LIST_ADMIN_APPLICATION_RET);
-        HashSet<Opencourse>op=new HashSet<Opencourse>();
-        Iterator it=ServerToClient.getOpencourses().iterator();
-        while(it.hasNext()){
-            Opencourse opencourse=(Opencourse)it.next();
-            if(opencourse.status==0) op.add(opencourse);
+        ArrayList<Opencourse>opencourses=new ArrayList<>();
+        String sql="select * from opencourses where status=0";
+        PreparedStatement st=conn.prepareStatement(sql);
+        ResultSet rs=st.executeQuery();
+        while(rs.next()){
+            Opencourse c=new Opencourse();
+            c.setName(rs.getString("name"));
+            c.setTeacher(rs.getString("teacher_name"));
+            c.setPoint(rs.getDouble("point"));
+            c.setSize(rs.getInt("size"));
+            c.status=rs.getInt("status");
+            c.result=rs.getString("comment");
+            c.setTeacher_id(rs.getString("teacher_id"));
+            opencourses.add(c);
         }
-        message.setData(op);
+        message.setData(opencourses);
         return message;
     }
-    public HashSet<Student>get_student(String s) throws SQLException {
-        HashSet<Student>res=new HashSet<Student>();
+    public ArrayList<Student>get_student(String s) throws SQLException {
+        ArrayList<Student>res=new ArrayList<Student>();
         String sql="select * from curriculum where name=? or id=?;";
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,s);
@@ -327,11 +356,12 @@ public class Course_manager {
         return res;
     }
     public void admin_arrange(Course c) throws SQLException {
-        String sql="update curriculum set classroom=?,time=? where id=?";
+        String sql="update curriculum set classroom=?, time=?, size=? where id=?";
         PreparedStatement st= conn.prepareStatement(sql);
         st.setString(1,c.classroom);
         st.setString(2,c.timestring);
-        st.setString(3,c.id);
+        st.setInt(3,c.size);
+        st.setString(4,c.id);
         st.executeUpdate();
     }
 }
