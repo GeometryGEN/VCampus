@@ -35,7 +35,7 @@ public class main_panel extends JPanel {
         functionChoose.back_from_student_status.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                Client_status.resetS();
+
                 functionChoose.jf.setContentPane(functionChoose.fc_panel);
             }
         });

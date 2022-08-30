@@ -59,6 +59,7 @@ public class ClientToServerThread extends Thread {
         while (!exit){
             try {
                 Message message = (Message) ois.readObject();
+                System.out.println(message.getType());
                 //如果服务器没有发送Message对象，线程会一直堵塞在这里
                 if(message.getType().equals(MessageType.MESSAGE_LIBRARY_ADMIN_LIST_RET)){
                     ArrayList<Book_admin> books=(ArrayList<Book_admin>)message.getData();
@@ -231,8 +232,13 @@ public class ClientToServerThread extends Thread {
 
                //站内通信
                 if(message.getType().equals(MessageType.MESSAGE_QICQ_LIST_FRIENDS_RET)){
+                    System.out.println("received");
                     HashMap<String,ArrayList<Friend>>friends=(HashMap<String,ArrayList<Friend>>)message.getData();
                     Client_qicq.show_friend(friends);
+                }
+                else if(message.getType().equals(MessageType.MESSAGE_QICQ_GET_MESSAGE_RET)){
+                    ArrayList<Message>messages=(ArrayList<Message>)message.getData();
+                    Client_qicq.show_message(messages);
                 }
 
 

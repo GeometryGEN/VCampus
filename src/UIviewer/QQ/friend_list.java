@@ -36,7 +36,6 @@ public class friend_list extends JPanel{
         roll_panel.add(tag1);
         friend_slice[] slice= new friend_slice[10];
         count=1;
-
         for(int i=0;i<num;i++){
             friendList[count]=arrayList.get(i);
             tagList[count]=tag;
@@ -44,6 +43,7 @@ public class friend_list extends JPanel{
             slice[i]=new friend_slice(width-1,height/number_per_page,width_r,height_r,arrayList.get(i).getName());
             roll_panel.add(slice[i]);
             roll_panel.updateUI();
+            System.out.println("ok");
         }
         tag1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent e) {

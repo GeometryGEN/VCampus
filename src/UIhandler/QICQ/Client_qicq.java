@@ -82,7 +82,13 @@ public class Client_qicq {
             e.printStackTrace();
         }
     }
-    public void get_message(String sender,String sendtime,String content){
+    public void get_message(String sender) throws IOException {
+        Message message = new Message();
+        message.setData(sender);
+        message.setType(MessageType.MESSAGE_QICQ_GET_MESSAGE);
+        oos.writeObject(message);
+    }
+    public static void show_message(ArrayList<Message>messages){
 
     }
     public void add_friend(String myid,String myname,String number,String nickname) throws IOException {
@@ -106,5 +112,4 @@ public class Client_qicq {
             //friend_list.update();
         }
     }
-
 }
