@@ -1,11 +1,13 @@
 package UIviewer.SelectCourse;
 
+import UIhandler.Currirulum.Client_curriculum;
 import UIviewer.login.functionChoose;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.nio.channels.spi.AbstractInterruptibleChannel;
 
 public class Selcourse_teacher extends JFrame {
@@ -88,7 +90,11 @@ public class Selcourse_teacher extends JFrame {
         btnNewButton_3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(panel,"f3");
+                try {
+                    Client_curriculum.Require_my_apply();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
         Sel_main.add(btnNewButton_3);

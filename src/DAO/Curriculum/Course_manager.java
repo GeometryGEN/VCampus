@@ -291,7 +291,7 @@ public class Course_manager {
     }
     public ArrayList<Opencourse> list_tea_opencourse(String id) throws SQLException{
         ArrayList<Opencourse>opencourses=new ArrayList<>();
-        String sql="select * from opencourses where teacher_id=?";
+        String sql="select * from opencourse where teacher_id=?";
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,id);
         ResultSet rs=st.executeQuery();
@@ -312,7 +312,7 @@ public class Course_manager {
         Message message=new Message();
         message.setType(MessageType.MESSAGE_CURRICULUM_LIST_ADMIN_APPLICATION_RET);
         ArrayList<Opencourse>opencourses=new ArrayList<>();
-        String sql="select * from opencourses where status=0";
+        String sql="select * from opencourse where status=0";
         PreparedStatement st=conn.prepareStatement(sql);
         ResultSet rs=st.executeQuery();
         while(rs.next()){

@@ -11,7 +11,7 @@ public class Check_Coustatus extends JPanel{
     public Check_Coustatus()
     {
         setLayout(null);
-        String[] tableTitle={"课程编号","课程名","课程学分","上课教室","上课时间","状态"};
+        String[] tableTitle={"课程编号","课程名","课程学分","状态","信息"};
         DefaultTableModel dtm=new DefaultTableModel(checkcourse_status,tableTitle);
         JTable table_want=new JTable(dtm);
         JScrollPane jsp=new JScrollPane(table_want);

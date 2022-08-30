@@ -3,6 +3,7 @@ import javax.swing.*;
 import java.awt.*;
 
 import DAO.Curriculum.Course;
+import DAO.Curriculum.Opencourse;
 import DAO.Library.Book_admin;
 import DAO.Library.Book_borrower;
 import DAO.Library.Punishment;
@@ -239,6 +240,9 @@ public class ClientToServerThread extends Thread {
                 }
                 if(message.getType().equals(MessageType.MESSAGE_CURRICULUM_LIST_ALL_RET)){
                     Client_curriculum.showallCourse((ArrayList<Course>)message.getData());
+                }
+                if(message.getType().equals(MessageType.MESSAGE_CURRICULUM_LIST_ALL_RET)){
+                    Client_curriculum.showApplyResult((ArrayList<Opencourse>)message.getData());
                 }
             } catch (InterruptedIOException e){
                 break;

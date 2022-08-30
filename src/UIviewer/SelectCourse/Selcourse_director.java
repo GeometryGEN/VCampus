@@ -13,7 +13,8 @@ import java.io.IOException;
 
 public class Selcourse_director extends JFrame {
     private JPanel Sel_main;
-    CardLayout cardLayout=new CardLayout();
+    public static CardLayout cardLayout=new CardLayout();
+    public static JPanel panel=new JPanel();
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -33,7 +34,6 @@ public class Selcourse_director extends JFrame {
         Sel_main=new JPanel();
         setContentPane(Sel_main);
         Sel_main.setLayout(null);
-        JPanel panel=new JPanel();
         panel.setBounds(0,100,1273,790);
         Sel_main.add(panel);
         panel.setLayout(cardLayout);
