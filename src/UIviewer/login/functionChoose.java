@@ -443,7 +443,7 @@ public class functionChoose {
                     Client_qicq.setId(myInfo.getId());
                     if(myInfo.getType()!=3)
                     {
-                        Client_qicq.Require_friend_list();
+                        //Client_qicq.Require_friend_list();
                         jf.setContentPane(new main_panel(width,height).mjp);
                         jf.setTitle("userqq");
                     }

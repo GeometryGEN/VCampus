@@ -21,7 +21,7 @@ public class main_panel {
     public static chat_panel cpn;
     public HashMap<String, ArrayList<Friend>> friend;
 
-    public main_panel(int width, int height){
+    public main_panel(int width, int height) throws IOException {
         double width_r=(double)(width)/1920;
         double height_r=(double)(height)/1080;
         mjp=new JPanel();
@@ -48,7 +48,7 @@ public class main_panel {
             }
         });
         //好友列表
-
+        Client_qicq.Require_friend_list();
         friend_list friend_list_panel=new friend_list(1920/3,1080,width_r,height_r,0,0);
         mjp.add(friend_list_panel);
         friend_list_panel.setVisible(true);

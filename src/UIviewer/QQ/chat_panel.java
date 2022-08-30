@@ -1,19 +1,57 @@
 package UIviewer.QQ;
 
-import ClientToServer.ClientToServer;
 import DAO.QICQ.Friend;
 import UIhandler.QICQ.Client_qicq;
+import ClientToServer.myInfo;
+import message.Message;
 
 import javax.swing.*;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyledDocument;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 public class chat_panel extends JPanel {
     private JPanel type_panel;
     private JPanel record_panel;
-    public chat_panel(ClientToServer ucs, int width, int height, double width_r, double height_r, int x, int y, Friend friend){
+    static double width_r;
+    static JTextPane jTextPane = new JTextPane();
+    static StyledDocument doc = jTextPane.getStyledDocument();
+    public static void insertText(String text, Color colorName, int textSize, int textAlign){
+        SimpleAttributeSet set = new SimpleAttributeSet();
+        StyleConstants.setForeground(set, colorName);//设置文本颜色
+        StyleConstants.setFontSize(set, textSize);//设置文本大小
+        StyleConstants.setAlignment(set, textAlign);//设置文本对齐方式
+        doc.setParagraphAttributes(jTextPane.getText().length(), doc.getLength() - jTextPane.getText().length(), set, false);
+        try {
+            doc.insertString(doc.getLength(), text+"\n", set);//插入文本
+        } catch (BadLocationException e) {
+            e.printStackTrace();
+        }
+    }
+    public static void show_message(ArrayList<Message> messages){
+        jTextPane.setText(null);
+        insertText(" ",Color.white,(int)(22*width_r),0);
+        int num=messages.size();
+        for(int i=num-1;i>=0;i--) {
+            System.out.println(messages.get(i).getSendTime());
+            if(messages.get(i).getSender().equals(myInfo.getId())){
+                insertText(messages.get(i).getSendTime(),Color.black,(int)(22*width_r),1);
+                insertText((String)(messages.get(i).getData()),Color.black,(int)(32*width_r),2);
+            }
+            else{
+                insertText(messages.get(i).getSendTime(),Color.black,(int)(22*width_r),1);
+                insertText((String)(messages.get(i).getData()),Color.red,(int)(32*width_r),0);
+            }
+        }
+    }
+    public chat_panel( int width, int height, double width_r, double height_r, int x, int y, Friend friend){
         setLayout(null);
+        this.width_r=width_r;
         setBounds((int)(x*width_r),(int)(y*height_r),(int)(width*width_r),(int)(height*height_r));
         setBackground(new Color(224,224,224));
         setBorder(BorderFactory.createLineBorder(new Color(234,234,234)));
@@ -63,7 +101,7 @@ public class chat_panel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //发送信息函数
-                Client_qicq.send_message(type_field.getText(),ucs.getIDcard(),friend.getId());
+                Client_qicq.send_message(type_field.getText(), myInfo.getId(),friend.getId());
                 type_field.setText("");
             }
         });
@@ -74,7 +112,9 @@ public class chat_panel extends JPanel {
         record_panel.setBounds(0,0,(int)(width*width_r),(int)(height/4*3*height_r));
         record_panel.setBorder(BorderFactory.createLineBorder(new Color(234,234,234)));
         record_panel.setBackground(new Color(245,246,247));
-
+        jTextPane.setBounds(0,0,(int)(width*width_r),(int)(height/4*3*height_r));
+        jTextPane.setBackground(new Color(245,246,247));
+        record_panel.add(jTextPane);
         add(record_panel);
     }
 }

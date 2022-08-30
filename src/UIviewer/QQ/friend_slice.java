@@ -26,7 +26,7 @@ public class friend_slice extends JLabel {
         update();
     }
 
-    public friend_slice(ClientToServer ucs, int width, int height, double width_r, double height_r, Friend friend){
+    public friend_slice( int width, int height, double width_r, double height_r, Friend friend){
         setOpaque(true);
         setBackground(new Color(255,255,255));
         int icon1_width=(int)((height-2*20)*height_r);
@@ -61,7 +61,7 @@ public class friend_slice extends JLabel {
                 if(main_panel.cpn!=null){
                     main_panel.mjp.remove(main_panel.cpn);
                 }
-                chat_panel chatPanel=new chat_panel(ucs,1920/3*2,1080,width_r,height_r,1920/3,0,friend);
+                chat_panel chatPanel=new chat_panel(1920/3*2,1080,width_r,height_r,1920/3,0,friend);
                 main_panel.mjp.add(chatPanel);
                 main_panel.cpn=chatPanel;
                 main_panel.mjp.updateUI();

@@ -26,7 +26,6 @@ public class friend_list extends JPanel{
     private static double width_r;
     private static double height_r;
    // private static int[] clickF=new int[50];
-    static ClientToServer ucs;
     //private static int count;
     public void update(){//更新UI界面；
         this.updateUI();
@@ -42,7 +41,7 @@ public class friend_list extends JPanel{
            // friendList[count]=arrayList.get(i);
             //tagList[count]=tag;
             //count++;
-            slice[i]=new friend_slice(ucs,width-1,height/number_per_page,width_r,height_r,arrayList.get(i));
+            slice[i]=new friend_slice(width-1,height/number_per_page,width_r,height_r,arrayList.get(i));
             roll_panel.add(slice[i]);
             roll_panel.updateUI();
         }
@@ -66,7 +65,6 @@ public class friend_list extends JPanel{
     }
 
    friend_list( int width, int height, double width_r, double height_r, int x, int y){
-        this.ucs=ucs;
         roll_panel=new JPanel();
         this.width=width;
         this.height=height;
