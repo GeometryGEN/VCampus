@@ -1,6 +1,7 @@
 package UIviewer.SelectCourse;
 
 import UIviewer.Shop.main_shop;
+import UIviewer.login.functionChoose;
 
 import javax.swing.*;
 import java.awt.*;
@@ -68,7 +69,7 @@ public class Selcourse_director extends JFrame {
         add(btnNewButton_1);
 
         // 按钮2
-        JButton btnNewButton_2 = new JButton("学生信息管理");
+        JButton btnNewButton_2 = new JButton("排课");
         btnNewButton_2.setBounds(340, 50, 200, 50);
         btnNewButton_2.setFont(myfont);
         btnNewButton_2.setBackground(new Color(245, 222, 179));
@@ -105,6 +106,14 @@ public class Selcourse_director extends JFrame {
         btnNewButton_5.setBounds(940, 50, 200, 50);
         btnNewButton_5.setFont(myfont);
         btnNewButton_5.setBackground(new Color(245, 222, 179));
+
+        btnNewButton_5.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                functionChoose.jf.setContentPane(functionChoose.fc_panel);
+                functionChoose.jf.setTitle("functionChoose");
+            }
+        });
         add(btnNewButton_5);
 
        /* //按钮6

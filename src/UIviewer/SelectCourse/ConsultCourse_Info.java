@@ -1,5 +1,7 @@
 package UIviewer.SelectCourse;
 
+import UIhandler.Currirulum.Client_curriculum;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
@@ -76,7 +78,7 @@ public class ConsultCourse_Info extends JPanel {
         DefaultTableModel dtm=new DefaultTableModel(search_result,tableTitle);
         JTable table_want=new JTable(dtm);
         JScrollPane jsp=new JScrollPane(table_want);
-        jsp.setBounds(0,0,1280,240);
+        jsp.setBounds(0,0,1280,420);
         add(jsp);
         table_want.setRowHeight(40);
         //add(table_want);
@@ -89,12 +91,6 @@ public class ConsultCourse_Info extends JPanel {
         add(p1);*/
 
         //查询按钮
-        JButton btnNewButton_9 = new JButton("查询");
-        btnNewButton_9.setBounds(920, 495, 150, 40);
-        Font myfont = new Font("微软雅黑", Font.BOLD, 20);
-        btnNewButton_9.setFont(myfont);
-        btnNewButton_9.setBackground(new Color(220, 220, 220));
-        add(btnNewButton_9);
 
         //文本编辑框（输入课程编号或课程名字）
         JLabel lblNewLabel = new JLabel("课程信息:");
@@ -109,6 +105,24 @@ public class ConsultCourse_Info extends JPanel {
         textField.setColumns(10);
         //五个按钮
 
+        JButton btnNewButton_9 = new JButton("查询");
+        btnNewButton_9.setBounds(920, 495, 150, 40);
+        Font myfont = new Font("微软雅黑", Font.BOLD, 20);
+        btnNewButton_9.setFont(myfont);
+        btnNewButton_9.setBackground(new Color(220, 220, 220));
+        btnNewButton_9.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    String consult_info = textField.getText();
+                    Client_curriculum.RequireConsultResult(consult_info);
+                }catch(Exception ex)
+                {
+                    ex.printStackTrace();
+                }
+            }
+        });
+        add(btnNewButton_9);
         //右下面板
        /* JPanel p3 = new JPanel();
         p3.setBounds(310, 0, 950, 685);
