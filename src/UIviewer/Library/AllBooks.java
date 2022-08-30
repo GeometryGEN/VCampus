@@ -3,7 +3,6 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.util.*;
-
 import java.awt.Robot;
 import java.util.Date;
 import java.awt.*;
@@ -14,7 +13,6 @@ import java.util.Timer;
 import UIhandler.Library.Client_library;
 
 public class AllBooks extends JPanel {
-
     public static volatile String[][] tableDate=null;
     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
     int width=(int ) screensize.getWidth(); //得到宽度
@@ -67,14 +65,5 @@ public class AllBooks extends JPanel {
      //若你对某个column特殊指定了渲染器，则对于这个column，它将不调用render渲染器
      //因此为了保证透明，如果你对column额外指定了渲染器，那么在额外的渲染器里也应该设置透明
      table_want.setDefaultRenderer(Object.class,render);
-
-
-
-        //jsp.setOpaque(false);
-        //jsp.getViewport().setOpaque(false);
-
-
-
-
     }
 }
