@@ -1,5 +1,6 @@
 package UIviewer.login;
 import ClientToServer.ClientToServer;
+import DAO.Shop.Product;
 import UIhandler.Library.Client_library;
 import javax.swing.*;
 import java.awt.*;
@@ -8,7 +9,8 @@ import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.IOException;
 import java.net.Socket;
-
+import java.util.List;
+import UIhandler.Shop.Client_shop;
 import UIviewer.QQ.main_panel;
 import UIviewer.Shopping.shoppinghall;
 import UIviewer.Shopping.shop;
@@ -24,6 +26,7 @@ import net.coobird.thumbnailator.Thumbnails;
 import ClientToServer.myInfo;
 
 public class functionChoose {
+
     public static JButton back_from_student_status;
     public static JFrame jf;
     public static JPanel fc_panel;
@@ -324,6 +327,26 @@ public class functionChoose {
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
                 try {
+                    if(myInfo.getType()!=3)
+                    {
+                        Client_shop.setId(String.valueOf(myInfo.getType()));
+                        Client_shop.setIdcard(myInfo.getId());
+
+                        List<Product> ps = Client_shop.returnAllProduct();
+                        String[][] changed_ps = new String[ps.size()][];
+                        for(int i = 0;i<ps.size();i++){
+                            String[] temp=new String[4];
+                            temp[0]=ps.get(i).getProduct_name();
+                            temp[1]=String.valueOf(ps.get(i).getProduct_currentNumbers());
+                            temp[2]=ps.get(i).getProduct_type();
+                            temp[3]=String.valueOf(ps.get(i).getProduct_id());
+                            changed_ps[i]=temp;
+                        }
+                        shop.setShoptable(changed_ps);
+                        shoppinghall.shoppingUI();
+                    } else {
+
+                    }
                     shoppinghall.shoppingUI();
                 } catch (Exception ex) {
                     ex.printStackTrace();
