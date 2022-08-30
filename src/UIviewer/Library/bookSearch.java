@@ -25,7 +25,7 @@ public class bookSearch extends JPanel {
 
         //馆藏查询
         JPanel p11=new JPanel();
-        p11.setBounds(0,0,1300,650);
+        p11.setBounds(0,0, (int) (1300*width_r), (int) (650*height_r));
         JLabel pic1 = new JLabel();
         ImageIcon icon1 = new ImageIcon("src/image/bg2.jpg");
         int icon1_width= 1300;
