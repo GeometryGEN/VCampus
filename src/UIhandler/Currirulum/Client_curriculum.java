@@ -67,6 +67,26 @@ public class Client_curriculum {
         Selcourse.panel.add(chosen,"chosen");
         Selcourse.cardLayout.show(Selcourse.panel,"chosen");
     }
+    public static void showTeacherChoice(ArrayList<Course>courses){
+        int n=courses.size();
+        ConsultCourse_stuInfo.consult_stu=new String[n][6];
+        Iterator b=courses.iterator();
+        int count=0;
+        while(b.hasNext())
+        {
+            Course curri=(Course) b.next();
+            ConsultCourse_stuInfo.consult_stu[count][0]=curri.getId();
+            ConsultCourse_stuInfo.consult_stu[count][1]=curri.getName();
+            ConsultCourse_stuInfo.consult_stu[count][2]=String.valueOf(curri.getSize());
+            ConsultCourse_stuInfo.consult_stu[count][3]=curri.getTimestring();
+            ConsultCourse_stuInfo.consult_stu[count][4]=curri.getClassroom();
+            ConsultCourse_stuInfo.consult_stu[count][5]="     查询";
+            count++;
+        }
+        ConsultCourse_stuInfo tea_course=new ConsultCourse_stuInfo();
+        Selcourse_teacher.panel.add(tea_course,"tea_course");
+        Selcourse_teacher.cardLayout.show(Selcourse_teacher.panel,"tea_course");
+    }
     //显示所有的课程进行选择
     public static void RequireallCourse()throws IOException{
         Choosing_Course.selectcourse=null;
@@ -151,15 +171,6 @@ public class Client_curriculum {
         message.setData(Id);
         message.setType(MessageType.MESSAGE_CURRICULUM_SHOW_STU);
         oos.writeObject(message);
-
-    }
-
-    //显示该门课哪些学生选择
-    public static void show_student_chosen(ArrayList<Student>students) throws IOException{
-        int n=students.size();
-        My_students.students=new String[n][2];
-
-
 
     }
     public static void apply(Opencourse course) throws IOException{

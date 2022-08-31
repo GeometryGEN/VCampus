@@ -46,7 +46,11 @@ public class Selcourse_teacher extends JPanel {
         btnNewButton_1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(panel,"f1");
+                try {
+                    Client_curriculum.RequireMyChoice();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
         add(btnNewButton_1);

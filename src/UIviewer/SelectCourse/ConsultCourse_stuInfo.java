@@ -21,7 +21,7 @@ public class ConsultCourse_stuInfo extends JPanel {
     {
         setLayout(null);
 
-        String[] tableTitle={"课程编号","课程名","课程学分","任课老师","查询"};
+        String[] tableTitle={"课程编号","课程名","课程容量","上课教室","上课时间",""};
         DefaultTableModel dtm=new DefaultTableModel(consult_stu,tableTitle);
         JTable table_want=new JTable(dtm);
         JScrollPane jsp=new JScrollPane(table_want);
