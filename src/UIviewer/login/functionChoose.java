@@ -280,7 +280,7 @@ public class functionChoose {
                         //jf.setContentPane(new student_status(width,height));
                         Client_status.stu_enter();
                     else if(myInfo.getType()==3){
-                        jf.setContentPane(new manage_status(width,height));
+                        jf.setContentPane(new manage_status(width,height).manage_panel);
                         jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                         jf.setTitle("admin_status_management");
                         jf.setVisible(true);

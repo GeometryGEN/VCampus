@@ -13,18 +13,19 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 
-public class manage_status extends JPanel {
+public class manage_status{
     static JButton jb_back_to_search;
     static public JPanel search_panel;
     static public JPanel status_jpanel;
+    static public JPanel manage_panel=new JPanel();
     public manage_status(int width, int height) throws Exception {
         double width_r=(double)(width)/1920;
         double height_r=(double)(height)/1080;
         //设置屏幕大小、背景颜色
-        setBounds(0,0,width,height);
-        setBackground(new Color(255,255,255));
+        manage_panel.setBounds(0,0,width,height);
+        manage_panel.setBackground(new Color(255,255,255));
         //设置绝对布局
-        setLayout(null);
+        manage_panel.setLayout(null);
 
 
         //SEU logo
@@ -39,7 +40,7 @@ public class manage_status extends JPanel {
             throw new RuntimeException(e);
         }
         logo.setIcon(new ImageIcon("src/image/student_manage_logo_min.png"));
-        add(logo);
+        manage_panel.add(logo);
         logo.setBounds((int)(30*width_r),(int)(5*height_r),(int)(icon1_width*width_r),(int)(icon1_height*height_r));
         //标题
         JLabel title=new JLabel("学生基本信息管理");
@@ -47,7 +48,7 @@ public class manage_status extends JPanel {
         Font title_font = new Font("微软雅黑", Font.BOLD, (int)(31*width_r));
         title.setFont(title_font);
         title.setForeground(new Color(255,255,255));
-        add(title);
+        manage_panel.add(title);
 
 
 
@@ -58,7 +59,7 @@ public class manage_status extends JPanel {
         search_panel.setBorder(BorderFactory.createEtchedBorder());
         search_panel.setLayout(null);//设置绝对布局
         search_panel.setBounds((int)((60+icon1_width)*width_r),(int)((47+icon1_height)*height_r), (int)(width-2*(60+icon1_width)*width_r),(int)((1080-70-icon1_height)*height_r));
-        add(search_panel);
+        manage_panel.add(search_panel);
         //图标
         JLabel logo2=new JLabel();
         int icon2_width=320;
@@ -124,7 +125,7 @@ public class manage_status extends JPanel {
         JPanel white_front_slice=new JPanel();
         white_front_slice.setBackground(new Color(124,136,204));
         white_front_slice.setBounds((int)((90+icon1_width)*width_r),(int)((7+icon1_height)*height_r), (int)(width-2*(90+icon1_width)*width_r),(int)(40*height_r));
-        add(white_front_slice);
+        manage_panel.add(white_front_slice);
         white_front_slice.setLayout(null);//设置绝对布局
         //文字
         JLabel front_title=new JLabel("学生基本信息管理");
@@ -139,7 +140,7 @@ public class manage_status extends JPanel {
         JPanel blue_back=new JPanel();
         blue_back.setBackground(new Color(63,81,181));
         blue_back.setBounds(0,0,width,height*2/5);
-        add(blue_back);
+        manage_panel.add(blue_back);
     }
 
 //    public static void main(String[] args) {
