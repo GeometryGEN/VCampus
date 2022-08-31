@@ -130,7 +130,7 @@ public class ClientToServer {
         if (ms.getType().equals(MessageType.MESSAGE_LOGIN_SUCCEED)) {
             ID = "2";
             Teacher a = (Teacher) ms.getData();
-            myInfo.setall(a.getTeacher_idcard(), 1, a.getTeacher_name());
+            myInfo.setall(a.getTeacher_idcard(), 2, a.getTeacher_name());
             myInfo.setMoney(a.getTeacher_money());
             //创建一个和服务器端保持通信的线程
             ClientToServerThread ctst = new ClientToServerThread(ois,socket);

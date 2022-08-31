@@ -27,7 +27,7 @@ public class QICQ_manager {
         }
     }
     public void friend_is_online(String id) throws SQLException, IOException {
-        System.out.println("wanting online");
+    //    System.out.println("wanting online");
         Message msg=new Message();
         msg.setType(MessageType.MESSAGE_QICQ_FRIEND_ONLINE_RET);
         msg.setData(id);
@@ -37,9 +37,9 @@ public class QICQ_manager {
         ResultSet rs=st.executeQuery();
         while(rs.next()){
             String friend_id=rs.getString("friend_id");
-            System.out.println(friend_id+" check");
+        //    System.out.println(friend_id+" check");
             if(ServerToClient.isOnline(friend_id)!=-1){
-                System.out.println(friend_id);
+        //        System.out.println(friend_id);
                 ManageServerToClientThread.getThread(friend_id).oos.writeObject(msg);
             }
         }
