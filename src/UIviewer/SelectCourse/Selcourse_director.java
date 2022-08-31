@@ -2,11 +2,13 @@ package UIviewer.SelectCourse;
 import UIhandler.Currirulum.Client_curriculum;
 
 import UIviewer.login.functionChoose;
+import net.coobird.thumbnailator.Thumbnails;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.IOException;
 
 import static UIhandler.Currirulum.Client_curriculum.RequireallCourse;
@@ -95,12 +97,20 @@ public class Selcourse_director extends JPanel {
 
 
         //东南大学标志图片
-        JLabel logo = new JLabel();
-        ImageIcon icon1 = new ImageIcon("src/image/background2.jpg");
-        logo.setIcon(icon1);
-        logo.setBounds(0, 0, (int)(1273*width_r), (int)(790*height_r));
-        add(logo);
-
+        JLabel l15 = new JLabel();
+        ImageIcon icon6 = new ImageIcon("src/image/background2.jpg");
+        int icon6_width= 1273;
+        int icon6_height=790;
+        try {
+            Thumbnails.of(new File("src/image/background2.jpg"))
+                    .size((int)(icon6_width*width_r), (int)(icon6_height*height_r))
+                    .toFile(new File("src/image/background2_min.jpg"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        l15.setIcon(new ImageIcon("src/image/background2_min.jpg"));
+        l15.setBounds(0, 0, (int)(1273*width_r), (int)(790*height_r));
+        add(l15);
         setVisible(true);
     }
 

@@ -1,7 +1,11 @@
 package UIviewer.SelectCourse;
 import ClientToServer.myInfo;
+import net.coobird.thumbnailator.Thumbnails;
+
 import javax.swing.*;
 import java.awt.*;
+import java.io.File;
+import java.io.IOException;
 
 public class ChooseCourse_guidance extends JPanel{
     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
@@ -109,10 +113,18 @@ public class ChooseCourse_guidance extends JPanel{
         //横向图片
         JLabel l16 = new JLabel();
         ImageIcon icon7 = new ImageIcon("src/image/background2.jpg");
-        l16.setIcon(icon7);
-        l16.setBounds(0, 0, 1273, 790);
+        int icon7_width=1273;
+        int icon7_height=790;
+        try {
+            Thumbnails.of(new File("src/image/background2.jpg"))
+                    .size((int)(icon7_width*width_r), (int)(icon7_height*height_r))
+                    .toFile(new File("src/image/background2_min.jpg"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        l16.setIcon(new ImageIcon("src/image/background2_min.jpg"));
+        l16.setBounds(0, 0, (int)(1273*width_r), (int)(790*height_r));
         p11.add(l16);
-
         add(p11);
     }
 

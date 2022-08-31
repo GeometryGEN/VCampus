@@ -3,11 +3,14 @@ package UIviewer.SelectCourse;
 import ClientToServer.myInfo;
 import DAO.Curriculum.Opencourse;
 import UIhandler.Currirulum.Client_curriculum;
+import net.coobird.thumbnailator.Thumbnails;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 
 public class Declare_Course extends JPanel{
     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
@@ -146,11 +149,22 @@ public class Declare_Course extends JPanel{
         p2.setBackground(new Color(245, 245, 245, 180));
         add(p2);
 
-        JLabel l16 = new JLabel();
-        ImageIcon icon7 = new ImageIcon("src/image/background4.jpg");
-        l16.setIcon(icon7);
-        l16.setBounds(0, 0, (int)(1273*width_r), (int)(790*height_r));
-        add(l16);
+        JLabel l15 = new JLabel();
+        ImageIcon icon11 = new ImageIcon("src/image/background4.jpg");
+        int icon11_width= 1273;
+        int icon11_height=790;
+        try {
+            Thumbnails.of(new File("src/image/background4.jpg"))
+                    .size((int)(icon11_width*width_r), (int)(icon11_height*height_r))
+                    .toFile(new File("src/image/background4_min.jpg"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        l15.setIcon(new ImageIcon("src/image/background4_min.jpg"));
+        l15.setBounds(0, 0, (int)(1273*width_r), (int)(790*height_r));
+        p11.add(l15);
+
+        setVisible(true);
 
         add(p11);
     }
