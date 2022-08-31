@@ -234,7 +234,7 @@ public class ClientToServerThread extends Thread {
                      Client_qicq.show_message(messages);
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_QICQ_RECERIVE_MESSAGE)){
-                     String sender=(String)message.getSender();
+                     String sender=message.getSender();
                      Client_qicq.receive_message(sender);
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_QICQ_FRIEND_ONLINE_RET)){

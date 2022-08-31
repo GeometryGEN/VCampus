@@ -96,4 +96,12 @@ public class friend_list{
         jPanel.setBorder(BorderFactory.createLineBorder(new Color(244,244,244)));
         jPanel.setBackground(new Color(255,255,255));
    }
+
+    public static void red_unread(String sender) {
+        for(int i=0;i<count_friend;i++){
+            if(friendslice[i].getFriend().getId().equals(sender)){
+                friendslice[i].setForeground(Color.red);
+            }
+        }
+    }
 }

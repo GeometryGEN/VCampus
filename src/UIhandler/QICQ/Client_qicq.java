@@ -90,6 +90,7 @@ public class Client_qicq {
         chat_panel.show_message(messages);
     }
     public static void receive_message(String sender){
+        friend_list.red_unread(sender);
         friend_list.show_unread(sender);
     }
     public void add_friend(String myid,String myname,String number,String nickname) throws IOException {

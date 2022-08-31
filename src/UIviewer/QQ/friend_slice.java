@@ -25,8 +25,12 @@ public class friend_slice extends JLabel {
         jLabel.setBackground(new Color(255,255,255));
         update();
     }
-
+    Friend friend;
+    public Friend getFriend(){
+        return this.friend;
+    }
     public friend_slice( int width, int height, double width_r, double height_r, Friend friend){
+        this.friend=friend;
         setOpaque(true);
         setBackground(new Color(255,255,255));
         int icon1_width=(int)((height-2*20)*height_r);
