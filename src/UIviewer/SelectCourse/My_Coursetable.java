@@ -30,7 +30,7 @@ public class My_Coursetable extends JPanel{
         DefaultTableModel tableModel;
         String weekS=String.valueOf(week);
         JLabel l1 = new JLabel("第"+weekS+"周课表");
-        l1.setBounds((int) (1075*width_r), (int) (200*height_r), (int) (300*width_r), (int) (75*height_r));
+        l1.setBounds((int) (1075*width_r), (int) (300*height_r), (int) (300*width_r), (int) (75*height_r));
         Font font = new Font("楷体", Font.BOLD, (int) (22*width_r));
         l1.setFont(font);
         add(l1);

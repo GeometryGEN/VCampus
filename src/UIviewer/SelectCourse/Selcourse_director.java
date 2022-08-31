@@ -95,9 +95,9 @@ public class Selcourse_director extends JPanel {
         btnNewButton_5.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                setVisible(false);
                 functionChoose.jf.setContentPane(functionChoose.fc_panel);
                 functionChoose.jf.setTitle("functionChoose");
+                setVisible(false);
             }
         });
         add(btnNewButton_5);

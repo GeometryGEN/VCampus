@@ -27,7 +27,7 @@ public class shopCar extends JPanel {
 
     public shopCar(){
         setLayout(null);
-        String[] tableTitle = {"商品编号","商品名称","商品数量","商品价格","购买数量","购买","删除"};
+        String[] tableTitle  = {"商品编号","商品名称","商品数量","商品价格","购买数量","购买","删除"};
         //数据
         DefaultTableModel dtm = new DefaultTableModel(myBook, tableTitle);
         JTable table_want = new JTable(dtm){
