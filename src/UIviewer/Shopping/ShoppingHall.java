@@ -25,7 +25,7 @@ public class ShoppingHall extends JPanel {
     double width_r=(double)(width)/1273;
     double height_r=(double)(height)/784;
 
-    public static volatile String[][] shoptable;
+    public static String[][] shoptable;
 
     public static void resetshoptable(){
         shoptable=null;
@@ -61,7 +61,7 @@ public class ShoppingHall extends JPanel {
                 // TODO Auto-generated method stub
                 String searchInfo=textField.getText();
                 try {
-                    List<Product> t = Client_shop.checktypeProduct(searchInfo);
+                    List<Product> t = Client_shop.checkProduct(searchInfo);
                     if(t!=null){
                         String[][] temp = new String[t.size()][];
                         for(int i =0;i<t.size();i++){
@@ -110,10 +110,12 @@ public class ShoppingHall extends JPanel {
                         tt[4]="1";
                         temp[i]=tt;
                     }
+                    System.out.println("t.size()="+t.size());
+                    System.out.println(temp[0][0]);
                     setShoptable(temp);
-                    ShoppingHall f11=new ShoppingHall();
-                    panel.add(f11,"f11");
-                    cardLayout.show(panel, "f11");
+                    ShoppingHall f112=new ShoppingHall();
+                    panel.add(f112,"f112");
+                    cardLayout.show(panel, "f112");
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 }
@@ -271,8 +273,6 @@ public class ShoppingHall extends JPanel {
                 }
             }
         };
-
-
 
         //调整美化
         table_want.setFont(new Font("宋体",Font.BOLD, (int) (16*width_r)));
