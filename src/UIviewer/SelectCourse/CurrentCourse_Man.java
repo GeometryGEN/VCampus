@@ -4,7 +4,6 @@ import ClientToServer.myInfo;
 
 import javax.swing.*;
 import java.awt.*;
-
 public class CurrentCourse_Man extends JPanel {
 
     public CurrentCourse_Man()

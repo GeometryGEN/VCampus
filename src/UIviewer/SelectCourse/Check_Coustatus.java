@@ -18,8 +18,5 @@ public class Check_Coustatus extends JPanel{
         jsp.setBounds(0,0,1280,520);
         add(jsp);
         table_want.setRowHeight(40);
-
     }
-
-
 }

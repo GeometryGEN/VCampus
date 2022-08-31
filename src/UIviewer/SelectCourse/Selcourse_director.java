@@ -12,31 +12,17 @@ import java.io.IOException;
 import static UIhandler.Currirulum.Client_curriculum.RequireallCourse;
 
 
-public class Selcourse_director extends JFrame {
-    private JPanel Sel_main;
+public class Selcourse_director extends JPanel {
+
     public static CardLayout cardLayout=new CardLayout();
     public static JPanel panel=new JPanel();
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    Selcourse_director frame = new Selcourse_director();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
+
     public Selcourse_director()
     {
-        setTitle("Selcourse_director");
         setBounds(0,0,1273,790);
-        Sel_main=new JPanel();
-        setContentPane(Sel_main);
-        Sel_main.setLayout(null);
+        setLayout(null);
         panel.setBounds(0,100,1273,790);
-        Sel_main.add(panel);
+       add(panel);
         panel.setLayout(cardLayout);
 
         Check_Course f1=new Check_Course();
@@ -122,9 +108,8 @@ public class Selcourse_director extends JFrame {
         ImageIcon icon1 = new ImageIcon("src/image/background2.jpg");
         logo.setIcon(icon1);
         logo.setBounds(0, 0, 1273, 790);
-        Sel_main.add(logo);
+        add(logo);
 
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }
 

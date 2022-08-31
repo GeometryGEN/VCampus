@@ -26,9 +26,6 @@ public class Declare_Course extends JPanel{
         add(l1);
 
 
-
-
-
         //信息面板
         JLabel l4 = new JLabel("      基本信息");
         l4.setBounds(23, 205, 250, 60);

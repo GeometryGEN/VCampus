@@ -16,13 +16,11 @@ import DAO.Curriculum.Course;
 import UIhandler.Currirulum.Client_curriculum;
 import java.util.Timer;
 public class Choosing_Course extends JPanel {
-
         public static  volatile String [][] selectcourse=null;
         public Choosing_Course()
         {
         //小头像
             setLayout(null);
-
 
         String[] tableTitle={"课程编号","课程名","时间","任课老师","地点","选择"};
         DefaultTableModel dtm=new DefaultTableModel(selectcourse,tableTitle);

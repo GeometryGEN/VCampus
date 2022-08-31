@@ -9,7 +9,6 @@ import java.util.Date;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-
 public class My_Coursetable extends JPanel{
 
     public static volatile  String[][][] tableDate=new String[17][13][6];

@@ -1,5 +1,4 @@
 package UIviewer.SelectCourse;
-
 import DAO.Curriculum.Course;
 import UIhandler.Currirulum.Client_curriculum;
 
@@ -14,7 +13,6 @@ import java.awt.event.MouseListener;
 import java.io.IOException;
 
 public class ConsultCourse_stuInfo extends JPanel {
-
     public static volatile String[][] consult_stu=null;
 
     public ConsultCourse_stuInfo()
@@ -96,9 +94,6 @@ public class ConsultCourse_stuInfo extends JPanel {
         jsp2.setBounds(0,260,1280,280);
         add(jsp2);
         table_want2.setRowHeight(70);
-
-
-
 
 
     }
