@@ -26,7 +26,7 @@ public class OrderHistory extends JPanel{
     public OrderHistory()
     {
         setLayout(null);
-        String[] tableTitle={"商品编号","商品名称","商品数量","购买数量","购买价格"};
+        String[] tableTitle={"商品编号","商品名称","购买数量","购买价格"};
         DefaultTableModel dtm=new DefaultTableModel(con_bought,tableTitle);
         JTable table_want = new JTable(dtm){
             public boolean isCellEditable(int row, int column) {

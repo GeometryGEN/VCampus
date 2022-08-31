@@ -106,7 +106,7 @@ public class shopCar extends JPanel {
             DefaultTableCellRenderer tcr = new DefaultTableCellRenderer() {
                 @Override
                 public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-                    if (column!=5&&column!=6) {
+                    if (column!=5&&column!=4) {
                         setBackground(Color.white);
                     }else {
                         setBackground(new Color(250,128,114,100));

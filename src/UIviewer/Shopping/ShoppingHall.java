@@ -8,12 +8,15 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import ClientToServer.myInfo;
+import UIviewer.login.functionChoose;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import static UIviewer.Shopping.shopCustomer.cardLayout;
 import static UIviewer.Shopping.shopCustomer.panel;
+import static UIviewer.login.forgetPWD.forgetPWDUI;
 
 public class ShoppingHall extends JPanel {
     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
@@ -52,6 +55,14 @@ public class ShoppingHall extends JPanel {
         b11.setBackground(new Color(255,127,80));
         b11.setForeground(new Color(255,255,255));
         b11.setFocusPainted(false);
+        b11.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
+                String searchInfo=textField.getText();
+               
+            }
+        });
         add(b11);
 
         JButton btnNewButton_1 = new JButton("零食");
@@ -289,6 +300,10 @@ public class ShoppingHall extends JPanel {
                             if(Client_shop.getMoney(myInfo.getId())>=(money*Num)){
                                 Client_shop.buyProduct(myInfo.getId(),id,Num,Client_shop.getMoney(myInfo.getId())-money*Num);
                                 JOptionPane.showMessageDialog(null,"购买成功！");
+                                Client_shop.setId(String.valueOf(myInfo.getType()));
+                                Client_shop.setIdcard(myInfo.getId());
+                                functionChoose.jf.setContentPane(new shopCustomer());
+                                functionChoose.jf.setTitle("shopCustomer");
                             }else {
                                 JOptionPane.showMessageDialog(null,"余额不足！");
                             }
