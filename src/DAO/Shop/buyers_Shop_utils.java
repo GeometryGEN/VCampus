@@ -96,7 +96,7 @@ public class buyers_Shop_utils {
         List<Product> list = new ArrayList<>();
         Connection connection= JDBC_Connector.ConnectMySQL();    //连接数据库
         Statement state = connection.createStatement();
-        String sql="select * from products WHERE Product_type LIKE '%" + type + "%' ";
+        String sql="select * from products WHERE Product_name LIKE '%" + type + "%' ";
         ResultSet rs= state.executeQuery(sql);            //执行sql
         while(rs.next()) {
             Product temp = new Product();

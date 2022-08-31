@@ -60,7 +60,29 @@ public class ShoppingHall extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
                 String searchInfo=textField.getText();
-               
+                try {
+                    List<Product> t = Client_shop.checktypeProduct(searchInfo);
+                    if(t!=null){
+                        String[][] temp = new String[t.size()][];
+                        for(int i =0;i<t.size();i++){
+                            String[] tt =new String[5];
+                            tt[0]=String.valueOf(t.get(i).getProduct_id());
+                            tt[1]=t.get(i).getProduct_name();
+                            tt[2]=String.valueOf(t.get(i).getProduct_price());
+                            tt[3]=String.valueOf(t.get(i).getProduct_currentNumbers());
+                            tt[4]="1";
+                            temp[i]=tt;
+                        }
+                        setShoptable(temp);
+                    }else {
+                        System.out.println("kong");
+                    }
+                    ShoppingHall f112=new ShoppingHall();
+                    panel.add(f112,"f112");
+                    cardLayout.show(panel, "f112");
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
         add(b11);

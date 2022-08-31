@@ -149,6 +149,9 @@ public class ClientToServerThread extends Thread {
                     Client_shop.setCheckproductsType(ps);
                     Client_shop.setSign_find_type("2");
                 }
+                else if(message.getType().equals(MessageType.FIND_TYPE_PRODUCT_FAILED)){
+                    Client_shop.setSign_find_type("3");
+                }
                 else if(message.getType().equals(MessageType.FIND_PRODUCT_SUCCEED_ZERO)){
                     List<Product> ps = ((List<Product>) message.getData());
                     Client_shop.setSign(false);
