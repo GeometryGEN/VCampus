@@ -66,6 +66,7 @@ public class ConsultCourse_Info extends JPanel {
                 {
                     ex.printStackTrace();
                 }
+                textField.setText("");
             }
         });
         add(btnNewButton_9);
