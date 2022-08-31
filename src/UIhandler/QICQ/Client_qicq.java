@@ -108,10 +108,12 @@ public class Client_qicq {
     }
     public static void I_am_online() throws IOException{
         Message message=new Message();
+        message.setData(id);
         message.setType(MessageType.MESSAGE_QICQ_FRIEND_ONLINE);
         oos.writeObject(message);
     }public static void I_am_offline() throws IOException{
         Message message=new Message();
+        message.setData(id);
         message.setType(MessageType.MESSAGE_QICQ_FRIEND_OFFLINE);
         oos.writeObject(message);
     }
