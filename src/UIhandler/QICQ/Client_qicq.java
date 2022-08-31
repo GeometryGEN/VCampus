@@ -4,6 +4,7 @@ import ClientToServer.ManageClientToServerThread;
 import DAO.QICQ.Application;
 import DAO.QICQ.Filetrans;
 import DAO.QICQ.Friend;
+import UIviewer.QQ.add_friend;
 import UIviewer.QQ.chat_panel;
 import UIviewer.QQ.friend_list;
 import message.Message;
@@ -27,7 +28,11 @@ public class Client_qicq {
     }
 
     public static void add_friend_fail() {
+        add_friend.add_friend_fail();
+    }
 
+    public static void add_friend_succeed() {
+        add_friend.add_friend_succeed();
     }
 
 

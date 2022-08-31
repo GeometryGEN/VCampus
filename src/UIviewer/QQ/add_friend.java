@@ -11,26 +11,10 @@ import java.io.IOException;
 
 import ClientToServer.myInfo;
 
-public class add_friend extends JPanel {
-//    public add_friend(){
-//        setLayout(null);
-//        setSize(600,120);
-//        setLocation(0,0);
-//        JTextField id_field=new JTextField();
-//        JTextField nick_field=new JTextField();
-//        JLabel id_jLabel=new JLabel("一卡通号：");
-//        JLabel nick_jLabel=new JLabel("备注：");
-//        Font font=new Font("宋体",Font.PLAIN,22);
-//        id_jLabel.setFont(font);
-//        nick_jLabel.setFont(font);
-//        id_jLabel.setBounds(20,10,100,50);
-//        nick_jLabel.setBounds(20,60,100,50);
-//        add(id_jLabel);
-//        add(nick_jLabel);
-//    }
-
+public class add_friend {
+    static JFrame jf;
     public static void add_friend() {
-        JFrame jf = new JFrame("添加好友");
+        jf = new JFrame("添加好友");
         jf.setLayout(null);
         jf.setBackground(Color.white);
 
@@ -77,5 +61,13 @@ public class add_friend extends JPanel {
         jf.setLocationRelativeTo(null);
         jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         jf.setVisible(true);
+    }
+
+    public static void add_friend_succeed() {
+        jf.dispose();
+    }
+
+    public static void add_friend_fail() {
+        //JOptionPane.showMessageDialog(null, "You input is "+str, str, JOptionPane.PLAIN_MESSAGE);
     }
 }
