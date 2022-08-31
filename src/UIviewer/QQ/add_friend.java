@@ -23,21 +23,21 @@ public class add_friend {
         l3.setFont(new Font("宋体", Font.BOLD, 15));
         l3.setBounds(20, 20, 250, 25);
         jf.add(l3);
-        JTextField textField3=new JTextField();
-        textField3.setFont(new Font("宋体", Font.BOLD, 12));
-        textField3.setBounds(95, 20, 125, 25);
-        jf.add(textField3);
-        textField3.setColumns(10);
+        JTextField idCard=new JTextField();
+        idCard.setFont(new Font("宋体", Font.BOLD, 12));
+        idCard.setBounds(95, 20, 125, 25);
+        jf.add(idCard);
+        idCard.setColumns(10);
 
         JLabel l4 = new JLabel("备注:");
         l4.setFont(new Font("宋体", Font.BOLD, 15));
         l4.setBounds(20, 60, 250, 25);
         jf.add(l4);
-        JTextField mail=new JTextField();
-        mail.setFont(new Font("宋体", Font.BOLD, 12));
-        mail.setBounds(95, 60, 125, 25);
-        jf.add(mail);
-        mail.setColumns(10);
+        JTextField nickname=new JTextField();
+        nickname.setFont(new Font("宋体", Font.BOLD, 12));
+        nickname.setBounds(95, 60, 125, 25);
+        jf.add(nickname);
+        nickname.setColumns(10);
 
         JButton b1=new JButton("申请添加");
         b1.setBounds(270,38,100,30);
@@ -49,7 +49,7 @@ public class add_friend {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    Client_qicq.add_friend(myInfo.getId(),myInfo.getName(),l3.getText(),l4.getText());
+                    Client_qicq.add_friend(myInfo.getId(),myInfo.getName(),idCard.getText(),nickname.getText());
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }

@@ -46,7 +46,7 @@ public class functionChoose {
         fc_panel = new JPanel();
         fc_panel.setLayout(null);
         fc_panel.setBounds(0,0,width+20,height+10);
-        fc_panel.setBackground(new Color(245,245,245, 180));
+        fc_panel.setBackground(new Color(1,2,3, 180));
         jf.setContentPane(fc_panel);
 
         //向好友发送上线消息
@@ -548,14 +548,14 @@ public class functionChoose {
 
         //右下面板
         JPanel p3 = new JPanel();
-        p3.setBounds((int) (330*width_r), (int) (285*height_r), (int) (940*width_r), (int) (440*height_r));
-        p3.setBackground(new Color(211,211,211,100));
+        p3.setBounds((int) (330*width_r), (int) (285*height_r), (int) (1000*width_r), (int) (440*height_r));
+        p3.setBackground(new Color(211,211,211));
         fc_panel.add(p3);
 
         //右侧面板
         JPanel p2 = new JPanel();
-        p2.setBounds((int) (300*width_r), 0, (int) (960*width_r), (int) (800*height_r));
-        p2.setBackground(new Color(245,245,245, 180));
+        p2.setBounds((int) (300*width_r), 0, (int) (1000*width_r), (int) (800*height_r));
+        p2.setBackground(new Color(245,245,245));
         fc_panel.add(p2);
         jf.setLocationRelativeTo(null);
         jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

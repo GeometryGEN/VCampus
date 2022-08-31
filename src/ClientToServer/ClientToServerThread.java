@@ -180,6 +180,20 @@ public class ClientToServerThread extends Thread {
                     Client_shop.setSign_delete("3");
                 }
 
+                else if(message.getType().equals(MessageType.ADD_TO_SHOPCAR_SUCCEED)){
+                    Client_shop.setSign_add("2");
+                }
+                else if(message.getType().equals(MessageType.ADD_TO_SHOPCAR_FAILED)){
+                    Client_shop.setSign_add("3");
+                }
+
+                else if(message.getType().equals(MessageType.GET_MONEY_SUCCEED)){
+                    Client_shop.setCurrent_money((double) message.getData());
+                    Client_shop.setSign_delete("2");
+                }
+                else if(message.getType().equals(MessageType.GET_MONEY_FAILED)){
+                    Client_shop.setSign_delete("3");
+                }
 
                 else if(message.getType().equals(MessageType.CHECK_CERTAIN__PRODUCT_SUCCEED)){
                     Product ps = (Product) message.getData();
@@ -265,7 +279,6 @@ public class ClientToServerThread extends Thread {
                     Client_qicq.add_friend_succeed();
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_QICQ_ADD_FRIEND_FAIL_CANNOT_FIND_USER)){
-                    System.out.println(222);
                     Client_qicq.add_friend_fail();
                 }
                 System.out.println("next");

@@ -16,6 +16,7 @@ public class Client_shop {
 
     public static String id;    //区分 1：学生  2：老师  3：管理员
 
+    public static double current_money;
     public static String idcard;         //当前已登录账号的那个对象一卡通
     public static List<ProductPair> Buyed;               //商品 1 正在找  2 成功  3 失败
     public static List<ProductPair> ReadyToBuy;          //商品 1 正在找  2 成功  3 失败
@@ -87,6 +88,14 @@ public class Client_shop {
 
     public static Product getCertainProducts() {
         return CertainProducts;
+    }
+
+    public static double getCurrent_money() {
+        return current_money;
+    }
+
+    public static void setCurrent_money(double current_money) {
+        Client_shop.current_money = current_money;
     }
 
     public static void setCertainProducts(Product certainProducts) {
@@ -311,6 +320,25 @@ public class Client_shop {
 
         return Now_Buy_product.equals("购买成功");
     }
+
+    public static Boolean addToShopCar(String user_idcard, int id, int num) throws Exception {
+        resetSign_add();
+        resetNow_Buy_product();
+        Message message = new Message();
+        ProductPair t = new ProductPair();
+        t.setId(id);t.setNum(num);
+        message.setType(MessageType.ADD_TO_SHOPCAR);
+        message.setSender(user_idcard);  //用户id
+        message.setData(t);   //商品数量
+        //得到Object对象
+        // oos = new MyObjectOutputStream(ManageClientToServerThread.getThread(idcard).getSocket().getOutputStream());
+        //发送学生对象
+        oos.writeObject(message);
+        //等待接受学生
+        while (sign_add.equals("1")) Thread.onSpinWait();
+        return sign_add.equals("2");
+    }
+
     public static List<ProductPair> checkBuyed(String idcard) throws IOException {
         resetBuyed();
         resetSign_zero();
@@ -341,7 +369,7 @@ public class Client_shop {
         return ReadyToBuy;
     }
 
-    public static Boolean deleteReadyToBuy(String idcard, int id, int num) throws IOException {
+    public static boolean deleteReadyToBuy(String idcard, int id, int num) throws IOException {
         resetSign_delete();
         ProductPair p = new ProductPair();p.setNum(num);p.setId(id);
         Message message = new Message();
@@ -356,5 +384,23 @@ public class Client_shop {
         while (sign_delete.equals("1")) Thread.onSpinWait();
         return false;
     }
+
+    public static double getMoney(String idcard) throws IOException {
+        resetSign_delete();
+        Message message = new Message();
+        message.setType(MessageType.GET_MONEY);
+        message.setSender(idcard);
+        //得到Object对象
+        //MyObjectOutputStream oos = new MyObjectOutputStream(ManageClientToServerThread.getThread(idcard).getSocket().getOutputStream());
+        //发送学生对象
+        oos.writeObject(message);
+        //等待接受学生
+        while (sign_delete.equals("1")) Thread.onSpinWait();
+        return current_money;
+    }
+
+//    public static void main(String[]a) throws IOException {
+//        System.out.println(getMoney("09020201"));
+//    }
 
 }
