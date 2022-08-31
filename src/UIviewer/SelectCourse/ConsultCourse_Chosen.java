@@ -7,12 +7,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ConsultCourse_Chosen extends JPanel {
+    Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
+    int width=(int ) screensize.getWidth(); //得到宽度
+    int height=(int ) screensize.getHeight();//获得高度
+    double width_r=(double)(width)/1273;
+    double height_r=(double)(height)/790;
     public static volatile String[][] consultCourse_chosen=null;
     public ConsultCourse_Chosen()
     {
         setLayout(null);
         JPanel p11=new JPanel();
-        p11.setBounds(0,0,1273,790);
+        p11.setBounds(0,0,(int)(1273*width_r),(int)(790*height_r));
 
 
         String[] tableTitle={"课程编号","课程名","时间","学分","任课老师","地点"};
@@ -29,7 +34,7 @@ public class ConsultCourse_Chosen extends JPanel {
         table_want.setRowHeight(50);
         //支持滚动
         JScrollPane jsp=new JScrollPane(table_want);
-        jsp.setBounds(0,0,1280,480);
+        jsp.setBounds(0,0,(int)(1280*width_r),(int)(480*height_r));
         add(jsp);
 
 

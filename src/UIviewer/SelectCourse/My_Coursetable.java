@@ -12,7 +12,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class My_Coursetable extends JPanel{
-
+    Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
+    int width=(int ) screensize.getWidth(); //得到宽度
+    int height=(int ) screensize.getHeight();//获得高度
+    double width_r=(double)(width)/1273;
+    double height_r=(double)(height)/790;
     public static volatile  String[][][] tableDate=new String[17][13][6];
     TableColumn column;
     public My_Coursetable()
@@ -79,7 +83,7 @@ public class My_Coursetable extends JPanel{
         jc.addItem("第十四周");
         jc.addItem("第十五周");
         jc.addItem("第十六周");
-        jc.setBounds(1075,75,100,40);
+        jc.setBounds((int)(1075*width_r),(int)(75*height_r),(int)(100*width_r),(int)(40*height_r));
         jc.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
@@ -156,7 +160,7 @@ public class My_Coursetable extends JPanel{
         add(jc);
 
         //add(scrollPane,BorderLayout.CENTER);
-        scrollPane.setBounds(0,0,1000,1000);
+        scrollPane.setBounds(0,0,(int)(1000*width_r),(int)(1000*height_r));
         add(scrollPane);
         setVisible(true);
         //add(table);

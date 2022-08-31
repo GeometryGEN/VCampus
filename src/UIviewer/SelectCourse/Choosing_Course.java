@@ -16,6 +16,12 @@ import DAO.Curriculum.Course;
 import UIhandler.Currirulum.Client_curriculum;
 import java.util.Timer;
 public class Choosing_Course extends JPanel {
+
+        Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
+        int width=(int ) screensize.getWidth(); //得到宽度
+        int height=(int ) screensize.getHeight();//获得高度
+        double width_r=(double)(width)/1273;
+        double height_r=(double)(height)/790;
         public static  volatile String [][] selectcourse=null;
         public Choosing_Course()
         {
@@ -36,7 +42,7 @@ public class Choosing_Course extends JPanel {
 
                 //支持滚动
         JScrollPane jsp=new JScrollPane(table_want);
-        jsp.setBounds(0,0,1280,590);
+        jsp.setBounds(0,0,(int)(1280*width_r),(int)(590*height_r));
 
         add(jsp);
 

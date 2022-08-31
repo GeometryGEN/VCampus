@@ -11,6 +11,11 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 public class ConsultCourse_Info extends JPanel {
+    Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
+    int width=(int ) screensize.getWidth(); //得到宽度
+    int height=(int ) screensize.getHeight();//获得高度
+    double width_r=(double)(width)/1273;
+    double height_r=(double)(height)/790;
     public static volatile String[][] search_result=null;
     public ConsultCourse_Info()
     {
@@ -27,7 +32,7 @@ public class ConsultCourse_Info extends JPanel {
         table_want.getColumnModel().getColumn(5).setPreferredWidth(130);
 
         JScrollPane jsp=new JScrollPane(table_want);
-        jsp.setBounds(0,0,1280,420);
+        jsp.setBounds(0,0,(int)(1280*width_r),(int)(420*height_r));
         add(jsp);
 
         try {
@@ -46,18 +51,18 @@ public class ConsultCourse_Info extends JPanel {
         //文本编辑框（输入课程编号或课程名字）
         JLabel lblNewLabel = new JLabel("课程信息:");
         lblNewLabel.setFont(new Font("宋体", Font.BOLD, 35));
-        lblNewLabel.setBounds(300, 495, 275, 35);
+        lblNewLabel.setBounds((int)(300*width_r), (int)(495*height_r), (int)(275*width_r), (int)(35*height_r));
         add(lblNewLabel);
 
         JTextField textField = new JTextField();
         textField.setFont(new Font("宋体", Font.BOLD, 25));
-        textField.setBounds(495, 495, 325, 35);
+        textField.setBounds((int)(495*width_r), (int)(495*height_r), (int)(325*width_r), (int)(35*height_r));
         add(textField);
         textField.setColumns(10);
         //五个按钮
 
         JButton btnNewButton_9 = new JButton("查询");
-        btnNewButton_9.setBounds(920, 495, 150, 40);
+        btnNewButton_9.setBounds((int)(920*width_r), (int)(495*height_r), (int)(150*width_r), (int)(40*height_r));
         Font myfont = new Font("微软雅黑", Font.BOLD, 20);
         btnNewButton_9.setFont(myfont);
         btnNewButton_9.setBackground(new Color(220, 220, 220));

@@ -13,16 +13,21 @@ import static UIhandler.Currirulum.Client_curriculum.RequireallCourse;
 
 
 public class Selcourse_director extends JPanel {
+    Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
+    int width=(int ) screensize.getWidth(); //得到宽度
+    int height=(int ) screensize.getHeight();//获得高度
+    double width_r=(double)(width)/1273;
+    double height_r=(double)(height)/790;
 
     public static CardLayout cardLayout=new CardLayout();
     public static JPanel panel=new JPanel();
 
     public Selcourse_director()
     {
-        setBounds(0,0,1273,790);
+        setBounds(0,0,(int)(1273*width_r),(int)(790*height_r));
         setLayout(null);
-        panel.setBounds(0,100,1273,790);
-       add(panel);
+        panel.setBounds(0,(int)(100*height_r),(int)(1273*width_r),(int)(790*height_r));
+        add(panel);
         panel.setLayout(cardLayout);
 
         Check_Course f1=new Check_Course();
@@ -31,28 +36,14 @@ public class Selcourse_director extends JPanel {
         Scheduling f2=new Scheduling();
         panel.add(f2,"f2");
 
-        /*CurrentCourse_Man f3=new CurrentCourse_Man();
-        panel.add(f3,"f3");*/
+
 
         Font myfont = new Font("微软雅黑 ", Font.BOLD, 18);
-        //六个按钮
-        // 按钮1
-        /*JButton btnNewButton_1 = new JButton("课程信息管理");
-        btnNewButton_1.setBounds(40, 50, 200, 50);
-        Font myfont = new Font("微软雅黑 ", Font.BOLD, 18);
-        btnNewButton_1.setFont(myfont);
-        btnNewButton_1.setBackground(new Color(250, 240, 230));
-        btnNewButton_1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cardLayout.show(panel,"f3");
-            }
-        });
-        add(btnNewButton_1);*/
+
 
         // 按钮2
         JButton btnNewButton_2 = new JButton("排课");
-        btnNewButton_2.setBounds(150, 50, 200, 50);
+        btnNewButton_2.setBounds((int)(150*width_r), (int)(50*height_r), (int)(200*width_r), (int)(50*height_r));
         btnNewButton_2.setFont(myfont);
         btnNewButton_2.setBackground(new Color(245, 222, 179));
         btnNewButton_2.addActionListener(new ActionListener() {
@@ -70,7 +61,7 @@ public class Selcourse_director extends JPanel {
 
         //按钮4
         JButton btnNewButton_4 = new JButton("审核课程");
-        btnNewButton_4.setBounds(550, 50, 200, 50);
+        btnNewButton_4.setBounds((int)(550*width_r), (int)(50*height_r), (int)(200*width_r), (int)(50*height_r));
         btnNewButton_4.setFont(myfont);
         btnNewButton_4.setBackground(new Color(250, 240, 230));
         btnNewButton_4.addActionListener(new ActionListener() {
@@ -88,7 +79,7 @@ public class Selcourse_director extends JPanel {
 
         //按钮5
         JButton btnNewButton_5 = new JButton("退出");
-        btnNewButton_5.setBounds(950, 50, 200, 50);
+        btnNewButton_5.setBounds((int)(950*width_r), (int)(50*height_r), (int)(200*width_r), (int)(50*height_r));
         btnNewButton_5.setFont(myfont);
         btnNewButton_5.setBackground(new Color(245, 222, 179));
 
@@ -107,7 +98,7 @@ public class Selcourse_director extends JPanel {
         JLabel logo = new JLabel();
         ImageIcon icon1 = new ImageIcon("src/image/background2.jpg");
         logo.setIcon(icon1);
-        logo.setBounds(0, 0, 1273, 790);
+        logo.setBounds(0, 0, (int)(1273*width_r), (int)(790*height_r));
         add(logo);
 
         setVisible(true);

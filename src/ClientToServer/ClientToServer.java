@@ -30,8 +30,8 @@ public class ClientToServer {
     private static Socket socket;
     public static MyObjectOutputStream oos=null;
     public MyObjectInputStream ois=null;
-    public String serverIP = Message.returnIP();
-    //public String serverIP = "192.168.43.108";
+    //public String serverIP = Message.returnIP();
+    public String serverIP = "10.210.97.60";
 
     public String getIDcard() {
         return switch (ID) {
