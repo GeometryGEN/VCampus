@@ -249,6 +249,24 @@ public class Client_curriculum {
         Selcourse_teacher.cardLayout.show(Selcourse_teacher.panel,"schedule");
     }
     public static void show_all_application(ArrayList<Opencourse>opencourses){
+        int n=opencourses.size();
+        Check_Course.checkcourse=new String[n][7];
+        Iterator b=opencourses.iterator();
+        int count=0;
+        while(b.hasNext())
+        {
+            Opencourse curri=(Opencourse) b.next();
+            Check_Course.checkcourse[count][0]=curri.getId();
+            Check_Course.checkcourse[count][1]=curri.getName();
+            Check_Course.checkcourse[count][2]=curri.getTeacher();
+            Check_Course.checkcourse[count][3]=String.valueOf(curri.getPoint());
+            Check_Course.checkcourse[count][4]=String.valueOf(curri.getSize());
+            Check_Course.checkcourse[count][5]="      通过";
+            Check_Course.checkcourse[count][6]="      退回";
+        }
+        Check_Course f =new Check_Course();
+        Selcourse_director.panel.add(f,"application");
+        Selcourse_director.cardLayout.show(Selcourse_director.panel,"application");
 
     }
     public static void Require_all_application() throws IOException {
