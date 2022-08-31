@@ -34,6 +34,11 @@ public class Client_shop {
 
     public static List<Product> checkproductsType;   //按照类型查找得到的商品
 
+    static MyObjectOutputStream oos=null;
+
+    public static void setOos(MyObjectOutputStream mos) {
+        Client_shop.oos = mos;
+    }
 
     //////////////////记得每次点击按钮先reset null
 
@@ -209,7 +214,7 @@ public class Client_shop {
         Message message = new Message();
         message.setType(MessageType.RETURN_ALL_PRODUCT);
         //得到Object对象
-        MyObjectOutputStream oos = new MyObjectOutputStream(ManageClientToServerThread.getThread(idcard).getSocket().getOutputStream());
+        //MyObjectOutputStream oos = new MyObjectOutputStream(ManageClientToServerThread.getThread(idcard).getSocket().getOutputStream());
         //发送对象
         oos.writeObject(message);
         //等待接受
@@ -222,7 +227,7 @@ public class Client_shop {
         message.setType(MessageType.FIND_PRODUCT);
         message.setSender(name);
         //得到Object对象
-        MyObjectOutputStream oos = new MyObjectOutputStream(ManageClientToServerThread.getThread(idcard).getSocket().getOutputStream());
+        //MyObjectOutputStream oos = new MyObjectOutputStream(ManageClientToServerThread.getThread(idcard).getSocket().getOutputStream());
         //发送对象
         oos.writeObject(message);
         //等待接受
@@ -238,7 +243,7 @@ public class Client_shop {
         message.setType(MessageType.CHECK_CERTAIN_PRODUCT);
         message.setSender(String.valueOf(id_product));
         //得到Object对象
-        MyObjectOutputStream oos = new MyObjectOutputStream(ManageClientToServerThread.getThread(idcard).getSocket().getOutputStream());
+        //MyObjectOutputStream oos = new MyObjectOutputStream(ManageClientToServerThread.getThread(idcard).getSocket().getOutputStream());
         //发送对象
         oos.writeObject(message);
         //等待接受
@@ -252,7 +257,7 @@ public class Client_shop {
         message.setType(MessageType.DELETE_PRODUCT);
         message.setSender(id);
         //得到Object对象
-        MyObjectOutputStream oos = new MyObjectOutputStream(ManageClientToServerThread.getThread(idcard).getSocket().getOutputStream());
+        // oos = new MyObjectOutputStream(ManageClientToServerThread.getThread(idcard).getSocket().getOutputStream());
         //发送学生对象
         oos.writeObject(message);
         //等待接受学生
@@ -266,7 +271,7 @@ public class Client_shop {
         message.setType(MessageType.FIND_TYPE_PRODUCT);
         message.setSender(type_name);
         //得到Object对象
-        MyObjectOutputStream oos = new MyObjectOutputStream(ManageClientToServerThread.getThread(idcard).getSocket().getOutputStream());
+        //MyObjectOutputStream oos = new MyObjectOutputStream(ManageClientToServerThread.getThread(idcard).getSocket().getOutputStream());
         //发送学生对象
         oos.writeObject(message);
         //等待接受学生
@@ -280,7 +285,7 @@ public class Client_shop {
         message.setType(MessageType.ADD_PRODUCT);
         message.setData(p);
         //得到Object对象
-        MyObjectOutputStream oos = new MyObjectOutputStream(ManageClientToServerThread.getThread(idcard).getSocket().getOutputStream());
+        // oos = new MyObjectOutputStream(ManageClientToServerThread.getThread(idcard).getSocket().getOutputStream());
         //发送学生对象
         oos.writeObject(message);
         //等待接受学生
@@ -298,7 +303,7 @@ public class Client_shop {
         message.setCode(num);   //商品数量
         message.setMoney(money); //商品总价格
         //得到Object对象
-        MyObjectOutputStream oos = new MyObjectOutputStream(ManageClientToServerThread.getThread(idcard).getSocket().getOutputStream());
+        // oos = new MyObjectOutputStream(ManageClientToServerThread.getThread(idcard).getSocket().getOutputStream());
         //发送学生对象
         oos.writeObject(message);
         //等待接受学生
@@ -313,7 +318,7 @@ public class Client_shop {
         message.setType(MessageType.CHECK_BUYED_PRODUCT);
         message.setSender(idcard);
         //得到Object对象
-        MyObjectOutputStream oos = new MyObjectOutputStream(ManageClientToServerThread.getThread(idcard).getSocket().getOutputStream());
+        //MyObjectOutputStream oos = new MyObjectOutputStream(ManageClientToServerThread.getThread(idcard).getSocket().getOutputStream());
         //发送学生对象
         oos.writeObject(message);
         //等待接受学生
@@ -328,7 +333,7 @@ public class Client_shop {
         message.setType(MessageType.CHECK_READYTOBUY_PRODUCT);
         message.setSender(idcard);
         //得到Object对象
-        MyObjectOutputStream oos = new MyObjectOutputStream(ManageClientToServerThread.getThread(idcard).getSocket().getOutputStream());
+        //MyObjectOutputStream oos = new MyObjectOutputStream(ManageClientToServerThread.getThread(idcard).getSocket().getOutputStream());
         //发送学生对象
         oos.writeObject(message);
         //等待接受学生
@@ -344,7 +349,7 @@ public class Client_shop {
         message.setData(p);
         message.setSender(idcard);
         //得到Object对象
-        MyObjectOutputStream oos = new MyObjectOutputStream(ManageClientToServerThread.getThread(idcard).getSocket().getOutputStream());
+        //MyObjectOutputStream oos = new MyObjectOutputStream(ManageClientToServerThread.getThread(idcard).getSocket().getOutputStream());
         //发送学生对象
         oos.writeObject(message);
         //等待接受学生

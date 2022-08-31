@@ -4,6 +4,7 @@ import DAO.Login.Teachers_utils;
 import UIhandler.Currirulum.Client_curriculum;
 import UIhandler.Library.Client_library;
 import UIhandler.QICQ.Client_qicq;
+import UIhandler.Shop.Client_shop;
 import User.*;
 import message.Message;
 import message.MessageType;
@@ -103,6 +104,7 @@ public class ClientToServer {
             Client_curriculum.setOos(oos);
             Client_library.setOos(oos);
             Client_qicq.setOps(oos);
+            Client_shop.setOos(oos);
             return true;
         } else {
             socket.close();
@@ -136,6 +138,7 @@ public class ClientToServer {
             Client_curriculum.setOos(oos);
             Client_library.setOos(oos);
             Client_qicq.setOps(oos);
+            Client_shop.setOos(oos);
             ManageClientToServerThread.addThread(id, ctst);
             return true;
         } else {
@@ -170,6 +173,7 @@ public class ClientToServer {
             Client_curriculum.setOos(oos);
             Client_library.setOos(oos);
             Client_qicq.setOps(oos);
+            Client_shop.setOos(oos);
             ManageClientToServerThread.addThread(id, ctst);
             return true;
         } else {
@@ -278,7 +282,6 @@ public class ClientToServer {
         oos.writeObject(message);
         ManageClientToServerThread.getThread(myInfo.getId()).exit = true;
         ManageClientToServerThread.getThread(myInfo.getId()).interrupt();
-
         ManageClientToServerThread.removeClientToServerThread(myInfo.getId());
         if(myInfo.getType()==1)
             System.out.println("学生：" + myInfo.getName() + " " + myInfo.getId() + "退出系统");
