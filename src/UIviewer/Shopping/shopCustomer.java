@@ -41,7 +41,7 @@ public class shopCustomer extends JPanel {
     public shopCustomer() throws Exception {
         String name=myInfo.getName();
         getName(name);
-        String money="100";
+        String money=String.valueOf(myInfo.getMoney());
         setBounds(0,0, (int) (1273*width_r), (int) (784*height_r));
         setLayout(null);
 

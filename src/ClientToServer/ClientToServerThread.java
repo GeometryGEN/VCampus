@@ -267,8 +267,13 @@ public class ClientToServerThread extends Thread {
                     Client_curriculum.show_my_students((ArrayList<Student>)message.getData());
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_CURRICULUM_SHOW_SCHEDULE_RET)){
-                    Client_curriculum.show_my_schedule((String[][][])message.getData());
+                    if(myInfo.getType()==2) Client_curriculum.show_tea_schedule((String[][][])message.getData());
+                    if(myInfo.getType()==1) Client_curriculum.show_my_schedule((String[][][])message.getData());
                 }
+                else if(message.getType().equals(MessageType.MESSAGE_CURRICULUM_LIST_ADMIN_APPLICATION_RET)){
+                    Client_curriculum.show_all_application((ArrayList<Opencourse>)message.getData());
+                }
+
             } catch (InterruptedIOException e){
                 break;
             }

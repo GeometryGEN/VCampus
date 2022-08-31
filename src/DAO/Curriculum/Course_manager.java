@@ -373,4 +373,10 @@ public class Course_manager {
         st.setString(4,c.id);
         st.executeUpdate();
     }
+    public void auto_arrage() throws SQLException {
+        String sql="select * from curriculum;";
+        PreparedStatement st=conn.prepareStatement(sql);
+        ResultSet rs= st.executeQuery();
+
+    }
 }

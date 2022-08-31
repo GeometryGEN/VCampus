@@ -53,23 +53,39 @@ public class My_Coursetable extends JPanel{
             column=table.getColumnModel().getColumn(i);
             if(i==0)
             {
-                column.setPreferredWidth(70);
+                column.setPreferredWidth(85);
             }
             else {
                 column.setPreferredWidth(300);
             }
 
         }
+        JComboBox jc=new JComboBox();
+        jc.addItem("--请选择--");
+        jc.addItem("第一周");
+        jc.addItem("第二周");
+        jc.addItem("第三周");
+        jc.addItem("第四周");
+        jc.addItem("第五周");
+        jc.addItem("第六周");
+        jc.addItem("第七周");
+        jc.addItem("第八周");
+        jc.addItem("第九周");
+        jc.addItem("第十周");
+        jc.addItem("第十一周");
+        jc.addItem("第十二周");
+        jc.addItem("第十三周");
+        jc.addItem("第十四周");
+        jc.addItem("第十五周");
+        jc.addItem("第十六周");
+        jc.setBounds(1075,75,100,40);
+        add(jc);
+
         //add(scrollPane,BorderLayout.CENTER);
         scrollPane.setBounds(0,0,1000,1000);
         add(scrollPane);
         setVisible(true);
         //add(table);
-
-
-
-
-
 
     }
 

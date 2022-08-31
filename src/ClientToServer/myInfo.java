@@ -4,7 +4,7 @@ public class myInfo {
     static String id;
     static int type; //1-学生 2-老师 3-管理员
     static String name;
-
+    static double money;
     public static String getId() {
         return id;
     }
@@ -29,9 +29,18 @@ public class myInfo {
         name = n1;
     }
 
+    public static double getMoney() {
+        return money;
+    }
+
+    public static void setMoney(double m) {
+        money = m;
+    }
+
     public static void setall(String id, int type, String name){
         setName(name);
         setId(id);
         setType(type);
     }
+
 }

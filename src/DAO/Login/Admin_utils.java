@@ -1,11 +1,10 @@
 package DAO.Login;
 
+import ClientToServer.myInfo;
+import User.Admin;
 import connection.JDBC_Connector;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 /**
  * @author : [Tongwei_L]
@@ -54,5 +53,17 @@ public class Admin_utils {
         }
         return null;
     }
-
+    public static Admin returninfo(String id) throws SQLException {
+        String sql="select * from admins where Admin_idcard=?;";
+        Connection connection=JDBC_Connector.ConnectMySQL();
+        PreparedStatement st= connection.prepareStatement(sql);
+        st.setString(1,id);
+        ResultSet rs=st.executeQuery();
+        Admin admin=new Admin();
+        while(rs.next()){
+            admin.setAdmin_idcard(id);
+            admin.setAdmin_name(rs.getString("Admin_name"));
+        }
+        return admin;
+    }
 }
