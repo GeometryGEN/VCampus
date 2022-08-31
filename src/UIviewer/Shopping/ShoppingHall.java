@@ -75,13 +75,13 @@ public class ShoppingHall extends JPanel {
                         tt[3]=String.valueOf(t.get(i).getProduct_currentNumbers());
                         temp[i]=tt;
                     }
+                    ShoppingHall f11=new ShoppingHall();
                     setShoptable(temp);
+                    panel.add(f11,"f11");
+                    cardLayout.show(panel, "f11");
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 }
-                ShoppingHall f11=new ShoppingHall();
-                panel.add(f11,"f11");
-                cardLayout.show(panel, "f11");
             }
         });
         add(btnNewButton_1);
