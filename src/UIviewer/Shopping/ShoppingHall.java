@@ -204,7 +204,7 @@ public class ShoppingHall extends JPanel {
 
 
 
-        String[] tableTitle = {"商品名称","商品编号","价格","剩余数量","加入购物车","购买"};
+        String[] tableTitle = {"商品编号","商品名称","价格","剩余数量","购买数量","加入购物车","购买"};
         //数据
 
         DefaultTableModel dtm = new DefaultTableModel(shoptable, tableTitle);
@@ -222,7 +222,7 @@ public class ShoppingHall extends JPanel {
             DefaultTableCellRenderer tcr = new DefaultTableCellRenderer() {
                 @Override
                 public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-                    if (column!=4&&column!=5) {
+                    if (column!=4 && column!=5) {
                         setBackground(Color.white);
                     }else {
                         setBackground(new Color(250,128,114,100));
@@ -241,15 +241,18 @@ public class ShoppingHall extends JPanel {
             ex.printStackTrace();
         }
 
-
             table_want.addMouseListener(new MouseListener() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     if (table_want.getSelectedColumn() == 4) {
                         //购物车
                         String id= (String) table_want.getValueAt(table_want.getSelectedRow(),0);
+                        Double money= (Double) table_want.getValueAt(table_want.getSelectedRow(),2);
+                        int Num = (Integer) table_want.getValueAt(table_want.getSelectedRow(),4);
                         try {
-                            Client_shop.buyProduct(myInfo.getId(),id,1,1);
+                            if(myInfo.getMoney()<(money*Num)){
+                                Client_shop.buyProduct(myInfo.getId(),id,Num,myInfo.getMoney()-money*Num);
+                            }
                         } catch (Exception ex) {
                             throw new RuntimeException(ex);
                         }

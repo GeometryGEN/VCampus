@@ -444,7 +444,7 @@ public class ServerToClientThread extends Thread{
                 }
                 else if(m.getType().equals(MessageType.RENEW_STUDENT_INFO)){
                     Student st = (Student)m.getData();
-                    Boolean stu  = Admin_SM_utils.changeStudentInfo(st.getStudent_idcard(),st);
+                    boolean stu  = Admin_SM_utils.changeStudentInfo(st.getStudent_idcard(),st);
                     if(stu){
                         sendback.setType(MessageType.RENEW_STUDENT_INFO_SUCCEED);
                         oos.writeObject(sendback);             //将message对象回复客户端
