@@ -49,7 +49,7 @@ public class Scheduling extends JPanel {
 
 
         JButton del_button = new JButton("删除课程");
-        del_button.setBounds(530, 440, 200, 40);
+        del_button.setBounds((int)(350*width_r), (int)(525*height_r), (int)(200*width_r), (int)(40*height_r));
         add(del_button);
         Font myfont2 = new Font("微软雅黑", Font.PLAIN, 18);
         del_button.setFont(myfont2);
@@ -106,8 +106,7 @@ public class Scheduling extends JPanel {
             }
         });
         JButton btnNewButton_6 = new JButton("确认修改");
-        btnNewButton_6.setBounds(530, 525, 200, 40);
-        btnNewButton_6.setBounds((int)(530*width_r), (int)(525*height_r), (int)(200*width_r), (int)(40*height_r));
+        btnNewButton_6.setBounds((int)(625*width_r), (int)(525*height_r), (int)(200*width_r), (int)(40*height_r));
         btnNewButton_6.setFont(myfont2);
         btnNewButton_6.setBackground(new Color(248, 248, 255));
         //btnNewButton_1.setForeground(new Color(248, 248, 255));
