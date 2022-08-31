@@ -275,6 +275,7 @@ public class functionChoose {
                 try {
                     jf.setBounds(0,0,width,height);
                     jf.remove(fc_panel);
+                    Client_status.ini();
                     if(myInfo.getType()==1)
                         //jf.setContentPane(new student_status(width,height));
                         Client_status.stu_enter();

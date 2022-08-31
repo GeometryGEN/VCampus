@@ -214,7 +214,7 @@ public class ClientToServerThread extends Thread {
                 }
 
                 //学籍管理
-                if(message.getType().equals(MessageType.RENEW_STUDENT_INFO_SUCCEED)){
+                /*if(message.getType().equals(MessageType.RENEW_STUDENT_INFO_SUCCEED)){
                     Client_status.setSign_renew("2");
                 }
                 else if(message.getType().equals(MessageType.RENEW_STUDENT_INFO_FAILED)){
@@ -227,19 +227,19 @@ public class ClientToServerThread extends Thread {
                 else if(message.getType().equals(MessageType.ADMIN_RETURN_STUDENT_INFO_SUCCEED)){
                     Student stu = ((Student) message.getData());
                     Client_status.setS_s(stu);
-                }
-                else if(message.getType().equals(MessageType.MESSAGE_STATUS_STU_ENTER_RET)){
+                }*/
+                if(message.getType().equals(MessageType.MESSAGE_STATUS_STU_ENTER_RET)){
                     Client_status.show_studata((ImageAndTable)message.getData());
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_STATUS_ADMIN_QUERY_RET)){
                     Client_status.show_info((ImageAndTable)message.getData());
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_STATUS_ADMIN_QUERY_FAIL)){
-                    JOptionPane.showMessageDialog(null,"查询失败! 学生不存在");
+                    JOptionPane.showMessageDialog(null,"    查询失败! 学生不存在");
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_STATUS_CONFIRM_RET)){
                     Client_status.show_studata((ImageAndTable)message.getData());
-                    JOptionPane.showMessageDialog(null, "修改学生信息成功!");
+                    JOptionPane.showMessageDialog(null, "   修改学生信息成功!");
                 }
                 //站内通信
                 if(message.getType().equals(MessageType.MESSAGE_QICQ_LIST_FRIENDS_RET)){
