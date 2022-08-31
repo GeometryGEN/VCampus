@@ -21,7 +21,7 @@ public class ConsultCourse_stuInfo extends JPanel {
     {
         setLayout(null);
 
-        String[] tableTitle={"课程编号","课程名","课程学分","任课老师","查询"};
+        String[] tableTitle={"课程编号","课程名","课程容量","上课教室","上课时间",""};
         DefaultTableModel dtm=new DefaultTableModel(consult_stu,tableTitle);
         JTable table_want=new JTable(dtm);
         JScrollPane jsp=new JScrollPane(table_want);
@@ -54,10 +54,8 @@ public class ConsultCourse_stuInfo extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if(table_want.getSelectedColumn()==4){
-                    Course consult_course=new Course();
                     try{
                         String id=(String)table_want.getValueAt(table_want.getSelectedRow(),0);
-                        consult_course.setId(id);
                         Client_curriculum.Require_show_my_students(id);
                     }catch(IOException ex)
                     {
@@ -87,20 +85,6 @@ public class ConsultCourse_stuInfo extends JPanel {
 
             }
         });
-
-
-        String[] tableTitle2={"学生姓名","一卡通号"};
-        DefaultTableModel dtm2=new DefaultTableModel(consult_stu,tableTitle2);
-        JTable table_want2=new JTable(dtm2);
-        JScrollPane jsp2=new JScrollPane(table_want2);
-        jsp2.setBounds(0,260,1280,280);
-        add(jsp2);
-        table_want2.setRowHeight(70);
-
-
-
-
-
     }
 
 }

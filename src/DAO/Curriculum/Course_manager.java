@@ -326,12 +326,11 @@ public class Course_manager {
         ResultSet rs=st.executeQuery();
         while(rs.next()){
             Opencourse c=new Opencourse();
+            c.setId(rs.getString("id"));
             c.setName(rs.getString("name"));
             c.setTeacher(rs.getString("teacher_name"));
             c.setPoint(rs.getDouble("point"));
             c.setSize(rs.getInt("size"));
-            c.status=rs.getInt("status");
-            c.result=rs.getString("comment");
             c.setTeacher_id(rs.getString("teacher_id"));
             opencourses.add(c);
         }

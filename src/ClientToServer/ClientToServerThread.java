@@ -225,7 +225,6 @@ public class ClientToServerThread extends Thread {
                 }
                 //站内通信
                 if(message.getType().equals(MessageType.MESSAGE_QICQ_LIST_FRIENDS_RET)){
-                     System.out.println("received");
                      HashMap<String,ArrayList<Friend>>friends=(HashMap<String,ArrayList<Friend>>)message.getData();
                      Client_qicq.show_friend(friends);
                 }
@@ -238,6 +237,7 @@ public class ClientToServerThread extends Thread {
                      Client_qicq.receive_message(sender);
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_QICQ_FRIEND_ONLINE_RET)){
+                    System.out.println("received...");
                     Client_qicq.Require_friend_list();
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_QICQ_FRIEND_OFFLINE_RET)){
@@ -250,13 +250,15 @@ public class ClientToServerThread extends Thread {
                     Client_curriculum.showConsultResult((ArrayList<Course>)message.getData());
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_CURRICULUM_LIST_ALL_RET)){
-                    Client_curriculum.showallCourse((ArrayList<Course>)message.getData());
+                    if(myInfo.getType()==1)Client_curriculum.showallCourse((ArrayList<Course>)message.getData());
+                    if(myInfo.getType()==3)Client_curriculum.admin_all_course((ArrayList<Course>)message.getData());
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_CURRICULUM_LIST_APPLICATION_RET)){
                     Client_curriculum.showApplyResult((ArrayList<Opencourse>)message.getData());
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_CURRICULUM_LIST_MINE_RET)){
-                    Client_curriculum.showMyChoice((ArrayList<Course>)message.getData());
+                    if(myInfo.getType()==1) Client_curriculum.showMyChoice((ArrayList<Course>)message.getData());
+                    if(myInfo.getType()==2) Client_curriculum.showTeacherChoice((ArrayList<Course>)message.getData());
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_CURRICULUM_CHOOSE_SUCCEED)){
                     JOptionPane.showMessageDialog(null,"选课成功");
@@ -274,7 +276,8 @@ public class ClientToServerThread extends Thread {
                     JOptionPane.showMessageDialog(null,"课程申报失败，已经存在相同课程！");
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_CURRICULUM_SHOW_STU_RET)){
-                    Client_curriculum.show_my_students((ArrayList<Student>)message.getData());
+                     Client_curriculum.show_my_students((ArrayList<Student>)message.getData());
+
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_CURRICULUM_SHOW_SCHEDULE_RET)){
                     if(myInfo.getType()==2) Client_curriculum.show_tea_schedule((String[][][])message.getData());

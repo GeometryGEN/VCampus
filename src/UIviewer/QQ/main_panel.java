@@ -42,11 +42,6 @@ public class main_panel {
         functionChoose.back_from_student_status.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    Client_qicq.I_am_offline();
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
                 functionChoose.jf.remove(functionChoose.jf.getContentPane());
                 functionChoose.jf.setContentPane(functionChoose.fc_panel);
                 functionChoose.jf.setTitle("functionChoose");

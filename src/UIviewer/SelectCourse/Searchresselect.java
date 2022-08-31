@@ -4,7 +4,6 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-
 public class Searchresselect extends JPanel{
      public static volatile String[][] searchresult=null;
      public Searchresselect()

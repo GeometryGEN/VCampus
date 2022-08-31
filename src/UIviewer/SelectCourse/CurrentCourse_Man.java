@@ -4,10 +4,9 @@ import ClientToServer.myInfo;
 
 import javax.swing.*;
 import java.awt.*;
-
 public class CurrentCourse_Man extends JPanel {
 
-    public CurrentCourse_Man()
+    /*public CurrentCourse_Man()
     {
         setLayout(null);
         JPanel p18=new JPanel();
@@ -42,11 +41,11 @@ public class CurrentCourse_Man extends JPanel {
         l3.setForeground(new Color(0, 0, 0));
         add(l3);
 
-        /*JLabel l12 = new JLabel();
+        *//*JLabel l12 = new JLabel();
         ImageIcon icon5 = new ImageIcon("src/image/banner3.png");
         l12.setIcon(icon5);
         l12.setBounds(310, 70, 1000, 125);
-        add(l12);*/
+        add(l12);*//*
 
         JPanel p1 = new JPanel();
         p1.setBounds(0, 0, 310, 784);
@@ -95,5 +94,5 @@ public class CurrentCourse_Man extends JPanel {
 
         add(p18);
 
-    }
+    }*/
 }

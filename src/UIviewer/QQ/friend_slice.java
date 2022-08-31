@@ -16,6 +16,8 @@ public class friend_slice extends JLabel {
     private void update(){//更新UI界面；
         this.updateUI();
     }
+    private double width_r;
+    private double height_r;
     private void exchangeEnter(JLabel jLabel) {
         jLabel.setBackground(new Color(242,242,242));
         update();
@@ -31,6 +33,8 @@ public class friend_slice extends JLabel {
     }
     public friend_slice( int width, int height, double width_r, double height_r, Friend friend){
         this.friend=friend;
+        this.width_r=width_r;
+        this.height_r=height_r;
         setOpaque(true);
         setBackground(new Color(255,255,255));
         int icon1_width=(int)((height-2*20)*height_r);
@@ -44,6 +48,8 @@ public class friend_slice extends JLabel {
         setIcon(new ImageIcon("src/image/QQ/qq_image_3_min.png"));
         if(friend.getOnline()==1){
             setText(friend.getName()+"                                                 ");
+            setForeground(Color.black);
+            //System.out.println("online");
         }
         else{
             setText(friend.getName()+"[离线请留言]                                             ");
@@ -69,7 +75,6 @@ public class friend_slice extends JLabel {
                 main_panel.mjp.add(chatPanel);
                 main_panel.cpn=chatPanel;
                 main_panel.mjp.updateUI();
-                System.out.println(3);
             }
 
             @Override
@@ -94,4 +99,16 @@ public class friend_slice extends JLabel {
         });
     }
 
+    public void setunread(String sender) {
+        if((main_panel.cpn!=null)&&( main_panel.cpn.getFriend().getId().equals(sender))){
+            try {
+                Client_qicq.get_message(sender);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        }
+        else{
+            setForeground(Color.red);
+        }
+    }
 }

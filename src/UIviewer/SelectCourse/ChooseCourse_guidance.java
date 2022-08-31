@@ -1,13 +1,9 @@
 package UIviewer.SelectCourse;
-
 import ClientToServer.myInfo;
-
 import javax.swing.*;
 import java.awt.*;
 
 public class ChooseCourse_guidance extends JPanel{
-
-
     public ChooseCourse_guidance()
     {
         setLayout(null);
@@ -20,7 +16,6 @@ public class ChooseCourse_guidance extends JPanel{
         l1.setFont(font);
         //l1.setForeground(new Color(111,222,0));
         add(l1);
-
 
         //信息面板
         JLabel l4 = new JLabel("      基本信息");
@@ -43,7 +38,6 @@ public class ChooseCourse_guidance extends JPanel{
         l3.setFont(font1);
         l3.setForeground(new Color(0, 0, 0));
         add(l3);
-
 
         //左侧面板
         JPanel p1 = new JPanel();

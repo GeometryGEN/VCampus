@@ -5,10 +5,11 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import java.awt.*;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.Date;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
 
 public class My_Coursetable extends JPanel{
 
@@ -79,6 +80,79 @@ public class My_Coursetable extends JPanel{
         jc.addItem("第十五周");
         jc.addItem("第十六周");
         jc.setBounds(1075,75,100,40);
+        jc.addItemListener(new ItemListener() {
+            @Override
+            public void itemStateChanged(ItemEvent e) {
+                if(e.getStateChange()==ItemEvent.SELECTED){
+                    //选择的下拉框选项
+                    if(e.getItem()=="第一周")
+                    {
+
+                    }
+                    if(e.getItem()=="第二周")
+                    {
+
+                    }
+                    if(e.getItem()=="第三周")
+                    {
+
+                    }
+                    if(e.getItem()=="第四周")
+                    {
+
+                    }
+                    if(e.getItem()=="第五周")
+                    {
+
+                    }
+                    if(e.getItem()=="第六周")
+                    {
+
+                    }
+                    if(e.getItem()=="第七周")
+                    {
+
+                    }
+                    if(e.getItem()=="第八周")
+                    {
+
+                    }
+                    if(e.getItem()=="第九周")
+                    {
+
+                    }
+                    if(e.getItem()=="第十周")
+                    {
+
+                    }
+                    if(e.getItem()=="第十一周")
+                    {
+
+                    }
+                    if(e.getItem()=="第十二周")
+                    {
+
+                    }
+                    if(e.getItem()=="第十三周")
+                    {
+
+                    }
+                    if(e.getItem()=="第十四周")
+                    {
+
+                    }
+                    if(e.getItem()=="第十五周")
+                    {
+
+                    }
+                    if(e.getItem()=="第十六周")
+                    {
+
+                    }
+
+                }
+            }
+        });
         add(jc);
 
         //add(scrollPane,BorderLayout.CENTER);

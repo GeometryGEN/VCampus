@@ -33,6 +33,7 @@ public class friend_list{
     static JScrollPane scrollPane;
 
     public static void show_Friend(HashMap<String, ArrayList<Friend>> friend) {
+        jPanel.removeAll();
         roll_panel=new JPanel();
         roll_panel.setBackground(new Color(255,255,255));
         roll_panel.setSize((int)(width*width_r),(int)((height-200)*height_r));
@@ -43,16 +44,15 @@ public class friend_list{
         jPanel.add(scrollPane, BorderLayout.CENTER);
         count_friend=0;
         count_tag=0;
+
         for(String Tag: friend.keySet()){
             tag[count_tag]=new tag_slice(width_r,height_r,Tag);
             roll_panel.add(tag[count_tag]);
-            System.out.println(Tag);
             ArrayList<Friend> arrayList=friend.get(Tag);
             int num=arrayList.size();
 
             friend_start_tag[count_tag]=count_friend;
             for(int i=0;i<num;i++){
-                System.out.println(arrayList.get(i).getName());
                 friendslice[count_friend]=new friend_slice(width-1,height/number_per_page,width_r,height_r,arrayList.get(i));
                 roll_panel.add(friendslice[count_friend++]);
             }
@@ -82,7 +82,11 @@ public class friend_list{
         jPanel.updateUI();
     }
     public static void show_unread(String sender){
-
+        for(int i=0;i<count_friend;i++){
+            if(friendslice[i].getFriend().getId().equals(sender)){
+                friendslice[i].setunread(sender);
+            }
+        }
     }
 
    friend_list( int width, int height, double width_r, double height_r, int x, int y){
@@ -97,11 +101,4 @@ public class friend_list{
         jPanel.setBackground(new Color(255,255,255));
    }
 
-    public static void red_unread(String sender) {
-        for(int i=0;i<count_friend;i++){
-            if(friendslice[i].getFriend().getId().equals(sender)){
-                friendslice[i].setForeground(Color.red);
-            }
-        }
-    }
 }

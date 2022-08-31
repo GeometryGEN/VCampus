@@ -48,8 +48,13 @@ public class functionChoose {
         fc_panel.setBackground(new Color(245,245,245, 180));
         jf.setContentPane(fc_panel);
 
-        //两个修改参数
-        //所有的width乘上1920/1273*width_r
+        //向好友发送上线消息
+        try {
+            Client_qicq.setId(myInfo.getId());
+            Client_qicq.I_am_online();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
         //小头像
         JLabel touxiang = new JLabel();
@@ -200,6 +205,11 @@ public class functionChoose {
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
                 try {
+                    try {
+                        Client_qicq.I_am_offline();
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
                     ClientToServer.logout();
                     jf.dispose();
                     LoginFrame.jf.setVisible(true);
@@ -310,16 +320,20 @@ public class functionChoose {
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
                 try {
+                    jf.remove(fc_panel);
                     if(myInfo.getType()==1)
                     {
-                        new Selcourse();
+                        jf.setContentPane(new Selcourse());
+                        jf.setTitle("Selcourse");
                     }
                     else if(myInfo.getType()==2)
                     {
-                        new Selcourse_teacher();
+                        jf.setContentPane(new Selcourse_teacher());
+                        jf.setTitle("Selcourse_teacher");
                     }
                     else {
-                        new Selcourse_director();
+                        jf.setContentPane(new Selcourse_director());
+                        jf.setTitle("Selcourse_director");
                     }
 
                 } catch (Exception ex) {
@@ -469,7 +483,6 @@ public class functionChoose {
                 // TODO Auto-generated method stub
                 try {
                     Client_qicq.setId(myInfo.getId());
-                    Client_qicq.I_am_online();
                     if(myInfo.getType()!=3)
                     {
                         jf.setContentPane(new main_panel(width,height).mjp);

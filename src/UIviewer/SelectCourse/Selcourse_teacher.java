@@ -10,34 +10,16 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.nio.channels.spi.AbstractInterruptibleChannel;
 
-public class Selcourse_teacher extends JFrame {
-    private JPanel Sel_main;
-
+public class Selcourse_teacher extends JPanel {
     public static CardLayout cardLayout=new CardLayout();
     public static JPanel panel=new JPanel();
-    public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    Selcourse_teacher frame = new Selcourse_teacher();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
 
-    }
     public Selcourse_teacher()
     {
-        setTitle("Selcourse_teacher");
         setBounds(0,0,1273,790);
-        Sel_main=new JPanel();
-        setContentPane(Sel_main);
-        Sel_main.setLayout(null);
-
+        setLayout(null);
         panel.setBounds(0,100,1273,790);
-        Sel_main.add(panel);
+        add(panel);
         panel.setLayout(cardLayout);
         ConsultCourse_Info f1=new ConsultCourse_Info();
         panel.add(f1,"f1");
@@ -64,10 +46,14 @@ public class Selcourse_teacher extends JFrame {
         btnNewButton_1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(panel,"f1");
+                try {
+                    Client_curriculum.RequireMyChoice();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
-       Sel_main.add(btnNewButton_1);
+        add(btnNewButton_1);
 
         // 按钮2
         JButton btnNewButton_2 = new JButton("查询选课情况");
@@ -80,7 +66,7 @@ public class Selcourse_teacher extends JFrame {
                 cardLayout.show(panel,"f2");
             }
         });
-        Sel_main.add(btnNewButton_2);
+        add(btnNewButton_2);
 
         // 按钮3
         JButton btnNewButton_3 = new JButton("申报课程状态");
@@ -97,7 +83,7 @@ public class Selcourse_teacher extends JFrame {
                 }
             }
         });
-        Sel_main.add(btnNewButton_3);
+        add(btnNewButton_3);
 
         //按钮4
         JButton btnNewButton_4 = new JButton("申报课程");
@@ -110,7 +96,7 @@ public class Selcourse_teacher extends JFrame {
                 cardLayout.show(panel,"f4");
             }
         });
-        Sel_main.add(btnNewButton_4);
+        add(btnNewButton_4);
 
         //按钮5
         JButton btnNewButton_5 = new JButton("我的课表");
@@ -127,7 +113,7 @@ public class Selcourse_teacher extends JFrame {
                 }
             }
         });
-        Sel_main.add(btnNewButton_5);
+        add(btnNewButton_5);
 
         //按钮6
         JButton btnNewButton_6 = new JButton("退出");
@@ -143,17 +129,15 @@ public class Selcourse_teacher extends JFrame {
             }
 
         });
-        Sel_main.add(btnNewButton_6);
+        add(btnNewButton_6);
 
         //东南大学标志图片
         JLabel logo = new JLabel();
         ImageIcon icon1 = new ImageIcon("src/image/background2.jpg");
         logo.setIcon(icon1);
         logo.setBounds(0, 0, 1273, 790);
-        Sel_main.add(logo);
+        add(logo);
 
-
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }
 }

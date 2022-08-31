@@ -7,7 +7,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class ConsultCourse_Chosen extends JPanel {
-
     public static volatile String[][] consultCourse_chosen=null;
     public ConsultCourse_Chosen()
     {

@@ -244,7 +244,7 @@ public class ShoppingHall extends JPanel {
             table_want.addMouseListener(new MouseListener() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    if (table_want.getSelectedColumn() == 4) {
+                    if (table_want.getSelectedColumn() == 5) {
                         //购物车
                         String id= (String) table_want.getValueAt(table_want.getSelectedRow(),0);
                         Double money= (Double) table_want.getValueAt(table_want.getSelectedRow(),2);
@@ -258,7 +258,7 @@ public class ShoppingHall extends JPanel {
                         }
                     }
 
-                    if (table_want.getSelectedColumn() == 5) {
+                    if (table_want.getSelectedColumn() == 6) {
                         System.out.println("buy");
 
                     }
