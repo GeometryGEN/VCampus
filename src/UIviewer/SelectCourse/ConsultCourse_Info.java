@@ -3,6 +3,7 @@ package UIviewer.SelectCourse;
 import UIhandler.Currirulum.Client_curriculum;
 
 import javax.swing.*;
+import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -18,26 +19,22 @@ public class ConsultCourse_Info extends JPanel {
         String[] tableTitle={"课程编号","课程名","时间","学分","老师","地点"};
         DefaultTableModel dtm=new DefaultTableModel(search_result,tableTitle);
         JTable table_want=new JTable(dtm);
+        table_want.setFont(new Font("宋体",Font.BOLD,24));
         table_want.getColumnModel().getColumn(0).setPreferredWidth(120);
         table_want.getColumnModel().getColumn(1).setPreferredWidth(200);
-        table_want.getColumnModel().getColumn(2).setPreferredWidth(340);
-        table_want.getColumnModel().getColumn(3).setPreferredWidth(220);
-        table_want.getColumnModel().getColumn(4).setPreferredWidth(160);
-        table_want.getColumnModel().getColumn(5).setPreferredWidth(100);
+        table_want.getColumnModel().getColumn(2).setPreferredWidth(400);
+        table_want.getColumnModel().getColumn(3).setPreferredWidth(70);
+        table_want.getColumnModel().getColumn(4).setPreferredWidth(220);
+        table_want.getColumnModel().getColumn(5).setPreferredWidth(130);
 
         JScrollPane jsp=new JScrollPane(table_want);
         jsp.setBounds(0,0,1280,420);
         add(jsp);
+
         table_want.setRowHeight(40);
         setVisible(true);
         //add(table_want);
 
-
-        //左侧面板
-       /* JPanel p1 = new JPanel();
-        p1.setBounds(0, 0, 310, 784);
-        p1.setBackground(new Color(135, 206, 250, 180));
-        add(p1);*/
 
         //查询按钮
 
@@ -72,28 +69,7 @@ public class ConsultCourse_Info extends JPanel {
             }
         });
         add(btnNewButton_9);
-        //右下面板
-       /* JPanel p3 = new JPanel();
-        p3.setBounds(310, 0, 950, 685);
-        p3.setBackground(new Color(211, 211, 211, 100));
-        add(p3);*/
 
-        //右侧面板
-       /* JPanel p2 = new JPanel();
-        p2.setBounds(310, 0, 950, 1000);
-        p2.setBackground(new Color(245, 245, 245, 180));
-        add(p2);*/
-
-        //横向图片
-        /*JLabel l15 = new JLabel();
-        ImageIcon icon6 = new ImageIcon("src/image/background4.jpg");
-        l15.setIcon(icon6);
-        l15.setBounds(0, 0, 1273, 790);
-        p17.add(l15);*/
-
-
-
-        //setLocationRelativeTo(null);
 
 
     }

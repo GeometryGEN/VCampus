@@ -6,7 +6,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-//可以修改课程的时间、地点、课容量
+//可以修改课程的时间、地点、课容量   排课功能
 public class Stu_Info extends JPanel {
 
     public static volatile String[][] student_inf=null;
@@ -24,10 +24,10 @@ public class Stu_Info extends JPanel {
 
         table_want.getColumnModel().getColumn(0).setPreferredWidth(160);
         table_want.getColumnModel().getColumn(1).setPreferredWidth(200);
-        table_want.getColumnModel().getColumn(2).setPreferredWidth(100);
-        table_want.getColumnModel().getColumn(3).setPreferredWidth(260);
-        table_want.getColumnModel().getColumn(4).setPreferredWidth(200);
-        table_want.getColumnModel().getColumn(5).setPreferredWidth(220);
+        table_want.getColumnModel().getColumn(2).setPreferredWidth(60);
+        table_want.getColumnModel().getColumn(3).setPreferredWidth(450);
+        table_want.getColumnModel().getColumn(4).setPreferredWidth(150);
+        table_want.getColumnModel().getColumn(5).setPreferredWidth(120);
 
         JScrollPane jsp=new JScrollPane(table_want);
         jsp.setBounds(0,0,1280,420);
