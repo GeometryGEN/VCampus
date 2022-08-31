@@ -30,8 +30,8 @@ public class My_Coursetable extends JPanel{
         DefaultTableModel tableModel;
         String weekS=String.valueOf(week);
         JLabel l1 = new JLabel("第"+weekS+"周课表");
-        l1.setBounds((int) (1075*width_r), (int) (200*height_r), (int) (300*width_r), (int) (75*height_r));
-        Font font = new Font("楷体", Font.BOLD, (int) (22*width_r));
+        l1.setBounds((int) (1075*width_r), (int) (300*height_r), (int) (300*width_r), (int) (75*height_r));
+        Font font = new Font("楷体", Font.BOLD, (int) (25*width_r));
         l1.setFont(font);
         add(l1);
         for (int i=0;i<16;i++){
@@ -50,12 +50,13 @@ public class My_Coursetable extends JPanel{
             My_Coursetable.tableDate[i][12][0]="第十三节";
         }
 
-        My_Coursetable.tableDate[0][1][1]="test1";
-        My_Coursetable.tableDate[1][1][1]="test2";
-
         String[] columnNames={"节数","星期一","星期二","星期三","星期四","星期五"};
         tableModel=new DefaultTableModel(tableDate[week-1],columnNames);
-        table=new JTable(tableModel);
+        table=new JTable(tableModel){
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
         //scrollPane.setViewportView(table);
         scrollPane=new JScrollPane(table);
         table.setRowHeight(48);//设置行宽

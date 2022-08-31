@@ -294,9 +294,11 @@ public class ClientToServerThread extends Thread {
                 if(message.getType().equals(MessageType.MESSAGE_CURRICULUM_QUERY_RET)){
                     Client_curriculum.showConsultResult((ArrayList<Course>)message.getData());
                 }
+                else if(message.getType().equals(MessageType.MESSAGE_CURRICULUM_MY_CHOOSING_RET)){
+                    Client_curriculum.show_choosable((ArrayList<Course>)message.getData());
+                }
                 else if(message.getType().equals(MessageType.MESSAGE_CURRICULUM_LIST_ALL_RET)){
-                    if(myInfo.getType()==1)Client_curriculum.showallCourse((ArrayList<Course>)message.getData());
-                    if(myInfo.getType()==3)Client_curriculum.admin_all_course((ArrayList<Course>)message.getData());
+                    Client_curriculum.admin_all_course((ArrayList<Course>)message.getData());
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_CURRICULUM_LIST_APPLICATION_RET)){
                     Client_curriculum.showApplyResult((ArrayList<Opencourse>)message.getData());

@@ -28,17 +28,22 @@ public class Choosing_Course extends JPanel {
         //小头像
             setLayout(null);
 
-        String[] tableTitle={"课程编号","课程名","时间","任课老师","地点","选择"};
+        String[] tableTitle={"课程编号","课程名","时间","任课老师","课容量","地点","选择"};
         DefaultTableModel dtm=new DefaultTableModel(selectcourse,tableTitle);
-        JTable table_want=new JTable(dtm);
+        JTable table_want=new JTable(dtm){
+                public boolean isCellEditable(int row, int column) {
+                        return false;
+                }
+        };
                 table_want.setFont(new Font("宋体",Font.BOLD,16));
 
-                table_want.getColumnModel().getColumn(0).setPreferredWidth(90);
+                table_want.getColumnModel().getColumn(0).setPreferredWidth(70);
                 table_want.getColumnModel().getColumn(1).setPreferredWidth(180);
                 table_want.getColumnModel().getColumn(2).setPreferredWidth(450);
-                table_want.getColumnModel().getColumn(3).setPreferredWidth(170);
-                table_want.getColumnModel().getColumn(4).setPreferredWidth(150);
-                table_want.getColumnModel().getColumn(5).setPreferredWidth(100);
+                table_want.getColumnModel().getColumn(3).setPreferredWidth(100);
+                table_want.getColumnModel().getColumn(4).setPreferredWidth(50);
+                table_want.getColumnModel().getColumn(5).setPreferredWidth(150);
+                table_want.getColumnModel().getColumn(5).setPreferredWidth(80);
 
                 //支持滚动
         JScrollPane jsp=new JScrollPane(table_want);
@@ -51,10 +56,10 @@ public class Choosing_Course extends JPanel {
                         DefaultTableCellRenderer tcr = new DefaultTableCellRenderer() {
                                 @Override
                                 public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-                                        if (column!=5) {
+                                        if (column!=6) {
                                                 setBackground(Color.white);
                                         }else {
-                                                setBackground(new Color(60,179,113));
+                                                setBackground(new Color(43, 88, 255));
                                         }
                                         return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
                                 }
@@ -71,13 +76,16 @@ public class Choosing_Course extends JPanel {
         table_want.addMouseListener(new MouseListener() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                        if(table_want.getSelectedColumn()==5){
+                        if(table_want.getSelectedColumn()==6){
                                 Course choose=new Course();
                                 try
                                 {
                                     String id=(String)table_want.getValueAt(table_want.getSelectedRow(),0);
                                     choose.setId(id);
+                                    choose.setSize(Integer.valueOf((String)table_want.getValueAt(table_want.getSelectedRow(),4)));
+                                    choose.setTimestring((String)table_want.getValueAt(table_want.getSelectedRow(),3));
                                     Client_curriculum.requireToChoose(choose);
+                                    Client_curriculum.Require_suitable();
                                 }catch(IOException ex){
                                         throw new RuntimeException(ex);
                                 }
@@ -107,7 +115,6 @@ public class Choosing_Course extends JPanel {
                 }
         });
         table_want.setRowHeight(50);
-
 
 
     }
