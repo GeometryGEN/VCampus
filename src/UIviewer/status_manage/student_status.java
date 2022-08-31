@@ -28,7 +28,7 @@ public class student_status extends JPanel {
         JLabel image = new JLabel();
         int icon1_width=160;
         int icon1_height=320;
-        String IDcard=myInfo.getId();
+        String IDcard=iat.student.getStudent_idcard();
     //    Client_status.setId(myInfo.getId());  //否则查找学生，id为自身的，识别线程
         //Client_status.getphoto(IDcard);
         FileOutputStream fileOutputStream = new FileOutputStream("src/image/"+IDcard+".jpg");

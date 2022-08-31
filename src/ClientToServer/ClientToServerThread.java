@@ -261,6 +261,9 @@ public class ClientToServerThread extends Thread {
                 else if(message.getType().equals(MessageType.MESSAGE_QICQ_FRIEND_OFFLINE_RET)){
                     Client_qicq.Require_friend_list();
                 }
+                else if (message.getType().equals(MessageType.MESSAGE_QICQ_ADD_FRIEND_SUCCEED)) {
+                    Client_qicq.add_friend_succeed();
+                }
                 else if(message.getType().equals(MessageType.MESSAGE_QICQ_ADD_FRIEND_FAIL_CANNOT_FIND_USER)){
                     Client_qicq.add_friend_fail();
                 }
