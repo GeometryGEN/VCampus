@@ -98,7 +98,25 @@ public class ShoppingHall extends JPanel {
         btnNewButton_2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null,"XXX,你妈妈给你带来了你最爱的旺仔雪饼！");
+                try {
+                    List<Product> t = Client_shop.checktypeProduct("饼干");
+                    String[][] temp = new String[t.size()][];
+                    for(int i =0;i<t.size();i++){
+                        String[] tt =new String[5];
+                        tt[0]=String.valueOf(t.get(i).getProduct_id());
+                        tt[1]=t.get(i).getProduct_name();
+                        tt[2]=String.valueOf(t.get(i).getProduct_price());
+                        tt[3]=String.valueOf(t.get(i).getProduct_currentNumbers());
+                        tt[4]="1";
+                        temp[i]=tt;
+                    }
+                    setShoptable(temp);
+                    ShoppingHall f12=new ShoppingHall();
+                    panel.add(f12,"f12");
+                    cardLayout.show(panel, "f12");
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
         add(btnNewButton_2);

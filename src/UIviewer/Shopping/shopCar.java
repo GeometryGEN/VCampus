@@ -35,7 +35,7 @@ public class shopCar extends JPanel {
         DefaultTableModel dtm = new DefaultTableModel(myBook, tableTitle);
         JTable table_want = new JTable(dtm){
             public boolean isCellEditable(int row, int column) {
-                if(column==4) {
+                if(column==2) {
                     return true;
                 }else {return false;}
             }
@@ -43,14 +43,14 @@ public class shopCar extends JPanel {
         table_want.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if(table_want.getSelectedColumn()==5){
+                if(table_want.getSelectedColumn()==4){
                     //购买功能
                     String id= (String) table_want.getValueAt(table_want.getSelectedRow(),0);
                     int Num = Integer.parseInt((String) table_want.getValueAt(table_want.getSelectedRow(),2));
-                    double money= Double.parseDouble((String) table_want.getValueAt(table_want.getSelectedRow(),2));
+                    double money= Double.parseDouble((String) table_want.getValueAt(table_want.getSelectedRow(),3));
                     try {
-                        if(Client_shop.getMoney(myInfo.getId())>=(money*Num)){
-                            Client_shop.buyProduct(myInfo.getId(),id,Num,Client_shop.getMoney(myInfo.getId())-money*Num);
+                        if(Client_shop.getMoney(myInfo.getId())>=(money)){
+                            Client_shop.buyProduct(myInfo.getId(),id,Num,Client_shop.getMoney(myInfo.getId())-money);
                             JOptionPane.showMessageDialog(null,"购买成功！");
                         }else {
                             JOptionPane.showMessageDialog(null,"余额不足！");
@@ -60,7 +60,7 @@ public class shopCar extends JPanel {
                     }
                 }
 
-                if(table_want.getSelectedColumn()==6){
+                if(table_want.getSelectedColumn()==5){
                     //删除功能
                 }
             }
