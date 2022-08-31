@@ -99,6 +99,7 @@ public class QICQ_manager {
         return msg;
     }
     public void send_online_file(Message msg) throws IOException {
+        System.out.println("sof");
         String to=msg.getGetter();
         msg.setType(MessageType.MESSAGE_QICQ_RECERIVE_FILE);
      //   MyObjectOutputStream oos=new MyObjectOutputStream(ManageServerToClientThread.getThread(to).getSocket().getOutputStream());

@@ -19,23 +19,33 @@ public class add_friend {
         jf.setBackground(Color.white);
 
 
-        JLabel l3 = new JLabel("一卡通:");
-        l3.setFont(new Font("宋体", Font.BOLD, 15));
-        l3.setBounds(20, 20, 250, 25);
-        jf.add(l3);
+        JLabel l1 = new JLabel("一卡通:");
+        l1.setFont(new Font("宋体", Font.BOLD, 15));
+        l1.setBounds(20, 20, 250, 25);
+        jf.add(l1);
         JTextField idCard=new JTextField();
         idCard.setFont(new Font("宋体", Font.BOLD, 12));
         idCard.setBounds(95, 20, 125, 25);
         jf.add(idCard);
         idCard.setColumns(10);
 
-        JLabel l4 = new JLabel("备注:");
-        l4.setFont(new Font("宋体", Font.BOLD, 15));
-        l4.setBounds(20, 60, 250, 25);
-        jf.add(l4);
+        JLabel l2 = new JLabel("分组:");
+        l2.setFont(new Font("宋体", Font.BOLD, 15));
+        l2.setBounds(20, 60, 250, 25);
+        jf.add(l2);
+        JTextField group=new JTextField();
+        group.setFont(new Font("宋体", Font.BOLD, 12));
+        group.setBounds(95, 60, 125, 25);
+        jf.add(group);
+        group.setColumns(10);
+
+        JLabel l3 = new JLabel("备注:");
+        l3.setFont(new Font("宋体", Font.BOLD, 15));
+        l3.setBounds(20, 100, 250, 25);
+        jf.add(l3);
         JTextField nickname=new JTextField();
         nickname.setFont(new Font("宋体", Font.BOLD, 12));
-        nickname.setBounds(95, 60, 125, 25);
+        nickname.setBounds(95, 100, 125, 25);
         jf.add(nickname);
         nickname.setColumns(10);
 
@@ -49,13 +59,12 @@ public class add_friend {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    Client_qicq.add_friend(myInfo.getId(),myInfo.getName(),idCard.getText(),nickname.getText());
+                    Client_qicq.add_friend(myInfo.getId(),group.getText(),idCard.getText(),nickname.getText());
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
             }
         });
-
         jf.getContentPane().setBackground(Color.white);
         jf.setBounds(0,0,400,150);
         jf.setLocationRelativeTo(null);
