@@ -159,7 +159,7 @@ public class Client_status {
 
         manage_status.status_jpanel=student_status.status_panel(width_r,height_r,width-2*(60+icon1_width)*width_r,(1080-70-icon1_height)*height_r,iat);
         manage_status.status_jpanel.setBounds((int)((60+icon1_width)*width_r),(int)((47+icon1_height)*height_r), (int)(width-2*(60+icon1_width)*width_r),(int)((1080-70-icon1_height)*height_r));
-   //     manage_status.add(manage_status.status_jpanel,0);
+        manage_status.manage_panel.add(manage_status.status_jpanel,0);
         //需要改这个
         manage_status.search_panel.setVisible(false);
         manage_status.status_jpanel.setVisible(true);
