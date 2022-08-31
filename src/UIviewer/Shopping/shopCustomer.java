@@ -18,6 +18,7 @@ import UIviewer.login.functionChoose;
 import net.coobird.thumbnailator.Thumbnails;
 import ClientToServer.myInfo;
 
+import static UIviewer.Shopping.ShoppingHall.resetshoptable;
 import static UIviewer.Shopping.ShoppingHall.setShoptable;
 
 public class shopCustomer extends JPanel {
@@ -92,12 +93,26 @@ public class shopCustomer extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
-                String[][]temp={{"2222"}};
-                setShoptable(temp);
-                ShoppingHall f11=new ShoppingHall();
-                ShoppingHall.setShoptable(temp);
-                panel.add(f11,"f11");
-                cardLayout.show(panel, "f11");
+                List<Product> t = null;
+                try {
+                    t = Client_shop.returnAllProduct();
+                    String[][] temp = new String[t.size()][];
+                    for(int i =0;i<t.size();i++){
+                        String[] tt =new String[4];
+                        tt[0]=t.get(i).getProduct_name();
+                        tt[2]=String.valueOf(t.get(i).getProduct_currentNumbers());
+                        tt[1]=String.valueOf(t.get(i).getProduct_price());
+                        tt[3]=String.valueOf(t.get(i).getProduct_currentNumbers());
+                        temp[i]=tt;
+                    }
+                    setShoptable(temp);
+                    ShoppingHall f11=new ShoppingHall();
+                    panel.add(f11,"f11");
+                    cardLayout.show(panel, "f11");
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
+
             }
         });
         add(b1);
@@ -112,10 +127,10 @@ public class shopCustomer extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
-              shopCar f2=new shopCar();
                 try {
+                    resetshoptable();
                     List<ProductPair> p = Client_shop.checkReadyToBuy(myInfo.getId());
-                    HashMap<Integer, Integer> all = new HashMap<Integer, Integer>();
+                    HashMap<Integer, Integer> all = new HashMap<>();
                     if(p!=null){
                         for (ProductPair productPair : p) {
                             if (all.get(productPair.getId()) != null) {
@@ -142,11 +157,13 @@ public class shopCustomer extends JPanel {
                                 temp[i]=tt;
                             }
                             shopCar.setMyBook(temp);
+                            System.out.println(temp.length);
                         }
                     }
                     else {
                         System.out.println("空");
                     }
+                    shopCar f2=new shopCar();
                     panel.add(f2,"f2");
                     cardLayout.show(panel,"f2");
 
@@ -167,8 +184,8 @@ public class shopCustomer extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
-                OrderHistory f3=new OrderHistory();
                 try {
+                    resetshoptable();
                     List<ProductPair> p = Client_shop.checkBuyed(myInfo.getId());
                     HashMap<Integer, Integer> all = new HashMap<Integer, Integer>();
                     if (p != null) {
@@ -201,11 +218,12 @@ public class shopCustomer extends JPanel {
                     } else {
                         System.out.println("空");
                     }
+                    OrderHistory f3=new OrderHistory();
+                    panel.add(f3,"f3");
+                    cardLayout.show(panel,"f3");
                 }catch (Exception ex) {
                     throw new RuntimeException(ex);
                 }
-                panel.add(f3,"f3");
-                cardLayout.show(panel,"f3");
             }
         });
         add(b3);
