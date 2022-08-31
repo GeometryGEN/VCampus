@@ -89,7 +89,7 @@ public class Course_manager {
             x.point=rs.getDouble("point");
             x.size=rs.getInt("size");
             x.id=rs.getString("id");
-            x.class_time=change(rs.getString("time"));
+            if(rs.getString("time")!=null) x.class_time=change(rs.getString("time"));
             x.setTimestring(rs.getString("time"));
             courses.add(x);
         }
@@ -109,7 +109,7 @@ public class Course_manager {
             x.point=rs.getDouble("point");
             x.size=rs.getInt("size");
             x.id=rs.getString("id");
-            x.class_time=change(rs.getString("time"));
+            if(rs.getString("time")!=null) x.class_time=change(rs.getString("time"));
             x.setTimestring(rs.getString("time"));
             courses.add(x);
         }
@@ -138,7 +138,7 @@ public class Course_manager {
                 x.size=rs1.getInt("size");
                 x.id=rs1.getString("id");
                 x.setTimestring(rs1.getString("time"));
-                x.class_time=change(rs1.getString("time"));
+                if(rs1.getString("time")!=null) x.class_time=change(rs1.getString("time"));
                 courses.add(x);
             }
         }
@@ -280,21 +280,18 @@ public class Course_manager {
         st.executeUpdate();
 
     }
-    public void approve(String course_id,Course c) throws SQLException {
+    public void approve(Course c) throws SQLException {
         String sql="update opencourse set status=2, comment=? where id=?;";
         PreparedStatement st= conn.prepareStatement(sql);
         st.setString(1,"同意开课");
-        st.setString(2,course_id);
+        st.setString(2,c.id);
         st.executeUpdate();
-        sql="insert into curriculum(name,time,point,teacher,size,id,classroom) values(?,?,?,?,?,?,?);";
+        sql="insert into curriculum(name,point,teacher,size,id,classroom) values(?,?,?,?,'新开课','待定');";
         st= conn.prepareStatement(sql);
         st.setString(1,c.name);
-        st.setString(2,c.timestring);
-        st.setDouble(3,c.point);
-        st.setString(4,c.teacher);
-        st.setInt(5,c.size);
-        st.setString(6,c.id);
-        st.setString(7,c.classroom);
+        st.setDouble(2,c.point);
+        st.setString(3,c.teacher);
+        st.setInt(4,c.size);
         st.executeUpdate();
     }
     public ArrayList<Opencourse> list_tea_opencourse(String id) throws SQLException{

@@ -26,7 +26,12 @@ public static volatile String[][] checkcourse=null;
         setLayout(null);
         String[] tableTitle={"课程编号","课程名","任课老师","课程学分","课容量","通过","退回"};
         DefaultTableModel dtm=new DefaultTableModel(checkcourse,tableTitle);
-        JTable table_want=new JTable(dtm);
+        JTable table_want=new JTable(dtm)
+        {
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
         table_want.setFont(new Font("宋体",Font.BOLD,20));
         table_want.getColumnModel().getColumn(0).setPreferredWidth(150);
         table_want.getColumnModel().getColumn(1).setPreferredWidth(190);
@@ -47,6 +52,7 @@ public static volatile String[][] checkcourse=null;
                     addCourse.setSize(Integer.valueOf((String) table_want.getValueAt(table_want.getSelectedRow(),4)));
                     try {
                         Client_curriculum.Require_AgreeAddCourse(addCourse);
+                        Client_curriculum.Require_all_application();
                     } catch (IOException ex) {
                         throw new RuntimeException(ex);
                     }
@@ -54,7 +60,7 @@ public static volatile String[][] checkcourse=null;
                 if(table_want.getSelectedColumn()==6){
                    String reason=JOptionPane.showInputDialog(null,"请输入拒绝原因:");
                     try {
-                        Client_curriculum.Require_RefuseAddCourse(reason);
+                        Client_curriculum.Require_RefuseAddCourse((String) table_want.getValueAt(table_want.getSelectedRow(),0),reason);
                     } catch (IOException ex) {
                         throw new RuntimeException(ex);
                     }
