@@ -132,8 +132,8 @@ public class Client_curriculum {
             Scheduling.courses[count][0]=course.getId();
             Scheduling.courses[count][1]=course.getName();
             Scheduling.courses[count][2]=course.getTeacher();
-            Scheduling.courses[count][2]=String.valueOf(course.getSize());
-            Scheduling.courses[count][4]=course.getTimestring();
+            Scheduling.courses[count][4]=String.valueOf(course.getSize());
+            Scheduling.courses[count][3]=course.getTimestring();
             Scheduling.courses[count][5]=course.getClassroom();
             count++;
         }

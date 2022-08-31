@@ -129,6 +129,12 @@ public class Scheduling extends JPanel {
                     } catch (IOException ex) {
                         throw new RuntimeException(ex);
                     }
+
+                }
+                try {
+                    Client_curriculum.RequireallCourse();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
                 }
             }
         });
