@@ -35,6 +35,7 @@ public class Course_manager {
         int[][][] a = new int[17][6][14];
         int week_l,week_r,day,sec_l,sec_r;
         String ss[]=s.split(",");
+        System.out.println(ss.length);
         for(int i=0;i<ss.length;i++){
             int index=ss[i].indexOf("星期");
             switch (ss[i].substring(index+2, index+3)){
@@ -55,6 +56,7 @@ public class Course_manager {
                     break;
             }
             int index1=ss[i].indexOf("-");
+            System.out.println(index1);
             week_l=Integer.parseInt(ss[i].substring(0,index1));
             int index2=ss[i].indexOf("周");
             week_r=Integer.parseInt(ss[i].substring(index1+1,index2));
@@ -89,7 +91,7 @@ public class Course_manager {
             x.point=rs.getDouble("point");
             x.size=rs.getInt("size");
             x.id=rs.getString("id");
-            x.class_time=change(rs.getString("time"));
+            if(rs.getString("time")!=null) x.class_time=change(rs.getString("time"));
             x.setTimestring(rs.getString("time"));
             courses.add(x);
         }
@@ -109,7 +111,7 @@ public class Course_manager {
             x.point=rs.getDouble("point");
             x.size=rs.getInt("size");
             x.id=rs.getString("id");
-            x.class_time=change(rs.getString("time"));
+            if(rs.getString("time")!=null) x.class_time=change(rs.getString("time"));
             x.setTimestring(rs.getString("time"));
             courses.add(x);
         }
@@ -138,7 +140,7 @@ public class Course_manager {
                 x.size=rs1.getInt("size");
                 x.id=rs1.getString("id");
                 x.setTimestring(rs1.getString("time"));
-                x.class_time=change(rs1.getString("time"));
+                if(rs1.getString("time")!=null) x.class_time=change(rs1.getString("time"));
                 courses.add(x);
             }
         }
@@ -159,6 +161,7 @@ public class Course_manager {
             }
         }
         int confict=0;
+        c.class_time=change(c.timestring);
         for(int p=1;p<=16;p++){
             for(int q=1;q<=5;q++){
                 for(int r=1;r<=13;r++){
@@ -197,8 +200,37 @@ public class Course_manager {
         st.executeUpdate();
         return message;
     }
+    public ArrayList<Course> list_I_can_choose() throws SQLException {
+        ArrayList<Course>courses=new ArrayList<>();
+        String sql="select * from curriculum order by id;";
+        PreparedStatement st=conn.prepareStatement(sql);
+        ResultSet rs=st.executeQuery();
+        while (rs.next()){
+            sql="select * from elective where stu_id=? and course_id=?;";
+            st=conn.prepareStatement(sql);
+            st.setString(1,id);
+            st.setString(2,rs.getString("id"));
+            ResultSet rs1=st.executeQuery();
+            if(rs1.next()){
+
+            }
+            else {
+                Course x=new Course();
+                x.name=rs.getString("name");
+                x.teacher=rs.getString("teacher");
+                x.classroom=rs.getString("classroom");
+                x.point=rs.getDouble("point");
+                x.size=rs.getInt("size");
+                x.id=rs.getString("id");
+                if(rs.getString("time")!=null) x.class_time=change(rs.getString("time"));
+                x.setTimestring(rs.getString("time"));
+                courses.add(x);
+            }
+        }
+        return courses;
+    }
     public void drop(String s) throws SQLException {
-        String sql="delete from curriculum where course_id=? and (stu_id=? or tea_id=?);";
+        String sql="delete from elective where course_id=? and stu_id=?;";
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,s);
         st.setString(2,id);
@@ -280,21 +312,18 @@ public class Course_manager {
         st.executeUpdate();
 
     }
-    public void approve(String course_id,Course c) throws SQLException {
+    public void approve(Course c) throws SQLException {
         String sql="update opencourse set status=2, comment=? where id=?;";
         PreparedStatement st= conn.prepareStatement(sql);
         st.setString(1,"同意开课");
-        st.setString(2,course_id);
+        st.setString(2,c.id);
         st.executeUpdate();
-        sql="insert into curriculum(name,time,point,teacher,size,id,classroom) values(?,?,?,?,?,?,?);";
+        sql="insert into curriculum(name,point,teacher,size,id,classroom) values(?,?,?,?,'新开课','待定');";
         st= conn.prepareStatement(sql);
         st.setString(1,c.name);
-        st.setString(2,c.timestring);
-        st.setDouble(3,c.point);
-        st.setString(4,c.teacher);
-        st.setInt(5,c.size);
-        st.setString(6,c.id);
-        st.setString(7,c.classroom);
+        st.setDouble(2,c.point);
+        st.setString(3,c.teacher);
+        st.setInt(4,c.size);
         st.executeUpdate();
     }
     public ArrayList<Opencourse> list_tea_opencourse(String id) throws SQLException{

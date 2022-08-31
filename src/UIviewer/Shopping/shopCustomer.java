@@ -41,7 +41,7 @@ public class shopCustomer extends JPanel {
     public shopCustomer() throws Exception {
         String name=myInfo.getName();
         getName(name);
-        String money=String.valueOf(myInfo.getMoney());
+        double money=Client_shop.getMoney(myInfo.getId());
         setBounds(0,0, (int) (1273*width_r), (int) (784*height_r));
         setLayout(null);
 
@@ -74,11 +74,12 @@ public class shopCustomer extends JPanel {
         List<Product> t = Client_shop.returnAllProduct();
         String[][] temp = new String[t.size()][];
         for(int i =0;i<t.size();i++){
-            String[] tt =new String[4];
-            tt[0]=t.get(i).getProduct_name();
-            tt[2]=String.valueOf(t.get(i).getProduct_currentNumbers());
-            tt[1]=String.valueOf(t.get(i).getProduct_price());
+            String[] tt =new String[5];
+            tt[0]=String.valueOf(t.get(i).getProduct_id());
+            tt[1]=t.get(i).getProduct_name();
+            tt[2]=String.valueOf(t.get(i).getProduct_price());
             tt[3]=String.valueOf(t.get(i).getProduct_currentNumbers());
+            tt[4]="1";
             temp[i]=tt;
         }
         ShoppingHall.setShoptable(temp);
@@ -124,11 +125,12 @@ public class shopCustomer extends JPanel {
                     t = Client_shop.returnAllProduct();
                     String[][] temp = new String[t.size()][];
                     for(int i =0;i<t.size();i++){
-                        String[] tt =new String[4];
-                        tt[0]=t.get(i).getProduct_name();
-                        tt[2]=String.valueOf(t.get(i).getProduct_currentNumbers());
-                        tt[1]=String.valueOf(t.get(i).getProduct_price());
+                        String[] tt =new String[5];
+                        tt[0]=String.valueOf(t.get(i).getProduct_id());
+                        tt[1]=t.get(i).getProduct_name();
+                        tt[2]=String.valueOf(t.get(i).getProduct_price());
                         tt[3]=String.valueOf(t.get(i).getProduct_currentNumbers());
+                        tt[4]="1";
                         temp[i]=tt;
                     }
                     setShoptable(temp);
@@ -177,8 +179,8 @@ public class shopCustomer extends JPanel {
                             String[][] temp = new String[book.size()][];
                             for(int i =0;i<book.size();i++){
                                 String[] tt =new String[4];
-                                tt[0]=book.get(i).getProduct_name();
-                                tt[1]=String.valueOf(book.get(i).getProduct_id());
+                                tt[0]=String.valueOf(book.get(i).getProduct_id());
+                                tt[1]=book.get(i).getProduct_name();
                                 tt[2]=String.valueOf(all.get(book.get(i).getProduct_id()));  //数量
                                 tt[3]=String.valueOf(book.get(i).getProduct_price()*all.get(book.get(i).getProduct_id()));
                                 temp[i]=tt;
@@ -233,9 +235,9 @@ public class shopCustomer extends JPanel {
                         if (book.size() != 0) {
                             String[][] temp = new String[book.size()][];
                             for (int i = 0; i < book.size(); i++) {
-                                String[] tt = new String[4];
-                                tt[0] = book.get(i).getProduct_name();
-                                tt[1] = String.valueOf(book.get(i).getProduct_id());
+                                String[] tt = new String[5];
+                                tt[0] = String.valueOf(book.get(i).getProduct_id());
+                                tt[1] = book.get(i).getProduct_name();
                                 tt[2] = String.valueOf(all.get(book.get(i).getProduct_id()));  //数量
                                 tt[3] = String.valueOf(book.get(i).getProduct_price() * all.get(book.get(i).getProduct_id()));
                                 temp[i] = tt;

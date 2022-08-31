@@ -8,12 +8,15 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import ClientToServer.myInfo;
+import UIviewer.login.functionChoose;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import static UIviewer.Shopping.shopCustomer.cardLayout;
 import static UIviewer.Shopping.shopCustomer.panel;
+import static UIviewer.login.forgetPWD.forgetPWDUI;
 
 public class ShoppingHall extends JPanel {
     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
@@ -52,6 +55,36 @@ public class ShoppingHall extends JPanel {
         b11.setBackground(new Color(255,127,80));
         b11.setForeground(new Color(255,255,255));
         b11.setFocusPainted(false);
+        b11.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
+                String searchInfo=textField.getText();
+                try {
+                    List<Product> t = Client_shop.checktypeProduct(searchInfo);
+                    if(t!=null){
+                        String[][] temp = new String[t.size()][];
+                        for(int i =0;i<t.size();i++){
+                            String[] tt =new String[5];
+                            tt[0]=String.valueOf(t.get(i).getProduct_id());
+                            tt[1]=t.get(i).getProduct_name();
+                            tt[2]=String.valueOf(t.get(i).getProduct_price());
+                            tt[3]=String.valueOf(t.get(i).getProduct_currentNumbers());
+                            tt[4]="1";
+                            temp[i]=tt;
+                        }
+                        setShoptable(temp);
+                    }else {
+                        System.out.println("kong");
+                    }
+                    ShoppingHall f112=new ShoppingHall();
+                    panel.add(f112,"f112");
+                    cardLayout.show(panel, "f112");
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
         add(b11);
 
         JButton btnNewButton_1 = new JButton("零食");
@@ -69,11 +102,12 @@ public class ShoppingHall extends JPanel {
                     List<Product> t = Client_shop.checktypeProduct("零食");
                     String[][] temp = new String[t.size()][];
                     for(int i =0;i<t.size();i++){
-                        String[] tt =new String[4];
-                        tt[0]=t.get(i).getProduct_name();
-                        tt[2]=String.valueOf(t.get(i).getProduct_currentNumbers());
-                        tt[1]=String.valueOf(t.get(i).getProduct_price());
+                        String[] tt =new String[5];
+                        tt[0]=String.valueOf(t.get(i).getProduct_id());
+                        tt[1]=t.get(i).getProduct_name();
+                        tt[2]=String.valueOf(t.get(i).getProduct_price());
                         tt[3]=String.valueOf(t.get(i).getProduct_currentNumbers());
+                        tt[4]="1";
                         temp[i]=tt;
                     }
                     setShoptable(temp);
@@ -97,7 +131,25 @@ public class ShoppingHall extends JPanel {
         btnNewButton_2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null,"XXX,你妈妈给你带来了你最爱的旺仔雪饼！");
+                try {
+                    List<Product> t = Client_shop.checktypeProduct("饼干");
+                    String[][] temp = new String[t.size()][];
+                    for(int i =0;i<t.size();i++){
+                        String[] tt =new String[5];
+                        tt[0]=String.valueOf(t.get(i).getProduct_id());
+                        tt[1]=t.get(i).getProduct_name();
+                        tt[2]=String.valueOf(t.get(i).getProduct_price());
+                        tt[3]=String.valueOf(t.get(i).getProduct_currentNumbers());
+                        tt[4]="1";
+                        temp[i]=tt;
+                    }
+                    setShoptable(temp);
+                    ShoppingHall f12=new ShoppingHall();
+                    panel.add(f12,"f12");
+                    cardLayout.show(panel, "f12");
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
         add(btnNewButton_2);
@@ -247,23 +299,39 @@ public class ShoppingHall extends JPanel {
             ex.printStackTrace();
         }
 
-
             table_want.addMouseListener(new MouseListener() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     if (table_want.getSelectedColumn() == 5) {
                         //购物车
-                        String id= (String) table_want.getValueAt(table_want.getSelectedRow(),0);
+                        int id= Integer.parseInt((String) table_want.getValueAt(table_want.getSelectedRow(),0));
+                        int Num = Integer.parseInt((String) table_want.getValueAt(table_want.getSelectedRow(),4));
                         try {
-                            Client_shop.buyProduct(myInfo.getId(),id,1,1);
+                            Client_shop.addToShopCar(myInfo.getId(),id,Num);
+                            JOptionPane.showMessageDialog(null,"添加购物车成功！");
                         } catch (Exception ex) {
                             throw new RuntimeException(ex);
                         }
                     }
-
                     if (table_want.getSelectedColumn() == 6) {
-                        System.out.println("buy");
 
+                        String id= (String) table_want.getValueAt(table_want.getSelectedRow(),0);
+                        double money= Double.parseDouble((String) table_want.getValueAt(table_want.getSelectedRow(),2));
+                        int Num = Integer.parseInt((String) table_want.getValueAt(table_want.getSelectedRow(),4));
+                        try {
+                            if(Client_shop.getMoney(myInfo.getId())>=(money*Num)){
+                                Client_shop.buyProduct(myInfo.getId(),id,Num,Client_shop.getMoney(myInfo.getId())-money*Num);
+                                JOptionPane.showMessageDialog(null,"购买成功！");
+                                Client_shop.setId(String.valueOf(myInfo.getType()));
+                                Client_shop.setIdcard(myInfo.getId());
+                                functionChoose.jf.setContentPane(new shopCustomer());
+                                functionChoose.jf.setTitle("shopCustomer");
+                            }else {
+                                JOptionPane.showMessageDialog(null,"余额不足！");
+                            }
+                        } catch (Exception ex) {
+                            throw new RuntimeException(ex);
+                        }
                     }
                 }
 

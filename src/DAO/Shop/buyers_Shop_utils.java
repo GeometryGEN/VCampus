@@ -96,7 +96,7 @@ public class buyers_Shop_utils {
         List<Product> list = new ArrayList<>();
         Connection connection= JDBC_Connector.ConnectMySQL();    //连接数据库
         Statement state = connection.createStatement();
-        String sql="select * from products WHERE Product_type LIKE '%" + type + "%' ";
+        String sql="select * from products WHERE Product_name LIKE '%" + type + "%' ";
         ResultSet rs= state.executeQuery(sql);            //执行sql
         while(rs.next()) {
             Product temp = new Product();
@@ -211,11 +211,10 @@ public class buyers_Shop_utils {
 
     public static Boolean deleteShopCar(String idcard, int id, int num) throws SQLException {
         Connection connection= JDBC_Connector.ConnectMySQL();    //连接数据库
-        String sql="delete from readytobuyproducts where (Stu_Tea_id=? and product_id=? and product_num=?)";
+        String sql="delete from readytobuyproducts where (Stu_Tea_id=? and product_id=?)";
         PreparedStatement ps = connection.prepareStatement(sql);
         ps.setString(1,idcard);
         ps.setInt(2,id);
-        ps.setInt(3,num);
         boolean re = ps.executeUpdate()>0;
         JDBC_Connector.close(null, ps, connection);
         if(re)
@@ -227,11 +226,23 @@ public class buyers_Shop_utils {
     }
 
 
+
+    public static double getMoney(String idcard) throws SQLException {
+        Connection connection=JDBC_Connector.ConnectMySQL();
+        String sql="select * from students where Student_idcard=? ";
+        PreparedStatement st= connection.prepareStatement(sql);
+        st.setString(1, idcard);
+        ResultSet rs=st.executeQuery();
+        double money = 0;
+        while(rs.next()){
+            money=rs.getDouble("Student_money");
+        }
+        return money;
+    }
+
     public static void main(String[] args) throws Exception {
 //        if(checkCertainProduct(111)!=null)
-        List<ProductPair> s = new ArrayList<>();
-        System.out.println(checkCertainProduct(1).getProduct_name());
-        System.out.println(checkCertainProduct(2).getProduct_name());
+        System.out.println(deleteShopCar("09020201",1,1));
 //        else
 //            System.out.println("checkCertainProduct(1).getProduct_name()");
 //        List<Product> list = findTypeProduct("饮料");

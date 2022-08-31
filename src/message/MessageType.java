@@ -88,7 +88,9 @@ public interface MessageType {
     String MESSAGE_CURRICULUM_QUERY="37"; //课程查询 data String(名称，教师，课程号)
     String MESSAGE_CURRICULUM_QUERY_RET="37.1"; //返回课程查询的结果 data类型Arraylist<Course>
     String MESSAGE_CURRICULUM_ADMIN_ARRANGEMENT="38";//管理员排课，安排教室和时间 Data类型Course
-
+    String MESSAGE_CURRICULUM_DROP="39";
+    String MESSAGE_CURRICULUM_MY_CHOOSING="40";
+    String MESSAGE_CURRICULUM_MY_CHOOSING_RET="40.5";
 
     //站内通信
     String MESSAGE_QICQ_ADD_FRIEND="41";
@@ -185,5 +187,13 @@ public interface MessageType {
     String MESSAGE_STATUS_ADMIN_QUERY_FAIL="201.9";
     String MESSAGE_STATUS_CONFIRM="202";
     String MESSAGE_STATUS_CONFIRM_RET="202.5";
+
+    String ADD_TO_SHOPCAR = "133.1111";             //添加购物车
+    String ADD_TO_SHOPCAR_SUCCEED = "133.1111q";
+    String ADD_TO_SHOPCAR_FAILED = "133.1111s";
+
+    String GET_MONEY = "133.11112";             //得到钱
+    String GET_MONEY_SUCCEED = "133.1111q2";
+    String GET_MONEY_FAILED = "133.1111s2";
 
 }

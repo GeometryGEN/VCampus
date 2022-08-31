@@ -1,6 +1,8 @@
 package UIviewer.Shopping;
 import ClientToServer.ClientToServer;
+import DAO.Shop.Product;
 import UIhandler.Library.Client_library;
+import UIhandler.Shop.Client_shop;
 import UIviewer.login.functionChoose;
 import net.coobird.thumbnailator.Thumbnails;
 import UIviewer.Shopping.AddDeleteGoods;
@@ -11,7 +13,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
+
 import ClientToServer.myInfo;
+
+import static UIviewer.Shopping.ShoppingHall.setShoptable;
 
 public class shopAdmin extends JPanel {
     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
@@ -27,7 +33,7 @@ public class shopAdmin extends JPanel {
     }
     public static CardLayout cardLayout=new CardLayout();
 
-    public shopAdmin(){
+    public shopAdmin() throws Exception {
         String name=myInfo.getName();
         getName(name);
         setBounds(0,0, (int) (1273*width_r), (int) (790*height_r));
@@ -38,6 +44,18 @@ public class shopAdmin extends JPanel {
         panel.setLayout(cardLayout);
 //		创建相应面板类的对象
 
+        List<Product> t = Client_shop.returnAllProduct();
+        String[][] temp = new String[t.size()][];
+        for(int i =0;i<t.size();i++){
+            String[] tt =new String[5];
+            tt[0]=String.valueOf(t.get(i).getProduct_id());
+            tt[1]=t.get(i).getProduct_name();
+            tt[2]=String.valueOf(t.get(i).getProduct_price());
+            tt[3]=String.valueOf(t.get(i).getProduct_currentNumbers());
+            tt[4]="1";
+            temp[i]=tt;
+        }
+        AllGoods.setTableDate(temp);
         AllGoods f11=new AllGoods();
         panel.add(f11,"f11");
         cardLayout.show(panel,"f11");
@@ -66,10 +84,26 @@ public class shopAdmin extends JPanel {
         b1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
-                AllGoods f11=new AllGoods();
-                panel.add(f11,"f11");
-                cardLayout.show(panel,"f11");
+                List<Product> t = null;
+                try {
+                    t = Client_shop.returnAllProduct();
+                    String[][] temp = new String[t.size()][];
+                    for(int i =0;i<t.size();i++){
+                        String[] tt =new String[5];
+                        tt[0]=String.valueOf(t.get(i).getProduct_id());
+                        tt[1]=t.get(i).getProduct_name();
+                        tt[2]=String.valueOf(t.get(i).getProduct_price());
+                        tt[3]=String.valueOf(t.get(i).getProduct_currentNumbers());
+                        tt[4]="1";
+                        temp[i]=tt;
+                    }
+                    AllGoods.setTableDate(temp);
+                    AllGoods f11=new AllGoods();
+                    panel.add(f11,"f11");
+                    cardLayout.show(panel,"f11");
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
         add(b1);
