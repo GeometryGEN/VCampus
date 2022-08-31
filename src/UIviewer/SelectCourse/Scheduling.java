@@ -65,6 +65,7 @@ public class Scheduling extends JPanel {
                 String id= (String) table_want.getValueAt(table_want.getSelectedRow(),0);
                 try {
                     Client_curriculum.Require_deleteCourse(id);
+                    Client_curriculum.RequireallCourse();
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }

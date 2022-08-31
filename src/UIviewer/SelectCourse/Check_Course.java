@@ -61,6 +61,7 @@ public static volatile String[][] checkcourse=null;
                    String reason=JOptionPane.showInputDialog(null,"请输入拒绝原因:");
                     try {
                         Client_curriculum.Require_RefuseAddCourse((String) table_want.getValueAt(table_want.getSelectedRow(),0),reason);
+                        Client_curriculum.Require_all_application();
                     } catch (IOException ex) {
                         throw new RuntimeException(ex);
                     }
