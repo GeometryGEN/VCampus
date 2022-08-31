@@ -102,7 +102,6 @@ public class Client_qicq {
         friend_list.show_unread(sender);
     }
     public static void add_friend(String myid, String myname, String number, String nickname) throws IOException {
-        System.out.println(1111);
         Application app=new Application(myid,myname);
         Message message=new Message();
         message.setData(app);
