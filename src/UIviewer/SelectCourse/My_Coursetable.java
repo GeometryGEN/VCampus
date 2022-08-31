@@ -53,10 +53,10 @@ public class My_Coursetable extends JPanel{
             column=table.getColumnModel().getColumn(i);
             if(i==0)
             {
-                column.setPreferredWidth(150);
+                column.setPreferredWidth(70);
             }
             else {
-                column.setPreferredWidth(200);
+                column.setPreferredWidth(300);
             }
 
         }

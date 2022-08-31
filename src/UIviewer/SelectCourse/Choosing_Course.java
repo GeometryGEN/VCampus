@@ -27,7 +27,7 @@ public class Choosing_Course extends JPanel {
         String[] tableTitle={"课程编号","课程名","时间","任课老师","地点","选择"};
         DefaultTableModel dtm=new DefaultTableModel(selectcourse,tableTitle);
         JTable table_want=new JTable(dtm);
-                table_want.setFont(new Font("宋体",Font.BOLD,22));
+                table_want.setFont(new Font("宋体",Font.BOLD,16));
 
                 table_want.getColumnModel().getColumn(0).setPreferredWidth(90);
                 table_want.getColumnModel().getColumn(1).setPreferredWidth(180);

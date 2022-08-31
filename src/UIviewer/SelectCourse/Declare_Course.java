@@ -51,39 +51,6 @@ public class Declare_Course extends JPanel{
         l3.setForeground(new Color(0, 0, 0));
         add(l3);
 
-        //label背景
-        /*JLabel l11 = new JLabel();
-        ImageIcon icon4 = new ImageIcon("src/image/PPT背景图5.jpg");
-        l11.setIcon(icon4);
-        l11.setBounds(15, 130, 285, 680);
-        jf.getContentPane().add(l11);*/
-
-
-        /*JButton btnNewButton_6 = new JButton("安全返回");
-        btnNewButton_6.setBounds(1040, 45, 100, 30);
-        Font myfont2 = new Font("微软雅黑", Font.PLAIN, 16);
-        btnNewButton_6.setFont(myfont2);
-        btnNewButton_6.setBackground(new Color(248, 248, 255));
-        //btnNewButton_1.setForeground(new Color(248, 248, 255));
-        btnNewButton_6.setContentAreaFilled(true);//设置按钮透明
-        //btnNewButton_6.setBorder(null);//取消边框
-
-        add(btnNewButton_6);*/
-
-        //横向图片
-       /* JLabel l12 = new JLabel();
-        ImageIcon icon5 = new ImageIcon("src/image/banner3.png");
-        l12.setIcon(icon5);
-        l12.setBounds(310, 70, 1000, 125);
-        add(l12);*/
-
-        //文字
-        /*JLabel l13 = new JLabel("     功能选择 ");
-        l13.setBounds(320, 200, 200, 75);
-        Font font13 = new Font("微软雅黑", Font.BOLD, 25);
-        l13.setFont(font13);
-        //l13.setForeground(new Color(111,222,0));
-        jf.getContentPane().add(l13);*/
 
         //左侧面板
         JPanel p1 = new JPanel();
@@ -98,22 +65,6 @@ public class Declare_Course extends JPanel{
         lblNewLabel.setBounds(360, 45, 275, 45);
         add(lblNewLabel);
 
-       /* JTextField textField = new JTextField();
-        textField.setFont(new Font("宋体", Font.BOLD, 12));
-        textField.setBounds(550, 125, 275, 35);
-        jf.add(textField);
-        textField.setColumns(10);*/
-
-        /*JLabel lblNewLabel1 = new JLabel("课程编号:");
-        lblNewLabel1.setFont(new Font("宋体", Font.BOLD, 30));
-        lblNewLabel1.setBounds(400, 125, 275, 35);
-        add(lblNewLabel1);
-
-        JTextField textField1 = new JTextField();
-        textField1.setFont(new Font("宋体", Font.BOLD, 22));
-        textField1.setBounds(600, 125, 275, 35);
-        add(textField1);
-        textField1.setColumns(10);*/
 
         JLabel lblNewLabel2 = new JLabel("课程名:");
         lblNewLabel2.setFont(new Font("宋体", Font.BOLD, 30));
