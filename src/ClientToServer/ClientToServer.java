@@ -31,7 +31,7 @@ public class ClientToServer {
     public static MyObjectOutputStream oos=null;
     public MyObjectInputStream ois=null;
     public String serverIP = Message.returnIP();
-    //public String serverIP = "192.168.43.108";
+    //public String serverIP = "10.19.123.88";
 
     public String getIDcard() {
         return switch (ID) {

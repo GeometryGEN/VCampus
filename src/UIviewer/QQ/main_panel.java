@@ -20,6 +20,7 @@ public class main_panel {
     public static JButton close_button;
     public static chat_panel cpn;
     public HashMap<String, ArrayList<Friend>> friend;
+    static button_panel buttonPanel;
 
     public main_panel(int width, int height) throws IOException {
         double width_r=(double)(width)/1920;
@@ -30,15 +31,17 @@ public class main_panel {
         mjp.setBackground(new Color(255,255,255));
         //设置绝对布局
         mjp.setLayout(null);
+        buttonPanel=new button_panel();
+        buttonPanel.setBounds((int)(width_r*1920/3+0),(int)((0)*height_r),(int)(170*width_r),(int)(100*height_r));
+        mjp.add(buttonPanel);
         //返回功能选择模块
         functionChoose.back_from_student_status=new RoundJButton();
         functionChoose.back_from_student_status.setText("返回功能选择");
-        functionChoose.back_from_student_status.setBounds((int)(width_r*1920/3-170),(int)((1080-100)*height_r),(int)(170*width_r),(int)(50*height_r));
-        functionChoose.back_from_student_status.setBackground(new Color(30,111,255));
+        functionChoose.back_from_student_status.setBounds(0,(int)(50*height_r),(int)(170*width_r),(int)(50*height_r));
+        functionChoose.back_from_student_status.setBackground(new Color(96,190,41));
         functionChoose.back_from_student_status.setForeground(new Color(255,255,255));
         functionChoose.back_from_student_status.setFont(new Font("微软雅黑",Font.PLAIN,(int)(22*width_r)));
-        mjp.add(functionChoose.back_from_student_status);
-        mjp.updateUI();
+        buttonPanel.add(functionChoose.back_from_student_status);
         functionChoose.back_from_student_status.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -47,6 +50,19 @@ public class main_panel {
                 functionChoose.jf.setTitle("functionChoose");
             }
         });
+        JButton addFriend= new RoundJButton();
+        addFriend.setText("   添加好友   ");
+        addFriend.setBounds(0,(int)(0*height_r),(int)(170*width_r),(int)(50*height_r));
+        addFriend.setBackground(new Color(30,111,255));
+        addFriend.setForeground(Color.white);
+        addFriend.setFont(new Font("微软雅黑",Font.PLAIN,(int)(22*width_r)));
+        addFriend.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                add_friend.add_friend();
+            }
+        });
+        buttonPanel.add(addFriend);
         //好友列表
         Client_qicq.Require_friend_list();
         friend_list friend_list_panel=new friend_list(1920/3,1080,width_r,height_r,0,0);

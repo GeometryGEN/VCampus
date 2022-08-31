@@ -26,6 +26,10 @@ public class Client_qicq {
         Client_qicq.id = id;
     }
 
+    public static void add_friend_fail() {
+
+    }
+
 
     public void send_file(String src, String sender, String getter, String filename){
         Message message=new Message();
@@ -92,7 +96,7 @@ public class Client_qicq {
     public static void receive_message(String sender){
         friend_list.show_unread(sender);
     }
-    public void add_friend(String myid,String myname,String number,String nickname) throws IOException {
+    public static void add_friend(String myid, String myname, String number, String nickname) throws IOException {
         Application app=new Application(myid,myname);
         Message message=new Message();
         message.setData(app);
@@ -111,12 +115,14 @@ public class Client_qicq {
         message.setData(id);
         message.setType(MessageType.MESSAGE_QICQ_FRIEND_ONLINE);
         oos.writeObject(message);
-    }public static void I_am_offline() throws IOException{
+    }
+    public static void I_am_offline() throws IOException{
         Message message=new Message();
         message.setData(id);
         message.setType(MessageType.MESSAGE_QICQ_FRIEND_OFFLINE);
         oos.writeObject(message);
     }
+
     public static void show_friend(HashMap<String, ArrayList<Friend>> friend){
         friend_list.show_Friend(friend);
     }

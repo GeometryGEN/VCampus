@@ -52,12 +52,14 @@ public class chat_panel extends JPanel {
         for(int i=num-1;i>=0;i--) {
             System.out.println(messages.get(i).getSendTime());
             if(messages.get(i).getSender().equals(myInfo.getId())){
-                insertText(messages.get(i).getSendTime(),Color.black,(int)(22*width_r),1);
-                insertText((String)(messages.get(i).getData()),Color.black,(int)(32*width_r),2);
+                insertText(messages.get(i).getSendTime(),new Color(122,122,123),(int)(16*width_r),1);
+                insertText(myInfo.getName()+"(我)"+":",Color.black,(int)(22*width_r),2);
+                insertText((String)(messages.get(i).getData()),Color.black,(int)(42*width_r),2);
             }
             else{
-                insertText(messages.get(i).getSendTime(),Color.black,(int)(22*width_r),1);
-                insertText((String)(messages.get(i).getData()),Color.red,(int)(32*width_r),0);
+                insertText(messages.get(i).getSendTime(),new Color(122,122,123),(int)(16*width_r),1);
+                insertText(messages.get(i).getSender()+":",Color.red,(int)(22*width_r),0);
+                insertText((String)(messages.get(i).getData()),Color.red,(int)(42*width_r),0);
             }
         }
         JScrollBar scrollBar = new JScrollBar(JScrollBar.VERTICAL) {
@@ -72,10 +74,14 @@ public class chat_panel extends JPanel {
 
         jTextPane.setCaretPosition(doc.getLength());
         jTextPane.setEditable(false);
+
+        jTextPane.insertIcon(new ImageIcon("src/image/QQ/1.jpg"));
+
         jTextPane.updateUI();
         jTextPane.setCaretPosition(jTextPane.getStyledDocument().getLength());
     }
     public chat_panel( int width, int height, double width_r, double height_r, int x, int y, Friend friend){
+        main_panel.buttonPanel.setVisible(false);
         this.friend=friend;
         setLayout(null);
         this.width_r=width_r;
@@ -114,6 +120,7 @@ public class chat_panel extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
+                main_panel.buttonPanel.setVisible(true);
             }
         });
         //输入消息框
