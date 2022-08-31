@@ -166,8 +166,9 @@ public class Declare_Course extends JPanel{
                     opc.setName(textField1.getText());
                     opc.setPoint(Double.valueOf(textField2.getText()));
                     opc.setSize(Integer.valueOf(textField3.getText()));
+                    opc.setTeacher_id(myInfo.getId());
+                    opc.setTeacher(myInfo.getName());
                     Client_curriculum.apply(opc);
-                    JOptionPane.showMessageDialog(null,"课程申报成功！");
 
                 }catch(Exception ex){
                     ex.printStackTrace();

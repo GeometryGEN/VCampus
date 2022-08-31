@@ -246,11 +246,15 @@ public class Course_manager {
         ResultSet rs=st.executeQuery();
         Message message=new Message();
         if(rs.next()){
+            message.setType(MessageType.MESSAGE_CURRICULUM_APPLY_FAIL);
+        }
+        else{
             message.setType(MessageType.MESSAGE_CURRICULUM_APPLY_SUCCEED);
-            sql="select count(*) from opencourse;";
-            st= conn.prepareStatement(sql);
-            rs=st.executeQuery();
-            String newid=String.valueOf(rs.getInt(1));
+            String sql1="select count(*) as total from opencourse;";
+            PreparedStatement st1= conn.prepareStatement(sql1);
+            ResultSet rs1=st1.executeQuery();
+            String newid=String.valueOf(rs1.getInt("total")+1);
+            System.out.println(newid);
             //ServerToClient.add_opencourse(c);
             sql="insert into opencourse(name,teacher_name,teacher_id,point,size,status,id) values(?,?,?,?,?,0,?);";
             st= conn.prepareStatement(sql);
@@ -261,9 +265,6 @@ public class Course_manager {
             st.setInt(5,c.getSize());
             st.setString(6,newid);
             st.executeUpdate();
-        }
-        else{
-            message.setType(MessageType.MESSAGE_CURRICULUM_APPLY_FAIL);
         }
         return message;
     }
@@ -300,6 +301,7 @@ public class Course_manager {
         ResultSet rs=st.executeQuery();
         while(rs.next()){
             Opencourse c=new Opencourse();
+            c.setId(rs.getString("id"));
             c.setName(rs.getString("name"));
             c.setTeacher(rs.getString("teacher_name"));
             c.setPoint(rs.getDouble("point"));

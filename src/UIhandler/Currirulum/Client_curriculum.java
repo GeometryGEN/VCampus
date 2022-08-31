@@ -6,6 +6,7 @@ import DAO.Curriculum.Opencourse;
 import UIviewer.SelectCourse.Check_Coustatus;
 import UIviewer.SelectCourse.Choosing_Course;
 import UIviewer.SelectCourse.Search_result;
+import User.Student;
 import message.Message;
 import message.MessageType;
 import utils.MyObjectOutputStream;
@@ -131,6 +132,22 @@ public class Client_curriculum {
         message.setData(course);
         message.setType(MessageType.MESSAGE_CURRICULUM_APPLY);
         oos.writeObject(message);
+    }
+    public static void show_my_students(ArrayList<Student>students){
+        int n=students.size();
+        ConsultCourse_stuInfo.consult_stu=new String[n][2];
+        Iterator b=students.iterator();
+        int count=0;
+        while(b.hasNext())
+        {
+            Student s=(Student) b.next();
+            ConsultCourse_stuInfo.consult_stu[count][0]=s.getStudent_idcard();
+            ConsultCourse_stuInfo.consult_stu[count][1]=s.getStudent_name();
+            count++;
+        }
+        ConsultCourse_stuInfo stuInfo=new ConsultCourse_stuInfo();
+        Selcourse_teacher.panel.add(stuInfo,"stuInfo");
+        Selcourse_teacher.cardLayout.show(Selcourse_teacher.panel,"stuInfo");
     }
     public static void showApplyResult(ArrayList<Opencourse>opencourses) {
         int n=opencourses.size();
