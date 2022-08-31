@@ -308,8 +308,9 @@ public class ServerToClientThread extends Thread{
                     }
                 }
                 else if(m.getType().equals(MessageType.CHECK_CERTAIN_PRODUCT)){
-                    Product ps  = buyers_Shop_utils.checkCertainProduct(Integer.parseInt(m.getSender()));
+                    Product ps  = buyers_Shop_utils.checkCertainProduct(m.getCode());
                     if(ps!=null){
+                        System.out.println(ps.getProduct_name());
                         sendback.setData(ps);
                         sendback.setType(MessageType.CHECK_CERTAIN__PRODUCT_SUCCEED);
                         oos.writeObject(sendback);

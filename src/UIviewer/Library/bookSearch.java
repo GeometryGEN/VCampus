@@ -2,7 +2,6 @@ package UIviewer.Library;
 import UIhandler.Library.Client_library;
 import UIviewer.Library.readLib;
 import net.coobird.thumbnailator.Thumbnails;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -22,10 +21,10 @@ public class bookSearch extends JPanel {
 
     public bookSearch(){
         setLayout(null);
-        setBackground(Color.BLUE);
+        //setBackground(Color.BLUE);
         //馆藏查询
         JPanel p11=new JPanel();
-        p11.setBackground(Color.green);
+        //p11.setBackground(Color.green);
         p11.setBounds(0,0, (int) (1273*width_r), (int) (650*height_r));
         JLabel pic1 = new JLabel();
         int icon1_width= 1280;
@@ -92,5 +91,4 @@ public class bookSearch extends JPanel {
         add(p21);
         add(p11);
     }
-
 }

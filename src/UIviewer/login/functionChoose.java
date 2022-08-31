@@ -320,16 +320,20 @@ public class functionChoose {
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
                 try {
+                    jf.remove(fc_panel);
                     if(myInfo.getType()==1)
                     {
-                        new Selcourse();
+                        jf.setContentPane(new Selcourse());
+                        jf.setTitle("Selcourse");
                     }
                     else if(myInfo.getType()==2)
                     {
-                        new Selcourse_teacher();
+                        jf.setContentPane(new Selcourse_teacher());
+                        jf.setTitle("Selcourse_teacher");
                     }
                     else {
-                        new Selcourse_director();
+                        jf.setContentPane(new Selcourse_director());
+                        jf.setTitle("Selcourse_director");
                     }
 
                 } catch (Exception ex) {
