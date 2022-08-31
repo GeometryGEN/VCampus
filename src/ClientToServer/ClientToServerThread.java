@@ -279,7 +279,6 @@ public class ClientToServerThread extends Thread {
                     Client_qicq.add_friend_succeed();
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_QICQ_ADD_FRIEND_FAIL_CANNOT_FIND_USER)){
-                    System.out.println(222);
                     Client_qicq.add_friend_fail();
                 }
                 System.out.println("next");

@@ -1,5 +1,6 @@
 package UIviewer.SelectCourse;
 
+import DAO.Curriculum.Course;
 import DAO.Library.Book_borrower;
 import UIhandler.Currirulum.Client_curriculum;
 import UIhandler.Library.Client_library;
@@ -112,5 +113,30 @@ public class Scheduling extends JPanel {
         //btnNewButton_1.setForeground(new Color(248, 248, 255));
         btnNewButton_6.setContentAreaFilled(true);//设置按钮透明
         add(btnNewButton_6);
+        btnNewButton_6.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int n=table_want.getRowCount();
+
+                for(int i=0;i<n;i++){
+                    Course c=new Course();
+                    c.setId((String) table_want.getValueAt(i,0));
+                    c.setTimestring((String) table_want.getValueAt(i,3));
+                    c.setClassroom((String) table_want.getValueAt(i,5));
+                    c.setSize(Integer.valueOf((String) table_want.getValueAt(i,4)));
+                    try {
+                        Client_curriculum.arrange(c);
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+
+                }
+                try {
+                    Client_curriculum.RequireallCourse();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
     }
 }
