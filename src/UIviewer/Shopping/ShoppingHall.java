@@ -182,7 +182,7 @@ public class ShoppingHall extends JPanel {
         p1 = new JPanel();
         p1.setBounds(0, 0, 340, 780);
         //p1.setBackground(null);
-        p1.setBackground(new Color(255,160,122, 180));
+        p1.setBackground(new Color(255,160,122, 120));
         //panel1.BackColor = Color.FromArgb(80, 255, 0, 0);
         //p1.setOpaque(false);
         add(p1);
