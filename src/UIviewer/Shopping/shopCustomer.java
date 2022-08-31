@@ -11,6 +11,8 @@ import UIviewer.login.functionChoose;
 import net.coobird.thumbnailator.Thumbnails;
 import ClientToServer.myInfo;
 
+import static UIviewer.Shopping.ShoppingHall.setShoptable;
+
 public class shopCustomer extends JPanel {
     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
     int width=(int ) screensize.getWidth(); //得到宽度
@@ -72,6 +74,8 @@ public class shopCustomer extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
+                String[][]temp={{"2222"}};
+                setShoptable(temp);
                 ShoppingHall f11=new ShoppingHall();
                 panel.add(f11,"f11");
                 cardLayout.show(panel, "f11");
