@@ -204,7 +204,7 @@ public class ShoppingHall extends JPanel {
 
 
 
-        String[] tableTitle = {"商品名称","商品编号","价格","剩余数量","加入购物车","购买"};
+        String[] tableTitle = {"商品名称","商品编号","价格","剩余数量","数量","加入购物车","购买"};
         //数据
 
         DefaultTableModel dtm = new DefaultTableModel(shoptable, tableTitle);
@@ -245,7 +245,7 @@ public class ShoppingHall extends JPanel {
             table_want.addMouseListener(new MouseListener() {
                 @Override
                 public void mouseClicked(MouseEvent e) {
-                    if (table_want.getSelectedColumn() == 4) {
+                    if (table_want.getSelectedColumn() == 5) {
                         //购物车
                         String id= (String) table_want.getValueAt(table_want.getSelectedRow(),0);
                         try {
@@ -255,7 +255,7 @@ public class ShoppingHall extends JPanel {
                         }
                     }
 
-                    if (table_want.getSelectedColumn() == 5) {
+                    if (table_want.getSelectedColumn() == 6) {
                         System.out.println("buy");
 
                     }
