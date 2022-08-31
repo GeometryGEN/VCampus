@@ -62,6 +62,13 @@ public class shopCar extends JPanel {
 
                 if(table_want.getSelectedColumn()==5){
                     //删除功能
+                    int id= Integer.parseInt(((String) table_want.getValueAt(table_want.getSelectedRow(),0)));
+                    try {
+                        Client_shop.deleteReadyToBuy(myInfo.getId(),id,0);
+                        JOptionPane.showMessageDialog(null,"删除成功！");
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
                 }
             }
 
@@ -99,7 +106,7 @@ public class shopCar extends JPanel {
             DefaultTableCellRenderer tcr = new DefaultTableCellRenderer() {
                 @Override
                 public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-                    if (column!=5&&column!=6) {
+                    if (column!=5&&column!=4) {
                         setBackground(Color.white);
                     }else {
                         setBackground(new Color(250,128,114,100));
