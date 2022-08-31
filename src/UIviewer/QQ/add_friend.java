@@ -68,6 +68,6 @@ public class add_friend {
     }
 
     public static void add_friend_fail() {
-        //JOptionPane.showMessageDialog(null, "You input is "+str, str, JOptionPane.PLAIN_MESSAGE);
+        JOptionPane.showMessageDialog(null, "未查找到该用户", "WARNING!", JOptionPane.PLAIN_MESSAGE);
     }
 }

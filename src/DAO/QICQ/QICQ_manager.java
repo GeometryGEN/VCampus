@@ -137,7 +137,7 @@ public class QICQ_manager {
     }
     public void add_friend(Message message) throws IOException, SQLException {
         Application app=(Application)message.getData();
-        String sql="select * from teachers where Student_idcard=?;";
+        String sql="select * from students where Student_idcard=?;";
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,app.to_id);
         ResultSet rs=st.executeQuery();
