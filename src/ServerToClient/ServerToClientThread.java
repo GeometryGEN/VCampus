@@ -179,7 +179,8 @@ public class ServerToClientThread extends Thread{
                     oos.writeObject(sendback);
                 }
                 else if(m.getType().equals(MessageType.MESSAGE_CURRICULUM_APPLY)){
-                    new Course_manager(userid).apply((Opencourse)m.getData());
+                    sendback=new Course_manager(userid).apply((Opencourse)m.getData());
+                    oos.writeObject(sendback);
                 }
                 else if(m.getType().equals(MessageType.MESSAGE_CURRICULUM_SHOW_STU)) {
                     sendback.setData(new Course_manager(userid).get_student((String) m.getData()));

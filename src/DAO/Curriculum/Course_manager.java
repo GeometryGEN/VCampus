@@ -253,14 +253,15 @@ public class Course_manager {
             String sql1="select count(*) as total from opencourse;";
             PreparedStatement st1= conn.prepareStatement(sql1);
             ResultSet rs1=st1.executeQuery();
+            rs1.next();
             String newid=String.valueOf(rs1.getInt("total")+1);
             System.out.println(newid);
             //ServerToClient.add_opencourse(c);
             sql="insert into opencourse(name,teacher_name,teacher_id,point,size,status,id) values(?,?,?,?,?,0,?);";
             st= conn.prepareStatement(sql);
             st.setString(1,c.getName());
-            st.setString(2,c.getTeacher_id());
-            st.setString(3,c.getTeacher());
+            st.setString(2,c.getTeacher());
+            st.setString(3,c.getTeacher_id());
             st.setDouble(4,c.getPoint());
             st.setInt(5,c.getSize());
             st.setString(6,newid);
