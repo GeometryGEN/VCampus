@@ -104,6 +104,13 @@ public class Client_curriculum {
         oos.writeObject(message);
     }
 
+    public static void Require_show_my_students(String Id)throws IOException{
+        Message message=new Message();
+        message.setData(Id);
+        message.setType(MessageType.MESSAGE_CURRICULUM_SHOW_STU);
+        oos.writeObject(message);
+
+    }
     public static void showConsultResult(ArrayList<Course> course)throws IOException{
         int n=course.size();
         Search_result.search_result=new String[n][6];
@@ -126,6 +133,16 @@ public class Client_curriculum {
         cardLayout.show(panel,"search");
 
     }
+
+    //显示该门课哪些学生选择
+    public static void show_student_chosen() throws IOException{
+        ConsultCourse_stuInfo.consult_stu=null;
+        Message message=new Message();
+
+
+    }
+
+
     public static void apply(Opencourse course) throws IOException{
         Check_Coustatus.checkcourse_status=null;
         Message message=new Message();
@@ -133,6 +150,8 @@ public class Client_curriculum {
         message.setType(MessageType.MESSAGE_CURRICULUM_APPLY);
         oos.writeObject(message);
     }
+
+
     public static void show_my_students(ArrayList<Student>students){
         int n=students.size();
         ConsultCourse_stuInfo.consult_stu=new String[n][2];
