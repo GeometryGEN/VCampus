@@ -117,7 +117,7 @@ public interface MessageType {
     String MESSAGE_QICQ_FRIEND_OFFLINE="48.2";
     String MESSAGE_QICQ_FRIEND_OFFLINE_RET="48.6";
 
-    String RETURN_STUDENT_INFO="100";           //得到学籍信息
+/*    String RETURN_STUDENT_INFO="100";           //得到学籍信息
     String RETURN_STUDENT_INFO_SUCCEED="101";   //得到学籍信息成功
     String RETURN_STUDENT_INFO_FAILED="102";    //得到学籍信息失败
 
@@ -131,7 +131,7 @@ public interface MessageType {
 
     String RENEW_STUDENT_INFO="100.11";           //RENEW学籍信息
     String RENEW_STUDENT_INFO_SUCCEED="101.11";   //RENEW学籍信息成功
-    String RENEW_STUDENT_INFO_FAILED="102.11";    //RENEW学籍信息失败
+    String RENEW_STUDENT_INFO_FAILED="102.11";    //RENEW学籍信息失败*/
 
 
     String RETURN_ALL_PRODUCT="106";          //请求得到所有商品

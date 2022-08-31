@@ -455,7 +455,8 @@ public class ServerToClientThread extends Thread{
                         //socket.close();
                     }
                 }*/
-                else if(m.getType().equals(MessageType.MESSAGE_STATUS_STU_ENTER)){
+                
+                if(m.getType().equals(MessageType.MESSAGE_STATUS_STU_ENTER)){
                     ImageAndTable iat=new ImageAndTable();
                     iat.student  = User_SM_utils.returnStudentAllInfo((String) m.getData());
                     iat.image=Image_SM_utils.readDBImage((String) m.getData());
