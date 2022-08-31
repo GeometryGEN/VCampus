@@ -322,14 +322,15 @@ public class Client_curriculum {
     public static void Require_AgreeAddCourse(Course c) throws IOException {
         Message message=new Message();
         message.setData(c);
-        message.setType(MessageType.MESSAGE_CURRICULUM_APPLY_SUCCEED);
+        message.setType(MessageType.MESSAGE_CURRICULUM_APPLICATION_APPROVE);
         oos.writeObject(message);
     }
 
-    public static void Require_RefuseAddCourse(String reason) throws IOException {
+    public static void Require_RefuseAddCourse(String id,String reason) throws IOException {
         Message message=new Message();
+        message.setGetter(id);
         message.setData(reason);
-        message.setType(MessageType.MESSAGE_CURRICULUM_APPLY_FAIL);
+        message.setType(MessageType.MESSAGE_CURRICULUM_APPLICATION_REFUSE);
         oos.writeObject(message);
     }
     //public

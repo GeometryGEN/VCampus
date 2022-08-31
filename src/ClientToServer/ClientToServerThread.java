@@ -180,6 +180,20 @@ public class ClientToServerThread extends Thread {
                     Client_shop.setSign_delete("3");
                 }
 
+                else if(message.getType().equals(MessageType.ADD_TO_SHOPCAR_SUCCEED)){
+                    Client_shop.setSign_add("2");
+                }
+                else if(message.getType().equals(MessageType.ADD_TO_SHOPCAR_FAILED)){
+                    Client_shop.setSign_add("3");
+                }
+
+                else if(message.getType().equals(MessageType.GET_MONEY_SUCCEED)){
+                    Client_shop.setCurrent_money((double) message.getData());
+                    Client_shop.setSign_delete("2");
+                }
+                else if(message.getType().equals(MessageType.GET_MONEY_FAILED)){
+                    Client_shop.setSign_delete("3");
+                }
 
                 else if(message.getType().equals(MessageType.CHECK_CERTAIN__PRODUCT_SUCCEED)){
                     Product ps = (Product) message.getData();

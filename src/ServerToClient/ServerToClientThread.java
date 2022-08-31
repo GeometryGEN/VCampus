@@ -219,7 +219,7 @@ public class ServerToClientThread extends Thread{
                 }
                 else if(m.getType().equals(MessageType.MESSAGE_CURRICULUM_APPLICATION_APPROVE)){
                     Course c=(Course) m.getData();
-                    new Course_manager(userid).approve(m.getGetter(),c);
+                    new Course_manager(userid).approve(c);
                 }
                 else if(m.getType().equals(MessageType.MESSAGE_CURRICULUM_ADMIN_ARRANGEMENT)){
                     Course c=(Course) m.getData();
@@ -360,6 +360,28 @@ public class ServerToClientThread extends Thread{
                     }
                 }
 
+                else if(m.getType().equals(MessageType.ADD_TO_SHOPCAR)){
+                    String idcard = m.getSender();
+                    ProductPair s = (ProductPair) m.getData();
+                    boolean b = buyers_Shop_utils.addToShopCar(idcard,s.getId(),s.getNum());
+                    if(b){
+                        sendback.setType(MessageType.ADD_TO_SHOPCAR_SUCCEED);
+                        oos.writeObject(sendback);
+                    } else{
+                        sendback.setType(MessageType.ADD_TO_SHOPCAR_FAILED);
+                        oos.writeObject(sendback);
+//                        socket.close();
+                    }
+                }
+
+                else if(m.getType().equals(MessageType.GET_MONEY)){
+                    String idcard = m.getSender();
+                    double b = buyers_Shop_utils.getMoney(idcard);
+                    sendback.setType(MessageType.GET_MONEY_SUCCEED);
+                    sendback.setData(b);
+                    oos.writeObject(sendback);
+                }
+
                 else if(m.getType().equals(MessageType.DELETE_PRODUCT)){
                     if(Admin_Shop_utils.deleteProduct(Integer.parseInt(m.getSender()))){
                         sendback.setType(MessageType.DELETE_PRODUCT_SUCCEED);
@@ -445,7 +467,7 @@ public class ServerToClientThread extends Thread{
                 }
                 else if(m.getType().equals(MessageType.RENEW_STUDENT_INFO)){
                     Student st = (Student)m.getData();
-                    Boolean stu  = Admin_SM_utils.changeStudentInfo(st.getStudent_idcard(),st);
+                    boolean stu  = Admin_SM_utils.changeStudentInfo(st.getStudent_idcard(),st);
                     if(stu){
                         sendback.setType(MessageType.RENEW_STUDENT_INFO_SUCCEED);
                         oos.writeObject(sendback);             //将message对象回复客户端
