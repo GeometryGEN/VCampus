@@ -13,12 +13,6 @@ public class Check_Course extends JPanel{
         JPanel p11=new JPanel();
         p11.setBounds(0,0,1273,784);
 
-        //小头像
-        /*JLabel touxiang = new JLabel();
-        ImageIcon icon = new ImageIcon("src/image/logodz.png");
-        touxiang.setIcon(icon);
-        touxiang.setBounds(20, 20, 100, 100);
-        jf.getContentPane().add(touxiang);*/
 
         //文字
         JLabel l1 = new JLabel("  你好！");
