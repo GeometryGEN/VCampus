@@ -1,13 +1,26 @@
 package UIviewer.SelectCourse;
+import DAO.Curriculum.Course;
+import DAO.Library.Book_borrower;
+import UIhandler.Currirulum.Client_curriculum;
+import UIhandler.Library.Client_library;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.io.IOException;
 
 public class Check_Course extends JPanel{
 public static volatile String[][] checkcourse=null;
+    Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
+    int width=(int ) screensize.getWidth(); //得到宽度
+    int height=(int ) screensize.getHeight();//获得高度
+    double width_r=(double)(width)/1273;
+    double height_r=(double)(height)/790;
     public Check_Course()
     {
         setLayout(null);
@@ -22,11 +35,79 @@ public static volatile String[][] checkcourse=null;
         table_want.getColumnModel().getColumn(4).setPreferredWidth(170);
         table_want.getColumnModel().getColumn(5).setPreferredWidth(150);
         table_want.getColumnModel().getColumn(6).setPreferredWidth(150);
+        table_want.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if(table_want.getSelectedColumn()==5){
+                    Course addCourse=new Course();
+                    addCourse.setId((String) table_want.getValueAt(table_want.getSelectedRow(),0));
+                    addCourse.setName((String) table_want.getValueAt(table_want.getSelectedRow(),1));
+                    addCourse.setTeacher((String) table_want.getValueAt(table_want.getSelectedRow(),2));
+                    addCourse.setPoint(Double.valueOf((String) table_want.getValueAt(table_want.getSelectedRow(),3)));
+                    addCourse.setSize(Integer.valueOf((String) table_want.getValueAt(table_want.getSelectedRow(),4)));
+                    try {
+                        Client_curriculum.Require_AgreeAddCourse(addCourse);
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                }
+                if(table_want.getSelectedColumn()==6){
+                   String reason=JOptionPane.showInputDialog(null,"请输入拒绝原因:");
+                    try {
+                        Client_curriculum.Require_RefuseAddCourse(reason);
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                }
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                try {
+                    DefaultTableCellRenderer tcr = new DefaultTableCellRenderer() {
+                        @Override
+                        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                            if (column!=8&&column!=7) {
+                                setBackground(Color.white);
+                            }else {
+                                setBackground(new Color(255,255,255));
+                                //setForeground(new Color(255,255,255));
+                                //setFont(new Font("微软雅黑",Font.BOLD,18));
+                            }
+                            return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+                        }
+                    };
+
+                    for (int i = 0; i < table_want.getColumnCount(); i++)
+                    {
+                        table_want.getColumn(table_want.getColumnName(i)).setCellRenderer(tcr);
+                    }
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
 
         table_want.setRowHeight(50);
         //支持滚动
         JScrollPane jsp=new JScrollPane(table_want);
-        jsp.setBounds(0,0,1280,580);
+        jsp.setBounds(0,0,(int)(1280*width_r),(int)(580*height_r));
         add(jsp);
 
         try {
@@ -40,7 +121,7 @@ public static volatile String[][] checkcourse=null;
                         setBackground(new Color(60,179,113));
                     }
                     else {
-                        setBackground(new Color(176,23,31));
+                        setBackground(new Color(60,179,113));
                     }
                     return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
                 }
@@ -53,14 +134,6 @@ public static volatile String[][] checkcourse=null;
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-
-
-
-
-
-
-
-
 
     }
 

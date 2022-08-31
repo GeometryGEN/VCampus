@@ -5,6 +5,7 @@ import DAO.Library.Book_admin;
 import DAO.Library.Book_borrower;
 import DAO.Library.Punishment;
 import UIviewer.Library.*;
+import UIviewer.login.functionChoose;
 import message.Message;
 import message.MessageType;
 import utils.MyObjectOutputStream;
@@ -16,6 +17,8 @@ import java.util.HashSet;
 import java.util.Iterator;
 import utils.MyObjectInputStream;
 import utils.MyObjectOutputStream;
+
+import javax.swing.*;
 
 import static UIviewer.Library.readLib.cardLayout;
 import static UIviewer.Library.readLib.panel;
@@ -229,6 +232,40 @@ public class Client_library {
         message.setData(punishment);
         message.setType(MessageType.MESSAGE_LIBRARY_PAY);
         oos.writeObject(message);
+    }
+    public static void admin_enter()throws IOException{
+        Message message=new Message();
+        message.setType(MessageType.MESSAGE_LIBRARY_ENTER);
+        oos.writeObject(message);
+    }
+    public static void admin_enter_result(ArrayList<Book_admin>books){
+        int n= books.size();
+        System.out.println(n);
+        AllBooks.tableDate=new String[n][11];
+        for(int i=0;i<n;i++)
+        {
+            Book_admin book=books.get(i);
+            AllBooks.tableDate[i][0]=book.getID();
+            AllBooks.tableDate[i][1]=book.getName();
+            AllBooks.tableDate[i][2]=book.getAuthor();
+            AllBooks.tableDate[i][3]=book.getPublisher();
+            AllBooks.tableDate[i][4]=book.getCountry();
+            AllBooks.tableDate[i][5]=String.valueOf(book.getPrice());
+            if(book.getAvailable()==1) {
+                AllBooks.tableDate[i][6]="可借";
+            }
+            else{
+                AllBooks.tableDate[i][6]="借出";
+            }
+            AllBooks.tableDate[i][7]=book.getDate_borrow();
+            AllBooks.tableDate[i][8]=book.getBorrow_to();
+            AllBooks.tableDate[i][9]=book.getDate_expire();
+            AllBooks.tableDate[i][10]=book.getPlace();
+        }
+        functionChoose.jf.setContentPane(new adminLib());
+        functionChoose.jf.setTitle("adminLib");
+        functionChoose.jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        functionChoose.jf.setVisible(true);
     }
 }
 

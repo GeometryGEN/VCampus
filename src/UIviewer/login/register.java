@@ -10,7 +10,7 @@ import java.awt.event.ActionListener;
 
 public class register {
 
-    public static void registerUI(ClientToServer ucs) {
+    public static void registerUI() {
         JFrame jf = new JFrame("register");
         //东南大学logo
         JLabel l1 = new JLabel(); // 创建一个标签组件对象
@@ -143,7 +143,7 @@ public class register {
                         s.setStudent_age(age);
                         s.setStudent_email(mail);
                         s.setStudent_gender(gender);
-                        if(ucs.registerStudent(s)) {
+                        if(ClientToServer.registerStudent(s)) {
                             System.out.println("学生"+name+"注册成功！");
                             JOptionPane.showMessageDialog(jf, "注册成功!");
                             jf.dispose();
@@ -158,7 +158,7 @@ public class register {
                         t.setTeacher_gender(gender);
                         t.setTeacher_email(mail);
                         t.setTeacher_age(age);
-                        if(ucs.registerTeacher(t)) {
+                        if(ClientToServer.registerTeacher(t)) {
                             System.out.println("教师"+name+"注册成功！");
                             JOptionPane.showMessageDialog(jf, "注册成功!");
                             jf.dispose();

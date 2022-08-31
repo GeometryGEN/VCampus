@@ -137,7 +137,7 @@ public class QICQ_manager {
     }
     public void add_friend(Message message) throws IOException, SQLException {
         Application app=(Application)message.getData();
-        String sql="select * from teachers where Student_idcard=?;";
+        String sql="select * from students where Student_idcard=?;";
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,app.to_id);
         ResultSet rs=st.executeQuery();
@@ -161,6 +161,7 @@ public class QICQ_manager {
                 st1.setString(2,app.to_id);
                 st1.setString(3,message.getSendTime());
                 st1.executeUpdate();
+
             }
             else {
                 Message msg=new Message();
@@ -170,7 +171,9 @@ public class QICQ_manager {
             }
 
         }
-
+        Message msg=new Message();
+        msg.setType(MessageType.MESSAGE_QICQ_ADD_FRIEND_SUCCEED);
+        ManageServerToClientThread.getThread(id).oos.writeObject(msg);
     }
     public Message list_my_application() throws SQLException, IOException {
         ArrayList<Application>app=new ArrayList<>();

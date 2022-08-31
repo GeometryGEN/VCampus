@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import ClientToServer.myInfo;
 public class student_status_table extends JPanel{
@@ -72,7 +73,7 @@ public class student_status_table extends JPanel{
         text30.setEditable(false);
         text32.setEditable(false);
     }
-    public student_status_table(double width_r, double height_r, double width, double height,String IDcard) throws Exception {
+    public student_status_table(double width_r, double height_r, double width, double height,Student sinfo) throws Exception {
         setBackground(new Color(255,255,255));
         setBorder(BorderFactory.createEtchedBorder());
         setBorder(BorderFactory.createLineBorder(new Color(232,237,239)));
@@ -85,12 +86,11 @@ public class student_status_table extends JPanel{
         title_label.setFont(title_font);
         title_label.setForeground(new Color(102,102,102));
         add(title_label);
-        Student sinfo = new Student();
-        if(myInfo.getType()==3){
+        /*if(myInfo.getType()==3){
             sinfo = Client_status.returnStatus_Admin(IDcard);
         }else{
             sinfo = Client_status.returnStatusInfo(IDcard);
-        }
+        }*/
         //信息表格
         text1= text_title("一卡通号",width_r, height_r,50,80);
         add(text1);
@@ -184,7 +184,7 @@ public class student_status_table extends JPanel{
                 public void actionPerformed(ActionEvent e) {
                     manage_status.status_jpanel.setVisible(false);
                     manage_status.search_panel.setVisible(true);
-                    Client_status.resetS_S();
+              //      Client_status.resetS_S();
                 }
             });
             jb3=new JButton("提交学籍信息");
@@ -216,14 +216,20 @@ public class student_status_table extends JPanel{
                         String campus=text28.getText().trim();temp.setCampus(campus);
                         String due_gradute=text30.getText().trim();temp.setDue_graduate_date(due_gradute);
                         String email=text32.getText().trim();temp.setStudent_email(email);
-                        try {
+                        /*try {
                             if(Client_status.renewInfo(temp))
                                 JOptionPane.showMessageDialog(null, "修改学生信息成功!");
                             else
                                 JOptionPane.showMessageDialog(null, "修改学生信息失败!");
                         } catch (Exception ex) {
                             throw new RuntimeException(ex);
+                        }*/
+                        try {
+                            Client_status.change(temp);
+                        } catch (IOException ex) {
+                            throw new RuntimeException(ex);
                         }
+
                         switch_to_unedit();
                         jb3.setVisible(false);
                         jb1.setVisible(true);
@@ -241,7 +247,7 @@ public class student_status_table extends JPanel{
             functionChoose.back_from_student_status.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    Client_status.resetS();
+               //     Client_status.resetS();
                     functionChoose.jf.setContentPane(functionChoose.fc_panel);
                 }
             });

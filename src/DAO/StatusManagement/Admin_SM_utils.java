@@ -16,7 +16,7 @@ import java.sql.SQLException;
 public class Admin_SM_utils {
 
     //可能空格有问题
-    public static boolean changeStudentInfo(String useridcard, Student s) throws SQLException {
+    public static boolean changeStudentInfo(Student s) throws SQLException {
         Connection connection= JDBC_Connector.ConnectMySQL();
         String sql = "update students set Student_id= ?,Student_name= ?,Student_age= ?,Student_gender= ?,Student_email= ?,Student_class= ?,Student_nation= ?,Student_birthday= ?,Student_native_place= ?,Student_major= ?,Student_type= ?,Student_Due_graduate_date= ?,Student_Campus= ?,Student_Sclass= ?,Students_shenfenzheng= ? where Student_idcard=? ";
         PreparedStatement ps = connection.prepareStatement(sql);
@@ -39,9 +39,9 @@ public class Admin_SM_utils {
         boolean re = ps.executeUpdate()>0;
         JDBC_Connector.close(null, ps, connection);
         if(re)
-            System.out.println("学生"+useridcard+"信息修改成功！");
+            System.out.println("学生"+s.getStudent_idcard()+"信息修改成功！");
         else
-            System.out.println("学生"+useridcard+"信息修改失败！");
+            System.out.println("学生"+s.getStudent_idcard()+"信息修改失败！");
         JDBC_Connector.close(null, ps, connection);
         return re;
     }

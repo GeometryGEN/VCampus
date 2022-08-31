@@ -41,12 +41,12 @@ public class ShoppingHall extends JPanel {
 
         JTextField textField=new JTextField();
         textField.setFont(new Font("微软雅黑", Font.BOLD, (int) (18*width_r)));
-        textField.setBounds((int) (30*width_r), (int) (50*height_r), (int) (280*width_r), (int) (40*height_r));
+        textField.setBounds((int) (460*width_r), (int) (30*height_r), (int) (280*width_r), (int) (40*height_r));
         add(textField);
         textField.setColumns((int) (10*height_r));
 
         JButton b11=new JButton("检索");
-        b11.setBounds((int) (120*width_r), (int) (100*height_r), (int) (80*width_r), (int) (40*height_r));
+        b11.setBounds((int) (830*width_r), (int) (30*height_r), (int) (80*width_r), (int) (40*height_r));
         Font myfont = new Font("楷体", Font.BOLD, (int) (20*width_r));
         b11.setFont(myfont);
         b11.setBackground(new Color(255,127,80));
@@ -55,8 +55,8 @@ public class ShoppingHall extends JPanel {
         add(b11);
 
         JButton btnNewButton_1 = new JButton("零食");
-        btnNewButton_1.setBounds(30, 150, 100, 30);
-        Font myfont1 = new Font("宋体 ", Font.PLAIN, 18);
+        btnNewButton_1.setBounds((int) (30*width_r), (int) (150*height_r), (int) (100*width_r), (int) (30*height_r));
+        Font myfont1 = new Font("宋体 ", Font.PLAIN, (int) (18*width_r));
         btnNewButton_1.setFont(myfont1);
         btnNewButton_1.setContentAreaFilled(false);//设置按钮透明
         btnNewButton_1.setBorder(null);//取消边框
@@ -89,7 +89,7 @@ public class ShoppingHall extends JPanel {
         add(btnNewButton_1);
 
         JButton btnNewButton_2 = new JButton("饼干");
-        btnNewButton_2.setBounds(200, 150, 100, 30);
+        btnNewButton_2.setBounds((int) (200*width_r), (int) (150*height_r), (int) (100*width_r), (int) (30*height_r));
         btnNewButton_2.setFont(myfont1);
         btnNewButton_2.setContentAreaFilled(false);//设置按钮透明
         btnNewButton_2.setForeground(new Color(255,255,255));
@@ -104,7 +104,7 @@ public class ShoppingHall extends JPanel {
         add(btnNewButton_2);
 
         JButton btnNewButton_3 = new JButton("图书");
-        btnNewButton_3.setBounds(30, 220, 100, 30);
+        btnNewButton_3.setBounds((int) (30*width_r), (int) (220*height_r), (int) (100*width_r), (int) (30*height_r));
         btnNewButton_3.setFont(myfont1);
         btnNewButton_3.setContentAreaFilled(false);//设置按钮透明
         btnNewButton_3.setForeground(new Color(255,255,255));
@@ -119,7 +119,7 @@ public class ShoppingHall extends JPanel {
         add(btnNewButton_3);
 
         JButton btnNewButton_4 = new JButton("薯片");
-        btnNewButton_4.setBounds(200, 220, 100, 30);
+        btnNewButton_4.setBounds((int) (200*width_r), (int) (220*height_r), (int) (100*width_r), (int) (30*height_r));
         btnNewButton_4.setFont(myfont1);
         btnNewButton_4.setContentAreaFilled(false);//设置按钮透明
         btnNewButton_4.setForeground(new Color(255,255,255));
@@ -134,7 +134,7 @@ public class ShoppingHall extends JPanel {
         add(btnNewButton_4);
 
         JButton btnNewButton_5 = new JButton("话梅");
-        btnNewButton_5.setBounds(30, 290, 100, 30);
+        btnNewButton_5.setBounds((int) (30*width_r), (int) (290*height_r), (int) (100*width_r), (int) (30*height_r));
         btnNewButton_5.setFont(myfont1);
         btnNewButton_5.setContentAreaFilled(false);//设置按钮透明
         btnNewButton_5.setForeground(new Color(255,255,255));
@@ -149,7 +149,7 @@ public class ShoppingHall extends JPanel {
         add(btnNewButton_5);
 
         JButton btnNewButton_6 = new JButton("衬衫");
-        btnNewButton_6.setBounds(200, 290, 100, 30);
+        btnNewButton_6.setBounds((int) (200*width_r), (int) (290*height_r), (int) (100*width_r), (int) (30*height_r));
         btnNewButton_6.setFont(myfont1);
         btnNewButton_6.setContentAreaFilled(false);//设置按钮透明
         btnNewButton_6.setForeground(new Color(255,255,255));
@@ -164,7 +164,7 @@ public class ShoppingHall extends JPanel {
         add(btnNewButton_6);
 
         JButton btnNewButton_7 = new JButton("薯片");
-        btnNewButton_7.setBounds(30, 360, 100, 30);
+        btnNewButton_7.setBounds((int) (30*width_r), (int) (360*height_r), (int) (100*width_r), (int) (30*height_r));
         btnNewButton_7.setFont(myfont1);
         btnNewButton_7.setContentAreaFilled(false);//设置按钮透明
         btnNewButton_7.setForeground(new Color(255,255,255));
@@ -179,7 +179,7 @@ public class ShoppingHall extends JPanel {
         add(btnNewButton_7);
 
         JButton btnNewButton_8 = new JButton("泡面");
-        btnNewButton_8.setBounds(200, 360, 100, 30);
+        btnNewButton_8.setBounds((int) (200*width_r), (int) (360*height_r), (int) (100*width_r), (int) (30*height_r));
         btnNewButton_8.setFont(myfont1);
         btnNewButton_8.setContentAreaFilled(false);//设置按钮透明
         btnNewButton_8.setForeground(new Color(255,255,255));
@@ -196,7 +196,7 @@ public class ShoppingHall extends JPanel {
         //左侧面板
         JPanel p1=new JPanel();
         p1 = new JPanel();
-        p1.setBounds(0, 0, 340, 780);
+        p1.setBounds(0, 0, (int) (340*width_r), (int) (780*height_r));
         //p1.setBackground(null);
         p1.setBackground(new Color(255,160,122, 120));
         //panel1.BackColor = Color.FromArgb(80, 255, 0, 0);
@@ -211,7 +211,13 @@ public class ShoppingHall extends JPanel {
         DefaultTableModel dtm = new DefaultTableModel(shoptable, tableTitle);
         JTable table_want = new JTable(dtm){
             public boolean isCellEditable(int row, int column) {
-                return false;
+                if(column==4)
+                {
+                    return true;
+                }
+                else {
+                    return false;
+                }
             }
         };
 
@@ -223,7 +229,7 @@ public class ShoppingHall extends JPanel {
             DefaultTableCellRenderer tcr = new DefaultTableCellRenderer() {
                 @Override
                 public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-                    if (column!=4 && column!=5) {
+                    if (column!=5&&column!=6) {
                         setBackground(Color.white);
                     }else {
                         setBackground(new Color(250,128,114,100));
@@ -297,7 +303,7 @@ public class ShoppingHall extends JPanel {
             });
             //支持滚动
             JScrollPane jsp = new JScrollPane(table_want);
-            jsp.setBounds(340, 0, 940, 680);
+            jsp.setBounds((int) (340*width_r), (int) (100*height_r), (int) (940*width_r), (int) (460*height_r));
             add(jsp);
             table_want.setRowHeight(30);
             setVisible(true);

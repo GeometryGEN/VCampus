@@ -75,7 +75,7 @@ public class shopAdmin extends JPanel {
         add(b1);
 
         JButton b2=new JButton("录入/删除商品");
-        b2.setBounds((int) (370*width_r), (int) (100*height_r), (int) (250*width_r), (int) (50*height_r));
+        b2.setBounds((int) (505*width_r), (int) (100*height_r), (int) (250*width_r), (int) (50*height_r));
         b2.setFont(myfont1);
         b2.setContentAreaFilled(false);//设置按钮透明
         b2.setFocusPainted(false);
@@ -91,20 +91,7 @@ public class shopAdmin extends JPanel {
         });
         add(b2);
 
-        JButton b3=new JButton("开罚单");
-        b3.setBounds((int) (640*width_r), (int) (100*height_r), (int) (250*width_r), (int) (50*height_r));
-        b3.setFont(myfont1);
-        b3.setContentAreaFilled(false);//设置按钮透明
-        b3.setFocusPainted(false);
-        b3.setForeground(new Color(248, 248, 255));
-        b3.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
-                //cardLayout.show(panel, "f3");
-            }
-        });
-        add(b3);
+
 
         JButton b4=new JButton("退出商店管理");
         b4.setBounds((int) (910*width_r), (int) (100*height_r), (int) (250*width_r), (int) (50*height_r));

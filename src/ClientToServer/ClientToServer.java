@@ -5,6 +5,7 @@ import UIhandler.Currirulum.Client_curriculum;
 import UIhandler.Library.Client_library;
 import UIhandler.QICQ.Client_qicq;
 import UIhandler.Shop.Client_shop;
+import UIhandler.StatusManagement.Client_status;
 import User.*;
 import message.Message;
 import message.MessageType;
@@ -29,9 +30,9 @@ public class ClientToServer {
     private Admin a = new Admin();
     private static Socket socket;
     public static MyObjectOutputStream oos=null;
-    public MyObjectInputStream ois=null;
-    public String serverIP = Message.returnIP();
-    //public String serverIP = "192.168.43.108";
+    public static MyObjectInputStream ois=null;
+    public static String serverIP = Message.returnIP();
+    //public String serverIP = "10.19.123.88";
 
     public String getIDcard() {
         return switch (ID) {
@@ -106,6 +107,7 @@ public class ClientToServer {
             Client_library.setOos(oos);
             Client_qicq.setOps(oos);
             Client_shop.setOos(oos);
+            Client_status.setOos(oos);
             return true;
         } else {
             socket.close();
@@ -140,6 +142,7 @@ public class ClientToServer {
             Client_library.setOos(oos);
             Client_qicq.setOps(oos);
             Client_shop.setOos(oos);
+            Client_status.setOos(oos);
             ManageClientToServerThread.addThread(id, ctst);
             return true;
         } else {
@@ -175,6 +178,7 @@ public class ClientToServer {
             Client_library.setOos(oos);
             Client_qicq.setOps(oos);
             Client_shop.setOos(oos);
+            Client_status.setOos(oos);
             ManageClientToServerThread.addThread(id, ctst);
             return true;
         } else {
@@ -183,7 +187,7 @@ public class ClientToServer {
         }
     }
 
-    public boolean registerStudent(Student st) throws Exception {
+    public static boolean registerStudent(Student st) throws Exception {
         socket = new Socket(serverIP, MessageType.PORT);
         oos = new MyObjectOutputStream(socket.getOutputStream());     //得到Object对象
         Message send = new Message();
@@ -200,7 +204,7 @@ public class ClientToServer {
         }
     }
 
-    public boolean registerTeacher(Teacher te) throws Exception {
+    public static boolean registerTeacher(Teacher te) throws Exception {
         socket = new Socket(serverIP, MessageType.PORT);
         oos = new MyObjectOutputStream(socket.getOutputStream());     //得到Object对象
         Message send = new Message();
@@ -217,7 +221,7 @@ public class ClientToServer {
         }
     }
 
-    public boolean forgetpwd(String card, String email, String select) throws Exception {
+    public static boolean forgetpwd(String card, String email, String select) throws Exception {
         socket = new Socket(serverIP, MessageType.PORT);
         oos = new MyObjectOutputStream(socket.getOutputStream());     //得到Object对象
         Message send = new Message();
@@ -246,7 +250,7 @@ public class ClientToServer {
         }
     }
 
-    public boolean resetPwd(String card, String new_pwd, String select) throws Exception {
+    public static boolean resetPwd(String card, String new_pwd, String select) throws Exception {
         socket = new Socket(serverIP, MessageType.PORT);
         oos = new MyObjectOutputStream(socket.getOutputStream());     //得到Object对象
         Message send = new Message();

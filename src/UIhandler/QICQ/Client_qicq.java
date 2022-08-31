@@ -4,6 +4,7 @@ import ClientToServer.ManageClientToServerThread;
 import DAO.QICQ.Application;
 import DAO.QICQ.Filetrans;
 import DAO.QICQ.Friend;
+import UIviewer.QQ.add_friend;
 import UIviewer.QQ.chat_panel;
 import UIviewer.QQ.friend_list;
 import message.Message;
@@ -24,6 +25,14 @@ public class Client_qicq {
 
     public static void setId(String id) {
         Client_qicq.id = id;
+    }
+
+    public static void add_friend_fail() {
+        add_friend.add_friend_fail();
+    }
+
+    public static void add_friend_succeed() {
+        add_friend.add_friend_succeed();
     }
 
 
@@ -92,13 +101,14 @@ public class Client_qicq {
     public static void receive_message(String sender){
         friend_list.show_unread(sender);
     }
-    public void add_friend(String myid,String myname,String number,String nickname) throws IOException {
+    public static void add_friend(String myid, String myname, String number, String nickname) throws IOException {
+        System.out.println(1111);
         Application app=new Application(myid,myname);
         Message message=new Message();
         message.setData(app);
         app.setTo_id(number);
         app.setTo_name(nickname);
-        message.setType(MessageType.MESSAGE_QICQ_ADD_FRIEND_START);
+        message.setType(MessageType.MESSAGE_QICQ_ADD_FRIEND);
         oos.writeObject(message);
     }
     public static void Require_friend_list() throws IOException {
@@ -111,12 +121,14 @@ public class Client_qicq {
         message.setData(id);
         message.setType(MessageType.MESSAGE_QICQ_FRIEND_ONLINE);
         oos.writeObject(message);
-    }public static void I_am_offline() throws IOException{
+    }
+    public static void I_am_offline() throws IOException{
         Message message=new Message();
         message.setData(id);
         message.setType(MessageType.MESSAGE_QICQ_FRIEND_OFFLINE);
         oos.writeObject(message);
     }
+
     public static void show_friend(HashMap<String, ArrayList<Friend>> friend){
         friend_list.show_Friend(friend);
     }

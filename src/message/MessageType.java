@@ -93,7 +93,8 @@ public interface MessageType {
     //站内通信
     String MESSAGE_QICQ_ADD_FRIEND="41";
     String MESSAGE_QICQ_ADD_FRIEND_FAIL_CANNOT_FIND_USER="41.2";
-    String MESSAGE_QICQ_ADD_FRIEND_START="41.3";
+    String MESSAGE_QICQ_ADD_FRIEND_SUCCEED="41.2";
+//    String MESSAGE_QICQ_ADD_FRIEND_START="41.3";
     String MESSAGE_QICQ_SEND_MSG="42";
     String MESSAGE_QICQ_SEND_FILE="42.5";
     String MESSAGE_QICQ_GET_ANNOUNCEMENT="43";
@@ -101,9 +102,9 @@ public interface MessageType {
     String MESSAGE_QICQ_GET_MESSAGE="43.3";
     String MESSAGE_QICQ_GET_MESSAGE_RET="43.4";
     String MESSAGE_QICQ_ADD_ANNOUNCEMENT="43.2";
-    String MESSAGE_QICQ_LIST_APPLICATION="44";
+    String MESSAGE_QICQ_LIST_APPLICATION="44";  //请求展示出我发送的好友申请
     String MESSAGE_QICQ_LIST_APPLICATION_RET="44.1";
-    String MESSAGE_QICQ_LIST_APPLICATION_HANDLE="44.2";
+    String MESSAGE_QICQ_LIST_APPLICATION_HANDLE="44.2";  //请求展示出我收到的好友申请
     String MESSAGE_QICQ_LIST_APPLICATION_HANDLE_RET="44.3";
     String MESSAGE_QICQ_LIST_FRIENDS="45";
     String MESSAGE_QICQ_LIST_FRIENDS_RET="45.1";
@@ -116,7 +117,7 @@ public interface MessageType {
     String MESSAGE_QICQ_FRIEND_OFFLINE="48.2";
     String MESSAGE_QICQ_FRIEND_OFFLINE_RET="48.6";
 
-    String RETURN_STUDENT_INFO="100";           //得到学籍信息
+/*    String RETURN_STUDENT_INFO="100";           //得到学籍信息
     String RETURN_STUDENT_INFO_SUCCEED="101";   //得到学籍信息成功
     String RETURN_STUDENT_INFO_FAILED="102";    //得到学籍信息失败
 
@@ -130,7 +131,7 @@ public interface MessageType {
 
     String RENEW_STUDENT_INFO="100.11";           //RENEW学籍信息
     String RENEW_STUDENT_INFO_SUCCEED="101.11";   //RENEW学籍信息成功
-    String RENEW_STUDENT_INFO_FAILED="102.11";    //RENEW学籍信息失败
+    String RENEW_STUDENT_INFO_FAILED="102.11";    //RENEW学籍信息失败*/
 
 
     String RETURN_ALL_PRODUCT="106";          //请求得到所有商品
@@ -176,6 +177,14 @@ public interface MessageType {
     String DELETE_READYTPBUY_PRODUCT="130.1.1Q";
     String DELETE_READYTPBUY_PRODUCT_SUCCEED="131.1.1Q";     //成功
     String DELETE_READYTPBUY_PRODUCT_FAILED="132.1.1Q";      //失败
+
+    String MESSAGE_STATUS_STU_ENTER="200";
+    String MESSAGE_STATUS_STU_ENTER_RET="200.5";
+    String MESSAGE_STATUS_ADMIN_QUERY="201.6";
+    String MESSAGE_STATUS_ADMIN_QUERY_RET="201.8";
+    String MESSAGE_STATUS_ADMIN_QUERY_FAIL="201.9";
+    String MESSAGE_STATUS_CONFIRM="202";
+    String MESSAGE_STATUS_CONFIRM_RET="202.5";
 
     String ADD_TO_SHOPCAR = "133.1111";             //添加购物车
     String ADD_TO_SHOPCAR_SUCCEED = "133.1111q";

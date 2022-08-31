@@ -40,7 +40,7 @@ public class friend_list{
         roll_panel.setLayout(new BoxLayout(roll_panel, BoxLayout.Y_AXIS));
         scrollPane=new JScrollPane(roll_panel);
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER );//不显示水平滚动条；
-        scrollPane.setBorder(BorderFactory.createLineBorder(new Color(244,244,244)));
+        scrollPane.setBorder(BorderFactory.createLineBorder(new Color(255,255,255)));
         jPanel.add(scrollPane, BorderLayout.CENTER);
         count_friend=0;
         count_tag=0;

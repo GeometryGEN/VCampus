@@ -5,6 +5,11 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 public class Searchresselect extends JPanel{
+    Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
+    int width=(int ) screensize.getWidth(); //得到宽度
+    int height=(int ) screensize.getHeight();//获得高度
+    double width_r=(double)(width)/1273;
+    double height_r=(double)(height)/790;
      public static volatile String[][] searchresult=null;
      public Searchresselect()
      {
@@ -19,7 +24,7 @@ public class Searchresselect extends JPanel{
          };
          //支持滚动
          JScrollPane jsp=new JScrollPane(table_want);
-         jsp.setBounds(0,0,1280,680);
+         jsp.setBounds(0,0,(int)(1280*width_r),(int)(680*height_r));
          add(jsp);
 
          table_want.setFont(new Font("宋体",Font.BOLD,16));

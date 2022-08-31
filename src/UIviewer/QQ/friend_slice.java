@@ -37,6 +37,7 @@ public class friend_slice extends JLabel {
         this.height_r=height_r;
         setOpaque(true);
         setBackground(new Color(255,255,255));
+        setBorder(null);
         int icon1_width=(int)((height-2*20)*height_r);
         try {
             Thumbnails.of(new File("src/image/QQ/qq_image_3.jpg"))

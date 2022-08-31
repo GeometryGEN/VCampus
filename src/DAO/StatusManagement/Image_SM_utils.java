@@ -1,10 +1,10 @@
 package DAO.StatusManagement;
 
+import java.sql.Blob;
 import connection.JDBC_Connector;
 import utils.Image_utils;
 
-import java.io.FileInputStream;
-import java.io.InputStream;
+import java.io.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -44,7 +44,17 @@ public class Image_SM_utils {
         }
     }
     // 读取数据库中图片
-    public static boolean readDBImage(String id) throws SQLException {
+    public static byte[] readDBImage(String id) throws SQLException {
+        String path = "src/image/temp.jpg";
+        File file = new File(path);
+        if (file.exists()) {
+            file.delete();
+        }
+        try {
+            file.createNewFile();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -54,24 +64,25 @@ public class Image_SM_utils {
             ps = conn.prepareStatement(sql);
             ps.setString(1, id);
             rs = ps.executeQuery();
-            while (rs.next()) {
-                InputStream in = rs.getBinaryStream("photo");
-                Image_utils.readBin2Image(in,id);
+            if (rs.next()) {
+                Blob picture= rs.getBlob("photo");
+                InputStream in = picture.getBinaryStream();
+                OutputStream out = new FileOutputStream(file);
+                int len = 0;
+                byte[] buf = new byte[(int)picture.length()];
+                while ((len = in.read(buf)) != -1) {
+                    out.write(buf, 0, len);
+                }
                 System.out.println("图片读取成功！");
                 JDBC_Connector.close(rs,ps,conn);
-                return true;
+                return buf;
+            }
+            else
+            {
+                return null;
             }
         } catch (Exception e) {
-            return false;
+            return null;
         }
-        return true;
     }
-
-
-//    public static void main(String[] args) throws SQLException {
-//        sendImageDB("C:\\Users\\28468\\Desktop\\1111.jpg","09020201","09020201");
-//        sendImageDB("C:\\Users\\28468\\Desktop\\2222.jpg","09020202","09020202");
-//        sendImageDB("C:\\Users\\28468\\Desktop\\3333.jpg","09020203","09020203");
-////        readDBImage("111111");
-//    }
 }
