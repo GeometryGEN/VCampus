@@ -12,33 +12,25 @@ import java.awt.event.ActionListener;
 
 import java.io.File;
 
-import javax.swing.JButton;
+import javax.swing.*;
 
-import javax.swing.JFileChooser;
-
-import javax.swing.JFrame;
-
-import javax.swing.JLabel;
-
-import javax.swing.JPanel;
-
-public class SwingTester {
-
+public class file_panel {
+    static File file;
     public static void main(String[] args) {
 
         createWindow();
 
     }
 
-    private static void createWindow() {
+    public static void createWindow() {
 
-        JFrame frame = new JFrame("Swing选择文件或目录(yiibai.com)");
+        JFrame frame = new JFrame("发送文件");
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         createUI(frame);
 
-        frame.setSize(560, 200);
+        frame.setSize(360, 120);
 
         frame.setLocationRelativeTo(null);
 
@@ -49,12 +41,16 @@ public class SwingTester {
     private static void createUI(final JFrame frame) {
 
         JPanel panel = new JPanel();
+        JPanel panel1=new JPanel();
 
         LayoutManager layout = new FlowLayout();
 
         panel.setLayout(layout);
+        panel1.setLayout(layout);
 
-        JButton button = new JButton("点击这里~");
+        JButton button = new JButton("浏览本地文件目录");
+        JButton button1=new JButton("发送");
+        JButton button2=new JButton("取消");
 
         final JLabel label = new JLabel();
 
@@ -72,7 +68,7 @@ public class SwingTester {
 
                 if (option == JFileChooser.APPROVE_OPTION) {
 
-                    File file = fileChooser.getSelectedFile();
+                    file = fileChooser.getSelectedFile();
 
                     label.setText("选择文件或目录: " + file.getName());
 
@@ -86,11 +82,34 @@ public class SwingTester {
 
         });
 
+        button1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(label.getText().equals("打开命令取消")){
+                    JOptionPane.showMessageDialog(null, "请选择文件！", "WARNING!", JOptionPane.PLAIN_MESSAGE);
+                }
+                else{
+                    chat_panel.send_file(file.getAbsolutePath(),file.getName());
+                    frame.dispose();
+                }
+            }
+        });
+        button2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                frame.dispose();
+            }
+        });
+
         panel.add(button);
 
         panel.add(label);
+        panel1.add(button1);
+        panel1.add(button2);
 
         frame.getContentPane().add(panel, BorderLayout.CENTER);
+
+        frame.getContentPane().add(panel1,BorderLayout.SOUTH);
 
     }
 

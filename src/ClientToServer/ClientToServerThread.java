@@ -7,6 +7,7 @@ import DAO.Curriculum.Opencourse;
 import DAO.Library.Book_admin;
 import DAO.Library.Book_borrower;
 import DAO.Library.Punishment;
+import DAO.QICQ.Application;
 import DAO.QICQ.Friend;
 import DAO.Shop.Product;
 import DAO.Shop.ProductPair;
@@ -254,6 +255,10 @@ public class ClientToServerThread extends Thread {
                      String sender=message.getSender();
                      Client_qicq.receive_message(sender);
                 }
+                else if (message.getType().equals(MessageType.MESSAGE_QICQ_RECERIVE_FILE)){
+                    System.out.println("receive_file");
+                    Client_qicq.get_file(message,"C:/Users/Lenovo/shit.txt");
+                }
                 else if(message.getType().equals(MessageType.MESSAGE_QICQ_FRIEND_ONLINE_RET)){
                     System.out.println("received...");
                     Client_qicq.Require_friend_list();
@@ -266,6 +271,10 @@ public class ClientToServerThread extends Thread {
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_QICQ_ADD_FRIEND_FAIL_CANNOT_FIND_USER)){
                     Client_qicq.add_friend_fail();
+                }
+                else if(message.getType().equals(MessageType.MESSAGE_QICQ_LIST_APPLICATION_RET)){
+                    ArrayList<Application>messages=(ArrayList<Application>)message.getData();
+                    Client_qicq.list_application(messages);
                 }
                 System.out.println("next");
 

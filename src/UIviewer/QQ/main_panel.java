@@ -32,24 +32,9 @@ public class main_panel {
         //设置绝对布局
         mjp.setLayout(null);
         buttonPanel=new button_panel();
-        buttonPanel.setBounds((int)(width_r*1920/3+0),(int)((0)*height_r),(int)(170*width_r),(int)(100*height_r));
+        buttonPanel.setBounds((int)(width_r*1920/3+0),(int)((0)*height_r),(int)(170*width_r),(int)(400*height_r));
         mjp.add(buttonPanel);
-        //返回功能选择模块
-        functionChoose.back_from_student_status=new RoundJButton();
-        functionChoose.back_from_student_status.setText("返回功能选择");
-        functionChoose.back_from_student_status.setBounds(0,(int)(50*height_r),(int)(170*width_r),(int)(50*height_r));
-        functionChoose.back_from_student_status.setBackground(new Color(96,190,41));
-        functionChoose.back_from_student_status.setForeground(new Color(255,255,255));
-        functionChoose.back_from_student_status.setFont(new Font("微软雅黑",Font.PLAIN,(int)(22*width_r)));
-        buttonPanel.add(functionChoose.back_from_student_status);
-        functionChoose.back_from_student_status.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                functionChoose.jf.remove(functionChoose.jf.getContentPane());
-                functionChoose.jf.setContentPane(functionChoose.fc_panel);
-                functionChoose.jf.setTitle("functionChoose");
-            }
-        });
+        //添加好友按钮
         JButton addFriend= new RoundJButton();
         addFriend.setText("   添加好友   ");
         addFriend.setBounds(0,(int)(0*height_r),(int)(170*width_r),(int)(50*height_r));
@@ -63,6 +48,36 @@ public class main_panel {
             }
         });
         buttonPanel.add(addFriend);
+        //展示发出申请按钮
+        JButton show_receive_add=new RoundJButton();
+        show_receive_add.setText(" 收到的申请 ");
+        show_receive_add.setBounds(0,(int)(50*height_r),(int)(170*width_r),(int)(50*height_r));
+        show_receive_add.setBackground(new Color(30,111,255));
+        show_receive_add.setForeground(Color.white);
+        show_receive_add.setFont(new Font("微软雅黑",Font.PLAIN,(int)(22*width_r)));
+        show_receive_add.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Client_qicq.require_application();
+            }
+        });
+        buttonPanel.add(show_receive_add);
+        //返回功能选择模块
+        functionChoose.back_from_student_status=new RoundJButton();
+        functionChoose.back_from_student_status.setText("返回功能选择");
+        functionChoose.back_from_student_status.setBounds(0,(int)(100*height_r),(int)(170*width_r),(int)(50*height_r));
+        functionChoose.back_from_student_status.setBackground(new Color(96,190,41));
+        functionChoose.back_from_student_status.setForeground(new Color(255,255,255));
+        functionChoose.back_from_student_status.setFont(new Font("微软雅黑",Font.PLAIN,(int)(22*width_r)));
+        buttonPanel.add(functionChoose.back_from_student_status);
+        functionChoose.back_from_student_status.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                functionChoose.jf.remove(functionChoose.jf.getContentPane());
+                functionChoose.jf.setContentPane(functionChoose.fc_panel);
+                functionChoose.jf.setTitle("functionChoose");
+            }
+        });
         //好友列表
         Client_qicq.Require_friend_list();
         friend_list friend_list_panel=new friend_list(1920/3,1080,width_r,height_r,0,0);

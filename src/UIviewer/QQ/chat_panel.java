@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class chat_panel extends JPanel {
     private JPanel type_panel;
     private static JScrollPane scrollPane;
-    private Friend friend;
+    private static Friend friend;
     static double width_r;
     static JTextPane jTextPane = new JTextPane();
     static StyledDocument doc = jTextPane.getStyledDocument();
@@ -34,6 +34,10 @@ public class chat_panel extends JPanel {
         } catch (BadLocationException e) {
             e.printStackTrace();
         }
+    }
+    public static void send_file(String src,String filename){
+        Client_qicq.send_file(src,Client_qicq.getId(),friend.getId(),filename);
+        System.out.println(friend.getId());
     }
     public static void show_message(ArrayList<Message> messages){
         jTextPane.setText(null);
@@ -116,6 +120,12 @@ public class chat_panel extends JPanel {
         send_file_button.setForeground(new Color(255,255,255));
         send_file_button.setBounds((int)((width-send_button_width-send_file_button_width-1)*width_r),(int)((height/4-send_button_height-30)*height_r),(int)(send_file_button_width*width_r),(int)(send_button_height*height_r));
         type_panel.add(send_file_button);
+        send_file_button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                file_panel.createWindow();
+            }
+        });
         //关闭该聊天框按钮
         JButton close_button= new JButton();
         int close_button_height=70;

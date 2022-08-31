@@ -237,6 +237,7 @@ public class ServerToClientThread extends Thread{
                      }
                 }
                 else if(m.getType().equals(MessageType.MESSAGE_QICQ_SEND_FILE)){
+                    System.out.println("123456");
                     String getter=m.getGetter();
                     if(ServerToClient.isOnline(getter)!=-1){
                         new QICQ_manager(userid).send_online_file(m);

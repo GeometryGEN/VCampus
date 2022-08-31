@@ -108,6 +108,7 @@ public class ClientToServer {
             Client_qicq.setOps(oos);
             Client_shop.setOos(oos);
             Client_status.setOos(oos);
+            Client_qicq.setId(id);
             return true;
         } else {
             socket.close();
