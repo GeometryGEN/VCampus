@@ -11,7 +11,16 @@ import java.util.Timer;
 import UIhandler.Library.Client_library;
 
 public class AllGoods extends JPanel {
-    public static volatile String[][] tableDate={{"旺仔牛奶","1","5","10","牛奶"}};
+    public static volatile String[][] tableDate;
+
+    public static String[][] getTableDate() {
+        return tableDate;
+    }
+
+    public static void setTableDate(String[][] tableDate) {
+        AllGoods.tableDate = tableDate;
+    }
+
     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
     int width=(int ) screensize.getWidth(); //得到宽度
     int height=(int ) screensize.getHeight();//获得高度
