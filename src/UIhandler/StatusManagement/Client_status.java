@@ -4,6 +4,7 @@ import ClientToServer.ManageClientToServerThread;
 import ClientToServer.myInfo;
 import DAO.StatusManagement.ImageAndTable;
 import UIviewer.login.functionChoose;
+import UIviewer.status_manage.manage_status;
 import UIviewer.status_manage.student_status;
 import User.Admin;
 import User.Student;
@@ -28,7 +29,7 @@ public class Client_status {
         Client_status.oos = mos;
     }
 
-    public static String sign_renew;          //是否更新成功的标志 1 正在更新  2 成功  3 失败
+    /*public static String sign_renew;          //是否更新成功的标志 1 正在更新  2 成功  3 失败
 
     public static void resetS(){
         s=null;
@@ -126,7 +127,7 @@ public class Client_status {
         //等待接受学生
         while (s_s == null) Thread.onSpinWait();
         return s_s;
-    }
+    }*/
     public static void stu_enter()  throws Exception{
         Message message = new Message();
         message.setType(MessageType.MESSAGE_STATUS_STU_ENTER);
@@ -134,17 +135,34 @@ public class Client_status {
         oos.writeObject(message);
     }
     public static void show_studata(ImageAndTable iat) throws Exception {
-        Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
-        int width=(int ) screensize.getWidth(); //得到宽度
-        int height=(int ) screensize.getHeight();//获得高度
+
+
         System.out.println("opening  "+width+" "+height);
         functionChoose.jf.setContentPane(new student_status(width,height,iat));
         functionChoose.jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         functionChoose.jf.setTitle("Status management");
         functionChoose.jf.setVisible(true);
     }
+    static double width_r,height_r;
+    static int height,width,icon1_width,icon1_height;
+    public static void ini()
+    {
+        Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
+        width=(int ) screensize.getWidth(); //得到宽度
+        height=(int ) screensize.getHeight();//获得高度
+        width_r=(double)(width)/1920;
+        height_r=(double)(height)/1080;
+        icon1_width =160;
+        icon1_height=50;
+    }
     public static void show_info(ImageAndTable iat) throws Exception {
 
+        manage_status.status_jpanel=student_status.status_panel(width_r,height_r,width-2*(60+icon1_width)*width_r,(1080-70-icon1_height)*height_r,iat);
+        manage_status.status_jpanel.setBounds((int)((60+icon1_width)*width_r),(int)((47+icon1_height)*height_r), (int)(width-2*(60+icon1_width)*width_r),(int)((1080-70-icon1_height)*height_r));
+   //     manage_status.add(manage_status.status_jpanel,0);
+        //需要改这个
+        manage_status.search_panel.setVisible(false);
+        manage_status.status_jpanel.setVisible(true);
     }
     public static void change(Student s) throws IOException {
         Message message=new Message();

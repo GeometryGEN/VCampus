@@ -184,7 +184,7 @@ public class student_status_table extends JPanel{
                 public void actionPerformed(ActionEvent e) {
                     manage_status.status_jpanel.setVisible(false);
                     manage_status.search_panel.setVisible(true);
-                    Client_status.resetS_S();
+              //      Client_status.resetS_S();
                 }
             });
             jb3=new JButton("提交学籍信息");
@@ -247,7 +247,7 @@ public class student_status_table extends JPanel{
             functionChoose.back_from_student_status.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    Client_status.resetS();
+               //     Client_status.resetS();
                     functionChoose.jf.setContentPane(functionChoose.fc_panel);
                 }
             });

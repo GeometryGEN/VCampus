@@ -29,7 +29,7 @@ public class student_status extends JPanel {
         int icon1_width=160;
         int icon1_height=320;
         String IDcard=myInfo.getId();
-        Client_status.setId(myInfo.getId());  //否则查找学生，id为自身的，识别线程
+    //    Client_status.setId(myInfo.getId());  //否则查找学生，id为自身的，识别线程
         //Client_status.getphoto(IDcard);
         FileOutputStream fileOutputStream = new FileOutputStream("src/image/"+IDcard+".jpg");
         fileOutputStream.write(iat.image);
@@ -44,7 +44,7 @@ public class student_status extends JPanel {
         status.add(image);
         image.setBounds((int)(40*width_r),(int)(145*height_r),(int)(icon1_width*width_r),(int)(icon1_height*height_r));
         //头像下名字
-        String name = Client_status.returnStatusInfo(IDcard).getStudent_name();
+        String name = iat.student.getStudent_name();
         JLabel name_label=new JLabel(name,JLabel.CENTER);
         name_label.setBounds((int)(57*width_r), (int)((155+icon1_height)*height_r), (int)(110*width_r), (int)(45*height_r));
         Font name_font = new Font("微软雅黑", Font.PLAIN, (int)(26*width_r));
