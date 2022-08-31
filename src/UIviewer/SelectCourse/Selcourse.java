@@ -35,7 +35,7 @@ public class Selcourse extends JPanel {
         panel.add(f3,"f3");
         Choosing_Course f4=new Choosing_Course();
         panel.add(f4,"f4");
-        My_Coursetable f5=new My_Coursetable();
+        My_Coursetable f5=new My_Coursetable(1);
         panel.add(f5,"f5");
 
         //六个按钮

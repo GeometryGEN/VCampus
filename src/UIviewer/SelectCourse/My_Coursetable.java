@@ -1,5 +1,8 @@
 package UIviewer.SelectCourse;
 
+import ClientToServer.myInfo;
+import UIhandler.Currirulum.Client_curriculum;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -17,16 +20,21 @@ public class My_Coursetable extends JPanel{
     int height=(int ) screensize.getHeight();//获得高度
     double width_r=(double)(width)/1273;
     double height_r=(double)(height)/790;
-    public static volatile  String[][][] tableDate=new String[17][13][6];
+    public static volatile  String[][][] tableDate=new String[16][13][6];
     TableColumn column;
-    public My_Coursetable()
+    public My_Coursetable(int week)
     {
         setLayout(null);
-
         JTable table;
         JScrollPane scrollPane;
         DefaultTableModel tableModel;
-        for (int i=0;i<=16;i++){
+        String weekS=String.valueOf(week);
+        JLabel l1 = new JLabel("第"+weekS+"周课表");
+        l1.setBounds((int) (1075*width_r), (int) (200*height_r), (int) (300*width_r), (int) (75*height_r));
+        Font font = new Font("楷体", Font.BOLD, (int) (22*width_r));
+        l1.setFont(font);
+        add(l1);
+        for (int i=0;i<16;i++){
             My_Coursetable.tableDate[i][0][0]="第一节";
             My_Coursetable.tableDate[i][1][0]="第二节";
             My_Coursetable.tableDate[i][2][0]="第三节";
@@ -42,14 +50,14 @@ public class My_Coursetable extends JPanel{
             My_Coursetable.tableDate[i][12][0]="第十三节";
         }
 
+        My_Coursetable.tableDate[0][1][1]="test1";
+        My_Coursetable.tableDate[1][1][1]="test2";
 
         String[] columnNames={"节数","星期一","星期二","星期三","星期四","星期五"};
-
-        tableModel=new DefaultTableModel(tableDate[0],columnNames);
+        tableModel=new DefaultTableModel(tableDate[week-1],columnNames);
         table=new JTable(tableModel);
         //scrollPane.setViewportView(table);
         scrollPane=new JScrollPane(table);
-
         table.setRowHeight(48);//设置行宽
 
         //table.setAutoResizeMode(JTable.AUTO_RESIZE_SUBSEQUENT_COLUMNS);
@@ -91,67 +99,196 @@ public class My_Coursetable extends JPanel{
                     //选择的下拉框选项
                     if(e.getItem()=="第一周")
                     {
-
+                        if(myInfo.getType()==1) {
+                            My_Coursetable table = new My_Coursetable(1);
+                            Selcourse.panel.add(table, "schedule");
+                            Selcourse.cardLayout.show(Selcourse.panel, "schedule");
+                        }else if(myInfo.getType()==2){
+                            My_Coursetable table = new My_Coursetable(1);
+                            Selcourse_teacher.panel.add(table, "schedule");
+                            Selcourse_teacher.cardLayout.show(Selcourse_teacher.panel, "schedule");
+                        }
                     }
                     if(e.getItem()=="第二周")
                     {
 
+                        if(myInfo.getType()==1) {
+                            My_Coursetable table = new My_Coursetable(2);
+                            Selcourse.panel.add(table, "schedule");
+                            Selcourse.cardLayout.show(Selcourse.panel, "schedule");
+                        }else if(myInfo.getType()==2){
+                            My_Coursetable table = new My_Coursetable(2);
+                            Selcourse_teacher.panel.add(table, "schedule");
+                            Selcourse_teacher.cardLayout.show(Selcourse_teacher.panel, "schedule");
+                        }
                     }
                     if(e.getItem()=="第三周")
                     {
-
+                        if(myInfo.getType()==1) {
+                            My_Coursetable table = new My_Coursetable(3);
+                            Selcourse.panel.add(table, "schedule");
+                            Selcourse.cardLayout.show(Selcourse.panel, "schedule");
+                        }else if(myInfo.getType()==2){
+                            My_Coursetable table = new My_Coursetable(3);
+                            Selcourse_teacher.panel.add(table, "schedule");
+                            Selcourse_teacher.cardLayout.show(Selcourse_teacher.panel, "schedule");
+                        }
                     }
                     if(e.getItem()=="第四周")
                     {
-
+                        if(myInfo.getType()==1) {
+                            My_Coursetable table = new My_Coursetable(4);
+                            Selcourse.panel.add(table, "schedule");
+                            Selcourse.cardLayout.show(Selcourse.panel, "schedule");
+                        }else if(myInfo.getType()==2){
+                            My_Coursetable table = new My_Coursetable(4);
+                            Selcourse_teacher.panel.add(table, "schedule");
+                            Selcourse_teacher.cardLayout.show(Selcourse_teacher.panel, "schedule");
+                        }
                     }
                     if(e.getItem()=="第五周")
                     {
-
+                        if(myInfo.getType()==1) {
+                            My_Coursetable table = new My_Coursetable(5);
+                            Selcourse.panel.add(table, "schedule");
+                            Selcourse.cardLayout.show(Selcourse.panel, "schedule");
+                        }else if(myInfo.getType()==2){
+                            My_Coursetable table = new My_Coursetable(5);
+                            Selcourse_teacher.panel.add(table, "schedule");
+                            Selcourse_teacher.cardLayout.show(Selcourse_teacher.panel, "schedule");
+                        }
                     }
                     if(e.getItem()=="第六周")
                     {
-
+                        if(myInfo.getType()==1) {
+                            My_Coursetable table = new My_Coursetable(6);
+                            Selcourse.panel.add(table, "schedule");
+                            Selcourse.cardLayout.show(Selcourse.panel, "schedule");
+                        }else if(myInfo.getType()==2){
+                            My_Coursetable table = new My_Coursetable(6);
+                            Selcourse_teacher.panel.add(table, "schedule");
+                            Selcourse_teacher.cardLayout.show(Selcourse_teacher.panel, "schedule");
+                        }
                     }
                     if(e.getItem()=="第七周")
                     {
-
+                        if(myInfo.getType()==1) {
+                            My_Coursetable table = new My_Coursetable(7);
+                            Selcourse.panel.add(table, "schedule");
+                            Selcourse.cardLayout.show(Selcourse.panel, "schedule");
+                        }else if(myInfo.getType()==2){
+                            My_Coursetable table = new My_Coursetable(7);
+                            Selcourse_teacher.panel.add(table, "schedule");
+                            Selcourse_teacher.cardLayout.show(Selcourse_teacher.panel, "schedule");
+                        }
                     }
                     if(e.getItem()=="第八周")
                     {
-
+                        if(myInfo.getType()==1) {
+                            My_Coursetable table = new My_Coursetable(8);
+                            Selcourse.panel.add(table, "schedule");
+                            Selcourse.cardLayout.show(Selcourse.panel, "schedule");
+                        }else if(myInfo.getType()==2){
+                            My_Coursetable table = new My_Coursetable(8);
+                            Selcourse_teacher.panel.add(table, "schedule");
+                            Selcourse_teacher.cardLayout.show(Selcourse_teacher.panel, "schedule");
+                        }
                     }
                     if(e.getItem()=="第九周")
                     {
-
+                        if(myInfo.getType()==1) {
+                            My_Coursetable table = new My_Coursetable(9);
+                            Selcourse.panel.add(table, "schedule");
+                            Selcourse.cardLayout.show(Selcourse.panel, "schedule");
+                        }else if(myInfo.getType()==2){
+                            My_Coursetable table = new My_Coursetable(9);
+                            Selcourse_teacher.panel.add(table, "schedule");
+                            Selcourse_teacher.cardLayout.show(Selcourse_teacher.panel, "schedule");
+                        }
                     }
                     if(e.getItem()=="第十周")
                     {
-
+                        if(myInfo.getType()==1) {
+                            My_Coursetable table = new My_Coursetable(10);
+                            Selcourse.panel.add(table, "schedule");
+                            Selcourse.cardLayout.show(Selcourse.panel, "schedule");
+                        }else if(myInfo.getType()==2){
+                            My_Coursetable table = new My_Coursetable(10);
+                            Selcourse_teacher.panel.add(table, "schedule");
+                            Selcourse_teacher.cardLayout.show(Selcourse_teacher.panel, "schedule");
+                        }
                     }
                     if(e.getItem()=="第十一周")
                     {
-
+                        if(myInfo.getType()==1) {
+                            My_Coursetable table = new My_Coursetable(11);
+                            Selcourse.panel.add(table, "schedule");
+                            Selcourse.cardLayout.show(Selcourse.panel, "schedule");
+                        }else if(myInfo.getType()==2){
+                            My_Coursetable table = new My_Coursetable(11);
+                            Selcourse_teacher.panel.add(table, "schedule");
+                            Selcourse_teacher.cardLayout.show(Selcourse_teacher.panel, "schedule");
+                        }
                     }
                     if(e.getItem()=="第十二周")
                     {
-
+                        if(myInfo.getType()==1) {
+                            My_Coursetable table = new My_Coursetable(12);
+                            Selcourse.panel.add(table, "schedule");
+                            Selcourse.cardLayout.show(Selcourse.panel, "schedule");
+                        }else if(myInfo.getType()==2){
+                            My_Coursetable table = new My_Coursetable(12);
+                            Selcourse_teacher.panel.add(table, "schedule");
+                            Selcourse_teacher.cardLayout.show(Selcourse_teacher.panel, "schedule");
+                        }
                     }
                     if(e.getItem()=="第十三周")
                     {
-
+                        if(myInfo.getType()==1) {
+                            My_Coursetable table = new My_Coursetable(13);
+                            Selcourse.panel.add(table, "schedule");
+                            Selcourse.cardLayout.show(Selcourse.panel, "schedule");
+                        }else if(myInfo.getType()==2){
+                            My_Coursetable table = new My_Coursetable(13);
+                            Selcourse_teacher.panel.add(table, "schedule");
+                            Selcourse_teacher.cardLayout.show(Selcourse_teacher.panel, "schedule");
+                        }
                     }
                     if(e.getItem()=="第十四周")
                     {
-
+                        if(myInfo.getType()==1) {
+                            My_Coursetable table = new My_Coursetable(14);
+                            Selcourse.panel.add(table, "schedule");
+                            Selcourse.cardLayout.show(Selcourse.panel, "schedule");
+                        }else if(myInfo.getType()==2){
+                            My_Coursetable table = new My_Coursetable(14);
+                            Selcourse_teacher.panel.add(table, "schedule");
+                            Selcourse_teacher.cardLayout.show(Selcourse_teacher.panel, "schedule");
+                        }
                     }
                     if(e.getItem()=="第十五周")
                     {
-
+                        if(myInfo.getType()==1) {
+                            My_Coursetable table = new My_Coursetable(15);
+                            Selcourse.panel.add(table, "schedule");
+                            Selcourse.cardLayout.show(Selcourse.panel, "schedule");
+                        }else if(myInfo.getType()==2){
+                            My_Coursetable table = new My_Coursetable(15);
+                            Selcourse_teacher.panel.add(table, "schedule");
+                            Selcourse_teacher.cardLayout.show(Selcourse_teacher.panel, "schedule");
+                        }
                     }
                     if(e.getItem()=="第十六周")
                     {
-
+                        if(myInfo.getType()==1) {
+                            My_Coursetable table = new My_Coursetable(16);
+                            Selcourse.panel.add(table, "schedule");
+                            Selcourse.cardLayout.show(Selcourse.panel, "schedule");
+                        }else if(myInfo.getType()==2){
+                            My_Coursetable table = new My_Coursetable(16);
+                            Selcourse_teacher.panel.add(table, "schedule");
+                            Selcourse_teacher.cardLayout.show(Selcourse_teacher.panel, "schedule");
+                        }
                     }
 
                 }
@@ -163,8 +300,6 @@ public class My_Coursetable extends JPanel{
         scrollPane.setBounds(0,0,(int)(1000*width_r),(int)(1000*height_r));
         add(scrollPane);
         setVisible(true);
-        //add(table);
-
     }
 
 }

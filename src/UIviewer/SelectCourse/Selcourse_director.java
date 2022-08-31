@@ -1,6 +1,5 @@
 package UIviewer.SelectCourse;
 import UIhandler.Currirulum.Client_curriculum;
-
 import UIviewer.login.functionChoose;
 import net.coobird.thumbnailator.Thumbnails;
 
@@ -11,8 +10,8 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 
-import static UIhandler.Currirulum.Client_curriculum.RequireallCourse;
 
+import static UIhandler.Currirulum.Client_curriculum.RequireallCourse;
 
 public class Selcourse_director extends JPanel {
     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
@@ -32,12 +31,20 @@ public class Selcourse_director extends JPanel {
         add(panel);
         panel.setLayout(cardLayout);
 
-        Check_Course f1=new Check_Course();
-        panel.add(f1,"f1");
+        try {
+            RequireallCourse();
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
 
         Scheduling f2=new Scheduling();
         panel.add(f2,"f2");
 
+        Check_Course f1=new Check_Course();
+        panel.add(f1,"f1");
+
+        /*CurrentCourse_Man f3=new CurrentCourse_Man();
+        panel.add(f3,"f3");*/
 
 
         Font myfont = new Font("微软雅黑 ", Font.BOLD, 18);

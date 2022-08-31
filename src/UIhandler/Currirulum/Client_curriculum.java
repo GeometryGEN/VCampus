@@ -16,6 +16,7 @@ import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Iterator;
 import static UIviewer.SelectCourse.Selcourse.cardLayout;
+
 import static UIviewer.SelectCourse.Selcourse.panel;
 import UIviewer.SelectCourse.*;
 
@@ -160,9 +161,12 @@ public class Client_curriculum {
             count++;
         }
         Search_result search=new Search_result();
-        panel.add(search,"search");
-        cardLayout.show(panel,"search");
-
+        if(myInfo.getType()==1)
+        {panel.add(search,"search");
+            cardLayout.show(panel,"search");}
+        if(myInfo.getType()==2)
+        {Selcourse_teacher.panel.add(search,"search");
+            Selcourse_teacher.cardLayout.show(Selcourse_teacher.panel,"search");}
     }
 
     public static void Require_show_my_students(String Id)throws IOException{
@@ -243,7 +247,7 @@ public class Client_curriculum {
                // if(i==0) System.out.println();
             }
         }
-        My_Coursetable table=new My_Coursetable();
+        My_Coursetable table=new My_Coursetable(1);
         Selcourse.panel.add(table,"schedule");
         Selcourse.cardLayout.show(Selcourse.panel,"schedule");
     }
@@ -271,7 +275,7 @@ public class Client_curriculum {
                 // if(i==0) System.out.println();
             }
         }
-        My_Coursetable table=new My_Coursetable();
+        My_Coursetable table=new My_Coursetable(1);
         Selcourse_teacher.panel.add(table,"schedule");
         Selcourse_teacher.cardLayout.show(Selcourse_teacher.panel,"schedule");
     }
@@ -300,6 +304,13 @@ public class Client_curriculum {
     public static void Require_all_application() throws IOException {
         Message message=new Message();
         message.setType(MessageType.MESSAGE_CURRICULUM_LIST_ADMIN_APPLICATION);
+        oos.writeObject(message);
+    }
+
+    public static void Require_deleteCourse(String deleteID) throws IOException {
+        Message message=new Message();
+        message.setData(deleteID);
+        message.setType(MessageType.MESSAGE_CURRICULUM_DELETE);
         oos.writeObject(message);
     }
     //public

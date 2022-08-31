@@ -40,7 +40,7 @@ public class Selcourse_teacher extends JPanel {
         Declare_Course f4=new Declare_Course();
         panel.add(f4,"f4");
 
-        My_Coursetable f5=new My_Coursetable();
+        My_Coursetable f5=new My_Coursetable(1);
         panel.add(f5,"f5");
 
         //六个按钮
@@ -53,11 +53,7 @@ public class Selcourse_teacher extends JPanel {
         btnNewButton_1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                try {
-                    Client_curriculum.RequireMyChoice();
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
-                }
+                cardLayout.show(panel,"f1");
             }
         });
         add(btnNewButton_1);

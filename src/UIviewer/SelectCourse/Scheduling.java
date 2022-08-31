@@ -1,14 +1,19 @@
 package UIviewer.SelectCourse;
 
 import DAO.Library.Book_borrower;
+import UIhandler.Currirulum.Client_curriculum;
 import UIhandler.Library.Client_library;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
+
+import static UIviewer.login.forgetPWD.forgetPWDUI;
 
 //可以修改课程的时间、地点、课容量   排课功能
 public class Scheduling extends JPanel {
@@ -21,7 +26,6 @@ public class Scheduling extends JPanel {
     public static volatile String[][] courses=null;
     public Scheduling() {
         setLayout(null);
-
         String[] tableTitle = {"课程编号", "课程名", "任课老师", "时间", "课容量", "地点"};
         DefaultTableModel dtm = new DefaultTableModel(courses, tableTitle);
         JTable table_want = new JTable(dtm) {
@@ -42,12 +46,33 @@ public class Scheduling extends JPanel {
         add(jsp);
         table_want.setRowHeight(40);
         setVisible(true);
+
+
         JButton del_button = new JButton("删除课程");
+        del_button.setBounds(530, 440, 200, 40);
         add(del_button);
+        Font myfont2 = new Font("微软雅黑", Font.PLAIN, 18);
+        del_button.setFont(myfont2);
+        del_button.setBackground(new Color(248, 248, 255));
+        //btnNewButton_1.setForeground(new Color(248, 248, 255));
+        del_button.setContentAreaFilled(true);//设置按钮透明
         del_button.setVisible(false);
+        del_button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
+                String id= (String) table_want.getValueAt(table_want.getSelectedRow(),0);
+                try {
+                    Client_curriculum.Require_deleteCourse(id);
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
+
+
         table_want.addMouseListener(new MouseListener() {
             int last_clicked_row = -1;
-
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (table_want.getSelectedRow() == last_clicked_row) {
@@ -81,8 +106,8 @@ public class Scheduling extends JPanel {
             }
         });
         JButton btnNewButton_6 = new JButton("确认修改");
+        btnNewButton_6.setBounds(530, 525, 200, 40);
         btnNewButton_6.setBounds((int)(530*width_r), (int)(525*height_r), (int)(200*width_r), (int)(40*height_r));
-        Font myfont2 = new Font("微软雅黑", Font.PLAIN, 18);
         btnNewButton_6.setFont(myfont2);
         btnNewButton_6.setBackground(new Color(248, 248, 255));
         //btnNewButton_1.setForeground(new Color(248, 248, 255));
