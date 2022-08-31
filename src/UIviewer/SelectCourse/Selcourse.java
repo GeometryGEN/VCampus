@@ -1,9 +1,6 @@
 package UIviewer.SelectCourse;
-
 import UIhandler.Currirulum.Client_curriculum;
-import UIviewer.Shop.Consult_goods;
 import UIviewer.login.functionChoose;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
