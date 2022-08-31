@@ -60,10 +60,20 @@ public class chat_panel extends JPanel {
                 insertText((String)(messages.get(i).getData()),Color.red,(int)(32*width_r),0);
             }
         }
+        JScrollBar scrollBar = new JScrollBar(JScrollBar.VERTICAL) {
+            @Override
+            public boolean isVisible() {
+                return true;
+            }
+        };
+        scrollPane.setVerticalScrollBar(scrollBar);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
+        scrollBar.setUnitIncrement(30);
+
         jTextPane.setCaretPosition(doc.getLength());
         jTextPane.setEditable(false);
-        //scrollPane.getVerticalScrollBar().setValue(scrollPane.getVerticalScrollBar().getMaximum());
         jTextPane.updateUI();
+        jTextPane.setCaretPosition(jTextPane.getStyledDocument().getLength());
     }
     public chat_panel( int width, int height, double width_r, double height_r, int x, int y, Friend friend){
         this.friend=friend;
@@ -131,13 +141,14 @@ public class chat_panel extends JPanel {
 
         //显示消息界面
         scrollPane=new JScrollPane(jTextPane);
-        //scrollPane.setLayout(null);
         scrollPane.setBounds(0,0,(int)(width*width_r),(int)(height/4*3*height_r));
         scrollPane.setBorder(BorderFactory.createLineBorder(new Color(234,234,234)));
         scrollPane.setBackground(new Color(245,246,247));
-        //jTextPane.setBounds(0,0,(int)(width*width_r),(int)(height/4*3*height_r));
         jTextPane.setBackground(new Color(245,246,247));
-        //scrollPane.add(jTextPane);
         add(scrollPane);
+    }
+
+    public Friend getFriend() {
+        return friend;
     }
 }

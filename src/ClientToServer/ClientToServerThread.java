@@ -225,7 +225,6 @@ public class ClientToServerThread extends Thread {
                 }
                 //站内通信
                 if(message.getType().equals(MessageType.MESSAGE_QICQ_LIST_FRIENDS_RET)){
-                     System.out.println("received");
                      HashMap<String,ArrayList<Friend>>friends=(HashMap<String,ArrayList<Friend>>)message.getData();
                      Client_qicq.show_friend(friends);
                 }
@@ -238,6 +237,7 @@ public class ClientToServerThread extends Thread {
                      Client_qicq.receive_message(sender);
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_QICQ_FRIEND_ONLINE_RET)){
+                    System.out.println("received...");
                     Client_qicq.Require_friend_list();
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_QICQ_FRIEND_OFFLINE_RET)){
