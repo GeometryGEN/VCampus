@@ -112,7 +112,5 @@ public class Scheduling extends JPanel {
         //btnNewButton_1.setForeground(new Color(248, 248, 255));
         btnNewButton_6.setContentAreaFilled(true);//设置按钮透明
         add(btnNewButton_6);
-
-
     }
 }
