@@ -204,7 +204,7 @@ public class ShoppingHall extends JPanel {
 
 
 
-        String[] tableTitle = {"商品名称","商品编号","价格","剩余数量","数量","加入购物车","购买"};
+        String[] tableTitle = {"商品编号","商品名称","价格","剩余数量","购买数量","加入购物车","购买"};
         //数据
 
         DefaultTableModel dtm = new DefaultTableModel(shoptable, tableTitle);

@@ -157,7 +157,6 @@ public class Client_curriculum {
             Search_result.search_result[count][3]=String.valueOf(curri.getPoint());
             Search_result.search_result[count][4]=curri.getTeacher();
             Search_result.search_result[count][5]=curri.getClassroom();
-
             count++;
         }
         Search_result search=new Search_result();

@@ -17,6 +17,11 @@ import java.util.Timer;
 import DAO.Library.Book_borrower;
 import UIhandler.Library.Client_library;
 public class Search_result extends JPanel{
+    Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
+    int width=(int ) screensize.getWidth(); //得到宽度
+    int height=(int ) screensize.getHeight();//获得高度
+    double width_r=(double)(width)/1273;
+    double height_r=(double)(height)/790;
     public static volatile String[][] search_result=null;
     public Search_result()
     {
@@ -38,7 +43,7 @@ public class Search_result extends JPanel{
         table_want.getColumnModel().getColumn(5).setPreferredWidth(130);
         //支持滚动
         JScrollPane jsp = new JScrollPane(table_want);
-        jsp.setBounds(0,0,1280,420);
+        jsp.setBounds(0,0,(int)(1280*width_r),(int)(420*height_r));
         add(jsp);
 
         table_want.setRowHeight(40);

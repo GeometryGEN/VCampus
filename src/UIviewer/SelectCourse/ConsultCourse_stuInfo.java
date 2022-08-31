@@ -14,6 +14,11 @@ import java.awt.event.MouseListener;
 import java.io.IOException;
 
 public class ConsultCourse_stuInfo extends JPanel {
+    Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
+    int width=(int ) screensize.getWidth(); //得到宽度
+    int height=(int ) screensize.getHeight();//获得高度
+    double width_r=(double)(width)/1273;
+    double height_r=(double)(height)/790;
 
     public static volatile String[][] consult_stu=null;
 
@@ -25,7 +30,7 @@ public class ConsultCourse_stuInfo extends JPanel {
         DefaultTableModel dtm=new DefaultTableModel(consult_stu,tableTitle);
         JTable table_want=new JTable(dtm);
         JScrollPane jsp=new JScrollPane(table_want);
-        jsp.setBounds(0,0,1280,220);
+        jsp.setBounds(0,0,(int)(1280*width_r),(int)(220*height_r));
         add(jsp);
         table_want.setRowHeight(40);
 

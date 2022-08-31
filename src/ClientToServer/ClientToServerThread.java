@@ -10,6 +10,7 @@ import DAO.Library.Punishment;
 import DAO.QICQ.Friend;
 import DAO.Shop.Product;
 import DAO.Shop.ProductPair;
+import DAO.StatusManagement.ImageAndTable;
 import UIhandler.Currirulum.Client_curriculum;
 import UIhandler.Library.Client_library;
 import UIhandler.QICQ.Client_qicq;
@@ -127,7 +128,9 @@ public class ClientToServerThread extends Thread {
                 else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_PAY_FAIL)){
                     JOptionPane.showMessageDialog(null,"余额不足，缴费失败！");
                 }
-
+                else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_ENTER_RET)){
+                    Client_library.admin_enter_result((ArrayList<Book_admin>) message.getData());
+                }
 
 
                 //商店具体操作
@@ -209,7 +212,9 @@ public class ClientToServerThread extends Thread {
                 else if(message.getType().equals(MessageType.ADD_PRODUCT_FAILED)){
                     Client_shop.setSign_add("3");
                 }
-                else if(message.getType().equals(MessageType.RENEW_STUDENT_INFO_SUCCEED)){
+
+                //学籍管理
+                if(message.getType().equals(MessageType.RENEW_STUDENT_INFO_SUCCEED)){
                     Client_status.setSign_renew("2");
                 }
                 else if(message.getType().equals(MessageType.RENEW_STUDENT_INFO_FAILED)){
@@ -222,6 +227,19 @@ public class ClientToServerThread extends Thread {
                 else if(message.getType().equals(MessageType.ADMIN_RETURN_STUDENT_INFO_SUCCEED)){
                     Student stu = ((Student) message.getData());
                     Client_status.setS_s(stu);
+                }
+                else if(message.getType().equals(MessageType.MESSAGE_STATUS_STU_ENTER_RET)){
+                    Client_status.show_studata((ImageAndTable)message.getData());
+                }
+                else if(message.getType().equals(MessageType.MESSAGE_STATUS_ADMIN_QUERY_RET)){
+                    Client_status.show_info((ImageAndTable)message.getData());
+                }
+                else if(message.getType().equals(MessageType.MESSAGE_STATUS_ADMIN_QUERY_FAIL)){
+                    JOptionPane.showMessageDialog(null,"查询失败! 学生不存在");
+                }
+                else if(message.getType().equals(MessageType.MESSAGE_STATUS_CONFIRM_RET)){
+                    Client_status.show_studata((ImageAndTable)message.getData());
+                    JOptionPane.showMessageDialog(null, "修改学生信息成功!");
                 }
                 //站内通信
                 if(message.getType().equals(MessageType.MESSAGE_QICQ_LIST_FRIENDS_RET)){
@@ -290,6 +308,9 @@ public class ClientToServerThread extends Thread {
                     Client_curriculum.show_all_application((ArrayList<Opencourse>)message.getData());
                 }
 
+
+
+                System.out.println("next");
             } catch (InterruptedIOException e){
                 break;
             }

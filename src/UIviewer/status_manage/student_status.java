@@ -1,8 +1,10 @@
 package UIviewer.status_manage;
 
 import ClientToServer.ClientToServer;
+import DAO.StatusManagement.ImageAndTable;
 import UIhandler.Shop.Client_shop;
 import UIhandler.StatusManagement.Client_status;
+import User.Student;
 import net.coobird.thumbnailator.Thumbnails;
 import ClientToServer.ManageClientToServerThread;
 import javax.swing.*;
@@ -10,13 +12,14 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import ClientToServer.myInfo;
 
 public class student_status extends JPanel {
 
     //信息面板
-    public static JPanel status_panel(double width_r, double height_r, double width, double height,String IDcard) throws Exception {
+    public static JPanel status_panel(double width_r, double height_r, double width, double height, ImageAndTable iat) throws Exception {
         JPanel status=new JPanel();
         status.setBackground(new Color(255,255,255));
         status.setBorder(BorderFactory.createEtchedBorder());
@@ -25,11 +28,11 @@ public class student_status extends JPanel {
         JLabel image = new JLabel();
         int icon1_width=160;
         int icon1_height=320;
-
+        String IDcard=myInfo.getId();
         Client_status.setId(myInfo.getId());  //否则查找学生，id为自身的，识别线程
-        Client_status.getphoto(IDcard);
-        File po = new File("src/image/"+IDcard+".jpg");
-        while (!po.exists()) Thread.onSpinWait();
+        //Client_status.getphoto(IDcard);
+        FileOutputStream fileOutputStream = new FileOutputStream("src/image/"+IDcard+".jpg");
+        fileOutputStream.write(iat.image);
         try {
             Thumbnails.of(new File("src/image/"+IDcard+".jpg"))
                     .size((int)(icon1_width*width_r), (int)(icon1_height*width_r))
@@ -50,14 +53,14 @@ public class student_status extends JPanel {
         status.add(name_label);
 
         //添加表格
-        JPanel table_jpanel = new student_status_table(width_r,height_r,width-(icon1_width+60)*width_r,height-140*height_r,IDcard);
+        JPanel table_jpanel = new student_status_table(width_r,height_r,width-(icon1_width+60)*width_r,height-140*height_r,iat.student);
         table_jpanel.setBounds((int)((icon1_width+60)*width_r),(int)(85*height_r), (int)(width-(icon1_width+100)*width_r),(int)(height-140*height_r));
         status.add(table_jpanel);
 
         return status;
     }
 
-    public student_status(int width, int height) throws Exception {
+    public student_status(int width, int height, ImageAndTable iat) throws Exception {
         double width_r=(double)(width)/1920;
         double height_r=(double)(height)/1080;
         //设置屏幕大小、背景颜色
@@ -89,7 +92,7 @@ public class student_status extends JPanel {
         add(title);
 
         //信息面板
-        JPanel status_jpanel= status_panel(width_r,height_r,width-2*(60+icon1_width)*width_r,(1080-70-icon1_height)*height_r, myInfo.getId());
+        JPanel status_jpanel= status_panel(width_r,height_r,width-2*(60+icon1_width)*width_r,(1080-70-icon1_height)*height_r, iat);
         status_jpanel.setBounds((int)((60+icon1_width)*width_r),(int)((47+icon1_height)*height_r), (int)(width-2*(60+icon1_width)*width_r),(int)((1080-70-icon1_height)*height_r));
         add(status_jpanel);
 

@@ -8,6 +8,11 @@ import java.awt.event.ActionListener;
 
 public class Check_Course extends JPanel{
 public static volatile String[][] checkcourse=null;
+    Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
+    int width=(int ) screensize.getWidth(); //得到宽度
+    int height=(int ) screensize.getHeight();//获得高度
+    double width_r=(double)(width)/1273;
+    double height_r=(double)(height)/790;
     public Check_Course()
     {
         setLayout(null);
@@ -26,7 +31,7 @@ public static volatile String[][] checkcourse=null;
         table_want.setRowHeight(50);
         //支持滚动
         JScrollPane jsp=new JScrollPane(table_want);
-        jsp.setBounds(0,0,1280,580);
+        jsp.setBounds(0,0,(int)(1280*width_r),(int)(580*height_r));
         add(jsp);
 
         try {
@@ -53,14 +58,6 @@ public static volatile String[][] checkcourse=null;
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-
-
-
-
-
-
-
-
 
     }
 

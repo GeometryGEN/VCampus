@@ -93,11 +93,12 @@ public class manage_status extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 //学生信息视图
                 try {
-                    status_jpanel = student_status.status_panel(width_r,height_r,width-2*(60+icon1_width)*width_r,(1080-70-icon1_height)*height_r,search_text.getText());
+                    Client_status.requireInfo(search_text.getText());
+                    /*status_jpanel = student_status.status_panel(width_r,height_r,width-2*(60+icon1_width)*width_r,(1080-70-icon1_height)*height_r,search_text.getText());
                     status_jpanel.setBounds((int)((60+icon1_width)*width_r),(int)((47+icon1_height)*height_r), (int)(width-2*(60+icon1_width)*width_r),(int)((1080-70-icon1_height)*height_r));
                     add(status_jpanel,0);
                     search_panel.setVisible(false);
-                    status_jpanel.setVisible(true);
+                    status_jpanel.setVisible(true);*/
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 }

@@ -11,6 +11,7 @@ import java.io.IOException;
 import java.net.Socket;
 import java.util.List;
 import UIhandler.Shop.Client_shop;
+import UIhandler.StatusManagement.Client_status;
 import UIviewer.QQ.main_panel;
 import UIviewer.SelectCourse.Selcourse;
 import UIviewer.SelectCourse.Selcourse_director;
@@ -275,14 +276,18 @@ public class functionChoose {
                     jf.setBounds(0,0,width,height);
                     jf.remove(fc_panel);
                     if(myInfo.getType()==1)
-                        jf.setContentPane(new student_status(width,height));
+                        //jf.setContentPane(new student_status(width,height));
+                        Client_status.stu_enter();
                     else if(myInfo.getType()==3){
                         jf.setContentPane(new manage_status(width,height));
+                        jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                        jf.setTitle("admin_status_management");
+                        jf.setVisible(true);
+                        //Client_status.admin_enter();
                     } else {
                         JOptionPane.showMessageDialog(null,"抱歉，您暂无学籍管理权限！");
                     }
-                    jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                    jf.setVisible(true);
+
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -429,22 +434,23 @@ public class functionChoose {
                 // TODO Auto-generated method stub
                 try {
                     jf.remove(fc_panel);
+                    Client_library.setId(myInfo.getId());
                     if(myInfo.getType()!=3)
                     {
-                        Client_library.setId(myInfo.getId());
                         jf.setContentPane(new readLib());
                         jf.setTitle("readLib");
+                        jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                        jf.setVisible(true);
                     }
                     else
                     {
-                        Client_library.setId(myInfo.getId());
-                        Client_library.RequireshowAllBooks();
-                        while (AllBooks.tableDate==null);
-                        jf.setContentPane(new adminLib());
-                        jf.setTitle("adminLib");
+                        Client_library.admin_enter();
+                        //jf.setContentPane(new adminLib());
+                        //jf.setTitle("adminLib");
+                        //jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                        //jf.setVisible(true);
                     }
-                    jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                    jf.setVisible(true);
+
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }

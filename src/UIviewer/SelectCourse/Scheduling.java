@@ -12,6 +12,11 @@ import java.io.IOException;
 
 //可以修改课程的时间、地点、课容量   排课功能
 public class Scheduling extends JPanel {
+    Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
+    int width=(int ) screensize.getWidth(); //得到宽度
+    int height=(int ) screensize.getHeight();//获得高度
+    double width_r=(double)(width)/1273;
+    double height_r=(double)(height)/784;
 
     public static volatile String[][] courses=null;
     public Scheduling() {
@@ -33,7 +38,7 @@ public class Scheduling extends JPanel {
         table_want.getColumnModel().getColumn(5).setPreferredWidth(120);
 
         JScrollPane jsp = new JScrollPane(table_want);
-        jsp.setBounds(0, 0, 1280, 420);
+        jsp.setBounds(0, 0, (int)(1280*width_r), (int)(420*height_r));
         add(jsp);
         table_want.setRowHeight(40);
         setVisible(true);
@@ -76,7 +81,7 @@ public class Scheduling extends JPanel {
             }
         });
         JButton btnNewButton_6 = new JButton("确认修改");
-        btnNewButton_6.setBounds(530, 525, 200, 40);
+        btnNewButton_6.setBounds((int)(530*width_r), (int)(525*height_r), (int)(200*width_r), (int)(40*height_r));
         Font myfont2 = new Font("微软雅黑", Font.PLAIN, 18);
         btnNewButton_6.setFont(myfont2);
         btnNewButton_6.setBackground(new Color(248, 248, 255));

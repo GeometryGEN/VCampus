@@ -38,11 +38,11 @@ public class shopCar extends JPanel {
         table_want.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if(table_want.getSelectedColumn()==4){
+                if(table_want.getSelectedColumn()==5){
                     //购买功能
                 }
 
-                if(table_want.getSelectedColumn()==5){
+                if(table_want.getSelectedColumn()==6){
                     //删除功能
                 }
             }
