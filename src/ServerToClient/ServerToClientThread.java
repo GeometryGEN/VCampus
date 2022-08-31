@@ -292,7 +292,7 @@ public class ServerToClientThread extends Thread{
                     } else{
                         sendback.setType(MessageType.RETURN_ALL_PRODUCT_FAILED);
                         oos.writeObject(sendback);
-                        socket.close();
+                        //socket.close();
                     }
                 }
                 else if(m.getType().equals(MessageType.FIND_PRODUCT)){
@@ -304,7 +304,7 @@ public class ServerToClientThread extends Thread{
                     } else{
                         sendback.setType(MessageType.FIND_PRODUCT_SUCCEED_ZERO);
                         oos.writeObject(sendback);
-                        socket.close();
+                        //socket.close();
                     }
                 }
                 else if(m.getType().equals(MessageType.CHECK_CERTAIN_PRODUCT)){
@@ -316,7 +316,7 @@ public class ServerToClientThread extends Thread{
                     } else{
                         sendback.setType(MessageType.CHECK_CERTAIN__PRODUCT_FAILED);
                         oos.writeObject(sendback);
-                        socket.close();
+                        //socket.close();
                     }
                 }
                 else if(m.getType().equals(MessageType.CHECK_BUYED_PRODUCT)){
@@ -328,7 +328,7 @@ public class ServerToClientThread extends Thread{
                     } else{
                         sendback.setType(MessageType.CHECK_BUYED_PRODUCT_FAILED);  //相当于为0
                         oos.writeObject(sendback);
-                        socket.close();
+                        //socket.close();
                     }
                 }
                 else if(m.getType().equals(MessageType.CHECK_READYTOBUY_PRODUCT)){
@@ -340,7 +340,7 @@ public class ServerToClientThread extends Thread{
                     } else{
                         sendback.setType(MessageType.CHECK_READYTOBUY_PRODUCT_FAILED);  //相当于为0
                         oos.writeObject(sendback);
-                        socket.close();
+                        //socket.close();
                     }
                 }
 
