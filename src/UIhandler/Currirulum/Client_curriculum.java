@@ -334,4 +334,10 @@ public class Client_curriculum {
         oos.writeObject(message);
     }
     //public
+    public static void DropCourse(String id) throws IOException {
+        Message message=new Message();
+        message.setData(id);
+        message.setType(MessageType.MESSAGE_CURRICULUM_DROP);
+        oos.writeObject(message);
+    }
 }

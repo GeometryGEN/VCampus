@@ -1,10 +1,15 @@
 package UIviewer.SelectCourse;
 
+import UIhandler.Currirulum.Client_curriculum;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.io.IOException;
 
 public class ConsultCourse_Chosen extends JPanel {
     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
@@ -22,7 +27,11 @@ public class ConsultCourse_Chosen extends JPanel {
 
         String[] tableTitle={"课程编号","课程名","时间","学分","任课老师","地点"};
         DefaultTableModel dtm=new DefaultTableModel(consultCourse_chosen,tableTitle);
-        JTable table_want=new JTable(dtm);
+        JTable table_want=new JTable(dtm){
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
         table_want.setFont(new Font("宋体",Font.BOLD,20));
         table_want.getColumnModel().getColumn(0).setPreferredWidth(120);
         table_want.getColumnModel().getColumn(1).setPreferredWidth(200);
@@ -36,8 +45,63 @@ public class ConsultCourse_Chosen extends JPanel {
         JScrollPane jsp=new JScrollPane(table_want);
         jsp.setBounds(0,0,(int)(1280*width_r),(int)(480*height_r));
         add(jsp);
+        JButton del_button = new JButton("删除课程");
+        del_button.setBounds((int)(350*width_r), (int)(525*height_r), (int)(200*width_r), (int)(40*height_r));
+        add(del_button);
+        Font myfont2 = new Font("微软雅黑", Font.PLAIN, 18);
+        del_button.setFont(myfont2);
+        del_button.setBackground(new Color(248, 248, 255));
+        del_button.setContentAreaFilled(true);//设置按钮透明
+        del_button.setVisible(false);
+        del_button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
+                String id= (String) table_want.getValueAt(table_want.getSelectedRow(),0);
+                try {
+                    Client_curriculum.DropCourse(id);
+                    Client_curriculum.RequireMyChoice();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
+        table_want.addMouseListener(new MouseListener() {
 
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int last_clicked=-1;
+                if(table_want.getSelectedColumn()==last_clicked){
+                    last_clicked=-1;
+                    table_want.clearSelection();
+                    del_button.setVisible(false);
+                }
+                else {
+                    last_clicked=table_want.getSelectedColumn();
+                    del_button.setVisible(true);
+                }
+            }
 
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
         add(p11);
 
 

@@ -225,6 +225,10 @@ public class ServerToClientThread extends Thread{
                     Course c=(Course) m.getData();
                     new Course_manager(userid).admin_arrange(c);
                 }
+                else if(m.getType().equals(MessageType.MESSAGE_CURRICULUM_DROP)){
+                    new Course_manager(userid).drop((String)m.getData());
+                }
+
                 //站内通信
                 if(m.getType().equals(MessageType.MESSAGE_QICQ_SEND_MSG)){
                      String getter=m.getGetter();
