@@ -6,18 +6,14 @@ import DAO.QICQ.Filetrans;
 import DAO.QICQ.Friend;
 import UIviewer.QQ.chat_panel;
 import UIviewer.QQ.friend_list;
-import UIviewer.QQ.friend_slice;
 import message.Message;
 import message.MessageType;
-import utils.MyObjectInputStream;
 import utils.MyObjectOutputStream;
 import utils.myTime;
 
 import java.io.*;
-import java.net.Socket;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 
 public class Client_qicq {
     static String id;
@@ -29,6 +25,7 @@ public class Client_qicq {
     public static void setId(String id) {
         Client_qicq.id = id;
     }
+
 
     public void send_file(String src, String sender, String getter, String filename){
         Message message=new Message();
@@ -91,7 +88,10 @@ public class Client_qicq {
     }
     public static void show_message(ArrayList<Message> messages){
         chat_panel.show_message(messages);
-        System.out.println(4444);
+    }
+    public static void receive_message(String sender){
+        friend_list.red_unread(sender);
+        friend_list.show_unread(sender);
     }
     public void add_friend(String myid,String myname,String number,String nickname) throws IOException {
         Application app=new Application(myid,myname);
@@ -107,10 +107,20 @@ public class Client_qicq {
         message.setType(MessageType.MESSAGE_QICQ_LIST_FRIENDS);
         oos.writeObject(message);
     }
-    public static void show_friend(HashMap<String, ArrayList<Friend>>friend){
-        for(String tag: friend.keySet()){
-            friend_list.add(tag,friend.get(tag));
-        }
+    public static void I_am_online() throws IOException{
+        Message message=new Message();
+        message.setData(id);
+        message.setType(MessageType.MESSAGE_QICQ_FRIEND_ONLINE);
+        oos.writeObject(message);
+    }public static void I_am_offline() throws IOException{
+        Message message=new Message();
+        message.setData(id);
+        message.setType(MessageType.MESSAGE_QICQ_FRIEND_OFFLINE);
+        oos.writeObject(message);
+    }
+    public static void show_friend(HashMap<String, ArrayList<Friend>> friend){
+        System.out.println("yes");
+        friend_list.show_Friend(friend);
     }
 
 }

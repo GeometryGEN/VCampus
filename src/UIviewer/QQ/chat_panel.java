@@ -19,6 +19,7 @@ import java.util.ArrayList;
 public class chat_panel extends JPanel {
     private JPanel type_panel;
     private static JScrollPane scrollPane;
+    private Friend friend;
     static double width_r;
     static JTextPane jTextPane = new JTextPane();
     static StyledDocument doc = jTextPane.getStyledDocument();
@@ -65,6 +66,7 @@ public class chat_panel extends JPanel {
         jTextPane.updateUI();
     }
     public chat_panel( int width, int height, double width_r, double height_r, int x, int y, Friend friend){
+        this.friend=friend;
         setLayout(null);
         this.width_r=width_r;
         setBounds((int)(x*width_r),(int)(y*height_r),(int)(width*width_r),(int)(height*height_r));
@@ -123,6 +125,7 @@ public class chat_panel extends JPanel {
                     throw new RuntimeException(ex);
                 }
                 type_field.setText("");
+
             }
         });
 

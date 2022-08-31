@@ -233,6 +233,16 @@ public class ClientToServerThread extends Thread {
                      ArrayList<Message>messages=(ArrayList<Message>)message.getData();
                      Client_qicq.show_message(messages);
                 }
+                else if(message.getType().equals(MessageType.MESSAGE_QICQ_RECERIVE_MESSAGE)){
+                     String sender=message.getSender();
+                     Client_qicq.receive_message(sender);
+                }
+                else if(message.getType().equals(MessageType.MESSAGE_QICQ_FRIEND_ONLINE_RET)){
+                    Client_qicq.Require_friend_list();
+                }
+                else if(message.getType().equals(MessageType.MESSAGE_QICQ_FRIEND_OFFLINE_RET)){
+                    Client_qicq.Require_friend_list();
+                }
                 System.out.println("next");
 
                 //选课

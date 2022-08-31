@@ -46,14 +46,6 @@ public class Selcourse_director extends JFrame {
         CurrentCourse_Man f3=new CurrentCourse_Man();
         panel.add(f3,"f3");
 
-        //东南大学标志图片
-        //文字
-        /*JLabel l1 = new JLabel("欢迎使用东南大学选课系统!");
-        l1.setBounds(480, 50, 390, 280);
-        Font font = new Font("黑体", Font.BOLD, 27);
-        l1.setFont(font);
-        //l1.setForeground(new Color(111,222,0));
-        frame.getContentPane().add(l1);*/
 
         //六个按钮
         // 按钮1
@@ -84,12 +76,6 @@ public class Selcourse_director extends JFrame {
         });
         add(btnNewButton_2);
 
-        /*// 按钮3
-        JButton btnNewButton_3 = new JButton("选课帮助");
-        btnNewButton_3.setBounds(1000, 380, 260, 90);
-        btnNewButton_3.setFont(myfont);
-        btnNewButton_3.setBackground(new Color(221, 160, 221));
-        frame.getContentPane().add(btnNewButton_3);*/
 
         //按钮4
         JButton btnNewButton_4 = new JButton("审核课程");
@@ -99,6 +85,7 @@ public class Selcourse_director extends JFrame {
         btnNewButton_4.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                cardLayout.show(panel,"f1");
                 try {
                     Client_curriculum.Require_all_application();
                 } catch (IOException ex) {
@@ -124,12 +111,6 @@ public class Selcourse_director extends JFrame {
         });
         add(btnNewButton_5);
 
-       /* //按钮6
-        JButton btnNewButton_6 = new JButton("退出");
-        btnNewButton_6.setBounds(1000, 600, 260, 90);
-        btnNewButton_6.setFont(myfont);
-        btnNewButton_6.setBackground(new Color(221, 160, 221));
-        frame.getContentPane().add(btnNewButton_6);*/
 
         //东南大学标志图片
         JLabel logo = new JLabel();
