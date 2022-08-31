@@ -60,32 +60,17 @@ public class ShoppingHall extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
                 String searchInfo=textField.getText();
-                try {
-                    List<Product> t = Client_shop.checktypeProduct(searchInfo);
-                    if(t!=null){
-                        String[][] temp = new String[t.size()][];
-                        for(int i =0;i<t.size();i++){
-                            String[] tt =new String[5];
-                            tt[0]=String.valueOf(t.get(i).getProduct_id());
-                            tt[1]=t.get(i).getProduct_name();
-                            tt[2]=String.valueOf(t.get(i).getProduct_price());
-                            tt[3]=String.valueOf(t.get(i).getProduct_currentNumbers());
-                            tt[4]="1";
-                            temp[i]=tt;
-                        }
-                        setShoptable(temp);
-                    }else {
-                        System.out.println("kong");
-                    }
-                    ShoppingHall f112=new ShoppingHall();
-                    panel.add(f112,"f112");
-                    cardLayout.show(panel, "f112");
-                } catch (Exception ex) {
-                    throw new RuntimeException(ex);
-                }
+
             }
         });
         add(b11);
+
+
+        JLabel lblNewLabel = new JLabel("商品分类");
+        lblNewLabel.setFont(new Font("宋体", Font.BOLD, 24));
+        lblNewLabel.setBounds((int)(125*width_r), (int)(70*height_r), (int)(160*width_r), (int)(40*height_r));
+        add(lblNewLabel);
+
 
         JButton btnNewButton_1 = new JButton("零食");
         btnNewButton_1.setBounds((int) (30*width_r), (int) (150*height_r), (int) (100*width_r), (int) (30*height_r));
@@ -243,6 +228,73 @@ public class ShoppingHall extends JPanel {
             }
         });
         add(btnNewButton_8);
+
+        JButton btnNewButton_9 = new JButton("家居");
+        btnNewButton_9.setBounds((int) (30*width_r), (int) (430*height_r), (int) (100*width_r), (int) (30*height_r));
+        btnNewButton_9.setFont(myfont1);
+        btnNewButton_9.setContentAreaFilled(false);//设置按钮透明
+        btnNewButton_9.setForeground(new Color(255,255,255));
+        btnNewButton_9.setBorder(null);//取消边框
+        btnNewButton_9.setFocusPainted(false);
+        btnNewButton_9.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null,"XXX,你妈妈给你带来了你最爱的旺仔雪饼！");
+            }
+        });
+        add(btnNewButton_9);
+
+
+        JButton btnNewButton_10 = new JButton("数码");
+        btnNewButton_10.setBounds((int) (200*width_r), (int) (430*height_r), (int) (100*width_r), (int) (30*height_r));
+        btnNewButton_10.setFont(myfont1);
+        btnNewButton_10.setContentAreaFilled(false);//设置按钮透明
+        btnNewButton_10.setForeground(new Color(255,255,255));
+        btnNewButton_10.setBorder(null);//取消边框
+        btnNewButton_10.setFocusPainted(false);
+        btnNewButton_10.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null,"XXX,你妈妈给你带来了你最爱的旺仔雪饼！");
+            }
+        });
+        add(btnNewButton_10);
+
+        JButton btnNewButton_11 = new JButton("箱包");
+        btnNewButton_11.setBounds((int) (30*width_r), (int) (500*height_r), (int) (100*width_r), (int) (30*height_r));
+        btnNewButton_11.setFont(myfont1);
+        btnNewButton_11.setContentAreaFilled(false);//设置按钮透明
+        btnNewButton_11.setForeground(new Color(255,255,255));
+        btnNewButton_11.setBorder(null);//取消边框
+        btnNewButton_11.setFocusPainted(false);
+        btnNewButton_11.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null,"XXX,你妈妈给你带来了你最爱的旺仔雪饼！");
+            }
+        });
+        add(btnNewButton_11);
+
+        JButton btnNewButton_12 = new JButton("美妆");
+        btnNewButton_12.setBounds((int) (200*width_r), (int) (500*height_r), (int) (100*width_r), (int) (30*height_r));
+        btnNewButton_12.setFont(myfont1);
+        btnNewButton_12.setContentAreaFilled(false);//设置按钮透明
+        btnNewButton_12.setForeground(new Color(255,255,255));
+        btnNewButton_12.setBorder(null);//取消边框
+        btnNewButton_12.setFocusPainted(false);
+        btnNewButton_12.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(null,"XXX,你妈妈给你带来了你最爱的旺仔雪饼！");
+            }
+        });
+        add(btnNewButton_12);
+
+
+
+
+
+
 
         //左侧面板
         JPanel p1=new JPanel();
