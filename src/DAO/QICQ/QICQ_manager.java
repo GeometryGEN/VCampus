@@ -27,6 +27,7 @@ public class QICQ_manager {
         }
     }
     public void friend_is_online(String id) throws SQLException, IOException {
+        System.out.println("wanting online");
         Message msg=new Message();
         msg.setType(MessageType.MESSAGE_QICQ_FRIEND_ONLINE_RET);
         msg.setData(id);
@@ -36,10 +37,10 @@ public class QICQ_manager {
         ResultSet rs=st.executeQuery();
         while(rs.next()){
             String friend_id=rs.getString("friend_id");
+            System.out.println(friend_id+" check");
             if(ServerToClient.isOnline(friend_id)!=-1){
-                MyObjectOutputStream oos=new MyObjectOutputStream(ManageServerToClientThread
-                        .getThread(friend_id).getSocket().getOutputStream());
-                oos.writeObject(msg);
+                System.out.println(friend_id);
+                ManageServerToClientThread.getThread(friend_id).oos.writeObject(msg);
             }
         }
     }
@@ -54,9 +55,7 @@ public class QICQ_manager {
         while(rs.next()){
             String friend_id=rs.getString("friend_id");
             if(ServerToClient.isOnline(friend_id)!=-1){
-                MyObjectOutputStream oos=new MyObjectOutputStream(ManageServerToClientThread
-                        .getThread(friend_id).getSocket().getOutputStream());
-                oos.writeObject(msg);
+                ManageServerToClientThread.getThread(friend_id).oos.writeObject(msg);
             }
         }
     }
@@ -73,7 +72,7 @@ public class QICQ_manager {
             friend.id=rs.getString("friend_id");
             if(ServerToClient.isOnline(friend.id)!=-1) {
                 friend.setOnline(1);
-                System.out.println(friend.id+" ok");
+               // System.out.println(friend.id+" ok");
             }
             else friend.setOnline(0);
             sql="select * from message where sender=? and getter=? and isread=0;";
@@ -87,7 +86,7 @@ public class QICQ_manager {
                 friends.get(group).add(friend);
             }
             else {
-                System.out.println(group);
+               // System.out.println(group);
                 ArrayList<Friend> f = new ArrayList<>();
                 f.add(friend);
                 friends.put(group,f);
