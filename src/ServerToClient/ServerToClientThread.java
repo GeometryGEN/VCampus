@@ -219,7 +219,7 @@ public class ServerToClientThread extends Thread{
                 }
                 else if(m.getType().equals(MessageType.MESSAGE_CURRICULUM_APPLICATION_APPROVE)){
                     Course c=(Course) m.getData();
-                    new Course_manager(userid).approve(m.getGetter(),c);
+                    new Course_manager(userid).approve(c);
                 }
                 else if(m.getType().equals(MessageType.MESSAGE_CURRICULUM_ADMIN_ARRANGEMENT)){
                     Course c=(Course) m.getData();
