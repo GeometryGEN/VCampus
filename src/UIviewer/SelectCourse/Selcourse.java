@@ -1,9 +1,6 @@
 package UIviewer.SelectCourse;
-
 import UIhandler.Currirulum.Client_curriculum;
-import UIviewer.Shop.Consult_goods;
 import UIviewer.login.functionChoose;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -124,7 +121,11 @@ public class Selcourse extends JFrame {
         btnNewButton_5.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(panel,"f5");
+                try {
+                    Client_curriculum.RequireSchedule();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
         main_win.add(btnNewButton_5);
@@ -145,9 +146,6 @@ public class Selcourse extends JFrame {
         });
         main_win.add(btnNewButton_6);
 
-        /*JPanel p2=new JPanel();
-        p2.setBounds(0,100,1273,784);
-        main_win.add(p2);*/
 
         //东南大学标志图片
         JLabel l15 = new JLabel();

@@ -21,7 +21,8 @@ public class ShoppingHall extends JPanel {
     double width_r=(double)(width)/1273;
     double height_r=(double)(height)/784;
 
-    public static volatile String[][] shoptable={{"旺仔牛奶","1","5","10","加入购物车","购买"}};
+    public static volatile String[][] shoptable;
+
     public static void resetshoptable(){
         shoptable=null;
     }
@@ -63,8 +64,21 @@ public class ShoppingHall extends JPanel {
         btnNewButton_1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String[][]temp={{"1111"}};
-                setShoptable(temp);
+                try {
+                    List<Product> t = Client_shop.checktypeProduct("零食");
+                    String[][] temp = new String[t.size()][];
+                    for(int i =0;i<t.size();i++){
+                        String[] tt =new String[4];
+                        tt[0]=t.get(i).getProduct_name();
+                        tt[2]=String.valueOf(t.get(i).getProduct_currentNumbers());
+                        tt[1]=String.valueOf(t.get(i).getProduct_price());
+                        tt[3]=String.valueOf(t.get(i).getProduct_currentNumbers());
+                        temp[i]=tt;
+                    }
+                    setShoptable(temp);
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
                 ShoppingHall f11=new ShoppingHall();
                 panel.add(f11,"f11");
                 cardLayout.show(panel, "f11");
@@ -182,7 +196,7 @@ public class ShoppingHall extends JPanel {
         p1 = new JPanel();
         p1.setBounds(0, 0, 340, 780);
         //p1.setBackground(null);
-        p1.setBackground(new Color(255,160,122, 180));
+        p1.setBackground(new Color(255,160,122, 120));
         //panel1.BackColor = Color.FromArgb(80, 255, 0, 0);
         //p1.setOpaque(false);
         add(p1);
@@ -231,11 +245,14 @@ public class ShoppingHall extends JPanel {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     if (table_want.getSelectedColumn() == 4) {
-                        System.out.println("car");
+                        //购物车
+                        String id= (String) table_want.getValueAt(table_want.getSelectedRow(),0);
+
                     }
 
                     if (table_want.getSelectedColumn() == 5) {
                         System.out.println("buy");
+
                     }
                 }
 

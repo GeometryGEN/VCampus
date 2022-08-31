@@ -63,7 +63,7 @@ public class Course_manager {
             sec_l=Integer.parseInt(ss[i].substring(index+4,index3));
             int index4=ss[i].indexOf("节");
             sec_r=Integer.parseInt(ss[i].substring(index3+1,index4));
-
+         //   System.out.println(week_l+"->"+week_r+" "+day+" "+sec_l+"->"+sec_r);
             for(int p=week_l;p<=week_r;p++){
                 for(int q=sec_l;q<=sec_r;q++){
                     a[p][day][q]=1;
@@ -224,7 +224,7 @@ public class Course_manager {
         st.executeUpdate();
     }
     public String[][][] schedule() throws SQLException {
-        String [][][]ans=new String[17][14][6];
+        String [][][]ans=new String[17][6][14];
         ArrayList<Course>courses=list_my_courses();
         Iterator it = courses.iterator();
         while(it.hasNext()){
@@ -232,7 +232,10 @@ public class Course_manager {
             for(int p=1;p<=16;p++){
                 for(int q=1;q<=5;q++){
                     for(int r=1;r<=13;r++){
-                        if(cc.class_time[p][q][r]==1) ans[p][q][r]=cc.name;
+                        if(cc.class_time[p][q][r]==1) {
+                            ans[p][q][r]=cc.name;
+                    //        System.out.println(cc.name);
+                        }
                     }
                 }
             }
@@ -246,24 +249,26 @@ public class Course_manager {
         ResultSet rs=st.executeQuery();
         Message message=new Message();
         if(rs.next()){
+            message.setType(MessageType.MESSAGE_CURRICULUM_APPLY_FAIL);
+        }
+        else{
             message.setType(MessageType.MESSAGE_CURRICULUM_APPLY_SUCCEED);
-            sql="select count(*) from opencourse;";
-            st= conn.prepareStatement(sql);
-            rs=st.executeQuery();
-            String newid=String.valueOf(rs.getInt(1));
+            String sql1="select count(*) as total from opencourse;";
+            PreparedStatement st1= conn.prepareStatement(sql1);
+            ResultSet rs1=st1.executeQuery();
+            rs1.next();
+            String newid=String.valueOf(rs1.getInt("total")+1);
+            System.out.println(newid);
             //ServerToClient.add_opencourse(c);
             sql="insert into opencourse(name,teacher_name,teacher_id,point,size,status,id) values(?,?,?,?,?,0,?);";
             st= conn.prepareStatement(sql);
             st.setString(1,c.getName());
-            st.setString(2,c.getTeacher_id());
-            st.setString(3,c.getTeacher());
+            st.setString(2,c.getTeacher());
+            st.setString(3,c.getTeacher_id());
             st.setDouble(4,c.getPoint());
             st.setInt(5,c.getSize());
             st.setString(6,newid);
             st.executeUpdate();
-        }
-        else{
-            message.setType(MessageType.MESSAGE_CURRICULUM_APPLY_FAIL);
         }
         return message;
     }
@@ -300,6 +305,7 @@ public class Course_manager {
         ResultSet rs=st.executeQuery();
         while(rs.next()){
             Opencourse c=new Opencourse();
+            c.setId(rs.getString("id"));
             c.setName(rs.getString("name"));
             c.setTeacher(rs.getString("teacher_name"));
             c.setPoint(rs.getDouble("point"));
@@ -366,5 +372,11 @@ public class Course_manager {
         st.setInt(3,c.size);
         st.setString(4,c.id);
         st.executeUpdate();
+    }
+    public void auto_arrage() throws SQLException {
+        String sql="select * from curriculum;";
+        PreparedStatement st=conn.prepareStatement(sql);
+        ResultSet rs= st.executeQuery();
+
     }
 }

@@ -9,6 +9,7 @@ import DAO.Library.Book_borrower;
 import DAO.Library.Punishment;
 import DAO.QICQ.Friend;
 import DAO.Shop.Product;
+import DAO.Shop.ProductPair;
 import UIhandler.Currirulum.Client_curriculum;
 import UIhandler.Library.Client_library;
 import UIhandler.QICQ.Client_qicq;
@@ -150,34 +151,32 @@ public class ClientToServerThread extends Thread {
                     Client_shop.setSign(false);
                 }
                 else if(message.getType().equals(MessageType.CHECK_BUYED_PRODUCT_SUCCEED)){
-                    String ps = (String) message.getData();
-                    Client_shop.setBuyed(ps);
+                    List<ProductPair> s  = (List<ProductPair>) message.getData();
+                    Client_shop.setBuyed(s);
+                    Client_shop.setSign_zero(false);
                 }
                 else if(message.getType().equals(MessageType.CHECK_BUYED_PRODUCT_FAILED)){
                     Client_shop.setBuyed(null);
+                    Client_shop.setSign_zero(false);
                 }
-                else if(message.getType().equals(MessageType.CHECK_BUYED_PRODUCT_NUM_SUCCEED)){
-                    String ps = (String) message.getData();
-                    Client_shop.setBuyed_num(ps);
-                }
-                else if(message.getType().equals(MessageType.CHECK_BUYED_PRODUCT_NUM_FAILED)){
-                    Client_shop.setBuyed_num(null);
-                }
+
                 else if(message.getType().equals(MessageType.CHECK_READYTOBUY_PRODUCT_SUCCEED)){
-                    String ps = (String) message.getData();
-                    Client_shop.setReadyToBuy(ps);
+                    List<ProductPair> s  = (List<ProductPair>) message.getData();
+                    Client_shop.setReadyToBuy(s);
+                    Client_shop.setSign_zero(false);
                 }
                 else if(message.getType().equals(MessageType.CHECK_READYTOBUY_PRODUCT_FAILED)){
                     Client_shop.setReadyToBuy(null);
+                    Client_shop.setSign_zero(false);
                 }
 
-                else if(message.getType().equals(MessageType.CHECK_READYTOBUY_PRODUCT_NUM_SUCCEED)){
-                    String ps = (String) message.getData();
-                    Client_shop.setReadyToBuy_num(ps);
+                else if(message.getType().equals(MessageType.DELETE_READYTPBUY_PRODUCT_SUCCEED)){
+                    Client_shop.setSign_delete("2");
                 }
-                else if(message.getType().equals(MessageType.CHECK_READYTOBUY_PRODUCT_NUM_FAILED)){
-                    Client_shop.setReadyToBuy_num(null);
+                else if(message.getType().equals(MessageType.DELETE_READYTPBUY_PRODUCT_FAILED)){
+                    Client_shop.setSign_delete("3");
                 }
+
 
                 else if(message.getType().equals(MessageType.CHECK_CERTAIN__PRODUCT_SUCCEED)){
                     Product ps = (Product) message.getData();
@@ -190,10 +189,12 @@ public class ClientToServerThread extends Thread {
                 }
 
                 else if(message.getType().equals(MessageType.BUY_CERTAIN__PRODUCT_SUCCEED)){
-                    Client_shop.setNow_Buy_product("2");
+                    String ps = (String) message.getData();
+                    Client_shop.setNow_Buy_product(ps);
                 }
                 else if(message.getType().equals(MessageType.BUY_CERTAIN__PRODUCT_FAILED)){
-                    Client_shop.setNow_Buy_product("3");
+                    String ps = (String) message.getData();
+                    Client_shop.setNow_Buy_product(ps);
                 }
 
                 else if(message.getType().equals(MessageType.DELETE_PRODUCT_SUCCEED)){
@@ -266,6 +267,23 @@ public class ClientToServerThread extends Thread {
                 else if(message.getType().equals(MessageType.MESSAGE_CURRICULUM_CHOOSE_CONFLICT)){
                     JOptionPane.showMessageDialog(null,"选课失败，课程冲突");
                 }
+                else if(message.getType().equals(MessageType.MESSAGE_CURRICULUM_APPLY_SUCCEED)){
+                    JOptionPane.showMessageDialog(null,"课程申报成功！");
+                }
+                else if(message.getType().equals(MessageType.MESSAGE_CURRICULUM_APPLY_FAIL)){
+                    JOptionPane.showMessageDialog(null,"课程申报失败，已经存在相同课程！");
+                }
+                else if(message.getType().equals(MessageType.MESSAGE_CURRICULUM_SHOW_STU_RET)){
+                    Client_curriculum.show_my_students((ArrayList<Student>)message.getData());
+                }
+                else if(message.getType().equals(MessageType.MESSAGE_CURRICULUM_SHOW_SCHEDULE_RET)){
+                    if(myInfo.getType()==2) Client_curriculum.show_tea_schedule((String[][][])message.getData());
+                    if(myInfo.getType()==1) Client_curriculum.show_my_schedule((String[][][])message.getData());
+                }
+                else if(message.getType().equals(MessageType.MESSAGE_CURRICULUM_LIST_ADMIN_APPLICATION_RET)){
+                    Client_curriculum.show_all_application((ArrayList<Opencourse>)message.getData());
+                }
+
             } catch (InterruptedIOException e){
                 break;
             }

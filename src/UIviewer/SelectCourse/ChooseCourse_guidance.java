@@ -45,21 +45,6 @@ public class ChooseCourse_guidance extends JPanel{
         add(l3);
 
 
-        //横向图片
-        /*JLabel l12 = new JLabel();
-        ImageIcon icon5 = new ImageIcon("src/image/banner3.png");
-        l12.setIcon(icon5);
-        l12.setBounds(310, 70, 1000, 125);
-        add(l12);*/
-
-        //文字
-        /*JLabel l13 = new JLabel("     功能选择 ");
-        l13.setBounds(320, 200, 200, 75);
-        Font font13 = new Font("微软雅黑", Font.BOLD, 25);
-        l13.setFont(font13);
-        //l13.setForeground(new Color(111,222,0));
-        jf.getContentPane().add(l13);*/
-
         //左侧面板
         JPanel p1 = new JPanel();
         p1.setBounds(0, 0, 310, 784);

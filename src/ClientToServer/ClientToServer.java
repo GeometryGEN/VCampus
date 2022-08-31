@@ -4,6 +4,7 @@ import DAO.Login.Teachers_utils;
 import UIhandler.Currirulum.Client_curriculum;
 import UIhandler.Library.Client_library;
 import UIhandler.QICQ.Client_qicq;
+import UIhandler.Shop.Client_shop;
 import User.*;
 import message.Message;
 import message.MessageType;
@@ -94,14 +95,17 @@ public class ClientToServer {
         Message ms = (Message) ois.readObject();
         if (ms.getType().equals(MessageType.MESSAGE_LOGIN_SUCCEED)) {
             ID = "1";
-            String name = (String) ms.getData();
-            myInfo.setall(id, 1, name);
+            Student a = (Student) ms.getData();
+            myInfo.setall(a.getStudent_idcard(), 1, a.getStudent_name());
+            myInfo.setMoney(a.getStudent_money());
             ClientToServerThread ctst = new ClientToServerThread(ois,socket);        //创建一个和服务器端保持通信的线程
             ctst.start();                                                        //启动线程
             ManageClientToServerThread.addThread(id, ctst);
+           // System.out.println(ManageClientToServerThread.getThread(id));
             Client_curriculum.setOos(oos);
             Client_library.setOos(oos);
             Client_qicq.setOps(oos);
+            Client_shop.setOos(oos);
             return true;
         } else {
             socket.close();
@@ -125,7 +129,9 @@ public class ClientToServer {
         Message ms = (Message) ois.readObject();
         if (ms.getType().equals(MessageType.MESSAGE_LOGIN_SUCCEED)) {
             ID = "2";
-            myInfo.setall(id, 2, (String) ms.getData());
+            Teacher a = (Teacher) ms.getData();
+            myInfo.setall(a.getTeacher_idcard(), 1, a.getTeacher_name());
+            myInfo.setMoney(a.getTeacher_money());
             //创建一个和服务器端保持通信的线程
             ClientToServerThread ctst = new ClientToServerThread(ois,socket);
             //启动线程
@@ -133,6 +139,7 @@ public class ClientToServer {
             Client_curriculum.setOos(oos);
             Client_library.setOos(oos);
             Client_qicq.setOps(oos);
+            Client_shop.setOos(oos);
             ManageClientToServerThread.addThread(id, ctst);
             return true;
         } else {
@@ -158,7 +165,8 @@ public class ClientToServer {
         Message ms = (Message) ois.readObject();
         if (ms.getType().equals(MessageType.MESSAGE_LOGIN_SUCCEED)) {
             ID = "3";
-            myInfo.setall(id, 3, (String) ms.getData());
+            Admin a=(Admin)ms.getData();
+            myInfo.setall(a.getAdmin_idcard(), 3, a.getAdmin_name());
             //创建一个和服务器端保持通信的线程
             ClientToServerThread ctst = new ClientToServerThread(ois,socket);
             //启动线程
@@ -166,6 +174,7 @@ public class ClientToServer {
             Client_curriculum.setOos(oos);
             Client_library.setOos(oos);
             Client_qicq.setOps(oos);
+            Client_shop.setOos(oos);
             ManageClientToServerThread.addThread(id, ctst);
             return true;
         } else {
@@ -274,7 +283,6 @@ public class ClientToServer {
         oos.writeObject(message);
         ManageClientToServerThread.getThread(myInfo.getId()).exit = true;
         ManageClientToServerThread.getThread(myInfo.getId()).interrupt();
-
         ManageClientToServerThread.removeClientToServerThread(myInfo.getId());
         if(myInfo.getType()==1)
             System.out.println("学生：" + myInfo.getName() + " " + myInfo.getId() + "退出系统");

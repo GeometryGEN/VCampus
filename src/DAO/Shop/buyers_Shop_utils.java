@@ -1,5 +1,4 @@
 package DAO.Shop;
-
 import User.Student;
 import connection.JDBC_Connector;
 
@@ -39,62 +38,37 @@ public class buyers_Shop_utils {
         return list;
     }
 
-    public static String getBuyed(String idcard) throws SQLException {
+    public static List<ProductPair> getBuyedandNum(String idcard) throws SQLException {
+        List<ProductPair> s = new ArrayList<>();
         Connection connection= JDBC_Connector.ConnectMySQL();    //连接数据库
-        String sql="select * from buyedproducted where Stu_Tea_id=?";
-        PreparedStatement ps = connection.prepareStatement(sql);
-        ps.setString(1, idcard);
-        ResultSet rs = ps.executeQuery();
-        String s = null;
-        if (rs.next()) {
-            s=rs.getString("buyedProducted");
+        Statement state = connection.createStatement();
+        String sql= "select * from buyedproducted where Stu_Tea_id= "+idcard;
+        ResultSet rs= state.executeQuery(sql);            //执行sql
+        while(rs.next()) {
+            ProductPair p = new ProductPair();
+            p.setId(rs.getInt("buyedProductedid"));
+            p.setNum(rs.getInt("buyedproductedNum"));
+            s.add(p);
         }
-        JDBC_Connector.close(rs, ps, connection);
+        JDBC_Connector.close(rs, null, connection);
         return s;
     }
 
-    public static String getBuyedNum(String idcard) throws SQLException {
+    public static List<ProductPair> getReadytoBuyandNum(String idcard) throws SQLException {
+        List<ProductPair> s = new ArrayList<>();
         Connection connection= JDBC_Connector.ConnectMySQL();    //连接数据库
-        String sql="select * from buyedproducted where Stu_Tea_id=?";
-        PreparedStatement ps = connection.prepareStatement(sql);
-        ps.setString(1, idcard);
-        ResultSet rs = ps.executeQuery();
-        String s = null;
-        if (rs.next()) {
-            s=rs.getString("buyedproductedNum");
+        Statement state = connection.createStatement();
+        String sql= "select * from readytobuyproducts where Stu_Tea_id= "+idcard;
+        ResultSet rs= state.executeQuery(sql);            //执行sql
+        while(rs.next()) {
+            ProductPair p = new ProductPair();
+            p.setId(rs.getInt("product_id"));
+            p.setNum(rs.getInt("product_num"));
+            s.add(p);
         }
-        JDBC_Connector.close(rs, ps, connection);
+        JDBC_Connector.close(rs, null, connection);
         return s;
     }
-
-    public static String getReadytoBuy(String idcard) throws SQLException {
-        Connection connection= JDBC_Connector.ConnectMySQL();    //连接数据库
-        String sql="select * from buyedproducted where Stu_Tea_id=?";
-        PreparedStatement ps = connection.prepareStatement(sql);
-        ps.setString(1, idcard);
-        ResultSet rs = ps.executeQuery();
-        String s = null;
-        if (rs.next()) {
-            s=rs.getString("readytoBuyProducts");
-        }
-        JDBC_Connector.close(rs, ps, connection);
-        return s;
-    }
-
-    public static String getReadytoBuyNum(String idcard) throws SQLException {
-        Connection connection= JDBC_Connector.ConnectMySQL();    //连接数据库
-        String sql="select * from buyedproducted where Stu_Tea_id=?";
-        PreparedStatement ps = connection.prepareStatement(sql);
-        ps.setString(1, idcard);
-        ResultSet rs = ps.executeQuery();
-        String s = null;
-        if (rs.next()) {
-            s=rs.getString("readytoBuyProductsNum");
-        }
-        JDBC_Connector.close(rs, ps, connection);
-        return s;
-    }
-
 
     public static List<Product> returnAllProduct() throws SQLException {
         List<Product> list = new ArrayList<>();
@@ -163,81 +137,100 @@ public class buyers_Shop_utils {
         return temp;
     }
 
-    //更新用户余额，更新商品num,更新物品ready buy
-    public static Boolean buyCertainProduct(String idcard, int id,int num, double money) throws SQLException {
+    //UI界面先直接判断钱够不够，这里判断数量够不够，假设可以买 更新用户余额，更新商品num
+    public static String buyCertainProduct(String idcard, int id, int num, double money) throws SQLException {
         Connection connection= JDBC_Connector.ConnectMySQL();    //连接数据库
-        String sql = "update students set Student_money= ? where Student_idcard=? ";
+        String sql="select * from products where Product_id=?";
         PreparedStatement ps = connection.prepareStatement(sql);
-        ps.setDouble(1,money);
-        ps.setString(2,idcard);
-        boolean re = ps.executeUpdate()>0;
-        if(re){
-            sql="update products set Product_currentNumbers= ? where Product_id=? ";
+        ps.setInt(1, id);
+        ResultSet rs = ps.executeQuery();
+        int current = 0;
+        if (rs.next()) {
+            current=rs.getInt("Product_currentNumbers");
+        }
+        if(current<num)
+            return "数量不够";
+        else{
+            sql = "update students SET Student_money =? WHERE Student_idcard =" + idcard;
             ps = connection.prepareStatement(sql);
-            ps.setInt(1, num);
-            ps.setInt(2, id);
-            re = ps.executeUpdate()>0;
-            if (re) {
-                sql="select * from buyedproducted where Stu_Tea_id=?";
+            ps.setDouble(1,money);
+            boolean re = ps.executeUpdate()>0;
+            if(re){
+                sql = "update products SET Product_currentNumbers =? WHERE Product_id =" + id;
                 ps = connection.prepareStatement(sql);
-                ps.setString(1, idcard);
-                ResultSet rs = ps.executeQuery();
-                String s1=null;
-                String s2=null;
-                if (rs.next()) {
-                    s1=rs.getString("buyedProducted");
-                    s2=rs.getString("buyedproductedNum");
-                }
-                sql="update buyedproducted set buyedProducted= ?, buyedproductedNum= ? where Stu_Tea_id=? ";
-                ps = connection.prepareStatement(sql);
-                ps.setString(1,s1+"@"+id );
-                ps.setString(2, s2+"@"+num);
-                ps.setString(3, idcard);
+                ps.setInt(1,current-num);
                 re = ps.executeUpdate()>0;
                 if(re){
-                    JDBC_Connector.close(null, ps, connection);
-                    return true;
+                    System.out.println("商品数量更新成功");
+                }else {
+                    System.out.println("商品数量更新失败");
+                    return "商品数量更新失败";
                 }
-            }else {
-                JDBC_Connector.close(null, ps, connection);
-                return false;
+            }else{
+                System.out.println("更新钱失败");
+                return "更新钱失败";
             }
         }
+        addToHaveShopped(idcard,id,num);
         JDBC_Connector.close(null, ps, connection);
-        return false;
+        return "购买成功";
     }
 
-    public static Boolean addToShopCar(String idcard, int id,int num) throws SQLException {
+    public static Boolean addToShopCar(String idcard, int id, int num) throws SQLException {
         Connection connection= JDBC_Connector.ConnectMySQL();    //连接数据库
-        String sql="select * from buyedproducted where Stu_Tea_id=?";
+        String sql="insert into readytobuyproducts values(?,?,?)";
+        PreparedStatement ps = connection.prepareStatement(sql);
+        ps = connection.prepareStatement(sql);
+        ps.setString(1, idcard);
+        ps.setInt(2,id);
+        ps.setInt(3,num);
+        boolean re = ps.executeUpdate()>0;
+        if(re)
+            System.out.println("添加成功！");
+        else
+            System.out.println("添加失败！");
+        JDBC_Connector.close(null, ps, connection);
+        return re;
+    }
+
+    public static Boolean addToHaveShopped(String idcard, int id, int num) throws SQLException {
+        Connection connection= JDBC_Connector.ConnectMySQL();    //连接数据库
+        String sql="insert into buyedproducted values(?,?,?)";
         PreparedStatement ps = connection.prepareStatement(sql);
         ps.setString(1, idcard);
-        ResultSet rs = ps.executeQuery();
-        String s1=null;
-        String s2=null;
-        if (rs.next()) {
-            s1=rs.getString("readytoBuyProducts");
-            s2=rs.getString("readytoBuyProductsNum");
-        }
-        sql="update buyedproducted set readytoBuyProducts= ?, readytoBuyProductsNum= ? where Stu_Tea_id=? ";
-        ps = connection.prepareStatement(sql);
-        ps.setString(1,s1+"#"+id );
-        ps.setString(2, s2+"#"+num);
-        ps.setString(3, idcard);
-        Boolean re = ps.executeUpdate()>0;
-        if(re){
-            JDBC_Connector.close(rs, ps, connection);
-            return true;
-        }
-        else {
-            JDBC_Connector.close(rs, ps, connection);
-            return false;
-        }
+        ps.setInt(2,id);
+        ps.setInt(3,num);
+        boolean re = ps.executeUpdate()>0;
+        if(re)
+            System.out.println("添加成功！");
+        else
+            System.out.println("添加失败！");
+        JDBC_Connector.close(null, ps, connection);
+        return re;
     }
+
+    public static Boolean deleteShopCar(String idcard, int id, int num) throws SQLException {
+        Connection connection= JDBC_Connector.ConnectMySQL();    //连接数据库
+        String sql="delete from readytobuyproducts where (Stu_Tea_id=? and product_id=? and product_num=?)";
+        PreparedStatement ps = connection.prepareStatement(sql);
+        ps.setString(1,idcard);
+        ps.setInt(2,id);
+        ps.setInt(3,num);
+        boolean re = ps.executeUpdate()>0;
+        JDBC_Connector.close(null, ps, connection);
+        if(re)
+            System.out.println("删除成功！");
+        else
+            System.out.println("删除失败！");
+        JDBC_Connector.close(null, ps, connection);
+        return re;
+    }
+
 
 //    public static void main(String[] args) throws Exception {
 ////        if(checkCertainProduct(111)!=null)
-//            System.out.println(addToShopCar("09020201",1,2));
+//        List<ProductPair> s = new ArrayList<>();
+//        System.out.println(deleteShopCar("09020201",1,2));
 ////        else
 ////            System.out.println("checkCertainProduct(1).getProduct_name()");
 ////        List<Product> list = findTypeProduct("饮料");
