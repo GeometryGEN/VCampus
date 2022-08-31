@@ -180,12 +180,12 @@ public class ClientToServerThread extends Thread {
 
                 else if(message.getType().equals(MessageType.CHECK_CERTAIN__PRODUCT_SUCCEED)){
                     Product ps = (Product) message.getData();
-                    Client_shop.setSign_Certain("2");
                     Client_shop.setCertainProducts(ps);
+                    Client_shop.setSign_Certain("2");
                 }
                 else if(message.getType().equals(MessageType.CHECK_CERTAIN__PRODUCT_FAILED)){
-                    Client_shop.setSign_Certain("2");
                     Client_shop.setCertainProducts(null);
+                    Client_shop.setSign_Certain("2");
                 }
 
                 else if(message.getType().equals(MessageType.BUY_CERTAIN__PRODUCT_SUCCEED)){

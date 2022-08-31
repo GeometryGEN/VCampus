@@ -43,7 +43,7 @@ public class Client_shop {
     //////////////////记得每次点击按钮先reset null
 
     public static void resetNow_Buy_product(){
-        sign_Certain="正在买";
+        Now_Buy_product="正在买";
     }
     public static void resetCertainProduct_sign(){
         sign_Certain="1";
@@ -241,7 +241,7 @@ public class Client_shop {
         resetCertainProduct_sign();
         Message message = new Message();
         message.setType(MessageType.CHECK_CERTAIN_PRODUCT);
-        message.setSender(String.valueOf(id_product));
+        message.setCode(id_product);
         //得到Object对象
         //MyObjectOutputStream oos = new MyObjectOutputStream(ManageClientToServerThread.getThread(idcard).getSocket().getOutputStream());
         //发送对象
