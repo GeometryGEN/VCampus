@@ -104,7 +104,7 @@ public class Declare_Course extends JPanel{
         jf.add(textField);
         textField.setColumns(10);*/
 
-        JLabel lblNewLabel1 = new JLabel("课程编号:");
+        /*JLabel lblNewLabel1 = new JLabel("课程编号:");
         lblNewLabel1.setFont(new Font("宋体", Font.BOLD, 30));
         lblNewLabel1.setBounds(400, 125, 275, 35);
         add(lblNewLabel1);
@@ -113,12 +113,23 @@ public class Declare_Course extends JPanel{
         textField1.setFont(new Font("宋体", Font.BOLD, 22));
         textField1.setBounds(600, 125, 275, 35);
         add(textField1);
-        textField1.setColumns(10);
+        textField1.setColumns(10);*/
 
         JLabel lblNewLabel2 = new JLabel("课程名:");
         lblNewLabel2.setFont(new Font("宋体", Font.BOLD, 30));
-        lblNewLabel2.setBounds(400, 225, 275, 35);
+        lblNewLabel2.setBounds(400, 125, 275, 35);
         add(lblNewLabel2);
+
+        JTextField textField1 = new JTextField();
+        textField1.setFont(new Font("宋体", Font.BOLD, 22));
+        textField1.setBounds(600, 125, 275, 35);
+        add(textField1);
+        textField1.setColumns(10);
+
+        JLabel lblNewLabel3 = new JLabel("课程学分:");
+        lblNewLabel3.setFont(new Font("宋体", Font.BOLD, 30));
+        lblNewLabel3.setBounds(400, 225, 275, 35);
+        add(lblNewLabel3);
 
         JTextField textField2 = new JTextField();
         textField2.setFont(new Font("宋体", Font.BOLD, 22));
@@ -126,10 +137,10 @@ public class Declare_Course extends JPanel{
         add(textField2);
         textField2.setColumns(10);
 
-        JLabel lblNewLabel3 = new JLabel("课程学分:");
-        lblNewLabel3.setFont(new Font("宋体", Font.BOLD, 30));
-        lblNewLabel3.setBounds(400, 325, 275, 35);
-        add(lblNewLabel3);
+        JLabel lblNewLabel4 = new JLabel("课程容量:");
+        lblNewLabel4.setFont(new Font("宋体", Font.BOLD, 30));
+        lblNewLabel4.setBounds(400, 325, 275, 35);
+        add(lblNewLabel4);
 
         JTextField textField3 = new JTextField();
         textField3.setFont(new Font("宋体", Font.BOLD, 22));
@@ -152,8 +163,9 @@ public class Declare_Course extends JPanel{
             public void actionPerformed(ActionEvent e) {
                 try{
                     Opencourse opc=new Opencourse();
-                    opc.setName(textField2.getText());
-                    opc.setPoint(Double.valueOf(textField3.getText()));
+                    opc.setName(textField1.getText());
+                    opc.setPoint(Double.valueOf(textField2.getText()));
+                    opc.setSize(Integer.valueOf(textField3.getText()));
                     Client_curriculum.apply(opc);
                     JOptionPane.showMessageDialog(null,"课程申报成功！");
 

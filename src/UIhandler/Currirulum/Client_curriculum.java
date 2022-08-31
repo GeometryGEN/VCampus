@@ -158,7 +158,7 @@ public class Client_curriculum {
         }
         Check_Coustatus cc =new Check_Coustatus();
         Selcourse_teacher.panel.add(cc,"apply");
-        Selcourse_teacher.cardLayout.show(Selcourse_director.panel,"apply");
+        Selcourse_teacher.cardLayout.show(Selcourse_teacher.panel,"apply");
 
     }
     public static void Require_my_apply() throws IOException {
