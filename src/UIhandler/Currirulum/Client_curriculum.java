@@ -313,5 +313,19 @@ public class Client_curriculum {
         message.setType(MessageType.MESSAGE_CURRICULUM_DELETE);
         oos.writeObject(message);
     }
+
+    public static void Require_AgreeAddCourse(Course c) throws IOException {
+        Message message=new Message();
+        message.setData(c);
+        message.setType(MessageType.MESSAGE_CURRICULUM_APPLY_SUCCEED);
+        oos.writeObject(message);
+    }
+
+    public static void Require_RefuseAddCourse(String reason) throws IOException {
+        Message message=new Message();
+        message.setData(reason);
+        message.setType(MessageType.MESSAGE_CURRICULUM_APPLY_FAIL);
+        oos.writeObject(message);
+    }
     //public
 }
