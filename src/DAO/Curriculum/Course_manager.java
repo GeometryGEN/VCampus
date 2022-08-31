@@ -35,6 +35,7 @@ public class Course_manager {
         int[][][] a = new int[17][6][14];
         int week_l,week_r,day,sec_l,sec_r;
         String ss[]=s.split(",");
+        System.out.println(ss.length);
         for(int i=0;i<ss.length;i++){
             int index=ss[i].indexOf("星期");
             switch (ss[i].substring(index+2, index+3)){
@@ -55,6 +56,7 @@ public class Course_manager {
                     break;
             }
             int index1=ss[i].indexOf("-");
+            System.out.println(index1);
             week_l=Integer.parseInt(ss[i].substring(0,index1));
             int index2=ss[i].indexOf("周");
             week_r=Integer.parseInt(ss[i].substring(index1+1,index2));
@@ -159,6 +161,7 @@ public class Course_manager {
             }
         }
         int confict=0;
+        c.class_time=change(c.timestring);
         for(int p=1;p<=16;p++){
             for(int q=1;q<=5;q++){
                 for(int r=1;r<=13;r++){
@@ -197,8 +200,37 @@ public class Course_manager {
         st.executeUpdate();
         return message;
     }
+    public ArrayList<Course> list_I_can_choose() throws SQLException {
+        ArrayList<Course>courses=new ArrayList<>();
+        String sql="select * from curriculum order by id;";
+        PreparedStatement st=conn.prepareStatement(sql);
+        ResultSet rs=st.executeQuery();
+        while (rs.next()){
+            sql="select * from elective where stu_id=? and course_id=?;";
+            st=conn.prepareStatement(sql);
+            st.setString(1,id);
+            st.setString(2,rs.getString("id"));
+            ResultSet rs1=st.executeQuery();
+            if(rs1.next()){
+
+            }
+            else {
+                Course x=new Course();
+                x.name=rs.getString("name");
+                x.teacher=rs.getString("teacher");
+                x.classroom=rs.getString("classroom");
+                x.point=rs.getDouble("point");
+                x.size=rs.getInt("size");
+                x.id=rs.getString("id");
+                if(rs.getString("time")!=null) x.class_time=change(rs.getString("time"));
+                x.setTimestring(rs.getString("time"));
+                courses.add(x);
+            }
+        }
+        return courses;
+    }
     public void drop(String s) throws SQLException {
-        String sql="delete from curriculum where course_id=? and (stu_id=? or tea_id=?);";
+        String sql="delete from elective where course_id=? and stu_id=?;";
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,s);
         st.setString(2,id);
