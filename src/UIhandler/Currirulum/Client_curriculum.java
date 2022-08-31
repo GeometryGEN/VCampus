@@ -29,7 +29,12 @@ public class Client_curriculum {
     public void setId(String id) {
         this.id = id;
     }
-
+    public static void arrange(Course c) throws IOException {
+        Message message=new Message();
+        message.setData(c);
+        message.setType(MessageType.MESSAGE_CURRICULUM_ADMIN_ARRANGEMENT);
+        oos.writeObject(message);
+    }
     public static void setOos(MyObjectOutputStream mos) throws IOException {
         oos=mos;
     }

@@ -141,6 +141,7 @@ public class QICQ_manager {
         String sql="select * from students where Student_idcard=?;";
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,app.to_id);
+        System.out.println(app.to_id);
         ResultSet rs=st.executeQuery();
         if(rs.next()){
             String sql1="insert into new_friend(sender,getter,sendtime,status) values(?,?,?,0);";
