@@ -96,11 +96,12 @@ public class ClientToServer {
         if (ms.getType().equals(MessageType.MESSAGE_LOGIN_SUCCEED)) {
             ID = "1";
             Student a = (Student) ms.getData();
-            myInfo.setall(a.getStudent_id(), 1, a.getStudent_name());
+            myInfo.setall(a.getStudent_idcard(), 1, a.getStudent_name());
             myInfo.setMoney(a.getStudent_money());
             ClientToServerThread ctst = new ClientToServerThread(ois,socket);        //创建一个和服务器端保持通信的线程
             ctst.start();                                                        //启动线程
             ManageClientToServerThread.addThread(id, ctst);
+           // System.out.println(ManageClientToServerThread.getThread(id));
             Client_curriculum.setOos(oos);
             Client_library.setOos(oos);
             Client_qicq.setOps(oos);
