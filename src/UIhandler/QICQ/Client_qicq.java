@@ -101,10 +101,12 @@ public class Client_qicq {
     public static void receive_message(String sender){
         friend_list.show_unread(sender);
     }
-    public static void add_friend(String myid, String myname, String number, String nickname) throws IOException {
-        Application app=new Application(myid,myname);
+    public static void add_friend(String myid, String group, String number, String nickname) throws IOException {
+        Application app=new Application();
         Message message=new Message();
         message.setData(app);
+        app.from_id=myid;
+        app.group=group;
         app.setTo_id(number);
         app.setTo_name(nickname);
         message.setType(MessageType.MESSAGE_QICQ_ADD_FRIEND);
