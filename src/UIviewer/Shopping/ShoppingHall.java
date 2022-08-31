@@ -8,6 +8,8 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import ClientToServer.myInfo;
+import UIviewer.login.functionChoose;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -298,6 +300,10 @@ public class ShoppingHall extends JPanel {
                             if(Client_shop.getMoney(myInfo.getId())>=(money*Num)){
                                 Client_shop.buyProduct(myInfo.getId(),id,Num,Client_shop.getMoney(myInfo.getId())-money*Num);
                                 JOptionPane.showMessageDialog(null,"购买成功！");
+                                Client_shop.setId(String.valueOf(myInfo.getType()));
+                                Client_shop.setIdcard(myInfo.getId());
+                                functionChoose.jf.setContentPane(new shopCustomer());
+                                functionChoose.jf.setTitle("shopCustomer");
                             }else {
                                 JOptionPane.showMessageDialog(null,"余额不足！");
                             }
