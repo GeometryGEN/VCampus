@@ -161,6 +161,7 @@ public class QICQ_manager {
                 st1.setString(2,app.to_id);
                 st1.setString(3,message.getSendTime());
                 st1.executeUpdate();
+
             }
             else {
                 Message msg=new Message();
@@ -170,7 +171,9 @@ public class QICQ_manager {
             }
 
         }
-
+        Message msg=new Message();
+        msg.setType(MessageType.MESSAGE_QICQ_ADD_FRIEND_SUCCEED);
+        ManageServerToClientThread.getThread(id).oos.writeObject(msg);
     }
     public Message list_my_application() throws SQLException, IOException {
         ArrayList<Application>app=new ArrayList<>();

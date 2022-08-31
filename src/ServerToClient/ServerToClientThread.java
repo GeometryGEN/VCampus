@@ -408,7 +408,7 @@ public class ServerToClientThread extends Thread{
 
 
                 //学籍管理
-                if(m.getType().equals(MessageType.RETURN_STUDENT_INFO)){
+                /*if(m.getType().equals(MessageType.RETURN_STUDENT_INFO)){
                     Student stu  = User_SM_utils.returnStudentAllInfo( m.getSender());
                     if(stu!=null){
                         sendback.setData(stu);
@@ -432,7 +432,7 @@ public class ServerToClientThread extends Thread{
                         //socket.close();
                     }
                 }
-                /*else if(m.getType().equals(MessageType.RETURN_PHOTO)){
+                else if(m.getType().equals(MessageType.RETURN_PHOTO)){
                     boolean sign = Image_SM_utils.readDBImage(m.getSender());
                     if(sign){
                         sendback.setType(MessageType.RETURN_PHOTO_SUCCEED);
