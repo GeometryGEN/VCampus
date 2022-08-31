@@ -137,10 +137,14 @@ public class Client_status {
         Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
         int width=(int ) screensize.getWidth(); //得到宽度
         int height=(int ) screensize.getHeight();//获得高度
-        System.out.println("opening");
+        System.out.println("opening  "+width+" "+height);
         functionChoose.jf.setContentPane(new student_status(width,height,iat));
         functionChoose.jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        functionChoose.jf.setTitle("Status management");
         functionChoose.jf.setVisible(true);
+    }
+    public static void show_info(ImageAndTable iat) throws Exception {
+
     }
     public static void change(Student s) throws IOException {
         Message message=new Message();

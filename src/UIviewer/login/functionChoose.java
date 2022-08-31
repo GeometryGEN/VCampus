@@ -281,6 +281,7 @@ public class functionChoose {
                     else if(myInfo.getType()==3){
                         jf.setContentPane(new manage_status(width,height));
                         jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                        jf.setTitle("admin_status_management");
                         jf.setVisible(true);
                         //Client_status.admin_enter();
                     } else {

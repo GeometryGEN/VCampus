@@ -232,7 +232,7 @@ public class ClientToServerThread extends Thread {
                     Client_status.show_studata((ImageAndTable)message.getData());
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_STATUS_ADMIN_QUERY_RET)){
-                    Client_status.show_studata((ImageAndTable)message.getData());
+                    Client_status.show_info((ImageAndTable)message.getData());
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_STATUS_ADMIN_QUERY_FAIL)){
                     JOptionPane.showMessageDialog(null,"查询失败! 学生不存在");

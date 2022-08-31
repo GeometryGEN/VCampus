@@ -30,9 +30,9 @@ public class ClientToServer {
     private Admin a = new Admin();
     private static Socket socket;
     public static MyObjectOutputStream oos=null;
-    public MyObjectInputStream ois=null;
-    //public String serverIP = Message.returnIP();
-    public String serverIP = "10.210.97.60";
+    public static MyObjectInputStream ois=null;
+    //public static String serverIP = Message.returnIP();
+    public static String serverIP = "10.210.97.60";
 
     public String getIDcard() {
         return switch (ID) {
@@ -187,7 +187,7 @@ public class ClientToServer {
         }
     }
 
-    public boolean registerStudent(Student st) throws Exception {
+    public static boolean registerStudent(Student st) throws Exception {
         socket = new Socket(serverIP, MessageType.PORT);
         oos = new MyObjectOutputStream(socket.getOutputStream());     //得到Object对象
         Message send = new Message();
@@ -204,7 +204,7 @@ public class ClientToServer {
         }
     }
 
-    public boolean registerTeacher(Teacher te) throws Exception {
+    public static boolean registerTeacher(Teacher te) throws Exception {
         socket = new Socket(serverIP, MessageType.PORT);
         oos = new MyObjectOutputStream(socket.getOutputStream());     //得到Object对象
         Message send = new Message();
@@ -221,7 +221,7 @@ public class ClientToServer {
         }
     }
 
-    public boolean forgetpwd(String card, String email, String select) throws Exception {
+    public static boolean forgetpwd(String card, String email, String select) throws Exception {
         socket = new Socket(serverIP, MessageType.PORT);
         oos = new MyObjectOutputStream(socket.getOutputStream());     //得到Object对象
         Message send = new Message();
@@ -250,7 +250,7 @@ public class ClientToServer {
         }
     }
 
-    public boolean resetPwd(String card, String new_pwd, String select) throws Exception {
+    public static boolean resetPwd(String card, String new_pwd, String select) throws Exception {
         socket = new Socket(serverIP, MessageType.PORT);
         oos = new MyObjectOutputStream(socket.getOutputStream());     //得到Object对象
         Message send = new Message();

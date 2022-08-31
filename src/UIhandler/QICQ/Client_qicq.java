@@ -98,7 +98,7 @@ public class Client_qicq {
         message.setData(app);
         app.setTo_id(number);
         app.setTo_name(nickname);
-        message.setType(MessageType.MESSAGE_QICQ_ADD_FRIEND_START);
+        message.setType(MessageType.MESSAGE_QICQ_ADD_FRIEND);
         oos.writeObject(message);
     }
     public static void Require_friend_list() throws IOException {

@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 
 public class forgetPWD {
 
-    public static void forgetPWDUI(ClientToServer ucs) {
+    public static void forgetPWDUI() {
         JFrame jf = new JFrame("forgetPWD");
         //找回密码
         JLabel l2 = new JLabel("      找回密码");
@@ -87,10 +87,9 @@ public class forgetPWD {
                     String passwd1=String.valueOf(pwd1.getPassword());
                     String passwd2=String.valueOf(pwd2.getPassword());
                     String identity=(String)jc1.getSelectedItem();
-
-                    if(ucs.forgetpwd(card,mail1,identity)){   //如果验证正确
+                    if(ClientToServer.forgetpwd(card,mail1,identity)){   //如果验证正确
                         if(passwd1.equals(passwd2)) {
-                            ucs.resetPwd(card, passwd1, identity);
+                            ClientToServer.resetPwd(card, passwd1, identity);
                             JOptionPane.showMessageDialog(null,"修改密码成功！");
                             jf.dispose();
                         }else
