@@ -336,15 +336,15 @@ public class functionChoose {
                     jf.remove(fc_panel);
                     if(myInfo.getType()!=3)
                     {
-                        //Client_library.setId(myInfo.getId());
+                        Client_shop.setId(String.valueOf(myInfo.getType()));
+                        Client_shop.setIdcard(myInfo.getId());
                         jf.setContentPane(new shopCustomer());
                         jf.setTitle("shopCustomer");
                     }
                     else
                     {
-                        //Client_library.setId(myInfo.getId());
-                        //Client_library.RequireshowAllBooks();
-                        //while (AllBooks.tableDate==null);
+                        Client_shop.setId(String.valueOf(myInfo.getType()));
+                        Client_shop.setIdcard(myInfo.getId());
                         jf.setContentPane(new shopAdmin());
                         jf.setTitle("shopAdmin");
                     }

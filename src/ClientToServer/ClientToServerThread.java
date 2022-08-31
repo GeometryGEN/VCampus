@@ -162,11 +162,11 @@ public class ClientToServerThread extends Thread {
 
                 else if(message.getType().equals(MessageType.CHECK_READYTOBUY_PRODUCT_SUCCEED)){
                     List<ProductPair> s  = (List<ProductPair>) message.getData();
-                    Client_shop.setBuyed(s);
+                    Client_shop.setReadyToBuy(s);
                     Client_shop.setSign_zero(false);
                 }
                 else if(message.getType().equals(MessageType.CHECK_READYTOBUY_PRODUCT_FAILED)){
-                    Client_shop.setBuyed(null);
+                    Client_shop.setReadyToBuy(null);
                     Client_shop.setSign_zero(false);
                 }
 

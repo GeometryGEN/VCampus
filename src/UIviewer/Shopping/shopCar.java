@@ -15,11 +15,19 @@ public class shopCar extends JPanel {
     int height=(int ) screensize.getHeight();//获得高度
     double width_r=(double)(width)/1273;
     double height_r=(double)(height)/784;
-    public static volatile String[][] myBook={{"旺仔牛奶","1","5","10","购买","删除"}};
+    public static volatile String[][] myBook;
+
+    public static String[][] getMyBook() {
+        return myBook;
+    }
+
+    public static void setMyBook(String[][] myBook) {
+        shopCar.myBook = myBook;
+    }
 
     public shopCar(){
         setLayout(null);
-        String[] tableTitle = {"商品名称","商品编号","商品价格","商品剩余数量","购买","删除"};
+        String[] tableTitle = {"商品编号","商品名称","商品数量","商品价格","购买","删除"};
         //数据
         DefaultTableModel dtm = new DefaultTableModel(myBook, tableTitle);
         JTable table_want = new JTable(dtm){

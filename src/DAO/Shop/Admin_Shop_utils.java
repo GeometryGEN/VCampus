@@ -35,13 +35,12 @@ public class Admin_Shop_utils {
         return re;
     }
 
-    public static boolean deleteProduct(String id) throws SQLException {
+    public static boolean deleteProduct(int id) throws SQLException {
         Connection connection=JDBC_Connector.ConnectMySQL();
         String sql = "delete from products where Product_id=?";
         PreparedStatement ps = connection.prepareStatement(sql);
-        ps.setString(1,id);
+        ps.setInt(1,id);
         boolean re = ps.executeUpdate()>0;
-        JDBC_Connector.close(null, ps, connection);
         if(re)
             System.out.println("删除成功！");
         else
@@ -51,16 +50,17 @@ public class Admin_Shop_utils {
     }
 
 
-    public static void main(String[] args) throws Exception {
-//        List<Product> list = checkProduct();
-//        for (int i = 0; i < list.size(); i++) {
-//            System.out.println(list.get(i).getProduct_name());
-//        }
-//        Product p = new Product();
-//        p.setProduct_id(15);
-//        p.setProduct_takeaway(false);
-//        p.setProduct_name("冰绿茶");
-//        deleteProduct("15");
-    }
+//    public static void main(String[] args) throws Exception {
+//        deleteProduct(111);
+////        List<Product> list = checkProduct();
+////        for (int i = 0; i < list.size(); i++) {
+////            System.out.println(list.get(i).getProduct_name());
+////        }
+////        Product p = new Product();
+////        p.setProduct_id(15);
+////        p.setProduct_takeaway(false);
+////        p.setProduct_name("冰绿茶");
+////        deleteProduct("15");
+//    }
 
 }

@@ -355,13 +355,13 @@ public class ServerToClientThread extends Thread{
                 }
 
                 else if(m.getType().equals(MessageType.DELETE_PRODUCT)){
-                    if(Admin_Shop_utils.deleteProduct(m.getSender())){
+                    if(Admin_Shop_utils.deleteProduct(Integer.parseInt(m.getSender()))){
                         sendback.setType(MessageType.DELETE_PRODUCT_SUCCEED);
                         oos.writeObject(sendback);
                     } else{
                         sendback.setType(MessageType.DELETE_PRODUCT_FAILED);
                         oos.writeObject(sendback);
-                        socket.close();
+                        //socket.close();
                     }
                 }
                 else if(m.getType().equals(MessageType.FIND_TYPE_PRODUCT)){
@@ -373,7 +373,7 @@ public class ServerToClientThread extends Thread{
                     } else{
                         sendback.setType(MessageType.FIND_TYPE_PRODUCT_FAILED);
                         oos.writeObject(sendback);
-                        socket.close();
+                        //socket.close();
                     }
                 }
                 else if(m.getType().equals(MessageType.ADD_PRODUCT)){
@@ -383,7 +383,7 @@ public class ServerToClientThread extends Thread{
                     } else{
                         sendback.setType(MessageType.ADD_PRODUCT_FAILED);
                         oos.writeObject(sendback);
-                        socket.close();
+                        //socket.close();
                     }
                 }
                 else if(m.getType().equals(MessageType.BUY_CERTAIN_PRODUCT)){
@@ -396,7 +396,7 @@ public class ServerToClientThread extends Thread{
                         sendback.setData(ps);
                         sendback.setType(MessageType.BUY_CERTAIN__PRODUCT_FAILED);
                         oos.writeObject(sendback);
-                        socket.close();
+                        //socket.close();
                     }
                 }
 
@@ -411,7 +411,7 @@ public class ServerToClientThread extends Thread{
                     } else{
                         sendback.setType(MessageType.RETURN_STUDENT_INFO_FAILED);  //登录失败
                         oos.writeObject(sendback);                        //将message对象回复客户端
-                        socket.close();
+                        //socket.close();
                     }
                 }
                 else if(m.getType().equals(MessageType.ADMIN_RETURN_STUDENT_INFO)){
@@ -423,7 +423,7 @@ public class ServerToClientThread extends Thread{
                     } else{
                         sendback.setType(MessageType.ADMIN_RETURN_STUDENT_INFO_FAILED);  //登录失败
                         oos.writeObject(sendback);                        //将message对象回复客户端
-                        socket.close();
+                        //socket.close();
                     }
                 }
                 else if(m.getType().equals(MessageType.RETURN_PHOTO)){
@@ -434,7 +434,7 @@ public class ServerToClientThread extends Thread{
                     } else{
                         sendback.setType(MessageType.RETURN_PHOTO_FAILED);  //失败
                         oos.writeObject(sendback);                        //将message对象回复客户端
-                        socket.close();
+                       // socket.close();
                     }
                 }
                 else if(m.getType().equals(MessageType.RENEW_STUDENT_INFO)){
@@ -446,7 +446,7 @@ public class ServerToClientThread extends Thread{
                     } else{
                         sendback.setType(MessageType.RENEW_STUDENT_INFO_FAILED);  //登录失败
                         oos.writeObject(sendback);                        //将message对象回复客户端
-                        socket.close();
+                        //socket.close();
                     }
                 }
             } catch (Exception e){

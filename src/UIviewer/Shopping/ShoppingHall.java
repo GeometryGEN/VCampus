@@ -21,7 +21,8 @@ public class ShoppingHall extends JPanel {
     double width_r=(double)(width)/1273;
     double height_r=(double)(height)/784;
 
-    public static volatile String[][] shoptable={{"旺仔牛奶","1","5","10","加入购物车","购买"}};
+    public static volatile String[][] shoptable;
+
     public static void resetshoptable(){
         shoptable=null;
     }
@@ -63,7 +64,21 @@ public class ShoppingHall extends JPanel {
         btnNewButton_1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String[][]temp={{"1111"}};
+                try {
+                    List<Product> t = Client_shop.checktypeProduct("零食");
+                    String[][] temp = new String[t.size()][];
+                    for(int i =0;i<t.size();i++){
+                        String[] tt =new String[4];
+                        tt[0]=t.get(i).getProduct_name();
+                        tt[2]=String.valueOf(t.get(i).getProduct_currentNumbers());
+                        tt[1]=String.valueOf(t.get(i).getProduct_price());
+                        tt[3]=String.valueOf(t.get(i).getProduct_currentNumbers());
+                        temp[i]=tt;
+                    }
+                    ShoppingHall.setShoptable(temp);
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
                 ShoppingHall f11=new ShoppingHall();
                 panel.add(f11,"f11");
                 cardLayout.show(panel, "f11");

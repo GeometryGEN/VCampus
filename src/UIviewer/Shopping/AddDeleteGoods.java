@@ -1,6 +1,8 @@
 package UIviewer.Shopping;
 import DAO.Library.Book_admin;
+import DAO.Shop.Product;
 import UIhandler.Library.Client_library;
+import UIhandler.Shop.Client_shop;
 import net.coobird.thumbnailator.Thumbnails;
 import javax.swing.*;
 import java.awt.*;
@@ -105,9 +107,29 @@ public class AddDeleteGoods extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
-
-
-
+                String name = textField1.getText();
+                String id = textField2.getText();
+                String price = textField3.getText();
+                String leftNum = textField5.getText();
+                String sumNum = textField4.getText();
+                String type = textField6.getText();
+                Product p = new Product();
+                p.setProduct_name(name);
+                p.setProduct_id(Integer.parseInt(id));
+                p.setProduct_price(Double.parseDouble(price));
+                p.setProduct_currentNumbers(Integer.parseInt(leftNum));
+                p.setProduct_sumNumbers(Integer.parseInt(sumNum));
+                p.setProduct_type(type);
+                p.setProduct_takeaway(false);
+                p.setProduct_toshop(1);
+                try {
+                    if(Client_shop.addProduct(p))
+                        JOptionPane.showMessageDialog(null, "添加成功!");
+                    else
+                        JOptionPane.showMessageDialog(null, "添加失败!");
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
 
@@ -136,8 +158,15 @@ public class AddDeleteGoods extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
+                try {
+                    if(Client_shop.deleteProduct(textField8.getText()))
+                        JOptionPane.showMessageDialog(null, "删除成功!");
+                    else
+                        JOptionPane.showMessageDialog(null, "删除失败!");
 
-                textField8.setText("");
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
 

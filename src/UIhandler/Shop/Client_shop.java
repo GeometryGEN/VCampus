@@ -47,7 +47,7 @@ public class Client_shop {
         sign_add="1";
     }
     public static void resetSign_delete(){
-        sign_find_type="1";
+        sign_delete="1";
     }
 
     public static void resetSign_find_tpye(){
