@@ -444,16 +444,16 @@ public class functionChoose {
                 // TODO Auto-generated method stub
                 try {
                     Client_qicq.setId(myInfo.getId());
+                    Client_qicq.I_am_online();
                     if(myInfo.getType()!=3)
                     {
-                        //Client_qicq.Require_friend_list();
                         jf.setContentPane(new main_panel(width,height).mjp);
                         jf.setTitle("userqq");
                     }
                     else
                     {
-                        //jf.setContentPane(new main_panel(width,height).mjp);
-                        //jf.setTitle("adminqq");
+                        jf.setContentPane(new main_panel(width,height).mjp);
+                        jf.setTitle("adminqq");
                     }
                 } catch (Exception ex) {
                     ex.printStackTrace();

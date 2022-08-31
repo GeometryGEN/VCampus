@@ -16,72 +16,84 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.*;
 
-public class friend_list extends JPanel{
-
-    public static JPanel roll_panel/*=new JPanel()*/;
+public class friend_list{
+    public static JPanel jPanel;
+    public static JPanel roll_panel;
     private static int width;
 
     static int number_per_page=7;//一页几个好友,即好友条长度
     private static int height;
     private static double width_r;
     private static double height_r;
-   // private static int[] clickF=new int[50];
-    //private static int count;
-    public void update(){//更新UI界面；
-        this.updateUI();
-    }
-    public static void add(String tag, ArrayList<Friend> arrayList){
-        tag_slice tag1=new tag_slice(width_r,height_r,tag);
-        int num=arrayList.size();
-        roll_panel.add(tag1);
-        friend_slice[] slice= new friend_slice[10];
-        //int count=1;
+    static int count_friend,count_tag;
+    static tag_slice[] tag=new tag_slice[10];//标签
+    static int[] friend_start_tag=new int[10];//每个标签好友开始数
+    static int[] friend_end_tag=new int[10];//每个标签好友结束数
+    static friend_slice[] friendslice=new friend_slice[50];//好友
+    static JScrollPane scrollPane;
 
-        for(int i=0;i<num;i++){
-           // friendList[count]=arrayList.get(i);
-            //tagList[count]=tag;
-            //count++;
-            slice[i]=new friend_slice(width-1,height/number_per_page,width_r,height_r,arrayList.get(i));
-            roll_panel.add(slice[i]);
-            roll_panel.updateUI();
-        }
-        tag1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent e) {
-                if(slice[0].isVisible()==true) {
-                    for (int i = 0; i < num; i++) {
-                        slice[i].setVisible(false);
-                        roll_panel.updateUI();
-                    }
-                }
-                else{
-                    for (int i = 0; i < num; i++) {
-                        slice[i].setVisible(true);
-                        roll_panel.updateUI();
-                    }
-                }
+    public static void show_Friend(HashMap<String, ArrayList<Friend>> friend) {
+        roll_panel=new JPanel();
+        roll_panel.setBackground(new Color(255,255,255));
+        roll_panel.setSize((int)(width*width_r),(int)((height-200)*height_r));
+        roll_panel.setLayout(new BoxLayout(roll_panel, BoxLayout.Y_AXIS));
+        scrollPane=new JScrollPane(roll_panel);
+        scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER );//不显示水平滚动条；
+        scrollPane.setBorder(BorderFactory.createLineBorder(new Color(244,244,244)));
+        jPanel.add(scrollPane, BorderLayout.CENTER);
+        count_friend=0;
+        count_tag=0;
+        for(String Tag: friend.keySet()){
+            tag[count_tag]=new tag_slice(width_r,height_r,Tag);
+            roll_panel.add(tag[count_tag]);
+            System.out.println(Tag);
+            ArrayList<Friend> arrayList=friend.get(Tag);
+            int num=arrayList.size();
+
+            friend_start_tag[count_tag]=count_friend;
+            for(int i=0;i<num;i++){
+                System.out.println(arrayList.get(i).getName());
+                friendslice[count_friend]=new friend_slice(width-1,height/number_per_page,width_r,height_r,arrayList.get(i));
+                roll_panel.add(friendslice[count_friend++]);
             }
-        });
+            friend_end_tag[count_tag]=count_friend;
+            int count1=count_tag;
+            tag[count1].addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mouseClicked(java.awt.event.MouseEvent e) {
+                    if(friendslice[friend_start_tag[count1]].isVisible()==true) {
+                        for (int i = friend_start_tag[count1]; i < friend_end_tag[count1]; i++) {
+                            friendslice[i].setVisible(false);
+                        }
+                    }
+                    else{
+                        for (int i = friend_start_tag[count1]; i < friend_end_tag[count1]; i++) {
+                            friendslice[i].setVisible(true);
+                        }
+                    }
+                    update();
+                }
+            });
+            count_tag++;
+        }
+        update();
+    }
+
+    public static void update(){//更新UI界面；
+        jPanel.updateUI();
+    }
+    public static void show_unread(String sender){
 
     }
 
    friend_list( int width, int height, double width_r, double height_r, int x, int y){
-        roll_panel=new JPanel();
+        jPanel=new JPanel();
         this.width=width;
         this.height=height;
         this.width_r=width_r;
         this.height_r=height_r;
-        setLayout(new BorderLayout());
-        setBounds((int)(x*width_r),(int)(y*height_r),(int)(width*width_r),(int)(height*height_r));
-        setBorder(BorderFactory.createLineBorder(new Color(244,244,244)));
-        setBackground(new Color(255,255,255));
-        //滚动条
-        roll_panel.setBackground(new Color(255,255,255));
-        roll_panel.setSize((int)(width*width_r),(int)((height-200)*height_r));
-        roll_panel.setLayout(new BoxLayout(roll_panel, BoxLayout.Y_AXIS));
-       JScrollPane scrollPane=new JScrollPane(roll_panel);
-       scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER );//不显示水平滚动条；
-       scrollPane.setBorder(BorderFactory.createLineBorder(new Color(244,244,244)));
-       add(scrollPane, BorderLayout.CENTER);
-
+        jPanel.setLayout(new BorderLayout());
+        jPanel.setBounds((int)(x*width_r),(int)(y*height_r),(int)(width*width_r),(int)(height*height_r));
+        jPanel.setBorder(BorderFactory.createLineBorder(new Color(244,244,244)));
+        jPanel.setBackground(new Color(255,255,255));
    }
 }

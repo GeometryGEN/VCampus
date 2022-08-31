@@ -42,6 +42,11 @@ public class main_panel {
         functionChoose.back_from_student_status.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                try {
+                    Client_qicq.I_am_offline();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
                 functionChoose.jf.remove(functionChoose.jf.getContentPane());
                 functionChoose.jf.setContentPane(functionChoose.fc_panel);
                 functionChoose.jf.setTitle("functionChoose");
@@ -50,8 +55,8 @@ public class main_panel {
         //好友列表
         Client_qicq.Require_friend_list();
         friend_list friend_list_panel=new friend_list(1920/3,1080,width_r,height_r,0,0);
-        mjp.add(friend_list_panel);
-        friend_list_panel.setVisible(true);
+        mjp.add(friend_list_panel.jPanel);
+        friend_list_panel.jPanel.setVisible(true);
         functionChoose.back_from_student_status.setVisible(false);
         functionChoose.back_from_student_status.setVisible(true);
         mjp.updateUI();
