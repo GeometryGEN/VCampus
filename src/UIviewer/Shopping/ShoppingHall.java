@@ -245,11 +245,14 @@ public class ShoppingHall extends JPanel {
                 @Override
                 public void mouseClicked(MouseEvent e) {
                     if (table_want.getSelectedColumn() == 4) {
-                        System.out.println("car");
+                        //购物车
+                        String id= (String) table_want.getValueAt(table_want.getSelectedRow(),0);
+
                     }
 
                     if (table_want.getSelectedColumn() == 5) {
                         System.out.println("buy");
+
                     }
                 }
 

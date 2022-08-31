@@ -8,6 +8,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 public class OrderHistory extends JPanel{
+    Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
+    int width=(int ) screensize.getWidth(); //得到宽度
+    int height=(int ) screensize.getHeight();//获得高度
+    double width_r=(double)(width)/1273;
+    double height_r=(double)(height)/784;
     public static volatile String [][] con_bought;
 
     public static String[][] getCon_bought() {
@@ -29,7 +34,7 @@ public class OrderHistory extends JPanel{
             }
         };
         JScrollPane jsp=new JScrollPane(table_want);
-        jsp.setBounds(0,0,940,900);
+        jsp.setBounds(0,0, (int) (1280*width_r), (int) (650*height_r));
         add(jsp);
         table_want.setRowHeight(30);
         setVisible(true);

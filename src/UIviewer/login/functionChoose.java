@@ -44,7 +44,7 @@ public class functionChoose {
         //jf.setSize(1273,784);
         fc_panel = new JPanel();
         fc_panel.setLayout(null);
-        fc_panel.setBounds(0,0,width,height);
+        fc_panel.setBounds(0,0,width+20,height+10);
         fc_panel.setBackground(new Color(245,245,245, 180));
         jf.setContentPane(fc_panel);
 
@@ -111,24 +111,24 @@ public class functionChoose {
 
 //文字
         JLabel l41 = new JLabel("大学之道");
-        l41.setBounds((int) (80*width_r), (int) (480*height_r), (int) (200*width_r), (int) (75*height_r));
+        l41.setBounds((int) (60*width_r), (int) (480*height_r), (int) (200*width_r), (int) (75*height_r));
         Font font3 = new Font("楷体", Font.BOLD, (int) (22*width_r));
         l41.setFont(font3);
         fc_panel.add(l41);
         JLabel l42 = new JLabel("在明明德");
-        l42.setBounds((int) (80*width_r), (int) (520*height_r), (int) (200*width_r), (int) (75*height_r));
+        l42.setBounds((int) (60*width_r), (int) (520*height_r), (int) (200*width_r), (int) (75*height_r));
         l42.setFont(font3);
         fc_panel.add(l42);
         JLabel l43 = new JLabel("在亲民");
-        l43.setBounds((int) (80*width_r), (int) (560*height_r), (int) (200*width_r), (int) (75*height_r));
+        l43.setBounds((int) (60*width_r), (int) (560*height_r), (int) (200*width_r), (int) (75*height_r));
         l43.setFont(font3);
         fc_panel.add(l43);
         JLabel l44 = new JLabel("在");
-        l44.setBounds((int) (80*width_r), (int) (600*height_r), (int) (40*width_r), (int) (75*height_r));
+        l44.setBounds((int) (60*width_r), (int) (600*height_r), (int) (40*width_r), (int) (75*height_r));
         l44.setFont(font3);
         fc_panel.add(l44);
         JLabel l45 = new JLabel("『止于至善』");
-        l45.setBounds((int) (120*width_r), (int) (630*height_r), (int) (200*width_r), (int) (75*height_r));
+        l45.setBounds((int) (100*width_r), (int) (630*height_r), (int) (200*width_r), (int) (75*height_r));
         Font font4 = new Font("楷体", Font.BOLD, (int) (30*width_r));
         l45.setFont(font4);
         fc_panel.add(l45);
@@ -359,7 +359,6 @@ public class functionChoose {
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
                 try {
-                    jf.setBounds(0,0,width,height);
                     jf.remove(fc_panel);
                     if(myInfo.getType()!=3)
                     {
@@ -529,13 +528,13 @@ public class functionChoose {
 
         //右下面板
         JPanel p3 = new JPanel();
-        p3.setBounds((int) (330*width_r), (int) (285*height_r), (int) (920*width_r), (int) (420*height_r));
+        p3.setBounds((int) (330*width_r), (int) (285*height_r), (int) (940*width_r), (int) (440*height_r));
         p3.setBackground(new Color(211,211,211,100));
         fc_panel.add(p3);
 
         //右侧面板
         JPanel p2 = new JPanel();
-        p2.setBounds((int) (300*width_r), 0, (int) (950*width_r), (int) (790*height_r));
+        p2.setBounds((int) (300*width_r), 0, (int) (960*width_r), (int) (800*height_r));
         p2.setBackground(new Color(245,245,245, 180));
         fc_panel.add(p2);
         jf.setLocationRelativeTo(null);
