@@ -63,7 +63,7 @@ public class Course_manager {
             sec_l=Integer.parseInt(ss[i].substring(index+4,index3));
             int index4=ss[i].indexOf("节");
             sec_r=Integer.parseInt(ss[i].substring(index3+1,index4));
-
+         //   System.out.println(week_l+"->"+week_r+" "+day+" "+sec_l+"->"+sec_r);
             for(int p=week_l;p<=week_r;p++){
                 for(int q=sec_l;q<=sec_r;q++){
                     a[p][day][q]=1;
@@ -224,7 +224,7 @@ public class Course_manager {
         st.executeUpdate();
     }
     public String[][][] schedule() throws SQLException {
-        String [][][]ans=new String[17][14][6];
+        String [][][]ans=new String[17][6][14];
         ArrayList<Course>courses=list_my_courses();
         Iterator it = courses.iterator();
         while(it.hasNext()){
@@ -232,7 +232,10 @@ public class Course_manager {
             for(int p=1;p<=16;p++){
                 for(int q=1;q<=5;q++){
                     for(int r=1;r<=13;r++){
-                        if(cc.class_time[p][q][r]==1) ans[p][q][r]=cc.name;
+                        if(cc.class_time[p][q][r]==1) {
+                            ans[p][q][r]=cc.name;
+                    //        System.out.println(cc.name);
+                        }
                     }
                 }
             }

@@ -121,7 +121,11 @@ public class Selcourse extends JFrame {
         btnNewButton_5.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(panel,"f5");
+                try {
+                    Client_curriculum.RequireSchedule();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
         main_win.add(btnNewButton_5);

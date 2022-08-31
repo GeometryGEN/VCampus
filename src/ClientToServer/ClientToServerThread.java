@@ -265,7 +265,9 @@ public class ClientToServerThread extends Thread {
                 else if(message.getType().equals(MessageType.MESSAGE_CURRICULUM_SHOW_STU_RET)){
                     Client_curriculum.show_my_students((ArrayList<Student>)message.getData());
                 }
-
+                else if(message.getType().equals(MessageType.MESSAGE_CURRICULUM_SHOW_SCHEDULE_RET)){
+                    Client_curriculum.show_my_schedule((String[][][])message.getData());
+                }
             } catch (InterruptedIOException e){
                 break;
             }
