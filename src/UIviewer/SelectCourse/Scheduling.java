@@ -3,19 +3,17 @@ package UIviewer.SelectCourse;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 //可以修改课程的时间、地点、课容量   排课功能
-public class Stu_Info extends JPanel {
+public class Scheduling extends JPanel {
 
-    public static volatile String[][] student_inf=null;
-    public Stu_Info()
+    public static volatile String[][] courses=null;
+    public Scheduling()
     {
         setLayout(null);
 
-       String[] tableTitle={"课程编号","课程名","课容量","时间","任课老师","地点"};
-        DefaultTableModel dtm=new DefaultTableModel(student_inf,tableTitle);
+       String[] tableTitle={"课程编号","课程名","任课老师","时间","课容量","地点"};
+        DefaultTableModel dtm=new DefaultTableModel(courses,tableTitle);
         JTable table_want = new JTable(dtm){
             public boolean isCellEditable(int row, int column) {
                 return true;
@@ -35,8 +33,6 @@ public class Stu_Info extends JPanel {
         table_want.setRowHeight(40);
         setVisible(true);
 
-
-
         JButton btnNewButton_6 = new JButton("确认修改");
         btnNewButton_6.setBounds(530, 525, 200, 40);
         Font myfont2 = new Font("微软雅黑", Font.PLAIN, 18);
@@ -45,6 +41,7 @@ public class Stu_Info extends JPanel {
         //btnNewButton_1.setForeground(new Color(248, 248, 255));
         btnNewButton_6.setContentAreaFilled(true);//设置按钮透明
         add(btnNewButton_6);
+
     }
 
 }

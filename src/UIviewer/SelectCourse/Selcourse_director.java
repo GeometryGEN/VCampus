@@ -9,6 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
+import static UIhandler.Currirulum.Client_curriculum.RequireallCourse;
+
 
 public class Selcourse_director extends JFrame {
     private JPanel Sel_main;
@@ -40,7 +42,7 @@ public class Selcourse_director extends JFrame {
         Check_Course f1=new Check_Course();
         panel.add(f1,"f1");
 
-        Stu_Info f2=new Stu_Info();
+        Scheduling f2=new Scheduling();
         panel.add(f2,"f2");
 
         CurrentCourse_Man f3=new CurrentCourse_Man();
@@ -70,8 +72,11 @@ public class Selcourse_director extends JFrame {
         btnNewButton_2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-                cardLayout.show(panel,"f2");
+                try {
+                    RequireallCourse();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
         add(btnNewButton_2);
