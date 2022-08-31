@@ -1,6 +1,9 @@
 package UIviewer.Shopping;
+import ClientToServer.myInfo;
 import DAO.Library.Book_borrower;
 import UIhandler.Library.Client_library;
+import UIhandler.Shop.Client_shop;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -27,7 +30,7 @@ public class shopCar extends JPanel {
 
     public shopCar(){
         setLayout(null);
-        String[] tableTitle = {"商品编号","商品名称","商品数量","商品价格","购买数量","购买","删除"};
+        String[] tableTitle = {"商品编号","商品名称","商品购买数量","商品价格","购买","删除"};
         //数据
         DefaultTableModel dtm = new DefaultTableModel(myBook, tableTitle);
         JTable table_want = new JTable(dtm){
@@ -40,6 +43,19 @@ public class shopCar extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 if(table_want.getSelectedColumn()==5){
                     //购买功能
+                    String id= (String) table_want.getValueAt(table_want.getSelectedRow(),0);
+                    int Num = Integer.parseInt((String) table_want.getValueAt(table_want.getSelectedRow(),2));
+                    double money= Double.parseDouble((String) table_want.getValueAt(table_want.getSelectedRow(),2));
+                    try {
+                        if(Client_shop.getMoney(myInfo.getId())>=(money*Num)){
+                            Client_shop.buyProduct(myInfo.getId(),id,Num,Client_shop.getMoney(myInfo.getId())-money*Num);
+                            JOptionPane.showMessageDialog(null,"购买成功！");
+                        }else {
+                            JOptionPane.showMessageDialog(null,"余额不足！");
+                        }
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
                 }
 
                 if(table_want.getSelectedColumn()==6){

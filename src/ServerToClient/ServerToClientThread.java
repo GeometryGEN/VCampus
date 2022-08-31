@@ -359,6 +359,28 @@ public class ServerToClientThread extends Thread{
                     }
                 }
 
+                else if(m.getType().equals(MessageType.ADD_TO_SHOPCAR)){
+                    String idcard = m.getSender();
+                    ProductPair s = (ProductPair) m.getData();
+                    boolean b = buyers_Shop_utils.addToShopCar(idcard,s.getId(),s.getNum());
+                    if(b){
+                        sendback.setType(MessageType.ADD_TO_SHOPCAR_SUCCEED);
+                        oos.writeObject(sendback);
+                    } else{
+                        sendback.setType(MessageType.ADD_TO_SHOPCAR_FAILED);
+                        oos.writeObject(sendback);
+//                        socket.close();
+                    }
+                }
+
+                else if(m.getType().equals(MessageType.GET_MONEY)){
+                    String idcard = m.getSender();
+                    double b = buyers_Shop_utils.getMoney(idcard);
+                    sendback.setType(MessageType.GET_MONEY_SUCCEED);
+                    sendback.setData(b);
+                    oos.writeObject(sendback);
+                }
+
                 else if(m.getType().equals(MessageType.DELETE_PRODUCT)){
                     if(Admin_Shop_utils.deleteProduct(Integer.parseInt(m.getSender()))){
                         sendback.setType(MessageType.DELETE_PRODUCT_SUCCEED);

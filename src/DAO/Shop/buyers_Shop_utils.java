@@ -226,17 +226,27 @@ public class buyers_Shop_utils {
         return re;
     }
 
-
-    public static void main(String[] args) throws Exception {
-//        if(checkCertainProduct(111)!=null)
-        List<ProductPair> s = new ArrayList<>();
-        System.out.println(checkCertainProduct(1).getProduct_name());
-        System.out.println(checkCertainProduct(2).getProduct_name());
-//        else
-//            System.out.println("checkCertainProduct(1).getProduct_name()");
-//        List<Product> list = findTypeProduct("饮料");
-//        for (int i = 0; i < list.size(); i++) {
-//            System.out.println(list.get(i).getProduct_name());
-//        }
+    public static double getMoney(String idcard) throws SQLException {
+        Connection connection=JDBC_Connector.ConnectMySQL();
+        String sql="select * from students where Student_idcard=? ";
+        PreparedStatement st= connection.prepareStatement(sql);
+        st.setString(1, idcard);
+        ResultSet rs=st.executeQuery();
+        double money = 0;
+        while(rs.next()){
+            money=rs.getDouble("Student_money");
+        }
+        return money;
     }
+
+//    public static void main(String[] args) throws Exception {
+////        if(checkCertainProduct(111)!=null)
+//        System.out.println(getMoney("09020201"));
+////        else
+////            System.out.println("checkCertainProduct(1).getProduct_name()");
+////        List<Product> list = findTypeProduct("饮料");
+////        for (int i = 0; i < list.size(); i++) {
+////            System.out.println(list.get(i).getProduct_name());
+////        }
+//    }
 }

@@ -177,4 +177,12 @@ public interface MessageType {
     String DELETE_READYTPBUY_PRODUCT_SUCCEED="131.1.1Q";     //成功
     String DELETE_READYTPBUY_PRODUCT_FAILED="132.1.1Q";      //失败
 
+    String ADD_TO_SHOPCAR = "133.1111";             //添加购物车
+    String ADD_TO_SHOPCAR_SUCCEED = "133.1111q";
+    String ADD_TO_SHOPCAR_FAILED = "133.1111s";
+
+    String GET_MONEY = "133.11112";             //得到钱
+    String GET_MONEY_SUCCEED = "133.1111q2";
+    String GET_MONEY_FAILED = "133.1111s2";
+
 }
