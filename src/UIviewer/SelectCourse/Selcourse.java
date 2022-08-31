@@ -1,10 +1,13 @@
 package UIviewer.SelectCourse;
 import UIhandler.Currirulum.Client_curriculum;
 import UIviewer.login.functionChoose;
+import net.coobird.thumbnailator.Thumbnails;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
@@ -119,7 +122,7 @@ public class Selcourse extends JPanel {
 
         //按钮6
         JButton btnNewButton_6 = new JButton("退出");
-        btnNewButton_6.setBounds((int)(940*width_r), (int)(50*height_r), (int)(160*width_r), (int)(950*height_r));
+        btnNewButton_6.setBounds((int)(940*width_r), (int)(50*height_r), (int)(160*width_r), (int)(50*height_r));
         btnNewButton_6.setFont(myfont);
         btnNewButton_6.setBackground(new Color(	250 ,240, 230));
 
@@ -137,10 +140,18 @@ public class Selcourse extends JPanel {
         //东南大学标志图片
         JLabel l15 = new JLabel();
         ImageIcon icon6 = new ImageIcon("src/image/background2.jpg");
-        l15.setIcon(icon6);
+        int icon6_width= 1273;
+        int icon6_height=790;
+        try {
+            Thumbnails.of(new File("src/image/background2.jpg"))
+                    .size((int)(icon6_width*width_r), (int)(icon6_height*height_r))
+                    .toFile(new File("src/image/background2_min.jpg"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        l15.setIcon(new ImageIcon("src/image/background2_min.jpg"));
         l15.setBounds(0, 0, (int)(1273*width_r), (int)(790*height_r));
         add(l15);
-
         setVisible(true);
     }
 }

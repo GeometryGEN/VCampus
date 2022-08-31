@@ -2,11 +2,13 @@ package UIviewer.SelectCourse;
 
 import UIhandler.Currirulum.Client_curriculum;
 import UIviewer.login.functionChoose;
+import net.coobird.thumbnailator.Thumbnails;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.IOException;
 import java.nio.channels.spi.AbstractInterruptibleChannel;
 
@@ -75,12 +77,13 @@ public class Selcourse_teacher extends JPanel {
 
         // 按钮3
         JButton btnNewButton_3 = new JButton("申报课程状态");
-        btnNewButton_3.setBounds((int)(400*width_r), (int)(950*height_r), (int)(160*width_r), (int)(50*height_r));
+        btnNewButton_3.setBounds((int)(400*width_r), (int)(50*height_r), (int)(160*width_r), (int)(50*height_r));
         btnNewButton_3.setFont(myfont);
         btnNewButton_3.setBackground(new Color(250, 240, 230));
         btnNewButton_3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                cardLayout.show(panel,"f3");
                 try {
                     Client_curriculum.Require_my_apply();
                 } catch (IOException ex) {
@@ -137,12 +140,20 @@ public class Selcourse_teacher extends JPanel {
         add(btnNewButton_6);
 
         //东南大学标志图片
-        JLabel logo = new JLabel();
-        ImageIcon icon1 = new ImageIcon("src/image/background2.jpg");
-        logo.setIcon(icon1);
-        logo.setBounds(0, 0, (int)(1273*width_r), (int)(790*height_r));
-        add(logo);
-
+        JLabel l15 = new JLabel();
+        ImageIcon icon6 = new ImageIcon("src/image/background2.jpg");
+        int icon6_width= 1273;
+        int icon6_height=790;
+        try {
+            Thumbnails.of(new File("src/image/background2.jpg"))
+                    .size((int)(icon6_width*width_r), (int)(icon6_height*height_r))
+                    .toFile(new File("src/image/background2_min.jpg"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        l15.setIcon(new ImageIcon("src/image/background2_min.jpg"));
+        l15.setBounds(0, 0, (int)(1273*width_r), (int)(790*height_r));
+        add(l15);
         setVisible(true);
     }
 }
