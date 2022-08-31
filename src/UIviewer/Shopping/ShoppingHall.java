@@ -7,6 +7,7 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+import ClientToServer.myInfo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -247,7 +248,11 @@ public class ShoppingHall extends JPanel {
                     if (table_want.getSelectedColumn() == 4) {
                         //购物车
                         String id= (String) table_want.getValueAt(table_want.getSelectedRow(),0);
-
+                        try {
+                            Client_shop.buyProduct(myInfo.getId(),id,1,1);
+                        } catch (Exception ex) {
+                            throw new RuntimeException(ex);
+                        }
                     }
 
                     if (table_want.getSelectedColumn() == 5) {

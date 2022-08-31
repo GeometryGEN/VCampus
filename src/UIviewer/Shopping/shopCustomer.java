@@ -166,6 +166,7 @@ public class shopCustomer extends JPanel {
                                 all.put(productPair.getId(), productPair.getNum());
                             }
                         }
+
                         List<Product> book = new ArrayList<>();
                         for (Integer i : all.keySet()) {
                             Product tempt = Client_shop.checkCertainProduct(i);

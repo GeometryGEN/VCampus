@@ -227,15 +227,16 @@ public class buyers_Shop_utils {
     }
 
 
-//    public static void main(String[] args) throws Exception {
-////        if(checkCertainProduct(111)!=null)
-//        List<ProductPair> s = new ArrayList<>();
-//        System.out.println(deleteShopCar("09020201",1,2));
-////        else
-////            System.out.println("checkCertainProduct(1).getProduct_name()");
-////        List<Product> list = findTypeProduct("饮料");
-////        for (int i = 0; i < list.size(); i++) {
-////            System.out.println(list.get(i).getProduct_name());
-////        }
-//    }
+    public static void main(String[] args) throws Exception {
+//        if(checkCertainProduct(111)!=null)
+        List<ProductPair> s = new ArrayList<>();
+        System.out.println(checkCertainProduct(1).getProduct_name());
+        System.out.println(checkCertainProduct(2).getProduct_name());
+//        else
+//            System.out.println("checkCertainProduct(1).getProduct_name()");
+//        List<Product> list = findTypeProduct("饮料");
+//        for (int i = 0; i < list.size(); i++) {
+//            System.out.println(list.get(i).getProduct_name());
+//        }
+    }
 }
