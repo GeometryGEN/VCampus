@@ -62,6 +62,13 @@ public class shopCar extends JPanel {
 
                 if(table_want.getSelectedColumn()==5){
                     //删除功能
+                    int id= Integer.parseInt(((String) table_want.getValueAt(table_want.getSelectedRow(),0)));
+                    try {
+                        Client_shop.deleteReadyToBuy(myInfo.getId(),id,0);
+                        JOptionPane.showMessageDialog(null,"删除成功！");
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
                 }
             }
 

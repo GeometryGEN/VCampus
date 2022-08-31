@@ -211,11 +211,10 @@ public class buyers_Shop_utils {
 
     public static Boolean deleteShopCar(String idcard, int id, int num) throws SQLException {
         Connection connection= JDBC_Connector.ConnectMySQL();    //连接数据库
-        String sql="delete from readytobuyproducts where (Stu_Tea_id=? and product_id=? and product_num=?)";
+        String sql="delete from readytobuyproducts where (Stu_Tea_id=? and product_id=?)";
         PreparedStatement ps = connection.prepareStatement(sql);
         ps.setString(1,idcard);
         ps.setInt(2,id);
-        ps.setInt(3,num);
         boolean re = ps.executeUpdate()>0;
         JDBC_Connector.close(null, ps, connection);
         if(re)
@@ -225,6 +224,8 @@ public class buyers_Shop_utils {
         JDBC_Connector.close(null, ps, connection);
         return re;
     }
+
+
 
     public static double getMoney(String idcard) throws SQLException {
         Connection connection=JDBC_Connector.ConnectMySQL();
