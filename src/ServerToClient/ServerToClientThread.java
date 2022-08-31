@@ -14,6 +14,7 @@ import DAO.Shop.Product;
 import DAO.Shop.ProductPair;
 import DAO.Shop.buyers_Shop_utils;
 import DAO.StatusManagement.Admin_SM_utils;
+import DAO.StatusManagement.ImageAndTable;
 import DAO.StatusManagement.User_SM_utils;
 import User.Student;
 import message.Message;
@@ -82,11 +83,11 @@ public class ServerToClientThread extends Thread{
                 }
                 //图书馆
                 if(m.getType().equals( MessageType.MESSAGE_LIBRARY_ENTER)){
-                    /*if(ServerToClient.isOnline(userid)==2){
+                    if(ServerToClient.isOnline(userid)==2){
                         sendback.setData(new Library_manager(userid).list_all_book(""));
-                        sendback.setType(MessageType.MESSAGE_LIBRARY_ADMIN_LIST_RET);
+                        sendback.setType(MessageType.MESSAGE_LIBRARY_ENTER_RET);
                         oos.writeObject(sendback);
-                    }*/
+                    }
                 }
                 else if(m.getType().equals(MessageType.MESSAGE_LIBRARY_BORROW))
                 {
@@ -407,7 +408,7 @@ public class ServerToClientThread extends Thread{
 
 
                 //学籍管理
-                else if(m.getType().equals(MessageType.RETURN_STUDENT_INFO)){
+                if(m.getType().equals(MessageType.RETURN_STUDENT_INFO)){
                     Student stu  = User_SM_utils.returnStudentAllInfo( m.getSender());
                     if(stu!=null){
                         sendback.setData(stu);
@@ -431,7 +432,7 @@ public class ServerToClientThread extends Thread{
                         //socket.close();
                     }
                 }
-                else if(m.getType().equals(MessageType.RETURN_PHOTO)){
+                /*else if(m.getType().equals(MessageType.RETURN_PHOTO)){
                     boolean sign = Image_SM_utils.readDBImage(m.getSender());
                     if(sign){
                         sendback.setType(MessageType.RETURN_PHOTO_SUCCEED);
@@ -453,6 +454,37 @@ public class ServerToClientThread extends Thread{
                         oos.writeObject(sendback);                        //将message对象回复客户端
                         //socket.close();
                     }
+                }*/
+                else if(m.getType().equals(MessageType.MESSAGE_STATUS_STU_ENTER)){
+                    ImageAndTable iat=new ImageAndTable();
+                    iat.student  = User_SM_utils.returnStudentAllInfo((String) m.getData());
+                    iat.image=Image_SM_utils.readDBImage((String) m.getData());
+                    sendback.setType(MessageType.MESSAGE_STATUS_STU_ENTER_RET);
+                    sendback.setData(iat);
+                    oos.writeObject(sendback);
+                }
+                else if(m.getType().equals(MessageType.MESSAGE_STATUS_ADMIN_QUERY)){
+                    if(User_SM_utils.search((String) m.getData())==true){
+                        ImageAndTable iat=new ImageAndTable();
+                        iat.student  = User_SM_utils.returnStudentAllInfo((String) m.getData());
+                        iat.image=Image_SM_utils.readDBImage((String) m.getData());
+                        sendback.setData(iat);
+                        sendback.setType(MessageType.MESSAGE_STATUS_ADMIN_QUERY_RET);
+                    }
+                    else {
+                        sendback.setType(MessageType.MESSAGE_STATUS_ADMIN_QUERY_FAIL);
+                    }
+                    oos.writeObject(sendback);
+                }
+                else if(m.getType().equals(MessageType.MESSAGE_STATUS_CONFIRM)){
+                    Student st=(Student)m.getData();
+                    Admin_SM_utils.changeStudentInfo(st);
+                    ImageAndTable iat=new ImageAndTable();
+                    iat.student =User_SM_utils.returnStudentAllInfo(st.getStudent_idcard());
+                    iat.image=Image_SM_utils.readDBImage(st.getStudent_idcard());
+                    sendback.setData(iat);
+                    sendback.setType(MessageType.MESSAGE_STATUS_CONFIRM_RET);
+                    oos.writeObject(sendback);
                 }
             } catch (Exception e){
                 e.printStackTrace();

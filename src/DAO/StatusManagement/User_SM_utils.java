@@ -51,5 +51,13 @@ public class User_SM_utils {
         }
         return null;
     }
-
+    public static boolean search(String id) throws SQLException{
+        Connection connection= JDBC_Connector.ConnectMySQL();                  //连接数据库
+        String sql="select * from students where Student_idcard=?";
+        PreparedStatement ps = connection.prepareStatement(sql);
+        ps.setString(1, id);
+        ResultSet rs = ps.executeQuery();
+        if(rs.next()) return true;
+        else return false;
+    }
 }

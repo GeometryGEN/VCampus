@@ -5,6 +5,7 @@ import UIhandler.Currirulum.Client_curriculum;
 import UIhandler.Library.Client_library;
 import UIhandler.QICQ.Client_qicq;
 import UIhandler.Shop.Client_shop;
+import UIhandler.StatusManagement.Client_status;
 import User.*;
 import message.Message;
 import message.MessageType;
@@ -106,6 +107,7 @@ public class ClientToServer {
             Client_library.setOos(oos);
             Client_qicq.setOps(oos);
             Client_shop.setOos(oos);
+            Client_status.setOos(oos);
             return true;
         } else {
             socket.close();
@@ -140,6 +142,7 @@ public class ClientToServer {
             Client_library.setOos(oos);
             Client_qicq.setOps(oos);
             Client_shop.setOos(oos);
+            Client_status.setOos(oos);
             ManageClientToServerThread.addThread(id, ctst);
             return true;
         } else {
@@ -175,6 +178,7 @@ public class ClientToServer {
             Client_library.setOos(oos);
             Client_qicq.setOps(oos);
             Client_shop.setOos(oos);
+            Client_status.setOos(oos);
             ManageClientToServerThread.addThread(id, ctst);
             return true;
         } else {

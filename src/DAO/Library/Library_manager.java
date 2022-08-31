@@ -92,15 +92,13 @@ public class Library_manager implements Serializable{
     }
     public ArrayList<Book_borrower> query_book(String s) throws SQLException {
         ArrayList<Book_borrower> books = new ArrayList<>();
-        String sql="select * from library where name like ? " +
-                "or country like ? or author like ? or publisher like ? or id like ? order by name;";
+        String sql="select * from library where name like ? author like ? or id like ? order by name;";
         String parse="%"+s+"%";
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,parse);
         st.setString(2,parse);
         st.setString(3,parse);
         st.setString(4,parse);
-        st.setString(5,parse);
         ResultSet rs=st.executeQuery();
         while(rs.next())
         {
@@ -123,17 +121,12 @@ public class Library_manager implements Serializable{
     }
     public ArrayList<Book_admin> list_all_book(String s) throws SQLException {
         ArrayList<Book_admin> books = new ArrayList<Book_admin>();
-        String sql="select * from library where id like ? or name like ? or author like ?" +
-                "or place like ? or publisher like ? or country like ? or borrow_to like ? order by name;";
+        String sql="select * from library where id like ? or name like ? or author like ? order by name;";
         String parse="%"+s+"%";
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,parse);
         st.setString(2,parse);
         st.setString(3,parse);
-        st.setString(4,parse);
-        st.setString(5,parse);
-        st.setString(6,parse);
-        st.setString(7,parse);
         ResultSet rs=st.executeQuery();
         while(rs.next())
         {
