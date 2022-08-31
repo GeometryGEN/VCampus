@@ -8,6 +8,8 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
+
 public class ConsultCourse_Info extends JPanel {
     public static volatile String[][] search_result=null;
     public ConsultCourse_Info()
@@ -27,6 +29,12 @@ public class ConsultCourse_Info extends JPanel {
         JScrollPane jsp=new JScrollPane(table_want);
         jsp.setBounds(0,0,1280,420);
         add(jsp);
+
+        try {
+            Client_curriculum.RequireConsultResult("");
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
         table_want.setRowHeight(40);
         setVisible(true);
