@@ -32,7 +32,9 @@ public class shopCar extends JPanel {
         DefaultTableModel dtm = new DefaultTableModel(myBook, tableTitle);
         JTable table_want = new JTable(dtm){
             public boolean isCellEditable(int row, int column) {
-                return false;
+                if(column==4) {
+                    return true;
+                }else {return false;}
             }
         };
         table_want.addMouseListener(new MouseListener() {
@@ -81,7 +83,7 @@ public class shopCar extends JPanel {
             DefaultTableCellRenderer tcr = new DefaultTableCellRenderer() {
                 @Override
                 public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-                    if (column!=4&&column!=5) {
+                    if (column!=5&&column!=6) {
                         setBackground(Color.white);
                     }else {
                         setBackground(new Color(250,128,114,100));
