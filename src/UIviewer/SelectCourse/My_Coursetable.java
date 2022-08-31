@@ -50,12 +50,13 @@ public class My_Coursetable extends JPanel{
             My_Coursetable.tableDate[i][12][0]="第十三节";
         }
 
-        My_Coursetable.tableDate[0][1][1]="test1";
-        My_Coursetable.tableDate[1][1][1]="test2";
-
         String[] columnNames={"节数","星期一","星期二","星期三","星期四","星期五"};
         tableModel=new DefaultTableModel(tableDate[week-1],columnNames);
-        table=new JTable(tableModel);
+        table=new JTable(tableModel){
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
         //scrollPane.setViewportView(table);
         scrollPane=new JScrollPane(table);
         table.setRowHeight(48);//设置行宽

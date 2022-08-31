@@ -89,6 +89,8 @@ public interface MessageType {
     String MESSAGE_CURRICULUM_QUERY_RET="37.1"; //返回课程查询的结果 data类型Arraylist<Course>
     String MESSAGE_CURRICULUM_ADMIN_ARRANGEMENT="38";//管理员排课，安排教室和时间 Data类型Course
     String MESSAGE_CURRICULUM_DROP="39";
+    String MESSAGE_CURRICULUM_MY_CHOOSING="40";
+    String MESSAGE_CURRICULUM_MY_CHOOSING_RET="40.5";
 
     //站内通信
     String MESSAGE_QICQ_ADD_FRIEND="41";

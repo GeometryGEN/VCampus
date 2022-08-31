@@ -94,7 +94,7 @@ public class Selcourse extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    Client_curriculum.RequireallCourse();
+                    Client_curriculum.Require_suitable();
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }

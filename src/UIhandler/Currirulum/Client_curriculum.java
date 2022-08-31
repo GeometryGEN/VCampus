@@ -101,9 +101,9 @@ public class Client_curriculum {
         oos.writeObject(message);
     }
 
-    public static void showallCourse(ArrayList<Course>allchoosing)throws IOException{
+    public static void show_choosable(ArrayList<Course>allchoosing)throws IOException{
         int n=allchoosing.size();
-        Choosing_Course.selectcourse=new String[n][6];
+        Choosing_Course.selectcourse=new String[n][7];
         Iterator b=allchoosing.iterator();
         int count=0;
         while(b.hasNext())
@@ -113,13 +113,14 @@ public class Client_curriculum {
             Choosing_Course.selectcourse[count][1]=course.getName();
             Choosing_Course.selectcourse[count][2]=course.getTimestring();
             Choosing_Course.selectcourse[count][3]=course.getTeacher();
-            Choosing_Course.selectcourse[count][4]=course.getClassroom();
-            Choosing_Course.selectcourse[count][5]="     选择";
+            Choosing_Course.selectcourse[count][4]=String.valueOf(course.getSize());
+            Choosing_Course.selectcourse[count][5]=course.getClassroom();
+            Choosing_Course.selectcourse[count][6]="        选择";
             count++;
         }
-        Choosing_Course search=new Choosing_Course();
-        Selcourse.panel.add(search,"search");
-        Selcourse.cardLayout.show(Selcourse.panel,"search");
+        Choosing_Course choosing=new Choosing_Course();
+        Selcourse.panel.add(choosing,"show_choosable");
+        Selcourse.cardLayout.show(Selcourse.panel,"show_choosable");
     }
     public static void admin_all_course(ArrayList<Course>allchoosing)throws IOException{
         int n=allchoosing.size();
@@ -338,6 +339,11 @@ public class Client_curriculum {
         Message message=new Message();
         message.setData(id);
         message.setType(MessageType.MESSAGE_CURRICULUM_DROP);
+        oos.writeObject(message);
+    }
+    public static void Require_suitable()throws IOException{
+        Message message=new Message();
+        message.setType(MessageType.MESSAGE_CURRICULUM_MY_CHOOSING);
         oos.writeObject(message);
     }
 }

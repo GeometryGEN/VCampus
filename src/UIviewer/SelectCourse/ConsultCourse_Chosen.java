@@ -67,10 +67,10 @@ public class ConsultCourse_Chosen extends JPanel {
             }
         });
         table_want.addMouseListener(new MouseListener() {
-
+            int last_clicked=-1;
             @Override
             public void mouseClicked(MouseEvent e) {
-                int last_clicked=-1;
+
                 if(table_want.getSelectedColumn()==last_clicked){
                     last_clicked=-1;
                     table_want.clearSelection();
