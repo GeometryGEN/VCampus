@@ -44,7 +44,6 @@ public class myBook extends JPanel {
                         throw new RuntimeException(ex);
                     }
                 }
-
                 if(table_want.getSelectedColumn()==8){
                     Book_borrower book=new Book_borrower();
                     try {

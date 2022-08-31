@@ -1,4 +1,5 @@
 package UIviewer.SelectCourse;
+
 import DAO.Curriculum.Course;
 import UIhandler.Currirulum.Client_curriculum;
 
@@ -13,6 +14,7 @@ import java.awt.event.MouseListener;
 import java.io.IOException;
 
 public class ConsultCourse_stuInfo extends JPanel {
+
     public static volatile String[][] consult_stu=null;
 
     public ConsultCourse_stuInfo()
@@ -52,10 +54,8 @@ public class ConsultCourse_stuInfo extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if(table_want.getSelectedColumn()==4){
-                    Course consult_course=new Course();
                     try{
                         String id=(String)table_want.getValueAt(table_want.getSelectedRow(),0);
-                        consult_course.setId(id);
                         Client_curriculum.Require_show_my_students(id);
                     }catch(IOException ex)
                     {
@@ -85,17 +85,6 @@ public class ConsultCourse_stuInfo extends JPanel {
 
             }
         });
-
-
-        String[] tableTitle2={"学生姓名","一卡通号"};
-        DefaultTableModel dtm2=new DefaultTableModel(consult_stu,tableTitle2);
-        JTable table_want2=new JTable(dtm2);
-        JScrollPane jsp2=new JScrollPane(table_want2);
-        jsp2.setBounds(0,260,1280,280);
-        add(jsp2);
-        table_want2.setRowHeight(70);
-
-
     }
 
 }

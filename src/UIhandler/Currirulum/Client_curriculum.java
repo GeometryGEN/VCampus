@@ -155,9 +155,10 @@ public class Client_curriculum {
     }
 
     //显示该门课哪些学生选择
-    public static void show_student_chosen() throws IOException{
-        ConsultCourse_stuInfo.consult_stu=null;
-        Message message=new Message();
+    public static void show_student_chosen(ArrayList<Student>students) throws IOException{
+        int n=students.size();
+        My_students.students=new String[n][2];
+
 
 
     }
@@ -170,17 +171,17 @@ public class Client_curriculum {
     }
     public static void show_my_students(ArrayList<Student>students){
         int n=students.size();
-        ConsultCourse_stuInfo.consult_stu=new String[n][2];
+        My_students.students=new String[n][2];
         Iterator b=students.iterator();
         int count=0;
         while(b.hasNext())
         {
             Student s=(Student) b.next();
-            ConsultCourse_stuInfo.consult_stu[count][0]=s.getStudent_idcard();
-            ConsultCourse_stuInfo.consult_stu[count][1]=s.getStudent_name();
+            My_students.students[count][0]=s.getStudent_idcard();
+            My_students.students[count][1]=s.getStudent_name();
             count++;
         }
-        ConsultCourse_stuInfo stuInfo=new ConsultCourse_stuInfo();
+        My_students stuInfo=new My_students();
         Selcourse_teacher.panel.add(stuInfo,"stuInfo");
         Selcourse_teacher.cardLayout.show(Selcourse_teacher.panel,"stuInfo");
     }
