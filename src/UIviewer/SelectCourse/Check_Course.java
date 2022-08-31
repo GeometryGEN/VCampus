@@ -52,17 +52,6 @@ public class Check_Course extends JPanel{
         add(l3);
 
 
-        JButton btnNewButton_6 = new JButton("安全返回");
-        btnNewButton_6.setBounds(1030, 75, 130, 40);
-        Font myfont2 = new Font("微软雅黑", Font.PLAIN, 18);
-        btnNewButton_6.setFont(myfont2);
-        btnNewButton_6.setBackground(new Color(248, 248, 255));
-        //btnNewButton_1.setForeground(new Color(248, 248, 255));
-        btnNewButton_6.setContentAreaFilled(true);//设置按钮透明
-        //btnNewButton_6.setBorder(null);//取消边框
-
-        add(btnNewButton_6);
-
 
         //左侧面板
         JPanel p1 = new JPanel();
