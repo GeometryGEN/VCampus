@@ -31,13 +31,13 @@ public class Selcourse_director extends JPanel {
         Scheduling f2=new Scheduling();
         panel.add(f2,"f2");
 
-        CurrentCourse_Man f3=new CurrentCourse_Man();
-        panel.add(f3,"f3");
+        /*CurrentCourse_Man f3=new CurrentCourse_Man();
+        panel.add(f3,"f3");*/
 
-
+        Font myfont = new Font("微软雅黑 ", Font.BOLD, 18);
         //六个按钮
         // 按钮1
-        JButton btnNewButton_1 = new JButton("课程信息管理");
+        /*JButton btnNewButton_1 = new JButton("课程信息管理");
         btnNewButton_1.setBounds(40, 50, 200, 50);
         Font myfont = new Font("微软雅黑 ", Font.BOLD, 18);
         btnNewButton_1.setFont(myfont);
@@ -48,11 +48,11 @@ public class Selcourse_director extends JPanel {
                 cardLayout.show(panel,"f3");
             }
         });
-        add(btnNewButton_1);
+        add(btnNewButton_1);*/
 
         // 按钮2
         JButton btnNewButton_2 = new JButton("排课");
-        btnNewButton_2.setBounds(340, 50, 200, 50);
+        btnNewButton_2.setBounds(150, 50, 200, 50);
         btnNewButton_2.setFont(myfont);
         btnNewButton_2.setBackground(new Color(245, 222, 179));
         btnNewButton_2.addActionListener(new ActionListener() {
@@ -70,7 +70,7 @@ public class Selcourse_director extends JPanel {
 
         //按钮4
         JButton btnNewButton_4 = new JButton("审核课程");
-        btnNewButton_4.setBounds(640, 50, 200, 50);
+        btnNewButton_4.setBounds(550, 50, 200, 50);
         btnNewButton_4.setFont(myfont);
         btnNewButton_4.setBackground(new Color(250, 240, 230));
         btnNewButton_4.addActionListener(new ActionListener() {
@@ -88,7 +88,7 @@ public class Selcourse_director extends JPanel {
 
         //按钮5
         JButton btnNewButton_5 = new JButton("退出");
-        btnNewButton_5.setBounds(940, 50, 200, 50);
+        btnNewButton_5.setBounds(950, 50, 200, 50);
         btnNewButton_5.setFont(myfont);
         btnNewButton_5.setBackground(new Color(245, 222, 179));
 

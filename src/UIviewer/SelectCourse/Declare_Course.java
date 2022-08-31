@@ -98,7 +98,7 @@ public class Declare_Course extends JPanel{
 
 
         JButton btnNewButton_7 = new JButton("申报");
-        btnNewButton_7.setBounds(680, 605, 150, 30);
+        btnNewButton_7.setBounds(660, 545, 150, 30);
         Font myfont3 = new Font("微软雅黑", Font.PLAIN, 16);
         btnNewButton_7.setFont(myfont3);
         btnNewButton_7.setBackground(new Color(248, 248, 255));
