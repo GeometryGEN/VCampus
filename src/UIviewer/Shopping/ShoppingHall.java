@@ -75,7 +75,7 @@ public class ShoppingHall extends JPanel {
                         tt[3]=String.valueOf(t.get(i).getProduct_currentNumbers());
                         temp[i]=tt;
                     }
-                    ShoppingHall.setShoptable(temp);
+                    setShoptable(temp);
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 }
@@ -196,7 +196,7 @@ public class ShoppingHall extends JPanel {
         p1 = new JPanel();
         p1.setBounds(0, 0, 340, 780);
         //p1.setBackground(null);
-        p1.setBackground(new Color(255,160,122, 180));
+        p1.setBackground(new Color(255,160,122, 120));
         //panel1.BackColor = Color.FromArgb(80, 255, 0, 0);
         //p1.setOpaque(false);
         add(p1);

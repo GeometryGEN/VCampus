@@ -15,8 +15,7 @@ import UIviewer.QQ.main_panel;
 import UIviewer.SelectCourse.Selcourse;
 import UIviewer.SelectCourse.Selcourse_director;
 import UIviewer.SelectCourse.Selcourse_teacher;
-//import UIviewer.Shopping.shoppinghall;
-//import UIviewer.Shopping.shop;
+
 
 import UIhandler.QICQ.Client_qicq;
 import UIviewer.Library.AllBooks;
@@ -27,7 +26,6 @@ import UIviewer.Shopping.shopCustomer;
 import UIviewer.status_manage.manage_status;
 import UIviewer.status_manage.student_status;
 import net.coobird.thumbnailator.Thumbnails;
-
 import ClientToServer.myInfo;
 
 public class functionChoose {
@@ -85,12 +83,6 @@ public class functionChoose {
         l4.setForeground(new Color(30,144,255));
         fc_panel.add(l4);
         String name= myInfo.getName();
-        /*if(ucs.getID().equals("1"))
-            name=ucs.getS().getStudent_name();
-        else if(ucs.getID().equals("2"))
-            name=ucs.getT().getTeacher_name();
-        else if(ucs.getID().equals("3"))
-            name=ucs.getA().getAdmin_name();*/
         JLabel l2 = new JLabel(" 姓名："+name);
         l2.setBounds((int) (30*width_r), (int) (210*height_r), (int) (250*width_r), (int) (60*height_r));
         Font font1 = new Font("微软雅黑", Font.PLAIN, (int) (18*width_r));
@@ -98,24 +90,58 @@ public class functionChoose {
         l2.setForeground(new Color(0,0,0));
         fc_panel.add(l2);
         String card=myInfo.getId();
-        /*if(ucs.getID().equals("1"))
-            card=ucs.getS().getStudent_idcard();
-        else if(ucs.getID().equals("2"))
-            card=ucs.getT().getTeacher_idcard();
-        else if(ucs.getID().equals("3"))
-            card=ucs.getA().getAdmin_idcard();*/
         JLabel l3 = new JLabel(" 卡号："+card);
         l3.setBounds((int) (30*width_r), (int) (250*height_r), (int) (250*width_r), (int) (60*height_r));
         l3.setFont(font1);
         l3.setForeground(new Color(0,0,0));
         fc_panel.add(l3);
+        int iden=myInfo.getType();
+        String identify=null;
+        if(iden==1)
+        {identify="学生";}
+        if(iden==2)
+        {identify="教师";}
+        if(iden==3)
+        {identify="管理员";}
+        JLabel l21 = new JLabel(" 身份："+identify);
+        l21.setBounds((int) (30*width_r), (int) (290*height_r), (int) (250*width_r), (int) (60*height_r));
+        l21.setFont(font1);
+        l21.setForeground(new Color(0,0,0));
+        fc_panel.add(l21);
 
+//文字
+        JLabel l41 = new JLabel("大学之道");
+        l41.setBounds((int) (80*width_r), (int) (480*height_r), (int) (200*width_r), (int) (75*height_r));
+        Font font3 = new Font("楷体", Font.BOLD, (int) (22*width_r));
+        l41.setFont(font3);
+        fc_panel.add(l41);
+        JLabel l42 = new JLabel("在明明德");
+        l42.setBounds((int) (80*width_r), (int) (520*height_r), (int) (200*width_r), (int) (75*height_r));
+        l42.setFont(font3);
+        fc_panel.add(l42);
+        JLabel l43 = new JLabel("在亲民");
+        l43.setBounds((int) (80*width_r), (int) (560*height_r), (int) (200*width_r), (int) (75*height_r));
+        l43.setFont(font3);
+        fc_panel.add(l43);
+        JLabel l44 = new JLabel("在");
+        l44.setBounds((int) (80*width_r), (int) (600*height_r), (int) (40*width_r), (int) (75*height_r));
+        l44.setFont(font3);
+        fc_panel.add(l44);
+        JLabel l45 = new JLabel("『止于至善』");
+        l45.setBounds((int) (120*width_r), (int) (630*height_r), (int) (200*width_r), (int) (75*height_r));
+        Font font4 = new Font("楷体", Font.BOLD, (int) (30*width_r));
+        l45.setFont(font4);
+        fc_panel.add(l45);
+        JLabel l46 = new JLabel("————校训");
+        l46.setBounds((int) (140*width_r), (int) (700*height_r), (int) (200*width_r), (int) (40*height_r));
+        l46.setFont(font3);
+        fc_panel.add(l46);
 
         //label背景
         JLabel l11 = new JLabel();
         ImageIcon icon4 = new ImageIcon("src/image/label2.png");
         int icon2_width= 285;
-        int icon2_height=400;
+        int icon2_height=330;
         try {
             Thumbnails.of(new File("src/image/label2.png"))
                     .size((int)(icon2_width*width_r), (int)(icon2_height*height_r))
@@ -124,7 +150,7 @@ public class functionChoose {
             throw new RuntimeException(e);
         }
         l11.setIcon(new ImageIcon("src/image/label2_min.png"));
-        l11.setBounds((int) (15*width_r), (int) (130*height_r), (int) (285*width_r), (int) (400*height_r));
+        l11.setBounds((int) (15*width_r), (int) (110*height_r), (int) (285*width_r), (int) (330*height_r));
         fc_panel.add(l11);
 
         //东南大学标志图片
@@ -238,14 +264,15 @@ public class functionChoose {
                 try {
                     jf.setBounds(0,0,width,height);
                     jf.remove(fc_panel);
-                    if(myInfo.getType()!=3)
+                    if(myInfo.getType()==1)
                         jf.setContentPane(new student_status(width,height));
-                    else {
+                    else if(myInfo.getType()==3){
                         jf.setContentPane(new manage_status(width,height));
+                    } else {
+                        JOptionPane.showMessageDialog(null,"抱歉，您暂无学籍管理权限！");
                     }
                     jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                     jf.setVisible(true);
-
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -388,7 +415,6 @@ public class functionChoose {
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
                 try {
-                    jf.setBounds(0,0,width,height);
                     jf.remove(fc_panel);
                     if(myInfo.getType()!=3)
                     {
@@ -470,6 +496,36 @@ public class functionChoose {
         p25.setBounds((int) (640*width_r), (int) (500*height_r), (int) (300*width_r), (int) (200*height_r));
         p25.setBackground(new Color(248,248,255));
         fc_panel.add(p25);
+
+        JButton btnNewButton_7 = new JButton("敬请期待");
+        btnNewButton_7.setFocusPainted(false);
+        btnNewButton_7.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
+                JOptionPane.showMessageDialog(null,"正在开发中，敬请期待！");
+            }
+        });
+        JLabel l37 = new JLabel();
+        ImageIcon icon37 = new ImageIcon("src/image/icon_72 (2).png");
+        try {
+            Thumbnails.of(new File("src/image/icon_72 (2).png"))
+                    .size((int)(icon9_width*width_r), (int)(icon9_height*height_r))
+                    .toFile(new File("src/image/icon_72 (2)_min.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        l37.setIcon(new ImageIcon("src/image/icon_72 (2)_min.png"));
+        l37.setBounds((int) (1059*width_r), (int) (500*height_r), (int) (300*width_r), (int) (72*height_r));
+        fc_panel.add(l37);
+        btnNewButton_7.setBounds((int) (945*width_r), (int) (572*height_r), (int) (300*width_r), (int) (128*height_r));
+        btnNewButton_7.setFont(myfont);
+        btnNewButton_7.setBackground(new Color(220,220,220));
+        fc_panel.add(btnNewButton_7);
+        JPanel p27 = new JPanel();
+        p27.setBounds((int) (945*width_r), (int) (500*height_r), (int) (300*width_r), (int) (200*height_r));
+        p27.setBackground(new Color(248,248,255));
+        fc_panel.add(p27);
 
         //右下面板
         JPanel p3 = new JPanel();

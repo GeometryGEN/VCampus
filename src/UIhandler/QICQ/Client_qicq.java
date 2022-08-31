@@ -91,6 +91,7 @@ public class Client_qicq {
     }
     public static void show_message(ArrayList<Message> messages){
         chat_panel.show_message(messages);
+        System.out.println(4444);
     }
     public void add_friend(String myid,String myname,String number,String nickname) throws IOException {
         Application app=new Application(myid,myname);
@@ -102,13 +103,11 @@ public class Client_qicq {
         oos.writeObject(message);
     }
     public static void Require_friend_list() throws IOException {
-        System.out.println(2);
         Message message=new Message();
         message.setType(MessageType.MESSAGE_QICQ_LIST_FRIENDS);
         oos.writeObject(message);
     }
     public static void show_friend(HashMap<String, ArrayList<Friend>>friend){
-        System.out.println(1);
         for(String tag: friend.keySet()){
             friend_list.add(tag,friend.get(tag));
         }

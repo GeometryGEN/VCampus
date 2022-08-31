@@ -239,11 +239,35 @@ public class ClientToServerThread extends Thread {
                 if(message.getType().equals(MessageType.MESSAGE_CURRICULUM_QUERY_RET)){
                     Client_curriculum.showConsultResult((ArrayList<Course>)message.getData());
                 }
-                if(message.getType().equals(MessageType.MESSAGE_CURRICULUM_LIST_ALL_RET)){
+                else if(message.getType().equals(MessageType.MESSAGE_CURRICULUM_LIST_ALL_RET)){
                     Client_curriculum.showallCourse((ArrayList<Course>)message.getData());
                 }
-                if(message.getType().equals(MessageType.MESSAGE_CURRICULUM_LIST_ALL_RET)){
+                else if(message.getType().equals(MessageType.MESSAGE_CURRICULUM_LIST_APPLICATION_RET)){
                     Client_curriculum.showApplyResult((ArrayList<Opencourse>)message.getData());
+                }
+                else if(message.getType().equals(MessageType.MESSAGE_CURRICULUM_LIST_MINE_RET)){
+                    Client_curriculum.showMyChoice((ArrayList<Course>)message.getData());
+                }
+                else if(message.getType().equals(MessageType.MESSAGE_CURRICULUM_CHOOSE_SUCCEED)){
+                    JOptionPane.showMessageDialog(null,"选课成功");
+                }
+                else if(message.getType().equals(MessageType.MESSAGE_CURRICULUM_CHOOSE_FULL)){
+                    JOptionPane.showMessageDialog(null,"选课失败，课程已满");
+                }
+                else if(message.getType().equals(MessageType.MESSAGE_CURRICULUM_CHOOSE_CONFLICT)){
+                    JOptionPane.showMessageDialog(null,"选课失败，课程冲突");
+                }
+                else if(message.getType().equals(MessageType.MESSAGE_CURRICULUM_APPLY_SUCCEED)){
+                    JOptionPane.showMessageDialog(null,"课程申报成功！");
+                }
+                else if(message.getType().equals(MessageType.MESSAGE_CURRICULUM_APPLY_FAIL)){
+                    JOptionPane.showMessageDialog(null,"课程申报失败，已经存在相同课程！");
+                }
+                else if(message.getType().equals(MessageType.MESSAGE_CURRICULUM_SHOW_STU_RET)){
+                    Client_curriculum.show_my_students((ArrayList<Student>)message.getData());
+                }
+                else if(message.getType().equals(MessageType.MESSAGE_CURRICULUM_SHOW_SCHEDULE_RET)){
+                    Client_curriculum.show_my_schedule((String[][][])message.getData());
                 }
             } catch (InterruptedIOException e){
                 break;

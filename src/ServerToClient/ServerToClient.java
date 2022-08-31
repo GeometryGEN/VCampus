@@ -14,6 +14,7 @@ import message.Message;
 import message.MessageType;
 import utils.MyObjectInputStream;
 import utils.MyObjectOutputStream;
+import utils.myTime;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -70,7 +71,7 @@ public class ServerToClient extends Thread{
                         stct.start();
                         //放入线程集合中
                         ManageServerToClientThread.addThread(stu.getStudent_idcard(),stct);
-                        addOnline(stu.getStudent_id(),0);
+                        addOnline(stu.getStudent_idcard(),0);
                     }else {  //登录失败
                         m.setType(MessageType.MESSAGE_LOGIN_FAIL);
                         //将message对象回复客户端
@@ -87,7 +88,7 @@ public class ServerToClient extends Thread{
                         oos.writeObject(m);
                         //创建一个线程，和客户端通信，该线程持有socket对象
                         ServerToClientThread stct = new ServerToClientThread(oos,ois,t.getTeacher_idcard(),socket);
-                        addOnline(t.getTeacher_id(),1);
+                        addOnline(t.getTeacher_idcard(),1);
                         stct.start();
                         //放入线程集合中
                         ManageServerToClientThread.addThread(t.getTeacher_idcard(),stct);
@@ -110,7 +111,7 @@ public class ServerToClient extends Thread{
                         stct.start();
                         //放入线程集合中
                         ManageServerToClientThread.addThread(a.getAdmin_idcard(),stct);
-                        addOnline(a.getAdmin_id(),2);
+                        addOnline(a.getAdmin_idcard(),2);
                     }else {  //登录失败
                         m.setType(MessageType.MESSAGE_LOGIN_FAIL);
                         //将message对象回复客户端

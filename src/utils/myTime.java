@@ -23,7 +23,7 @@ public class myTime {
         return t;
     }
     public static String datetimeToString(Timestamp t){
-        String timeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(t);
+        String timeStamp = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(t.getTime());
         return timeStamp;
     }
 }

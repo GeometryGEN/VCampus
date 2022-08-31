@@ -6,6 +6,7 @@ import DAO.Curriculum.Opencourse;
 import UIviewer.SelectCourse.Check_Coustatus;
 import UIviewer.SelectCourse.Choosing_Course;
 import UIviewer.SelectCourse.Search_result;
+import User.Student;
 import message.Message;
 import message.MessageType;
 import utils.MyObjectOutputStream;
@@ -34,14 +35,37 @@ public class Client_curriculum {
 
 
 
-    public static void requireChosen(Course curri)throws IOException{
+    public static void requireToChoose(Course curri)throws IOException{
             Message message=new Message();
             message.setData(curri);
-            message.setType(MessageType.MESSAGE_CURRICULUM_LIST_MINE);
+            message.setType(MessageType.MESSAGE_CURRICULUM_CHOOSE);
             oos.writeObject(message);
     }
+    public static void RequireMyChoice() throws IOException {
+        Message message=new Message();
+        message.setData(myInfo.getId());
+        message.setType(MessageType.MESSAGE_CURRICULUM_LIST_MINE);
+        oos.writeObject(message);
+    }
     public static void showMyChoice(ArrayList<Course>courses){
-
+        int n=courses.size();
+        ConsultCourse_Chosen.consultCourse_chosen=new String[n][6];
+        Iterator b=courses.iterator();
+        int count=0;
+        while(b.hasNext())
+        {
+            Course curri=(Course) b.next();
+            ConsultCourse_Chosen.consultCourse_chosen[count][0]=curri.getId();
+            ConsultCourse_Chosen.consultCourse_chosen[count][1]=curri.getName();
+            ConsultCourse_Chosen.consultCourse_chosen[count][2]=curri.getTimestring();
+            ConsultCourse_Chosen.consultCourse_chosen[count][3]=String.valueOf(curri.getPoint());
+            ConsultCourse_Chosen.consultCourse_chosen[count][4]=curri.getTeacher();
+            ConsultCourse_Chosen.consultCourse_chosen[count][5]=curri.getClassroom();
+            count++;
+        }
+        ConsultCourse_Chosen chosen=new ConsultCourse_Chosen();
+        Selcourse.panel.add(chosen,"chosen");
+        Selcourse.cardLayout.show(Selcourse.panel,"chosen");
     }
     //显示所有的课程进行选择
     public static void RequireallCourse()throws IOException{
@@ -74,13 +98,19 @@ public class Client_curriculum {
     //查询课程信息
     public static void RequireConsultResult(String consultInfo)throws IOException{
         lastconsult=consultInfo;
-        Search_result search_result=null;
         Message message=new Message();
         message.setData(consultInfo);
         message.setType(MessageType.MESSAGE_CURRICULUM_QUERY);
         oos.writeObject(message);
     }
 
+    public static void Require_show_my_students(String Id)throws IOException{
+        Message message=new Message();
+        message.setData(Id);
+        message.setType(MessageType.MESSAGE_CURRICULUM_SHOW_STU);
+        oos.writeObject(message);
+
+    }
     public static void showConsultResult(ArrayList<Course> course)throws IOException{
         int n=course.size();
         Search_result.search_result=new String[n][6];
@@ -103,12 +133,40 @@ public class Client_curriculum {
         cardLayout.show(panel,"search");
 
     }
+
+    //显示该门课哪些学生选择
+    public static void show_student_chosen() throws IOException{
+        ConsultCourse_stuInfo.consult_stu=null;
+        Message message=new Message();
+
+
+    }
+
+
     public static void apply(Opencourse course) throws IOException{
         Check_Coustatus.checkcourse_status=null;
         Message message=new Message();
         message.setData(course);
         message.setType(MessageType.MESSAGE_CURRICULUM_APPLY);
         oos.writeObject(message);
+    }
+
+
+    public static void show_my_students(ArrayList<Student>students){
+        int n=students.size();
+        ConsultCourse_stuInfo.consult_stu=new String[n][2];
+        Iterator b=students.iterator();
+        int count=0;
+        while(b.hasNext())
+        {
+            Student s=(Student) b.next();
+            ConsultCourse_stuInfo.consult_stu[count][0]=s.getStudent_idcard();
+            ConsultCourse_stuInfo.consult_stu[count][1]=s.getStudent_name();
+            count++;
+        }
+        ConsultCourse_stuInfo stuInfo=new ConsultCourse_stuInfo();
+        Selcourse_teacher.panel.add(stuInfo,"stuInfo");
+        Selcourse_teacher.cardLayout.show(Selcourse_teacher.panel,"stuInfo");
     }
     public static void showApplyResult(ArrayList<Opencourse>opencourses) {
         int n=opencourses.size();
@@ -135,8 +193,8 @@ public class Client_curriculum {
             count++;
         }
         Check_Coustatus cc =new Check_Coustatus();
-        Selcourse_director.panel.add(cc,"apply");
-        Selcourse_director.cardLayout.show(Selcourse_director.panel,"apply");
+        Selcourse_teacher.panel.add(cc,"apply");
+        Selcourse_teacher.cardLayout.show(Selcourse_teacher.panel,"apply");
 
     }
     public static void Require_my_apply() throws IOException {
@@ -144,6 +202,28 @@ public class Client_curriculum {
         Message message=new Message();
         message.setData(myInfo.getId());
         message.setType(MessageType.MESSAGE_CURRICULUM_LIST_APPLICATION);
+        oos.writeObject(message);
+    }
+    public static void show_my_schedule(String [][][]schedule){
+        My_Coursetable.tableDate=new String[17][13][6];
+        for(int i=0;i<16;i++)
+        {
+            for(int j=0;j<13;j++){
+                for(int k=1;k<=5;k++){
+                    My_Coursetable.tableDate[i][j][k]=schedule[i+1][k][j+1];
+                  //  if(i==0) System.out.print(My_Coursetable.tableDate[i][j][k]);
+                }
+               // if(i==0) System.out.println();
+            }
+        }
+        My_Coursetable table=new My_Coursetable();
+        Selcourse.panel.add(table,"schedule");
+        Selcourse.cardLayout.show(Selcourse.panel,"schedule");
+    }
+    public static void RequireSchedule() throws IOException {
+        Message message=new Message();
+        message.setData(myInfo.getId());
+        message.setType(MessageType.MESSAGE_CURRICULUM_SHOW_SCHEDULE);
         oos.writeObject(message);
     }
 }

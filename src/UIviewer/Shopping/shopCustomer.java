@@ -18,6 +18,8 @@ import UIviewer.login.functionChoose;
 import net.coobird.thumbnailator.Thumbnails;
 import ClientToServer.myInfo;
 
+import static UIviewer.Shopping.ShoppingHall.setShoptable;
+
 public class shopCustomer extends JPanel {
     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
     int width=(int ) screensize.getWidth(); //得到宽度
@@ -38,6 +40,7 @@ public class shopCustomer extends JPanel {
     public shopCustomer() throws Exception {
         String name=myInfo.getName();
         getName(name);
+        String money="100";
         setBounds(0,0, (int) (1273*width_r), (int) (784*height_r));
         setLayout(null);
 
@@ -65,8 +68,8 @@ public class shopCustomer extends JPanel {
         panel.add(f1,"f1");
 
         //文字
-        JLabel l1 = new JLabel("你好！"+name);
-        l1.setBounds((int) (1100*width_r), (int) (30*height_r), (int) (200*width_r), (int) (55*height_r));
+        JLabel l1 = new JLabel("您好！"+name+"。您的余额为"+money+"元。");
+        l1.setBounds((int) (930*width_r), (int) (30*height_r), (int) (300*width_r), (int) (55*height_r));
         l1.setForeground(new Color(248, 248, 255));
         Font font = new Font("楷体", Font.BOLD, (int) (20*width_r));
         l1.setFont(font);
@@ -89,6 +92,8 @@ public class shopCustomer extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
+                String[][]temp={{"2222"}};
+                setShoptable(temp);
                 ShoppingHall f11=new ShoppingHall();
                 ShoppingHall.setShoptable(temp);
                 panel.add(f11,"f11");
@@ -205,7 +210,7 @@ public class shopCustomer extends JPanel {
         });
         add(b3);
 
-        JButton b4=new JButton("退出图书馆");
+        JButton b4=new JButton("退出商店");
         b4.setBounds((int) (910*width_r), (int) (100*height_r), (int) (250*width_r), (int) (50*height_r));
         b4.setFont(myfont1);
         b4.setContentAreaFilled(false);//设置按钮透明

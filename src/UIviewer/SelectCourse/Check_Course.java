@@ -13,12 +13,6 @@ public class Check_Course extends JPanel{
         JPanel p11=new JPanel();
         p11.setBounds(0,0,1273,784);
 
-        //小头像
-        /*JLabel touxiang = new JLabel();
-        ImageIcon icon = new ImageIcon("src/image/logodz.png");
-        touxiang.setIcon(icon);
-        touxiang.setBounds(20, 20, 100, 100);
-        jf.getContentPane().add(touxiang);*/
 
         //文字
         JLabel l1 = new JLabel("  你好！");
@@ -51,17 +45,6 @@ public class Check_Course extends JPanel{
         l3.setForeground(new Color(0, 0, 0));
         add(l3);
 
-
-        JButton btnNewButton_6 = new JButton("安全返回");
-        btnNewButton_6.setBounds(1030, 75, 130, 40);
-        Font myfont2 = new Font("微软雅黑", Font.PLAIN, 18);
-        btnNewButton_6.setFont(myfont2);
-        btnNewButton_6.setBackground(new Color(248, 248, 255));
-        //btnNewButton_1.setForeground(new Color(248, 248, 255));
-        btnNewButton_6.setContentAreaFilled(true);//设置按钮透明
-        //btnNewButton_6.setBorder(null);//取消边框
-
-        add(btnNewButton_6);
 
 
         //左侧面板

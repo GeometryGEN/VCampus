@@ -13,11 +13,12 @@ import javax.swing.text.StyledDocument;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class chat_panel extends JPanel {
     private JPanel type_panel;
-    private JPanel record_panel;
+    private static JScrollPane scrollPane;
     static double width_r;
     static JTextPane jTextPane = new JTextPane();
     static StyledDocument doc = jTextPane.getStyledDocument();
@@ -35,7 +36,17 @@ public class chat_panel extends JPanel {
     }
     public static void show_message(ArrayList<Message> messages){
         jTextPane.setText(null);
-        insertText(" ",Color.white,(int)(22*width_r),0);
+        //开头空格
+        SimpleAttributeSet set = new SimpleAttributeSet();
+        StyleConstants.setFontSize(set, 0);//设置文本大小
+        StyleConstants.setAlignment(set, 1);//设置文本对齐方式
+        doc.setParagraphAttributes(jTextPane.getText().length(), doc.getLength() - jTextPane.getText().length(), set, false);
+        try {
+            doc.insertString(doc.getLength(), " ", set);//插入文本
+        } catch (BadLocationException e) {
+            e.printStackTrace();
+        }
+
         int num=messages.size();
         for(int i=num-1;i>=0;i--) {
             System.out.println(messages.get(i).getSendTime());
@@ -48,6 +59,10 @@ public class chat_panel extends JPanel {
                 insertText((String)(messages.get(i).getData()),Color.red,(int)(32*width_r),0);
             }
         }
+        jTextPane.setCaretPosition(doc.getLength());
+        jTextPane.setEditable(false);
+        //scrollPane.getVerticalScrollBar().setValue(scrollPane.getVerticalScrollBar().getMaximum());
+        jTextPane.updateUI();
     }
     public chat_panel( int width, int height, double width_r, double height_r, int x, int y, Friend friend){
         setLayout(null);
@@ -102,19 +117,24 @@ public class chat_panel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 //发送信息函数
                 Client_qicq.send_message(type_field.getText(), myInfo.getId(),friend.getId());
+                try {
+                    Client_qicq.get_message(friend.getId());
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
                 type_field.setText("");
             }
         });
 
         //显示消息界面
-        record_panel=new JPanel();
-        record_panel.setLayout(null);
-        record_panel.setBounds(0,0,(int)(width*width_r),(int)(height/4*3*height_r));
-        record_panel.setBorder(BorderFactory.createLineBorder(new Color(234,234,234)));
-        record_panel.setBackground(new Color(245,246,247));
-        jTextPane.setBounds(0,0,(int)(width*width_r),(int)(height/4*3*height_r));
+        scrollPane=new JScrollPane(jTextPane);
+        //scrollPane.setLayout(null);
+        scrollPane.setBounds(0,0,(int)(width*width_r),(int)(height/4*3*height_r));
+        scrollPane.setBorder(BorderFactory.createLineBorder(new Color(234,234,234)));
+        scrollPane.setBackground(new Color(245,246,247));
+        //jTextPane.setBounds(0,0,(int)(width*width_r),(int)(height/4*3*height_r));
         jTextPane.setBackground(new Color(245,246,247));
-        record_panel.add(jTextPane);
-        add(record_panel);
+        //scrollPane.add(jTextPane);
+        add(scrollPane);
     }
 }

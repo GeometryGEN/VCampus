@@ -9,7 +9,6 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Timer;
-
 import UIhandler.Library.Client_library;
 
 public class AllBooks extends JPanel {
@@ -55,7 +54,6 @@ public class AllBooks extends JPanel {
         //panel1.BackColor = Color.FromArgb(80, 255, 0, 0);
         //p1.setOpaque(false);
         add(p1);
-
 
 
 
