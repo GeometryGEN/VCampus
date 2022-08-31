@@ -2,6 +2,7 @@ package DAO.Login;
 import java.io.IOException;
 import java.sql.*;
 import User.Student;
+import User.Teacher;
 import connection.JDBC_Connector;
 
 /**
@@ -157,5 +158,18 @@ public class Students_utils {
         }
         return null;
     }
-
+    public static Student returninfo(String id)throws SQLException {
+        String sql="select * from students where Student_idcard=?;";
+        Connection connection=JDBC_Connector.ConnectMySQL();
+        PreparedStatement st= connection.prepareStatement(sql);
+        st.setString(1,id);
+        ResultSet rs=st.executeQuery();
+        Student stu=new Student();
+        while(rs.next()){
+            stu.setStudent_idcard(id);
+            stu.setStudent_name(rs.getString("Student_name"));
+            stu.setStudent_money(rs.getDouble("Student_money"));
+        }
+        return stu;
+    }
 }

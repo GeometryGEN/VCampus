@@ -226,4 +226,34 @@ public class Client_curriculum {
         message.setType(MessageType.MESSAGE_CURRICULUM_SHOW_SCHEDULE);
         oos.writeObject(message);
     }
+    public static void RequireTeaSchedule() throws IOException {
+        Message message=new Message();
+        message.setData(myInfo.getId());
+        message.setType(MessageType.MESSAGE_CURRICULUM_SHOW_SCHEDULE);
+        oos.writeObject(message);
+    }
+    public static void show_tea_schedule(String [][][]schedule){
+        My_Coursetable.tableDate=new String[17][13][6];
+        for(int i=0;i<16;i++)
+        {
+            for(int j=0;j<13;j++){
+                for(int k=1;k<=5;k++){
+                    My_Coursetable.tableDate[i][j][k]=schedule[i+1][k][j+1];
+                    //  if(i==0) System.out.print(My_Coursetable.tableDate[i][j][k]);
+                }
+                // if(i==0) System.out.println();
+            }
+        }
+        My_Coursetable table=new My_Coursetable();
+        Selcourse_teacher.panel.add(table,"schedule");
+        Selcourse_teacher.cardLayout.show(Selcourse_teacher.panel,"schedule");
+    }
+    public static void show_all_application(ArrayList<Opencourse>opencourses){
+
+    }
+    public static void Require_all_application() throws IOException {
+        Message message=new Message();
+        message.setType(MessageType.MESSAGE_CURRICULUM_LIST_ADMIN_APPLICATION);
+        oos.writeObject(message);
+    }
 }

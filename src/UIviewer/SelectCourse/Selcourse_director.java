@@ -99,7 +99,11 @@ public class Selcourse_director extends JFrame {
         btnNewButton_4.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                cardLayout.show(panel,"f1");
+                try {
+                    Client_curriculum.Require_all_application();
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
         add(btnNewButton_4);

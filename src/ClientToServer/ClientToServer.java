@@ -94,8 +94,9 @@ public class ClientToServer {
         Message ms = (Message) ois.readObject();
         if (ms.getType().equals(MessageType.MESSAGE_LOGIN_SUCCEED)) {
             ID = "1";
-            String name = (String) ms.getData();
-            myInfo.setall(id, 1, name);
+            Student a = (Student) ms.getData();
+            myInfo.setall(a.getStudent_id(), 1, a.getStudent_name());
+            myInfo.setMoney(a.getStudent_money());
             ClientToServerThread ctst = new ClientToServerThread(ois,socket);        //创建一个和服务器端保持通信的线程
             ctst.start();                                                        //启动线程
             ManageClientToServerThread.addThread(id, ctst);
@@ -125,7 +126,9 @@ public class ClientToServer {
         Message ms = (Message) ois.readObject();
         if (ms.getType().equals(MessageType.MESSAGE_LOGIN_SUCCEED)) {
             ID = "2";
-            myInfo.setall(id, 2, (String) ms.getData());
+            Teacher a = (Teacher) ms.getData();
+            myInfo.setall(a.getTeacher_idcard(), 1, a.getTeacher_name());
+            myInfo.setMoney(a.getTeacher_money());
             //创建一个和服务器端保持通信的线程
             ClientToServerThread ctst = new ClientToServerThread(ois,socket);
             //启动线程
@@ -158,7 +161,8 @@ public class ClientToServer {
         Message ms = (Message) ois.readObject();
         if (ms.getType().equals(MessageType.MESSAGE_LOGIN_SUCCEED)) {
             ID = "3";
-            myInfo.setall(id, 3, (String) ms.getData());
+            Admin a=(Admin)ms.getData();
+            myInfo.setall(a.getAdmin_idcard(), 3, a.getAdmin_name());
             //创建一个和服务器端保持通信的线程
             ClientToServerThread ctst = new ClientToServerThread(ois,socket);
             //启动线程

@@ -1,5 +1,6 @@
 package DAO.Login;
 
+import User.Admin;
 import User.Teacher;
 import connection.JDBC_Connector;
 
@@ -30,6 +31,20 @@ public class Teachers_utils {
             e.printStackTrace();
         }
         return false;
+    }
+    public static Teacher returninfo(String id)throws SQLException {
+        String sql="select * from teachers where Teacher_idcard=?;";
+        Connection connection=JDBC_Connector.ConnectMySQL();
+        PreparedStatement st= connection.prepareStatement(sql);
+        st.setString(1,id);
+        ResultSet rs=st.executeQuery();
+        Teacher tea=new Teacher();
+        while(rs.next()){
+            tea.setTeacher_idcard(id);
+            tea.setTeacher_name(rs.getString("Teacher_name"));
+            tea.setTeacher_money(rs.getDouble("Teacher_money"));
+        }
+        return tea;
     }
 
     public static boolean addTeacher(Teacher s) throws SQLException {
