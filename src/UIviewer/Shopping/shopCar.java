@@ -3,6 +3,7 @@ import ClientToServer.myInfo;
 import DAO.Library.Book_borrower;
 import UIhandler.Library.Client_library;
 import UIhandler.Shop.Client_shop;
+import UIviewer.login.functionChoose;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -11,6 +12,9 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
+
+import static UIviewer.Shopping.shopCustomer.cardLayout;
+import static UIviewer.Shopping.shopCustomer.panel;
 
 public class shopCar extends JPanel {
     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
@@ -50,9 +54,18 @@ public class shopCar extends JPanel {
                     double money= Double.parseDouble((String) table_want.getValueAt(table_want.getSelectedRow(),3));
                     try {
                         if(Client_shop.getMoney(myInfo.getId())>=(money)){
-                            Client_shop.buyProduct(myInfo.getId(),id,Num,Client_shop.getMoney(myInfo.getId())-money);
-                            JOptionPane.showMessageDialog(null,"购买成功！");
+                            if(Client_shop.buyProduct(myInfo.getId(),id,Num,Client_shop.getMoney(myInfo.getId())-money))
+                                JOptionPane.showMessageDialog(null,"购买成功！");
+                            else {
+                                JOptionPane.showMessageDialog(null,"购买失败！");
+                            }
                             Client_shop.deleteReadyToBuy(myInfo.getId(),Integer.parseInt(((String) table_want.getValueAt(table_want.getSelectedRow(),0))),0);
+                            Client_shop.setId(String.valueOf(myInfo.getType()));
+                            Client_shop.setIdcard(myInfo.getId());
+                            functionChoose.jf.setContentPane(new shopCustomer());
+                            shopCar f12=new shopCar();
+                            panel.add(f12,"f12");
+                            cardLayout.show(panel, "f12");
                         }else {
                             JOptionPane.showMessageDialog(null,"余额不足！");
                         }
@@ -63,10 +76,13 @@ public class shopCar extends JPanel {
 
                 if(table_want.getSelectedColumn()==5){
                     //删除功能
-                    int id= Integer.parseInt(((String) table_want.getValueAt(table_want.getSelectedRow(),0)));
+                    int id = Integer.parseInt(((String) table_want.getValueAt(table_want.getSelectedRow(),0)));
                     try {
                         Client_shop.deleteReadyToBuy(myInfo.getId(),id,0);
                         JOptionPane.showMessageDialog(null,"删除成功！");
+                        shopCar f12=new shopCar();
+                        panel.add(f12,"f12");
+                        cardLayout.show(panel, "f12");
                     } catch (IOException ex) {
                         throw new RuntimeException(ex);
                     }

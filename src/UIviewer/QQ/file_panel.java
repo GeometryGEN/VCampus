@@ -49,10 +49,13 @@ public class file_panel {
         panel.setLayout(layout);
         panel1.setLayout(layout);
         JButton button = new JButton("浏览本地文件目录");
+        button.setFocusPainted(false);
         JButton button1=new JButton("发送");;
+        button1.setFocusPainted(false);
         if(type==1) button1.setText("接收");
 
         JButton button2=new JButton("取消");
+        button2.setFocusPainted(false);
 
         final JLabel label = new JLabel();
 

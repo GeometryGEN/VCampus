@@ -198,10 +198,11 @@ public class shopCustomer extends JPanel {
                                 temp[i]=tt;
                             }
                             shopCar.setMyBook(temp);
-                            System.out.println(temp.length);
+                            System.out.println(temp.length+"  11111");
                         }
                     }
                     else {
+                        shopCar.setMyBook(null);
                         System.out.println("空");
                     }
                     shopCar f2=new shopCar();

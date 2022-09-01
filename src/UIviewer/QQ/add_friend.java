@@ -50,6 +50,7 @@ public class add_friend {
         nickname.setColumns(10);
 
         JButton b1=new JButton("申请添加");
+        b1.setFocusPainted(false);
         b1.setBounds(270,38,100,30);
         b1.setForeground(Color.white);
         b1.setBackground(new Color(30,111,255));
