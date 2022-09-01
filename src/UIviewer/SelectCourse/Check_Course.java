@@ -24,7 +24,7 @@ public static volatile String[][] checkcourse=null;
     public Check_Course()
     {
         setLayout(null);
-        String[] tableTitle={"课程编号","课程名","任课老师","课程学分","课容量","通过","退回"};
+        String[] tableTitle={"课程编号","课程名","任课老师","课程学分","课程学时","通过","退回"};
         DefaultTableModel dtm=new DefaultTableModel(checkcourse,tableTitle);
         JTable table_want=new JTable(dtm)
         {
@@ -49,7 +49,7 @@ public static volatile String[][] checkcourse=null;
                     addCourse.setName((String) table_want.getValueAt(table_want.getSelectedRow(),1));
                     addCourse.setTeacher((String) table_want.getValueAt(table_want.getSelectedRow(),2));
                     addCourse.setPoint(Double.valueOf((String) table_want.getValueAt(table_want.getSelectedRow(),3)));
-                    addCourse.setSize(Integer.valueOf((String) table_want.getValueAt(table_want.getSelectedRow(),4)));
+                    addCourse.setHour(Integer.valueOf((String) table_want.getValueAt(table_want.getSelectedRow(),4)));
                     try {
                         Client_curriculum.Require_AgreeAddCourse(addCourse);
                         Client_curriculum.Require_all_application();

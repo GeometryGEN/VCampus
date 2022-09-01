@@ -295,7 +295,7 @@ public class Client_curriculum {
             Check_Course.checkcourse[count][1]=curri.getName();
             Check_Course.checkcourse[count][2]=curri.getTeacher();
             Check_Course.checkcourse[count][3]=String.valueOf(curri.getPoint());
-            Check_Course.checkcourse[count][4]=String.valueOf(curri.getSize());
+            Check_Course.checkcourse[count][4]=String.valueOf(curri.getHour());
             Check_Course.checkcourse[count][5]="        通过";
             Check_Course.checkcourse[count][6]="        退回";
             count++;

@@ -384,13 +384,14 @@ public class Course_manager {
         st.setString(1,"同意开课");
         st.setString(2,c.id);
         st.executeUpdate();
-        sql="insert into curriculum(id,name,teacher,hour,point,size,classroom) values('新开课',?,?,?,?,'待定','待定');";
+        sql="insert into curriculum(id,name,teacher,hour,point,size,classroom,time) values('新开课',?,?,?,?,null,null,null);";
         st= conn.prepareStatement(sql);
         st.setString(1,c.name);
         st.setString(2,c.teacher);
         st.setInt(3,c.getHour());
         st.setDouble(4,c.point);
         st.executeUpdate();
+        st.close();
     }
     public ArrayList<Opencourse> list_tea_opencourse(String id) throws SQLException{
         ArrayList<Opencourse>opencourses=new ArrayList<>();
@@ -410,6 +411,8 @@ public class Course_manager {
             c.setTeacher_id(rs.getString("teacher_id"));
             opencourses.add(c);
         }
+        rs.close();
+        st.close();
         return opencourses;
     }
     public Message admin_list_application() throws SQLException {
@@ -429,6 +432,8 @@ public class Course_manager {
             c.setTeacher_id(rs.getString("teacher_id"));
             opencourses.add(c);
         }
+        st.close();
+        rs.close();
         message.setData(opencourses);
         return message;
     }
@@ -454,8 +459,11 @@ public class Course_manager {
                 student.setStudent_name(rs1.getString("Student_name"));
                 student.setStudent_id(rs1.getString("Student_id"));
                 res.add(student);
+                rs1.close();
             }
         }
+        rs.close();
+        st.close();
         return res;
     }
     public void admin_arrange(Course c) throws SQLException {
@@ -467,6 +475,7 @@ public class Course_manager {
         st.setInt(3,c.size);
         st.setString(4,c.id);
         st.executeUpdate();
+        st.close();
     }
     public void auto_arrage() throws SQLException {
         String sql="select * from curriculum;";
