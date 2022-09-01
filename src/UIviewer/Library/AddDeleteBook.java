@@ -203,6 +203,7 @@ public class AddDeleteBook extends JPanel {
         try {
             Thumbnails.of(new File("src/image/bg17.jpg"))
                     .size((int)(icon1_width*width_r), (int)(icon1_height*height_r))
+                    .keepAspectRatio(false)
                     .toFile(new File("src/image/bg17_min.jpg"));
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -213,7 +214,7 @@ public class AddDeleteBook extends JPanel {
         add(p11);
 
         JPanel p12=new JPanel();
-        p12.setBounds((int) (615*width_r),0, (int) (660*width_r), (int) (650*height_r));
+        p12.setBounds((int) (630*width_r),0, (int) (660*width_r), (int) (650*height_r));
         JLabel pic2 = new JLabel();
         ImageIcon icon2 = new ImageIcon("src/image/bg17.jpg");
         int icon2_width= 660;
@@ -221,6 +222,7 @@ public class AddDeleteBook extends JPanel {
         try {
             Thumbnails.of(new File("src/image/bg17.jpg"))
                     .size((int)(icon2_width*width_r), (int)(icon2_height*height_r))
+                    .keepAspectRatio(false)
                     .toFile(new File("src/image/bg17_min.jpg"));
         } catch (IOException e) {
             throw new RuntimeException(e);
