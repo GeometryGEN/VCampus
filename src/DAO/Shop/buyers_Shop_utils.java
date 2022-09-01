@@ -254,7 +254,7 @@ public class buyers_Shop_utils {
         return money;
     }
 
-    public static void main(String[] args) throws Exception {
+   /* public static void main(String[] args) throws Exception {
 //        if(checkCertainProduct(111)!=null)
         System.out.println(deleteShopCar("09020201",1,1));
 //        else
@@ -263,5 +263,5 @@ public class buyers_Shop_utils {
 //        for (int i = 0; i < list.size(); i++) {
 //            System.out.println(list.get(i).getProduct_name());
 //        }
-    }
+    }*/
 }

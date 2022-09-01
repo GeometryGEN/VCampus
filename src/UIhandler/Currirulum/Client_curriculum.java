@@ -83,7 +83,7 @@ public class Client_curriculum {
             ConsultCourse_stuInfo.consult_stu[count][2]=String.valueOf(curri.getSize());
             ConsultCourse_stuInfo.consult_stu[count][4]=curri.getTimestring();
             ConsultCourse_stuInfo.consult_stu[count][3]=curri.getClassroom();
-            ConsultCourse_stuInfo.consult_stu[count][5]="            查询";
+            ConsultCourse_stuInfo.consult_stu[count][5]="              查询";
             count++;
         }
         ConsultCourse_stuInfo tea_course=new ConsultCourse_stuInfo();
