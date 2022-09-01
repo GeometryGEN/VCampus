@@ -51,16 +51,20 @@ public class Admin_Shop_utils {
 
 
 //    public static void main(String[] args) throws Exception {
-//        deleteProduct(111);
-////        List<Product> list = checkProduct();
-////        for (int i = 0; i < list.size(); i++) {
-////            System.out.println(list.get(i).getProduct_name());
-////        }
-////        Product p = new Product();
-////        p.setProduct_id(15);
-////        p.setProduct_takeaway(false);
-////        p.setProduct_name("冰绿茶");
-////        deleteProduct("15");
+//        Product p = new Product();
+//        p.setProduct_id(15);
+//        p.setProduct_takeaway(false);
+//        p.setProduct_name("冰绿茶");
+//        addProduct(p);
+//        List<Product> list = checkProduct();
+//        for (int i = 0; i < list.size(); i++) {
+//            System.out.println(list.get(i).getProduct_name());
+//        }
+//        Product p = new Product();
+//        p.setProduct_id(15);
+//        p.setProduct_takeaway(false);
+//        p.setProduct_name("冰绿茶");
+//        deleteProduct("15");
 //    }
 
 }

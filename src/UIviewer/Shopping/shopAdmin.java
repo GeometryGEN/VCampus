@@ -109,6 +109,7 @@ public class shopAdmin extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 List<Product> t = null;
+                AllGoods.setTableDate(null);
                 try {
                     t = Client_shop.returnAllProduct();
                     String[][] temp = new String[t.size()][];
@@ -121,6 +122,7 @@ public class shopAdmin extends JPanel {
                         tt[4]=t.get(i).getProduct_type();
                         temp[i]=tt;
                     }
+                    System.out.println("temp.length="+temp.length);
                     AllGoods.setTableDate(temp);
                     AllGoods f11=new AllGoods();
                     panel.add(f11,"f11");
