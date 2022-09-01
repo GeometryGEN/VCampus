@@ -42,6 +42,14 @@ public class ShoppingHall extends JPanel {
     public ShoppingHall() {
         setLayout(null);
 
+        //文字
+        JLabel l19 = new JLabel("       商品分类");
+        l19.setBounds((int) (40*width_r), (int) (0*height_r), (int) (300*width_r), (int) (100*height_r));
+        l19.setForeground(new Color(255,69,0));
+        Font font5 = new Font("楷体", Font.BOLD, (int) (24*width_r));
+        l19.setFont(font5);
+        add(l19);
+
         JTextField textField=new JTextField();
         textField.setFont(new Font("微软雅黑", Font.BOLD, (int) (18*width_r)));
         textField.setBounds((int) (460*width_r), (int) (30*height_r), (int) (280*width_r), (int) (40*height_r));
@@ -88,8 +96,8 @@ public class ShoppingHall extends JPanel {
         add(b11);
 
         JButton btnNewButton_1 = new JButton("零食");
-        btnNewButton_1.setBounds((int) (30*width_r), (int) (150*height_r), (int) (100*width_r), (int) (30*height_r));
-        Font myfont1 = new Font("宋体 ", Font.PLAIN, (int) (18*width_r));
+        btnNewButton_1.setBounds((int) (0*width_r), (int) (150*height_r), (int) (100*width_r), (int) (30*height_r));
+        Font myfont1 = new Font("楷体 ", Font.BOLD, (int) (18*width_r));
         btnNewButton_1.setFont(myfont1);
         btnNewButton_1.setContentAreaFilled(false);//设置按钮透明
         btnNewButton_1.setBorder(null);//取消边框
@@ -124,7 +132,7 @@ public class ShoppingHall extends JPanel {
         add(btnNewButton_1);
 
         JButton btnNewButton_2 = new JButton("饼干");
-        btnNewButton_2.setBounds((int) (200*width_r), (int) (150*height_r), (int) (100*width_r), (int) (30*height_r));
+        btnNewButton_2.setBounds((int) (120*width_r), (int) (150*height_r), (int) (100*width_r), (int) (30*height_r));
         btnNewButton_2.setFont(myfont1);
         btnNewButton_2.setContentAreaFilled(false);//设置按钮透明
         btnNewButton_2.setForeground(new Color(255,255,255));
@@ -156,8 +164,8 @@ public class ShoppingHall extends JPanel {
         });
         add(btnNewButton_2);
 
-        JButton btnNewButton_3 = new JButton("图书");
-        btnNewButton_3.setBounds((int) (30*width_r), (int) (220*height_r), (int) (100*width_r), (int) (30*height_r));
+        JButton btnNewButton_3 = new JButton("茶");
+        btnNewButton_3.setBounds((int) (240*width_r), (int) (150*height_r), (int) (100*width_r), (int) (30*height_r));
         btnNewButton_3.setFont(myfont1);
         btnNewButton_3.setContentAreaFilled(false);//设置按钮透明
         btnNewButton_3.setForeground(new Color(255,255,255));
@@ -166,13 +174,31 @@ public class ShoppingHall extends JPanel {
         btnNewButton_3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null,"XXX,你妈妈给你带来了你最爱的旺仔雪饼！");
+                try {
+                    List<Product> t = Client_shop.checktypeProduct("茶");
+                    String[][] temp = new String[t.size()][];
+                    for(int i =0;i<t.size();i++){
+                        String[] tt =new String[5];
+                        tt[0]=String.valueOf(t.get(i).getProduct_id());
+                        tt[1]=t.get(i).getProduct_name();
+                        tt[2]=String.valueOf(t.get(i).getProduct_price());
+                        tt[3]=String.valueOf(t.get(i).getProduct_currentNumbers());
+                        tt[4]="1";
+                        temp[i]=tt;
+                    }
+                    setShoptable(temp);
+                    ShoppingHall f12=new ShoppingHall();
+                    panel.add(f12,"f12");
+                    cardLayout.show(panel, "f12");
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
         add(btnNewButton_3);
 
-        JButton btnNewButton_4 = new JButton("薯片");
-        btnNewButton_4.setBounds((int) (200*width_r), (int) (220*height_r), (int) (100*width_r), (int) (30*height_r));
+        JButton btnNewButton_4 = new JButton("美妆");
+        btnNewButton_4.setBounds((int) (0*width_r), (int) (220*height_r), (int) (100*width_r), (int) (30*height_r));
         btnNewButton_4.setFont(myfont1);
         btnNewButton_4.setContentAreaFilled(false);//设置按钮透明
         btnNewButton_4.setForeground(new Color(255,255,255));
@@ -181,13 +207,30 @@ public class ShoppingHall extends JPanel {
         btnNewButton_4.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null,"XXX,你妈妈给你带来了你最爱的旺仔雪饼！");
-            }
+                 try {
+                    List<Product> t = Client_shop.checktypeProduct("美妆");
+                    String[][] temp = new String[t.size()][];
+                    for(int i =0;i<t.size();i++){
+                        String[] tt =new String[5];
+                        tt[0]=String.valueOf(t.get(i).getProduct_id());
+                        tt[1]=t.get(i).getProduct_name();
+                        tt[2]=String.valueOf(t.get(i).getProduct_price());
+                        tt[3]=String.valueOf(t.get(i).getProduct_currentNumbers());
+                        tt[4]="1";
+                        temp[i]=tt;
+                    }
+                    setShoptable(temp);
+                    ShoppingHall f12=new ShoppingHall();
+                    panel.add(f12,"f12");
+                    cardLayout.show(panel, "f12");
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                } }
         });
         add(btnNewButton_4);
 
-        JButton btnNewButton_5 = new JButton("话梅");
-        btnNewButton_5.setBounds((int) (30*width_r), (int) (290*height_r), (int) (100*width_r), (int) (30*height_r));
+        JButton btnNewButton_5 = new JButton("饰品");
+        btnNewButton_5.setBounds((int) (120*width_r), (int) (220*height_r), (int) (100*width_r), (int) (30*height_r));
         btnNewButton_5.setFont(myfont1);
         btnNewButton_5.setContentAreaFilled(false);//设置按钮透明
         btnNewButton_5.setForeground(new Color(255,255,255));
@@ -196,13 +239,30 @@ public class ShoppingHall extends JPanel {
         btnNewButton_5.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null,"XXX,你妈妈给你带来了你最爱的旺仔雪饼！");
-            }
+                try {
+                    List<Product> t = Client_shop.checktypeProduct("饰品");
+                    String[][] temp = new String[t.size()][];
+                    for(int i =0;i<t.size();i++){
+                        String[] tt =new String[5];
+                        tt[0]=String.valueOf(t.get(i).getProduct_id());
+                        tt[1]=t.get(i).getProduct_name();
+                        tt[2]=String.valueOf(t.get(i).getProduct_price());
+                        tt[3]=String.valueOf(t.get(i).getProduct_currentNumbers());
+                        tt[4]="1";
+                        temp[i]=tt;
+                    }
+                    setShoptable(temp);
+                    ShoppingHall f12=new ShoppingHall();
+                    panel.add(f12,"f12");
+                    cardLayout.show(panel, "f12");
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }  }
         });
         add(btnNewButton_5);
 
-        JButton btnNewButton_6 = new JButton("衬衫");
-        btnNewButton_6.setBounds((int) (200*width_r), (int) (290*height_r), (int) (100*width_r), (int) (30*height_r));
+        JButton btnNewButton_6 = new JButton("洗护");
+        btnNewButton_6.setBounds((int) (240*width_r), (int) (220*height_r), (int) (100*width_r), (int) (30*height_r));
         btnNewButton_6.setFont(myfont1);
         btnNewButton_6.setContentAreaFilled(false);//设置按钮透明
         btnNewButton_6.setForeground(new Color(255,255,255));
@@ -211,13 +271,30 @@ public class ShoppingHall extends JPanel {
         btnNewButton_6.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null,"XXX,你妈妈给你带来了你最爱的旺仔雪饼！");
-            }
+                try {
+                    List<Product> t = Client_shop.checktypeProduct("洗护");
+                    String[][] temp = new String[t.size()][];
+                    for(int i =0;i<t.size();i++){
+                        String[] tt =new String[5];
+                        tt[0]=String.valueOf(t.get(i).getProduct_id());
+                        tt[1]=t.get(i).getProduct_name();
+                        tt[2]=String.valueOf(t.get(i).getProduct_price());
+                        tt[3]=String.valueOf(t.get(i).getProduct_currentNumbers());
+                        tt[4]="1";
+                        temp[i]=tt;
+                    }
+                    setShoptable(temp);
+                    ShoppingHall f12=new ShoppingHall();
+                    panel.add(f12,"f12");
+                    cardLayout.show(panel, "f12");
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                } }
         });
         add(btnNewButton_6);
 
-        JButton btnNewButton_7 = new JButton("薯片");
-        btnNewButton_7.setBounds((int) (30*width_r), (int) (360*height_r), (int) (100*width_r), (int) (30*height_r));
+        JButton btnNewButton_7 = new JButton("男装");
+        btnNewButton_7.setBounds((int) (0*width_r), (int) (290*height_r), (int) (100*width_r), (int) (30*height_r));
         btnNewButton_7.setFont(myfont1);
         btnNewButton_7.setContentAreaFilled(false);//设置按钮透明
         btnNewButton_7.setForeground(new Color(255,255,255));
@@ -226,13 +303,30 @@ public class ShoppingHall extends JPanel {
         btnNewButton_7.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null,"XXX,你妈妈给你带来了你最爱的旺仔雪饼！");
-            }
+                try {
+                    List<Product> t = Client_shop.checktypeProduct("男装");
+                    String[][] temp = new String[t.size()][];
+                    for(int i =0;i<t.size();i++){
+                        String[] tt =new String[5];
+                        tt[0]=String.valueOf(t.get(i).getProduct_id());
+                        tt[1]=t.get(i).getProduct_name();
+                        tt[2]=String.valueOf(t.get(i).getProduct_price());
+                        tt[3]=String.valueOf(t.get(i).getProduct_currentNumbers());
+                        tt[4]="1";
+                        temp[i]=tt;
+                    }
+                    setShoptable(temp);
+                    ShoppingHall f12=new ShoppingHall();
+                    panel.add(f12,"f12");
+                    cardLayout.show(panel, "f12");
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                } }
         });
         add(btnNewButton_7);
 
-        JButton btnNewButton_8 = new JButton("泡面");
-        btnNewButton_8.setBounds((int) (200*width_r), (int) (360*height_r), (int) (100*width_r), (int) (30*height_r));
+        JButton btnNewButton_8 = new JButton("运动");
+        btnNewButton_8.setBounds((int) (120*width_r), (int) (290*height_r), (int) (100*width_r), (int) (30*height_r));
         btnNewButton_8.setFont(myfont1);
         btnNewButton_8.setContentAreaFilled(false);//设置按钮透明
         btnNewButton_8.setForeground(new Color(255,255,255));
@@ -241,17 +335,354 @@ public class ShoppingHall extends JPanel {
         btnNewButton_8.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null,"XXX,你妈妈给你带来了你最爱的旺仔雪饼！");
-            }
+                try {
+                    List<Product> t = Client_shop.checktypeProduct("运动");
+                    String[][] temp = new String[t.size()][];
+                    for(int i =0;i<t.size();i++){
+                        String[] tt =new String[5];
+                        tt[0]=String.valueOf(t.get(i).getProduct_id());
+                        tt[1]=t.get(i).getProduct_name();
+                        tt[2]=String.valueOf(t.get(i).getProduct_price());
+                        tt[3]=String.valueOf(t.get(i).getProduct_currentNumbers());
+                        tt[4]="1";
+                        temp[i]=tt;
+                    }
+                    setShoptable(temp);
+                    ShoppingHall f12=new ShoppingHall();
+                    panel.add(f12,"f12");
+                    cardLayout.show(panel, "f12");
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                } }
         });
         add(btnNewButton_8);
+
+        JButton btnNewButton_9 = new JButton("百货");
+        btnNewButton_9.setBounds((int) (240*width_r), (int) (290*height_r), (int) (100*width_r), (int) (30*height_r));
+        btnNewButton_9.setFont(myfont1);
+        btnNewButton_9.setContentAreaFilled(false);//设置按钮透明
+        btnNewButton_9.setForeground(new Color(255,255,255));
+        btnNewButton_9.setBorder(null);//取消边框
+        btnNewButton_9.setFocusPainted(false);
+        btnNewButton_9.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    List<Product> t = Client_shop.checktypeProduct("百货");
+                    String[][] temp = new String[t.size()][];
+                    for(int i =0;i<t.size();i++){
+                        String[] tt =new String[5];
+                        tt[0]=String.valueOf(t.get(i).getProduct_id());
+                        tt[1]=t.get(i).getProduct_name();
+                        tt[2]=String.valueOf(t.get(i).getProduct_price());
+                        tt[3]=String.valueOf(t.get(i).getProduct_currentNumbers());
+                        tt[4]="1";
+                        temp[i]=tt;
+                    }
+                    setShoptable(temp);
+                    ShoppingHall f12=new ShoppingHall();
+                    panel.add(f12,"f12");
+                    cardLayout.show(panel, "f12");
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                } }
+        });
+        add(btnNewButton_9);
+
+        JButton btnNewButton_10 = new JButton("手机");
+        btnNewButton_10.setBounds((int) (0*width_r), (int) (360*height_r), (int) (100*width_r), (int) (30*height_r));
+        btnNewButton_10.setFont(myfont1);
+        btnNewButton_10.setContentAreaFilled(false);//设置按钮透明
+        btnNewButton_10.setForeground(new Color(255,255,255));
+        btnNewButton_10.setBorder(null);//取消边框
+        btnNewButton_10.setFocusPainted(false);
+        btnNewButton_10.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    List<Product> t = Client_shop.checktypeProduct("手机");
+                    String[][] temp = new String[t.size()][];
+                    for(int i =0;i<t.size();i++){
+                        String[] tt =new String[5];
+                        tt[0]=String.valueOf(t.get(i).getProduct_id());
+                        tt[1]=t.get(i).getProduct_name();
+                        tt[2]=String.valueOf(t.get(i).getProduct_price());
+                        tt[3]=String.valueOf(t.get(i).getProduct_currentNumbers());
+                        tt[4]="1";
+                        temp[i]=tt;
+                    }
+                    setShoptable(temp);
+                    ShoppingHall f12=new ShoppingHall();
+                    panel.add(f12,"f12");
+                    cardLayout.show(panel, "f12");
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }  }
+        });
+        add(btnNewButton_10);
+
+        JButton btnNewButton_11 = new JButton("数码");
+        btnNewButton_11.setBounds((int) (120*width_r), (int) (360*height_r), (int) (100*width_r), (int) (30*height_r));
+        btnNewButton_11.setFont(myfont1);
+        btnNewButton_11.setContentAreaFilled(false);//设置按钮透明
+        btnNewButton_11.setForeground(new Color(255,255,255));
+        btnNewButton_11.setBorder(null);//取消边框
+        btnNewButton_11.setFocusPainted(false);
+        btnNewButton_11.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    List<Product> t = Client_shop.checktypeProduct("数码");
+                    String[][] temp = new String[t.size()][];
+                    for(int i =0;i<t.size();i++){
+                        String[] tt =new String[5];
+                        tt[0]=String.valueOf(t.get(i).getProduct_id());
+                        tt[1]=t.get(i).getProduct_name();
+                        tt[2]=String.valueOf(t.get(i).getProduct_price());
+                        tt[3]=String.valueOf(t.get(i).getProduct_currentNumbers());
+                        tt[4]="1";
+                        temp[i]=tt;
+                    }
+                    setShoptable(temp);
+                    ShoppingHall f12=new ShoppingHall();
+                    panel.add(f12,"f12");
+                    cardLayout.show(panel, "f12");
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }  }
+        });
+        add(btnNewButton_11);
+
+        JButton btnNewButton_12 = new JButton("礼品");
+        btnNewButton_12.setBounds((int) (240*width_r), (int) (360*height_r), (int) (100*width_r), (int) (30*height_r));
+        btnNewButton_12.setFont(myfont1);
+        btnNewButton_12.setContentAreaFilled(false);//设置按钮透明
+        btnNewButton_12.setForeground(new Color(255,255,255));
+        btnNewButton_12.setBorder(null);//取消边框
+        btnNewButton_12.setFocusPainted(false);
+        btnNewButton_12.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    List<Product> t = Client_shop.checktypeProduct("礼品");
+                    String[][] temp = new String[t.size()][];
+                    for(int i =0;i<t.size();i++){
+                        String[] tt =new String[5];
+                        tt[0]=String.valueOf(t.get(i).getProduct_id());
+                        tt[1]=t.get(i).getProduct_name();
+                        tt[2]=String.valueOf(t.get(i).getProduct_price());
+                        tt[3]=String.valueOf(t.get(i).getProduct_currentNumbers());
+                        tt[4]="1";
+                        temp[i]=tt;
+                    }
+                    setShoptable(temp);
+                    ShoppingHall f12=new ShoppingHall();
+                    panel.add(f12,"f12");
+                    cardLayout.show(panel, "f12");
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }  }
+        });
+        add(btnNewButton_12);
+
+        JButton btnNewButton_13 = new JButton("家装");
+        btnNewButton_13.setBounds((int) (0*width_r), (int) (430*height_r), (int) (100*width_r), (int) (30*height_r));
+        btnNewButton_13.setFont(myfont1);
+        btnNewButton_13.setContentAreaFilled(false);//设置按钮透明
+        btnNewButton_13.setForeground(new Color(255,255,255));
+        btnNewButton_13.setBorder(null);//取消边框
+        btnNewButton_13.setFocusPainted(false);
+        btnNewButton_13.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    List<Product> t = Client_shop.checktypeProduct("家装");
+                    String[][] temp = new String[t.size()][];
+                    for(int i =0;i<t.size();i++){
+                        String[] tt =new String[5];
+                        tt[0]=String.valueOf(t.get(i).getProduct_id());
+                        tt[1]=t.get(i).getProduct_name();
+                        tt[2]=String.valueOf(t.get(i).getProduct_price());
+                        tt[3]=String.valueOf(t.get(i).getProduct_currentNumbers());
+                        tt[4]="1";
+                        temp[i]=tt;
+                    }
+                    setShoptable(temp);
+                    ShoppingHall f12=new ShoppingHall();
+                    panel.add(f12,"f12");
+                    cardLayout.show(panel, "f12");
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                } }
+        });
+        add(btnNewButton_13);
+
+        JButton btnNewButton_14 = new JButton("电器");
+        btnNewButton_14.setBounds((int) (120*width_r), (int) (430*height_r), (int) (100*width_r), (int) (30*height_r));
+        btnNewButton_14.setFont(myfont1);
+        btnNewButton_14.setContentAreaFilled(false);//设置按钮透明
+        btnNewButton_14.setForeground(new Color(255,255,255));
+        btnNewButton_14.setBorder(null);//取消边框
+        btnNewButton_14.setFocusPainted(false);
+        btnNewButton_14.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    List<Product> t = Client_shop.checktypeProduct("电器");
+                    String[][] temp = new String[t.size()][];
+                    for(int i =0;i<t.size();i++){
+                        String[] tt =new String[5];
+                        tt[0]=String.valueOf(t.get(i).getProduct_id());
+                        tt[1]=t.get(i).getProduct_name();
+                        tt[2]=String.valueOf(t.get(i).getProduct_price());
+                        tt[3]=String.valueOf(t.get(i).getProduct_currentNumbers());
+                        tt[4]="1";
+                        temp[i]=tt;
+                    }
+                    setShoptable(temp);
+                    ShoppingHall f12=new ShoppingHall();
+                    panel.add(f12,"f12");
+                    cardLayout.show(panel, "f12");
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }}
+        });
+        add(btnNewButton_14);
+
+        JButton btnNewButton_15 = new JButton("厨具");
+        btnNewButton_15.setBounds((int) (240*width_r), (int) (430*height_r), (int) (100*width_r), (int) (30*height_r));
+        btnNewButton_15.setFont(myfont1);
+        btnNewButton_15.setContentAreaFilled(false);//设置按钮透明
+        btnNewButton_15.setForeground(new Color(255,255,255));
+        btnNewButton_15.setBorder(null);//取消边框
+        btnNewButton_15.setFocusPainted(false);
+        btnNewButton_15.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    List<Product> t = Client_shop.checktypeProduct("厨具");
+                    String[][] temp = new String[t.size()][];
+                    for(int i =0;i<t.size();i++){
+                        String[] tt =new String[5];
+                        tt[0]=String.valueOf(t.get(i).getProduct_id());
+                        tt[1]=t.get(i).getProduct_name();
+                        tt[2]=String.valueOf(t.get(i).getProduct_price());
+                        tt[3]=String.valueOf(t.get(i).getProduct_currentNumbers());
+                        tt[4]="1";
+                        temp[i]=tt;
+                    }
+                    setShoptable(temp);
+                    ShoppingHall f12=new ShoppingHall();
+                    panel.add(f12,"f12");
+                    cardLayout.show(panel, "f12");
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                } }
+        });
+        add(btnNewButton_15);
+
+        JButton btnNewButton_16 = new JButton("医药");
+        btnNewButton_16.setBounds((int) (0*width_r), (int) (500*height_r), (int) (100*width_r), (int) (30*height_r));
+        btnNewButton_16.setFont(myfont1);
+        btnNewButton_16.setContentAreaFilled(false);//设置按钮透明
+        btnNewButton_16.setForeground(new Color(255,255,255));
+        btnNewButton_16.setBorder(null);//取消边框
+        btnNewButton_16.setFocusPainted(false);
+        btnNewButton_16.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    List<Product> t = Client_shop.checktypeProduct("医药");
+                    String[][] temp = new String[t.size()][];
+                    for(int i =0;i<t.size();i++){
+                        String[] tt =new String[5];
+                        tt[0]=String.valueOf(t.get(i).getProduct_id());
+                        tt[1]=t.get(i).getProduct_name();
+                        tt[2]=String.valueOf(t.get(i).getProduct_price());
+                        tt[3]=String.valueOf(t.get(i).getProduct_currentNumbers());
+                        tt[4]="1";
+                        temp[i]=tt;
+                    }
+                    setShoptable(temp);
+                    ShoppingHall f12=new ShoppingHall();
+                    panel.add(f12,"f12");
+                    cardLayout.show(panel, "f12");
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }  }
+        });
+        add(btnNewButton_16);
+
+        JButton btnNewButton_17 = new JButton("保健");
+        btnNewButton_17.setBounds((int) (120*width_r), (int) (500*height_r), (int) (100*width_r), (int) (30*height_r));
+        btnNewButton_17.setFont(myfont1);
+        btnNewButton_17.setContentAreaFilled(false);//设置按钮透明
+        btnNewButton_17.setForeground(new Color(255,255,255));
+        btnNewButton_17.setBorder(null);//取消边框
+        btnNewButton_17.setFocusPainted(false);
+        btnNewButton_17.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    List<Product> t = Client_shop.checktypeProduct("保健");
+                    String[][] temp = new String[t.size()][];
+                    for(int i =0;i<t.size();i++){
+                        String[] tt =new String[5];
+                        tt[0]=String.valueOf(t.get(i).getProduct_id());
+                        tt[1]=t.get(i).getProduct_name();
+                        tt[2]=String.valueOf(t.get(i).getProduct_price());
+                        tt[3]=String.valueOf(t.get(i).getProduct_currentNumbers());
+                        tt[4]="1";
+                        temp[i]=tt;
+                    }
+                    setShoptable(temp);
+                    ShoppingHall f12=new ShoppingHall();
+                    panel.add(f12,"f12");
+                    cardLayout.show(panel, "f12");
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                } }
+        });
+        add(btnNewButton_17);
+
+        JButton btnNewButton_18 = new JButton("生鲜");
+        btnNewButton_18.setBounds((int) (240*width_r), (int) (500*height_r), (int) (100*width_r), (int) (30*height_r));
+        btnNewButton_18.setFont(myfont1);
+        btnNewButton_18.setContentAreaFilled(false);//设置按钮透明
+        btnNewButton_18.setForeground(new Color(255,255,255));
+        btnNewButton_18.setBorder(null);//取消边框
+        btnNewButton_18.setFocusPainted(false);
+        btnNewButton_18.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    List<Product> t = Client_shop.checktypeProduct("生鲜");
+                    String[][] temp = new String[t.size()][];
+                    for(int i =0;i<t.size();i++){
+                        String[] tt =new String[5];
+                        tt[0]=String.valueOf(t.get(i).getProduct_id());
+                        tt[1]=t.get(i).getProduct_name();
+                        tt[2]=String.valueOf(t.get(i).getProduct_price());
+                        tt[3]=String.valueOf(t.get(i).getProduct_currentNumbers());
+                        tt[4]="1";
+                        temp[i]=tt;
+                    }
+                    setShoptable(temp);
+                    ShoppingHall f12=new ShoppingHall();
+                    panel.add(f12,"f12");
+                    cardLayout.show(panel, "f12");
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                } }
+        });
+        add(btnNewButton_18);
 
         //左侧面板
         JPanel p1=new JPanel();
         p1 = new JPanel();
         p1.setBounds(0, 0, (int) (340*width_r), (int) (780*height_r));
         //p1.setBackground(null);
-        p1.setBackground(new Color(255,160,122, 120));
+        p1.setBackground(new Color(255,160,122, 200));
         //panel1.BackColor = Color.FromArgb(80, 255, 0, 0);
         //p1.setOpaque(false);
         add(p1);
