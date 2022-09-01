@@ -6,6 +6,7 @@ import java.util.List;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import java.awt.*;
 import ClientToServer.myInfo;
 import UIviewer.login.functionChoose;
@@ -24,6 +25,16 @@ public class ShoppingHall extends JPanel {
     int height=(int ) screensize.getHeight();//获得高度
     double width_r=(double)(width)/1273;
     double height_r=(double)(height)/784;
+
+    public static Object[][] data;
+
+    public static Object[][] getData() {
+        return data;
+    }
+
+    public static void setData(Object[][] data) {
+        ShoppingHall.data = data;
+    }
 
     public static String[][] shoptable;
 
@@ -50,14 +61,14 @@ public class ShoppingHall extends JPanel {
         l19.setFont(font5);
         add(l19);
 
-        JTextField textField=new JTextField();
+        JTextField textField=new MyTextField(20);
         textField.setFont(new Font("微软雅黑", Font.BOLD, (int) (18*width_r)));
-        textField.setBounds((int) (460*width_r), (int) (30*height_r), (int) (280*width_r), (int) (40*height_r));
+        textField.setBounds((int) (460*width_r), (int) (30*height_r), (int) (430*width_r), (int) (40*height_r));
         add(textField);
         textField.setColumns((int) (10*height_r));
 
-        JButton b11=new JButton("检索");
-        b11.setBounds((int) (830*width_r), (int) (30*height_r), (int) (80*width_r), (int) (40*height_r));
+        JButton b11=new NewButton("检索");
+        b11.setBounds((int) (980*width_r), (int) (30*height_r), (int) (80*width_r), (int) (40*height_r));
         Font myfont = new Font("楷体", Font.BOLD, (int) (20*width_r));
         b11.setFont(myfont);
         b11.setBackground(new Color(255,127,80));
@@ -797,11 +808,21 @@ public class ShoppingHall extends JPanel {
         add(p1);
 
 
-
         String[] tableTitle = {"商品编号","商品名称","价格","剩余数量","购买数量","加入购物车","购买"};
         //数据
 
-        DefaultTableModel dtm = new DefaultTableModel(shoptable, tableTitle);
+//        //将图片Icon对象放入表格数据数组
+//        Object[][] data = new Object[][] {
+//                {new ImageIcon("E://Vcampus//src//image//1.jpg"), "Text 2","111","222"}
+//        };
+
+        TableModel dtm = new DefaultTableModel(shoptable, tableTitle);
+//            @Override   //核心步骤：重写getColumnClass方法
+//            public Class<?> getColumnClass(int columnIndex) {
+//                return getValueAt(0, columnIndex).getClass();
+//                //return (columnIndex == 0) ? Icon.class : Object.class;
+//            }
+//        };
         JTable table_want = new JTable(dtm){
             public boolean isCellEditable(int row, int column) {
                 if(column==4)
@@ -814,8 +835,12 @@ public class ShoppingHall extends JPanel {
             }
         };
 
+        //将表格数据数组放入表格模型,并重写getColumnClass方法
+        table_want.setModel(dtm);
+
         //调整美化
         table_want.setFont(new Font("宋体",Font.BOLD, (int) (16*width_r)));
+
         try {
             DefaultTableCellRenderer tcr = new DefaultTableCellRenderer() {
                 @Override
@@ -830,7 +855,9 @@ public class ShoppingHall extends JPanel {
                     return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
                 }
             };
-
+            //居中
+            tcr.setHorizontalAlignment(JLabel.CENTER);
+            table_want.setDefaultRenderer(Object.class, tcr);
             for (int i = 0; i < table_want.getColumnCount(); i++)
             {
                 table_want.getColumn(table_want.getColumnName(i)).setCellRenderer(tcr);
@@ -839,41 +866,42 @@ public class ShoppingHall extends JPanel {
             ex.printStackTrace();
         }
 
-        table_want.addMouseListener(new MouseListener() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                if (table_want.getSelectedColumn() == 5) {
-                    //购物车
-                    int id= Integer.parseInt((String) table_want.getValueAt(table_want.getSelectedRow(),0));
-                    int Num = Integer.parseInt((String) table_want.getValueAt(table_want.getSelectedRow(),4));
-                    try {
-                        Client_shop.addToShopCar(myInfo.getId(),id,Num);
-                        JOptionPane.showMessageDialog(null,"添加购物车成功！");
-                    } catch (Exception ex) {
-                        throw new RuntimeException(ex);
-                    }
-                }
-                if (table_want.getSelectedColumn() == 6) {
-
-                    String id= (String) table_want.getValueAt(table_want.getSelectedRow(),0);
-                    double money= Double.parseDouble((String) table_want.getValueAt(table_want.getSelectedRow(),2));
-                    int Num = Integer.parseInt((String) table_want.getValueAt(table_want.getSelectedRow(),4));
-                    try {
-                        if(Client_shop.getMoney(myInfo.getId())>=(money*Num)){
-                            if(Client_shop.buyProduct(myInfo.getId(),id,Num,Client_shop.getMoney(myInfo.getId())-money*Num))
-                                JOptionPane.showMessageDialog(null,"购买成功！");
-                            Client_shop.setId(String.valueOf(myInfo.getType()));
-                            Client_shop.setIdcard(myInfo.getId());
-                            functionChoose.jf.setContentPane(new shopCustomer());
-                            functionChoose.jf.setTitle("shopCustomer");
-                        }else {
-                            JOptionPane.showMessageDialog(null,"余额不足！");
+            table_want.addMouseListener(new MouseListener() {
+                @Override
+                public void mouseClicked(MouseEvent e) {
+                    if (table_want.getSelectedColumn() == 5) {
+                        //购物车
+                        int id= Integer.parseInt((String) table_want.getValueAt(table_want.getSelectedRow(),0));
+                        int Num = Integer.parseInt((String) table_want.getValueAt(table_want.getSelectedRow(),4));
+                        try {
+                            Client_shop.addToShopCar(myInfo.getId(),id,Num);
+                            JOptionPane.showMessageDialog(null,"添加购物车成功！");
+                        } catch (Exception ex) {
+                            throw new RuntimeException(ex);
                         }
-                    } catch (Exception ex) {
-                        throw new RuntimeException(ex);
+                    }
+                    if (table_want.getSelectedColumn() == 6) {
+
+                        String id= (String) table_want.getValueAt(table_want.getSelectedRow(),0);
+                        double money= Double.parseDouble((String) table_want.getValueAt(table_want.getSelectedRow(),2));
+                        int Num = Integer.parseInt((String) table_want.getValueAt(table_want.getSelectedRow(),4));
+                        try {
+                            if(Client_shop.getMoney(myInfo.getId())>=(money*Num)){
+                                if(Client_shop.buyProduct(myInfo.getId(),id,Num,Client_shop.getMoney(myInfo.getId())-money*Num))
+                                    JOptionPane.showMessageDialog(null,"购买成功！");
+
+                                Client_shop.setId(String.valueOf(myInfo.getType()));
+                                Client_shop.setIdcard(myInfo.getId());
+                                functionChoose.jf.setContentPane(new shopCustomer());
+                                functionChoose.jf.setTitle("shopCustomer");
+                            }else {
+                                JOptionPane.showMessageDialog(null,"余额不足！");
+                            }
+                        } catch (Exception ex) {
+                            throw new RuntimeException(ex);
+                        }
                     }
                 }
-            }
 
             @Override
             public void mousePressed(MouseEvent e) {
@@ -894,14 +922,15 @@ public class ShoppingHall extends JPanel {
             @Override
             public void mouseExited(MouseEvent e) {
 
-            }
-        });
-        //支持滚动
-        JScrollPane jsp = new JScrollPane(table_want);
-        jsp.setBounds((int) (340*width_r), (int) (100*height_r), (int) (940*width_r), (int) (460*height_r));
-        add(jsp);
-        table_want.setRowHeight(30);
+                }
+            });
+            //支持滚动
+            JScrollPane jsp = new JScrollPane(table_want);
+            jsp.setBounds((int) (340*width_r), (int) (100*height_r), (int) (940*width_r), (int) (460*height_r));
+            add(jsp);
+            table_want.setRowHeight(30);
+
         setVisible(true);
-    }
+        }
 }
 

@@ -281,8 +281,10 @@ public class ClientToServerThread extends Thread {
                      Client_qicq.receive_message(sender);
                 }
                 else if (message.getType().equals(MessageType.MESSAGE_QICQ_RECERIVE_FILE)){
-                    System.out.println("receive_file");
-                    Client_qicq.get_file(message,"C:/Users/Lenovo/shit.txt");
+                   // System.out.println("receive_file");
+                    //Client_qicq.get_file(message,"C:/Users/Lenovo/shit.txt");
+                    String sender=message.getSender();
+                    Client_qicq.receive_message(sender);
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_QICQ_FRIEND_ONLINE_RET)){
                     System.out.println("received...");

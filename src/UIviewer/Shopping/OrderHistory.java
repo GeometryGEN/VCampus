@@ -38,5 +38,26 @@ public class OrderHistory extends JPanel{
         add(jsp);
         table_want.setRowHeight(30);
         setVisible(true);
+
+        table_want.setFont(new Font("宋体",Font.BOLD, (int) (16*width_r)));
+        try {
+            DefaultTableCellRenderer tcr = new DefaultTableCellRenderer() {
+                @Override
+                public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                    return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+                }
+            };
+            //居中
+            tcr.setHorizontalAlignment(JLabel.CENTER);
+            table_want.setDefaultRenderer(Object.class, tcr);
+            for (int i = 0; i < table_want.getColumnCount(); i++)
+            {
+                table_want.getColumn(table_want.getColumnName(i)).setCellRenderer(tcr);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
+
+
 }

@@ -1,5 +1,7 @@
 package UIviewer.QQ;
 
+import DAO.QICQ.Filetrans;
+
 import java.awt.BorderLayout;
 
 import java.awt.FlowLayout;
@@ -11,25 +13,26 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.swing.*;
 
-public class file_panel {
+public class receive_panel {
     static File file;
     public static void main(String[] args) {
 
         //createWindow();
 
     }
-
-    public static void createWindow(int type) {
+    static ArrayList<Filetrans>files;
+    public static void createWindow(ArrayList<Filetrans> f) {
         JFrame frame;
-        if(type==0)  {frame= new JFrame("发送文件");}
-        else {frame = new JFrame("接收文件");}
-
+        frame = new JFrame("接收文件");
+        files=f;
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        createUI(frame,type);
+        createUI(frame);
 
         frame.setSize(360, 120);
 
@@ -39,7 +42,7 @@ public class file_panel {
 
     }
 
-    private static void createUI(final JFrame frame,int type) {
+    private static void createUI(final JFrame frame) {
 
         JPanel panel = new JPanel();
         JPanel panel1=new JPanel();
@@ -49,8 +52,7 @@ public class file_panel {
         panel.setLayout(layout);
         panel1.setLayout(layout);
         JButton button = new JButton("浏览本地文件目录");
-        JButton button1=new JButton("发送");;
-        if(type==1) button1.setText("接收");
+        JButton button1=new JButton("接收");
 
         JButton button2=new JButton("取消");
 
@@ -91,7 +93,13 @@ public class file_panel {
                     JOptionPane.showMessageDialog(null, "请选择文件！", "WARNING!", JOptionPane.PLAIN_MESSAGE);
                 }
                 else{
-                    chat_panel.send_file(file.getAbsolutePath(),file.getName());
+                    for(int i=0;i<files.size();i++){
+                        try {
+                            chat_panel.receive_file(files.get(i),file.getAbsolutePath()+"\\"+files.get(i).getName());
+                        } catch (IOException ex) {
+                            throw new RuntimeException(ex);
+                        }
+                    }
                     frame.dispose();
                 }
             }

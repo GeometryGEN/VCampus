@@ -109,7 +109,9 @@ public class QICQ_manager {
         st.setString(1,msg.getSender());
         st.setString(2,msg.getGetter());
         st.setString(3,msg.getSendTime());
+
         Filetrans f=(Filetrans)msg.getData();
+        System.out.println(f.getName());
         InputStream is = new ByteArrayInputStream(f.getContent());
         st.setBlob(4,is);
         st.setString(5,f.getName());
@@ -124,6 +126,7 @@ public class QICQ_manager {
         st.setString(2,msg.getGetter());
         st.setString(3,msg.getSendTime());
         Filetrans f=(Filetrans)msg.getData();
+        System.out.println(f.getName());
         InputStream is = new ByteArrayInputStream(f.getContent());
         st.setBlob(4,is);
         st.setString(5,f.getName());
@@ -324,10 +327,14 @@ public class QICQ_manager {
                 while((len=is.read(filetrans.content))!=-1) {
                     i++;
                 }
+                System.out.println(filetrans.getContent());
                 filetrans.setName(rs.getString("filename"));
+                x.isfile=1;
+                x.setData(filetrans);
             }
             else {
                 x.setData(rs.getString("content"));
+                x.isfile=0;
             }
             x.setSender(rs.getString("sender"));
             x.setGetter(rs.getString("getter"));
@@ -337,9 +344,6 @@ public class QICQ_manager {
         Message sendback=new Message();
         sendback.setType(MessageType.MESSAGE_QICQ_GET_MESSAGE_RET);
         sendback.setData(messages);
-    //    Socket socket=ManageServerToClientThread.getThread(id).getSocket();
-    //    ObjectOutputStream oos=new ObjectOutputStream(socket.getOutputStream());
-     //   oos.writeObject(sendback);
         sql="update message set isread=1 where (sender=? and getter=?);";
         st= conn.prepareStatement(sql);
         st.setString(1,to_id);

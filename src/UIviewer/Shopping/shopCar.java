@@ -52,6 +52,7 @@ public class shopCar extends JPanel {
                         if(Client_shop.getMoney(myInfo.getId())>=(money)){
                             Client_shop.buyProduct(myInfo.getId(),id,Num,Client_shop.getMoney(myInfo.getId())-money);
                             JOptionPane.showMessageDialog(null,"购买成功！");
+                            Client_shop.deleteReadyToBuy(myInfo.getId(),Integer.parseInt(((String) table_want.getValueAt(table_want.getSelectedRow(),0))),0);
                         }else {
                             JOptionPane.showMessageDialog(null,"余额不足！");
                         }
@@ -116,6 +117,9 @@ public class shopCar extends JPanel {
                     return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
                 }
             };
+            //居中
+            tcr.setHorizontalAlignment(JLabel.CENTER);
+            table_want.setDefaultRenderer(Object.class, tcr);
             for (int i = 0; i < table_want.getColumnCount(); i++)
             {
                 table_want.getColumn(table_want.getColumnName(i)).setCellRenderer(tcr);

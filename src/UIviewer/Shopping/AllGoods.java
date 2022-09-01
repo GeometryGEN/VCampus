@@ -56,5 +56,25 @@ public class AllGoods extends JPanel {
         DefaultTableCellRenderer render = new DefaultTableCellRenderer();
         render.setOpaque(false); //将渲染器设置为透明
         table_want.setDefaultRenderer(Object.class,render);
+
+        table_want.setFont(new Font("宋体",Font.BOLD, (int) (16*width_r)));
+        try {
+            DefaultTableCellRenderer tcr = new DefaultTableCellRenderer() {
+                @Override
+                public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+
+                    return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+                }
+            };
+            //居中
+            tcr.setHorizontalAlignment(JLabel.CENTER);
+            table_want.setDefaultRenderer(Object.class, tcr);
+            for (int i = 0; i < table_want.getColumnCount(); i++)
+            {
+                table_want.getColumn(table_want.getColumnName(i)).setCellRenderer(tcr);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 }
