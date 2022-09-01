@@ -28,20 +28,29 @@ public class ConsultCourse_stuInfo extends JPanel {
 
         String[] tableTitle={"课程编号","课程名","课程容量","上课教室","上课时间",""};
         DefaultTableModel dtm=new DefaultTableModel(consult_stu,tableTitle);
-        JTable table_want=new JTable(dtm);
+        JTable table_want=new JTable(dtm){
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
         JScrollPane jsp=new JScrollPane(table_want);
         jsp.setBounds(0,0,(int)(1280*width_r),(int)(220*height_r));
         add(jsp);
         table_want.setRowHeight(40);
-
+        table_want.getColumnModel().getColumn(0).setPreferredWidth(100);
+        table_want.getColumnModel().getColumn(1).setPreferredWidth(150);
+        table_want.getColumnModel().getColumn(2).setPreferredWidth(60);
+        table_want.getColumnModel().getColumn(3).setPreferredWidth(150);
+        table_want.getColumnModel().getColumn(4).setPreferredWidth(450);
+        table_want.getColumnModel().getColumn(5).setPreferredWidth(120);
         try {
             DefaultTableCellRenderer tcr = new DefaultTableCellRenderer() {
                 @Override
                 public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-                    if (column!=4) {
+                    if (column!=5) {
                         setBackground(Color.white);
                     }else {
-                        setBackground(new Color(60,179,113));
+                        setBackground(new Color(54, 95, 255));
                     }
                     return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
                 }
@@ -58,7 +67,7 @@ public class ConsultCourse_stuInfo extends JPanel {
         table_want.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if(table_want.getSelectedColumn()==4){
+                if(table_want.getSelectedColumn()==5){
                     try{
                         String id=(String)table_want.getValueAt(table_want.getSelectedRow(),0);
                         Client_curriculum.Require_show_my_students(id);

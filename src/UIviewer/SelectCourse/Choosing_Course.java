@@ -83,7 +83,7 @@ public class Choosing_Course extends JPanel {
                                     String id=(String)table_want.getValueAt(table_want.getSelectedRow(),0);
                                     choose.setId(id);
                                     choose.setSize(Integer.valueOf((String)table_want.getValueAt(table_want.getSelectedRow(),4)));
-                                    choose.setTimestring((String)table_want.getValueAt(table_want.getSelectedRow(),3));
+                                    choose.setTimestring((String)table_want.getValueAt(table_want.getSelectedRow(),2));
                                     Client_curriculum.requireToChoose(choose);
                                     Client_curriculum.Require_suitable();
                                 }catch(IOException ex){

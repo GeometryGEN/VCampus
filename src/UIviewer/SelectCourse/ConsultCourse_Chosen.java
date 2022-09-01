@@ -33,11 +33,11 @@ public class ConsultCourse_Chosen extends JPanel {
             }
         };
         table_want.setFont(new Font("宋体",Font.BOLD,20));
-        table_want.getColumnModel().getColumn(0).setPreferredWidth(120);
-        table_want.getColumnModel().getColumn(1).setPreferredWidth(200);
+        table_want.getColumnModel().getColumn(0).setPreferredWidth(100);
+        table_want.getColumnModel().getColumn(1).setPreferredWidth(250);
         table_want.getColumnModel().getColumn(2).setPreferredWidth(450);
-        table_want.getColumnModel().getColumn(3).setPreferredWidth(100);
-        table_want.getColumnModel().getColumn(4).setPreferredWidth(160);
+        table_want.getColumnModel().getColumn(3).setPreferredWidth(80);
+        table_want.getColumnModel().getColumn(4).setPreferredWidth(120);
         table_want.getColumnModel().getColumn(5).setPreferredWidth(110);
 
         table_want.setRowHeight(50);
@@ -45,8 +45,8 @@ public class ConsultCourse_Chosen extends JPanel {
         JScrollPane jsp=new JScrollPane(table_want);
         jsp.setBounds(0,0,(int)(1280*width_r),(int)(480*height_r));
         add(jsp);
-        JButton del_button = new JButton("删除课程");
-        del_button.setBounds((int)(350*width_r), (int)(525*height_r), (int)(200*width_r), (int)(40*height_r));
+        JButton del_button = new JButton("退选课程");
+        del_button.setBounds((int)(500*width_r), (int)(525*height_r), (int)(200*width_r), (int)(40*height_r));
         add(del_button);
         Font myfont2 = new Font("微软雅黑", Font.PLAIN, 18);
         del_button.setFont(myfont2);

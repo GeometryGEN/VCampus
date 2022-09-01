@@ -45,9 +45,8 @@ public class functionChoose {
         //jf.setSize(1273,784);
         fc_panel = new JPanel();
         fc_panel.setLayout(null);
-        fc_panel.setBounds(0,0,width+20,height+10
-        );
-        fc_panel.setBackground(new Color(1,2,3, 180));
+        fc_panel.setBounds(0,0,width+40,height+20);
+        fc_panel.setBackground(new Color(245,245,245, 180));
         jf.setContentPane(fc_panel);
 
         //向好友发送上线消息

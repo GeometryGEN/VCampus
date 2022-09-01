@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
 import UIhandler.Shop.Client_shop;
 import UIviewer.login.functionChoose;
 import net.coobird.thumbnailator.Thumbnails;
@@ -29,6 +28,7 @@ public class shopCustomer extends JPanel {
     double height_r=(double)(height)/784;
     public static JPanel panel = new JPanel();;
     static String name;
+    public static List<Product> t;
     public static JButton b1=new JButton("主商城");
     public static JButton b2=new JButton("我的购物车");
     public static JButton b3=new JButton("订单记录");
@@ -37,6 +37,11 @@ public class shopCustomer extends JPanel {
         name=a;
     }
     public static CardLayout cardLayout=new CardLayout();
+
+    public void refresh()
+    {
+
+    }
 
     public shopCustomer() throws Exception {
         String name=myInfo.getName();
@@ -71,7 +76,7 @@ public class shopCustomer extends JPanel {
         add(logo);
 
 
-        List<Product> t = Client_shop.returnAllProduct();
+        t = Client_shop.returnAllProduct();
         String[][] temp = new String[t.size()][];
         for(int i =0;i<t.size();i++){
             String[] tt =new String[7];
@@ -87,6 +92,7 @@ public class shopCustomer extends JPanel {
         ShoppingHall.setShoptable(temp);
         ShoppingHall f1=new ShoppingHall();
         panel.add(f1,"f1");
+
 
 
 
@@ -122,7 +128,7 @@ public class shopCustomer extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
-                List<Product> t = null;
+                     t = null;
                 try {
                     t = Client_shop.returnAllProduct();
                     String[][] temp = new String[t.size()][];
