@@ -445,6 +445,7 @@ public class functionChoose {
                     }
                     else
                     {
+                        //Client_library.RequireshowAllBooks();
                         Client_library.admin_enter();
                         //jf.setContentPane(new adminLib());
                         //jf.setTitle("adminLib");
