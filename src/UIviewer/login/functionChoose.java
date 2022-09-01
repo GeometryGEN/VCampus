@@ -231,7 +231,8 @@ public class functionChoose {
         int icon5_height=125;
         try {
             Thumbnails.of(new File("src/image/banner3.png"))
-                    .size((int)(icon5_width*width_r), (int)(icon5_height*height_r))
+                    .keepAspectRatio(false)
+                    .size((int)(icon5_width*width_r+20), (int)(icon5_height*height_r))
                     .toFile(new File("src/image/banner3_min.png"));
         } catch (IOException e) {
             throw new RuntimeException(e);
