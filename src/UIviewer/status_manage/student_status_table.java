@@ -182,7 +182,9 @@ public class student_status_table extends JPanel{
             manage_status.jb_back_to_search.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    System.out.println("exit");
+                //    System.out.println("exit");
+                    manage_status.search_text.setHorizontalAlignment(JTextField.CENTER);
+                    manage_status.search_text.addFocusListener(new JTextFieldHintListener(manage_status.search_text, "请输入要查询学生的一卡通号"));
                     manage_status.status_jpanel.setVisible(false);
                     manage_status.search_panel.setVisible(true);
                 }

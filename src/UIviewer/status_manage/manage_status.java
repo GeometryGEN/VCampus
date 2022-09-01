@@ -18,6 +18,7 @@ public class manage_status{
     static public JPanel search_panel;
     static public JPanel status_jpanel;
     static public JPanel manage_panel;
+    public static final JTextField search_text=new RoundJTextField(15);
     public manage_status(int width, int height) throws Exception {
         double width_r=(double)(width)/1920;
         double height_r=(double)(height)/1080;
@@ -76,7 +77,7 @@ public class manage_status{
         search_panel.add(logo2);
         logo2.setBounds((int)((width-2*(60+icon1_width)*width_r)/2-icon2_width/2*width_r),(int)(200*height_r),(int)(icon2_width*width_r),(int)(icon2_height*height_r));
         //搜索框
-        final JTextField search_text=new RoundJTextField(15);
+
         search_text.setBounds((int)(300*width_r),(int)((250+icon2_height)*height_r),(int)((width-2*(60+icon1_width)*width_r-2*300*width_r)),(int)(100*height_r));
         search_text.setFont(new Font("微软雅黑",Font.PLAIN,(int)(35*width_r)));
         search_text.setHorizontalAlignment(JTextField.CENTER);
@@ -96,6 +97,8 @@ public class manage_status{
                 //学生信息视图
                 try {
                     Client_status.requireInfo(search_text.getText());
+                  //  search_text.setHorizontalAlignment(JTextField.CENTER);
+                    //search_text.addFocusListener(new JTextFieldHintListener(search_text, "请输入要查询学生的一卡通号"));
                     /*status_jpanel = student_status.status_panel(width_r,height_r,width-2*(60+icon1_width)*width_r,(1080-70-icon1_height)*height_r,search_text.getText());
                     status_jpanel.setBounds((int)((60+icon1_width)*width_r),(int)((47+icon1_height)*height_r), (int)(width-2*(60+icon1_width)*width_r),(int)((1080-70-icon1_height)*height_r));
                     add(status_jpanel,0);
