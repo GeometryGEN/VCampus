@@ -103,7 +103,11 @@ public class ConsultCourse_stuInfo extends JPanel {
 
         String[] tableTitle2={"学生学号","学生姓名"};
         DefaultTableModel dtm2=new DefaultTableModel(students,tableTitle2);
-        JTable table_want2=new JTable(dtm2);
+        JTable table_want2=new JTable(dtm2){
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
         JScrollPane jsp2=new JScrollPane(table_want2){
             public boolean isCellEditable(int row, int column) {
                 return false;
@@ -111,7 +115,9 @@ public class ConsultCourse_stuInfo extends JPanel {
         };
         jsp2.setBounds(0,(int)(320*height_r),(int)(1280*width_r),(int)(280*height_r));
         add(jsp2);
-        table_want2.setRowHeight(70);
+        table_want2.setRowHeight(50);
+        table_want.setFont(new Font("微软雅黑",Font.BOLD, (int) (14*width_r)));
+        table_want2.setFont(new Font("楷体",Font.BOLD, (int) (14*width_r)));
     }
 
 }

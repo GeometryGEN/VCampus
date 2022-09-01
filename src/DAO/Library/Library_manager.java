@@ -67,6 +67,8 @@ public class Library_manager implements Serializable{
                 }
             }
         }
+        rs.close();
+        st.close();
         return message;
     }
     public ArrayList<Book_borrower> list_my_book() throws SQLException {
@@ -88,6 +90,8 @@ public class Library_manager implements Serializable{
             x.date_expire=myTime.dateToString(rs.getDate("expire_date"));
             books.add(x);
         }
+        rs.close();
+        st.close();
         return books;
     }
     public ArrayList<Book_borrower> query_book(String s) throws SQLException {
@@ -115,7 +119,8 @@ public class Library_manager implements Serializable{
             }
             books.add(x);
         }
-
+        rs.close();
+        st.close();
         return books;
     }
     public ArrayList<Book_admin> list_all_book(String s) throws SQLException {
@@ -146,6 +151,8 @@ public class Library_manager implements Serializable{
             }
             books.add(x);
         }
+        rs.close();
+        st.close();
         return books;
     }
     public Message borrow(Book_borrower b) throws SQLException {
@@ -186,6 +193,8 @@ public class Library_manager implements Serializable{
             st.setString(4,b.getId());
             st.executeUpdate();
         }
+        rs.close();
+        st.close();
         return msg;
     }
     public Message ret(Book_borrower b) throws SQLException{
@@ -210,6 +219,8 @@ public class Library_manager implements Serializable{
         PreparedStatement st1=conn.prepareStatement(sql1);
         st1.setString(1,b.id);
         int affect=st1.executeUpdate();
+        rs.close();
+        st.close();
         return msg;
     }
     public void handle(Punishment punishment) throws SQLException, IOException {
@@ -252,6 +263,8 @@ public class Library_manager implements Serializable{
             st.executeUpdate();
         }
         message.setType(MessageType.MESSAGE_LIBRARY_EXTEND_SUCCEED);
+        rs.close();
+        st.close();
         return message;
     }
     public Punishment apply(Book_borrower b) throws SQLException {
@@ -343,6 +356,7 @@ public class Library_manager implements Serializable{
         }else{
             message.setType(MessageType.MESSAGE_LIBRARY_ADMIN_DELETE_FAIL);
         }
+        st.close();
         return message;
     }
     public ArrayList<Punishment>admin_list_tickets(){
@@ -370,6 +384,8 @@ public class Library_manager implements Serializable{
             p.Customer_iD=ID;
             punishments.add(p);
         }
+        rs.close();
+        st.close();
         return punishments;
     }
     public void admin_give_ticket(Punishment p) throws SQLException {
@@ -381,6 +397,7 @@ public class Library_manager implements Serializable{
         st.setString(4,p.Book_id);
         st.setDouble(5,p.price);
         st.executeUpdate();
+        st.close();
     }
 
 }

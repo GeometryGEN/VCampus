@@ -67,6 +67,14 @@ public class Search_result extends JPanel{
         } catch (Exception ex) {
             ex.printStackTrace();
         }
-
+        JScrollBar scrollBar = new JScrollBar(JScrollBar.VERTICAL) {
+            @Override
+            public boolean isVisible() {
+                return true;
+            }
+        };
+        jsp.setVerticalScrollBar(scrollBar);
+        jsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
+        scrollBar.setUnitIncrement(30);
     }
 }
