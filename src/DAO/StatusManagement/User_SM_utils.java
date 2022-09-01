@@ -43,11 +43,11 @@ public class User_SM_utils {
                 s.setCampus(rs.getString(16));
                 s.setSclass(rs.getString(17));
                 s.setID(rs.getString(18));
+                rs.close();
+                ps.close();
                 return s;
             }
         //    JDBC_Connector.close(rs, ps, connection);
-            rs.close();
-            ps.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -59,7 +59,13 @@ public class User_SM_utils {
         PreparedStatement ps = connection.prepareStatement(sql);
         ps.setString(1, id);
         ResultSet rs = ps.executeQuery();
-        if(rs.next()) return true;
-        else return false;
+        if(rs.next()) {
+            rs.close();ps.close();
+            return true;
+        }
+        else {
+            rs.close();ps.close();
+            return false;
+        }
     }
 }
