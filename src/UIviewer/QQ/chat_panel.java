@@ -23,10 +23,11 @@ public class chat_panel extends JPanel {
     private static JScrollPane scrollPane;
     private static Friend friend;
     static double width_r,height_r;
+    JTextArea type_field;
     static int width,height,send_button_height,send_button_width;
     static JTextPane jTextPane = new JTextPane();
     static StyledDocument doc = jTextPane.getStyledDocument();
-    static JButton  receive_button,close_button;
+    static JButton  receive_button,close_button,send_button,send_file_button;
     static ArrayList<Filetrans>files=new ArrayList<>();
     public static void insertText(String text, Color colorName, int textSize, int textAlign){
         SimpleAttributeSet set = new SimpleAttributeSet();
@@ -129,7 +130,7 @@ public class chat_panel extends JPanel {
         type_panel.setBackground(new Color(224,224,224));
         add(type_panel);
         //发送消息按钮
-        JButton send_button= new JButton();
+        send_button= new JButton();
         send_button.setFocusPainted(false);
         send_button_height=70;
         send_button_width=140;
@@ -140,7 +141,7 @@ public class chat_panel extends JPanel {
         send_button.setBounds((int)((width-send_button_width-1)*width_r),(int)((height/4-send_button_height-30)*height_r),(int)(send_button_width*width_r),(int)(send_button_height*height_r));
         type_panel.add(send_button);
         //发送文件按钮
-        JButton send_file_button= new JButton();
+        send_file_button= new JButton();
         send_file_button.setFocusPainted(false);
         send_file_button.setBackground(new Color(30,111,255));
         send_file_button.setFont(new Font("宋体",Font.PLAIN,(int)(25*width_r)));
@@ -190,7 +191,7 @@ public class chat_panel extends JPanel {
             }
         });
         //输入消息框
-        JTextArea type_field=new JTextArea();
+        type_field=new JTextArea();
         type_field.setBounds(0,0,(int)(width*width_r),(int)((height/4-1)*height_r));
         type_field.setBorder(BorderFactory.createLineBorder(new Color(224,224,224)));
         type_field.setBackground(new Color(245,246,247));
@@ -267,5 +268,9 @@ public class chat_panel extends JPanel {
 
     public Friend getFriend() {
         return friend;
+    }
+
+    public void set_Close() {
+        close_button.setLocation((int)((width-send_button_width-1)*width_r),(int)((height/4-send_button_height-30)*height_r));
     }
 }

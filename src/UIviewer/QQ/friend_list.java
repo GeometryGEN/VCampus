@@ -45,6 +45,7 @@ public class friend_list{
             roll_panel.add(tag[count_tag]);
             Friend admin=new Friend();
             admin.setName("公告");
+            admin.setOnline(1);
             friend_start_tag[count_tag]=count_friend;
             System.out.println("shit4");
             friendslice[count_friend]=new friend_slice(width-1,height/number_per_page,width_r,height_r,admin);
