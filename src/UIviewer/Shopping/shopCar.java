@@ -106,7 +106,7 @@ public class shopCar extends JPanel {
 
                             }
                             else {
-                                JOptionPane.showMessageDialog(null,"购买失败,数量不够！");
+                                //JOptionPane.showMessageDialog(null,"购买失败,数量不够！");
                             }
 
                             Client_shop.setId(String.valueOf(myInfo.getType()));

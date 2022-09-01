@@ -73,7 +73,7 @@ public class shopAdmin extends JPanel {
         AllGoods.setTableDate(temp);
         AllGoods f11=new AllGoods();
         panel.add(f11,"f11");
-        cardLayout.show(panel,"f11");
+        //cardLayout.show(panel,"f11");
 
 
         //文字

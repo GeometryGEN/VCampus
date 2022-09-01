@@ -331,7 +331,7 @@ public class QICQ_manager {
             {
                 Blob blob=(Blob) rs.getBlob("file");
                 Filetrans filetrans=new Filetrans();
-                filetrans.content=new byte[1024];
+                filetrans.content=new byte[(int)blob.length()];
                 InputStream is=blob.getBinaryStream();
                 int len;
                 int i=0;
