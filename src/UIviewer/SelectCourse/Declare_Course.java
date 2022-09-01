@@ -93,7 +93,7 @@ public class Declare_Course extends JPanel{
         add(textField2);
         textField2.setColumns(10);
 
-        JLabel lblNewLabel4 = new JLabel("课程容量:");
+        JLabel lblNewLabel4 = new JLabel("课程学时:");
         lblNewLabel4.setFont(new Font("宋体", Font.BOLD, 30));
         lblNewLabel4.setBounds((int)(400*width_r), (int)(325*height_r), (int)(275*width_r), (int)(35*height_r));
         add(lblNewLabel4);
@@ -121,7 +121,7 @@ public class Declare_Course extends JPanel{
                     Opencourse opc=new Opencourse();
                     opc.setName(textField1.getText());
                     opc.setPoint(Double.valueOf(textField2.getText()));
-                    opc.setSize(Integer.valueOf(textField3.getText()));
+                    opc.setHour(Integer.valueOf(textField3.getText()));
                     opc.setTeacher_id(myInfo.getId());
                     opc.setTeacher(myInfo.getName());
                     Client_curriculum.apply(opc);

@@ -210,7 +210,7 @@ public class Client_curriculum {
             Opencourse curri=(Opencourse) b.next();
             Check_Coustatus.checkcourse_status[count][0]=curri.getId();
             Check_Coustatus.checkcourse_status[count][1]=curri.getName();
-            Check_Coustatus.checkcourse_status[count][2]=String.valueOf(curri.getPoint());
+            Check_Coustatus.checkcourse_status[count][2]=String.valueOf(curri.getHour());
             if(curri.getStatus()==0){
                 Check_Coustatus.checkcourse_status[count][3]="审核中...";
                 Check_Coustatus.checkcourse_status[count][4]="审核中...";
