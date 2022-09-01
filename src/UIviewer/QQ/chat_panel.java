@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class chat_panel extends JPanel {
-    private JPanel type_panel;
+    public JPanel type_panel;
     private static JScrollPane scrollPane;
     private static Friend friend;
     static double width_r,height_r;
@@ -100,7 +100,6 @@ public class chat_panel extends JPanel {
             receive_button.setVisible(false);
         }
 
-        jTextPane.setCaretPosition(doc.getLength());
         jTextPane.setEditable(false);
 
         jTextPane.updateUI();
@@ -195,12 +194,18 @@ public class chat_panel extends JPanel {
         send_button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //发送信息函数
-                Client_qicq.send_message(type_field.getText(), myInfo.getId(),friend.getId());
-                try {
-                    Client_qicq.get_message(friend.getId());
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
+                if(myInfo.getType()!=3){
+                    //发送信息函数
+                    Client_qicq.send_message(type_field.getText(), myInfo.getId(),friend.getId());
+                    try {
+                        Client_qicq.get_message(friend.getId());
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                }
+                else {
+                    Client_qicq.add_announcement(myInfo.getId(),type_field.getText());
+                    Client_qicq.get_announcement();
                 }
                 type_field.setText("");
 
@@ -228,7 +233,6 @@ public class chat_panel extends JPanel {
     }
 
     public static void show_announcement(ArrayList<Message> messages) {
-
         jTextPane.setText(null);
         //开头空格
         SimpleAttributeSet set = new SimpleAttributeSet();
@@ -243,21 +247,15 @@ public class chat_panel extends JPanel {
         insertText("公告",Color.black,(int)(45*width_r*height_r),1);
         int num=messages.size();
         for(int i=num-1;i>=0;i--) {
-            if(myInfo.getType()==3){
                 insertText(messages.get(i).getSendTime(),new Color(122,122,123),(int)(16*width_r),1);
                 insertText((String)(messages.get(i).getData()),Color.black,(int)(42*width_r),1);
-
-            }
-            else {
-                insertText(messages.get(i).getSendTime(),new Color(122,122,123),(int)(16*width_r),1);
-                insertText((String)(messages.get(i).getData()),Color.black,(int)(42*width_r),0);
-            }
         }
 
-        jTextPane.setCaretPosition(doc.getLength());
         jTextPane.setEditable(false);
-
+        System.out.println(1);
         jTextPane.updateUI();
+        scrollPane.updateUI();
+
         jTextPane.setCaretPosition(jTextPane.getStyledDocument().getLength());
     }
 

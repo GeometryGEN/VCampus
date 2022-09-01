@@ -3,6 +3,7 @@ package UIviewer.QQ;
 import ClientToServer.ClientToServer;
 import DAO.QICQ.Friend;
 import UIhandler.QICQ.Client_qicq;
+import ClientToServer.myInfo;
 import net.coobird.thumbnailator.Thumbnails;
 
 import javax.swing.*;
@@ -120,11 +121,11 @@ public class friend_slice extends JLabel {
             try {
                 Thumbnails.of(new File("src/image/QQ/manager_logo.png"))
                         .size((int) (icon1_width * width_r), (int) (icon1_width * width_r))
-                        .toFile(new File("src/image/QQ/manager_logo_min.jpg"));
+                        .toFile(new File("src/image/QQ/manager_logo_min.png"));
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            setIcon(new ImageIcon("src/image/QQ/manager_logo_min.jpg"));
+            setIcon(new ImageIcon("src/image/QQ/manager_logo_min.png"));
             JLabel jLabel = this;//提供指针
             jLabel.addMouseListener(new java.awt.event.MouseAdapter() {
                 @Override
@@ -132,13 +133,16 @@ public class friend_slice extends JLabel {
                     int c = e.getButton();
                     if (c == MouseEvent.BUTTON1) {
                         //聊天面板
-                        Client_qicq.get_announcement();
                         if (main_panel.cpn != null) {
                             main_panel.mjp.remove(main_panel.cpn);
                         }
                         chat_panel chatPanel = new chat_panel(1920 / 3 * 2, 1080, width_r, height_r, 1920 / 3, 0, friend);
+                        Client_qicq.get_announcement();
                         main_panel.mjp.add(chatPanel);
                         main_panel.cpn = chatPanel;
+                        if((myInfo.getType()!=3)&&(myInfo.getId()==null)){
+                            main_panel.cpn.type_panel.setVisible(false);
+                        }
                         main_panel.mjp.updateUI();
                     }
                 }
@@ -153,10 +157,9 @@ public class friend_slice extends JLabel {
                 }
             });
         }
-        if ((friend.getOnline() == 1) || (friend.getName().equals("全体同学"))) {
+        if ((friend.getOnline() == 1) || (myInfo.getType()==3)) {
             setText(friend.getName() + "                                                 ");
             setForeground(Color.black);
-            //System.out.println("online");
         }
         else {
             setText(friend.getName() + "[离线请留言]                                             ");
