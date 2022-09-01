@@ -133,7 +133,7 @@ public class ServerToClientThread extends Thread{
                     sendback.setType(MessageType.MESSAGE_LIBRARY_ADMIN_QUERY_RET);
                     oos.writeObject(sendback);
                 }
-                else if(m.getType().equals(MessageType.MESSAGE_LIBRARY_ADMIN_LIST_TICKETS)){
+                /*else if(m.getType().equals(MessageType.MESSAGE_LIBRARY_ADMIN_LIST_TICKETS)){
                     sendback.setData(new Library_manager(userid).admin_list_tickets());
                     sendback.setType(MessageType.MESSAGE_LIBRARY_ADMIN_LIST_TICKETS_RET);
                     oos.writeObject(sendback);
@@ -142,7 +142,7 @@ public class ServerToClientThread extends Thread{
                 {
                     Punishment p=(Punishment) m.getData();
                     new Library_manager(userid).handle(p);
-                }
+                }*/
                 else if(m.getType().equals(MessageType.MESSAGE_LIBRARY_ADMIN_GIVE_TICKET)){
                     new Library_manager(userid).admin_give_ticket((Punishment)m.getData());
                 }

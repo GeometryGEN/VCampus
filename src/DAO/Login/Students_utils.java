@@ -22,11 +22,18 @@ public class Students_utils {
             state.setString(2,userpassword);
             ResultSet resultSet= state.executeQuery();            //执行sql
             if (resultSet.next()) {
+                resultSet.close();
+                state.close();
+                connection.close();
                 return true;
             }
             else{
+                resultSet.close();
+                state.close();
+                connection.close();
                 return false;
             }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -43,6 +50,9 @@ public class Students_utils {
             if (rs.next()) {
                 name=rs.getString(1);
             }
+            rs.close();
+            state.close();
+            connection.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -131,8 +141,14 @@ public class Students_utils {
             while (resultSet.next()) {
                 String Student_idcard = resultSet.getString("Student_idcard").trim();
                 String Student_email = resultSet.getString("Student_email").trim();
+                resultSet.close();
+                state.close();
+                connection.close();
                 return Student_idcard.equals(s.getStudent_idcard()) && Student_email.equals(s.getStudent_email());
             }
+            resultSet.close();
+            state.close();
+            connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -149,9 +165,17 @@ public class Students_utils {
             while (resultSet.next()) {
                 passWord = resultSet.getString("Student_pwd").trim();
                 if (passWord == userpassword || passWord.equals(userpassword)) {
+                    resultSet.close();
+                    state.close();
+                    connection.close();
                     return resultSet.getString("Student_name");
-                } else
+                } else{
+                    resultSet.close();
+                    state.close();
+                    connection.close();
                     return null;
+                }
+
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -170,6 +194,9 @@ public class Students_utils {
             stu.setStudent_name(rs.getString("Student_name"));
             stu.setStudent_money(rs.getDouble("Student_money"));
         }
+        rs.close();
+        st.close();
+        connection.close();
         return stu;
     }
 }

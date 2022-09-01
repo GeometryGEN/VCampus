@@ -23,10 +23,21 @@ public class Teachers_utils {
             while (resultSet.next()) {
                 passWord = resultSet.getString("Teacher_pwd").trim();
                 if (passWord == userpassword || passWord.equals(userpassword)) {
+                    resultSet.close();
+                    state.close();
+                    connection.close();
                     return true;
-                } else
+                } else{
+                    resultSet.close();
+                    state.close();
+                    connection.close();
                     return false;
+                }
+
             }
+            resultSet.close();
+            state.close();
+            connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -44,6 +55,9 @@ public class Teachers_utils {
             tea.setTeacher_name(rs.getString("Teacher_name"));
             tea.setTeacher_money(rs.getDouble("Teacher_money"));
         }
+        rs.close();
+        st.close();
+        connection.close();
         return tea;
     }
 
@@ -80,11 +94,18 @@ public class Teachers_utils {
             while (resultSet.next()) {
                 String Teacher_idcard = resultSet.getString("Teacher_idcard").trim();
                 String Teacher_email = resultSet.getString("Teacher_email").trim();
+                resultSet.close();
+                state.close();
+                connection.close();
                 return Teacher_idcard.equals(s.getTeacher_idcard()) && Teacher_email.equals(s.getTeacher_email());
             }
+            resultSet.close();
+            state.close();
+            connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
         return false;
     }
 
@@ -113,10 +134,22 @@ public class Teachers_utils {
             while (resultSet.next()) {
                 passWord = resultSet.getString("Teacher_pwd").trim();
                 if (passWord == userpassword || passWord.equals(userpassword)) {
+                    resultSet.close();
+                    state.close();
+                    connection.close();
                     return resultSet.getString("Teacher_name");
-                } else
+
+                } else{
+                    resultSet.close();
+                    state.close();
+                    connection.close();
                     return null;
+                }
+
             }
+            resultSet.close();
+            state.close();
+            connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
