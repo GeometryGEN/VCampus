@@ -548,8 +548,8 @@ public class functionChoose {
 
         //右下面板
         JPanel p3 = new JPanel();
-        p3.setBounds((int) (330*width_r), (int) (285*height_r), (int) (1000*width_r), (int) (440*height_r));
-        p3.setBackground(new Color(211,211,211));
+        p3.setBounds((int) (326*width_r), (int) (282*height_r), (int) (927*width_r), (int) (430*height_r));
+        p3.setBackground(new Color(230,230,230));
         fc_panel.add(p3);
 
         //右侧面板

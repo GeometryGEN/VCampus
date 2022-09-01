@@ -226,7 +226,7 @@ public class ShoppingHall extends JPanel {
         btnNewButton_4.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                 try {
+                try {
                     List<Product> t = Client_shop.checktypeProduct("美妆");
                     if(t!=null) {
                         String[][] temp = new String[t.size()][];
@@ -839,69 +839,69 @@ public class ShoppingHall extends JPanel {
             ex.printStackTrace();
         }
 
-            table_want.addMouseListener(new MouseListener() {
-                @Override
-                public void mouseClicked(MouseEvent e) {
-                    if (table_want.getSelectedColumn() == 5) {
-                        //购物车
-                        int id= Integer.parseInt((String) table_want.getValueAt(table_want.getSelectedRow(),0));
-                        int Num = Integer.parseInt((String) table_want.getValueAt(table_want.getSelectedRow(),4));
-                        try {
-                            Client_shop.addToShopCar(myInfo.getId(),id,Num);
-                            JOptionPane.showMessageDialog(null,"添加购物车成功！");
-                        } catch (Exception ex) {
-                            throw new RuntimeException(ex);
-                        }
-                    }
-                    if (table_want.getSelectedColumn() == 6) {
-
-                        String id= (String) table_want.getValueAt(table_want.getSelectedRow(),0);
-                        double money= Double.parseDouble((String) table_want.getValueAt(table_want.getSelectedRow(),2));
-                        int Num = Integer.parseInt((String) table_want.getValueAt(table_want.getSelectedRow(),4));
-                        try {
-                            if(Client_shop.getMoney(myInfo.getId())>=(money*Num)){
-                                if(Client_shop.buyProduct(myInfo.getId(),id,Num,Client_shop.getMoney(myInfo.getId())-money*Num))
-                                    JOptionPane.showMessageDialog(null,"购买成功！");
-                                Client_shop.setId(String.valueOf(myInfo.getType()));
-                                Client_shop.setIdcard(myInfo.getId());
-                                functionChoose.jf.setContentPane(new shopCustomer());
-                                functionChoose.jf.setTitle("shopCustomer");
-                            }else {
-                                JOptionPane.showMessageDialog(null,"余额不足！");
-                            }
-                        } catch (Exception ex) {
-                            throw new RuntimeException(ex);
-                        }
+        table_want.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (table_want.getSelectedColumn() == 5) {
+                    //购物车
+                    int id= Integer.parseInt((String) table_want.getValueAt(table_want.getSelectedRow(),0));
+                    int Num = Integer.parseInt((String) table_want.getValueAt(table_want.getSelectedRow(),4));
+                    try {
+                        Client_shop.addToShopCar(myInfo.getId(),id,Num);
+                        JOptionPane.showMessageDialog(null,"添加购物车成功！");
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
                     }
                 }
+                if (table_want.getSelectedColumn() == 6) {
 
-                @Override
-                public void mousePressed(MouseEvent e) {
-
-
+                    String id= (String) table_want.getValueAt(table_want.getSelectedRow(),0);
+                    double money= Double.parseDouble((String) table_want.getValueAt(table_want.getSelectedRow(),2));
+                    int Num = Integer.parseInt((String) table_want.getValueAt(table_want.getSelectedRow(),4));
+                    try {
+                        if(Client_shop.getMoney(myInfo.getId())>=(money*Num)){
+                            if(Client_shop.buyProduct(myInfo.getId(),id,Num,Client_shop.getMoney(myInfo.getId())-money*Num))
+                                JOptionPane.showMessageDialog(null,"购买成功！");
+                            Client_shop.setId(String.valueOf(myInfo.getType()));
+                            Client_shop.setIdcard(myInfo.getId());
+                            functionChoose.jf.setContentPane(new shopCustomer());
+                            functionChoose.jf.setTitle("shopCustomer");
+                        }else {
+                            JOptionPane.showMessageDialog(null,"余额不足！");
+                        }
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
                 }
+            }
 
-                @Override
-                public void mouseReleased(MouseEvent e) {
+            @Override
+            public void mousePressed(MouseEvent e) {
 
-                }
 
-                @Override
-                public void mouseEntered(MouseEvent e) {
+            }
 
-                }
+            @Override
+            public void mouseReleased(MouseEvent e) {
 
-                @Override
-                public void mouseExited(MouseEvent e) {
+            }
 
-                }
-            });
-            //支持滚动
-            JScrollPane jsp = new JScrollPane(table_want);
-            jsp.setBounds((int) (340*width_r), (int) (100*height_r), (int) (940*width_r), (int) (460*height_r));
-            add(jsp);
-            table_want.setRowHeight(30);
-            setVisible(true);
-        }
+            @Override
+            public void mouseEntered(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+
+            }
+        });
+        //支持滚动
+        JScrollPane jsp = new JScrollPane(table_want);
+        jsp.setBounds((int) (340*width_r), (int) (100*height_r), (int) (940*width_r), (int) (460*height_r));
+        add(jsp);
+        table_want.setRowHeight(30);
+        setVisible(true);
+    }
 }
 

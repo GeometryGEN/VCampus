@@ -32,6 +32,7 @@ public class bookSearch extends JPanel {
         try {
             Thumbnails.of(new File("src/image/bg2.jpg"))
                     .size((int)(icon1_width*width_r), (int)(icon1_height*height_r))
+                    .keepAspectRatio(false)
                     .toFile(new File("src/image/bg2_min.jpg"));
         } catch (IOException e) {
             throw new RuntimeException(e);
