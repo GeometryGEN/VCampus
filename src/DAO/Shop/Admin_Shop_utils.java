@@ -31,7 +31,8 @@ public class Admin_Shop_utils {
             System.out.println("商品"+p.getProduct_name()+"添加成功！");
         else
             System.out.println("商品添加失败！");
-        JDBC_Connector.close(null, ps, connection);
+        ps.close();
+       // JDBC_Connector.close(null, ps, connection);
         return re;
     }
 
@@ -45,7 +46,8 @@ public class Admin_Shop_utils {
             System.out.println("删除成功！");
         else
             System.out.println("删除失败！");
-        JDBC_Connector.close(null, ps, connection);
+        ps.close();
+      //  JDBC_Connector.close(null, ps, connection);
         return re;
     }
 

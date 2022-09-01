@@ -395,7 +395,9 @@ public class QICQ_manager {
                     out.write(buf, 0, len);
                 }
                 System.out.println("图片读取成功！");
-                JDBC_Connector.close(rs,ps,conn);
+            //    JDBC_Connector.close(rs,ps,conn);
+                rs.close();
+                ps.close();
                 return buf;
             }
             else
