@@ -14,7 +14,7 @@ public class Save_image {
         {
             try {
                 Thumbnails.of(new File("src/image/head/"+i+".png"))
-                        .size(300, 300)
+                        .size(800, 800)
                         .toFile(new File("src/image/head/"+i+"_min.png"));
             } catch (IOException e) {
                 throw new RuntimeException(e);

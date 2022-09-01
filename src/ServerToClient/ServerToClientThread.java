@@ -8,6 +8,7 @@ import DAO.Library.Book_borrower;
 import DAO.Library.Library_manager;
 import DAO.Library.Punishment;
 import DAO.QICQ.Application;
+import DAO.QICQ.Friend;
 import DAO.QICQ.QICQ_manager;
 import DAO.Shop.Admin_Shop_utils;
 import DAO.Shop.Product;
@@ -273,7 +274,8 @@ public class ServerToClientThread extends Thread{
                     new QICQ_manager(userid).admin_add_announcement(m);
                 }
                 else if(m.getType().equals(MessageType.MESSAGE_QICQ_ADD_FRIEND)){
-                    new QICQ_manager(userid).add_friend(m);
+                    //new QICQ_manager(userid).add_friend(m);
+                    new QICQ_manager(userid).new_add_friend(m);
                 }
                 else if(m.getType().equals(MessageType.MESSAGE_QICQ_LIST_APPLICATION)){
                     sendback=new QICQ_manager(userid).list_my_application();
@@ -301,6 +303,11 @@ public class ServerToClientThread extends Thread{
                 }
                 else if(m.getType().equals(MessageType.MESSAGE_QICQ_FRIEND_OFFLINE)){
                     new QICQ_manager(userid).friend_is_offline((String)m.getData());
+                }
+                else if(m.getType().equals(MessageType.MESSAGE_QICQ_MODIFY)){
+                    new QICQ_manager(userid).modify_friend_info((Friend)m.getData());
+                    sendback.setType(MessageType.MESSAGE_QICQ_MODIFY_RET);
+                    oos.writeObject(sendback);
                 }
                 //商店
                 else if(m.getType().equals(MessageType.RETURN_ALL_PRODUCT)){

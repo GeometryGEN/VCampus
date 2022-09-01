@@ -358,4 +358,69 @@ public class QICQ_manager {
         }
     }
 
+    public void modify_friend_info(Friend f) throws SQLException {
+        String sql="update friends set relation=?, nickname=? where user_id=? and friend_id=?;";
+        PreparedStatement st=conn.prepareStatement(sql);
+        st.setString(1,f.type);
+        st.setString(2,f.name);
+        st.setString(3,id);
+        st.setString(4,f.id);
+        st.executeUpdate();
+    }
+    public void new_add_friend(Message message) throws IOException, SQLException {
+        Application app=(Application)message.getData();
+        int flag=0;
+        String sql="select * from students where Student_idcard=?;";
+        PreparedStatement st=conn.prepareStatement(sql);
+        st.setString(1,app.to_id);
+        System.out.println(app.to_id);
+        ResultSet rs=st.executeQuery();
+        if(rs.next()){
+            String sql1="insert into friends(user_id,friend_id,relation,nickname) values(?,?,?,?);";
+            PreparedStatement st1=conn.prepareStatement(sql1);
+            st1.setString(1,app.from_id);
+            st1.setString(2,app.to_id);
+            st1.setString(3,app.group);
+            st1.setString(4,app.to_name);
+            st1.executeUpdate();
+            st1.setString(2,app.from_id);
+            st1.setString(1,app.to_id);
+            st1.setString(3,"新朋友");
+            st1.setString(4,app.from_name);
+            st1.executeUpdate();
+        }
+        else{
+            sql="select * from teachers where Teacher_idcard=?;";
+            st=conn.prepareStatement(sql);
+            st.setString(1,app.to_id);
+            rs=st.executeQuery();
+            if(rs.next()){
+                String sql1="insert into friends(user_id,friend_id,relation,nickname) values(?,?,?,?);";
+                PreparedStatement st1=conn.prepareStatement(sql1);
+                st1.setString(1,app.from_id);
+                st1.setString(2,app.to_id);
+                st1.setString(3,app.group);
+                st1.setString(4,app.to_name);
+                st1.executeUpdate();
+                st1.setString(2,app.from_id);
+                st1.setString(1,app.to_id);
+                st1.setString(3,"新朋友");
+                st1.setString(4,app.from_name);
+                st1.executeUpdate();
+            }
+            else {
+                flag=1;
+                Message msg=new Message();
+                msg.setType(MessageType.MESSAGE_QICQ_ADD_FRIEND_FAIL_CANNOT_FIND_USER);
+                //        MyObjectOutputStream oos=new MyObjectOutputStream(ManageServerToClientThread.getThread(id).getSocket().getOutputStream());
+                ManageServerToClientThread.getThread(id).oos.writeObject(msg);
+            }
+
+        }
+        if(flag==0){
+            Message msg=new Message();
+            msg.setType(MessageType.MESSAGE_QICQ_ADD_FRIEND_SUCCEED);
+            ManageServerToClientThread.getThread(id).oos.writeObject(msg);
+        }
+    }
 }

@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Application implements Serializable {
     public String from_id;
-    String from_name;
+    public String from_name;
     int status; //0=waiting 1=denied 2=accepted
     String to_id;
     String to_name;
