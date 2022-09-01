@@ -50,8 +50,11 @@ public class shopCar extends JPanel {
                     double money= Double.parseDouble((String) table_want.getValueAt(table_want.getSelectedRow(),3));
                     try {
                         if(Client_shop.getMoney(myInfo.getId())>=(money)){
-                            Client_shop.buyProduct(myInfo.getId(),id,Num,Client_shop.getMoney(myInfo.getId())-money);
-                            JOptionPane.showMessageDialog(null,"购买成功！");
+                            if(Client_shop.buyProduct(myInfo.getId(),id,Num,Client_shop.getMoney(myInfo.getId())-money))
+                                JOptionPane.showMessageDialog(null,"购买成功！");
+                            else {
+                                JOptionPane.showMessageDialog(null,"购买失败！");
+                            }
                             Client_shop.deleteReadyToBuy(myInfo.getId(),Integer.parseInt(((String) table_want.getValueAt(table_want.getSelectedRow(),0))),0);
                         }else {
                             JOptionPane.showMessageDialog(null,"余额不足！");
@@ -63,10 +66,13 @@ public class shopCar extends JPanel {
 
                 if(table_want.getSelectedColumn()==5){
                     //删除功能
-                    int id= Integer.parseInt(((String) table_want.getValueAt(table_want.getSelectedRow(),0)));
+                    int id = Integer.parseInt(((String) table_want.getValueAt(table_want.getSelectedRow(),0)));
                     try {
-                        Client_shop.deleteReadyToBuy(myInfo.getId(),id,0);
-                        JOptionPane.showMessageDialog(null,"删除成功！");
+                        if(Client_shop.deleteReadyToBuy(myInfo.getId(),id,0))
+                            JOptionPane.showMessageDialog(null,"删除成功！");
+                        else {
+                            JOptionPane.showMessageDialog(null,"删除失败！");
+                        }
                     } catch (IOException ex) {
                         throw new RuntimeException(ex);
                     }
