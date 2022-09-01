@@ -45,7 +45,7 @@ public class AllGoods extends JPanel {
         //支持滚动
         JScrollPane jsp = new JScrollPane();
         jsp.setViewportView(table_want);
-        jsp.setBounds(0,0, (int) (1280*width_r), (int) (680*height_r));
+        jsp.setBounds(0,0, (int) (1280*width_r), (int) (620*height_r));
         jsp.setBackground(new Color(255, 240, 245, 80));
         add(jsp);
 
