@@ -27,7 +27,7 @@ public class ChooseCourse_guidance extends JPanel{
         add(lblBackground);
         //文字
         JLabel l1 = new JLabel("  你好！");
-        l1.setBounds((int)(170*width_r), (int)(100*height_r), (int)(100*width_r), (int)(75*height_r));
+        l1.setBounds((int)(30*width_r), (int)(130*height_r), (int)(100*width_r), (int)(75*height_r));
         Font font = new Font("楷体", Font.BOLD, 22);
         l1.setFont(font);
         //l1.setForeground(new Color(111,222,0));
