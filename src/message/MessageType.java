@@ -40,6 +40,8 @@ public interface MessageType {
     String MESSAGE_LIBRARY_ADMIN_HANDLE="23";  //管理员处理罚单 data类型
     String MESSAGE_LIBRARY_ADMIN_ADD="23.1";  //管理员添加图书馆内书籍 data类型Book_admin
     String MESSAGE_LIBRARY_ADMIN_DELETE="23.2"; //管理员删除图书馆内书籍 data类型String，图书id
+    String MESSAGE_LIBRARY_ADMIN_DELETE_SUCCEED="23.3";
+    String MESSAGE_LIBRARY_ADMIN_DELETE_FAIL="23.4";
     String MESSAGE_LIBRARY_LIST_MY_TICKET="24";  //用户请求自己的罚单 无data
     String MESSAGE_LIBRARY_LIST_MY_TICKET_RET="24.1"; //返回用户看自己的罚单 data类型Hashset<Punishment>
     String MESSAGE_LIBRARY_ADMIN_LIST_TICKETS="25"; //管理员看到用户的请求 无data

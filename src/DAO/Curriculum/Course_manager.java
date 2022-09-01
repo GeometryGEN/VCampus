@@ -84,6 +84,7 @@ public class Course_manager {
         ResultSet rs=st.executeQuery();
         while (rs.next()){
             Course x=new Course();
+            x.setHour(rs.getInt("hour"));
             x.name=rs.getString("name");
             x.teacher=rs.getString("teacher");
             x.classroom=rs.getString("classroom");
@@ -104,6 +105,7 @@ public class Course_manager {
         while(rs.next())
         {
             Course x=new Course();
+            x.setHour(rs.getInt("hour"));
             x.name=rs.getString("name");
             x.teacher=rs.getString("teacher");
             x.classroom=rs.getString("classroom");
@@ -159,6 +161,7 @@ public class Course_manager {
             ResultSet rs1=st.executeQuery();
             if(rs1.next()){
                 Course x=new Course();
+                x.setHour(rs1.getInt("hour"));
                 x.name=rs1.getString("name");
                 x.teacher=rs1.getString("teacher");
                 x.classroom=rs1.getString("classroom");
@@ -438,6 +441,7 @@ public class Course_manager {
         return res;
     }
     public void admin_arrange(Course c) throws SQLException {
+   //     System.out.print("    "+c.classroom);
         String sql="update curriculum set classroom=?, time=?, size=? where id=?";
         PreparedStatement st= conn.prepareStatement(sql);
         st.setString(1,c.classroom);

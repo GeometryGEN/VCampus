@@ -38,9 +38,6 @@ public class Client_curriculum {
     public static void setOos(MyObjectOutputStream mos) throws IOException {
         oos=mos;
     }
-
-
-
     public static void requireToChoose(Course curri)throws IOException{
             Message message=new Message();
             message.setData(curri);
@@ -95,7 +92,6 @@ public class Client_curriculum {
     }
     //显示所有的课程进行选择
     public static void RequireallCourse()throws IOException{
-        Choosing_Course.selectcourse=null;
         Message message=new Message();
         message.setType(MessageType.MESSAGE_CURRICULUM_LIST_ALL);
         oos.writeObject(message);
@@ -123,7 +119,7 @@ public class Client_curriculum {
     }
     public static void admin_all_course(ArrayList<Course>allchoosing)throws IOException{
         int n=allchoosing.size();
-        Scheduling.courses=new String[n][6];
+        Scheduling.courses=new String[n][7];
         Iterator b=allchoosing.iterator();
         int count=0;
         while(b.hasNext())
@@ -132,9 +128,10 @@ public class Client_curriculum {
             Scheduling.courses[count][0]=course.getId();
             Scheduling.courses[count][1]=course.getName();
             Scheduling.courses[count][2]=course.getTeacher();
-            Scheduling.courses[count][4]=String.valueOf(course.getSize());
-            Scheduling.courses[count][3]=course.getTimestring();
-            Scheduling.courses[count][5]=course.getClassroom();
+            Scheduling.courses[count][3]=String.valueOf(course.getHour());
+            Scheduling.courses[count][5]=String.valueOf(course.getSize());
+            Scheduling.courses[count][4]=course.getTimestring();
+            Scheduling.courses[count][6]=course.getClassroom();
             count++;
         }
         Scheduling sch=new Scheduling();
