@@ -4,7 +4,9 @@ import java.sql.*;
 public class JDBC_Connector {
 
     static Connection connection;        //创建java程序与数据库的连接对象
-
+    public static Connection ConnectMySQL1(){
+        return connection;
+    }
     public static Connection ConnectMySQL() throws SQLException{
 
         String driver = "com.mysql.cj.jdbc.Driver";         //将MySQL数据库驱动名称封装在字符串中
@@ -21,7 +23,6 @@ public class JDBC_Connector {
         }
         connection = DriverManager.getConnection(url,user,pin);        //连接数据库
         return connection;
-
     }
 
     public static void close(ResultSet rs, PreparedStatement ps, Connection conn) throws SQLException {
