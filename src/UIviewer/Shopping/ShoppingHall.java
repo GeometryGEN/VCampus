@@ -42,6 +42,14 @@ public class ShoppingHall extends JPanel {
     public ShoppingHall() {
         setLayout(null);
 
+        //文字
+        JLabel l19 = new JLabel("       商品分类");
+        l19.setBounds((int) (40*width_r), (int) (0*height_r), (int) (300*width_r), (int) (100*height_r));
+        l19.setForeground(new Color(255,69,0));
+        Font font5 = new Font("楷体", Font.BOLD, (int) (24*width_r));
+        l19.setFont(font5);
+        add(l19);
+
         JTextField textField=new JTextField();
         textField.setFont(new Font("微软雅黑", Font.BOLD, (int) (18*width_r)));
         textField.setBounds((int) (460*width_r), (int) (30*height_r), (int) (280*width_r), (int) (40*height_r));
