@@ -10,7 +10,7 @@ public class Save_image {
     public static void main(String[] args) throws FileNotFoundException, SQLException {
      //   JDBC_Connector.first_connect();
         String p="src/image/cartoon/";
-        for(int i=1;i<=30;i++)
+        for(int i=41;i<=41;i++)
         {
             /*try {
                 Thumbnails.of(new File(p+i+".jpg"))
