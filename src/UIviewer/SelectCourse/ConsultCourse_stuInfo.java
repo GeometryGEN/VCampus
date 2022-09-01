@@ -34,7 +34,7 @@ public class ConsultCourse_stuInfo extends JPanel {
             }
         };
         JScrollPane jsp=new JScrollPane(table_want);
-        jsp.setBounds(0,0,(int)(1280*width_r),(int)(220*height_r));
+        jsp.setBounds(0,0,(int)(1280*width_r),(int)(150*height_r));
         add(jsp);
         table_want.setRowHeight(40);
         table_want.getColumnModel().getColumn(0).setPreferredWidth(100);
@@ -69,8 +69,12 @@ public class ConsultCourse_stuInfo extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 if(table_want.getSelectedColumn()==5){
                     try{
+                        System.out.println("Clicked");
                         String id=(String)table_want.getValueAt(table_want.getSelectedRow(),0);
                         Client_curriculum.Require_show_my_students(id);
+                        table_want.updateUI();
+                        jsp.updateUI();
+                        updateUI();
                     }catch(IOException ex)
                     {
                         throw new RuntimeException(ex);

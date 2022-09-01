@@ -79,12 +79,14 @@ public class shopCustomer extends JPanel {
         t = Client_shop.returnAllProduct();
         String[][] temp = new String[t.size()][];
         for(int i =0;i<t.size();i++){
-            String[] tt =new String[5];
+            String[] tt =new String[7];
             tt[0]=String.valueOf(t.get(i).getProduct_id());
             tt[1]=t.get(i).getProduct_name();
             tt[2]=String.valueOf(t.get(i).getProduct_price());
             tt[3]=String.valueOf(t.get(i).getProduct_currentNumbers());
             tt[4]="1";
+            tt[5]="加入购物车";
+            tt[6]="购买";
             temp[i]=tt;
         }
         ShoppingHall.setShoptable(temp);
@@ -131,12 +133,14 @@ public class shopCustomer extends JPanel {
                     t = Client_shop.returnAllProduct();
                     String[][] temp = new String[t.size()][];
                     for(int i =0;i<t.size();i++){
-                        String[] tt =new String[5];
+                        String[] tt =new String[7];
                         tt[0]=String.valueOf(t.get(i).getProduct_id());
                         tt[1]=t.get(i).getProduct_name();
                         tt[2]=String.valueOf(t.get(i).getProduct_price());
                         tt[3]=String.valueOf(t.get(i).getProduct_currentNumbers());
                         tt[4]="1";
+                        tt[5]="加入购物车";
+                        tt[6]="购买";
                         temp[i]=tt;
                     }
                     setShoptable(temp);
@@ -184,11 +188,13 @@ public class shopCustomer extends JPanel {
                         if(book.size()!=0){
                             String[][] temp = new String[book.size()][];
                             for(int i =0;i<book.size();i++){
-                                String[] tt =new String[4];
+                                String[] tt =new String[6];
                                 tt[0]=String.valueOf(book.get(i).getProduct_id());
                                 tt[1]=book.get(i).getProduct_name();
                                 tt[2]=String.valueOf(all.get(book.get(i).getProduct_id()));  //数量
                                 tt[3]=String.valueOf(book.get(i).getProduct_price()*all.get(book.get(i).getProduct_id()));
+                                tt[4]="购买";
+                                tt[5]="删除";
                                 temp[i]=tt;
                             }
                             shopCar.setMyBook(temp);

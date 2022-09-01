@@ -42,6 +42,7 @@ public class functionChoose {
         double height_r=(double)(height)/784;
         jf = new JFrame("functionChoose");
         jf.setSize(width,height);
+        jf.setExtendedState(JFrame.MAXIMIZED_BOTH);
         //jf.setSize(1273,784);
         fc_panel = new JPanel();
         fc_panel.setLayout(null);
@@ -273,18 +274,15 @@ public class functionChoose {
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
                 try {
-                    jf.setBounds(0,0,width,height);
+                    //jf.setBounds(0,0,width,height);
                     jf.remove(fc_panel);
                     Client_status.ini();
-                    if(myInfo.getType()==1)
-                        //jf.setContentPane(new student_status(width,height));
+                    if(myInfo.getType()==1) {
                         Client_status.stu_enter();
+                    }
                     else if(myInfo.getType()==3){
                         jf.setContentPane(new manage_status(width,height).manage_panel);
-                        jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                         jf.setTitle("admin_status_management");
-                        jf.setVisible(true);
-                        //Client_status.admin_enter();
                     } else {
                         JOptionPane.showMessageDialog(null,"抱歉，您暂无学籍管理权限！");
                     }

@@ -18,6 +18,13 @@ public class ChooseCourse_guidance extends JPanel{
         setLayout(null);
         JPanel p11=new JPanel();
         p11.setBounds(0,0,(int)(1273*width_r),(int)(790*height_r));
+
+
+        JLabel lblBackground = new JLabel(); // 创建一个标签组件对象
+        ImageIcon icon = new ImageIcon("src/image/logo-mini.png"); // 创建背景图片对象
+        lblBackground.setIcon(icon); // 设置标签组件要显示的图标
+        lblBackground.setBounds((int)(25*width_r), (int)(45*height_r), (int)(175*width_r), (int)(55*height_r)); // 设置组件的显示位置及大小
+        add(lblBackground);
         //文字
         JLabel l1 = new JLabel("  你好！");
         l1.setBounds((int)(170*width_r), (int)(100*height_r), (int)(100*width_r), (int)(75*height_r));

@@ -173,6 +173,7 @@ public class Client_curriculum {
             Selcourse_teacher.cardLayout.show(Selcourse_teacher.panel,"search");}
     }
     public static void Require_show_my_students(String Id)throws IOException{
+        System.out.println("require");
         Message message=new Message();
         message.setData(Id);
         message.setType(MessageType.MESSAGE_CURRICULUM_SHOW_STU);
@@ -199,8 +200,8 @@ public class Client_curriculum {
             count++;
         }
         My_students stuInfo=new My_students();
-        Selcourse_teacher.panel.add(stuInfo,"stuInfo");
-        Selcourse_teacher.cardLayout.show(Selcourse_teacher.panel,"stuInfo");
+        Selcourse_teacher.panel1.add(stuInfo,"stuInfo");
+        Selcourse_teacher.cardLayout1.show(Selcourse_teacher.panel1,"stuInfo");
     }
     public static void showApplyResult(ArrayList<Opencourse>opencourses) {
         int n=opencourses.size();

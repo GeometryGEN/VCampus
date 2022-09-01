@@ -141,20 +141,24 @@ public class ClientToServerThread extends Thread {
                     List<Product> ps = ((List<Product>) message.getData());
                     Client_shop.setProducts(ps);
                 }
+
                 else if(message.getType().equals(MessageType.FIND_PRODUCT_SUCCEED)){
                     List<Product> ps = ((List<Product>) message.getData());
                     Client_shop.setCheckproducts(ps);
                     Client_shop.setSign_find_type("2");
                 }
                 else if(message.getType().equals(MessageType.FIND_PRODUCT_FAILED)){
+                    Client_shop.resetCheckedProducts();
                     Client_shop.setSign_find_type("3");
                 }
+
                 else if(message.getType().equals(MessageType.FIND_TYPE_PRODUCT_SUCCEED)){
                     List<Product> ps = ((List<Product>) message.getData());
                     Client_shop.setCheckproductsType(ps);
                     Client_shop.setSign_find_type("2");
                 }
                 else if(message.getType().equals(MessageType.FIND_TYPE_PRODUCT_FAILED)){
+                    Client_shop.resetCheckedtypeProducts();
                     Client_shop.setSign_find_type("3");
                 }
                 else if(message.getType().equals(MessageType.FIND_PRODUCT_SUCCEED_ZERO)){
@@ -260,7 +264,6 @@ public class ClientToServerThread extends Thread {
                     JOptionPane.showMessageDialog(null,"    查询失败! 学生不存在");
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_STATUS_CONFIRM_RET)){
-                    Client_status.show_studata((ImageAndTable)message.getData());
                     JOptionPane.showMessageDialog(null, "   修改学生信息成功!");
                 }
                 //站内通信
@@ -332,6 +335,7 @@ public class ClientToServerThread extends Thread {
                     JOptionPane.showMessageDialog(null,"课程申报失败，已经存在相同课程！");
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_CURRICULUM_SHOW_STU_RET)){
+                    System.out.println("return");
                      Client_curriculum.show_my_students((ArrayList<Student>)message.getData());
 
                 }

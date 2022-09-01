@@ -322,7 +322,7 @@ public class ServerToClientThread extends Thread{
                         sendback.setType(MessageType.FIND_PRODUCT_SUCCEED);
                         oos.writeObject(sendback);
                     } else{
-                        sendback.setType(MessageType.FIND_PRODUCT_SUCCEED_ZERO);
+                        sendback.setType(MessageType.FIND_PRODUCT_FAILED);
                         oos.writeObject(sendback);
                         //socket.close();
                     }

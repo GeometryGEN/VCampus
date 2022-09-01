@@ -182,9 +182,9 @@ public class student_status_table extends JPanel{
             manage_status.jb_back_to_search.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
+                    System.out.println("exit");
                     manage_status.status_jpanel.setVisible(false);
                     manage_status.search_panel.setVisible(true);
-              //      Client_status.resetS_S();
                 }
             });
             jb3=new JButton("提交学籍信息");
@@ -229,7 +229,7 @@ public class student_status_table extends JPanel{
                         } catch (IOException ex) {
                             throw new RuntimeException(ex);
                         }
-
+                        System.out.println("submit");
                         switch_to_unedit();
                         jb3.setVisible(false);
                         jb1.setVisible(true);
