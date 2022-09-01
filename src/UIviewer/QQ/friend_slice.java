@@ -133,6 +133,7 @@ public class friend_slice extends JLabel {
                 public void mouseClicked(java.awt.event.MouseEvent e) {
                     int c = e.getButton();
                     if (c == MouseEvent.BUTTON1) {
+                        System.out.println(4);
                         //聊天面板
                         if (main_panel.cpn != null) {
                             main_panel.mjp.remove(main_panel.cpn);

@@ -276,6 +276,7 @@ public class ClientToServerThread extends Thread {
                 //站内通信
                 if(message.getType().equals(MessageType.MESSAGE_QICQ_LIST_FRIENDS_RET)){
                      HashMap<String,ArrayList<Friend>>friends=(HashMap<String,ArrayList<Friend>>)message.getData();
+                     System.out.println("shit1");
                      Client_qicq.show_friend(friends);
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_QICQ_GET_MESSAGE_RET)){
@@ -316,6 +317,7 @@ public class ClientToServerThread extends Thread {
                     change_panel.change_succeed();
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_QICQ_GET_ANNOUNCEMENT_RET)){
+                    System.out.println(2);
                     ArrayList<Message>messages=(ArrayList<Message>)message.getData();
                     Client_qicq.Show_announcement(messages);
                 }

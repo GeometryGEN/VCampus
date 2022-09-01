@@ -149,6 +149,7 @@ public class Client_qicq {
     }
     public static void get_announcement(){
         Message message=new Message();
+        System.out.println(3);
         message.setType(MessageType.MESSAGE_QICQ_GET_ANNOUNCEMENT);
         try {
             oos.writeObject(message);

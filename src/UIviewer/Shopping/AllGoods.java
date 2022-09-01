@@ -11,7 +11,7 @@ import java.util.Timer;
 import UIhandler.Library.Client_library;
 
 public class AllGoods extends JPanel {
-    public static volatile String[][] tableDate;
+    public static String[][] tableDate;
 
     public static String[][] getTableDate() {
         return tableDate;
@@ -31,6 +31,7 @@ public class AllGoods extends JPanel {
         String[] tableTitle = {"商品编号","商品名称","商品价格","商品剩余数量","商品种类"};
         //数据
         DefaultTableModel dtm = new DefaultTableModel(tableDate, tableTitle);
+        System.out.println("tableDate.length="+tableDate.length);
         JTable table_want = new JTable(dtm)
         {
             public boolean isCellEditable(int row, int column) {
