@@ -106,7 +106,6 @@ public class Client_qicq {
     }
 
     public static void receive_file(Filetrans file, String dest) throws IOException {
-        System.out.println("receive_file");
         FileOutputStream fileOutputStream = new FileOutputStream(dest);
         fileOutputStream.write(file.getContent());
     }

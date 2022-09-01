@@ -38,6 +38,7 @@ public class friend_list{
         count_tag=0;
 
 
+        System.out.println("shit3");
         //admin
         if(myInfo.getType()!=3){
             tag[count_tag]=new tag_slice(width_r,height_r,"管理员");
@@ -45,6 +46,7 @@ public class friend_list{
             Friend admin=new Friend();
             admin.setName("公告");
             friend_start_tag[count_tag]=count_friend;
+            System.out.println("shit4");
             friendslice[count_friend]=new friend_slice(width-1,height/number_per_page,width_r,height_r,admin);
             roll_panel.add(friendslice[count_friend++]);
             friend_end_tag[count_tag]=count_friend;
@@ -65,16 +67,9 @@ public class friend_list{
             });
             count_tag++;
         }
-
         for(String Tag: friend.keySet()){
-            System.out.println("shit3");
             tag[count_tag]=new tag_slice(width_r,height_r,Tag);
-            System.out.println(Tag);
-            System.out.println(friend.get(Tag).get(0).getName());
             roll_panel.add(tag[count_tag]);
-            roll_panel.setBackground(Color.black);
-            scrollPane.setBackground(Color.blue);
-            jPanel.setBackground(Color.red);
             ArrayList<Friend> arrayList=friend.get(Tag);
             int num=arrayList.size();
 

@@ -113,14 +113,42 @@ public class ShoppingHall extends JPanel {
         });
         add(b11);
 
+        Font myfont1 = new Font("楷体 ", Font.BOLD, (int) (18*width_r));
+
         JButton btnNewButton_1 = new JButton("零食");
         btnNewButton_1.setBounds((int) (20*width_r), (int) (150*height_r), (int) (80*width_r), (int) (30*height_r));
-        Font myfont1 = new Font("楷体 ", Font.PLAIN, (int) (18*width_r));
         btnNewButton_1.setFont(myfont1);
-        btnNewButton_1.setContentAreaFilled(false);//设置按钮透明
-        btnNewButton_1.setBorder(null);//取消边框
-        btnNewButton_1.setFocusPainted(false);
         btnNewButton_1.setForeground(new Color(255,255,255));
+        btnNewButton_1.setBackground(new Color(254,178,148));
+        btnNewButton_1.setBorder(BorderFactory.createLineBorder(new Color(254,178,148)));
+        btnNewButton_1.setFocusPainted(false);
+        btnNewButton_1.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                btnNewButton_1.setContentAreaFilled(false);//设置按钮透明
+                btnNewButton_1.setBackground(new Color(255,160,122));
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                super.mouseReleased(e);
+                btnNewButton_1.setContentAreaFilled(true);//设置按钮透明
+                btnNewButton_1.setBackground(new Color(254,178,148));
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                btnNewButton_1.setFont(new Font("楷体",Font.BOLD, (int) (20*width_r)));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                btnNewButton_1.setFont(new Font("楷体 ", Font.PLAIN, (int) (18*width_r)));
+            }
+        });
         btnNewButton_1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -148,18 +176,44 @@ public class ShoppingHall extends JPanel {
                     cardLayout.show(panel, "f11");
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
-                }
-            }
+                } }
         });
         add(btnNewButton_1);
 
         JButton btnNewButton_2 = new JButton("饼干");
         btnNewButton_2.setBounds((int) (120*width_r), (int) (150*height_r), (int) (80*width_r), (int) (30*height_r));
         btnNewButton_2.setFont(myfont1);
-        btnNewButton_2.setContentAreaFilled(false);//设置按钮透明
         btnNewButton_2.setForeground(new Color(255,255,255));
-        btnNewButton_2.setBorder(null);//取消边框
+        btnNewButton_2.setBackground(new Color(254,178,148));
+        btnNewButton_2.setBorder(BorderFactory.createLineBorder(new Color(254,178,148)));
         btnNewButton_2.setFocusPainted(false);
+        btnNewButton_2.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                btnNewButton_2.setContentAreaFilled(false);//设置按钮透明
+                btnNewButton_2.setBackground(new Color(255,160,122));
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                super.mouseReleased(e);
+                btnNewButton_2.setContentAreaFilled(true);//设置按钮透明
+                btnNewButton_2.setBackground(new Color(254,178,148));
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                btnNewButton_2.setFont(new Font("楷体",Font.BOLD, (int) (20*width_r)));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                btnNewButton_2.setFont(new Font("楷体 ", Font.PLAIN, (int) (18*width_r)));
+            }
+        });
         btnNewButton_2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -182,9 +236,9 @@ public class ShoppingHall extends JPanel {
                     }else {
                         setShoptable(null);
                     }
-                    ShoppingHall f12=new ShoppingHall();
-                    panel.add(f12,"f12");
-                    cardLayout.show(panel, "f12");
+                    ShoppingHall f11=new ShoppingHall();
+                    panel.add(f11,"f11");
+                    cardLayout.show(panel, "f11");
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 }
@@ -195,39 +249,65 @@ public class ShoppingHall extends JPanel {
         JButton btnNewButton_3 = new JButton("茶");
         btnNewButton_3.setBounds((int) (225*width_r), (int) (150*height_r), (int) (80*width_r), (int) (30*height_r));
         btnNewButton_3.setFont(myfont1);
-        btnNewButton_3.setContentAreaFilled(false);//设置按钮透明
         btnNewButton_3.setForeground(new Color(255,255,255));
-        btnNewButton_3.setBorder(null);//取消边框
+        btnNewButton_3.setBackground(new Color(254,178,148));
+        btnNewButton_3.setBorder(BorderFactory.createLineBorder(new Color(254,178,148)));
         btnNewButton_3.setFocusPainted(false);
+        btnNewButton_3.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                btnNewButton_3.setContentAreaFilled(false);//设置按钮透明
+                btnNewButton_3.setBackground(new Color(255,160,122));
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                super.mouseReleased(e);
+                btnNewButton_3.setContentAreaFilled(true);//设置按钮透明
+                btnNewButton_3.setBackground(new Color(254,178,148));
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                btnNewButton_3.setFont(new Font("楷体",Font.BOLD, (int) (20*width_r)));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                btnNewButton_3.setFont(new Font("楷体 ", Font.PLAIN, (int) (18*width_r)));
+            }
+        });
         btnNewButton_3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
                     List<Product> t = Client_shop.checktypeProduct("茶");
-                    if(t!=null){
+                    if(t!=null) {
                         String[][] temp = new String[t.size()][];
-                        for(int i =0;i<t.size();i++){
-                            String[] tt =new String[7];
-                            tt[0]=String.valueOf(t.get(i).getProduct_id());
-                            tt[1]=t.get(i).getProduct_name();
-                            tt[2]=String.valueOf(t.get(i).getProduct_price());
-                            tt[3]=String.valueOf(t.get(i).getProduct_currentNumbers());
-                            tt[4]="1";
-                            tt[5]="加入购物车";
-                            tt[6]="购买";
-                            temp[i]=tt;
+                        for (int i = 0; i < t.size(); i++) {
+                            String[] tt = new String[7];
+                            tt[0] = String.valueOf(t.get(i).getProduct_id());
+                            tt[1] = t.get(i).getProduct_name();
+                            tt[2] = String.valueOf(t.get(i).getProduct_price());
+                            tt[3] = String.valueOf(t.get(i).getProduct_currentNumbers());
+                            tt[4] = "1";
+                            tt[5] = "加入购物车";
+                            tt[6] = "购买";
+                            temp[i] = tt;
                         }
                         setShoptable(temp);
                     }else {
                         setShoptable(null);
                     }
-                    ShoppingHall f13=new ShoppingHall();
-                    panel.add(f13,"f13");
-                    cardLayout.show(panel, "f13");
+                    ShoppingHall f11=new ShoppingHall();
+                    panel.add(f11,"f11");
+                    cardLayout.show(panel, "f11");
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
-                }
-            }
+                } }
         });
         add(btnNewButton_3);
 
@@ -287,22 +367,50 @@ public class ShoppingHall extends JPanel {
                     }else {
                         setShoptable(null);
                     }
-                    ShoppingHall f12=new ShoppingHall();
-                    panel.add(f12,"f12");
-                    cardLayout.show(panel, "f12");
+                    ShoppingHall f11=new ShoppingHall();
+                    panel.add(f11,"f11");
+                    cardLayout.show(panel, "f11");
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 } }
         });
         add(btnNewButton_4);
 
+
         JButton btnNewButton_5 = new JButton("饰品");
         btnNewButton_5.setBounds((int) (120*width_r), (int) (220*height_r), (int) (80*width_r), (int) (30*height_r));
         btnNewButton_5.setFont(myfont1);
-        btnNewButton_5.setContentAreaFilled(false);//设置按钮透明
         btnNewButton_5.setForeground(new Color(255,255,255));
-        btnNewButton_5.setBorder(null);//取消边框
+        btnNewButton_5.setBackground(new Color(254,178,148));
+        btnNewButton_5.setBorder(BorderFactory.createLineBorder(new Color(254,178,148)));
         btnNewButton_5.setFocusPainted(false);
+        btnNewButton_5.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                btnNewButton_5.setContentAreaFilled(false);//设置按钮透明
+                btnNewButton_5.setBackground(new Color(255,160,122));
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                super.mouseReleased(e);
+                btnNewButton_5.setContentAreaFilled(true);//设置按钮透明
+                btnNewButton_5.setBackground(new Color(254,178,148));
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                btnNewButton_5.setFont(new Font("楷体",Font.BOLD, (int) (20*width_r)));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                btnNewButton_5.setFont(new Font("楷体 ", Font.PLAIN, (int) (18*width_r)));
+            }
+        });
         btnNewButton_5.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -325,22 +433,49 @@ public class ShoppingHall extends JPanel {
                     }else {
                         setShoptable(null);
                     }
-                    ShoppingHall f12=new ShoppingHall();
-                    panel.add(f12,"f12");
-                    cardLayout.show(panel, "f12");
+                    ShoppingHall f11=new ShoppingHall();
+                    panel.add(f11,"f11");
+                    cardLayout.show(panel, "f11");
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
-                }  }
+                }}
         });
         add(btnNewButton_5);
 
         JButton btnNewButton_6 = new JButton("洗护");
         btnNewButton_6.setBounds((int) (225*width_r), (int) (220*height_r), (int) (80*width_r), (int) (30*height_r));
         btnNewButton_6.setFont(myfont1);
-        btnNewButton_6.setContentAreaFilled(false);//设置按钮透明
         btnNewButton_6.setForeground(new Color(255,255,255));
-        btnNewButton_6.setBorder(null);//取消边框
+        btnNewButton_6.setBackground(new Color(254,178,148));
+        btnNewButton_6.setBorder(BorderFactory.createLineBorder(new Color(254,178,148)));
         btnNewButton_6.setFocusPainted(false);
+        btnNewButton_6.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                btnNewButton_6.setContentAreaFilled(false);//设置按钮透明
+                btnNewButton_6.setBackground(new Color(255,160,122));
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                super.mouseReleased(e);
+                btnNewButton_6.setContentAreaFilled(true);//设置按钮透明
+                btnNewButton_6.setBackground(new Color(254,178,148));
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                btnNewButton_6.setFont(new Font("楷体",Font.BOLD, (int) (20*width_r)));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                btnNewButton_6.setFont(new Font("楷体 ", Font.PLAIN, (int) (18*width_r)));
+            }
+        });
         btnNewButton_6.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -363,22 +498,49 @@ public class ShoppingHall extends JPanel {
                     }else {
                         setShoptable(null);
                     }
-                    ShoppingHall f12=new ShoppingHall();
-                    panel.add(f12,"f12");
-                    cardLayout.show(panel, "f12");
+                    ShoppingHall f11=new ShoppingHall();
+                    panel.add(f11,"f11");
+                    cardLayout.show(panel, "f11");
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
-                }}
+                } }
         });
         add(btnNewButton_6);
 
         JButton btnNewButton_7 = new JButton("男装");
         btnNewButton_7.setBounds((int) (20*width_r), (int) (290*height_r), (int) (80*width_r), (int) (30*height_r));
         btnNewButton_7.setFont(myfont1);
-        btnNewButton_7.setContentAreaFilled(false);//设置按钮透明
         btnNewButton_7.setForeground(new Color(255,255,255));
-        btnNewButton_7.setBorder(null);//取消边框
+        btnNewButton_7.setBackground(new Color(254,178,148));
+        btnNewButton_7.setBorder(BorderFactory.createLineBorder(new Color(254,178,148)));
         btnNewButton_7.setFocusPainted(false);
+        btnNewButton_7.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                btnNewButton_7.setContentAreaFilled(false);//设置按钮透明
+                btnNewButton_7.setBackground(new Color(255,160,122));
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                super.mouseReleased(e);
+                btnNewButton_7.setContentAreaFilled(true);//设置按钮透明
+                btnNewButton_7.setBackground(new Color(254,178,148));
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                btnNewButton_7.setFont(new Font("楷体",Font.BOLD, (int) (20*width_r)));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                btnNewButton_7.setFont(new Font("楷体 ", Font.PLAIN, (int) (18*width_r)));
+            }
+        });
         btnNewButton_7.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -401,9 +563,9 @@ public class ShoppingHall extends JPanel {
                     }else {
                         setShoptable(null);
                     }
-                    ShoppingHall f12=new ShoppingHall();
-                    panel.add(f12,"f12");
-                    cardLayout.show(panel, "f12");
+                    ShoppingHall f11=new ShoppingHall();
+                    panel.add(f11,"f11");
+                    cardLayout.show(panel, "f11");
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 } }
@@ -413,10 +575,37 @@ public class ShoppingHall extends JPanel {
         JButton btnNewButton_8 = new JButton("运动");
         btnNewButton_8.setBounds((int) (120*width_r), (int) (290*height_r), (int) (80*width_r), (int) (30*height_r));
         btnNewButton_8.setFont(myfont1);
-        btnNewButton_8.setContentAreaFilled(false);//设置按钮透明
         btnNewButton_8.setForeground(new Color(255,255,255));
-        btnNewButton_8.setBorder(null);//取消边框
+        btnNewButton_8.setBackground(new Color(254,178,148));
+        btnNewButton_8.setBorder(BorderFactory.createLineBorder(new Color(254,178,148)));
         btnNewButton_8.setFocusPainted(false);
+        btnNewButton_8.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                btnNewButton_8.setContentAreaFilled(false);//设置按钮透明
+                btnNewButton_8.setBackground(new Color(255,160,122));
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                super.mouseReleased(e);
+                btnNewButton_8.setContentAreaFilled(true);//设置按钮透明
+                btnNewButton_8.setBackground(new Color(254,178,148));
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                btnNewButton_8.setFont(new Font("楷体",Font.BOLD, (int) (20*width_r)));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                btnNewButton_8.setFont(new Font("楷体 ", Font.PLAIN, (int) (18*width_r)));
+            }
+        });
         btnNewButton_8.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -439,9 +628,9 @@ public class ShoppingHall extends JPanel {
                     }else {
                         setShoptable(null);
                     }
-                    ShoppingHall f12=new ShoppingHall();
-                    panel.add(f12,"f12");
-                    cardLayout.show(panel, "f12");
+                    ShoppingHall f11=new ShoppingHall();
+                    panel.add(f11,"f11");
+                    cardLayout.show(panel, "f11");
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 } }
@@ -451,10 +640,37 @@ public class ShoppingHall extends JPanel {
         JButton btnNewButton_9 = new JButton("百货");
         btnNewButton_9.setBounds((int) (225*width_r), (int) (290*height_r), (int) (80*width_r), (int) (30*height_r));
         btnNewButton_9.setFont(myfont1);
-        btnNewButton_9.setContentAreaFilled(false);//设置按钮透明
         btnNewButton_9.setForeground(new Color(255,255,255));
-        btnNewButton_9.setBorder(null);//取消边框
+        btnNewButton_9.setBackground(new Color(254,178,148));
+        btnNewButton_9.setBorder(BorderFactory.createLineBorder(new Color(254,178,148)));
         btnNewButton_9.setFocusPainted(false);
+        btnNewButton_9.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                btnNewButton_9.setContentAreaFilled(false);//设置按钮透明
+                btnNewButton_9.setBackground(new Color(255,160,122));
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                super.mouseReleased(e);
+                btnNewButton_9.setContentAreaFilled(true);//设置按钮透明
+                btnNewButton_9.setBackground(new Color(254,178,148));
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                btnNewButton_9.setFont(new Font("楷体",Font.BOLD, (int) (20*width_r)));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                btnNewButton_9.setFont(new Font("楷体 ", Font.PLAIN, (int) (18*width_r)));
+            }
+        });
         btnNewButton_9.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -477,9 +693,9 @@ public class ShoppingHall extends JPanel {
                     }else {
                         setShoptable(null);
                     }
-                    ShoppingHall f12=new ShoppingHall();
-                    panel.add(f12,"f12");
-                    cardLayout.show(panel, "f12");
+                    ShoppingHall f11=new ShoppingHall();
+                    panel.add(f11,"f11");
+                    cardLayout.show(panel, "f11");
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 } }
@@ -489,10 +705,37 @@ public class ShoppingHall extends JPanel {
         JButton btnNewButton_10 = new JButton("手机");
         btnNewButton_10.setBounds((int) (20*width_r), (int) (360*height_r), (int) (80*width_r), (int) (30*height_r));
         btnNewButton_10.setFont(myfont1);
-        btnNewButton_10.setContentAreaFilled(false);//设置按钮透明
         btnNewButton_10.setForeground(new Color(255,255,255));
-        btnNewButton_10.setBorder(null);//取消边框
+        btnNewButton_10.setBackground(new Color(254,178,148));
+        btnNewButton_10.setBorder(BorderFactory.createLineBorder(new Color(254,178,148)));
         btnNewButton_10.setFocusPainted(false);
+        btnNewButton_10.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                btnNewButton_10.setContentAreaFilled(false);//设置按钮透明
+                btnNewButton_10.setBackground(new Color(255,160,122));
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                super.mouseReleased(e);
+                btnNewButton_10.setContentAreaFilled(true);//设置按钮透明
+                btnNewButton_10.setBackground(new Color(254,178,148));
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                btnNewButton_10.setFont(new Font("楷体",Font.BOLD, (int) (20*width_r)));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                btnNewButton_10.setFont(new Font("楷体 ", Font.PLAIN, (int) (18*width_r)));
+            }
+        });
         btnNewButton_10.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -515,22 +758,49 @@ public class ShoppingHall extends JPanel {
                     }else {
                         setShoptable(null);
                     }
-                    ShoppingHall f12=new ShoppingHall();
-                    panel.add(f12,"f12");
-                    cardLayout.show(panel, "f12");
+                    ShoppingHall f11=new ShoppingHall();
+                    panel.add(f11,"f11");
+                    cardLayout.show(panel, "f11");
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
-                }  }
+                }}
         });
         add(btnNewButton_10);
 
         JButton btnNewButton_11 = new JButton("数码");
         btnNewButton_11.setBounds((int) (120*width_r), (int) (360*height_r), (int) (80*width_r), (int) (30*height_r));
         btnNewButton_11.setFont(myfont1);
-        btnNewButton_11.setContentAreaFilled(false);//设置按钮透明
         btnNewButton_11.setForeground(new Color(255,255,255));
-        btnNewButton_11.setBorder(null);//取消边框
+        btnNewButton_11.setBackground(new Color(254,178,148));
+        btnNewButton_11.setBorder(BorderFactory.createLineBorder(new Color(254,178,148)));
         btnNewButton_11.setFocusPainted(false);
+        btnNewButton_11.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                btnNewButton_11.setContentAreaFilled(false);//设置按钮透明
+                btnNewButton_11.setBackground(new Color(255,160,122));
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                super.mouseReleased(e);
+                btnNewButton_11.setContentAreaFilled(true);//设置按钮透明
+                btnNewButton_11.setBackground(new Color(254,178,148));
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                btnNewButton_11.setFont(new Font("楷体",Font.BOLD, (int) (20*width_r)));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                btnNewButton_11.setFont(new Font("楷体 ", Font.PLAIN, (int) (18*width_r)));
+            }
+        });
         btnNewButton_11.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -553,23 +823,50 @@ public class ShoppingHall extends JPanel {
                     }else {
                         setShoptable(null);
                     }
-                    ShoppingHall f12=new ShoppingHall();
-                    panel.add(f12,"f12");
-                    cardLayout.show(panel, "f12");
+                    ShoppingHall f11=new ShoppingHall();
+                    panel.add(f11,"f11");
+                    cardLayout.show(panel, "f11");
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
-                }  }
+                }}
         });
         add(btnNewButton_11);
 
         JButton btnNewButton_12 = new JButton("礼品");
         btnNewButton_12.setBounds((int) (225*width_r), (int) (360*height_r), (int) (80*width_r), (int) (30*height_r));
         btnNewButton_12.setFont(myfont1);
-        btnNewButton_12.setContentAreaFilled(false);//设置按钮透明
         btnNewButton_12.setForeground(new Color(255,255,255));
-        btnNewButton_12.setBorder(null);//取消边框
+        btnNewButton_12.setBackground(new Color(254,178,148));
+        btnNewButton_12.setBorder(BorderFactory.createLineBorder(new Color(254,178,148)));
         btnNewButton_12.setFocusPainted(false);
-        btnNewButton_12.addActionListener(new ActionListener() {
+        btnNewButton_12.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                btnNewButton_12.setContentAreaFilled(false);//设置按钮透明
+                btnNewButton_12.setBackground(new Color(255,160,122));
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                super.mouseReleased(e);
+                btnNewButton_12.setContentAreaFilled(true);//设置按钮透明
+                btnNewButton_12.setBackground(new Color(254,178,148));
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                btnNewButton_12.setFont(new Font("楷体",Font.BOLD, (int) (20*width_r)));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                btnNewButton_12.setFont(new Font("楷体 ", Font.PLAIN, (int) (18*width_r)));
+            }
+        });
+        btnNewButton_1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
@@ -591,22 +888,49 @@ public class ShoppingHall extends JPanel {
                     }else {
                         setShoptable(null);
                     }
-                    ShoppingHall f12=new ShoppingHall();
-                    panel.add(f12,"f12");
-                    cardLayout.show(panel, "f12");
+                    ShoppingHall f11=new ShoppingHall();
+                    panel.add(f11,"f11");
+                    cardLayout.show(panel, "f11");
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
-                }  }
+                }}
         });
         add(btnNewButton_12);
 
         JButton btnNewButton_13 = new JButton("家装");
         btnNewButton_13.setBounds((int) (20*width_r), (int) (430*height_r), (int) (80*width_r), (int) (30*height_r));
         btnNewButton_13.setFont(myfont1);
-        btnNewButton_13.setContentAreaFilled(false);//设置按钮透明
         btnNewButton_13.setForeground(new Color(255,255,255));
-        btnNewButton_13.setBorder(null);//取消边框
+        btnNewButton_13.setBackground(new Color(254,178,148));
+        btnNewButton_13.setBorder(BorderFactory.createLineBorder(new Color(254,178,148)));
         btnNewButton_13.setFocusPainted(false);
+        btnNewButton_13.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                btnNewButton_13.setContentAreaFilled(false);//设置按钮透明
+                btnNewButton_13.setBackground(new Color(255,160,122));
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                super.mouseReleased(e);
+                btnNewButton_13.setContentAreaFilled(true);//设置按钮透明
+                btnNewButton_13.setBackground(new Color(254,178,148));
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                btnNewButton_13.setFont(new Font("楷体",Font.BOLD, (int) (20*width_r)));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                btnNewButton_13.setFont(new Font("楷体 ", Font.PLAIN, (int) (18*width_r)));
+            }
+        });
         btnNewButton_13.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -629,9 +953,9 @@ public class ShoppingHall extends JPanel {
                     }else {
                         setShoptable(null);
                     }
-                    ShoppingHall f12=new ShoppingHall();
-                    panel.add(f12,"f12");
-                    cardLayout.show(panel, "f12");
+                    ShoppingHall f11=new ShoppingHall();
+                    panel.add(f11,"f11");
+                    cardLayout.show(panel, "f11");
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 } }
@@ -641,10 +965,37 @@ public class ShoppingHall extends JPanel {
         JButton btnNewButton_14 = new JButton("电器");
         btnNewButton_14.setBounds((int) (120*width_r), (int) (430*height_r), (int) (80*width_r), (int) (30*height_r));
         btnNewButton_14.setFont(myfont1);
-        btnNewButton_14.setContentAreaFilled(false);//设置按钮透明
         btnNewButton_14.setForeground(new Color(255,255,255));
-        btnNewButton_14.setBorder(null);//取消边框
+        btnNewButton_14.setBackground(new Color(254,178,148));
+        btnNewButton_14.setBorder(BorderFactory.createLineBorder(new Color(254,178,148)));
         btnNewButton_14.setFocusPainted(false);
+        btnNewButton_14.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                btnNewButton_14.setContentAreaFilled(false);//设置按钮透明
+                btnNewButton_14.setBackground(new Color(255,160,122));
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                super.mouseReleased(e);
+                btnNewButton_14.setContentAreaFilled(true);//设置按钮透明
+                btnNewButton_14.setBackground(new Color(254,178,148));
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                btnNewButton_14.setFont(new Font("楷体",Font.BOLD, (int) (20*width_r)));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                btnNewButton_14.setFont(new Font("楷体 ", Font.PLAIN, (int) (18*width_r)));
+            }
+        });
         btnNewButton_14.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -667,9 +1018,9 @@ public class ShoppingHall extends JPanel {
                     }else {
                         setShoptable(null);
                     }
-                    ShoppingHall f12=new ShoppingHall();
-                    panel.add(f12,"f12");
-                    cardLayout.show(panel, "f12");
+                    ShoppingHall f11=new ShoppingHall();
+                    panel.add(f11,"f11");
+                    cardLayout.show(panel, "f11");
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 }}
@@ -679,10 +1030,37 @@ public class ShoppingHall extends JPanel {
         JButton btnNewButton_15 = new JButton("厨具");
         btnNewButton_15.setBounds((int) (225*width_r), (int) (430*height_r), (int) (80*width_r), (int) (30*height_r));
         btnNewButton_15.setFont(myfont1);
-        btnNewButton_15.setContentAreaFilled(false);//设置按钮透明
         btnNewButton_15.setForeground(new Color(255,255,255));
-        btnNewButton_15.setBorder(null);//取消边框
+        btnNewButton_15.setBackground(new Color(254,178,148));
+        btnNewButton_15.setBorder(BorderFactory.createLineBorder(new Color(254,178,148)));
         btnNewButton_15.setFocusPainted(false);
+        btnNewButton_15.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                btnNewButton_15.setContentAreaFilled(false);//设置按钮透明
+                btnNewButton_15.setBackground(new Color(255,160,122));
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                super.mouseReleased(e);
+                btnNewButton_15.setContentAreaFilled(true);//设置按钮透明
+                btnNewButton_15.setBackground(new Color(254,178,148));
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                btnNewButton_15.setFont(new Font("楷体",Font.BOLD, (int) (20*width_r)));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                btnNewButton_15.setFont(new Font("楷体 ", Font.PLAIN, (int) (18*width_r)));
+            }
+        });
         btnNewButton_15.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -705,9 +1083,9 @@ public class ShoppingHall extends JPanel {
                     }else {
                         setShoptable(null);
                     }
-                    ShoppingHall f12=new ShoppingHall();
-                    panel.add(f12,"f12");
-                    cardLayout.show(panel, "f12");
+                    ShoppingHall f11=new ShoppingHall();
+                    panel.add(f11,"f11");
+                    cardLayout.show(panel, "f11");
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 } }
@@ -717,10 +1095,37 @@ public class ShoppingHall extends JPanel {
         JButton btnNewButton_16 = new JButton("医药");
         btnNewButton_16.setBounds((int) (20*width_r), (int) (500*height_r), (int) (80*width_r), (int) (30*height_r));
         btnNewButton_16.setFont(myfont1);
-        btnNewButton_16.setContentAreaFilled(false);//设置按钮透明
         btnNewButton_16.setForeground(new Color(255,255,255));
-        btnNewButton_16.setBorder(null);//取消边框
+        btnNewButton_16.setBackground(new Color(254,178,148));
+        btnNewButton_16.setBorder(BorderFactory.createLineBorder(new Color(254,178,148)));
         btnNewButton_16.setFocusPainted(false);
+        btnNewButton_16.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                btnNewButton_16.setContentAreaFilled(false);//设置按钮透明
+                btnNewButton_16.setBackground(new Color(255,160,122));
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                super.mouseReleased(e);
+                btnNewButton_16.setContentAreaFilled(true);//设置按钮透明
+                btnNewButton_16.setBackground(new Color(254,178,148));
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                btnNewButton_16.setFont(new Font("楷体",Font.BOLD, (int) (20*width_r)));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                btnNewButton_16.setFont(new Font("楷体 ", Font.PLAIN, (int) (18*width_r)));
+            }
+        });
         btnNewButton_16.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -743,22 +1148,49 @@ public class ShoppingHall extends JPanel {
                     }else {
                         setShoptable(null);
                     }
-                    ShoppingHall f12=new ShoppingHall();
-                    panel.add(f12,"f12");
-                    cardLayout.show(panel, "f12");
+                    ShoppingHall f11=new ShoppingHall();
+                    panel.add(f11,"f11");
+                    cardLayout.show(panel, "f11");
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
-                }  }
+                } }
         });
         add(btnNewButton_16);
 
         JButton btnNewButton_17 = new JButton("保健");
         btnNewButton_17.setBounds((int) (120*width_r), (int) (500*height_r), (int) (80*width_r), (int) (30*height_r));
         btnNewButton_17.setFont(myfont1);
-        btnNewButton_17.setContentAreaFilled(false);//设置按钮透明
         btnNewButton_17.setForeground(new Color(255,255,255));
-        btnNewButton_17.setBorder(null);//取消边框
+        btnNewButton_17.setBackground(new Color(254,178,148));
+        btnNewButton_17.setBorder(BorderFactory.createLineBorder(new Color(254,178,148)));
         btnNewButton_17.setFocusPainted(false);
+        btnNewButton_17.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                btnNewButton_17.setContentAreaFilled(false);//设置按钮透明
+                btnNewButton_17.setBackground(new Color(255,160,122));
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                super.mouseReleased(e);
+                btnNewButton_17.setContentAreaFilled(true);//设置按钮透明
+                btnNewButton_17.setBackground(new Color(254,178,148));
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                btnNewButton_17.setFont(new Font("楷体",Font.BOLD, (int) (20*width_r)));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                btnNewButton_17.setFont(new Font("楷体 ", Font.PLAIN, (int) (18*width_r)));
+            }
+        });
         btnNewButton_17.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -781,9 +1213,9 @@ public class ShoppingHall extends JPanel {
                     }else {
                         setShoptable(null);
                     }
-                    ShoppingHall f12=new ShoppingHall();
-                    panel.add(f12,"f12");
-                    cardLayout.show(panel, "f12");
+                    ShoppingHall f11=new ShoppingHall();
+                    panel.add(f11,"f11");
+                    cardLayout.show(panel, "f11");
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 } }
@@ -793,10 +1225,37 @@ public class ShoppingHall extends JPanel {
         JButton btnNewButton_18 = new JButton("生鲜");
         btnNewButton_18.setBounds((int) (225*width_r), (int) (500*height_r), (int) (80*width_r), (int) (30*height_r));
         btnNewButton_18.setFont(myfont1);
-        btnNewButton_18.setContentAreaFilled(false);//设置按钮透明
         btnNewButton_18.setForeground(new Color(255,255,255));
-        btnNewButton_18.setBorder(null);//取消边框
+        btnNewButton_18.setBackground(new Color(254,178,148));
+        btnNewButton_18.setBorder(BorderFactory.createLineBorder(new Color(254,178,148)));
         btnNewButton_18.setFocusPainted(false);
+        btnNewButton_18.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                btnNewButton_18.setContentAreaFilled(false);//设置按钮透明
+                btnNewButton_18.setBackground(new Color(255,160,122));
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                super.mouseReleased(e);
+                btnNewButton_18.setContentAreaFilled(true);//设置按钮透明
+                btnNewButton_18.setBackground(new Color(254,178,148));
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                btnNewButton_18.setFont(new Font("楷体",Font.BOLD, (int) (20*width_r)));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                btnNewButton_18.setFont(new Font("楷体 ", Font.PLAIN, (int) (18*width_r)));
+            }
+        });
         btnNewButton_18.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -819,9 +1278,9 @@ public class ShoppingHall extends JPanel {
                     }else {
                         setShoptable(null);
                     }
-                    ShoppingHall f12=new ShoppingHall();
-                    panel.add(f12,"f12");
-                    cardLayout.show(panel, "f12");
+                    ShoppingHall f11=new ShoppingHall();
+                    panel.add(f11,"f11");
+                    cardLayout.show(panel, "f11");
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 } }

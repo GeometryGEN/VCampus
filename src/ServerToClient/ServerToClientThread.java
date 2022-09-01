@@ -536,6 +536,7 @@ public class ServerToClientThread extends Thread{
                     sendback.setData(iat);
                     sendback.setType(MessageType.MESSAGE_STATUS_CONFIRM_RET);
                     oos.writeObject(sendback);
+                    System.out.println("okokok");
                 }
             } catch (Exception e){
                 e.printStackTrace();

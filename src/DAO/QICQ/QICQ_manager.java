@@ -331,7 +331,7 @@ public class QICQ_manager {
             {
                 Blob blob=(Blob) rs.getBlob("file");
                 Filetrans filetrans=new Filetrans();
-                filetrans.content=new byte[1024];
+                filetrans.content=new byte[(int)blob.length()];
                 InputStream is=blob.getBinaryStream();
                 int len;
                 int i=0;
@@ -366,7 +366,7 @@ public class QICQ_manager {
     }
 
     public byte[] readicon(String id) throws SQLException {
-        String path = "src/image/QQ/temp.jpg";
+       /* String path = "src/image/QQ/temp.jpg";
         File file = new File(path);
         if (file.exists()) {
             file.delete();
@@ -375,7 +375,7 @@ public class QICQ_manager {
             file.createNewFile();
         } catch (IOException e) {
             throw new RuntimeException(e);
-        }
+        }*/
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -388,11 +388,10 @@ public class QICQ_manager {
             if (rs.next()) {
                 Blob picture= rs.getBlob("image");
                 InputStream in = picture.getBinaryStream();
-                OutputStream out = new FileOutputStream(file);
                 int len = 0;
                 byte[] buf = new byte[(int)picture.length()];
                 while ((len = in.read(buf)) != -1) {
-                    out.write(buf, 0, len);
+                   // out.write(buf, 0, len);
                 }
                 System.out.println("图片读取成功！");
             //    JDBC_Connector.close(rs,ps,conn);

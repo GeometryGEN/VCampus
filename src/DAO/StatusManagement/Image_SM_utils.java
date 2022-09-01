@@ -46,7 +46,7 @@ public class Image_SM_utils {
     }
     // 读取数据库中图片
     public static byte[] readDBImage(String id) throws SQLException {
-        String path = "src/image/temp.jpg";
+        /*String path = "src/image/temp.jpg";
         File file = new File(path);
         if (file.exists()) {
             file.delete();
@@ -55,7 +55,7 @@ public class Image_SM_utils {
             file.createNewFile();
         } catch (IOException e) {
             throw new RuntimeException(e);
-        }
+        }*/
         Connection conn = null;
         PreparedStatement ps = null;
         ResultSet rs = null;
@@ -68,11 +68,11 @@ public class Image_SM_utils {
             if (rs.next()) {
                 Blob picture= rs.getBlob("photo");
                 InputStream in = picture.getBinaryStream();
-                OutputStream out = new FileOutputStream(file);
+              //  OutputStream out = new FileOutputStream(file);
                 int len = 0;
                 byte[] buf = new byte[(int)picture.length()];
                 while ((len = in.read(buf)) != -1) {
-                    out.write(buf, 0, len);
+                 //   out.write(buf, 0, len);
                 }
                 System.out.println("图片读取成功！");
              //   JDBC_Connector.close(rs,ps,conn);

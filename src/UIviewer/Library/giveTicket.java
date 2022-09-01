@@ -125,6 +125,7 @@ public class giveTicket extends JPanel {
         try {
             Thumbnails.of(new File("src/image/bg13.jpg"))
                     .size((int)(icon2_width*width_r), (int)(icon2_height*height_r))
+                    .keepAspectRatio(false)
                     .toFile(new File("src/image/bg13_min.jpg"));
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -135,7 +136,7 @@ public class giveTicket extends JPanel {
         add(p12);
 
         JPanel p11=new JPanel();
-        p11.setBounds(0,0, (int) (1260*width_r), (int) (650*height_r));
+        p11.setBounds(0,0, (int) (1300*width_r), (int) (650*height_r));
         JLabel pic1 = new JLabel();
         ImageIcon icon1 = new ImageIcon("src/image/main3.jpg");
         int icon3_width= 1300;
@@ -143,13 +144,15 @@ public class giveTicket extends JPanel {
         try {
             Thumbnails.of(new File("src/image/main3.jpg"))
                     .size((int)(icon3_width*width_r), (int)(icon3_height*height_r))
+                    .keepAspectRatio(false)
                     .toFile(new File("src/image/main3_min.jpg"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
         pic1.setIcon(new ImageIcon("src/image/main3_min.jpg"));
-        pic1.setBounds(0,0 , (int) (1260*width_r), (int) (650*height_r));
+        pic1.setBounds(0,0 , (int) (1300*width_r), (int) (650*height_r));
         p11.add(pic1);
         add(p11);
+
     }
 }

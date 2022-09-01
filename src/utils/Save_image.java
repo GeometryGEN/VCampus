@@ -9,9 +9,9 @@ import java.sql.*;
 public class Save_image {
     public static void main(String[] args) throws FileNotFoundException, SQLException {
      //   JDBC_Connector.first_connect();
-        String p="src/image/cartoon/";
-        for(int i=41;i<=41;i++)
-        {
+        String p="src/image/";
+      //  for(int i=41;i<=41;i++)
+      //  {
             /*try {
                 Thumbnails.of(new File(p+i+".jpg"))
                         .size(250, 250)
@@ -19,13 +19,13 @@ public class Save_image {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }*/
-            String path = p+ i+".jpg";
+            String path = p+"try.png";
             System.out.println(path);
             File file = new File(path);
             FileInputStream fis=new FileInputStream(file);
             try {
                 Connection conn = JDBC_Connector.ConnectMySQL();
-                String sql = "insert into userphotos(photo_id,photo) values(?,?);";
+                String sql = "insert into qqimage(id,image) values(?,?);";
                 PreparedStatement ps = JDBC_Connector.ConnectMySQL().prepareStatement(sql);
                 ps.setString(1, null);
                 ps.setBinaryStream(2,fis,(int)file.length());
@@ -36,7 +36,7 @@ public class Save_image {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
+      //  }
 
     }
 }
