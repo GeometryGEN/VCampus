@@ -8,7 +8,7 @@ public class JDBC_Connector {
         return connection;
     }
     public static Connection ConnectMySQL() throws SQLException{
-
+        //
         String driver = "com.mysql.cj.jdbc.Driver";         //将MySQL数据库驱动名称封装在字符串中
         //指定使用数据库的路径、编码格式、时区，并以字符串进行封装
         String url = "jdbc:mysql://localhost:3306/gzy_vcampus?useUnicode=true&characterEncoding=utf8&" +

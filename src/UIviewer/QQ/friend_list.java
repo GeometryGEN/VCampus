@@ -1,6 +1,7 @@
 package UIviewer.QQ;
 
 import DAO.QICQ.Friend;
+import ClientToServer.myInfo;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -37,6 +38,35 @@ public class friend_list{
         count_tag=0;
 
 
+        //admin
+        if(myInfo.getType()!=3){
+            tag[count_tag]=new tag_slice(width_r,height_r,"管理员");
+            roll_panel.add(tag[count_tag]);
+            Friend admin=new Friend();
+            admin.setName("公告");
+            friend_start_tag[count_tag]=count_friend;
+            friendslice[count_friend]=new friend_slice(width-1,height/number_per_page,width_r,height_r,admin);
+            roll_panel.add(friendslice[count_friend++]);
+            friend_end_tag[count_tag]=count_friend;
+            int count_tag1=count_tag;
+            tag[count_tag1].addMouseListener(new java.awt.event.MouseAdapter() {
+                public void mouseClicked(java.awt.event.MouseEvent e) {
+                    System.out.println("clicked");
+                    if(friendslice[friend_start_tag[count_tag1]].isVisible()==true) {
+                        for (int i = friend_start_tag[count_tag1]; i < friend_end_tag[count_tag1]; i++) {
+                            friendslice[i].setVisible(false);
+                        }
+                    }
+                    else{
+                        for (int i = friend_start_tag[count_tag1]; i < friend_end_tag[count_tag1]; i++) {
+                            friendslice[i].setVisible(true);
+                        }
+                    }
+                }
+            });
+            count_tag++;
+        }
+
         for(String Tag: friend.keySet()){
             tag[count_tag]=new tag_slice(width_r,height_r,Tag);
             roll_panel.add(tag[count_tag]);
@@ -49,20 +79,20 @@ public class friend_list{
                 roll_panel.add(friendslice[count_friend++]);
             }
             friend_end_tag[count_tag]=count_friend;
-            int count1=count_tag;
-            tag[count1].addMouseListener(new java.awt.event.MouseAdapter() {
+            int count_tag1=count_tag;
+            tag[count_tag1].addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseClicked(java.awt.event.MouseEvent e) {
-                    if(friendslice[friend_start_tag[count1]].isVisible()==true) {
-                        for (int i = friend_start_tag[count1]; i < friend_end_tag[count1]; i++) {
+                    System.out.println("clicked");
+                    if(friendslice[friend_start_tag[count_tag1]].isVisible()==true) {
+                        for (int i = friend_start_tag[count_tag1]; i < friend_end_tag[count_tag1]; i++) {
                             friendslice[i].setVisible(false);
                         }
                     }
                     else{
-                        for (int i = friend_start_tag[count1]; i < friend_end_tag[count1]; i++) {
+                        for (int i = friend_start_tag[count_tag1]; i < friend_end_tag[count_tag1]; i++) {
                             friendslice[i].setVisible(true);
                         }
                     }
-                    update();
                 }
             });
             count_tag++;

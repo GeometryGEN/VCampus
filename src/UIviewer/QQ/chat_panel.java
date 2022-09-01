@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class chat_panel extends JPanel {
-    private JPanel type_panel;
+    public JPanel type_panel;
     private static JScrollPane scrollPane;
     private static Friend friend;
     static double width_r,height_r;
@@ -95,12 +95,13 @@ public class chat_panel extends JPanel {
         if(files.size()!=0){
             System.out.println("has file");
             receive_button.setVisible(true);
+            receive_button.setFocusPainted(false);
         }
         else {
             receive_button.setVisible(false);
+            receive_button.setFocusPainted(false);
         }
 
-        jTextPane.setCaretPosition(doc.getLength());
         jTextPane.setEditable(false);
 
         jTextPane.updateUI();
@@ -125,6 +126,7 @@ public class chat_panel extends JPanel {
         add(type_panel);
         //发送消息按钮
         JButton send_button= new JButton();
+        send_button.setFocusPainted(false);
         int send_button_height=70;
         int send_button_width=140;
         send_button.setBackground(new Color(30,111,255));
@@ -135,6 +137,7 @@ public class chat_panel extends JPanel {
         type_panel.add(send_button);
         //发送文件按钮
         JButton send_file_button= new JButton();
+        send_file_button.setFocusPainted(false);
         int send_file_button_height=70;
         int send_file_button_width=140;
         send_file_button.setBackground(new Color(30,111,255));
@@ -151,6 +154,7 @@ public class chat_panel extends JPanel {
         });
         //关闭该聊天框按钮
         JButton close_button= new JButton();
+        close_button.setFocusPainted(false);
         int close_button_height=70;
         int close_button_width=140;
         close_button.setBackground(new Color(211,10,11));
@@ -171,6 +175,7 @@ public class chat_panel extends JPanel {
         int receive_button_height=70;
         int receive_button_width=140;
         receive_button= new JButton();
+        receive_button.setFocusPainted(false);
         receive_button.setBackground(new Color(10, 211, 87));
         receive_button.setFont(new Font("宋体",Font.PLAIN,(int)(25*width_r)));
         receive_button.setText("接受文件");
@@ -195,12 +200,18 @@ public class chat_panel extends JPanel {
         send_button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //发送信息函数
-                Client_qicq.send_message(type_field.getText(), myInfo.getId(),friend.getId());
-                try {
-                    Client_qicq.get_message(friend.getId());
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
+                if(myInfo.getType()!=3){
+                    //发送信息函数
+                    Client_qicq.send_message(type_field.getText(), myInfo.getId(),friend.getId());
+                    try {
+                        Client_qicq.get_message(friend.getId());
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                }
+                else {
+                    Client_qicq.add_announcement(myInfo.getId(),type_field.getText());
+                    Client_qicq.get_announcement();
                 }
                 type_field.setText("");
 
@@ -228,7 +239,6 @@ public class chat_panel extends JPanel {
     }
 
     public static void show_announcement(ArrayList<Message> messages) {
-
         jTextPane.setText(null);
         //开头空格
         SimpleAttributeSet set = new SimpleAttributeSet();
@@ -243,21 +253,15 @@ public class chat_panel extends JPanel {
         insertText("公告",Color.black,(int)(45*width_r*height_r),1);
         int num=messages.size();
         for(int i=num-1;i>=0;i--) {
-            if(myInfo.getType()==3){
                 insertText(messages.get(i).getSendTime(),new Color(122,122,123),(int)(16*width_r),1);
                 insertText((String)(messages.get(i).getData()),Color.black,(int)(42*width_r),1);
-
-            }
-            else {
-                insertText(messages.get(i).getSendTime(),new Color(122,122,123),(int)(16*width_r),1);
-                insertText((String)(messages.get(i).getData()),Color.black,(int)(42*width_r),0);
-            }
         }
 
-        jTextPane.setCaretPosition(doc.getLength());
         jTextPane.setEditable(false);
-
+        System.out.println(1);
         jTextPane.updateUI();
+        scrollPane.updateUI();
+
         jTextPane.setCaretPosition(jTextPane.getStyledDocument().getLength());
     }
 
