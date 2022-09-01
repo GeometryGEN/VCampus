@@ -387,7 +387,7 @@ public class Course_manager {
         st.setString(2,c.id);
         st.executeUpdate();
         Random r=new Random();
-        String new_id="B09"+String.valueOf(r.nextInt(1000))+String.valueOf(r.nextInt(1000))+"01";
+        String new_id="B09"+String.valueOf(r.nextInt(900)+100)+String.valueOf(r.nextInt(900)+100)+"01";
         sql="insert into curriculum(id,name,teacher,hour,point,size,classroom,time) values(?,?,?,?,?,null,null,null);";
         st= conn.prepareStatement(sql);
         st.setString(1,new_id);
@@ -401,7 +401,7 @@ public class Course_manager {
         st.setString(1,c.id);
         ResultSet rs=st.executeQuery();
         String tid=rs.getString(1);
-        sql="insert into curriculum(tea_id,course_id) values(?,?);";
+        sql="insert into teaching(tea_id,course_id) values(?,?);";
         conn.prepareStatement(sql);
         st.setString(2,new_id);
         st.setString(1,tid);
