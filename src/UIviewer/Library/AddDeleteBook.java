@@ -111,6 +111,7 @@ public class AddDeleteBook extends JPanel {
         b1.setFont(new Font("楷体", Font.BOLD, (int) (18*width_r)));
         b1.setBounds((int) (235*width_r), (int) (420*height_r), (int) (120*width_r), (int) (50*height_r));
         b1.setBackground(new Color(255,160,122));
+        b1.setFocusPainted(false);
         add(b1);
         b1.addActionListener(new ActionListener() {
             @Override
@@ -185,6 +186,7 @@ public class AddDeleteBook extends JPanel {
                 textField8.setText("");
             }
         });
+        b2.setFocusPainted(false);
 
         //中间面板
         JPanel p0 = new JPanel();

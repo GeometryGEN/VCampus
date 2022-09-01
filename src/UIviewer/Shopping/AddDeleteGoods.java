@@ -103,6 +103,7 @@ public class AddDeleteGoods extends JPanel {
         b1.setBounds((int) (235*width_r), (int) (380*height_r), (int) (120*width_r), (int) (50*height_r));
         b1.setBackground(new Color(255,160,122));
         add(b1);
+        b1.setFocusPainted(false);
         b1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -177,39 +178,23 @@ public class AddDeleteGoods extends JPanel {
         add(p0);
 
         JPanel p11=new JPanel();
-        p11.setBounds(0,0, (int) (630*width_r), (int) (650*height_r));
+        p11.setBounds(0,0, (int) (1280*width_r), (int) (650*height_r));
         JLabel pic1 = new JLabel();
-        ImageIcon icon1 = new ImageIcon("src/image/bg17.jpg");
-        int icon1_width= 630;
+        ImageIcon icon1 = new ImageIcon("src/image/bg8.jpg");
+        int icon1_width= 1280;
         int icon1_height=650;
         try {
-            Thumbnails.of(new File("src/image/bg17.jpg"))
+            Thumbnails.of(new File("src/image/bg8.jpg"))
                     .size((int)(icon1_width*width_r), (int)(icon1_height*height_r))
-                    .toFile(new File("src/image/bg17_min.jpg"));
+                    .toFile(new File("src/image/bg8_min.jpg"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        pic1.setIcon(new ImageIcon("src/image/bg17_min.jpg"));
-        pic1.setBounds(0,0 , (int) (630*width_r), (int) (650*height_r));
+        pic1.setIcon(new ImageIcon("src/image/bg8_min.jpg"));
+        pic1.setBounds(0,0 , (int) (1280*width_r), (int) (650*height_r));
         p11.add(pic1);
         add(p11);
 
-        JPanel p12=new JPanel();
-        p12.setBounds((int) (620*width_r),0, (int) (660*width_r), (int) (650*height_r));
-        JLabel pic2 = new JLabel();
-        ImageIcon icon2 = new ImageIcon("src/image/bg17.jpg");
-        int icon2_width= 660;
-        int icon2_height=650;
-        try {
-            Thumbnails.of(new File("src/image/bg17.jpg"))
-                    .size((int)(icon2_width*width_r), (int)(icon2_height*height_r))
-                    .toFile(new File("src/image/bg17_min.jpg"));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        pic2.setIcon(new ImageIcon("src/image/bg17_min.jpg"));
-        pic2.setBounds((int) (620*width_r),0, (int) (660*width_r), (int) (650*height_r));
-        p12.add(pic2);
-        add(p12);
+
     }
 }
