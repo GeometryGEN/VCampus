@@ -35,6 +35,7 @@ public class buyers_Shop_utils {
             temp.setProduct_toshop(rs.getInt("Product_toshop"));
             list.add(temp);
         }
+        JDBC_Connector.close(rs, null, connection);
         return list;
     }
 
@@ -89,6 +90,7 @@ public class buyers_Shop_utils {
             list.add(temp);
             readDBImage(rs.getInt("Product_id"));
         }
+        JDBC_Connector.close(rs, null, connection);
         return list;
     }
 
@@ -110,6 +112,7 @@ public class buyers_Shop_utils {
             temp.setProduct_toshop(rs.getInt("Product_toshop"));
             list.add(temp);
         }
+        JDBC_Connector.close(rs, null, connection);
         return list;
     }
 

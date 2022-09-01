@@ -306,7 +306,7 @@ public class Client_shop {
     }
 
     //购买商品  ui里先进行判断够不够，余额够不够，这里只更改信息 money为修改之后的钱
-    public static Boolean buyProduct(String user_idcard, String id, int num, double money) throws Exception {
+    public static boolean buyProduct(String user_idcard, String id, int num, double money) throws Exception {
         resetNow_Buy_product();
         Message message = new Message();
         message.setType(MessageType.BUY_CERTAIN_PRODUCT);
@@ -386,7 +386,7 @@ public class Client_shop {
         oos.writeObject(message);
         //等待接受学生
         while (sign_delete.equals("1")) Thread.onSpinWait();
-        return false;
+        return sign_delete.equals("2");
     }
 
     public static double getMoney(String idcard) throws IOException {

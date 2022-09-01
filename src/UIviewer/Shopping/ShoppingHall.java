@@ -53,6 +53,7 @@ public class ShoppingHall extends JPanel {
     public ShoppingHall() {
         setLayout(null);
 
+        setBackground(new Color(251, 244, 242));
         //文字
         JLabel l19 = new JLabel("       商品分类");
         l19.setBounds((int) (40*width_r), (int) (0*height_r), (int) (300*width_r), (int) (100*height_r));
@@ -893,6 +894,9 @@ public class ShoppingHall extends JPanel {
                                 Client_shop.setId(String.valueOf(myInfo.getType()));
                                 Client_shop.setIdcard(myInfo.getId());
                                 functionChoose.jf.setContentPane(new shopCustomer());
+                                ShoppingHall f11=new ShoppingHall();
+                                panel.add(f11,"f11");
+                                cardLayout.show(panel,"f11");
                                 functionChoose.jf.setTitle("shopCustomer");
                             }else {
                                 JOptionPane.showMessageDialog(null,"余额不足！");

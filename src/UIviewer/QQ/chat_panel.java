@@ -95,9 +95,11 @@ public class chat_panel extends JPanel {
         if(files.size()!=0){
             System.out.println("has file");
             receive_button.setVisible(true);
+            receive_button.setFocusPainted(false);
         }
         else {
             receive_button.setVisible(false);
+            receive_button.setFocusPainted(false);
         }
 
         jTextPane.setEditable(false);
@@ -124,6 +126,7 @@ public class chat_panel extends JPanel {
         add(type_panel);
         //发送消息按钮
         JButton send_button= new JButton();
+        send_button.setFocusPainted(false);
         int send_button_height=70;
         int send_button_width=140;
         send_button.setBackground(new Color(30,111,255));
@@ -134,6 +137,7 @@ public class chat_panel extends JPanel {
         type_panel.add(send_button);
         //发送文件按钮
         JButton send_file_button= new JButton();
+        send_file_button.setFocusPainted(false);
         int send_file_button_height=70;
         int send_file_button_width=140;
         send_file_button.setBackground(new Color(30,111,255));
@@ -150,6 +154,7 @@ public class chat_panel extends JPanel {
         });
         //关闭该聊天框按钮
         JButton close_button= new JButton();
+        close_button.setFocusPainted(false);
         int close_button_height=70;
         int close_button_width=140;
         close_button.setBackground(new Color(211,10,11));
@@ -170,6 +175,7 @@ public class chat_panel extends JPanel {
         int receive_button_height=70;
         int receive_button_width=140;
         receive_button= new JButton();
+        receive_button.setFocusPainted(false);
         receive_button.setBackground(new Color(10, 211, 87));
         receive_button.setFont(new Font("宋体",Font.PLAIN,(int)(25*width_r)));
         receive_button.setText("接受文件");
