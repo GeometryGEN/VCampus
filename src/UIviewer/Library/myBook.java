@@ -28,6 +28,8 @@ public class myBook extends JPanel {
                 return false;
             }
         };
+        table_want.setCellSelectionEnabled(true);
+
         table_want.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
