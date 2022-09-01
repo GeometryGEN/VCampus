@@ -31,8 +31,8 @@ public class student_status extends JPanel {
         String IDcard=iat.student.getStudent_idcard();
     //    Client_status.setId(myInfo.getId());  //否则查找学生，id为自身的，识别线程
         //Client_status.getphoto(IDcard);
-        FileOutputStream fileOutputStream = new FileOutputStream("src/image/status/"+IDcard+".jpg");
         if(iat.image!=null) {
+            FileOutputStream fileOutputStream = new FileOutputStream("src/image/status/"+IDcard+".jpg");
             fileOutputStream.write(iat.image);
             try {
                 Thumbnails.of(new File("src/image/status/"+IDcard+".jpg"))
@@ -41,8 +41,8 @@ public class student_status extends JPanel {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+            image.setIcon(new ImageIcon("src/image/status/"+IDcard+"_min.jpg"));
         }
-        image.setIcon(new ImageIcon("src/image/status/"+IDcard+"_min.jpg"));
         status.add(image);
         image.setBounds((int)(40*width_r),(int)(145*height_r),(int)(icon1_width*width_r),(int)(icon1_height*height_r));
         //头像下名字

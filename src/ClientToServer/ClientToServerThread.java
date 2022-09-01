@@ -376,7 +376,7 @@ public class ClientToServerThread extends Thread {
 //                System.out.println("已从流中读完,安全退出");
 //            }
             catch (Exception e) {
-                e.printStackTrace();
+ //               e.printStackTrace();
             }
         }
     }

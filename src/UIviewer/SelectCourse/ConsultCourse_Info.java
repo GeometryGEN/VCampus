@@ -25,18 +25,18 @@ public class ConsultCourse_Info extends JPanel {
         //文本编辑框（输入课程编号或课程名字）
         JLabel lblNewLabel = new JLabel("课程信息:");
         lblNewLabel.setFont(new Font("宋体", Font.BOLD, 35));
-        lblNewLabel.setBounds(250, 295, 275, 35);
+        lblNewLabel.setBounds((int)(250*width_r), (int)(295*height_r), (int)(275*width_r), (int)(35*height_r));
         add(lblNewLabel);
 
         JTextField textField = new JTextField();
         textField.setFont(new Font("宋体", Font.BOLD, 25));
-        textField.setBounds(455, 295, 325, 35);
+        textField.setBounds((int)(455*width_r), (int)(295*height_r), (int)(325*width_r), (int)(35*height_r));
         add(textField);
         textField.setColumns(10);
         //五个按钮
 
         JButton btnNewButton_9 = new JButton("查询");
-        btnNewButton_9.setBounds(870, 295, 150, 40);
+        btnNewButton_9.setBounds((int)(870*width_r), (int)(295*height_r), (int)(150*width_r), (int)(40*height_r));
         Font myfont = new Font("微软雅黑", Font.BOLD, 20);
         btnNewButton_9.setFont(myfont);
         btnNewButton_9.setBackground(new Color(220, 220, 220));
