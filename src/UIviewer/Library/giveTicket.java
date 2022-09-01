@@ -84,6 +84,7 @@ public class giveTicket extends JPanel {
         b1.setBounds((int) (575*width_r), (int) (400*height_r), (int) (120*width_r), (int) (50*height_r));
         b1.setBackground(new Color(250,250,210));
         add(b1);
+        b1.setFocusPainted(false);
         b1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

@@ -93,10 +93,9 @@ public class Client_qicq {
         }
     }
 
-    public static void get_file(Message message, String dest) throws IOException {
+    public static void receive_file(Filetrans file, String dest) throws IOException {
         System.out.println("receive_file");
         FileOutputStream fileOutputStream = new FileOutputStream(dest);
-        Filetrans file=(Filetrans)message.getData();
         fileOutputStream.write(file.getContent());
     }
     public static void send_message(String content, String sender, String getter){

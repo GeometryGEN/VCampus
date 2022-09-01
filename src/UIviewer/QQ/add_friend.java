@@ -66,7 +66,7 @@ public class add_friend {
             }
         });
         jf.getContentPane().setBackground(Color.white);
-        jf.setBounds(0,0,400,150);
+        jf.setBounds(0,0,400,195);
         jf.setLocationRelativeTo(null);
         jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         jf.setVisible(true);

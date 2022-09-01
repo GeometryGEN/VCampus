@@ -100,23 +100,43 @@ public class QICQ_manager {
     //    MyObjectOutputStream oos=new MyObjectOutputStream(ManageServerToClientThread.getThread(to).getSocket().getOutputStream());
         return msg;
     }
-    public void send_online_file(Message msg) throws IOException {
-        System.out.println("sof");
+    public void send_online_file(Message msg) throws IOException, SQLException {
         String to=msg.getGetter();
         msg.setType(MessageType.MESSAGE_QICQ_RECERIVE_FILE);
-     //   MyObjectOutputStream oos=new MyObjectOutputStream(ManageServerToClientThread.getThread(to).getSocket().getOutputStream());
         ManageServerToClientThread.getThread(id).oos.writeObject(msg);
+        String sql="insert into file(sender,getter,sendtime,file,isfile,isread,filename) values(?,?,?,?,1,0,?);";
+        PreparedStatement st=conn.prepareStatement(sql);
+        st.setString(1,msg.getSender());
+        st.setString(2,msg.getGetter());
+        st.setString(3,msg.getSendTime());
+
+        Filetrans f=(Filetrans)msg.getData();
+        System.out.println(f.getName());
+        InputStream is = new ByteArrayInputStream(f.getContent());
+        st.setBlob(4,is);
+        st.setString(5,f.getName());
+        st.executeUpdate();
       //  return msg;
     }
     public void send_offline_file(Message msg) throws IOException, SQLException {
         String to=msg.getGetter();
-        ServerToClient.addQQfile(to,(Filetrans)msg.getData());
+        String sql="insert into message(sender,getter,sendtime,file,isfile,isread,filename) values(?,?,?,?,1,0,?);";
+        PreparedStatement st=conn.prepareStatement(sql);
+        st.setString(1,msg.getSender());
+        st.setString(2,msg.getGetter());
+        st.setString(3,msg.getSendTime());
+        Filetrans f=(Filetrans)msg.getData();
+        System.out.println(f.getName());
+        InputStream is = new ByteArrayInputStream(f.getContent());
+        st.setBlob(4,is);
+        st.setString(5,f.getName());
+        st.executeUpdate();
     }
     public void send_online_message(Message msg) throws IOException, SQLException {
         String to=msg.getGetter();
         msg.setType(MessageType.MESSAGE_QICQ_RECERIVE_MESSAGE);
       //  ObjectOutputStream oos=new ObjectOutputStream(ManageServerToClientThread.getThread(to).getSocket().getOutputStream());
-        String sql="insert into message(sender,getter,sendtime,content,isread) values(?,?,?,?,0);";
+        String sql="insert into message(sender,getter,sendtime,content,isread,isfile) values(?,?,?,?,0,0);";
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,msg.getSender());
         st.setString(2,msg.getGetter());
@@ -129,7 +149,7 @@ public class QICQ_manager {
     }
     public void send_offline_message(Message msg) throws IOException, SQLException {
         String to=msg.getGetter();
-        String sql="insert into message(sender,getter,sendtime,content,isread) values(?,?,?,?,0);";
+        String sql="insert into message(sender,getter,sendtime,content,isread,isfile) values(?,?,?,?,0,0);";
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,msg.getSender());
         st.setString(2,msg.getGetter());
@@ -296,7 +316,26 @@ public class QICQ_manager {
         ArrayList<Message>messages=new ArrayList<>();
         while(rs.next()){
             Message x=new Message();
-            x.setData(rs.getString("content"));
+            if(rs.getInt("isfile")==1)
+            {
+                Blob blob=(Blob) rs.getBlob("file");
+                Filetrans filetrans=new Filetrans();
+                filetrans.content=new byte[1024];
+                InputStream is=blob.getBinaryStream();
+                int len;
+                int i=0;
+                while((len=is.read(filetrans.content))!=-1) {
+                    i++;
+                }
+                System.out.println(filetrans.getContent());
+                filetrans.setName(rs.getString("filename"));
+                x.isfile=1;
+                x.setData(filetrans);
+            }
+            else {
+                x.setData(rs.getString("content"));
+                x.isfile=0;
+            }
             x.setSender(rs.getString("sender"));
             x.setGetter(rs.getString("getter"));
             x.setSendTime(rs.getString("sendtime"));
@@ -305,9 +344,6 @@ public class QICQ_manager {
         Message sendback=new Message();
         sendback.setType(MessageType.MESSAGE_QICQ_GET_MESSAGE_RET);
         sendback.setData(messages);
-    //    Socket socket=ManageServerToClientThread.getThread(id).getSocket();
-    //    ObjectOutputStream oos=new ObjectOutputStream(socket.getOutputStream());
-     //   oos.writeObject(sendback);
         sql="update message set isread=1 where (sender=? and getter=?);";
         st= conn.prepareStatement(sql);
         st.setString(1,to_id);

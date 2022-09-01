@@ -32,13 +32,15 @@ public class student_status extends JPanel {
     //    Client_status.setId(myInfo.getId());  //否则查找学生，id为自身的，识别线程
         //Client_status.getphoto(IDcard);
         FileOutputStream fileOutputStream = new FileOutputStream("src/image/status/"+IDcard+".jpg");
-        fileOutputStream.write(iat.image);
-        try {
-            Thumbnails.of(new File("src/image/status/"+IDcard+".jpg"))
-                    .size((int)(icon1_width*width_r), (int)(icon1_height*width_r))
-                    .toFile(new File("src/image/status/"+IDcard+"_min.jpg"));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+        if(iat.image!=null) {
+            fileOutputStream.write(iat.image);
+            try {
+                Thumbnails.of(new File("src/image/status/"+IDcard+".jpg"))
+                        .size((int)(icon1_width*width_r), (int)(icon1_height*width_r))
+                        .toFile(new File("src/image/status/"+IDcard+"_min.jpg"));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
         image.setIcon(new ImageIcon("src/image/status/"+IDcard+"_min.jpg"));
         status.add(image);

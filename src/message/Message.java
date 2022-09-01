@@ -19,6 +19,7 @@ public class Message implements Serializable {
     private String mesType;   // 消息类型
     private int code;         // 状态码
     private Object data;      // 数据
+    public int isfile;
 
     public Message() {
         sender=null;

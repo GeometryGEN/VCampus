@@ -50,15 +50,15 @@ public class friend_slice extends JLabel {
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
+            try {
+                Thumbnails.of(new File("src/image/QQ/"+friend.getId()+".jpg"))
+                        .size((int)(icon1_width*width_r), (int)(icon1_width*width_r))
+                        .toFile(new File("src/image/QQ/"+friend.getId()+"_min.jpg"));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            setIcon(new ImageIcon("src/image/QQ/"+friend.getId()+"_min.jpg"));
         }
-        try {
-            Thumbnails.of(new File("src/image/QQ/"+friend.getId()+".jpg"))
-                    .size((int)(icon1_width*width_r), (int)(icon1_width*width_r))
-                    .toFile(new File("src/image/QQ/"+friend.getId()+"_min.jpg"));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        setIcon(new ImageIcon("src/image/QQ/"+friend.getId()+"_min.jpg"));
         if(friend.getOnline()==1){
             setText(friend.getName()+"                                                 ");
             setForeground(Color.black);
@@ -71,23 +71,37 @@ public class friend_slice extends JLabel {
         setFont(new Font("宋体", Font.BOLD, (int)(25*width_r)));
         setHorizontalTextPosition(JLabel.RIGHT);
         JLabel jLabel=this;//为后续按钮提供指针
+        //弹出式菜单
+        JPopupMenu jpopupmenu1 = new JPopupMenu();   //弹出式菜单
+        JMenuItem jmenuitem1 = new JMenuItem("菜单");  //菜单项
+        jpopupmenu1.add(jmenuitem1);   //弹出式菜单添加一个菜单项
+
+
+
         //鼠标移进去变色，移出复原
         jLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent e) {
-                //聊天面板
-                try {
-                    Client_qicq.get_message(friend.getId());
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
+                int c=e.getButton();
+                if(c==MouseEvent.BUTTON1){
+                    //聊天面板
+                    try {
+                        Client_qicq.get_message(friend.getId());
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    if(main_panel.cpn!=null){
+                        main_panel.mjp.remove(main_panel.cpn);
+                    }
+                    chat_panel chatPanel=new chat_panel(1920/3*2,1080,width_r,height_r,1920/3,0,friend);
+                    main_panel.mjp.add(chatPanel);
+                    main_panel.cpn=chatPanel;
+                    main_panel.mjp.updateUI();
                 }
-                if(main_panel.cpn!=null){
-                    main_panel.mjp.remove(main_panel.cpn);
+                else if(c==MouseEvent.BUTTON3){
+                    JPopupMenu jpopupmenu2=jpopupmenu1;
+                    jpopupmenu2.show(e.getComponent(), e.getX(),e.getY());
                 }
-                chat_panel chatPanel=new chat_panel(1920/3*2,1080,width_r,height_r,1920/3,0,friend);
-                main_panel.mjp.add(chatPanel);
-                main_panel.cpn=chatPanel;
-                main_panel.mjp.updateUI();
             }
 
             @Override
