@@ -37,6 +37,7 @@ public class main_panel {
             mjp.add(buttonPanel);
             //添加好友按钮
             JButton addFriend= new RoundJButton();
+            addFriend.setFocusPainted(false);
             addFriend.setText("   添加好友   ");
             addFriend.setBounds(0,(int)(0*height_r),(int)(170*width_r),(int)(50*height_r));
             addFriend.setBackground(new Color(30,111,255));
@@ -51,6 +52,7 @@ public class main_panel {
             buttonPanel.add(addFriend);
             //展示发出申请按钮
             JButton show_receive_add=new RoundJButton();
+            show_receive_add.setFocusPainted(false);
             show_receive_add.setText(" 收到的申请 ");
             show_receive_add.setBounds(0,(int)(50*height_r),(int)(170*width_r),(int)(50*height_r));
             show_receive_add.setBackground(new Color(30,111,255));
@@ -65,6 +67,7 @@ public class main_panel {
             buttonPanel.add(show_receive_add);
             //返回功能选择模块
             functionChoose.back_from_student_status=new RoundJButton();
+            functionChoose.back_from_student_status.setFocusPainted(false);
             functionChoose.back_from_student_status.setText("返回功能选择");
             functionChoose.back_from_student_status.setBounds(0,(int)(100*height_r),(int)(170*width_r),(int)(50*height_r));
             functionChoose.back_from_student_status.setBackground(new Color(96,190,41));
@@ -87,6 +90,7 @@ public class main_panel {
             mjp.add(buttonPanel);
             //返回功能选择模块
             functionChoose.back_from_student_status=new RoundJButton();
+            functionChoose.back_from_student_status.setFocusPainted(false);
             functionChoose.back_from_student_status.setText("返回功能选择");
             functionChoose.back_from_student_status.setBounds(0,(int)(0*height_r),(int)(170*width_r),(int)(50*height_r));
             functionChoose.back_from_student_status.setBackground(new Color(96,190,41));

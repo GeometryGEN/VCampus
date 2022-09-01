@@ -52,9 +52,12 @@ public class receive_panel {
         panel.setLayout(layout);
         panel1.setLayout(layout);
         JButton button = new JButton("浏览本地文件目录");
+        button.setFocusPainted(false);
         JButton button1=new JButton("接收");
+        button1.setFocusPainted(false);
 
         JButton button2=new JButton("取消");
+        button2.setFocusPainted(false);
 
         final JLabel label = new JLabel();
 
