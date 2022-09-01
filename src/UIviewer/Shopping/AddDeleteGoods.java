@@ -128,6 +128,13 @@ public class AddDeleteGoods extends JPanel {
                         JOptionPane.showMessageDialog(null, "添加成功!");
                     else
                         JOptionPane.showMessageDialog(null, "添加失败!");
+                    textField1.setText("");
+                    textField2.setText("");
+                    textField3.setText("");
+                    textField4.setText("");
+                    textField5.setText("");
+                    textField6.setText("");
+
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 }
@@ -164,6 +171,7 @@ public class AddDeleteGoods extends JPanel {
                         JOptionPane.showMessageDialog(null, "删除成功!");
                     else
                         JOptionPane.showMessageDialog(null, "删除失败!");
+                    textField8.setText("");
 
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
@@ -185,7 +193,8 @@ public class AddDeleteGoods extends JPanel {
         int icon1_height=650;
         try {
             Thumbnails.of(new File("src/image/bg8.jpg"))
-                    .size((int)(icon1_width*width_r), (int)(icon1_height*height_r))
+                    .size((int)(icon1_width*width_r+30), (int)(icon1_height*height_r+20))
+                    .keepAspectRatio(false)
                     .toFile(new File("src/image/bg8_min.jpg"));
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -194,7 +203,5 @@ public class AddDeleteGoods extends JPanel {
         pic1.setBounds(0,0 , (int) (1280*width_r), (int) (650*height_r));
         p11.add(pic1);
         add(p11);
-
-
     }
 }
