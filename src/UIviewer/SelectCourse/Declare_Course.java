@@ -25,9 +25,16 @@ public class Declare_Course extends JPanel{
         JPanel p11=new JPanel();
         p11.setBounds(0,0,(int)(1273*width_r),(int)(784*height_r));
 
+        JLabel lblBackground = new JLabel(); // 创建一个标签组件对象
+        ImageIcon icon = new ImageIcon("src/image/logo-mini.png"); // 创建背景图片对象
+        lblBackground.setIcon(icon); // 设置标签组件要显示的图标
+        lblBackground.setBounds((int)(25*width_r), (int)(40*height_r), (int)(210*width_r), (int)(80*height_r)); // 设置组件的显示位置及大小
+        add(lblBackground);
+
+
         //文字
         JLabel l1 = new JLabel("  你好！");
-        l1.setBounds((int)(170*width_r), (int)(100*height_r), (int)(100*width_r), (int)(75*height_r));
+        l1.setBounds((int)(30*width_r), (int)(130*height_r), (int)(100*width_r), (int)(75*height_r));
         Font font = new Font("楷体", Font.BOLD, 22);
         l1.setFont(font);
         //l1.setForeground(new Color(111,222,0));
@@ -145,23 +152,23 @@ public class Declare_Course extends JPanel{
 
         //右侧面板
         JPanel p2 = new JPanel();
-        p2.setBounds((int)(310*width_r), 0, (int)(950*width_r), (int)(1000*height_r));
+        p2.setBounds((int)(310*width_r), 0, (int)(980*width_r), (int)(1000*height_r));
         p2.setBackground(new Color(245, 245, 245, 180));
         add(p2);
 
         JLabel l15 = new JLabel();
-        ImageIcon icon11 = new ImageIcon("src/image/background4.jpg");
+        ImageIcon icon11 = new ImageIcon("src/image/background2.jpg");
         int icon11_width= 1273;
         int icon11_height=790;
         try {
-            Thumbnails.of(new File("src/image/background4.jpg"))
+            Thumbnails.of(new File("src/image/background2.jpg"))
                     .size((int)(icon11_width*width_r), (int)(icon11_height*height_r))
                     .keepAspectRatio(false)
-                    .toFile(new File("src/image/background4_min.jpg"));
+                    .toFile(new File("src/image/background2_min.jpg"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        l15.setIcon(new ImageIcon("src/image/background4_min.jpg"));
+        l15.setIcon(new ImageIcon("src/image/background2_min.jpg"));
         l15.setBounds(0, 0, (int)(1273*width_r), (int)(790*height_r));
         p11.add(l15);
 
