@@ -75,7 +75,7 @@ public class Client_curriculum {
     }
     public static void showTeacherChoice(ArrayList<Course>courses){
         int n=courses.size();
-        ConsultCourse_stuInfo.consult_stu=new String[n][6];
+        ConsultCourse_stuInfo.consult_stu=new String[n][5];
         Iterator b=courses.iterator();
         int count=0;
         while(b.hasNext())
@@ -86,7 +86,7 @@ public class Client_curriculum {
             ConsultCourse_stuInfo.consult_stu[count][2]=String.valueOf(curri.getSize());
             ConsultCourse_stuInfo.consult_stu[count][3]=curri.getTimestring();
             ConsultCourse_stuInfo.consult_stu[count][4]=curri.getClassroom();
-            ConsultCourse_stuInfo.consult_stu[count][5]="     查询";
+            ConsultCourse_stuInfo.consult_stu[count][5]="      查询";
             count++;
         }
         ConsultCourse_stuInfo tea_course=new ConsultCourse_stuInfo();

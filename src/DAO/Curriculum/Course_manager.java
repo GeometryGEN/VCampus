@@ -35,7 +35,7 @@ public class Course_manager {
         int[][][] a = new int[17][6][14];
         int week_l,week_r,day,sec_l,sec_r;
         String ss[]=s.split(",");
-        System.out.println(ss.length);
+        //System.out.println(s);
         for(int i=0;i<ss.length;i++){
             int index=ss[i].indexOf("星期");
             switch (ss[i].substring(index+2, index+3)){
@@ -56,7 +56,6 @@ public class Course_manager {
                     break;
             }
             int index1=ss[i].indexOf("-");
-            System.out.println(index1);
             week_l=Integer.parseInt(ss[i].substring(0,index1));
             int index2=ss[i].indexOf("周");
             week_r=Integer.parseInt(ss[i].substring(index1+1,index2));
@@ -183,20 +182,21 @@ public class Course_manager {
         st.setString(1,c.id);
         ResultSet rs=st.executeQuery();
         int size=0;
-        while (rs.next()) size=rs.getInt("size");
-        sql="select count(*) total from elective where course_id=?;";
+        if (rs.next()) size=rs.getInt("size");
+        sql="select count(*) as total from elective where course_id=?;";
         st=conn.prepareStatement(sql);
         st.setString(1,c.id);
         rs=st.executeQuery();
-        if(rs.getInt("total")==size){
+        rs.next();
+        if(Integer.valueOf(rs.getString(1))-1==size){
             message.setType(MessageType.MESSAGE_CURRICULUM_CHOOSE_FULL);
             return message;
         }
         message.setType(MessageType.MESSAGE_CURRICULUM_CHOOSE_SUCCEED);
-        sql="insert into elective(course_id,stu_id) value(?,?);";
+        sql="insert into elective(course_id,stu_id) values(?,?);";
         st=conn.prepareStatement(sql);
         st.setString(1,c.id);
-        st.setString(1,id);
+        st.setString(2,id);
         st.executeUpdate();
         return message;
     }
@@ -234,7 +234,6 @@ public class Course_manager {
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,s);
         st.setString(2,id);
-        st.setString(3,id);
         st.executeUpdate();
     }
     public void add(Course c) throws SQLException {
