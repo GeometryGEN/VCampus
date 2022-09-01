@@ -38,6 +38,7 @@ public class friend_list{
         count_tag=0;
 
 
+        System.out.println("shit3");
         //admin
         if(myInfo.getType()!=3){
             tag[count_tag]=new tag_slice(width_r,height_r,"管理员");
@@ -45,13 +46,13 @@ public class friend_list{
             Friend admin=new Friend();
             admin.setName("公告");
             friend_start_tag[count_tag]=count_friend;
+            System.out.println("shit4");
             friendslice[count_friend]=new friend_slice(width-1,height/number_per_page,width_r,height_r,admin);
             roll_panel.add(friendslice[count_friend++]);
             friend_end_tag[count_tag]=count_friend;
             int count_tag1=count_tag;
             tag[count_tag1].addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseClicked(java.awt.event.MouseEvent e) {
-                    System.out.println("clicked");
                     if(friendslice[friend_start_tag[count_tag1]].isVisible()==true) {
                         for (int i = friend_start_tag[count_tag1]; i < friend_end_tag[count_tag1]; i++) {
                             friendslice[i].setVisible(false);
@@ -66,12 +67,12 @@ public class friend_list{
             });
             count_tag++;
         }
-
         for(String Tag: friend.keySet()){
             tag[count_tag]=new tag_slice(width_r,height_r,Tag);
             roll_panel.add(tag[count_tag]);
             ArrayList<Friend> arrayList=friend.get(Tag);
             int num=arrayList.size();
+
 
             friend_start_tag[count_tag]=count_friend;
             for(int i=0;i<num;i++){
@@ -82,7 +83,6 @@ public class friend_list{
             int count_tag1=count_tag;
             tag[count_tag1].addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseClicked(java.awt.event.MouseEvent e) {
-                    System.out.println("clicked");
                     if(friendslice[friend_start_tag[count_tag1]].isVisible()==true) {
                         for (int i = friend_start_tag[count_tag1]; i < friend_end_tag[count_tag1]; i++) {
                             friendslice[i].setVisible(false);

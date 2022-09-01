@@ -126,13 +126,16 @@ public class friend_slice extends JLabel {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
+            System.out.println("shit5");
             setIcon(new ImageIcon("src/image/QQ/manager_logo_min.png"));
             JLabel jLabel = this;//提供指针
+            System.out.println("shit5");
             jLabel.addMouseListener(new java.awt.event.MouseAdapter() {
                 @Override
                 public void mouseClicked(java.awt.event.MouseEvent e) {
                     int c = e.getButton();
                     if (c == MouseEvent.BUTTON1) {
+                        System.out.println(4);
                         //聊天面板
                         if (main_panel.cpn != null) {
                             main_panel.mjp.remove(main_panel.cpn);
@@ -158,6 +161,7 @@ public class friend_slice extends JLabel {
                 }
             });
         }
+        System.out.println("shit5");
         if ((friend.getOnline() == 1) || (myInfo.getType()==3)) {
             setText(friend.getName() + "                                                 ");
             setForeground(Color.black);

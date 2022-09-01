@@ -24,13 +24,13 @@ public class Students_utils {
             if (resultSet.next()) {
                 resultSet.close();
                 state.close();
-                connection.close();
+            //    connection.close();
                 return true;
             }
             else{
                 resultSet.close();
                 state.close();
-                connection.close();
+            //    connection.close();
                 return false;
             }
 
@@ -52,7 +52,7 @@ public class Students_utils {
             }
             rs.close();
             state.close();
-            connection.close();
+         //   connection.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -66,7 +66,9 @@ public class Students_utils {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, username);
             ResultSet rs = ps.executeQuery();
-            JDBC_Connector.close(rs, ps, connection);
+            //JDBC_Connector.close(rs, ps, connection);
+            rs.close();
+            ps.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -94,7 +96,8 @@ public class Students_utils {
             System.out.println("学生"+s.getStudent_idcard()+"添加成功！");
         else
             System.out.println("学生添加失败！");
-        JDBC_Connector.close(null, ps, connection);
+        ps.close();
+        //JDBC_Connector.close(null, ps, connection);
         return re;
     }
 
@@ -108,12 +111,14 @@ public class Students_utils {
         PreparedStatement ps = connection.prepareStatement(sql);
         ps.setString(1,username);
         boolean re = ps.executeUpdate()>0;
-        JDBC_Connector.close(null, ps, connection);
+     //   JDBC_Connector.close(null, ps, connection);
+        ps.close();
         if(re)
             System.out.println("学生"+username+"删除成功！");
         else
             System.out.println("学生删除失败！");
-        JDBC_Connector.close(null, ps, connection);
+        ps.close();
+        //JDBC_Connector.close(null, ps, connection);
         return re;
     }
 
@@ -123,12 +128,14 @@ public class Students_utils {
         PreparedStatement ps = connection.prepareStatement(sql);
         ps.setString(1,s.getStudent_pwd());
         boolean re = ps.executeUpdate()>0;
-        JDBC_Connector.close(null, ps, connection);
+   //     JDBC_Connector.close(null, ps, connection);
+        ps.close();
         if(re)
             System.out.println("学生"+username+"密码修改成功！");
         else
             System.out.println("学生"+username+"密码修改失败！");
-        JDBC_Connector.close(null, ps, connection);
+        ps.close();
+        //JDBC_Connector.close(null, ps, connection);
         return re;
     }
 
@@ -143,12 +150,12 @@ public class Students_utils {
                 String Student_email = resultSet.getString("Student_email").trim();
                 resultSet.close();
                 state.close();
-                connection.close();
+            //    connection.close();
                 return Student_idcard.equals(s.getStudent_idcard()) && Student_email.equals(s.getStudent_email());
             }
             resultSet.close();
             state.close();
-            connection.close();
+           // connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -167,12 +174,12 @@ public class Students_utils {
                 if (passWord == userpassword || passWord.equals(userpassword)) {
                     resultSet.close();
                     state.close();
-                    connection.close();
+                //    connection.close();
                     return resultSet.getString("Student_name");
                 } else{
                     resultSet.close();
                     state.close();
-                    connection.close();
+                //    connection.close();
                     return null;
                 }
 
@@ -196,7 +203,7 @@ public class Students_utils {
         }
         rs.close();
         st.close();
-        connection.close();
+        //connection.close();
         return stu;
     }
 }

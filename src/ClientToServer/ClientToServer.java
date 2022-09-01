@@ -31,10 +31,8 @@ public class ClientToServer {
     private static Socket socket;
     public static MyObjectOutputStream oos=null;
     public static MyObjectInputStream ois=null;
-    //public static String serverIP = Message.returnIP();
-    //public static String serverIP = "10.210.97.60";
-    public static String serverIP = Message.returnIP();
- //   public static String serverIP = "192.168.76.172";
+   // public static String serverIP = Message.returnIP();
+    public static String serverIP = "10.210.97.60";
 
     public String getIDcard() {
         return switch (ID) {

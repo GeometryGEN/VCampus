@@ -45,7 +45,9 @@ public class User_SM_utils {
                 s.setID(rs.getString(18));
                 return s;
             }
-            JDBC_Connector.close(rs, ps, connection);
+        //    JDBC_Connector.close(rs, ps, connection);
+            rs.close();
+            ps.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
