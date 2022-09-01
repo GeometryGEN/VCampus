@@ -58,6 +58,8 @@ public class QICQ_manager {
                 ManageServerToClientThread.getThread(friend_id).oos.writeObject(msg);
             }
         }
+        rs.close();
+        st.close();
     }
     public Message get_friends() throws SQLException, IOException {
         HashMap<String, ArrayList<Friend>> friends = new HashMap<>();
@@ -116,6 +118,7 @@ public class QICQ_manager {
         st.setBlob(4,is);
         st.setString(5,f.getName());
         st.executeUpdate();
+        st.close();
       //  return msg;
     }
     public void send_offline_file(Message msg) throws IOException, SQLException {
@@ -131,6 +134,7 @@ public class QICQ_manager {
         st.setBlob(4,is);
         st.setString(5,f.getName());
         st.executeUpdate();
+        st.close();
     }
     public void send_online_message(Message msg) throws IOException, SQLException {
         String to=msg.getGetter();
@@ -145,7 +149,7 @@ public class QICQ_manager {
         st.executeUpdate();
         ManageServerToClientThread.getThread(msg.getGetter()).oos.writeObject(msg);
        // oos.writeObject(msg);
-
+        st.close();
     }
     public void send_offline_message(Message msg) throws IOException, SQLException {
         String to=msg.getGetter();
@@ -156,7 +160,8 @@ public class QICQ_manager {
         st.setString(3,msg.getSendTime());
         st.setString(4,(String)msg.getData());
         st.executeUpdate();
-        ServerToClient.addQQbox(to,msg);
+        //ServerToClient.addQQbox(to,msg);
+        st.close();
     }
     public void add_friend(Message message) throws IOException, SQLException {
         Application app=(Application)message.getData();
@@ -225,6 +230,8 @@ public class QICQ_manager {
         msg.setType(MessageType.MESSAGE_QICQ_LIST_APPLICATION_RET);
      //   MyObjectOutputStream oos=new MyObjectOutputStream(ManageServerToClientThread.getThread(id).getSocket().getOutputStream());
       //  oos.writeObject(msg);
+        rs.close();
+        st.close();
         return msg;
     }
     public void list_my_application_handled() throws SQLException, IOException {
@@ -243,6 +250,8 @@ public class QICQ_manager {
         msg.setData(app);
         msg.setType(MessageType.MESSAGE_QICQ_LIST_APPLICATION_HANDLE_RET);
         ManageServerToClientThread.getThread(id).oos.writeObject(msg);
+        rs.close();
+        st.close();
     }
     public void admin_add_announcement(Message m) throws SQLException {
         String sql="insert into message(sender,getter,sendtime,content) values(?,'all',?,?);";
@@ -297,6 +306,8 @@ public class QICQ_manager {
         st.setString(3,rs.getString("group"));
         st.setString(4,rs.getString("nickname"));
         st.executeUpdate();
+        rs.close();
+        st.close();
     }
     public void deny_new_friend(Application application) throws SQLException {
         String sql="update new_friend set status=1 where sender=? and getter=? and status=0;";
@@ -349,6 +360,8 @@ public class QICQ_manager {
         st.setString(1,to_id);
         st.setString(2,id);
         st.executeUpdate();
+        rs.close();
+        st.close();
         return sendback;
     }
 
@@ -402,6 +415,7 @@ public class QICQ_manager {
         st.setString(3,id);
         st.setString(4,f.id);
         st.executeUpdate();
+        st.close();
     }
     public void new_add_friend(Message message) throws IOException, SQLException {
         Application app=(Application)message.getData();
@@ -424,6 +438,7 @@ public class QICQ_manager {
             st1.setString(3,"新朋友");
             st1.setString(4,app.from_name);
             st1.executeUpdate();
+            st1.close();
         }
         else{
             sql="select * from teachers where Teacher_idcard=?;";
@@ -443,6 +458,7 @@ public class QICQ_manager {
                 st1.setString(3,"新朋友");
                 st1.setString(4,app.from_name);
                 st1.executeUpdate();
+                st1.close();
             }
             else {
                 flag=1;
@@ -458,5 +474,8 @@ public class QICQ_manager {
             msg.setType(MessageType.MESSAGE_QICQ_ADD_FRIEND_SUCCEED);
             ManageServerToClientThread.getThread(id).oos.writeObject(msg);
         }
+        rs.close();
+        st.close();
     }
+
 }

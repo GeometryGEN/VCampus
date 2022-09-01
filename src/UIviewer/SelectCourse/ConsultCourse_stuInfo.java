@@ -103,7 +103,11 @@ public class ConsultCourse_stuInfo extends JPanel {
 
         String[] tableTitle2={"学生学号","学生姓名"};
         DefaultTableModel dtm2=new DefaultTableModel(students,tableTitle2);
-        JTable table_want2=new JTable(dtm2);
+        JTable table_want2=new JTable(dtm2){
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
         JScrollPane jsp2=new JScrollPane(table_want2){
             public boolean isCellEditable(int row, int column) {
                 return false;
