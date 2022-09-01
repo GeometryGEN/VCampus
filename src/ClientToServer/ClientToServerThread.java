@@ -264,7 +264,6 @@ public class ClientToServerThread extends Thread {
                     JOptionPane.showMessageDialog(null,"    查询失败! 学生不存在");
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_STATUS_CONFIRM_RET)){
-                    Client_status.show_studata((ImageAndTable)message.getData());
                     JOptionPane.showMessageDialog(null, "   修改学生信息成功!");
                 }
                 //站内通信
