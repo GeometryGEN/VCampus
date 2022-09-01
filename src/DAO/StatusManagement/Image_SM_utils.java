@@ -33,7 +33,8 @@ public class Image_SM_utils {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            JDBC_Connector.close(null,ps,conn);
+           // JDBC_Connector.close(null,ps,conn);
+            ps.close();
             if (null != ps) {
                 try {
                     ps.close();
@@ -74,7 +75,9 @@ public class Image_SM_utils {
                     out.write(buf, 0, len);
                 }
                 System.out.println("图片读取成功！");
-                JDBC_Connector.close(rs,ps,conn);
+             //   JDBC_Connector.close(rs,ps,conn);
+                rs.close();
+                ps.close();
                 return buf;
             }
             else

@@ -26,12 +26,12 @@ public class Admin_utils {
                 if (passWord == userpassword || passWord.equals(userpassword)) {
                     resultSet.close();
                     state.close();
-                    connection.close();
+           //         connection.close();
                     return true;
                 } else{
                     resultSet.close();
                     state.close();
-                    connection.close();
+         //           connection.close();
                     return false;
                 }
 
@@ -55,12 +55,12 @@ public class Admin_utils {
                 if (passWord == userpassword || passWord.equals(userpassword)) {
                     resultSet.close();
                     state.close();
-                    connection.close();
+        //            connection.close();
                     return resultSet.getString("Admin_name");
                 } else{
                     resultSet.close();
                     state.close();
-                    connection.close();
+         //           connection.close();
                     return null;
                 }
 
@@ -83,7 +83,7 @@ public class Admin_utils {
         }
         rs.close();
         st.close();
-        connection.close();
+     //   connection.close();
         return admin;
     }
 }
