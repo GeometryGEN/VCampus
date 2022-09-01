@@ -111,19 +111,23 @@ public class ShoppingHall extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 try {
                     List<Product> t = Client_shop.checktypeProduct("零食");
-                    String[][] temp = new String[t.size()][];
-                    for(int i =0;i<t.size();i++){
-                        String[] tt =new String[7];
-                        tt[0]=String.valueOf(t.get(i).getProduct_id());
-                        tt[1]=t.get(i).getProduct_name();
-                        tt[2]=String.valueOf(t.get(i).getProduct_price());
-                        tt[3]=String.valueOf(t.get(i).getProduct_currentNumbers());
-                        tt[4]="1";
-                        tt[5]="加入购物车";
-                        tt[6]="购买";
-                        temp[i]=tt;
+                    if(t!=null) {
+                        String[][] temp = new String[t.size()][];
+                        for (int i = 0; i < t.size(); i++) {
+                            String[] tt = new String[7];
+                            tt[0] = String.valueOf(t.get(i).getProduct_id());
+                            tt[1] = t.get(i).getProduct_name();
+                            tt[2] = String.valueOf(t.get(i).getProduct_price());
+                            tt[3] = String.valueOf(t.get(i).getProduct_currentNumbers());
+                            tt[4] = "1";
+                            tt[5] = "加入购物车";
+                            tt[6] = "购买";
+                            temp[i] = tt;
+                        }
+                        setShoptable(temp);
+                    }else {
+                        setShoptable(null);
                     }
-                    setShoptable(temp);
                     ShoppingHall f11=new ShoppingHall();
                     panel.add(f11,"f11");
                     cardLayout.show(panel, "f11");
@@ -146,19 +150,23 @@ public class ShoppingHall extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 try {
                     List<Product> t = Client_shop.checktypeProduct("饼干");
-                    String[][] temp = new String[t.size()][];
-                    for(int i =0;i<t.size();i++){
-                        String[] tt =new String[7];
-                        tt[0]=String.valueOf(t.get(i).getProduct_id());
-                        tt[1]=t.get(i).getProduct_name();
-                        tt[2]=String.valueOf(t.get(i).getProduct_price());
-                        tt[3]=String.valueOf(t.get(i).getProduct_currentNumbers());
-                        tt[4]="1";
-                        tt[5]="加入购物车";
-                        tt[6]="购买";
-                        temp[i]=tt;
+                    if(t!=null) {
+                        String[][] temp = new String[t.size()][];
+                        for (int i = 0; i < t.size(); i++) {
+                            String[] tt = new String[7];
+                            tt[0] = String.valueOf(t.get(i).getProduct_id());
+                            tt[1] = t.get(i).getProduct_name();
+                            tt[2] = String.valueOf(t.get(i).getProduct_price());
+                            tt[3] = String.valueOf(t.get(i).getProduct_currentNumbers());
+                            tt[4] = "1";
+                            tt[5] = "加入购物车";
+                            tt[6] = "购买";
+                            temp[i] = tt;
+                        }
+                        setShoptable(temp);
+                    }else {
+                        setShoptable(null);
                     }
-                    setShoptable(temp);
                     ShoppingHall f12=new ShoppingHall();
                     panel.add(f12,"f12");
                     cardLayout.show(panel, "f12");
@@ -180,7 +188,7 @@ public class ShoppingHall extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    List<Product> t = Client_shop.checktypeProduct("图书");
+                    List<Product> t = Client_shop.checktypeProduct("茶");
                     if(t!=null){
                         String[][] temp = new String[t.size()][];
                         for(int i =0;i<t.size();i++){
@@ -220,19 +228,23 @@ public class ShoppingHall extends JPanel {
             public void actionPerformed(ActionEvent e) {
                  try {
                     List<Product> t = Client_shop.checktypeProduct("美妆");
-                    String[][] temp = new String[t.size()][];
-                    for(int i =0;i<t.size();i++){
-                        String[] tt =new String[7];
-                        tt[0]=String.valueOf(t.get(i).getProduct_id());
-                        tt[1]=t.get(i).getProduct_name();
-                        tt[2]=String.valueOf(t.get(i).getProduct_price());
-                        tt[3]=String.valueOf(t.get(i).getProduct_currentNumbers());
-                        tt[4]="1";
-                        tt[5]="加入购物车";
-                        tt[6]="购买";
-                        temp[i]=tt;
+                    if(t!=null) {
+                        String[][] temp = new String[t.size()][];
+                        for (int i = 0; i < t.size(); i++) {
+                            String[] tt = new String[7];
+                            tt[0] = String.valueOf(t.get(i).getProduct_id());
+                            tt[1] = t.get(i).getProduct_name();
+                            tt[2] = String.valueOf(t.get(i).getProduct_price());
+                            tt[3] = String.valueOf(t.get(i).getProduct_currentNumbers());
+                            tt[4] = "1";
+                            tt[5] = "加入购物车";
+                            tt[6] = "购买";
+                            temp[i] = tt;
+                        }
+                        setShoptable(temp);
+                    }else {
+                        setShoptable(null);
                     }
-                    setShoptable(temp);
                     ShoppingHall f12=new ShoppingHall();
                     panel.add(f12,"f12");
                     cardLayout.show(panel, "f12");
@@ -254,19 +266,23 @@ public class ShoppingHall extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 try {
                     List<Product> t = Client_shop.checktypeProduct("饰品");
-                    String[][] temp = new String[t.size()][];
-                    for(int i =0;i<t.size();i++){
-                        String[] tt =new String[7];
-                        tt[0]=String.valueOf(t.get(i).getProduct_id());
-                        tt[1]=t.get(i).getProduct_name();
-                        tt[2]=String.valueOf(t.get(i).getProduct_price());
-                        tt[3]=String.valueOf(t.get(i).getProduct_currentNumbers());
-                        tt[4]="1";
-                        tt[5]="加入购物车";
-                        tt[6]="购买";
-                        temp[i]=tt;
+                    if(t!=null) {
+                        String[][] temp = new String[t.size()][];
+                        for (int i = 0; i < t.size(); i++) {
+                            String[] tt = new String[7];
+                            tt[0] = String.valueOf(t.get(i).getProduct_id());
+                            tt[1] = t.get(i).getProduct_name();
+                            tt[2] = String.valueOf(t.get(i).getProduct_price());
+                            tt[3] = String.valueOf(t.get(i).getProduct_currentNumbers());
+                            tt[4] = "1";
+                            tt[5] = "加入购物车";
+                            tt[6] = "购买";
+                            temp[i] = tt;
+                        }
+                        setShoptable(temp);
+                    }else {
+                        setShoptable(null);
                     }
-                    setShoptable(temp);
                     ShoppingHall f12=new ShoppingHall();
                     panel.add(f12,"f12");
                     cardLayout.show(panel, "f12");
@@ -288,19 +304,23 @@ public class ShoppingHall extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 try {
                     List<Product> t = Client_shop.checktypeProduct("洗护");
-                    String[][] temp = new String[t.size()][];
-                    for(int i =0;i<t.size();i++){
-                        String[] tt =new String[7];
-                        tt[0]=String.valueOf(t.get(i).getProduct_id());
-                        tt[1]=t.get(i).getProduct_name();
-                        tt[2]=String.valueOf(t.get(i).getProduct_price());
-                        tt[3]=String.valueOf(t.get(i).getProduct_currentNumbers());
-                        tt[4]="1";
-                        tt[5]="加入购物车";
-                        tt[6]="购买";
-                        temp[i]=tt;
+                    if(t!=null) {
+                        String[][] temp = new String[t.size()][];
+                        for (int i = 0; i < t.size(); i++) {
+                            String[] tt = new String[7];
+                            tt[0] = String.valueOf(t.get(i).getProduct_id());
+                            tt[1] = t.get(i).getProduct_name();
+                            tt[2] = String.valueOf(t.get(i).getProduct_price());
+                            tt[3] = String.valueOf(t.get(i).getProduct_currentNumbers());
+                            tt[4] = "1";
+                            tt[5] = "加入购物车";
+                            tt[6] = "购买";
+                            temp[i] = tt;
+                        }
+                        setShoptable(temp);
+                    }else {
+                        setShoptable(null);
                     }
-                    setShoptable(temp);
                     ShoppingHall f12=new ShoppingHall();
                     panel.add(f12,"f12");
                     cardLayout.show(panel, "f12");
@@ -322,19 +342,23 @@ public class ShoppingHall extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 try {
                     List<Product> t = Client_shop.checktypeProduct("男装");
-                    String[][] temp = new String[t.size()][];
-                    for(int i =0;i<t.size();i++){
-                        String[] tt =new String[7];
-                        tt[0]=String.valueOf(t.get(i).getProduct_id());
-                        tt[1]=t.get(i).getProduct_name();
-                        tt[2]=String.valueOf(t.get(i).getProduct_price());
-                        tt[3]=String.valueOf(t.get(i).getProduct_currentNumbers());
-                        tt[4]="1";
-                        tt[5]="加入购物车";
-                        tt[6]="购买";
-                        temp[i]=tt;
+                    if(t!=null) {
+                        String[][] temp = new String[t.size()][];
+                        for (int i = 0; i < t.size(); i++) {
+                            String[] tt = new String[7];
+                            tt[0] = String.valueOf(t.get(i).getProduct_id());
+                            tt[1] = t.get(i).getProduct_name();
+                            tt[2] = String.valueOf(t.get(i).getProduct_price());
+                            tt[3] = String.valueOf(t.get(i).getProduct_currentNumbers());
+                            tt[4] = "1";
+                            tt[5] = "加入购物车";
+                            tt[6] = "购买";
+                            temp[i] = tt;
+                        }
+                        setShoptable(temp);
+                    }else {
+                        setShoptable(null);
                     }
-                    setShoptable(temp);
                     ShoppingHall f12=new ShoppingHall();
                     panel.add(f12,"f12");
                     cardLayout.show(panel, "f12");
@@ -356,19 +380,23 @@ public class ShoppingHall extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 try {
                     List<Product> t = Client_shop.checktypeProduct("运动");
-                    String[][] temp = new String[t.size()][];
-                    for(int i =0;i<t.size();i++){
-                        String[] tt =new String[7];
-                        tt[0]=String.valueOf(t.get(i).getProduct_id());
-                        tt[1]=t.get(i).getProduct_name();
-                        tt[2]=String.valueOf(t.get(i).getProduct_price());
-                        tt[3]=String.valueOf(t.get(i).getProduct_currentNumbers());
-                        tt[4]="1";
-                        tt[5]="加入购物车";
-                        tt[6]="购买";
-                        temp[i]=tt;
+                    if(t!=null) {
+                        String[][] temp = new String[t.size()][];
+                        for (int i = 0; i < t.size(); i++) {
+                            String[] tt = new String[7];
+                            tt[0] = String.valueOf(t.get(i).getProduct_id());
+                            tt[1] = t.get(i).getProduct_name();
+                            tt[2] = String.valueOf(t.get(i).getProduct_price());
+                            tt[3] = String.valueOf(t.get(i).getProduct_currentNumbers());
+                            tt[4] = "1";
+                            tt[5] = "加入购物车";
+                            tt[6] = "购买";
+                            temp[i] = tt;
+                        }
+                        setShoptable(temp);
+                    }else {
+                        setShoptable(null);
                     }
-                    setShoptable(temp);
                     ShoppingHall f12=new ShoppingHall();
                     panel.add(f12,"f12");
                     cardLayout.show(panel, "f12");
@@ -390,19 +418,23 @@ public class ShoppingHall extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 try {
                     List<Product> t = Client_shop.checktypeProduct("百货");
-                    String[][] temp = new String[t.size()][];
-                    for(int i =0;i<t.size();i++){
-                        String[] tt =new String[7];
-                        tt[0]=String.valueOf(t.get(i).getProduct_id());
-                        tt[1]=t.get(i).getProduct_name();
-                        tt[2]=String.valueOf(t.get(i).getProduct_price());
-                        tt[3]=String.valueOf(t.get(i).getProduct_currentNumbers());
-                        tt[4]="1";
-                        tt[5]="加入购物车";
-                        tt[6]="购买";
-                        temp[i]=tt;
+                    if(t!=null) {
+                        String[][] temp = new String[t.size()][];
+                        for (int i = 0; i < t.size(); i++) {
+                            String[] tt = new String[7];
+                            tt[0] = String.valueOf(t.get(i).getProduct_id());
+                            tt[1] = t.get(i).getProduct_name();
+                            tt[2] = String.valueOf(t.get(i).getProduct_price());
+                            tt[3] = String.valueOf(t.get(i).getProduct_currentNumbers());
+                            tt[4] = "1";
+                            tt[5] = "加入购物车";
+                            tt[6] = "购买";
+                            temp[i] = tt;
+                        }
+                        setShoptable(temp);
+                    }else {
+                        setShoptable(null);
                     }
-                    setShoptable(temp);
                     ShoppingHall f12=new ShoppingHall();
                     panel.add(f12,"f12");
                     cardLayout.show(panel, "f12");
@@ -424,17 +456,23 @@ public class ShoppingHall extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 try {
                     List<Product> t = Client_shop.checktypeProduct("手机");
-                    String[][] temp = new String[t.size()][];
-                    for(int i =0;i<t.size();i++){
-                        String[] tt =new String[5];
-                        tt[0]=String.valueOf(t.get(i).getProduct_id());
-                        tt[1]=t.get(i).getProduct_name();
-                        tt[2]=String.valueOf(t.get(i).getProduct_price());
-                        tt[3]=String.valueOf(t.get(i).getProduct_currentNumbers());
-                        tt[4]="1";
-                        temp[i]=tt;
+                    if(t!=null) {
+                        String[][] temp = new String[t.size()][];
+                        for (int i = 0; i < t.size(); i++) {
+                            String[] tt = new String[7];
+                            tt[0] = String.valueOf(t.get(i).getProduct_id());
+                            tt[1] = t.get(i).getProduct_name();
+                            tt[2] = String.valueOf(t.get(i).getProduct_price());
+                            tt[3] = String.valueOf(t.get(i).getProduct_currentNumbers());
+                            tt[4] = "1";
+                            tt[5] = "加入购物车";
+                            tt[6] = "购买";
+                            temp[i] = tt;
+                        }
+                        setShoptable(temp);
+                    }else {
+                        setShoptable(null);
                     }
-                    setShoptable(temp);
                     ShoppingHall f12=new ShoppingHall();
                     panel.add(f12,"f12");
                     cardLayout.show(panel, "f12");
@@ -456,17 +494,23 @@ public class ShoppingHall extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 try {
                     List<Product> t = Client_shop.checktypeProduct("数码");
-                    String[][] temp = new String[t.size()][];
-                    for(int i =0;i<t.size();i++){
-                        String[] tt =new String[5];
-                        tt[0]=String.valueOf(t.get(i).getProduct_id());
-                        tt[1]=t.get(i).getProduct_name();
-                        tt[2]=String.valueOf(t.get(i).getProduct_price());
-                        tt[3]=String.valueOf(t.get(i).getProduct_currentNumbers());
-                        tt[4]="1";
-                        temp[i]=tt;
+                    if(t!=null) {
+                        String[][] temp = new String[t.size()][];
+                        for (int i = 0; i < t.size(); i++) {
+                            String[] tt = new String[7];
+                            tt[0] = String.valueOf(t.get(i).getProduct_id());
+                            tt[1] = t.get(i).getProduct_name();
+                            tt[2] = String.valueOf(t.get(i).getProduct_price());
+                            tt[3] = String.valueOf(t.get(i).getProduct_currentNumbers());
+                            tt[4] = "1";
+                            tt[5] = "加入购物车";
+                            tt[6] = "购买";
+                            temp[i] = tt;
+                        }
+                        setShoptable(temp);
+                    }else {
+                        setShoptable(null);
                     }
-                    setShoptable(temp);
                     ShoppingHall f12=new ShoppingHall();
                     panel.add(f12,"f12");
                     cardLayout.show(panel, "f12");
@@ -488,17 +532,23 @@ public class ShoppingHall extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 try {
                     List<Product> t = Client_shop.checktypeProduct("礼品");
-                    String[][] temp = new String[t.size()][];
-                    for(int i =0;i<t.size();i++){
-                        String[] tt =new String[5];
-                        tt[0]=String.valueOf(t.get(i).getProduct_id());
-                        tt[1]=t.get(i).getProduct_name();
-                        tt[2]=String.valueOf(t.get(i).getProduct_price());
-                        tt[3]=String.valueOf(t.get(i).getProduct_currentNumbers());
-                        tt[4]="1";
-                        temp[i]=tt;
+                    if(t!=null) {
+                        String[][] temp = new String[t.size()][];
+                        for (int i = 0; i < t.size(); i++) {
+                            String[] tt = new String[7];
+                            tt[0] = String.valueOf(t.get(i).getProduct_id());
+                            tt[1] = t.get(i).getProduct_name();
+                            tt[2] = String.valueOf(t.get(i).getProduct_price());
+                            tt[3] = String.valueOf(t.get(i).getProduct_currentNumbers());
+                            tt[4] = "1";
+                            tt[5] = "加入购物车";
+                            tt[6] = "购买";
+                            temp[i] = tt;
+                        }
+                        setShoptable(temp);
+                    }else {
+                        setShoptable(null);
                     }
-                    setShoptable(temp);
                     ShoppingHall f12=new ShoppingHall();
                     panel.add(f12,"f12");
                     cardLayout.show(panel, "f12");
@@ -520,17 +570,23 @@ public class ShoppingHall extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 try {
                     List<Product> t = Client_shop.checktypeProduct("家装");
-                    String[][] temp = new String[t.size()][];
-                    for(int i =0;i<t.size();i++){
-                        String[] tt =new String[5];
-                        tt[0]=String.valueOf(t.get(i).getProduct_id());
-                        tt[1]=t.get(i).getProduct_name();
-                        tt[2]=String.valueOf(t.get(i).getProduct_price());
-                        tt[3]=String.valueOf(t.get(i).getProduct_currentNumbers());
-                        tt[4]="1";
-                        temp[i]=tt;
+                    if(t!=null) {
+                        String[][] temp = new String[t.size()][];
+                        for (int i = 0; i < t.size(); i++) {
+                            String[] tt = new String[7];
+                            tt[0] = String.valueOf(t.get(i).getProduct_id());
+                            tt[1] = t.get(i).getProduct_name();
+                            tt[2] = String.valueOf(t.get(i).getProduct_price());
+                            tt[3] = String.valueOf(t.get(i).getProduct_currentNumbers());
+                            tt[4] = "1";
+                            tt[5] = "加入购物车";
+                            tt[6] = "购买";
+                            temp[i] = tt;
+                        }
+                        setShoptable(temp);
+                    }else {
+                        setShoptable(null);
                     }
-                    setShoptable(temp);
                     ShoppingHall f12=new ShoppingHall();
                     panel.add(f12,"f12");
                     cardLayout.show(panel, "f12");
@@ -552,17 +608,23 @@ public class ShoppingHall extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 try {
                     List<Product> t = Client_shop.checktypeProduct("电器");
-                    String[][] temp = new String[t.size()][];
-                    for(int i =0;i<t.size();i++){
-                        String[] tt =new String[5];
-                        tt[0]=String.valueOf(t.get(i).getProduct_id());
-                        tt[1]=t.get(i).getProduct_name();
-                        tt[2]=String.valueOf(t.get(i).getProduct_price());
-                        tt[3]=String.valueOf(t.get(i).getProduct_currentNumbers());
-                        tt[4]="1";
-                        temp[i]=tt;
+                    if(t!=null) {
+                        String[][] temp = new String[t.size()][];
+                        for (int i = 0; i < t.size(); i++) {
+                            String[] tt = new String[7];
+                            tt[0] = String.valueOf(t.get(i).getProduct_id());
+                            tt[1] = t.get(i).getProduct_name();
+                            tt[2] = String.valueOf(t.get(i).getProduct_price());
+                            tt[3] = String.valueOf(t.get(i).getProduct_currentNumbers());
+                            tt[4] = "1";
+                            tt[5] = "加入购物车";
+                            tt[6] = "购买";
+                            temp[i] = tt;
+                        }
+                        setShoptable(temp);
+                    }else {
+                        setShoptable(null);
                     }
-                    setShoptable(temp);
                     ShoppingHall f12=new ShoppingHall();
                     panel.add(f12,"f12");
                     cardLayout.show(panel, "f12");
@@ -584,17 +646,23 @@ public class ShoppingHall extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 try {
                     List<Product> t = Client_shop.checktypeProduct("厨具");
-                    String[][] temp = new String[t.size()][];
-                    for(int i =0;i<t.size();i++){
-                        String[] tt =new String[5];
-                        tt[0]=String.valueOf(t.get(i).getProduct_id());
-                        tt[1]=t.get(i).getProduct_name();
-                        tt[2]=String.valueOf(t.get(i).getProduct_price());
-                        tt[3]=String.valueOf(t.get(i).getProduct_currentNumbers());
-                        tt[4]="1";
-                        temp[i]=tt;
+                    if(t!=null) {
+                        String[][] temp = new String[t.size()][];
+                        for (int i = 0; i < t.size(); i++) {
+                            String[] tt = new String[7];
+                            tt[0] = String.valueOf(t.get(i).getProduct_id());
+                            tt[1] = t.get(i).getProduct_name();
+                            tt[2] = String.valueOf(t.get(i).getProduct_price());
+                            tt[3] = String.valueOf(t.get(i).getProduct_currentNumbers());
+                            tt[4] = "1";
+                            tt[5] = "加入购物车";
+                            tt[6] = "购买";
+                            temp[i] = tt;
+                        }
+                        setShoptable(temp);
+                    }else {
+                        setShoptable(null);
                     }
-                    setShoptable(temp);
                     ShoppingHall f12=new ShoppingHall();
                     panel.add(f12,"f12");
                     cardLayout.show(panel, "f12");
@@ -616,17 +684,23 @@ public class ShoppingHall extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 try {
                     List<Product> t = Client_shop.checktypeProduct("医药");
-                    String[][] temp = new String[t.size()][];
-                    for(int i =0;i<t.size();i++){
-                        String[] tt =new String[5];
-                        tt[0]=String.valueOf(t.get(i).getProduct_id());
-                        tt[1]=t.get(i).getProduct_name();
-                        tt[2]=String.valueOf(t.get(i).getProduct_price());
-                        tt[3]=String.valueOf(t.get(i).getProduct_currentNumbers());
-                        tt[4]="1";
-                        temp[i]=tt;
+                    if(t!=null) {
+                        String[][] temp = new String[t.size()][];
+                        for (int i = 0; i < t.size(); i++) {
+                            String[] tt = new String[7];
+                            tt[0] = String.valueOf(t.get(i).getProduct_id());
+                            tt[1] = t.get(i).getProduct_name();
+                            tt[2] = String.valueOf(t.get(i).getProduct_price());
+                            tt[3] = String.valueOf(t.get(i).getProduct_currentNumbers());
+                            tt[4] = "1";
+                            tt[5] = "加入购物车";
+                            tt[6] = "购买";
+                            temp[i] = tt;
+                        }
+                        setShoptable(temp);
+                    }else {
+                        setShoptable(null);
                     }
-                    setShoptable(temp);
                     ShoppingHall f12=new ShoppingHall();
                     panel.add(f12,"f12");
                     cardLayout.show(panel, "f12");
@@ -648,17 +722,23 @@ public class ShoppingHall extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 try {
                     List<Product> t = Client_shop.checktypeProduct("保健");
-                    String[][] temp = new String[t.size()][];
-                    for(int i =0;i<t.size();i++){
-                        String[] tt =new String[5];
-                        tt[0]=String.valueOf(t.get(i).getProduct_id());
-                        tt[1]=t.get(i).getProduct_name();
-                        tt[2]=String.valueOf(t.get(i).getProduct_price());
-                        tt[3]=String.valueOf(t.get(i).getProduct_currentNumbers());
-                        tt[4]="1";
-                        temp[i]=tt;
+                    if(t!=null) {
+                        String[][] temp = new String[t.size()][];
+                        for (int i = 0; i < t.size(); i++) {
+                            String[] tt = new String[7];
+                            tt[0] = String.valueOf(t.get(i).getProduct_id());
+                            tt[1] = t.get(i).getProduct_name();
+                            tt[2] = String.valueOf(t.get(i).getProduct_price());
+                            tt[3] = String.valueOf(t.get(i).getProduct_currentNumbers());
+                            tt[4] = "1";
+                            tt[5] = "加入购物车";
+                            tt[6] = "购买";
+                            temp[i] = tt;
+                        }
+                        setShoptable(temp);
+                    }else {
+                        setShoptable(null);
                     }
-                    setShoptable(temp);
                     ShoppingHall f12=new ShoppingHall();
                     panel.add(f12,"f12");
                     cardLayout.show(panel, "f12");
@@ -680,17 +760,23 @@ public class ShoppingHall extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 try {
                     List<Product> t = Client_shop.checktypeProduct("生鲜");
-                    String[][] temp = new String[t.size()][];
-                    for(int i =0;i<t.size();i++){
-                        String[] tt =new String[5];
-                        tt[0]=String.valueOf(t.get(i).getProduct_id());
-                        tt[1]=t.get(i).getProduct_name();
-                        tt[2]=String.valueOf(t.get(i).getProduct_price());
-                        tt[3]=String.valueOf(t.get(i).getProduct_currentNumbers());
-                        tt[4]="1";
-                        temp[i]=tt;
+                    if(t!=null) {
+                        String[][] temp = new String[t.size()][];
+                        for (int i = 0; i < t.size(); i++) {
+                            String[] tt = new String[7];
+                            tt[0] = String.valueOf(t.get(i).getProduct_id());
+                            tt[1] = t.get(i).getProduct_name();
+                            tt[2] = String.valueOf(t.get(i).getProduct_price());
+                            tt[3] = String.valueOf(t.get(i).getProduct_currentNumbers());
+                            tt[4] = "1";
+                            tt[5] = "加入购物车";
+                            tt[6] = "购买";
+                            temp[i] = tt;
+                        }
+                        setShoptable(temp);
+                    }else {
+                        setShoptable(null);
                     }
-                    setShoptable(temp);
                     ShoppingHall f12=new ShoppingHall();
                     panel.add(f12,"f12");
                     cardLayout.show(panel, "f12");
