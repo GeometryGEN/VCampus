@@ -4,7 +4,7 @@ package message;
 
 public interface MessageType {
 
-    int PORT = 8080;                     //端口号
+    int PORT = 8081;                     //端口号
     String MESSAGE_LOGIN_SUCCEED = "1";  //登录成功
     String MESSAGE_LOGIN_FAIL = "2";     //登录失败
     String MESSAGE_STUDENT_LOGIN = "3";  //学生登录
