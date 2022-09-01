@@ -223,7 +223,7 @@ public class Library_manager implements Serializable{
         st.close();
         return msg;
     }
-    public void handle(Punishment punishment) throws SQLException, IOException {
+   /* public void handle(Punishment punishment) throws SQLException, IOException {
         Iterator it=ServerToClient.getPunish().iterator();
         while(it.hasNext()){
             Punishment p=(Punishment)it.next();
@@ -234,7 +234,7 @@ public class Library_manager implements Serializable{
                 return;
             }
         }
-    }
+    }*/
     public Message extend(Book_borrower b) throws SQLException, ParseException {
         String sql="select * from library where id=?;";
         PreparedStatement st=conn.prepareStatement(sql);
@@ -359,7 +359,7 @@ public class Library_manager implements Serializable{
         st.close();
         return message;
     }
-    public ArrayList<Punishment>admin_list_tickets(){
+   /* public ArrayList<Punishment>admin_list_tickets(){
         ArrayList<Punishment>punishments=new ArrayList<>();
         Iterator it=ServerToClient.getPunish().iterator();
         while(it.hasNext()){
@@ -367,7 +367,7 @@ public class Library_manager implements Serializable{
             if(p.status==0) punishments.add(p);
         }
         return punishments;
-    }
+    }*/
     public ArrayList<Punishment>list_my_tickets() throws SQLException {
         String sql="select * from ticket where customer=? and status=0 order by id+0 ;";
         PreparedStatement st=conn.prepareStatement(sql);

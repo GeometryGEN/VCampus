@@ -24,10 +24,19 @@ public class Admin_utils {
             while (resultSet.next()) {
                 passWord = resultSet.getString("Admin_pwd").trim();
                 if (passWord == userpassword || passWord.equals(userpassword)) {
+                    resultSet.close();
+                    state.close();
+                    connection.close();
                     return true;
-                } else
+                } else{
+                    resultSet.close();
+                    state.close();
+                    connection.close();
                     return false;
+                }
+
             }
+
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -44,9 +53,17 @@ public class Admin_utils {
             while (resultSet.next()) {
                 passWord = resultSet.getString("Admin_pwd").trim();
                 if (passWord == userpassword || passWord.equals(userpassword)) {
+                    resultSet.close();
+                    state.close();
+                    connection.close();
                     return resultSet.getString("Admin_name");
-                } else
+                } else{
+                    resultSet.close();
+                    state.close();
+                    connection.close();
                     return null;
+                }
+
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -64,6 +81,9 @@ public class Admin_utils {
             admin.setAdmin_idcard(id);
             admin.setAdmin_name(rs.getString("Admin_name"));
         }
+        rs.close();
+        st.close();
+        connection.close();
         return admin;
     }
 }

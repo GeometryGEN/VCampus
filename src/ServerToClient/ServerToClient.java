@@ -38,14 +38,14 @@ public class ServerToClient extends Thread{
     private ServerSocket ss = null;
     private Student s1;
     private Teacher t1;
-    private static HashSet<Punishment> punish=new HashSet<Punishment>();
-    private static HashMap<String, Integer>online=new HashMap<>();
+    /*private static HashSet<Punishment> punish=new HashSet<Punishment>();
+
     private static HashSet<Opencourse>opencourses=new HashSet<Opencourse>();
     private static HashMap<String, ArrayList<Message>>QQbox=new HashMap<String, ArrayList<Message>>();
     private static HashSet<Message>bulletin=new HashSet<Message>();
     private static HashMap<String,ArrayList<Filetrans>>QQfile=new HashMap<String,ArrayList<Filetrans>>();
     private static HashMap<String,ArrayList<Application>>QQapplication=new HashMap<>();
-    private static HashMap<String,ArrayList<String>>new_message=new HashMap<>();
+    private static HashMap<String,ArrayList<String>>new_message=new HashMap<>();*/
     public ServerToClient() throws IOException {
         try{
             System.out.println("服务器在"+MessageType.PORT+"端口监听中，"+"IP地址为"+Message.returnIP());
@@ -204,15 +204,29 @@ public class ServerToClient extends Thread{
         }
     }
 
-    public static HashSet<Opencourse> getOpencourses() {
+    private static HashMap<String, Integer>online=new HashMap<>();
+    public static void addOnline(String id,int ty){
+        online.put(id,ty);
+    }
+    public static void removeOnline(String id){
+       online.remove(id);
+    }
+    public static int isOnline(String id){
+        if(online.containsKey(id)) return online.get(id);
+        else return -1;
+    }
+    public static void main(String[] args) throws IOException {
+        new ServerToClient();
+    }
+    /*    public static HashSet<Opencourse> getOpencourses() {
         return opencourses;
     }
 
     public static void add_opencourse(Opencourse open) {
         ServerToClient.opencourses.add(open);
     }
-
-    public static HashSet<Punishment> getPunish() {
+*/
+   /* public static HashSet<Punishment> getPunish() {
         return punish;
     }
     public static String getOnline_admin () {
@@ -220,14 +234,8 @@ public class ServerToClient extends Thread{
             if(online.get(i).equals(2)) return i;
         }
         return null;
-    }
-    public static void addOnline(String id,int ty){
-        online.put(id,ty);
-    }
-    public static void removeOnline(String id){
-       online.remove(id);
-    }
-    public static void addPunish(Punishment p) {
+    }*/
+  /*  public static void addPunish(Punishment p) {
         ServerToClient.punish.add(p);
     }
 
@@ -246,12 +254,10 @@ public class ServerToClient extends Thread{
             QQbox.put(to,a);
         }
 
-    }
+    }*/
 
-    public static void main(String[] args) throws IOException {
-        new ServerToClient();
-    }
-    public static HashSet<Message> getBulletin() {
+
+    /*public static HashSet<Message> getBulletin() {
         return bulletin;
     }
 
@@ -272,13 +278,10 @@ public class ServerToClient extends Thread{
             a.add(f);
             QQfile.put(to,a);
         }
-    }
-    public static int isOnline(String id){
-       if(online.containsKey(id)) return online.get(id);
-       else return -1;
-    }
+    }*/
 
-    public static ArrayList<Application> getQQapplication(String id) {
+
+    /*public static ArrayList<Application> getQQapplication(String id) {
         if(QQapplication.containsKey(id)) return QQapplication.get(id);
         else return new ArrayList<Application>();
     }
@@ -308,5 +311,5 @@ public class ServerToClient extends Thread{
             a.add(from);
             new_message.put(to,a);
         }
-    }
+    }*/
 }
