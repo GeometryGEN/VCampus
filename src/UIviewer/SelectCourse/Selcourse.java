@@ -22,7 +22,8 @@ public class Selcourse extends JPanel {
 
     public Selcourse()
     {
-        setBounds(0,0,(int)(1273*width_r),(int)(790*height_r));
+        setBounds(0,0,width,height);
+        setBackground(Color.green);
         setLayout(null);
         panel.setBounds(0,(int)(100*height_r),(int)(1273*width_r),(int)(790*height_r));
         add(panel);
@@ -139,18 +140,17 @@ public class Selcourse extends JPanel {
 
         //东南大学标志图片
         JLabel l15 = new JLabel();
-        ImageIcon icon6 = new ImageIcon("src/image/background2.jpg");
-        int icon6_width= 1273;
-        int icon6_height=790;
         try {
             Thumbnails.of(new File("src/image/background2.jpg"))
-                    .size((int)(icon6_width*width_r), (int)(icon6_height*height_r))
+                    .size((int)(width), (int)(height))
+                    .keepAspectRatio(false)
                     .toFile(new File("src/image/background2_min.jpg"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
         l15.setIcon(new ImageIcon("src/image/background2_min.jpg"));
-        l15.setBounds(0, 0, (int)(1273*width_r), (int)(790*height_r));
+        l15.setBounds(0, 0, width, height);
+        l15.setOpaque(true);
         add(l15);
         setVisible(true);
     }

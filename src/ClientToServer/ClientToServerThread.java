@@ -264,7 +264,6 @@ public class ClientToServerThread extends Thread {
                     JOptionPane.showMessageDialog(null,"    查询失败! 学生不存在");
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_STATUS_CONFIRM_RET)){
-                    Client_status.show_studata((ImageAndTable)message.getData());
                     JOptionPane.showMessageDialog(null, "   修改学生信息成功!");
                 }
                 //站内通信
@@ -293,6 +292,7 @@ public class ClientToServerThread extends Thread {
                 }
                 else if (message.getType().equals(MessageType.MESSAGE_QICQ_ADD_FRIEND_SUCCEED)) {
                     Client_qicq.add_friend_succeed();
+                    Client_qicq.Require_friend_list();
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_QICQ_ADD_FRIEND_FAIL_CANNOT_FIND_USER)){
                     Client_qicq.add_friend_fail();
@@ -301,7 +301,11 @@ public class ClientToServerThread extends Thread {
                     ArrayList<Application>messages=(ArrayList<Application>)message.getData();
                     Client_qicq.list_application(messages);
                 }
-                System.out.println("next");
+                else if(message.getType().equals(MessageType.MESSAGE_QICQ_MODIFY_RET)){
+                    JOptionPane.showMessageDialog(null,"修改成功");
+                    Client_qicq.Require_friend_list();
+                }
+            //    System.out.println("next");
 
                 //选课
                 if(message.getType().equals(MessageType.MESSAGE_CURRICULUM_QUERY_RET)){
@@ -336,6 +340,7 @@ public class ClientToServerThread extends Thread {
                     JOptionPane.showMessageDialog(null,"课程申报失败，已经存在相同课程！");
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_CURRICULUM_SHOW_STU_RET)){
+                    System.out.println("return");
                      Client_curriculum.show_my_students((ArrayList<Student>)message.getData());
 
                 }

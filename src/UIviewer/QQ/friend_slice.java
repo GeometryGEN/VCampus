@@ -10,6 +10,8 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class friend_slice extends JLabel {
@@ -39,14 +41,24 @@ public class friend_slice extends JLabel {
         setBackground(new Color(255,255,255));
         setBorder(null);
         int icon1_width=(int)((height-2*20)*height_r);
+        FileOutputStream fileOutputStream = null;
+        if(friend.image!=null)
+        {
+            try {
+                fileOutputStream = new FileOutputStream("src/image/QQ/"+friend.getId()+".jpg");
+                fileOutputStream.write(friend.image);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
         try {
-            Thumbnails.of(new File("src/image/QQ/qq_image_3.jpg"))
+            Thumbnails.of(new File("src/image/QQ/"+friend.getId()+".jpg"))
                     .size((int)(icon1_width*width_r), (int)(icon1_width*width_r))
-                    .toFile(new File("src/image/QQ/qq_image_3_min.png"));
+                    .toFile(new File("src/image/QQ/"+friend.getId()+"_min.jpg"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        setIcon(new ImageIcon("src/image/QQ/qq_image_3_min.png"));
+        setIcon(new ImageIcon("src/image/QQ/"+friend.getId()+"_min.jpg"));
         if(friend.getOnline()==1){
             setText(friend.getName()+"                                                 ");
             setForeground(Color.black);
@@ -59,23 +71,37 @@ public class friend_slice extends JLabel {
         setFont(new Font("宋体", Font.BOLD, (int)(25*width_r)));
         setHorizontalTextPosition(JLabel.RIGHT);
         JLabel jLabel=this;//为后续按钮提供指针
+        //弹出式菜单
+        JPopupMenu jpopupmenu1 = new JPopupMenu();   //弹出式菜单
+        JMenuItem jmenuitem1 = new JMenuItem("菜单");  //菜单项
+        jpopupmenu1.add(jmenuitem1);   //弹出式菜单添加一个菜单项
+
+
+
         //鼠标移进去变色，移出复原
         jLabel.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent e) {
-                //聊天面板
-                try {
-                    Client_qicq.get_message(friend.getId());
-                } catch (IOException ex) {
-                    throw new RuntimeException(ex);
+                int c=e.getButton();
+                if(c==MouseEvent.BUTTON1){
+                    //聊天面板
+                    try {
+                        Client_qicq.get_message(friend.getId());
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    if(main_panel.cpn!=null){
+                        main_panel.mjp.remove(main_panel.cpn);
+                    }
+                    chat_panel chatPanel=new chat_panel(1920/3*2,1080,width_r,height_r,1920/3,0,friend);
+                    main_panel.mjp.add(chatPanel);
+                    main_panel.cpn=chatPanel;
+                    main_panel.mjp.updateUI();
                 }
-                if(main_panel.cpn!=null){
-                    main_panel.mjp.remove(main_panel.cpn);
+                else if(c==MouseEvent.BUTTON3){
+                    JPopupMenu jpopupmenu2=jpopupmenu1;
+                    jpopupmenu2.show(e.getComponent(), e.getX(),e.getY());
                 }
-                chat_panel chatPanel=new chat_panel(1920/3*2,1080,width_r,height_r,1920/3,0,friend);
-                main_panel.mjp.add(chatPanel);
-                main_panel.cpn=chatPanel;
-                main_panel.mjp.updateUI();
             }
 
             @Override

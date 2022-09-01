@@ -17,10 +17,11 @@ public class manage_status{
     static JButton jb_back_to_search;
     static public JPanel search_panel;
     static public JPanel status_jpanel;
-    static public JPanel manage_panel=new JPanel();
+    static public JPanel manage_panel;
     public manage_status(int width, int height) throws Exception {
         double width_r=(double)(width)/1920;
         double height_r=(double)(height)/1080;
+        manage_panel=new JPanel();
         //设置屏幕大小、背景颜色
         manage_panel.setBounds(0,0,width,height);
         manage_panel.setBackground(new Color(255,255,255));
@@ -117,6 +118,7 @@ public class manage_status{
             @Override
             public void actionPerformed(ActionEvent e) {
               //  Client_status.resetS();
+                functionChoose.jf.remove(manage_status.manage_panel);
                 functionChoose.jf.setContentPane(functionChoose.fc_panel);
             }
         });

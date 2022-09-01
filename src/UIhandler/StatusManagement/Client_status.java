@@ -135,13 +135,10 @@ public class Client_status {
         oos.writeObject(message);
     }
     public static void show_studata(ImageAndTable iat) throws Exception {
-
-
         System.out.println("opening  "+width+" "+height);
+        //functionChoose.jf.remove(functionChoose.jf.getContentPane());
         functionChoose.jf.setContentPane(new student_status(width,height,iat));
-        functionChoose.jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         functionChoose.jf.setTitle("Status management");
-        functionChoose.jf.setVisible(true);
     }
     static double width_r,height_r;
     static int height,width,icon1_width,icon1_height;
@@ -160,10 +157,11 @@ public class Client_status {
         manage_status.status_jpanel=student_status.status_panel(width_r,height_r,width-2*(60+icon1_width)*width_r,(1080-70-icon1_height)*height_r,iat);
         manage_status.status_jpanel.setBounds((int)((60+icon1_width)*width_r),(int)((47+icon1_height)*height_r), (int)(width-2*(60+icon1_width)*width_r),(int)((1080-70-icon1_height)*height_r));
         manage_status.manage_panel.add(manage_status.status_jpanel,0);
-        //需要改这个
         manage_status.search_panel.setVisible(false);
         manage_status.status_jpanel.setVisible(true);
+        //manage_status.status_jpanel.setVisible(true);
     }
+
     public static void change(Student s) throws IOException {
         Message message=new Message();
         message.setData(s);

@@ -38,10 +38,13 @@ public class functionChoose {
         Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
         int width=(int ) screensize.getWidth(); //得到宽度
         int height=(int ) screensize.getHeight();//获得高度
+        System.out.println(width);
+        System.out.println(height);
         double width_r=(double)(width)/1273;
         double height_r=(double)(height)/784;
         jf = new JFrame("functionChoose");
         jf.setSize(width,height);
+        jf.setExtendedState(JFrame.MAXIMIZED_BOTH);
         //jf.setSize(1273,784);
         fc_panel = new JPanel();
         fc_panel.setLayout(null);
@@ -273,18 +276,15 @@ public class functionChoose {
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
                 try {
-                    jf.setBounds(0,0,width,height);
+                    //jf.setBounds(0,0,width,height);
                     jf.remove(fc_panel);
                     Client_status.ini();
-                    if(myInfo.getType()==1)
-                        //jf.setContentPane(new student_status(width,height));
+                    if(myInfo.getType()==1) {
                         Client_status.stu_enter();
+                    }
                     else if(myInfo.getType()==3){
                         jf.setContentPane(new manage_status(width,height).manage_panel);
-                        jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
                         jf.setTitle("admin_status_management");
-                        jf.setVisible(true);
-                        //Client_status.admin_enter();
                     } else {
                         JOptionPane.showMessageDialog(null,"抱歉，您暂无学籍管理权限！");
                     }
@@ -548,8 +548,8 @@ public class functionChoose {
 
         //右下面板
         JPanel p3 = new JPanel();
-        p3.setBounds((int) (330*width_r), (int) (285*height_r), (int) (1000*width_r), (int) (440*height_r));
-        p3.setBackground(new Color(211,211,211));
+        p3.setBounds((int) (326*width_r), (int) (282*height_r), (int) (927*width_r), (int) (430*height_r));
+        p3.setBackground(new Color(230,230,230));
         fc_panel.add(p3);
 
         //右侧面板

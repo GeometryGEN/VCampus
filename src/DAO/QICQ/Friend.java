@@ -6,7 +6,7 @@ public class Friend implements Serializable {
     String id,name,type;
     int unread; //0=此朋友处没有未读消息 1=次朋友处有未读消息
     int online; //0=不在线 1=在线
-
+    public byte[]image;
     public String getId() {
         return id;
     }

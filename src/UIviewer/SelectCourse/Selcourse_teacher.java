@@ -20,13 +20,18 @@ public class Selcourse_teacher extends JPanel {
     double height_r=(double)(height)/790;
     public static CardLayout cardLayout=new CardLayout();
     public static JPanel panel=new JPanel();
+    public static CardLayout cardLayout1=new CardLayout();
+    public static JPanel panel1=new JPanel();
 
     public Selcourse_teacher()
     {
         setBounds(0,0,(int)(1273*width_r),(int)(790*height_r));
         setLayout(null);
         panel.setBounds(0,(int)(100*height_r),(int)(1273*width_r),(int)(790*height_r));
+        panel1.setBounds(0,(int)(200*height_r),(int)(1273*width_r),(int)(500*height_r));
         add(panel);
+        add(panel1);
+        panel1.setLayout(cardLayout1);
         panel.setLayout(cardLayout);
         ConsultCourse_Info f1=new ConsultCourse_Info();
         panel.add(f1,"f1");
@@ -147,6 +152,7 @@ public class Selcourse_teacher extends JPanel {
         try {
             Thumbnails.of(new File("src/image/background2.jpg"))
                     .size((int)(icon6_width*width_r), (int)(icon6_height*height_r))
+                    .keepAspectRatio(false)
                     .toFile(new File("src/image/background2_min.jpg"));
         } catch (IOException e) {
             throw new RuntimeException(e);
