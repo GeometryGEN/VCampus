@@ -111,6 +111,7 @@ public class Selcourse_director extends JPanel {
         try {
             Thumbnails.of(new File("src/image/background2.jpg"))
                     .size((int)(icon6_width*width_r), (int)(icon6_height*height_r))
+                    .keepAspectRatio(false)
                     .toFile(new File("src/image/background2_min.jpg"));
         } catch (IOException e) {
             throw new RuntimeException(e);
