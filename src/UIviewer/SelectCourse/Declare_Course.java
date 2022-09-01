@@ -80,40 +80,40 @@ public class Declare_Course extends JPanel{
 
         JLabel lblNewLabel2 = new JLabel("课程名:");
         lblNewLabel2.setFont(new Font("宋体", Font.BOLD, 30));
-        lblNewLabel2.setBounds((int)(400*width_r), (int)(125*height_r), (int)(275*width_r), (int)(35*height_r));
+        lblNewLabel2.setBounds((int)(400*width_r), (int)(160*height_r), (int)(275*width_r), (int)(35*height_r));
         add(lblNewLabel2);
 
         JTextField textField1 = new JTextField();
         textField1.setFont(new Font("宋体", Font.BOLD, 22));
-        textField1.setBounds((int)(600*width_r), (int)(125*height_r), (int)(275*width_r), (int)(35*height_r));
+        textField1.setBounds((int)(600*width_r), (int)(160*height_r), (int)(275*width_r), (int)(35*height_r));
         add(textField1);
         textField1.setColumns(10);
 
         JLabel lblNewLabel3 = new JLabel("课程学分:");
         lblNewLabel3.setFont(new Font("宋体", Font.BOLD, 30));
-        lblNewLabel3.setBounds((int)(400*width_r), (int)(225*height_r), (int)(275*width_r), (int)(35*height_r));
+        lblNewLabel3.setBounds((int)(400*width_r), (int)(275*height_r), (int)(275*width_r), (int)(35*height_r));
         add(lblNewLabel3);
 
         JTextField textField2 = new JTextField();
         textField2.setFont(new Font("宋体", Font.BOLD, 22));
-        textField2.setBounds((int)(600*width_r), (int)(225*height_r), (int)(275*width_r), (int)(35*height_r));
+        textField2.setBounds((int)(600*width_r), (int)(275*height_r), (int)(275*width_r), (int)(35*height_r));
         add(textField2);
         textField2.setColumns(10);
 
         JLabel lblNewLabel4 = new JLabel("课程学时:");
         lblNewLabel4.setFont(new Font("宋体", Font.BOLD, 30));
-        lblNewLabel4.setBounds((int)(400*width_r), (int)(325*height_r), (int)(275*width_r), (int)(35*height_r));
+        lblNewLabel4.setBounds((int)(400*width_r), (int)(390*height_r), (int)(275*width_r), (int)(35*height_r));
         add(lblNewLabel4);
 
         JTextField textField3 = new JTextField();
         textField3.setFont(new Font("宋体", Font.BOLD, 22));
-        textField3.setBounds((int)(600*width_r), (int)(325*height_r), (int)(275*width_r), (int)(35*height_r));
+        textField3.setBounds((int)(600*width_r), (int)(390*height_r), (int)(275*width_r), (int)(35*height_r));
         add(textField3);
         textField3.setColumns(10);
 
 
         JButton btnNewButton_7 = new JButton("申报");
-        btnNewButton_7.setBounds((int)(660*width_r), (int)(545*height_r), (int)(150*width_r), (int)(30*height_r));
+        btnNewButton_7.setBounds((int)(660*width_r), (int)(525*height_r), (int)(150*width_r), (int)(30*height_r));
         Font myfont3 = new Font("微软雅黑", Font.PLAIN, 16);
         btnNewButton_7.setFont(myfont3);
         btnNewButton_7.setBackground(new Color(248, 248, 255));

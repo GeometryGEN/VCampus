@@ -1,7 +1,6 @@
 package UIviewer.login;
 import ClientToServer.ClientToServer;
 import connection.JDBC_Connector;
-
 import java.awt.EventQueue;
 import javax.swing.*;
 import java.awt.Font;
