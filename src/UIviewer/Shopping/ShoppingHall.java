@@ -65,17 +65,20 @@ public class ShoppingHall extends JPanel {
                     if(t!=null){
                         String[][] temp = new String[t.size()][];
                         for(int i =0;i<t.size();i++){
-                            String[] tt =new String[5];
+                            String[] tt =new String[7];
                             tt[0]=String.valueOf(t.get(i).getProduct_id());
                             tt[1]=t.get(i).getProduct_name();
                             tt[2]=String.valueOf(t.get(i).getProduct_price());
                             tt[3]=String.valueOf(t.get(i).getProduct_currentNumbers());
                             tt[4]="1";
+                            tt[5]="加入购物车";
+                            tt[6]="购买";
                             temp[i]=tt;
                         }
                         setShoptable(temp);
                     }else {
                         System.out.println("kong");
+                        setShoptable(null);
                     }
                     ShoppingHall f112=new ShoppingHall();
                     panel.add(f112,"f112");
@@ -102,20 +105,20 @@ public class ShoppingHall extends JPanel {
                     List<Product> t = Client_shop.checktypeProduct("零食");
                     String[][] temp = new String[t.size()][];
                     for(int i =0;i<t.size();i++){
-                        String[] tt =new String[5];
+                        String[] tt =new String[7];
                         tt[0]=String.valueOf(t.get(i).getProduct_id());
                         tt[1]=t.get(i).getProduct_name();
                         tt[2]=String.valueOf(t.get(i).getProduct_price());
                         tt[3]=String.valueOf(t.get(i).getProduct_currentNumbers());
                         tt[4]="1";
+                        tt[5]="加入购物车";
+                        tt[6]="购买";
                         temp[i]=tt;
                     }
-                    System.out.println("t.size()="+t.size());
-                    System.out.println(temp[0][0]);
                     setShoptable(temp);
-                    ShoppingHall f112=new ShoppingHall();
-                    panel.add(f112,"f112");
-                    cardLayout.show(panel, "f112");
+                    ShoppingHall f11=new ShoppingHall();
+                    panel.add(f11,"f11");
+                    cardLayout.show(panel, "f11");
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 }
@@ -137,12 +140,14 @@ public class ShoppingHall extends JPanel {
                     List<Product> t = Client_shop.checktypeProduct("饼干");
                     String[][] temp = new String[t.size()][];
                     for(int i =0;i<t.size();i++){
-                        String[] tt =new String[5];
+                        String[] tt =new String[7];
                         tt[0]=String.valueOf(t.get(i).getProduct_id());
                         tt[1]=t.get(i).getProduct_name();
                         tt[2]=String.valueOf(t.get(i).getProduct_price());
                         tt[3]=String.valueOf(t.get(i).getProduct_currentNumbers());
                         tt[4]="1";
+                        tt[5]="加入购物车";
+                        tt[6]="购买";
                         temp[i]=tt;
                     }
                     setShoptable(temp);
@@ -166,7 +171,31 @@ public class ShoppingHall extends JPanel {
         btnNewButton_3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null,"XXX,你妈妈给你带来了你最爱的旺仔雪饼！");
+                try {
+                    List<Product> t = Client_shop.checktypeProduct("图书");
+                    if(t!=null){
+                        String[][] temp = new String[t.size()][];
+                        for(int i =0;i<t.size();i++){
+                            String[] tt =new String[7];
+                            tt[0]=String.valueOf(t.get(i).getProduct_id());
+                            tt[1]=t.get(i).getProduct_name();
+                            tt[2]=String.valueOf(t.get(i).getProduct_price());
+                            tt[3]=String.valueOf(t.get(i).getProduct_currentNumbers());
+                            tt[4]="1";
+                            tt[5]="加入购物车";
+                            tt[6]="购买";
+                            temp[i]=tt;
+                        }
+                        setShoptable(temp);
+                    }else {
+                        setShoptable(null);
+                    }
+                    ShoppingHall f13=new ShoppingHall();
+                    panel.add(f13,"f13");
+                    cardLayout.show(panel, "f13");
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
             }
         });
         add(btnNewButton_3);
@@ -320,8 +349,8 @@ public class ShoppingHall extends JPanel {
                         int Num = Integer.parseInt((String) table_want.getValueAt(table_want.getSelectedRow(),4));
                         try {
                             if(Client_shop.getMoney(myInfo.getId())>=(money*Num)){
-                                Client_shop.buyProduct(myInfo.getId(),id,Num,Client_shop.getMoney(myInfo.getId())-money*Num);
-                                JOptionPane.showMessageDialog(null,"购买成功！");
+                                if(Client_shop.buyProduct(myInfo.getId(),id,Num,Client_shop.getMoney(myInfo.getId())-money*Num))
+                                    JOptionPane.showMessageDialog(null,"购买成功！");
                                 Client_shop.setId(String.valueOf(myInfo.getType()));
                                 Client_shop.setIdcard(myInfo.getId());
                                 functionChoose.jf.setContentPane(new shopCustomer());

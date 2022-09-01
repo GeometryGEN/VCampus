@@ -148,8 +148,10 @@ public class buyers_Shop_utils {
         if (rs.next()) {
             current=rs.getInt("Product_currentNumbers");
         }
-        if(current<num)
+        if(current<num){
+            System.out.println("数量不够");
             return "数量不够";
+        }
         else{
             sql = "update students SET Student_money =? WHERE Student_idcard =" + idcard;
             ps = connection.prepareStatement(sql);

@@ -141,20 +141,24 @@ public class ClientToServerThread extends Thread {
                     List<Product> ps = ((List<Product>) message.getData());
                     Client_shop.setProducts(ps);
                 }
+
                 else if(message.getType().equals(MessageType.FIND_PRODUCT_SUCCEED)){
                     List<Product> ps = ((List<Product>) message.getData());
                     Client_shop.setCheckproducts(ps);
                     Client_shop.setSign_find_type("2");
                 }
                 else if(message.getType().equals(MessageType.FIND_PRODUCT_FAILED)){
+                    Client_shop.resetCheckedProducts();
                     Client_shop.setSign_find_type("3");
                 }
+
                 else if(message.getType().equals(MessageType.FIND_TYPE_PRODUCT_SUCCEED)){
                     List<Product> ps = ((List<Product>) message.getData());
                     Client_shop.setCheckproductsType(ps);
                     Client_shop.setSign_find_type("2");
                 }
                 else if(message.getType().equals(MessageType.FIND_TYPE_PRODUCT_FAILED)){
+                    Client_shop.resetCheckedtypeProducts();
                     Client_shop.setSign_find_type("3");
                 }
                 else if(message.getType().equals(MessageType.FIND_PRODUCT_SUCCEED_ZERO)){
