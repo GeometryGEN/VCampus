@@ -291,14 +291,11 @@ public class Client_shop {
         return checkproductsType;
     }
 
-    public static Boolean addProduct(Product p) throws Exception{
+    public static boolean addProduct(Product p) throws Exception{
         resetSign_add();
         Message message = new Message();
         message.setType(MessageType.ADD_PRODUCT);
         message.setData(p);
-        //得到Object对象
-        // oos = new MyObjectOutputStream(ManageClientToServerThread.getThread(idcard).getSocket().getOutputStream());
-        //发送学生对象
         oos.writeObject(message);
         //等待接受学生
         while (sign_add.equals("1")) Thread.onSpinWait();
