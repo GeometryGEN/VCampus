@@ -28,7 +28,11 @@ public class ConsultCourse_stuInfo extends JPanel {
 
         String[] tableTitle={"课程编号","课程名","课程容量","上课教室","上课时间",""};
         DefaultTableModel dtm=new DefaultTableModel(consult_stu,tableTitle);
-        JTable table_want=new JTable(dtm);
+        JTable table_want=new JTable(dtm){
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
         JScrollPane jsp=new JScrollPane(table_want);
         jsp.setBounds(0,0,(int)(1280*width_r),(int)(220*height_r));
         add(jsp);

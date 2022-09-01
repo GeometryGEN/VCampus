@@ -233,7 +233,16 @@ public class ServerToClientThread extends Thread{
                 else if(m.getType().equals(MessageType.MESSAGE_CURRICULUM_DROP)){
                     new Course_manager(userid).drop((String)m.getData());
                 }
-
+                else if(m.getType().equals(MessageType.MESSAGE_CURRICULUM_LIST_TEACHER_COURSE)){
+                    sendback.setData(new Course_manager(userid).list_tea_course());
+                    sendback.setType(MessageType.MESSAGE_CURRICULUM_LIST_TEACHER_COURSE_RET);
+                    oos.writeObject(sendback);
+                }
+                else if(m.getType().equals(MessageType.MESSAGE_CURRICULUM_TEACHER_SCHEDULE)){
+                    sendback.setData(new Course_manager(userid).list_tea_schedule());
+                    sendback.setType(MessageType.MESSAGE_CURRICULUM_SHOW_SCHEDULE_RET);
+                    oos.writeObject(sendback);
+                }
                 //站内通信
                 if(m.getType().equals(MessageType.MESSAGE_QICQ_SEND_MSG)){
                      String getter=m.getGetter();
@@ -313,7 +322,7 @@ public class ServerToClientThread extends Thread{
                         sendback.setType(MessageType.FIND_PRODUCT_SUCCEED);
                         oos.writeObject(sendback);
                     } else{
-                        sendback.setType(MessageType.FIND_PRODUCT_SUCCEED_ZERO);
+                        sendback.setType(MessageType.FIND_PRODUCT_FAILED);
                         oos.writeObject(sendback);
                         //socket.close();
                     }

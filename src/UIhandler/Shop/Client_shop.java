@@ -12,6 +12,8 @@ import message.Message;
 import message.MessageType;
 import utils.MyObjectOutputStream;
 
+import javax.swing.*;
+
 public class Client_shop {
 
     public static String id;    //区分 1：学生  2：老师  3：管理员
@@ -318,7 +320,8 @@ public class Client_shop {
         oos.writeObject(message);
         //等待接受学生
         while (Now_Buy_product.equals("正在买")) Thread.onSpinWait();
-
+        if(Now_Buy_product.equals("数量不够"))
+            JOptionPane.showMessageDialog(null,"数量不够！");
         return Now_Buy_product.equals("购买成功");
     }
 
