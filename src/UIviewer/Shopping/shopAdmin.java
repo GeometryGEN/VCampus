@@ -67,7 +67,7 @@ public class shopAdmin extends JPanel {
             tt[1]=t.get(i).getProduct_name();
             tt[2]=String.valueOf(t.get(i).getProduct_price());
             tt[3]=String.valueOf(t.get(i).getProduct_currentNumbers());
-            tt[4]="1";
+            tt[4]=t.get(i).getProduct_type();
             temp[i]=tt;
         }
         AllGoods.setTableDate(temp);
@@ -118,7 +118,7 @@ public class shopAdmin extends JPanel {
                         tt[1]=t.get(i).getProduct_name();
                         tt[2]=String.valueOf(t.get(i).getProduct_price());
                         tt[3]=String.valueOf(t.get(i).getProduct_currentNumbers());
-                        tt[4]="1";
+                        tt[4]=t.get(i).getProduct_type();
                         temp[i]=tt;
                     }
                     AllGoods.setTableDate(temp);

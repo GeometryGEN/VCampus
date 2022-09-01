@@ -1,6 +1,8 @@
 package UIviewer.Shopping;
 import ClientToServer.myInfo;
 import DAO.Library.Book_borrower;
+import DAO.Shop.Product;
+import DAO.Shop.ProductPair;
 import UIhandler.Library.Client_library;
 import UIhandler.Shop.Client_shop;
 import UIviewer.login.functionChoose;
@@ -12,7 +14,11 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
+import static UIviewer.Shopping.ShoppingHall.resetshoptable;
 import static UIviewer.Shopping.shopCustomer.cardLayout;
 import static UIviewer.Shopping.shopCustomer.panel;
 
@@ -54,12 +60,55 @@ public class shopCar extends JPanel {
                     double money= Double.parseDouble((String) table_want.getValueAt(table_want.getSelectedRow(),3));
                     try {
                         if(Client_shop.getMoney(myInfo.getId())>=(money)){
-                            if(Client_shop.buyProduct(myInfo.getId(),id,Num,Client_shop.getMoney(myInfo.getId())-money))
+                            if(Client_shop.buyProduct(myInfo.getId(),id,Num,Client_shop.getMoney(myInfo.getId())-money)){
+                                Client_shop.deleteReadyToBuy(myInfo.getId(),Integer.parseInt(((String) table_want.getValueAt(table_want.getSelectedRow(),0))),0);
                                 JOptionPane.showMessageDialog(null,"购买成功！");
-                            else {
-                                JOptionPane.showMessageDialog(null,"购买失败！");
+
+                                resetshoptable();
+                                java.util.List<ProductPair> p = Client_shop.checkReadyToBuy(myInfo.getId());
+                                HashMap<Integer, Integer> all = new HashMap<>();
+                                if(p!=null){
+                                    for (ProductPair productPair : p) {
+                                        if (all.get(productPair.getId()) != null) {
+                                            int t = all.get(productPair.getId()) + productPair.getNum();
+                                            all.put(productPair.getId(), t);
+                                        } else {
+                                            all.put(productPair.getId(), productPair.getNum());
+                                        }
+                                    }
+
+                                    List<Product> book = new ArrayList<>();
+                                    for (Integer i : all.keySet()) {
+                                        Product tempt = Client_shop.checkCertainProduct(i);
+                                        if(tempt!=null)
+                                            book.add(tempt);
+                                    }
+                                    if(book.size()!=0){
+                                        String[][] temp = new String[book.size()][];
+                                        for(int i =0;i<book.size();i++){
+                                            String[] tt =new String[6];
+                                            tt[0]=String.valueOf(book.get(i).getProduct_id());
+                                            tt[1]=book.get(i).getProduct_name();
+                                            tt[2]=String.valueOf(all.get(book.get(i).getProduct_id()));  //数量
+                                            tt[3]=String.valueOf(book.get(i).getProduct_price()*all.get(book.get(i).getProduct_id()));
+                                            tt[4]="购买";
+                                            tt[5]="删除";
+                                            temp[i]=tt;
+                                        }
+                                        shopCar.setMyBook(temp);
+                                        System.out.println(temp.length+"  11111");
+                                    }
+                                }
+                                else {
+                                    shopCar.setMyBook(null);
+                                    System.out.println("空");
+                                }
+
                             }
-                            Client_shop.deleteReadyToBuy(myInfo.getId(),Integer.parseInt(((String) table_want.getValueAt(table_want.getSelectedRow(),0))),0);
+                            else {
+                                JOptionPane.showMessageDialog(null,"购买失败,数量不够！");
+                            }
+
                             Client_shop.setId(String.valueOf(myInfo.getType()));
                             Client_shop.setIdcard(myInfo.getId());
                             functionChoose.jf.setContentPane(new shopCustomer());
@@ -80,10 +129,51 @@ public class shopCar extends JPanel {
                     try {
                         Client_shop.deleteReadyToBuy(myInfo.getId(),id,0);
                         JOptionPane.showMessageDialog(null,"删除成功！");
+
+                        resetshoptable();
+                        java.util.List<ProductPair> p = Client_shop.checkReadyToBuy(myInfo.getId());
+                        HashMap<Integer, Integer> all = new HashMap<>();
+                        if(p!=null){
+                            for (ProductPair productPair : p) {
+                                if (all.get(productPair.getId()) != null) {
+                                    int t = all.get(productPair.getId()) + productPair.getNum();
+                                    all.put(productPair.getId(), t);
+                                } else {
+                                    all.put(productPair.getId(), productPair.getNum());
+                                }
+                            }
+
+                            List<Product> book = new ArrayList<>();
+                            for (Integer i : all.keySet()) {
+                                Product tempt = Client_shop.checkCertainProduct(i);
+                                if(tempt!=null)
+                                    book.add(tempt);
+                            }
+                            if(book.size()!=0){
+                                String[][] temp = new String[book.size()][];
+                                for(int i =0;i<book.size();i++){
+                                    String[] tt =new String[6];
+                                    tt[0]=String.valueOf(book.get(i).getProduct_id());
+                                    tt[1]=book.get(i).getProduct_name();
+                                    tt[2]=String.valueOf(all.get(book.get(i).getProduct_id()));  //数量
+                                    tt[3]=String.valueOf(book.get(i).getProduct_price()*all.get(book.get(i).getProduct_id()));
+                                    tt[4]="购买";
+                                    tt[5]="删除";
+                                    temp[i]=tt;
+                                }
+                                shopCar.setMyBook(temp);
+                                System.out.println(temp.length+"  11111");
+                            }
+                        }
+                        else {
+                            shopCar.setMyBook(null);
+                            System.out.println("空");
+                        }
+
                         shopCar f12=new shopCar();
                         panel.add(f12,"f12");
                         cardLayout.show(panel, "f12");
-                    } catch (IOException ex) {
+                    } catch (Exception ex) {
                         throw new RuntimeException(ex);
                     }
                 }
