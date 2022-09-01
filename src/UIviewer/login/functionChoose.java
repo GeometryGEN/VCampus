@@ -38,6 +38,8 @@ public class functionChoose {
         Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
         int width=(int ) screensize.getWidth(); //得到宽度
         int height=(int ) screensize.getHeight();//获得高度
+        System.out.println(width);
+        System.out.println(height);
         double width_r=(double)(width)/1273;
         double height_r=(double)(height)/784;
         jf = new JFrame("functionChoose");
