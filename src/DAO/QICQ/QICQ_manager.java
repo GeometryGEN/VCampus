@@ -100,17 +100,27 @@ public class QICQ_manager {
     //    MyObjectOutputStream oos=new MyObjectOutputStream(ManageServerToClientThread.getThread(to).getSocket().getOutputStream());
         return msg;
     }
-    public void send_online_file(Message msg) throws IOException {
-        System.out.println("sof");
+    public void send_online_file(Message msg) throws IOException, SQLException {
+    //  System.out.println("sof");
         String to=msg.getGetter();
         msg.setType(MessageType.MESSAGE_QICQ_RECERIVE_FILE);
      //   MyObjectOutputStream oos=new MyObjectOutputStream(ManageServerToClientThread.getThread(to).getSocket().getOutputStream());
         ManageServerToClientThread.getThread(id).oos.writeObject(msg);
+        String sql="insert into file(sender,getter,sendtime,file,isreceived) values(?,?,?,?,0);";
+        PreparedStatement st=conn.prepareStatement(sql);
+        st.setString(1,msg.getSender());
+        st.setString(2,msg.getGetter());
+        st.setString(3,msg.getSendTime());
+      //  st.setBinaryStream(4,(Filetrans)msg.getData().getContent());
+        Filetrans f=(Filetrans)msg.getData();
+        st.setBytes(4,f.getContent());
+        st.executeUpdate();
       //  return msg;
     }
     public void send_offline_file(Message msg) throws IOException, SQLException {
         String to=msg.getGetter();
-        ServerToClient.addQQfile(to,(Filetrans)msg.getData());
+
+        //ServerToClient.addQQfile(to,(Filetrans)msg.getData());
     }
     public void send_online_message(Message msg) throws IOException, SQLException {
         String to=msg.getGetter();
