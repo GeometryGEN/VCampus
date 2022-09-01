@@ -310,6 +310,7 @@ public class Course_manager {
                 for(int q=1;q<=5;q++){
                     for(int r=1;r<=13;r++){
                         if(cc.class_time[p][q][r]==1) {
+                    //        System.out.println(cc.name);
                             ans[p][q][r]=cc.name;
                         }
                     }

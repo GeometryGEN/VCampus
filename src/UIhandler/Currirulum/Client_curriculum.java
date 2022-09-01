@@ -263,7 +263,7 @@ public class Client_curriculum {
     public static void RequireTeaSchedule() throws IOException {
         Message message=new Message();
         message.setData(myInfo.getId());
-        message.setType(MessageType.MESSAGE_CURRICULUM_SHOW_SCHEDULE);
+        message.setType(MessageType.MESSAGE_CURRICULUM_TEACHER_SCHEDULE);
         oos.writeObject(message);
     }
     public static void show_tea_schedule(String [][][]schedule){
@@ -273,9 +273,9 @@ public class Client_curriculum {
             for(int j=0;j<13;j++){
                 for(int k=1;k<=5;k++){
                     My_Coursetable.tableDate[i][j][k]=schedule[i+1][k][j+1];
-                    if(i==0) System.out.print(My_Coursetable.tableDate[i][j][k]);
+                //    if(i==0) System.out.print(My_Coursetable.tableDate[i][j][k]);
                 }
-                 if(i==0) System.out.println();
+              //   if(i==0) System.out.println();
             }
         }
         System.out.println("showing teacher's schedule");
