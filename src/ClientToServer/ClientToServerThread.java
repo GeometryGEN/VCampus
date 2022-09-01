@@ -7,6 +7,7 @@ import DAO.Curriculum.Opencourse;
 import DAO.Library.Book_admin;
 import DAO.Library.Book_borrower;
 import DAO.Library.Punishment;
+import DAO.QICQ.Application;
 import DAO.QICQ.Friend;
 import DAO.Shop.Product;
 import DAO.Shop.ProductPair;
@@ -140,16 +141,24 @@ public class ClientToServerThread extends Thread {
                     List<Product> ps = ((List<Product>) message.getData());
                     Client_shop.setProducts(ps);
                 }
+
                 else if(message.getType().equals(MessageType.FIND_PRODUCT_SUCCEED)){
                     List<Product> ps = ((List<Product>) message.getData());
                     Client_shop.setCheckproducts(ps);
+                    Client_shop.setSign_find_type("2");
                 }
+                else if(message.getType().equals(MessageType.FIND_PRODUCT_FAILED)){
+                    Client_shop.resetCheckedProducts();
+                    Client_shop.setSign_find_type("3");
+                }
+
                 else if(message.getType().equals(MessageType.FIND_TYPE_PRODUCT_SUCCEED)){
                     List<Product> ps = ((List<Product>) message.getData());
                     Client_shop.setCheckproductsType(ps);
                     Client_shop.setSign_find_type("2");
                 }
                 else if(message.getType().equals(MessageType.FIND_TYPE_PRODUCT_FAILED)){
+                    Client_shop.resetCheckedtypeProducts();
                     Client_shop.setSign_find_type("3");
                 }
                 else if(message.getType().equals(MessageType.FIND_PRODUCT_SUCCEED_ZERO)){
@@ -271,6 +280,10 @@ public class ClientToServerThread extends Thread {
                      String sender=message.getSender();
                      Client_qicq.receive_message(sender);
                 }
+                else if (message.getType().equals(MessageType.MESSAGE_QICQ_RECERIVE_FILE)){
+                    System.out.println("receive_file");
+                    Client_qicq.get_file(message,"C:/Users/Lenovo/shit.txt");
+                }
                 else if(message.getType().equals(MessageType.MESSAGE_QICQ_FRIEND_ONLINE_RET)){
                     System.out.println("received...");
                     Client_qicq.Require_friend_list();
@@ -283,6 +296,10 @@ public class ClientToServerThread extends Thread {
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_QICQ_ADD_FRIEND_FAIL_CANNOT_FIND_USER)){
                     Client_qicq.add_friend_fail();
+                }
+                else if(message.getType().equals(MessageType.MESSAGE_QICQ_LIST_APPLICATION_RET)){
+                    ArrayList<Application>messages=(ArrayList<Application>)message.getData();
+                    Client_qicq.list_application(messages);
                 }
                 System.out.println("next");
 
@@ -301,7 +318,7 @@ public class ClientToServerThread extends Thread {
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_CURRICULUM_LIST_MINE_RET)){
                     if(myInfo.getType()==1) Client_curriculum.showMyChoice((ArrayList<Course>)message.getData());
-                    if(myInfo.getType()==2) Client_curriculum.showTeacherChoice((ArrayList<Course>)message.getData());
+                    //if(myInfo.getType()==2) Client_curriculum.showTeacherChoice((ArrayList<Course>)message.getData());
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_CURRICULUM_CHOOSE_SUCCEED)){
                     JOptionPane.showMessageDialog(null,"选课成功");
@@ -329,9 +346,9 @@ public class ClientToServerThread extends Thread {
                 else if(message.getType().equals(MessageType.MESSAGE_CURRICULUM_LIST_ADMIN_APPLICATION_RET)){
                     Client_curriculum.show_all_application((ArrayList<Opencourse>)message.getData());
                 }
-
-
-
+                else if(message.getType().equals(MessageType.MESSAGE_CURRICULUM_LIST_TEACHER_COURSE_RET)){
+                    Client_curriculum.showTeacherChoice((ArrayList<Course>) message.getData());
+                }
                 System.out.println("next");
             } catch (InterruptedIOException e){
                 break;

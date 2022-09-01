@@ -12,6 +12,8 @@ import message.Message;
 import message.MessageType;
 import utils.MyObjectOutputStream;
 
+import javax.swing.*;
+
 public class Client_shop {
 
     public static String id;    //区分 1：学生  2：老师  3：管理员
@@ -57,7 +59,7 @@ public class Client_shop {
     }
 
     public static void resetSign_find_tpye(){
-        sign_delete="1";
+        sign_find_type="1";
     }
 
     public static void resetBuyed(){
@@ -232,6 +234,7 @@ public class Client_shop {
     }
 
     public static List<Product> checkProduct(String name) throws Exception {
+        resetSign_find_tpye();
         Message message = new Message();
         message.setType(MessageType.FIND_PRODUCT);
         message.setSender(name);
@@ -240,7 +243,7 @@ public class Client_shop {
         //发送对象
         oos.writeObject(message);
         //等待接受
-        while (checkproducts.size() == 0 && sign_zero) Thread.onSpinWait();
+        while (sign_find_type.equals("1")) Thread.onSpinWait();
         return checkproducts;
     }
 
@@ -317,7 +320,8 @@ public class Client_shop {
         oos.writeObject(message);
         //等待接受学生
         while (Now_Buy_product.equals("正在买")) Thread.onSpinWait();
-
+        if(Now_Buy_product.equals("数量不够"))
+            JOptionPane.showMessageDialog(null,"数量不够！");
         return Now_Buy_product.equals("购买成功");
     }
 

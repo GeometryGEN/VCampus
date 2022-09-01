@@ -31,8 +31,8 @@ public class ClientToServer {
     private static Socket socket;
     public static MyObjectOutputStream oos=null;
     public static MyObjectInputStream ois=null;
-    //public static String serverIP = Message.returnIP();
-    public static String serverIP = "10.208.118.60";
+    public static String serverIP = Message.returnIP();
+    //public static String serverIP = "10.210.97.60";
 
     public String getIDcard() {
         return switch (ID) {
@@ -108,6 +108,7 @@ public class ClientToServer {
             Client_qicq.setOps(oos);
             Client_shop.setOos(oos);
             Client_status.setOos(oos);
+            Client_qicq.setId(id);
             return true;
         } else {
             socket.close();

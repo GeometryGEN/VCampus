@@ -99,6 +99,7 @@ public class QICQ_manager {
         return msg;
     }
     public void send_online_file(Message msg) throws IOException {
+        System.out.println("sof");
         String to=msg.getGetter();
         msg.setType(MessageType.MESSAGE_QICQ_RECERIVE_FILE);
      //   MyObjectOutputStream oos=new MyObjectOutputStream(ManageServerToClientThread.getThread(to).getSocket().getOutputStream());
@@ -144,11 +145,13 @@ public class QICQ_manager {
         System.out.println(app.to_id);
         ResultSet rs=st.executeQuery();
         if(rs.next()){
-            String sql1="insert into new_friend(sender,getter,sendtime,status) values(?,?,?,0);";
+            String sql1="insert into new_friend(sender,getter,sendtime,status,nickname,group) values(?,?,?,0,?,?);";
             PreparedStatement st1=conn.prepareStatement(sql1);
             st1.setString(1,app.from_id);
             st1.setString(2,app.to_id);
             st1.setString(3,message.getSendTime());
+            st1.setString(4,app.to_name);
+            st1.setString(4,app.group);
             st1.executeUpdate();
         }
         else{
@@ -157,11 +160,13 @@ public class QICQ_manager {
             st.setString(1,app.to_id);
             rs=st.executeQuery();
             if(rs.next()){
-                String sql1="insert into new_friend(sender,getter,sendtime,status) values(?,?,?,0);";
+                String sql1="insert into new_friend(sender,getter,sendtime,status,nickname,group) values(?,?,?,0,?,?);";
                 PreparedStatement st1=conn.prepareStatement(sql1);
                 st1.setString(1,app.from_id);
                 st1.setString(2,app.to_id);
                 st1.setString(3,message.getSendTime());
+                st1.setString(4,app.to_name);
+                st1.setString(4,app.group);
                 st1.executeUpdate();
 
             }
@@ -248,14 +253,27 @@ public class QICQ_manager {
     public void accept_new_friend(Application application) throws SQLException {
         String sql="update new_friend set status=2 where sender=? and getter=? and status=0;";
         PreparedStatement st= conn.prepareStatement(sql);
-        st.setString(1,application.from_id);
-        st.setString(2,application.to_id);
+        st.setString(1,application.to_id);
+        st.setString(2,application.from_id);
         st.executeUpdate();
         sql="insert into friends(user_id,friend_id,relation,nickname) values(?,?,?,?);";
+        st= conn.prepareStatement(sql);
         st.setString(1,application.from_id);
         st.setString(2,application.to_id);
         st.setString(3,application.group);
         st.setString(4,application.to_name);
+        st.executeUpdate();
+        sql="insert into friends(user_id,friend_id,relation,nickname) values(?,?,?,?);";
+        st= conn.prepareStatement(sql);
+        st.setString(1,application.to_id);
+        st.setString(2,application.from_id);
+        String sql2="select * from new_friend where sender=? and getter=?;";
+        PreparedStatement st2=conn.prepareStatement(sql2);
+        st2.setString(1,application.to_id);
+        st2.setString(2,application.from_id);
+        ResultSet rs=st2.executeQuery();
+        st.setString(3,rs.getString("group"));
+        st.setString(4,rs.getString("nickname"));
         st.executeUpdate();
     }
     public void deny_new_friend(Application application) throws SQLException {

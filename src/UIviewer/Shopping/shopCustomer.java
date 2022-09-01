@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-
 import UIhandler.Shop.Client_shop;
 import UIviewer.login.functionChoose;
 import net.coobird.thumbnailator.Thumbnails;
@@ -29,6 +28,7 @@ public class shopCustomer extends JPanel {
     double height_r=(double)(height)/784;
     public static JPanel panel = new JPanel();;
     static String name;
+    public static List<Product> t;
     public static JButton b1=new JButton("主商城");
     public static JButton b2=new JButton("我的购物车");
     public static JButton b3=new JButton("订单记录");
@@ -37,6 +37,11 @@ public class shopCustomer extends JPanel {
         name=a;
     }
     public static CardLayout cardLayout=new CardLayout();
+
+    public void refresh()
+    {
+
+    }
 
     public shopCustomer() throws Exception {
         String name=myInfo.getName();
@@ -71,20 +76,23 @@ public class shopCustomer extends JPanel {
         add(logo);
 
 
-        List<Product> t = Client_shop.returnAllProduct();
+        t = Client_shop.returnAllProduct();
         String[][] temp = new String[t.size()][];
         for(int i =0;i<t.size();i++){
-            String[] tt =new String[5];
+            String[] tt =new String[7];
             tt[0]=String.valueOf(t.get(i).getProduct_id());
             tt[1]=t.get(i).getProduct_name();
             tt[2]=String.valueOf(t.get(i).getProduct_price());
             tt[3]=String.valueOf(t.get(i).getProduct_currentNumbers());
             tt[4]="1";
+            tt[5]="加入购物车";
+            tt[6]="购买";
             temp[i]=tt;
         }
         ShoppingHall.setShoptable(temp);
         ShoppingHall f1=new ShoppingHall();
         panel.add(f1,"f1");
+
 
 
 
@@ -120,17 +128,19 @@ public class shopCustomer extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
-                List<Product> t = null;
+                     t = null;
                 try {
                     t = Client_shop.returnAllProduct();
                     String[][] temp = new String[t.size()][];
                     for(int i =0;i<t.size();i++){
-                        String[] tt =new String[5];
+                        String[] tt =new String[7];
                         tt[0]=String.valueOf(t.get(i).getProduct_id());
                         tt[1]=t.get(i).getProduct_name();
                         tt[2]=String.valueOf(t.get(i).getProduct_price());
                         tt[3]=String.valueOf(t.get(i).getProduct_currentNumbers());
                         tt[4]="1";
+                        tt[5]="加入购物车";
+                        tt[6]="购买";
                         temp[i]=tt;
                     }
                     setShoptable(temp);
@@ -178,11 +188,13 @@ public class shopCustomer extends JPanel {
                         if(book.size()!=0){
                             String[][] temp = new String[book.size()][];
                             for(int i =0;i<book.size();i++){
-                                String[] tt =new String[4];
+                                String[] tt =new String[6];
                                 tt[0]=String.valueOf(book.get(i).getProduct_id());
                                 tt[1]=book.get(i).getProduct_name();
                                 tt[2]=String.valueOf(all.get(book.get(i).getProduct_id()));  //数量
                                 tt[3]=String.valueOf(book.get(i).getProduct_price()*all.get(book.get(i).getProduct_id()));
+                                tt[4]="购买";
+                                tt[5]="删除";
                                 temp[i]=tt;
                             }
                             shopCar.setMyBook(temp);

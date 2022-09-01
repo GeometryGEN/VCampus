@@ -84,9 +84,9 @@ public class Client_curriculum {
             ConsultCourse_stuInfo.consult_stu[count][0]=curri.getId();
             ConsultCourse_stuInfo.consult_stu[count][1]=curri.getName();
             ConsultCourse_stuInfo.consult_stu[count][2]=String.valueOf(curri.getSize());
-            ConsultCourse_stuInfo.consult_stu[count][3]=curri.getTimestring();
-            ConsultCourse_stuInfo.consult_stu[count][4]=curri.getClassroom();
-            ConsultCourse_stuInfo.consult_stu[count][5]="     查询";
+            ConsultCourse_stuInfo.consult_stu[count][4]=curri.getTimestring();
+            ConsultCourse_stuInfo.consult_stu[count][3]=curri.getClassroom();
+            ConsultCourse_stuInfo.consult_stu[count][5]="            查询";
             count++;
         }
         ConsultCourse_stuInfo tea_course=new ConsultCourse_stuInfo();
@@ -100,7 +100,6 @@ public class Client_curriculum {
         message.setType(MessageType.MESSAGE_CURRICULUM_LIST_ALL);
         oos.writeObject(message);
     }
-
     public static void show_choosable(ArrayList<Course>allchoosing)throws IOException{
         int n=allchoosing.size();
         Choosing_Course.selectcourse=new String[n][7];
@@ -142,7 +141,6 @@ public class Client_curriculum {
         Selcourse_director.panel.add(sch,"scheduling");
         Selcourse_director.cardLayout.show(Selcourse_director.panel,"scheduling");
     }
-    //查询课程信息
     public static void RequireConsultResult(String consultInfo)throws IOException{
         lastconsult=consultInfo;
         Message message=new Message();
@@ -174,7 +172,6 @@ public class Client_curriculum {
         {Selcourse_teacher.panel.add(search,"search");
             Selcourse_teacher.cardLayout.show(Selcourse_teacher.panel,"search");}
     }
-
     public static void Require_show_my_students(String Id)throws IOException{
         Message message=new Message();
         message.setData(Id);
@@ -197,7 +194,7 @@ public class Client_curriculum {
         while(b.hasNext())
         {
             Student s=(Student) b.next();
-            My_students.students[count][0]=s.getStudent_idcard();
+            My_students.students[count][0]=s.getStudent_id();
             My_students.students[count][1]=s.getStudent_name();
             count++;
         }
@@ -266,7 +263,7 @@ public class Client_curriculum {
     public static void RequireTeaSchedule() throws IOException {
         Message message=new Message();
         message.setData(myInfo.getId());
-        message.setType(MessageType.MESSAGE_CURRICULUM_SHOW_SCHEDULE);
+        message.setType(MessageType.MESSAGE_CURRICULUM_TEACHER_SCHEDULE);
         oos.writeObject(message);
     }
     public static void show_tea_schedule(String [][][]schedule){
@@ -276,11 +273,12 @@ public class Client_curriculum {
             for(int j=0;j<13;j++){
                 for(int k=1;k<=5;k++){
                     My_Coursetable.tableDate[i][j][k]=schedule[i+1][k][j+1];
-                    //  if(i==0) System.out.print(My_Coursetable.tableDate[i][j][k]);
+                //    if(i==0) System.out.print(My_Coursetable.tableDate[i][j][k]);
                 }
-                // if(i==0) System.out.println();
+              //   if(i==0) System.out.println();
             }
         }
+        System.out.println("showing teacher's schedule");
         My_Coursetable table=new My_Coursetable(1);
         Selcourse_teacher.panel.add(table,"schedule");
         Selcourse_teacher.cardLayout.show(Selcourse_teacher.panel,"schedule");
@@ -312,21 +310,18 @@ public class Client_curriculum {
         message.setType(MessageType.MESSAGE_CURRICULUM_LIST_ADMIN_APPLICATION);
         oos.writeObject(message);
     }
-
     public static void Require_deleteCourse(String deleteID) throws IOException {
         Message message=new Message();
         message.setData(deleteID);
         message.setType(MessageType.MESSAGE_CURRICULUM_DELETE);
         oos.writeObject(message);
     }
-
     public static void Require_AgreeAddCourse(Course c) throws IOException {
         Message message=new Message();
         message.setData(c);
         message.setType(MessageType.MESSAGE_CURRICULUM_APPLICATION_APPROVE);
         oos.writeObject(message);
     }
-
     public static void Require_RefuseAddCourse(String id,String reason) throws IOException {
         Message message=new Message();
         message.setGetter(id);
@@ -334,7 +329,6 @@ public class Client_curriculum {
         message.setType(MessageType.MESSAGE_CURRICULUM_APPLICATION_REFUSE);
         oos.writeObject(message);
     }
-    //public
     public static void DropCourse(String id) throws IOException {
         Message message=new Message();
         message.setData(id);
@@ -344,6 +338,11 @@ public class Client_curriculum {
     public static void Require_suitable()throws IOException{
         Message message=new Message();
         message.setType(MessageType.MESSAGE_CURRICULUM_MY_CHOOSING);
+        oos.writeObject(message);
+    }
+    public static void requireTeacherCourse() throws IOException{
+        Message message=new Message();
+        message.setType(MessageType.MESSAGE_CURRICULUM_LIST_TEACHER_COURSE);
         oos.writeObject(message);
     }
 }

@@ -18,6 +18,11 @@ import java.util.HashMap;
 
 public class Client_qicq {
     static String id;
+
+    public static String getId() {
+        return id;
+    }
+
     static MyObjectOutputStream oos=null;
     public static void setOps(MyObjectOutputStream mos) throws IOException {
         oos=mos;
@@ -35,8 +40,18 @@ public class Client_qicq {
         add_friend.add_friend_succeed();
     }
 
-
-    public void send_file(String src, String sender, String getter, String filename){
+    public static void require_application(){
+        Message message=new Message();
+        message.setData(id);
+        message.setType(MessageType.MESSAGE_QICQ_LIST_APPLICATION);
+        try {
+            oos.writeObject(message);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+    public static void send_file(String src, String sender, String getter, String filename){
+        System.out.println(5525);
         Message message=new Message();
         message.setSender(sender);
         message.setGetter(getter);
@@ -63,15 +78,22 @@ public class Client_qicq {
                 }
             }
         }
-        ObjectOutputStream oos= null;
         try {
-            oos = new ObjectOutputStream(ManageClientToServerThread.getThread(sender).getSocket().getOutputStream());
             oos.writeObject(message);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-    public void get_file(Message message,String dest) throws IOException {
+
+    public static void list_application(ArrayList<Application> app) {
+        int num=app.size();
+        for(int i=0;i<num;i++){
+
+        }
+    }
+
+    public static void get_file(Message message, String dest) throws IOException {
+        System.out.println("receive_file");
         FileOutputStream fileOutputStream = new FileOutputStream(dest);
         Filetrans file=(Filetrans)message.getData();
         fileOutputStream.write(file.getContent());
