@@ -1,5 +1,7 @@
 package UIviewer.login;
 import ClientToServer.ClientToServer;
+import connection.JDBC_Connector;
+
 import java.awt.EventQueue;
 import javax.swing.*;
 import java.awt.Font;
@@ -211,6 +213,7 @@ public class LoginFrame extends JFrame{
         EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
+           //         JDBC_Connector.first_connect();
                     LoginFrame frame = new LoginFrame();
                     // frame.setVisible(true);
                 } catch (Exception e) {
