@@ -20,7 +20,7 @@ public class chat_panel extends JPanel {
     private JPanel type_panel;
     private static JScrollPane scrollPane;
     private static Friend friend;
-    static double width_r;
+    static double width_r,height_r;
     static JTextPane jTextPane = new JTextPane();
     static StyledDocument doc = jTextPane.getStyledDocument();
     public static void insertText(String text, Color colorName, int textSize, int textAlign){
@@ -66,20 +66,9 @@ public class chat_panel extends JPanel {
                 insertText((String)(messages.get(i).getData()),Color.red,(int)(42*width_r),0);
             }
         }
-        JScrollBar scrollBar = new JScrollBar(JScrollBar.VERTICAL) {
-            @Override
-            public boolean isVisible() {
-                return true;
-            }
-        };
-        scrollPane.setVerticalScrollBar(scrollBar);
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
-        scrollBar.setUnitIncrement(30);
 
         jTextPane.setCaretPosition(doc.getLength());
         jTextPane.setEditable(false);
-
-        jTextPane.insertIcon(new ImageIcon("src/image/QQ/1.jpg"));
 
         jTextPane.updateUI();
         jTextPane.setCaretPosition(jTextPane.getStyledDocument().getLength());
@@ -89,6 +78,7 @@ public class chat_panel extends JPanel {
         this.friend=friend;
         setLayout(null);
         this.width_r=width_r;
+        this.height_r=height_r;
         setBounds((int)(x*width_r),(int)(y*height_r),(int)(width*width_r),(int)(height*height_r));
         setBackground(new Color(224,224,224));
         setBorder(BorderFactory.createLineBorder(new Color(234,234,234)));
@@ -172,7 +162,52 @@ public class chat_panel extends JPanel {
         scrollPane.setBorder(BorderFactory.createLineBorder(new Color(234,234,234)));
         scrollPane.setBackground(new Color(245,246,247));
         jTextPane.setBackground(new Color(245,246,247));
+
+        JScrollBar scrollBar = new JScrollBar(JScrollBar.VERTICAL) {
+            @Override
+            public boolean isVisible() {
+                return true;
+            }
+        };
+        scrollPane.setVerticalScrollBar(scrollBar);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
+        scrollBar.setUnitIncrement(30);
+
         add(scrollPane);
+    }
+
+    public static void show_announcement(ArrayList<Message> messages) {
+
+        jTextPane.setText(null);
+        //开头空格
+        SimpleAttributeSet set = new SimpleAttributeSet();
+        StyleConstants.setFontSize(set, 0);//设置文本大小
+        StyleConstants.setAlignment(set, 1);//设置文本对齐方式
+        doc.setParagraphAttributes(jTextPane.getText().length(), doc.getLength() - jTextPane.getText().length(), set, false);
+        try {
+            doc.insertString(doc.getLength(), " ", set);//插入文本
+        } catch (BadLocationException e) {
+            e.printStackTrace();
+        }
+        insertText("公告",Color.black,(int)(45*width_r*height_r),1);
+        int num=messages.size();
+        for(int i=num-1;i>=0;i--) {
+            if(myInfo.getType()==3){
+                insertText(messages.get(i).getSendTime(),new Color(122,122,123),(int)(16*width_r),1);
+                insertText((String)(messages.get(i).getData()),Color.black,(int)(42*width_r),1);
+
+            }
+            else {
+                insertText(messages.get(i).getSendTime(),new Color(122,122,123),(int)(16*width_r),1);
+                insertText((String)(messages.get(i).getData()),Color.black,(int)(42*width_r),0);
+            }
+        }
+
+        jTextPane.setCaretPosition(doc.getLength());
+        jTextPane.setEditable(false);
+
+        jTextPane.updateUI();
+        jTextPane.setCaretPosition(jTextPane.getStyledDocument().getLength());
     }
 
     public Friend getFriend() {

@@ -18,6 +18,7 @@ import UIhandler.QICQ.Client_qicq;
 import UIhandler.Shop.Client_shop;
 import UIhandler.StatusManagement.Client_status;
 import UIviewer.Library.*;
+import UIviewer.QQ.change_panel;
 import User.Student;
 import message.Message;
 import message.MessageType;
@@ -304,6 +305,11 @@ public class ClientToServerThread extends Thread {
                 else if(message.getType().equals(MessageType.MESSAGE_QICQ_MODIFY_RET)){
                     JOptionPane.showMessageDialog(null,"修改成功");
                     Client_qicq.Require_friend_list();
+                    change_panel.change_succeed();
+                }
+                else if(message.getType().equals(MessageType.MESSAGE_QICQ_GET_ANNOUNCEMENT_RET)){
+                    ArrayList<Message>messages=(ArrayList<Message>)message.getData();
+                    Client_qicq.Show_announcement(messages);
                 }
             //    System.out.println("next");
 
