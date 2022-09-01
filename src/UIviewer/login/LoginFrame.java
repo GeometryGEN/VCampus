@@ -151,8 +151,8 @@ public class LoginFrame extends JFrame{
                 }
             }
         });
-
         jf.getContentPane().add(btnNewButton_3);
+
         //注册
         JButton btnNewButton_4 = new JButton("注册");
         btnNewButton_4.setBounds(150, 550, 220, 30);

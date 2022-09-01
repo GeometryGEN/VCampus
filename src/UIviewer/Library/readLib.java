@@ -95,7 +95,6 @@ public class readLib extends JPanel {
         });
         add(b1);
 
-
         b2.setBounds((int) (370*width_r), (int) (100*height_r), (int) (250*width_r), (int) (50*height_r));
         b2.setFont(myfont1);
         b2.setContentAreaFilled(false);//设置按钮透明
@@ -155,8 +154,6 @@ public class readLib extends JPanel {
         p2.setBounds(0, (int) (100*height_r), (int) (1280*width_r), (int) (50*height_r));
         p2.setBackground(new Color(57,106,57));
         add(p2);
-
         setVisible(true);
     }
-
 }

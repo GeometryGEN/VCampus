@@ -156,6 +156,7 @@ public class Declare_Course extends JPanel{
         try {
             Thumbnails.of(new File("src/image/background4.jpg"))
                     .size((int)(icon11_width*width_r), (int)(icon11_height*height_r))
+                    .keepAspectRatio(false)
                     .toFile(new File("src/image/background4_min.jpg"));
         } catch (IOException e) {
             throw new RuntimeException(e);
