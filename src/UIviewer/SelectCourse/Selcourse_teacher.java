@@ -3,7 +3,6 @@ package UIviewer.SelectCourse;
 import UIhandler.Currirulum.Client_curriculum;
 import UIviewer.login.functionChoose;
 import net.coobird.thumbnailator.Thumbnails;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;

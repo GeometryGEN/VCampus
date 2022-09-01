@@ -187,21 +187,23 @@ public class Client_curriculum {
         message.setType(MessageType.MESSAGE_CURRICULUM_APPLY);
         oos.writeObject(message);
     }
+
     public static void show_my_students(ArrayList<Student>students){
         int n=students.size();
-        My_students.students=new String[n][2];
+        ConsultCourse_stuInfo.students=new String[n][2];
         Iterator b=students.iterator();
         int count=0;
         while(b.hasNext())
         {
             Student s=(Student) b.next();
-            My_students.students[count][0]=s.getStudent_id();
-            My_students.students[count][1]=s.getStudent_name();
+            ConsultCourse_stuInfo.students[count][0]=s.getStudent_id();
+            ConsultCourse_stuInfo.students[count][1]=s.getStudent_name();
             count++;
         }
-        My_students stuInfo=new My_students();
-        Selcourse_teacher.panel1.add(stuInfo,"stuInfo");
-        Selcourse_teacher.cardLayout1.show(Selcourse_teacher.panel1,"stuInfo");
+        ConsultCourse_stuInfo stuInfo=new ConsultCourse_stuInfo();
+        //My_students stuInfo=new My_students();
+        Selcourse_teacher.panel.add(stuInfo,"stuInfo");
+        Selcourse_teacher.cardLayout.show(Selcourse_teacher.panel,"stuInfo");
     }
     public static void showApplyResult(ArrayList<Opencourse>opencourses) {
         int n=opencourses.size();
