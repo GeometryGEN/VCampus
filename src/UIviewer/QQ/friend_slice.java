@@ -17,6 +17,9 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
+import static UIviewer.QQ.chat_panel.send_button_height;
+import static UIviewer.QQ.chat_panel.send_button_width;
+
 public class friend_slice extends JLabel {
     private void update(){//更新UI界面；
         this.updateUI();
@@ -144,8 +147,13 @@ public class friend_slice extends JLabel {
                         Client_qicq.get_announcement();
                         main_panel.mjp.add(chatPanel);
                         main_panel.cpn = chatPanel;
-                        if((myInfo.getType()!=3)&&(myInfo.getId()==null)){
-                            main_panel.cpn.type_panel.setVisible(false);
+                        if((myInfo.getType()!=3)){
+                            main_panel.cpn.send_button.setVisible(false);
+                            main_panel.cpn.send_file_button.setVisible(false);
+                            main_panel.cpn.receive_button.setVisible(false);
+                            main_panel.cpn.set_Close();
+                            main_panel.cpn.type_field.setEditable(false);
+                            //main_panel.cpn.close_button.setLocation((int)((width-send_button_width-1)*width_r),(int)((height/4-send_button_height-30)*height_r));
                         }
                         main_panel.mjp.updateUI();
                     }

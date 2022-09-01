@@ -866,7 +866,7 @@ public class ShoppingHall extends JPanel {
                 btnNewButton_12.setFont(new Font("楷体 ", Font.PLAIN, (int) (18*width_r)));
             }
         });
-        btnNewButton_1.addActionListener(new ActionListener() {
+        btnNewButton_12.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
