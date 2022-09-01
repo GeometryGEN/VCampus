@@ -7,8 +7,10 @@ public class JDBC_Connector {
     public static Connection ConnectMySQL1(){
         return connection;
     }
+    static int start=0;
     public static Connection ConnectMySQL() throws SQLException{
         //
+
         String driver = "com.mysql.cj.jdbc.Driver";         //将MySQL数据库驱动名称封装在字符串中
         //指定使用数据库的路径、编码格式、时区，并以字符串进行封装
         String url = "jdbc:mysql://localhost:3306/vcampus?useUnicode=true&characterEncoding=utf8&" +
@@ -21,7 +23,8 @@ public class JDBC_Connector {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        connection = DriverManager.getConnection(url,user,pin);        //连接数据库
+        if(start==0) connection = DriverManager.getConnection(url,user,pin);        //连接数据库
+        start=1;
         return connection;
     }
 

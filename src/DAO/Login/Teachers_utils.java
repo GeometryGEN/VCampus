@@ -25,19 +25,19 @@ public class Teachers_utils {
                 if (passWord == userpassword || passWord.equals(userpassword)) {
                     resultSet.close();
                     state.close();
-                    connection.close();
+                  //  connection.close();
                     return true;
                 } else{
                     resultSet.close();
                     state.close();
-                    connection.close();
+                //    connection.close();
                     return false;
                 }
 
             }
             resultSet.close();
             state.close();
-            connection.close();
+        //    connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -57,7 +57,7 @@ public class Teachers_utils {
         }
         rs.close();
         st.close();
-        connection.close();
+    //    connection.close();
         return tea;
     }
 
@@ -81,7 +81,8 @@ public class Teachers_utils {
             System.out.println("教师"+s.getTeacher_name()+"添加成功！");
         else
             System.out.println("教师添加失败！");
-        JDBC_Connector.close(null, ps, connection);
+     //   JDBC_Connector.close(null, ps, connection);
+        ps.close();
         return re;
     }
 
@@ -96,12 +97,12 @@ public class Teachers_utils {
                 String Teacher_email = resultSet.getString("Teacher_email").trim();
                 resultSet.close();
                 state.close();
-                connection.close();
+          //      connection.close();
                 return Teacher_idcard.equals(s.getTeacher_idcard()) && Teacher_email.equals(s.getTeacher_email());
             }
             resultSet.close();
             state.close();
-            connection.close();
+         //   connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -115,12 +116,14 @@ public class Teachers_utils {
         PreparedStatement ps = connection.prepareStatement(sql);
         ps.setString(1,t.getTeacher_pwd());
         boolean re = ps.executeUpdate()>0;
-        JDBC_Connector.close(null, ps, connection);
+     //   JDBC_Connector.close(null, ps, connection);
+        ps.close();
         if(re)
             System.out.println("教师"+username+"密码修改成功！");
         else
             System.out.println("教师"+username+"密码修改失败！");
-        JDBC_Connector.close(null, ps, connection);
+        ps.close();
+     //   JDBC_Connector.close(null, ps, connection);
         return re;
     }
 
@@ -136,20 +139,20 @@ public class Teachers_utils {
                 if (passWord == userpassword || passWord.equals(userpassword)) {
                     resultSet.close();
                     state.close();
-                    connection.close();
+                //    connection.close();
                     return resultSet.getString("Teacher_name");
 
                 } else{
                     resultSet.close();
                     state.close();
-                    connection.close();
+                //    connection.close();
                     return null;
                 }
 
             }
             resultSet.close();
             state.close();
-            connection.close();
+         //   connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }

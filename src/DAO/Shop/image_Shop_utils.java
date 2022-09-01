@@ -39,7 +39,8 @@ public class image_Shop_utils {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            JDBC_Connector.close(null,ps,conn);
+         //   JDBC_Connector.close(null,ps,conn);
+            ps.close();
             if (null != ps) {
                 try {
                     ps.close();
@@ -64,7 +65,9 @@ public class image_Shop_utils {
                 InputStream in = rs.getBinaryStream("photo");
                 Image_utils.readBin2Image(in,String.valueOf(id));
                 System.out.println("图片读取成功！");
-                JDBC_Connector.close(rs,ps,conn);
+             //   JDBC_Connector.close(rs,ps,conn);
+                ps.close();
+                rs.close();
                 return true;
             }
         } catch (Exception e) {

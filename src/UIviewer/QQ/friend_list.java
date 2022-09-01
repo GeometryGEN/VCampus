@@ -51,7 +51,6 @@ public class friend_list{
             int count_tag1=count_tag;
             tag[count_tag1].addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseClicked(java.awt.event.MouseEvent e) {
-                    System.out.println("clicked");
                     if(friendslice[friend_start_tag[count_tag1]].isVisible()==true) {
                         for (int i = friend_start_tag[count_tag1]; i < friend_end_tag[count_tag1]; i++) {
                             friendslice[i].setVisible(false);
@@ -68,10 +67,17 @@ public class friend_list{
         }
 
         for(String Tag: friend.keySet()){
+            System.out.println("shit3");
             tag[count_tag]=new tag_slice(width_r,height_r,Tag);
+            System.out.println(Tag);
+            System.out.println(friend.get(Tag).get(0).getName());
             roll_panel.add(tag[count_tag]);
+            roll_panel.setBackground(Color.black);
+            scrollPane.setBackground(Color.blue);
+            jPanel.setBackground(Color.red);
             ArrayList<Friend> arrayList=friend.get(Tag);
             int num=arrayList.size();
+
 
             friend_start_tag[count_tag]=count_friend;
             for(int i=0;i<num;i++){
@@ -82,7 +88,6 @@ public class friend_list{
             int count_tag1=count_tag;
             tag[count_tag1].addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseClicked(java.awt.event.MouseEvent e) {
-                    System.out.println("clicked");
                     if(friendslice[friend_start_tag[count_tag1]].isVisible()==true) {
                         for (int i = friend_start_tag[count_tag1]; i < friend_end_tag[count_tag1]; i++) {
                             friendslice[i].setVisible(false);

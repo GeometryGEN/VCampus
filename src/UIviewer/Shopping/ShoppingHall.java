@@ -2,6 +2,8 @@ package UIviewer.Shopping;
 import DAO.Shop.Product;
 import UIhandler.Library.Client_library;
 import UIhandler.Shop.Client_shop;
+
+import java.awt.event.*;
 import java.util.List;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -15,6 +17,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import static UIhandler.Shop.Client_shop.checktypeProduct;
 import static UIviewer.Shopping.shopCustomer.cardLayout;
 import static UIviewer.Shopping.shopCustomer.panel;
 import static UIviewer.login.forgetPWD.forgetPWDUI;
@@ -112,7 +115,7 @@ public class ShoppingHall extends JPanel {
 
         JButton btnNewButton_1 = new JButton("零食");
         btnNewButton_1.setBounds((int) (20*width_r), (int) (150*height_r), (int) (80*width_r), (int) (30*height_r));
-        Font myfont1 = new Font("楷体 ", Font.BOLD, (int) (18*width_r));
+        Font myfont1 = new Font("楷体 ", Font.PLAIN, (int) (18*width_r));
         btnNewButton_1.setFont(myfont1);
         btnNewButton_1.setContentAreaFilled(false);//设置按钮透明
         btnNewButton_1.setBorder(null);//取消边框
@@ -231,10 +234,37 @@ public class ShoppingHall extends JPanel {
         JButton btnNewButton_4 = new JButton("美妆");
         btnNewButton_4.setBounds((int) (20*width_r), (int) (220*height_r), (int) (80*width_r), (int) (30*height_r));
         btnNewButton_4.setFont(myfont1);
-        btnNewButton_4.setContentAreaFilled(false);//设置按钮透明
         btnNewButton_4.setForeground(new Color(255,255,255));
-        btnNewButton_4.setBorder(null);//取消边框
+        btnNewButton_4.setBackground(new Color(254,178,148));
+        btnNewButton_4.setBorder(BorderFactory.createLineBorder(new Color(254,178,148)));
         btnNewButton_4.setFocusPainted(false);
+        btnNewButton_4.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                btnNewButton_4.setContentAreaFilled(false);//设置按钮透明
+                btnNewButton_4.setBackground(new Color(255,160,122));
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                super.mouseReleased(e);
+                btnNewButton_4.setContentAreaFilled(true);//设置按钮透明
+                btnNewButton_4.setBackground(new Color(254,178,148));
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                super.mouseEntered(e);
+                btnNewButton_4.setFont(new Font("楷体",Font.BOLD, (int) (20*width_r)));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                super.mouseExited(e);
+                btnNewButton_4.setFont(new Font("楷体 ", Font.PLAIN, (int) (18*width_r)));
+            }
+        });
         btnNewButton_4.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
