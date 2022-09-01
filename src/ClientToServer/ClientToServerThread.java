@@ -314,7 +314,7 @@ public class ClientToServerThread extends Thread {
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_CURRICULUM_LIST_MINE_RET)){
                     if(myInfo.getType()==1) Client_curriculum.showMyChoice((ArrayList<Course>)message.getData());
-                    if(myInfo.getType()==2) Client_curriculum.showTeacherChoice((ArrayList<Course>)message.getData());
+                    //if(myInfo.getType()==2) Client_curriculum.showTeacherChoice((ArrayList<Course>)message.getData());
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_CURRICULUM_CHOOSE_SUCCEED)){
                     JOptionPane.showMessageDialog(null,"选课成功");
@@ -342,9 +342,9 @@ public class ClientToServerThread extends Thread {
                 else if(message.getType().equals(MessageType.MESSAGE_CURRICULUM_LIST_ADMIN_APPLICATION_RET)){
                     Client_curriculum.show_all_application((ArrayList<Opencourse>)message.getData());
                 }
-
-
-
+                else if(message.getType().equals(MessageType.MESSAGE_CURRICULUM_LIST_TEACHER_COURSE_RET)){
+                    Client_curriculum.showTeacherChoice((ArrayList<Course>) message.getData());
+                }
                 System.out.println("next");
             } catch (InterruptedIOException e){
                 break;

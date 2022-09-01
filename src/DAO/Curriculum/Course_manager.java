@@ -118,10 +118,9 @@ public class Course_manager {
     }
     public ArrayList<Course> list_my_courses() throws SQLException {
         ArrayList<Course> courses = new ArrayList<Course>();
-        String sql="select * from elective where stu_id=? or tea_id=? order by course_id;";
+        String sql="select * from elective where stu_id=? order by course_id;";
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,id);
-        st.setString(2,id);
         ResultSet rs=st.executeQuery();
         while(rs.next())
         {
@@ -131,6 +130,34 @@ public class Course_manager {
             st.setString(1,course_id);
             ResultSet rs1=st.executeQuery();
             while(rs1.next()){
+                Course x=new Course();
+                x.name=rs1.getString("name");
+                x.teacher=rs1.getString("teacher");
+                x.classroom=rs1.getString("classroom");
+                x.point=rs1.getDouble("point");
+                x.size=rs1.getInt("size");
+                x.id=rs1.getString("id");
+                x.setTimestring(rs1.getString("time"));
+                if(rs1.getString("time")!=null) x.class_time=change(rs1.getString("time"));
+                courses.add(x);
+            }
+        }
+        return courses;
+    }
+    public ArrayList<Course>list_tea_course() throws SQLException{
+        ArrayList<Course> courses = new ArrayList<Course>();
+        String sql="select * from teaching where tea_id=? order by course_id;";
+        PreparedStatement st=conn.prepareStatement(sql);
+        st.setString(1,id);
+        ResultSet rs=st.executeQuery();
+        while(rs.next())
+        {
+            String course_id=rs.getString("course_id");
+            sql="select * from curriculum where id=?;";
+            st=conn.prepareStatement(sql);
+            st.setString(1,course_id);
+            ResultSet rs1=st.executeQuery();
+            if(rs1.next()){
                 Course x=new Course();
                 x.name=rs1.getString("name");
                 x.teacher=rs1.getString("teacher");
@@ -188,7 +215,7 @@ public class Course_manager {
         st.setString(1,c.id);
         rs=st.executeQuery();
         rs.next();
-        if(Integer.valueOf(rs.getString(1))-1==size){
+        if(Integer.valueOf(rs.getString(1))==size){
             message.setType(MessageType.MESSAGE_CURRICULUM_CHOOSE_FULL);
             return message;
         }
@@ -266,6 +293,24 @@ public class Course_manager {
                         if(cc.class_time[p][q][r]==1) {
                             ans[p][q][r]=cc.name;
                     //        System.out.println(cc.name);
+                        }
+                    }
+                }
+            }
+        }
+        return ans;
+    }
+    public String[][][] list_tea_schedule()throws SQLException{
+        String [][][]ans=new String[17][6][14];
+        ArrayList<Course>courses=list_tea_course();
+        Iterator it = courses.iterator();
+        while(it.hasNext()){
+            Course cc=(Course) it.next();
+            for(int p=1;p<=16;p++){
+                for(int q=1;q<=5;q++){
+                    for(int r=1;r<=13;r++){
+                        if(cc.class_time[p][q][r]==1) {
+                            ans[p][q][r]=cc.name;
                         }
                     }
                 }
@@ -367,10 +412,9 @@ public class Course_manager {
     }
     public ArrayList<Student>get_student(String s) throws SQLException {
         ArrayList<Student>res=new ArrayList<Student>();
-        String sql="select * from curriculum where name=? or id=?;";
+        String sql="select * from curriculum where id=?;";
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,s);
-        st.setString(2,s);
         ResultSet rs=st.executeQuery();
         if(rs.next()){
             String id=rs.getString("id");
@@ -381,8 +425,9 @@ public class Course_manager {
             while(rs.next()){
                 sql="select * from students where Student_idcard=?;";
                 st=conn.prepareStatement(sql);
-                st.setString(1,id);
+                st.setString(1,rs.getString("stu_id"));
                 ResultSet rs1=st.executeQuery();
+                rs1.next();
                 Student student = new Student();
                 student.setStudent_name(rs1.getString("Student_name"));
                 student.setStudent_id(rs1.getString("Student_id"));
@@ -406,4 +451,5 @@ public class Course_manager {
         ResultSet rs= st.executeQuery();
 
     }
+
 }
