@@ -84,6 +84,7 @@ public class Course_manager {
         ResultSet rs=st.executeQuery();
         while (rs.next()){
             Course x=new Course();
+            x.setHour(rs.getInt("hour"));
             x.name=rs.getString("name");
             x.teacher=rs.getString("teacher");
             x.classroom=rs.getString("classroom");
@@ -104,6 +105,7 @@ public class Course_manager {
         while(rs.next())
         {
             Course x=new Course();
+            x.setHour(rs.getInt("hour"));
             x.name=rs.getString("name");
             x.teacher=rs.getString("teacher");
             x.classroom=rs.getString("classroom");
@@ -159,6 +161,7 @@ public class Course_manager {
             ResultSet rs1=st.executeQuery();
             if(rs1.next()){
                 Course x=new Course();
+                x.setHour(rs1.getInt("hour"));
                 x.name=rs1.getString("name");
                 x.teacher=rs1.getString("teacher");
                 x.classroom=rs1.getString("classroom");
@@ -337,13 +340,13 @@ public class Course_manager {
             String newid=String.valueOf(rs1.getInt("total")+1);
             System.out.println(newid);
             //ServerToClient.add_opencourse(c);
-            sql="insert into opencourse(name,teacher_name,teacher_id,point,size,status,id) values(?,?,?,?,?,0,?);";
+            sql="insert into opencourse(name,teacher_name,teacher_id,point,hour,status,id) values(?,?,?,?,?,0,?);";
             st= conn.prepareStatement(sql);
             st.setString(1,c.getName());
             st.setString(2,c.getTeacher());
             st.setString(3,c.getTeacher_id());
             st.setDouble(4,c.getPoint());
-            st.setInt(5,c.getSize());
+            st.setInt(5,c.getHour());
             st.setString(6,newid);
             st.executeUpdate();
         }
@@ -363,12 +366,12 @@ public class Course_manager {
         st.setString(1,"同意开课");
         st.setString(2,c.id);
         st.executeUpdate();
-        sql="insert into curriculum(name,point,teacher,size,id,classroom) values(?,?,?,?,'新开课','待定');";
+        sql="insert into curriculum(id,name,teacher,hour,point,size,classroom) values('新开课',?,?,?,?,'待定','待定');";
         st= conn.prepareStatement(sql);
         st.setString(1,c.name);
-        st.setDouble(2,c.point);
-        st.setString(3,c.teacher);
-        st.setInt(4,c.size);
+        st.setString(2,c.teacher);
+        st.setInt(3,c.getHour());
+        st.setDouble(4,c.point);
         st.executeUpdate();
     }
     public ArrayList<Opencourse> list_tea_opencourse(String id) throws SQLException{
@@ -383,7 +386,7 @@ public class Course_manager {
             c.setName(rs.getString("name"));
             c.setTeacher(rs.getString("teacher_name"));
             c.setPoint(rs.getDouble("point"));
-            c.setSize(rs.getInt("size"));
+            c.setHour(rs.getInt("hour"));
             c.status=rs.getInt("status");
             c.result=rs.getString("comment");
             c.setTeacher_id(rs.getString("teacher_id"));
@@ -404,7 +407,7 @@ public class Course_manager {
             c.setName(rs.getString("name"));
             c.setTeacher(rs.getString("teacher_name"));
             c.setPoint(rs.getDouble("point"));
-            c.setSize(rs.getInt("size"));
+            c.setHour(rs.getInt("hour"));
             c.setTeacher_id(rs.getString("teacher_id"));
             opencourses.add(c);
         }
@@ -438,6 +441,7 @@ public class Course_manager {
         return res;
     }
     public void admin_arrange(Course c) throws SQLException {
+   //     System.out.print("    "+c.classroom);
         String sql="update curriculum set classroom=?, time=?, size=? where id=?";
         PreparedStatement st= conn.prepareStatement(sql);
         st.setString(1,c.classroom);

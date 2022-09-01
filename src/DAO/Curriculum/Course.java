@@ -7,7 +7,7 @@ public class Course implements Serializable {
     String name,teacher,id,classroom,timestring;
     double point;   //学分
     int size;
-
+    int hour;
     public int[][][] getClass_time() {
         return class_time;
     }
@@ -70,5 +70,13 @@ public class Course implements Serializable {
 
     public void setSize(int size) {
         this.size = size;
+    }
+
+    public int getHour() {
+        return hour;
+    }
+
+    public void setHour(int hour) {
+        this.hour = hour;
     }
 }

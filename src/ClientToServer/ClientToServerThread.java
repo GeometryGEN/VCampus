@@ -133,6 +133,12 @@ public class ClientToServerThread extends Thread {
                 else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_ENTER_RET)){
                     Client_library.admin_enter_result((ArrayList<Book_admin>) message.getData());
                 }
+                else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_ADMIN_DELETE_SUCCEED)){
+                    JOptionPane.showMessageDialog(null,"删除成功");
+                }
+                else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_ADMIN_DELETE_FAIL)){
+                    JOptionPane.showMessageDialog(null,"删除失败，未找到书籍");
+                }
 
 
                 //商店具体操作

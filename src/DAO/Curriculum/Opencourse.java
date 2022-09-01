@@ -8,6 +8,7 @@ public class Opencourse implements Serializable {
     int size;
     int status; //2=approve 1=refuse 0=waiting
     String result; //admin's comments
+    int hour;
 
     public String getId() {
         return id;
@@ -79,5 +80,13 @@ public class Opencourse implements Serializable {
 
     public void setResult(String result) {
         this.result = result;
+    }
+
+    public int getHour() {
+        return hour;
+    }
+
+    public void setHour(int hour) {
+        this.hour = hour;
     }
 }
