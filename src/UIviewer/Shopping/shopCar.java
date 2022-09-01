@@ -52,6 +52,7 @@ public class shopCar extends JPanel {
                         if(Client_shop.getMoney(myInfo.getId())>=(money)){
                             Client_shop.buyProduct(myInfo.getId(),id,Num,Client_shop.getMoney(myInfo.getId())-money);
                             JOptionPane.showMessageDialog(null,"购买成功！");
+                            Client_shop.deleteReadyToBuy(myInfo.getId(),Integer.parseInt(((String) table_want.getValueAt(table_want.getSelectedRow(),0))),0);
                         }else {
                             JOptionPane.showMessageDialog(null,"余额不足！");
                         }
