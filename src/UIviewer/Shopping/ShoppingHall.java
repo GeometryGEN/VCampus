@@ -157,7 +157,7 @@ public class ShoppingHall extends JPanel {
         btnNewButton_2.setFont(myfont1);
         btnNewButton_2.setContentAreaFilled(false);//设置按钮透明
         btnNewButton_2.setForeground(new Color(255,255,255));
-        //btnNewButton_2.setBorder(null);//取消边框
+        btnNewButton_2.setBorder(null);//取消边框
         btnNewButton_2.setFocusPainted(false);
         btnNewButton_2.addActionListener(new ActionListener() {
             @Override
@@ -196,7 +196,7 @@ public class ShoppingHall extends JPanel {
         btnNewButton_3.setFont(myfont1);
         btnNewButton_3.setContentAreaFilled(false);//设置按钮透明
         btnNewButton_3.setForeground(new Color(255,255,255));
-        //btnNewButton_3.setBorder(null);//取消边框
+        btnNewButton_3.setBorder(null);//取消边框
         btnNewButton_3.setFocusPainted(false);
         btnNewButton_3.addActionListener(new ActionListener() {
             @Override
@@ -892,6 +892,23 @@ public class ShoppingHall extends JPanel {
                             if(Client_shop.getMoney(myInfo.getId())>=(money*Num)){
                                 if(Client_shop.buyProduct(myInfo.getId(),id,Num,Client_shop.getMoney(myInfo.getId())-money*Num))
                                     JOptionPane.showMessageDialog(null,"购买成功！");
+
+                                List<Product> t = Client_shop.returnAllProduct();
+                                String[][] temp = new String[t.size()][];
+                                for(int i =0;i<t.size();i++){
+                                    String[] tt =new String[7];
+                                    tt[0]=String.valueOf(t.get(i).getProduct_id());
+                                    tt[1]=t.get(i).getProduct_name();
+                                    tt[2]=String.valueOf(t.get(i).getProduct_price());
+                                    tt[3]=String.valueOf(t.get(i).getProduct_currentNumbers());
+                                    tt[4]="1";
+                                    tt[5]="加入购物车";
+                                    tt[6]="购买";
+                                    temp[i]=tt;
+                                }
+                                ShoppingHall.setShoptable(temp);
+                                ShoppingHall f1=new ShoppingHall();
+                                panel.add(f1,"f1");
 
                                 Client_shop.setId(String.valueOf(myInfo.getType()));
                                 Client_shop.setIdcard(myInfo.getId());
