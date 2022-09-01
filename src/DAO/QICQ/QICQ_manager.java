@@ -8,7 +8,7 @@ import message.MessageType;
 import utils.MyObjectOutputStream;
 import utils.myTime;
 
-import java.io.IOException;
+import java.io.*;
 import java.net.Socket;
 import java.sql.*;
 import java.util.ArrayList;
@@ -75,6 +75,7 @@ public class QICQ_manager {
                // System.out.println(friend.id+" ok");
             }
             else friend.setOnline(0);
+            friend.image=readicon(friend.id);
             sql="select * from message where sender=? and getter=? and isread=0;";
             st= conn.prepareStatement(sql);
             st.setString(1, friend.id);
@@ -91,6 +92,7 @@ public class QICQ_manager {
                 f.add(friend);
                 friends.put(group,f);
             }
+
         }
         Message msg=new Message();
         msg.setType(MessageType.MESSAGE_QICQ_LIST_FRIENDS_RET);
@@ -312,6 +314,48 @@ public class QICQ_manager {
         st.setString(2,id);
         st.executeUpdate();
         return sendback;
+    }
+
+    public byte[] readicon(String id) throws SQLException {
+        String path = "src/image/QQ/temp.jpg";
+        File file = new File(path);
+        if (file.exists()) {
+            file.delete();
+        }
+        try {
+            file.createNewFile();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            conn = JDBC_Connector.ConnectMySQL();
+            String sql = "select * from qqimage where id =?";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, id);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                Blob picture= rs.getBlob("image");
+                InputStream in = picture.getBinaryStream();
+                OutputStream out = new FileOutputStream(file);
+                int len = 0;
+                byte[] buf = new byte[(int)picture.length()];
+                while ((len = in.read(buf)) != -1) {
+                    out.write(buf, 0, len);
+                }
+                System.out.println("图片读取成功！");
+                JDBC_Connector.close(rs,ps,conn);
+                return buf;
+            }
+            else
+            {
+                return null;
+            }
+        } catch (Exception e) {
+            return null;
+        }
     }
 
 }
