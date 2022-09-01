@@ -146,6 +146,7 @@ public class ClientToServerThread extends Thread {
 
                 if(message.getType().equals(MessageType.RETURN_ALL_PRODUCT_SUCCEED)){
                     List<Product> ps = ((List<Product>) message.getData());
+                    System.out.println("@@"+ps.size());
                     Client_shop.setProducts(ps);
                 }
 

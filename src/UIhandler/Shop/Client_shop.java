@@ -219,6 +219,7 @@ public class Client_shop {
     //刚开始登录界面就显示所有的商品
     public static List<Product> returnAllProduct() throws Exception {
         setSign(true);
+        resetAllProducts();
         setSign_delete("1");
         setSign_find_type("1");
         setSign_add("1");

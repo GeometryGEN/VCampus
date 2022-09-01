@@ -314,6 +314,7 @@ public class ServerToClientThread extends Thread{
                 else if(m.getType().equals(MessageType.RETURN_ALL_PRODUCT)){
                     List<Product> ps  = buyers_Shop_utils.returnAllProduct();
                     if(ps.size()!=0){
+                        System.out.println("!!="+ps.size());
                         sendback.setData(ps);
                         sendback.setType(MessageType.RETURN_ALL_PRODUCT_SUCCEED);
                         oos.writeObject(sendback);

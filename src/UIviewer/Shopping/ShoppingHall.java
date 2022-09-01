@@ -15,8 +15,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-
-import static UIhandler.Shop.Client_shop.checktypeProduct;
 import static UIviewer.Shopping.shopCustomer.cardLayout;
 import static UIviewer.Shopping.shopCustomer.panel;
 import static UIviewer.login.forgetPWD.forgetPWDUI;
@@ -124,7 +122,27 @@ public class ShoppingHall extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    checktypeProduct("零食");
+                    List<Product> t = Client_shop.checktypeProduct("零食");
+                    if(t!=null) {
+                        String[][] temp = new String[t.size()][];
+                        for (int i = 0; i < t.size(); i++) {
+                            String[] tt = new String[7];
+                            tt[0] = String.valueOf(t.get(i).getProduct_id());
+                            tt[1] = t.get(i).getProduct_name();
+                            tt[2] = String.valueOf(t.get(i).getProduct_price());
+                            tt[3] = String.valueOf(t.get(i).getProduct_currentNumbers());
+                            tt[4] = "1";
+                            tt[5] = "加入购物车";
+                            tt[6] = "购买";
+                            temp[i] = tt;
+                        }
+                        setShoptable(temp);
+                    }else {
+                        setShoptable(null);
+                    }
+                    ShoppingHall f11=new ShoppingHall();
+                    panel.add(f11,"f11");
+                    cardLayout.show(panel, "f11");
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 }
@@ -143,7 +161,27 @@ public class ShoppingHall extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    checktypeProduct("饼干");
+                    List<Product> t = Client_shop.checktypeProduct("饼干");
+                    if(t!=null) {
+                        String[][] temp = new String[t.size()][];
+                        for (int i = 0; i < t.size(); i++) {
+                            String[] tt = new String[7];
+                            tt[0] = String.valueOf(t.get(i).getProduct_id());
+                            tt[1] = t.get(i).getProduct_name();
+                            tt[2] = String.valueOf(t.get(i).getProduct_price());
+                            tt[3] = String.valueOf(t.get(i).getProduct_currentNumbers());
+                            tt[4] = "1";
+                            tt[5] = "加入购物车";
+                            tt[6] = "购买";
+                            temp[i] = tt;
+                        }
+                        setShoptable(temp);
+                    }else {
+                        setShoptable(null);
+                    }
+                    ShoppingHall f12=new ShoppingHall();
+                    panel.add(f12,"f12");
+                    cardLayout.show(panel, "f12");
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 }
@@ -162,7 +200,27 @@ public class ShoppingHall extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    checktypeProduct("茶");
+                    List<Product> t = Client_shop.checktypeProduct("茶");
+                    if(t!=null){
+                        String[][] temp = new String[t.size()][];
+                        for(int i =0;i<t.size();i++){
+                            String[] tt =new String[7];
+                            tt[0]=String.valueOf(t.get(i).getProduct_id());
+                            tt[1]=t.get(i).getProduct_name();
+                            tt[2]=String.valueOf(t.get(i).getProduct_price());
+                            tt[3]=String.valueOf(t.get(i).getProduct_currentNumbers());
+                            tt[4]="1";
+                            tt[5]="加入购物车";
+                            tt[6]="购买";
+                            temp[i]=tt;
+                        }
+                        setShoptable(temp);
+                    }else {
+                        setShoptable(null);
+                    }
+                    ShoppingHall f13=new ShoppingHall();
+                    panel.add(f13,"f13");
+                    cardLayout.show(panel, "f13");
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 }
@@ -181,7 +239,27 @@ public class ShoppingHall extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    checktypeProduct("美妆");
+                    List<Product> t = Client_shop.checktypeProduct("美妆");
+                    if(t!=null) {
+                        String[][] temp = new String[t.size()][];
+                        for (int i = 0; i < t.size(); i++) {
+                            String[] tt = new String[7];
+                            tt[0] = String.valueOf(t.get(i).getProduct_id());
+                            tt[1] = t.get(i).getProduct_name();
+                            tt[2] = String.valueOf(t.get(i).getProduct_price());
+                            tt[3] = String.valueOf(t.get(i).getProduct_currentNumbers());
+                            tt[4] = "1";
+                            tt[5] = "加入购物车";
+                            tt[6] = "购买";
+                            temp[i] = tt;
+                        }
+                        setShoptable(temp);
+                    }else {
+                        setShoptable(null);
+                    }
+                    ShoppingHall f12=new ShoppingHall();
+                    panel.add(f12,"f12");
+                    cardLayout.show(panel, "f12");
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 } }
@@ -199,7 +277,27 @@ public class ShoppingHall extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    checktypeProduct("饰品");
+                    List<Product> t = Client_shop.checktypeProduct("饰品");
+                    if(t!=null) {
+                        String[][] temp = new String[t.size()][];
+                        for (int i = 0; i < t.size(); i++) {
+                            String[] tt = new String[7];
+                            tt[0] = String.valueOf(t.get(i).getProduct_id());
+                            tt[1] = t.get(i).getProduct_name();
+                            tt[2] = String.valueOf(t.get(i).getProduct_price());
+                            tt[3] = String.valueOf(t.get(i).getProduct_currentNumbers());
+                            tt[4] = "1";
+                            tt[5] = "加入购物车";
+                            tt[6] = "购买";
+                            temp[i] = tt;
+                        }
+                        setShoptable(temp);
+                    }else {
+                        setShoptable(null);
+                    }
+                    ShoppingHall f12=new ShoppingHall();
+                    panel.add(f12,"f12");
+                    cardLayout.show(panel, "f12");
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 }  }
@@ -217,7 +315,27 @@ public class ShoppingHall extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    checktypeProduct("洗护");
+                    List<Product> t = Client_shop.checktypeProduct("洗护");
+                    if(t!=null) {
+                        String[][] temp = new String[t.size()][];
+                        for (int i = 0; i < t.size(); i++) {
+                            String[] tt = new String[7];
+                            tt[0] = String.valueOf(t.get(i).getProduct_id());
+                            tt[1] = t.get(i).getProduct_name();
+                            tt[2] = String.valueOf(t.get(i).getProduct_price());
+                            tt[3] = String.valueOf(t.get(i).getProduct_currentNumbers());
+                            tt[4] = "1";
+                            tt[5] = "加入购物车";
+                            tt[6] = "购买";
+                            temp[i] = tt;
+                        }
+                        setShoptable(temp);
+                    }else {
+                        setShoptable(null);
+                    }
+                    ShoppingHall f12=new ShoppingHall();
+                    panel.add(f12,"f12");
+                    cardLayout.show(panel, "f12");
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 }}
@@ -235,7 +353,27 @@ public class ShoppingHall extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    checktypeProduct("男装");
+                    List<Product> t = Client_shop.checktypeProduct("男装");
+                    if(t!=null) {
+                        String[][] temp = new String[t.size()][];
+                        for (int i = 0; i < t.size(); i++) {
+                            String[] tt = new String[7];
+                            tt[0] = String.valueOf(t.get(i).getProduct_id());
+                            tt[1] = t.get(i).getProduct_name();
+                            tt[2] = String.valueOf(t.get(i).getProduct_price());
+                            tt[3] = String.valueOf(t.get(i).getProduct_currentNumbers());
+                            tt[4] = "1";
+                            tt[5] = "加入购物车";
+                            tt[6] = "购买";
+                            temp[i] = tt;
+                        }
+                        setShoptable(temp);
+                    }else {
+                        setShoptable(null);
+                    }
+                    ShoppingHall f12=new ShoppingHall();
+                    panel.add(f12,"f12");
+                    cardLayout.show(panel, "f12");
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 } }
@@ -253,7 +391,27 @@ public class ShoppingHall extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    checktypeProduct("运动");
+                    List<Product> t = Client_shop.checktypeProduct("运动");
+                    if(t!=null) {
+                        String[][] temp = new String[t.size()][];
+                        for (int i = 0; i < t.size(); i++) {
+                            String[] tt = new String[7];
+                            tt[0] = String.valueOf(t.get(i).getProduct_id());
+                            tt[1] = t.get(i).getProduct_name();
+                            tt[2] = String.valueOf(t.get(i).getProduct_price());
+                            tt[3] = String.valueOf(t.get(i).getProduct_currentNumbers());
+                            tt[4] = "1";
+                            tt[5] = "加入购物车";
+                            tt[6] = "购买";
+                            temp[i] = tt;
+                        }
+                        setShoptable(temp);
+                    }else {
+                        setShoptable(null);
+                    }
+                    ShoppingHall f12=new ShoppingHall();
+                    panel.add(f12,"f12");
+                    cardLayout.show(panel, "f12");
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 } }
@@ -271,7 +429,27 @@ public class ShoppingHall extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    checktypeProduct("百货");
+                    List<Product> t = Client_shop.checktypeProduct("百货");
+                    if(t!=null) {
+                        String[][] temp = new String[t.size()][];
+                        for (int i = 0; i < t.size(); i++) {
+                            String[] tt = new String[7];
+                            tt[0] = String.valueOf(t.get(i).getProduct_id());
+                            tt[1] = t.get(i).getProduct_name();
+                            tt[2] = String.valueOf(t.get(i).getProduct_price());
+                            tt[3] = String.valueOf(t.get(i).getProduct_currentNumbers());
+                            tt[4] = "1";
+                            tt[5] = "加入购物车";
+                            tt[6] = "购买";
+                            temp[i] = tt;
+                        }
+                        setShoptable(temp);
+                    }else {
+                        setShoptable(null);
+                    }
+                    ShoppingHall f12=new ShoppingHall();
+                    panel.add(f12,"f12");
+                    cardLayout.show(panel, "f12");
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 } }
@@ -289,7 +467,27 @@ public class ShoppingHall extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    checktypeProduct("手机");
+                    List<Product> t = Client_shop.checktypeProduct("手机");
+                    if(t!=null) {
+                        String[][] temp = new String[t.size()][];
+                        for (int i = 0; i < t.size(); i++) {
+                            String[] tt = new String[7];
+                            tt[0] = String.valueOf(t.get(i).getProduct_id());
+                            tt[1] = t.get(i).getProduct_name();
+                            tt[2] = String.valueOf(t.get(i).getProduct_price());
+                            tt[3] = String.valueOf(t.get(i).getProduct_currentNumbers());
+                            tt[4] = "1";
+                            tt[5] = "加入购物车";
+                            tt[6] = "购买";
+                            temp[i] = tt;
+                        }
+                        setShoptable(temp);
+                    }else {
+                        setShoptable(null);
+                    }
+                    ShoppingHall f12=new ShoppingHall();
+                    panel.add(f12,"f12");
+                    cardLayout.show(panel, "f12");
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 }  }
@@ -307,7 +505,27 @@ public class ShoppingHall extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    checktypeProduct("数码");
+                    List<Product> t = Client_shop.checktypeProduct("数码");
+                    if(t!=null) {
+                        String[][] temp = new String[t.size()][];
+                        for (int i = 0; i < t.size(); i++) {
+                            String[] tt = new String[7];
+                            tt[0] = String.valueOf(t.get(i).getProduct_id());
+                            tt[1] = t.get(i).getProduct_name();
+                            tt[2] = String.valueOf(t.get(i).getProduct_price());
+                            tt[3] = String.valueOf(t.get(i).getProduct_currentNumbers());
+                            tt[4] = "1";
+                            tt[5] = "加入购物车";
+                            tt[6] = "购买";
+                            temp[i] = tt;
+                        }
+                        setShoptable(temp);
+                    }else {
+                        setShoptable(null);
+                    }
+                    ShoppingHall f12=new ShoppingHall();
+                    panel.add(f12,"f12");
+                    cardLayout.show(panel, "f12");
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 }  }
@@ -325,7 +543,27 @@ public class ShoppingHall extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    checktypeProduct("礼品");
+                    List<Product> t = Client_shop.checktypeProduct("礼品");
+                    if(t!=null) {
+                        String[][] temp = new String[t.size()][];
+                        for (int i = 0; i < t.size(); i++) {
+                            String[] tt = new String[7];
+                            tt[0] = String.valueOf(t.get(i).getProduct_id());
+                            tt[1] = t.get(i).getProduct_name();
+                            tt[2] = String.valueOf(t.get(i).getProduct_price());
+                            tt[3] = String.valueOf(t.get(i).getProduct_currentNumbers());
+                            tt[4] = "1";
+                            tt[5] = "加入购物车";
+                            tt[6] = "购买";
+                            temp[i] = tt;
+                        }
+                        setShoptable(temp);
+                    }else {
+                        setShoptable(null);
+                    }
+                    ShoppingHall f12=new ShoppingHall();
+                    panel.add(f12,"f12");
+                    cardLayout.show(panel, "f12");
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 }  }
@@ -343,7 +581,27 @@ public class ShoppingHall extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    checktypeProduct("家装");
+                    List<Product> t = Client_shop.checktypeProduct("家装");
+                    if(t!=null) {
+                        String[][] temp = new String[t.size()][];
+                        for (int i = 0; i < t.size(); i++) {
+                            String[] tt = new String[7];
+                            tt[0] = String.valueOf(t.get(i).getProduct_id());
+                            tt[1] = t.get(i).getProduct_name();
+                            tt[2] = String.valueOf(t.get(i).getProduct_price());
+                            tt[3] = String.valueOf(t.get(i).getProduct_currentNumbers());
+                            tt[4] = "1";
+                            tt[5] = "加入购物车";
+                            tt[6] = "购买";
+                            temp[i] = tt;
+                        }
+                        setShoptable(temp);
+                    }else {
+                        setShoptable(null);
+                    }
+                    ShoppingHall f12=new ShoppingHall();
+                    panel.add(f12,"f12");
+                    cardLayout.show(panel, "f12");
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 } }
@@ -361,7 +619,27 @@ public class ShoppingHall extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    checktypeProduct("电器");
+                    List<Product> t = Client_shop.checktypeProduct("电器");
+                    if(t!=null) {
+                        String[][] temp = new String[t.size()][];
+                        for (int i = 0; i < t.size(); i++) {
+                            String[] tt = new String[7];
+                            tt[0] = String.valueOf(t.get(i).getProduct_id());
+                            tt[1] = t.get(i).getProduct_name();
+                            tt[2] = String.valueOf(t.get(i).getProduct_price());
+                            tt[3] = String.valueOf(t.get(i).getProduct_currentNumbers());
+                            tt[4] = "1";
+                            tt[5] = "加入购物车";
+                            tt[6] = "购买";
+                            temp[i] = tt;
+                        }
+                        setShoptable(temp);
+                    }else {
+                        setShoptable(null);
+                    }
+                    ShoppingHall f12=new ShoppingHall();
+                    panel.add(f12,"f12");
+                    cardLayout.show(panel, "f12");
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 }}
@@ -379,7 +657,27 @@ public class ShoppingHall extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    checktypeProduct("厨具");
+                    List<Product> t = Client_shop.checktypeProduct("厨具");
+                    if(t!=null) {
+                        String[][] temp = new String[t.size()][];
+                        for (int i = 0; i < t.size(); i++) {
+                            String[] tt = new String[7];
+                            tt[0] = String.valueOf(t.get(i).getProduct_id());
+                            tt[1] = t.get(i).getProduct_name();
+                            tt[2] = String.valueOf(t.get(i).getProduct_price());
+                            tt[3] = String.valueOf(t.get(i).getProduct_currentNumbers());
+                            tt[4] = "1";
+                            tt[5] = "加入购物车";
+                            tt[6] = "购买";
+                            temp[i] = tt;
+                        }
+                        setShoptable(temp);
+                    }else {
+                        setShoptable(null);
+                    }
+                    ShoppingHall f12=new ShoppingHall();
+                    panel.add(f12,"f12");
+                    cardLayout.show(panel, "f12");
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 } }
@@ -397,7 +695,27 @@ public class ShoppingHall extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    checktypeProduct("医药");
+                    List<Product> t = Client_shop.checktypeProduct("医药");
+                    if(t!=null) {
+                        String[][] temp = new String[t.size()][];
+                        for (int i = 0; i < t.size(); i++) {
+                            String[] tt = new String[7];
+                            tt[0] = String.valueOf(t.get(i).getProduct_id());
+                            tt[1] = t.get(i).getProduct_name();
+                            tt[2] = String.valueOf(t.get(i).getProduct_price());
+                            tt[3] = String.valueOf(t.get(i).getProduct_currentNumbers());
+                            tt[4] = "1";
+                            tt[5] = "加入购物车";
+                            tt[6] = "购买";
+                            temp[i] = tt;
+                        }
+                        setShoptable(temp);
+                    }else {
+                        setShoptable(null);
+                    }
+                    ShoppingHall f12=new ShoppingHall();
+                    panel.add(f12,"f12");
+                    cardLayout.show(panel, "f12");
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 }  }
@@ -415,7 +733,27 @@ public class ShoppingHall extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    checktypeProduct("保健");
+                    List<Product> t = Client_shop.checktypeProduct("保健");
+                    if(t!=null) {
+                        String[][] temp = new String[t.size()][];
+                        for (int i = 0; i < t.size(); i++) {
+                            String[] tt = new String[7];
+                            tt[0] = String.valueOf(t.get(i).getProduct_id());
+                            tt[1] = t.get(i).getProduct_name();
+                            tt[2] = String.valueOf(t.get(i).getProduct_price());
+                            tt[3] = String.valueOf(t.get(i).getProduct_currentNumbers());
+                            tt[4] = "1";
+                            tt[5] = "加入购物车";
+                            tt[6] = "购买";
+                            temp[i] = tt;
+                        }
+                        setShoptable(temp);
+                    }else {
+                        setShoptable(null);
+                    }
+                    ShoppingHall f12=new ShoppingHall();
+                    panel.add(f12,"f12");
+                    cardLayout.show(panel, "f12");
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 } }
@@ -433,7 +771,27 @@ public class ShoppingHall extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    checktypeProduct("生鲜");
+                    List<Product> t = Client_shop.checktypeProduct("生鲜");
+                    if(t!=null) {
+                        String[][] temp = new String[t.size()][];
+                        for (int i = 0; i < t.size(); i++) {
+                            String[] tt = new String[7];
+                            tt[0] = String.valueOf(t.get(i).getProduct_id());
+                            tt[1] = t.get(i).getProduct_name();
+                            tt[2] = String.valueOf(t.get(i).getProduct_price());
+                            tt[3] = String.valueOf(t.get(i).getProduct_currentNumbers());
+                            tt[4] = "1";
+                            tt[5] = "加入购物车";
+                            tt[6] = "购买";
+                            temp[i] = tt;
+                        }
+                        setShoptable(temp);
+                    }else {
+                        setShoptable(null);
+                    }
+                    ShoppingHall f12=new ShoppingHall();
+                    panel.add(f12,"f12");
+                    cardLayout.show(panel, "f12");
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 } }
