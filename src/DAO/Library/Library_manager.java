@@ -92,7 +92,7 @@ public class Library_manager implements Serializable{
     }
     public ArrayList<Book_borrower> query_book(String s) throws SQLException {
         ArrayList<Book_borrower> books = new ArrayList<>();
-        String sql="select * from library where name like ? author like ? or id like ? order by name;";
+        String sql="select * from library where name like ? or author like ? or id like ? order by name;";
         String parse="%"+s+"%";
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,parse);

@@ -50,15 +50,15 @@ public class friend_slice extends JLabel {
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
+            try {
+                Thumbnails.of(new File("src/image/QQ/"+friend.getId()+".jpg"))
+                        .size((int)(icon1_width*width_r), (int)(icon1_width*width_r))
+                        .toFile(new File("src/image/QQ/"+friend.getId()+"_min.jpg"));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            setIcon(new ImageIcon("src/image/QQ/"+friend.getId()+"_min.jpg"));
         }
-        try {
-            Thumbnails.of(new File("src/image/QQ/"+friend.getId()+".jpg"))
-                    .size((int)(icon1_width*width_r), (int)(icon1_width*width_r))
-                    .toFile(new File("src/image/QQ/"+friend.getId()+"_min.jpg"));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        setIcon(new ImageIcon("src/image/QQ/"+friend.getId()+"_min.jpg"));
         if(friend.getOnline()==1){
             setText(friend.getName()+"                                                 ");
             setForeground(Color.black);
