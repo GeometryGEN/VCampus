@@ -48,7 +48,7 @@ public class functionChoose {
         //jf.setSize(1273,784);
         fc_panel = new JPanel();
         fc_panel.setLayout(null);
-        fc_panel.setBounds(0,0,width+50,height+80);
+        fc_panel.setBounds(0,0, (int) (width*1.2), (int) (height*1.2));
         fc_panel.setBackground(new Color(245,245,245, 180));
         jf.setContentPane(fc_panel);
 
@@ -492,12 +492,12 @@ public class functionChoose {
                     Client_qicq.setId(myInfo.getId());
                     if(myInfo.getType()!=3)
                     {
-                        jf.setContentPane(new main_panel(width,height).mjp);
+                        jf.setContentPane(new main_panel(width,height,myInfo.getType()).mjp);
                         jf.setTitle("userqq");
                     }
                     else
                     {
-                        jf.setContentPane(new main_panel(width,height).mjp);
+                        jf.setContentPane(new main_panel(width,height,myInfo.getType()).mjp);
                         jf.setTitle("adminqq");
                     }
                 } catch (Exception ex) {

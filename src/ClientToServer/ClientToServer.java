@@ -32,7 +32,7 @@ public class ClientToServer {
     public static MyObjectOutputStream oos=null;
     public static MyObjectInputStream ois=null;
     public static String serverIP = Message.returnIP();
-    //public static String serverIP = "10.208.118.177";
+//    public static String serverIP = "192.168.76.237";
 
     public String getIDcard() {
         return switch (ID) {
