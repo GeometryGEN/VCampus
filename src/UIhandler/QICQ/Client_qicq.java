@@ -1,6 +1,7 @@
 package UIhandler.QICQ;
 
 import ClientToServer.ManageClientToServerThread;
+import ClientToServer.myInfo;
 import DAO.QICQ.Application;
 import DAO.QICQ.Filetrans;
 import DAO.QICQ.Friend;
@@ -128,6 +129,7 @@ public class Client_qicq {
         Message message=new Message();
         message.setData(app);
         app.from_id=myid;
+        app.from_name= myInfo.getName();
         app.group=group;
         app.setTo_id(number);
         app.setTo_name(nickname);

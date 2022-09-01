@@ -8,7 +8,7 @@ import message.MessageType;
 import utils.MyObjectOutputStream;
 import utils.myTime;
 
-import java.io.IOException;
+import java.io.*;
 import java.net.Socket;
 import java.sql.*;
 import java.util.ArrayList;
@@ -75,6 +75,7 @@ public class QICQ_manager {
                // System.out.println(friend.id+" ok");
             }
             else friend.setOnline(0);
+            friend.image=readicon(friend.id);
             sql="select * from message where sender=? and getter=? and isread=0;";
             st= conn.prepareStatement(sql);
             st.setString(1, friend.id);
@@ -91,6 +92,7 @@ public class QICQ_manager {
                 f.add(friend);
                 friends.put(group,f);
             }
+
         }
         Message msg=new Message();
         msg.setType(MessageType.MESSAGE_QICQ_LIST_FRIENDS_RET);
@@ -314,4 +316,111 @@ public class QICQ_manager {
         return sendback;
     }
 
+    public byte[] readicon(String id) throws SQLException {
+        String path = "src/image/QQ/temp.jpg";
+        File file = new File(path);
+        if (file.exists()) {
+            file.delete();
+        }
+        try {
+            file.createNewFile();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        Connection conn = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        try {
+            conn = JDBC_Connector.ConnectMySQL();
+            String sql = "select * from qqimage where id =?";
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, id);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                Blob picture= rs.getBlob("image");
+                InputStream in = picture.getBinaryStream();
+                OutputStream out = new FileOutputStream(file);
+                int len = 0;
+                byte[] buf = new byte[(int)picture.length()];
+                while ((len = in.read(buf)) != -1) {
+                    out.write(buf, 0, len);
+                }
+                System.out.println("图片读取成功！");
+                JDBC_Connector.close(rs,ps,conn);
+                return buf;
+            }
+            else
+            {
+                return null;
+            }
+        } catch (Exception e) {
+            return null;
+        }
+    }
+
+    public void modify_friend_info(Friend f) throws SQLException {
+        String sql="update friends set relation=?, nickname=? where user_id=? and friend_id=?;";
+        PreparedStatement st=conn.prepareStatement(sql);
+        st.setString(1,f.type);
+        st.setString(2,f.name);
+        st.setString(3,id);
+        st.setString(4,f.id);
+        st.executeUpdate();
+    }
+    public void new_add_friend(Message message) throws IOException, SQLException {
+        Application app=(Application)message.getData();
+        int flag=0;
+        String sql="select * from students where Student_idcard=?;";
+        PreparedStatement st=conn.prepareStatement(sql);
+        st.setString(1,app.to_id);
+        System.out.println(app.to_id);
+        ResultSet rs=st.executeQuery();
+        if(rs.next()){
+            String sql1="insert into friends(user_id,friend_id,relation,nickname) values(?,?,?,?);";
+            PreparedStatement st1=conn.prepareStatement(sql1);
+            st1.setString(1,app.from_id);
+            st1.setString(2,app.to_id);
+            st1.setString(3,app.group);
+            st1.setString(4,app.to_name);
+            st1.executeUpdate();
+            st1.setString(2,app.from_id);
+            st1.setString(1,app.to_id);
+            st1.setString(3,"新朋友");
+            st1.setString(4,app.from_name);
+            st1.executeUpdate();
+        }
+        else{
+            sql="select * from teachers where Teacher_idcard=?;";
+            st=conn.prepareStatement(sql);
+            st.setString(1,app.to_id);
+            rs=st.executeQuery();
+            if(rs.next()){
+                String sql1="insert into friends(user_id,friend_id,relation,nickname) values(?,?,?,?);";
+                PreparedStatement st1=conn.prepareStatement(sql1);
+                st1.setString(1,app.from_id);
+                st1.setString(2,app.to_id);
+                st1.setString(3,app.group);
+                st1.setString(4,app.to_name);
+                st1.executeUpdate();
+                st1.setString(2,app.from_id);
+                st1.setString(1,app.to_id);
+                st1.setString(3,"新朋友");
+                st1.setString(4,app.from_name);
+                st1.executeUpdate();
+            }
+            else {
+                flag=1;
+                Message msg=new Message();
+                msg.setType(MessageType.MESSAGE_QICQ_ADD_FRIEND_FAIL_CANNOT_FIND_USER);
+                //        MyObjectOutputStream oos=new MyObjectOutputStream(ManageServerToClientThread.getThread(id).getSocket().getOutputStream());
+                ManageServerToClientThread.getThread(id).oos.writeObject(msg);
+            }
+
+        }
+        if(flag==0){
+            Message msg=new Message();
+            msg.setType(MessageType.MESSAGE_QICQ_ADD_FRIEND_SUCCEED);
+            ManageServerToClientThread.getThread(id).oos.writeObject(msg);
+        }
+    }
 }

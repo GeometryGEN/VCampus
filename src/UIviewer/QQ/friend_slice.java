@@ -10,6 +10,8 @@ import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
 public class friend_slice extends JLabel {
@@ -39,14 +41,24 @@ public class friend_slice extends JLabel {
         setBackground(new Color(255,255,255));
         setBorder(null);
         int icon1_width=(int)((height-2*20)*height_r);
+        FileOutputStream fileOutputStream = null;
+        if(friend.image!=null)
+        {
+            try {
+                fileOutputStream = new FileOutputStream("src/image/QQ/"+friend.getId()+".jpg");
+                fileOutputStream.write(friend.image);
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+        }
         try {
-            Thumbnails.of(new File("src/image/QQ/qq_image_3.jpg"))
+            Thumbnails.of(new File("src/image/QQ/"+friend.getId()+".jpg"))
                     .size((int)(icon1_width*width_r), (int)(icon1_width*width_r))
-                    .toFile(new File("src/image/QQ/qq_image_3_min.png"));
+                    .toFile(new File("src/image/QQ/"+friend.getId()+"_min.jpg"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        setIcon(new ImageIcon("src/image/QQ/qq_image_3_min.png"));
+        setIcon(new ImageIcon("src/image/QQ/"+friend.getId()+"_min.jpg"));
         if(friend.getOnline()==1){
             setText(friend.getName()+"                                                 ");
             setForeground(Color.black);

@@ -124,7 +124,8 @@ public class ChooseCourse_guidance extends JPanel{
         int icon7_height=790;
         try {
             Thumbnails.of(new File("src/image/background2.jpg"))
-                    .size((int)(icon7_width*width_r), (int)(icon7_height*height_r))
+                    .size((int)(width), (int)(height))
+                    .keepAspectRatio(false)
                     .toFile(new File("src/image/background2_min.jpg"));
         } catch (IOException e) {
             throw new RuntimeException(e);
