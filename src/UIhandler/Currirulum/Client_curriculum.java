@@ -38,9 +38,6 @@ public class Client_curriculum {
     public static void setOos(MyObjectOutputStream mos) throws IOException {
         oos=mos;
     }
-
-
-
     public static void requireToChoose(Course curri)throws IOException{
             Message message=new Message();
             message.setData(curri);
@@ -95,7 +92,6 @@ public class Client_curriculum {
     }
     //显示所有的课程进行选择
     public static void RequireallCourse()throws IOException{
-        Choosing_Course.selectcourse=null;
         Message message=new Message();
         message.setType(MessageType.MESSAGE_CURRICULUM_LIST_ALL);
         oos.writeObject(message);
@@ -123,7 +119,7 @@ public class Client_curriculum {
     }
     public static void admin_all_course(ArrayList<Course>allchoosing)throws IOException{
         int n=allchoosing.size();
-        Scheduling.courses=new String[n][6];
+        Scheduling.courses=new String[n][7];
         Iterator b=allchoosing.iterator();
         int count=0;
         while(b.hasNext())
@@ -132,9 +128,10 @@ public class Client_curriculum {
             Scheduling.courses[count][0]=course.getId();
             Scheduling.courses[count][1]=course.getName();
             Scheduling.courses[count][2]=course.getTeacher();
-            Scheduling.courses[count][4]=String.valueOf(course.getSize());
-            Scheduling.courses[count][3]=course.getTimestring();
-            Scheduling.courses[count][5]=course.getClassroom();
+            Scheduling.courses[count][3]=String.valueOf(course.getHour());
+            Scheduling.courses[count][5]=String.valueOf(course.getSize());
+            Scheduling.courses[count][4]=course.getTimestring();
+            Scheduling.courses[count][6]=course.getClassroom();
             count++;
         }
         Scheduling sch=new Scheduling();
@@ -187,21 +184,23 @@ public class Client_curriculum {
         message.setType(MessageType.MESSAGE_CURRICULUM_APPLY);
         oos.writeObject(message);
     }
+
     public static void show_my_students(ArrayList<Student>students){
         int n=students.size();
-        My_students.students=new String[n][2];
+        ConsultCourse_stuInfo.students=new String[n][2];
         Iterator b=students.iterator();
         int count=0;
         while(b.hasNext())
         {
             Student s=(Student) b.next();
-            My_students.students[count][0]=s.getStudent_id();
-            My_students.students[count][1]=s.getStudent_name();
+            ConsultCourse_stuInfo.students[count][0]=s.getStudent_id();
+            ConsultCourse_stuInfo.students[count][1]=s.getStudent_name();
             count++;
         }
-        My_students stuInfo=new My_students();
-        Selcourse_teacher.panel1.add(stuInfo,"stuInfo");
-        Selcourse_teacher.cardLayout1.show(Selcourse_teacher.panel1,"stuInfo");
+        ConsultCourse_stuInfo stuInfo=new ConsultCourse_stuInfo();
+        //My_students stuInfo=new My_students();
+        Selcourse_teacher.panel.add(stuInfo,"stuInfo");
+        Selcourse_teacher.cardLayout.show(Selcourse_teacher.panel,"stuInfo");
     }
     public static void showApplyResult(ArrayList<Opencourse>opencourses) {
         int n=opencourses.size();
@@ -213,7 +212,7 @@ public class Client_curriculum {
             Opencourse curri=(Opencourse) b.next();
             Check_Coustatus.checkcourse_status[count][0]=curri.getId();
             Check_Coustatus.checkcourse_status[count][1]=curri.getName();
-            Check_Coustatus.checkcourse_status[count][2]=String.valueOf(curri.getPoint());
+            Check_Coustatus.checkcourse_status[count][2]=String.valueOf(curri.getHour());
             if(curri.getStatus()==0){
                 Check_Coustatus.checkcourse_status[count][3]="审核中...";
                 Check_Coustatus.checkcourse_status[count][4]="审核中...";
@@ -297,8 +296,8 @@ public class Client_curriculum {
             Check_Course.checkcourse[count][2]=curri.getTeacher();
             Check_Course.checkcourse[count][3]=String.valueOf(curri.getPoint());
             Check_Course.checkcourse[count][4]=String.valueOf(curri.getSize());
-            Check_Course.checkcourse[count][5]="      通过";
-            Check_Course.checkcourse[count][6]="      退回";
+            Check_Course.checkcourse[count][5]="        通过";
+            Check_Course.checkcourse[count][6]="        退回";
             count++;
         }
         Check_Course f =new Check_Course();

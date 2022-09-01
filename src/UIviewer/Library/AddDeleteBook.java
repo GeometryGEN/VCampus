@@ -179,7 +179,7 @@ public class AddDeleteBook extends JPanel {
                 deleteID=textField8.getText();
                 try {
                     Client_library.RequireDeleteBook(deleteID);
-                    JOptionPane.showMessageDialog(null,"图书删除成功！");
+                   // JOptionPane.showMessageDialog(null,"图书删除成功！");
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }

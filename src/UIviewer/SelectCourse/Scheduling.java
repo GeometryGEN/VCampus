@@ -27,20 +27,21 @@ public class Scheduling extends JPanel {
     public static volatile String[][] courses=null;
     public Scheduling() {
         setLayout(null);
-        String[] tableTitle = {"课程编号", "课程名", "任课老师", "时间", "课容量", "地点"};
+        String[] tableTitle = {"课程编号", "课程名", "任课老师","学时", "时间", "课容量", "地点"};
         DefaultTableModel dtm = new DefaultTableModel(courses, tableTitle);
         JTable table_want = new JTable(dtm) {
             public boolean isCellEditable(int row, int column) {
                 return true;
             }
         };
-
+        table_want.setCellSelectionEnabled(true);
         table_want.getColumnModel().getColumn(0).setPreferredWidth(160);
         table_want.getColumnModel().getColumn(1).setPreferredWidth(200);
         table_want.getColumnModel().getColumn(2).setPreferredWidth(60);
-        table_want.getColumnModel().getColumn(3).setPreferredWidth(450);
-        table_want.getColumnModel().getColumn(4).setPreferredWidth(150);
-        table_want.getColumnModel().getColumn(5).setPreferredWidth(120);
+        table_want.getColumnModel().getColumn(3).setPreferredWidth(60);
+        table_want.getColumnModel().getColumn(4).setPreferredWidth(450);
+        table_want.getColumnModel().getColumn(5).setPreferredWidth(60);
+        table_want.getColumnModel().getColumn(6).setPreferredWidth(180);
 
         JScrollPane jsp = new JScrollPane(table_want);
         jsp.setBounds(0, 0, (int)(1280*width_r), (int)(420*height_r));
@@ -117,14 +118,17 @@ public class Scheduling extends JPanel {
         btnNewButton_6.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+            //    table_want.clearSelection();
+
                 int n=table_want.getRowCount();
 
                 for(int i=0;i<n;i++){
                     Course c=new Course();
                     c.setId((String) table_want.getValueAt(i,0));
-                    c.setTimestring((String) table_want.getValueAt(i,3));
-                    c.setClassroom((String) table_want.getValueAt(i,5));
-                    c.setSize(Integer.valueOf((String) table_want.getValueAt(i,4)));
+                    c.setTimestring((String) table_want.getValueAt(i,4));
+                    c.setClassroom((String) table_want.getValueAt(i,6));
+                    c.setSize(Integer.valueOf((String) table_want.getValueAt(i,5)));
+                    System.out.println(c.getClassroom());
                     try {
                         Client_curriculum.arrange(c);
                     } catch (IOException ex) {
@@ -132,6 +136,7 @@ public class Scheduling extends JPanel {
                     }
 
                 }
+            //    System.out.println("ok");
                 try {
                     Client_curriculum.RequireallCourse();
                 } catch (IOException ex) {

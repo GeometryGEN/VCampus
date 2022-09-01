@@ -162,7 +162,8 @@ public class ServerToClientThread extends Thread{
                 }
                 else if(m.getType().equals( MessageType.MESSAGE_LIBRARY_ADMIN_DELETE)){
                     String id=(String)m.getData();
-                    new Library_manager(userid).deletebook(id);
+                    sendback=new Library_manager(userid).deletebook(id);
+                    oos.writeObject(sendback);
                 }
 
 

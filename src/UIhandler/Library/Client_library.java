@@ -238,7 +238,7 @@ public class Client_library {
         message.setType(MessageType.MESSAGE_LIBRARY_ENTER);
         oos.writeObject(message);
     }
-    public static void admin_enter_result(ArrayList<Book_admin>books){
+    public static void admin_enter_result(ArrayList<Book_admin>books) throws IOException {
         int n= books.size();
         System.out.println(n);
         AllBooks.tableDate=new String[n][11];
@@ -262,6 +262,10 @@ public class Client_library {
             AllBooks.tableDate[i][9]=book.getDate_expire();
             AllBooks.tableDate[i][10]=book.getPlace();
         }
+        //AllBooks fa=new AllBooks();
+        //UIviewer.Library.adminLib.panel.add(fa,"fa");
+        //UIviewer.Library.adminLib.cardLayout.show(UIviewer.Library.adminLib.panel,"fa");
+        Client_library.RequireshowAllBooks();
         functionChoose.jf.setContentPane(new adminLib());
         functionChoose.jf.setTitle("adminLib");
         functionChoose.jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

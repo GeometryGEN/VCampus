@@ -332,11 +332,18 @@ public class Library_manager implements Serializable{
         st.setDouble(5,book.price);
         st.executeUpdate();
     }
-    public void deletebook(String id) throws SQLException{
+    public Message deletebook(String id) throws SQLException{
+        Message message=new Message();
         String sql="delete from library where ID=?;";
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,id);
-        st.executeUpdate();
+        int cnt=st.executeUpdate();
+        if(cnt==1){
+            message.setType(MessageType.MESSAGE_LIBRARY_ADMIN_DELETE_SUCCEED);
+        }else{
+            message.setType(MessageType.MESSAGE_LIBRARY_ADMIN_DELETE_FAIL);
+        }
+        return message;
     }
     public ArrayList<Punishment>admin_list_tickets(){
         ArrayList<Punishment>punishments=new ArrayList<>();
