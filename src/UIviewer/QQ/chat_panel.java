@@ -1,5 +1,6 @@
 package UIviewer.QQ;
 
+import DAO.QICQ.Filetrans;
 import DAO.QICQ.Friend;
 import UIhandler.QICQ.Client_qicq;
 import ClientToServer.myInfo;
@@ -13,6 +14,7 @@ import javax.swing.text.StyledDocument;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -20,9 +22,11 @@ public class chat_panel extends JPanel {
     private JPanel type_panel;
     private static JScrollPane scrollPane;
     private static Friend friend;
-    static double width_r;
+    static double width_r,height_r;
     static JTextPane jTextPane = new JTextPane();
     static StyledDocument doc = jTextPane.getStyledDocument();
+    static JButton  receive_button;
+    static ArrayList<Filetrans>files=new ArrayList<>();
     public static void insertText(String text, Color colorName, int textSize, int textAlign){
         SimpleAttributeSet set = new SimpleAttributeSet();
         StyleConstants.setForeground(set, colorName);//设置文本颜色
@@ -39,6 +43,10 @@ public class chat_panel extends JPanel {
         Client_qicq.send_file(src,Client_qicq.getId(),friend.getId(),filename);
         System.out.println(friend.getId());
     }
+    public static void receive_file(Filetrans src,String filepath) throws IOException {
+        Client_qicq.receive_file(src,filepath);
+        //System.out.println(friend.getId());
+    }
     public static void show_message(ArrayList<Message> messages){
         jTextPane.setText(null);
         //开头空格
@@ -51,35 +59,49 @@ public class chat_panel extends JPanel {
         } catch (BadLocationException e) {
             e.printStackTrace();
         }
-
         int num=messages.size();
         for(int i=num-1;i>=0;i--) {
-            System.out.println(messages.get(i).getSendTime());
-            if(messages.get(i).getSender().equals(myInfo.getId())){
-                insertText(messages.get(i).getSendTime(),new Color(122,122,123),(int)(16*width_r),1);
-                insertText(myInfo.getName()+"(我)"+":",Color.black,(int)(22*width_r),2);
-                insertText((String)(messages.get(i).getData()),Color.black,(int)(42*width_r),2);
+//            System.out.println(messages.get(i).getSendTime());
+            if(messages.get(i).isfile==1)
+            {
+                if(messages.get(i).getSender().equals(myInfo.getId())){
+                    insertText(messages.get(i).getSendTime(),new Color(122,122,123),(int)(16*width_r),1);
+                    insertText(myInfo.getName()+"(我)"+":",Color.black,(int)(22*width_r),2);
+                    Filetrans f=(Filetrans)messages.get(i).getData();
+                    insertText((String)"给对方发送文件:  "+f.getName(),new Color(164, 1, 1),(int)(42*width_r),2);
+                }
+                else{
+                    Filetrans f=(Filetrans)messages.get(i).getData();
+                    insertText(messages.get(i).getSendTime(),new Color(122,122,123),(int)(16*width_r),1);
+                    insertText(messages.get(i).getSender()+":",new Color(0, 181, 181),(int)(22*width_r),0);
+                    insertText((String)(String)"收到对方发送的文件:  "+f.getName(),new Color(164, 1, 1),(int)(42*width_r),0);
+                    files.add(f);
+                }
             }
-            else{
-                insertText(messages.get(i).getSendTime(),new Color(122,122,123),(int)(16*width_r),1);
-                insertText(messages.get(i).getSender()+":",Color.red,(int)(22*width_r),0);
-                insertText((String)(messages.get(i).getData()),Color.red,(int)(42*width_r),0);
+            else {
+                if(messages.get(i).getSender().equals(myInfo.getId())){
+                    insertText(messages.get(i).getSendTime(),new Color(122,122,123),(int)(16*width_r),1);
+                    insertText(myInfo.getName()+"(我)"+":",Color.black,(int)(22*width_r),2);
+                    insertText((String)(messages.get(i).getData()),Color.black,(int)(42*width_r),2);
+                }
+                else{
+                    insertText(messages.get(i).getSendTime(),new Color(122,122,123),(int)(16*width_r),1);
+                    insertText(messages.get(i).getSender()+":",new Color(0, 181, 181),(int)(22*width_r),0);
+                    insertText((String)(messages.get(i).getData()),new Color(0, 181, 181),(int)(42*width_r),0);
+                }
             }
+
         }
-        JScrollBar scrollBar = new JScrollBar(JScrollBar.VERTICAL) {
-            @Override
-            public boolean isVisible() {
-                return true;
-            }
-        };
-        scrollPane.setVerticalScrollBar(scrollBar);
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
-        scrollBar.setUnitIncrement(30);
+        if(files.size()!=0){
+            System.out.println("has file");
+            receive_button.setVisible(true);
+        }
+        else {
+            receive_button.setVisible(false);
+        }
 
         jTextPane.setCaretPosition(doc.getLength());
         jTextPane.setEditable(false);
-
-        jTextPane.insertIcon(new ImageIcon("src/image/QQ/1.jpg"));
 
         jTextPane.updateUI();
         jTextPane.setCaretPosition(jTextPane.getStyledDocument().getLength());
@@ -89,6 +111,7 @@ public class chat_panel extends JPanel {
         this.friend=friend;
         setLayout(null);
         this.width_r=width_r;
+        this.height_r=height_r;
         setBounds((int)(x*width_r),(int)(y*height_r),(int)(width*width_r),(int)(height*height_r));
         setBackground(new Color(224,224,224));
         setBorder(BorderFactory.createLineBorder(new Color(234,234,234)));
@@ -116,14 +139,14 @@ public class chat_panel extends JPanel {
         int send_file_button_width=140;
         send_file_button.setBackground(new Color(30,111,255));
         send_file_button.setFont(new Font("宋体",Font.PLAIN,(int)(25*width_r)));
-        send_file_button.setText("文件");
+        send_file_button.setText("发送文件");
         send_file_button.setForeground(new Color(255,255,255));
         send_file_button.setBounds((int)((width-send_button_width-send_file_button_width-1)*width_r),(int)((height/4-send_button_height-30)*height_r),(int)(send_file_button_width*width_r),(int)(send_button_height*height_r));
         type_panel.add(send_file_button);
         send_file_button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                file_panel.createWindow();
+                file_panel.createWindow(0);
             }
         });
         //关闭该聊天框按钮
@@ -141,6 +164,24 @@ public class chat_panel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 setVisible(false);
                 main_panel.buttonPanel.setVisible(true);
+            }
+        });
+
+        //接受文件按钮
+        int receive_button_height=70;
+        int receive_button_width=140;
+        receive_button= new JButton();
+        receive_button.setBackground(new Color(10, 211, 87));
+        receive_button.setFont(new Font("宋体",Font.PLAIN,(int)(25*width_r)));
+        receive_button.setText("接受文件");
+        receive_button.setForeground(new Color(255,255,255));
+        receive_button.setBounds((int)((width-3*send_button_width-1.5)*width_r),(int)((height/4-send_button_height-30)*height_r)-100,(int)(send_button_width*width_r),(int)(send_button_height*height_r));
+        type_panel.add(receive_button);
+        receive_button.setVisible(false);
+        receive_button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                receive_panel.createWindow(files);
             }
         });
         //输入消息框
@@ -172,7 +213,52 @@ public class chat_panel extends JPanel {
         scrollPane.setBorder(BorderFactory.createLineBorder(new Color(234,234,234)));
         scrollPane.setBackground(new Color(245,246,247));
         jTextPane.setBackground(new Color(245,246,247));
+
+        JScrollBar scrollBar = new JScrollBar(JScrollBar.VERTICAL) {
+            @Override
+            public boolean isVisible() {
+                return true;
+            }
+        };
+        scrollPane.setVerticalScrollBar(scrollBar);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
+        scrollBar.setUnitIncrement(30);
+
         add(scrollPane);
+    }
+
+    public static void show_announcement(ArrayList<Message> messages) {
+
+        jTextPane.setText(null);
+        //开头空格
+        SimpleAttributeSet set = new SimpleAttributeSet();
+        StyleConstants.setFontSize(set, 0);//设置文本大小
+        StyleConstants.setAlignment(set, 1);//设置文本对齐方式
+        doc.setParagraphAttributes(jTextPane.getText().length(), doc.getLength() - jTextPane.getText().length(), set, false);
+        try {
+            doc.insertString(doc.getLength(), " ", set);//插入文本
+        } catch (BadLocationException e) {
+            e.printStackTrace();
+        }
+        insertText("公告",Color.black,(int)(45*width_r*height_r),1);
+        int num=messages.size();
+        for(int i=num-1;i>=0;i--) {
+            if(myInfo.getType()==3){
+                insertText(messages.get(i).getSendTime(),new Color(122,122,123),(int)(16*width_r),1);
+                insertText((String)(messages.get(i).getData()),Color.black,(int)(42*width_r),1);
+
+            }
+            else {
+                insertText(messages.get(i).getSendTime(),new Color(122,122,123),(int)(16*width_r),1);
+                insertText((String)(messages.get(i).getData()),Color.black,(int)(42*width_r),0);
+            }
+        }
+
+        jTextPane.setCaretPosition(doc.getLength());
+        jTextPane.setEditable(false);
+
+        jTextPane.updateUI();
+        jTextPane.setCaretPosition(jTextPane.getStyledDocument().getLength());
     }
 
     public Friend getFriend() {

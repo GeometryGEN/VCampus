@@ -117,6 +117,9 @@ public class shopCar extends JPanel {
                     return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
                 }
             };
+            //居中
+            tcr.setHorizontalAlignment(JLabel.CENTER);
+            table_want.setDefaultRenderer(Object.class, tcr);
             for (int i = 0; i < table_want.getColumnCount(); i++)
             {
                 table_want.getColumn(table_want.getColumnName(i)).setCellRenderer(tcr);

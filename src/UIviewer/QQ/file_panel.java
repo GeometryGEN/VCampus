@@ -18,17 +18,18 @@ public class file_panel {
     static File file;
     public static void main(String[] args) {
 
-        createWindow();
+        //createWindow();
 
     }
 
-    public static void createWindow() {
-
-        JFrame frame = new JFrame("发送文件");
+    public static void createWindow(int type) {
+        JFrame frame;
+        if(type==0)  {frame= new JFrame("发送文件");}
+        else {frame = new JFrame("接收文件");}
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        createUI(frame);
+        createUI(frame,type);
 
         frame.setSize(360, 120);
 
@@ -38,7 +39,7 @@ public class file_panel {
 
     }
 
-    private static void createUI(final JFrame frame) {
+    private static void createUI(final JFrame frame,int type) {
 
         JPanel panel = new JPanel();
         JPanel panel1=new JPanel();
@@ -47,9 +48,10 @@ public class file_panel {
 
         panel.setLayout(layout);
         panel1.setLayout(layout);
-
         JButton button = new JButton("浏览本地文件目录");
-        JButton button1=new JButton("发送");
+        JButton button1=new JButton("发送");;
+        if(type==1) button1.setText("接收");
+
         JButton button2=new JButton("取消");
 
         final JLabel label = new JLabel();

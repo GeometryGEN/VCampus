@@ -1,17 +1,8 @@
 package UIviewer.QQ;
 
-import ClientToServer.ClientToServer;
 import DAO.QICQ.Friend;
-import UIhandler.QICQ.Client_qicq;
-import UIhandler.StatusManagement.Client_status;
-import UIviewer.login.functionChoose;
-import UIviewer.status_manage.RoundJButton;
 
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.*;
@@ -44,6 +35,7 @@ public class friend_list{
         jPanel.add(scrollPane, BorderLayout.CENTER);
         count_friend=0;
         count_tag=0;
+
 
         for(String Tag: friend.keySet()){
             tag[count_tag]=new tag_slice(width_r,height_r,Tag);
@@ -89,7 +81,7 @@ public class friend_list{
         }
     }
 
-   friend_list( int width, int height, double width_r, double height_r, int x, int y){
+   friend_list(int width, int height, double width_r, double height_r, int x, int y){
         jPanel=new JPanel();
         this.width=width;
         this.height=height;

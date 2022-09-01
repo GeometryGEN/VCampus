@@ -18,6 +18,7 @@ import UIhandler.QICQ.Client_qicq;
 import UIhandler.Shop.Client_shop;
 import UIhandler.StatusManagement.Client_status;
 import UIviewer.Library.*;
+import UIviewer.QQ.change_panel;
 import User.Student;
 import message.Message;
 import message.MessageType;
@@ -280,8 +281,10 @@ public class ClientToServerThread extends Thread {
                      Client_qicq.receive_message(sender);
                 }
                 else if (message.getType().equals(MessageType.MESSAGE_QICQ_RECERIVE_FILE)){
-                    System.out.println("receive_file");
-                    Client_qicq.get_file(message,"C:/Users/Lenovo/shit.txt");
+                   // System.out.println("receive_file");
+                    //Client_qicq.get_file(message,"C:/Users/Lenovo/shit.txt");
+                    String sender=message.getSender();
+                    Client_qicq.receive_message(sender);
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_QICQ_FRIEND_ONLINE_RET)){
                     System.out.println("received...");
@@ -304,6 +307,11 @@ public class ClientToServerThread extends Thread {
                 else if(message.getType().equals(MessageType.MESSAGE_QICQ_MODIFY_RET)){
                     JOptionPane.showMessageDialog(null,"修改成功");
                     Client_qicq.Require_friend_list();
+                    change_panel.change_succeed();
+                }
+                else if(message.getType().equals(MessageType.MESSAGE_QICQ_GET_ANNOUNCEMENT_RET)){
+                    ArrayList<Message>messages=(ArrayList<Message>)message.getData();
+                    Client_qicq.Show_announcement(messages);
                 }
             //    System.out.println("next");
 

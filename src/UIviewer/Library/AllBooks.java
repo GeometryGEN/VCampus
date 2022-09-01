@@ -40,7 +40,7 @@ public class AllBooks extends JPanel {
         //jsp.setViewportView(table_want);
         //jsp.getViewport().setOpaque(false);//将JScrollPane设置为透明
         //jsp.setOpaque(false);//将中间的viewport设置为透明
-        jsp.setBounds(0,0, (int) (1273*width_r), (int) (600*height_r));
+        jsp.setBounds(0,0, (int) (1273*width_r), (int) (620*height_r));
         jsp.setBackground(new Color(255, 240, 245, 80));
         add(jsp);
 

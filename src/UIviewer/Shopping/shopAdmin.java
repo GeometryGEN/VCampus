@@ -44,6 +44,21 @@ public class shopAdmin extends JPanel {
         panel.setLayout(cardLayout);
 //		创建相应面板类的对象
 
+        JLabel logo = new JLabel();
+        ImageIcon icon = new ImageIcon("src/image/780.png");
+        int icon1_width= 600;
+        int icon1_height=100;
+        try {
+            Thumbnails.of(new File("src/image/780.png"))
+                    .size((int)(icon1_width*width_r), (int)(icon1_height*height_r))
+                    .toFile(new File("src/image/780_min.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        logo.setIcon(new ImageIcon("src/image/780_min.png"));
+        logo.setBounds((int) (0*width_r), (int) (0*height_r), (int) (600*width_r), (int) (100*height_r));
+        add(logo);
+
         List<Product> t = Client_shop.returnAllProduct();
         String[][] temp = new String[t.size()][];
         for(int i =0;i<t.size();i++){
@@ -59,6 +74,15 @@ public class shopAdmin extends JPanel {
         AllGoods f11=new AllGoods();
         panel.add(f11,"f11");
         cardLayout.show(panel,"f11");
+
+
+        //文字
+        JLabel l19 = new JLabel("『东南大学天猫校园商店管理系统』");
+        l19.setBounds((int) (220*width_r), (int) (15*height_r), (int) (700*width_r), (int) (80*height_r));
+        l19.setForeground(new Color(248, 248, 255));
+        Font font5 = new Font("楷体", Font.BOLD, (int) (30*width_r));
+        l19.setFont(font5);
+        add(l19);
         //文字
         JLabel l1 = new JLabel("你好！"+name);
         l1.setBounds((int) (1100*width_r), (int) (30*height_r), (int) (200*width_r), (int) (55*height_r));

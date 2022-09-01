@@ -51,6 +51,18 @@ public class Client_qicq {
             throw new RuntimeException(e);
         }
     }
+
+    public static void modify(Friend friend){
+        Message message=new Message();
+        message.setData(friend);
+        message.setType(MessageType.MESSAGE_QICQ_MODIFY);
+        try {
+            oos.writeObject(message);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     public static void send_file(String src, String sender, String getter, String filename){
         System.out.println(5525);
         Message message=new Message();
@@ -93,10 +105,9 @@ public class Client_qicq {
         }
     }
 
-    public static void get_file(Message message, String dest) throws IOException {
+    public static void receive_file(Filetrans file, String dest) throws IOException {
         System.out.println("receive_file");
         FileOutputStream fileOutputStream = new FileOutputStream(dest);
-        Filetrans file=(Filetrans)message.getData();
         fileOutputStream.write(file.getContent());
     }
     public static void send_message(String content, String sender, String getter){
@@ -123,6 +134,27 @@ public class Client_qicq {
     }
     public static void receive_message(String sender){
         friend_list.show_unread(sender);
+    }
+    public static void add_announcement(String sender,String content){
+        Message message=new Message();
+        message.setType(MessageType.MESSAGE_QICQ_ADD_ANNOUNCEMENT);
+        message.setSender(sender);
+        message.setSendTime(myTime.getCurrentTime());
+        message.setData(content);
+        try {
+            oos.writeObject(message);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    public static void get_announcement(){
+        Message message=new Message();
+        message.setType(MessageType.MESSAGE_QICQ_GET_ANNOUNCEMENT);
+        try {
+            oos.writeObject(message);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     public static void add_friend(String myid, String group, String number, String nickname) throws IOException {
         Application app=new Application();
@@ -158,4 +190,7 @@ public class Client_qicq {
         friend_list.show_Friend(friend);
     }
 
+    public static void Show_announcement(ArrayList<Message> messages) {
+        chat_panel.show_announcement(messages);
+    }
 }
