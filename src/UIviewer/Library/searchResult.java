@@ -41,6 +41,15 @@ public class searchResult extends JPanel {
         JScrollPane jsp = new JScrollPane(table_want);
         jsp.setBounds(0, 0, (int) (1280*width_r), (int) (680*height_r));
         add(jsp);
+        JScrollBar scrollBar = new JScrollBar(JScrollBar.VERTICAL) {
+            @Override
+            public boolean isVisible() {
+                return true;
+            }
+        };
+        jsp.setVerticalScrollBar(scrollBar);
+        jsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
+        scrollBar.setUnitIncrement(30);
 
         //调整美化
         table_want.setFont(new Font("宋体",Font.BOLD, (int) (16*width_r)));

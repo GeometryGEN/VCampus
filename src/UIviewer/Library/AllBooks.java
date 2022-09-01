@@ -44,7 +44,15 @@ public class AllBooks extends JPanel {
         jsp.setBackground(new Color(255, 240, 245, 80));
         add(jsp);
 
-
+        JScrollBar scrollBar = new JScrollBar(JScrollBar.VERTICAL) {
+            @Override
+            public boolean isVisible() {
+                return true;
+            }
+        };
+        jsp.setVerticalScrollBar(scrollBar);
+        jsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
+        scrollBar.setUnitIncrement(30);
 
         //左侧面板
         JPanel p1 = new JPanel();
