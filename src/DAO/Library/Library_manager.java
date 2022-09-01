@@ -98,7 +98,6 @@ public class Library_manager implements Serializable{
         st.setString(1,parse);
         st.setString(2,parse);
         st.setString(3,parse);
-        st.setString(4,parse);
         ResultSet rs=st.executeQuery();
         while(rs.next())
         {
