@@ -113,7 +113,7 @@ public class ChooseCourse_guidance extends JPanel{
 
         //右侧面板
         JPanel p2 = new JPanel();
-        p2.setBounds((int)(310*width_r), 0, (int)(950*width_r), (int)(1000*height_r));
+        p2.setBounds((int)(310*width_r), 0, (int)(980*width_r), (int)(1000*height_r));  //950
         p2.setBackground(new Color(245, 245, 245, 180));
         add(p2);
 
