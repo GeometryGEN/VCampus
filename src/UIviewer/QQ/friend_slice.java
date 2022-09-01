@@ -32,6 +32,7 @@ public class friend_slice extends JLabel {
         jLabel.setBackground(new Color(255,255,255));
         update();
     }
+
     Friend friend;
     public Friend getFriend(){
         return this.friend;

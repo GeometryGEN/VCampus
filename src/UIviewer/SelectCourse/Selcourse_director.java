@@ -54,6 +54,7 @@ public class Selcourse_director extends JPanel {
         JButton btnNewButton_2 = new JButton("排课");
         btnNewButton_2.setBounds((int)(150*width_r), (int)(50*height_r), (int)(200*width_r), (int)(50*height_r));
         btnNewButton_2.setFont(myfont);
+        btnNewButton_2.setFocusPainted(false);
         btnNewButton_2.setBackground(new Color(245, 222, 179));
         btnNewButton_2.addActionListener(new ActionListener() {
             @Override
@@ -72,6 +73,7 @@ public class Selcourse_director extends JPanel {
         JButton btnNewButton_4 = new JButton("审核课程");
         btnNewButton_4.setBounds((int)(550*width_r), (int)(50*height_r), (int)(200*width_r), (int)(50*height_r));
         btnNewButton_4.setFont(myfont);
+        btnNewButton_4.setFocusPainted(false);
         btnNewButton_4.setBackground(new Color(250, 240, 230));
         btnNewButton_4.addActionListener(new ActionListener() {
             @Override
@@ -90,6 +92,7 @@ public class Selcourse_director extends JPanel {
         JButton btnNewButton_5 = new JButton("退出");
         btnNewButton_5.setBounds((int)(950*width_r), (int)(50*height_r), (int)(200*width_r), (int)(50*height_r));
         btnNewButton_5.setFont(myfont);
+        btnNewButton_5.setFocusPainted(false);
         btnNewButton_5.setBackground(new Color(245, 222, 179));
 
         btnNewButton_5.addActionListener(new ActionListener() {

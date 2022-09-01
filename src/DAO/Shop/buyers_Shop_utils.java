@@ -15,6 +15,15 @@ import static DAO.Shop.image_Shop_utils.readDBImage;
  * @createTime : [2022.08.19 15:31]
  */
 public class buyers_Shop_utils {
+    public static Connection c;
+
+    static {
+        try {
+            c = JDBC_Connector.ConnectMySQL();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     //模糊查找
     public static List<Product> checkProduct(String product_name) throws SQLException {

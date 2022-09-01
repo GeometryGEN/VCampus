@@ -56,7 +56,7 @@ public class ShoppingHall extends JPanel {
         setBackground(new Color(251, 244, 242));
         //文字
         JLabel l19 = new JLabel("       商品分类");
-        l19.setBounds((int) (40*width_r), (int) (0*height_r), (int) (300*width_r), (int) (100*height_r));
+        l19.setBounds((int) (40*width_r), (int) (0*height_r), (int) (300*width_r), (int) (80*height_r));
         l19.setForeground(new Color(255,69,0));
         Font font5 = new Font("楷体", Font.BOLD, (int) (24*width_r));
         l19.setFont(font5);
@@ -111,11 +111,13 @@ public class ShoppingHall extends JPanel {
         add(b11);
 
         JButton btnNewButton_1 = new JButton("零食");
-        btnNewButton_1.setBounds((int) (0*width_r), (int) (150*height_r), (int) (100*width_r), (int) (30*height_r));
+        btnNewButton_1.setBounds((int) (5*width_r), (int) (150*height_r), (int) (90*width_r), (int) (30*height_r));
         Font myfont1 = new Font("楷体 ", Font.BOLD, (int) (18*width_r));
         btnNewButton_1.setFont(myfont1);
+        //btnNewButton_1.setBackground(new Color(255,160,122, 200));
         btnNewButton_1.setContentAreaFilled(false);//设置按钮透明
-        btnNewButton_1.setBorder(null);//取消边框
+        //btnNewButton_1.setBorder(null);//取消边框
+        //2btnNewButton_1.setBorderPainted(false);//不打印边框
         btnNewButton_1.setFocusPainted(false);
         btnNewButton_1.setForeground(new Color(255,255,255));
         btnNewButton_1.addActionListener(new ActionListener() {
@@ -151,11 +153,11 @@ public class ShoppingHall extends JPanel {
         add(btnNewButton_1);
 
         JButton btnNewButton_2 = new JButton("饼干");
-        btnNewButton_2.setBounds((int) (120*width_r), (int) (150*height_r), (int) (100*width_r), (int) (30*height_r));
+        btnNewButton_2.setBounds((int) (125*width_r), (int) (150*height_r), (int) (90*width_r), (int) (30*height_r));
         btnNewButton_2.setFont(myfont1);
         btnNewButton_2.setContentAreaFilled(false);//设置按钮透明
         btnNewButton_2.setForeground(new Color(255,255,255));
-        btnNewButton_2.setBorder(null);//取消边框
+        //btnNewButton_2.setBorder(null);//取消边框
         btnNewButton_2.setFocusPainted(false);
         btnNewButton_2.addActionListener(new ActionListener() {
             @Override
@@ -190,11 +192,11 @@ public class ShoppingHall extends JPanel {
         add(btnNewButton_2);
 
         JButton btnNewButton_3 = new JButton("茶");
-        btnNewButton_3.setBounds((int) (240*width_r), (int) (150*height_r), (int) (100*width_r), (int) (30*height_r));
+        btnNewButton_3.setBounds((int) (240*width_r), (int) (150*height_r), (int) (90*width_r), (int) (30*height_r));
         btnNewButton_3.setFont(myfont1);
         btnNewButton_3.setContentAreaFilled(false);//设置按钮透明
         btnNewButton_3.setForeground(new Color(255,255,255));
-        btnNewButton_3.setBorder(null);//取消边框
+        //btnNewButton_3.setBorder(null);//取消边框
         btnNewButton_3.setFocusPainted(false);
         btnNewButton_3.addActionListener(new ActionListener() {
             @Override
@@ -229,7 +231,7 @@ public class ShoppingHall extends JPanel {
         add(btnNewButton_3);
 
         JButton btnNewButton_4 = new JButton("美妆");
-        btnNewButton_4.setBounds((int) (0*width_r), (int) (220*height_r), (int) (100*width_r), (int) (30*height_r));
+        btnNewButton_4.setBounds((int) (10*width_r), (int) (220*height_r), (int) (90*width_r), (int) (30*height_r));
         btnNewButton_4.setFont(myfont1);
         btnNewButton_4.setContentAreaFilled(false);//设置按钮透明
         btnNewButton_4.setForeground(new Color(255,255,255));
@@ -267,7 +269,7 @@ public class ShoppingHall extends JPanel {
         add(btnNewButton_4);
 
         JButton btnNewButton_5 = new JButton("饰品");
-        btnNewButton_5.setBounds((int) (120*width_r), (int) (220*height_r), (int) (100*width_r), (int) (30*height_r));
+        btnNewButton_5.setBounds((int) (130*width_r), (int) (220*height_r), (int) (90*width_r), (int) (30*height_r));
         btnNewButton_5.setFont(myfont1);
         btnNewButton_5.setContentAreaFilled(false);//设置按钮透明
         btnNewButton_5.setForeground(new Color(255,255,255));
@@ -305,7 +307,7 @@ public class ShoppingHall extends JPanel {
         add(btnNewButton_5);
 
         JButton btnNewButton_6 = new JButton("洗护");
-        btnNewButton_6.setBounds((int) (240*width_r), (int) (220*height_r), (int) (100*width_r), (int) (30*height_r));
+        btnNewButton_6.setBounds((int) (250*width_r), (int) (220*height_r), (int) (90*width_r), (int) (30*height_r));
         btnNewButton_6.setFont(myfont1);
         btnNewButton_6.setContentAreaFilled(false);//设置按钮透明
         btnNewButton_6.setForeground(new Color(255,255,255));

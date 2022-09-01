@@ -36,5 +36,4 @@ public class JDBC_Connector {
             conn.close();
         }
     }
-
 }
