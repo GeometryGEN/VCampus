@@ -51,6 +51,7 @@ public class myBook extends JPanel {
                         book.setId(id);
                         System.out.println(id);
                         Client_library.reqireExtend(book);
+                        Client_library.RequireMyBooks();
                     } catch (IOException ex) {
                         throw new RuntimeException(ex);
                     }

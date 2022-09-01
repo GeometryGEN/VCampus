@@ -50,7 +50,7 @@ public class ConsultCourse_stuInfo extends JPanel {
                     if (column!=5) {
                         setBackground(Color.white);
                     }else {
-                        setBackground(new Color(54, 95, 255));
+                        setBackground(new Color(54, 124, 255,100));
                     }
                     return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
                 }
