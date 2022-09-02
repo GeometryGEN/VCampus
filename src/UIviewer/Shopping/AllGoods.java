@@ -31,7 +31,7 @@ public class AllGoods extends JPanel {
         String[] tableTitle = {"商品编号","商品名称","商品价格","商品剩余数量","商品种类"};
         //数据
         DefaultTableModel dtm = new DefaultTableModel(tableDate, tableTitle);
-        System.out.println("tableDate.length="+tableDate.length);
+        //System.out.println("tableDate.length="+tableDate.length);
         JTable table_want = new JTable(dtm)
         {
             public boolean isCellEditable(int row, int column) {

@@ -78,7 +78,7 @@ public class Students_utils {
     public static boolean addStudent(Student s) throws SQLException {
         Connection connection=JDBC_Connector.ConnectMySQL();                  //连接数据库
         if(checkStudentAccount(s.getStudent_idcard(),s.getStudent_pwd())){
-            System.out.println("学生已存在！");
+      //      System.out.println("学生已存在！");
             return false;
         }
         String sql = "insert into students values(?,?,?,?,?,?,?,null,null,null,null,null,null,null,null,null,null,null)";
@@ -92,10 +92,10 @@ public class Students_utils {
         ps.setString(6,s.getStudent_gender());
         ps.setString(7,s.getStudent_email());
         boolean re = ps.executeUpdate()>0;
-        if(re)
-            System.out.println("学生"+s.getStudent_idcard()+"添加成功！");
-        else
-            System.out.println("学生添加失败！");
+        //if(re)
+       //     System.out.println("学生"+s.getStudent_idcard()+"添加成功！");
+        //else
+      //      System.out.println("学生添加失败！");
         ps.close();
         //JDBC_Connector.close(null, ps, connection);
         return re;
@@ -104,7 +104,7 @@ public class Students_utils {
     public static boolean deleteStudent(String username) throws SQLException {
         Connection connection=JDBC_Connector.ConnectMySQL();
         if(findStudentAccount(username)){
-            System.out.println("学生不存在！");
+     //       System.out.println("学生不存在！");
             return false;
         }
         String sql = "delete from students where Student_idcard=?";
@@ -113,10 +113,10 @@ public class Students_utils {
         boolean re = ps.executeUpdate()>0;
      //   JDBC_Connector.close(null, ps, connection);
         ps.close();
-        if(re)
-            System.out.println("学生"+username+"删除成功！");
-        else
-            System.out.println("学生删除失败！");
+        //if(re)
+      //      System.out.println("学生"+username+"删除成功！");
+        //else
+     //       System.out.println("学生删除失败！");
         ps.close();
         //JDBC_Connector.close(null, ps, connection);
         return re;

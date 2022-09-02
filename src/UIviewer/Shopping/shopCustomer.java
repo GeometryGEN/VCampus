@@ -203,12 +203,12 @@ public class shopCustomer extends JPanel {
                                 temp[i]=tt;
                             }
                             shopCar.setMyBook(temp);
-                            System.out.println(temp.length+"  11111");
+                           // System.out.println(temp.length+"  11111");
                         }
                     }
                     else {
                         shopCar.setMyBook(null);
-                        System.out.println("空");
+                        //System.out.println("空");
                     }
                     shopCar f2=new shopCar();
                     panel.add(f2,"f2");
@@ -263,7 +263,7 @@ public class shopCustomer extends JPanel {
                             OrderHistory.setCon_bought(temp);
                         }
                     } else {
-                        System.out.println("空");
+                        //System.out.println("空");
                     }
                     OrderHistory f3=new OrderHistory();
                     panel.add(f3,"f3");

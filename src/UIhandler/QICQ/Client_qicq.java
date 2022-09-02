@@ -64,7 +64,7 @@ public class Client_qicq {
     }
 
     public static void send_file(String src, String sender, String getter, String filename){
-        System.out.println(5525);
+       // System.out.println(5525);
         Message message=new Message();
         message.setSender(sender);
         message.setGetter(getter);
@@ -106,7 +106,7 @@ public class Client_qicq {
     }
 
     public static void receive_file(Filetrans file, String dest) throws IOException {
-        System.out.println("receive");
+     //   System.out.println("receive");
         FileOutputStream fileOutputStream = new FileOutputStream(dest);
         fileOutputStream.write(file.getContent());
     }
@@ -149,7 +149,7 @@ public class Client_qicq {
     }
     public static void get_announcement(){
         Message message=new Message();
-        System.out.println(3);
+       // System.out.println(3);
         message.setType(MessageType.MESSAGE_QICQ_GET_ANNOUNCEMENT);
         try {
             oos.writeObject(message);

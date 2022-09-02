@@ -170,7 +170,7 @@ public class Client_curriculum {
             Selcourse_teacher.cardLayout.show(Selcourse_teacher.panel,"search");}
     }
     public static void Require_show_my_students(String Id)throws IOException{
-        System.out.println("require");
+    //    System.out.println("require");
         Message message=new Message();
         message.setData(Id);
         message.setType(MessageType.MESSAGE_CURRICULUM_SHOW_STU);
@@ -278,7 +278,7 @@ public class Client_curriculum {
               //   if(i==0) System.out.println();
             }
         }
-        System.out.println("showing teacher's schedule");
+     //   System.out.println("showing teacher's schedule");
         My_Coursetable table=new My_Coursetable(1);
         Selcourse_teacher.panel.add(table,"schedule");
         Selcourse_teacher.cardLayout.show(Selcourse_teacher.panel,"schedule");

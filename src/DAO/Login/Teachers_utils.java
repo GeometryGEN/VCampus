@@ -64,7 +64,7 @@ public class Teachers_utils {
     public static boolean addTeacher(Teacher s) throws SQLException {
         Connection connection=JDBC_Connector.ConnectMySQL();                  //连接数据库
         if(checkTeacherAccount(s.getTeacher_idcard(),s.getTeacher_pwd())){
-            System.out.println("教师已存在！");
+    //        System.out.println("教师已存在！");
             return false;
         }
         String sql = "insert into teachers values(?,?,?,?,?,?,?,null,null)";
@@ -77,10 +77,10 @@ public class Teachers_utils {
         ps.setString(6,s.getTeacher_gender());
         ps.setString(7,s.getTeacher_email());
         boolean re = ps.executeUpdate()>0;
-        if(re)
-            System.out.println("教师"+s.getTeacher_name()+"添加成功！");
-        else
-            System.out.println("教师添加失败！");
+     //   if(re)
+     //       System.out.println("教师"+s.getTeacher_name()+"添加成功！");
+      //  else
+     //       System.out.println("教师添加失败！");
      //   JDBC_Connector.close(null, ps, connection);
         ps.close();
         return re;

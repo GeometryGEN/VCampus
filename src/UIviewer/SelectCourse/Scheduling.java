@@ -128,7 +128,7 @@ public class Scheduling extends JPanel {
                     c.setTimestring((String) table_want.getValueAt(i,4));
                     c.setClassroom((String) table_want.getValueAt(i,6));
                     c.setSize(Integer.valueOf((String) table_want.getValueAt(i,5)));
-                    System.out.println(c.getClassroom());
+               //     System.out.println(c.getClassroom());
                     try {
                         Client_curriculum.arrange(c);
                     } catch (IOException ex) {
