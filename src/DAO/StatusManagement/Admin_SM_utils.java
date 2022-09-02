@@ -38,10 +38,10 @@ public class Admin_SM_utils {
         ps.setString(16,s.getStudent_idcard());
         boolean re = ps.executeUpdate()>0;
         //JDBC_Connector.close(null, ps, connection);
-        if(re)
-            System.out.println("学生"+s.getStudent_idcard()+"信息修改成功！");
-        else
-            System.out.println("学生"+s.getStudent_idcard()+"信息修改失败！");
+        //if(re)
+       //     System.out.println("学生"+s.getStudent_idcard()+"信息修改成功！");
+        //else
+         //   System.out.println("学生"+s.getStudent_idcard()+"信息修改失败！");
         //JDBC_Connector.close(null, ps, connection);
         ps.close();
         return re;

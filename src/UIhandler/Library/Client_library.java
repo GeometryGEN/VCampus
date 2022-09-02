@@ -51,7 +51,7 @@ public class Client_library {
     
     public static void showAllBooks(ArrayList<Book_admin>books)throws IOException{
         int n= books.size();
-        System.out.println(n);
+       // System.out.println(n);
         AllBooks.tableDate=new String[n][11];
         for(int i=0;i<n;i++)
         {
@@ -114,7 +114,7 @@ public class Client_library {
     public static void showMyBooks(ArrayList<Book_borrower>books) throws IOException, InterruptedException {
         int n= books.size();
         myBook.myBook=new String[n][10];
-        System.out.println(n);
+       // System.out.println(n);
        for(int i=0;i<n;i++)
         {
             Book_borrower book=(Book_borrower) books.get(i);
@@ -144,7 +144,7 @@ public class Client_library {
 
     public static void showMyPunishments(ArrayList<Punishment>myPunishments)throws IOException{
         int n= myPunishments.size();
-        System.out.println(n);
+       // System.out.println(n);
         applyTicket.myPunish=new String[n][5];
         for(int i=0;i<n;i++)
         {
