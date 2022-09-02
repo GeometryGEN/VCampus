@@ -81,6 +81,7 @@ public class friend_slice extends JLabel {
                 public void mouseClicked(java.awt.event.MouseEvent e) {
                     int c = e.getButton();
                     if (c == MouseEvent.BUTTON1) {
+                        setForeground(Color.black);
                         //聊天面板
                         try {
                             Client_qicq.get_message(friend.getId());
@@ -129,16 +130,13 @@ public class friend_slice extends JLabel {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-            System.out.println("shit5");
             setIcon(new ImageIcon("src/image/QQ/manager_logo_min.png"));
             JLabel jLabel = this;//提供指针
-            System.out.println("shit5");
             jLabel.addMouseListener(new java.awt.event.MouseAdapter() {
                 @Override
                 public void mouseClicked(java.awt.event.MouseEvent e) {
                     int c = e.getButton();
                     if (c == MouseEvent.BUTTON1) {
-                        System.out.println(4);
                         //聊天面板
                         if (main_panel.cpn != null) {
                             main_panel.mjp.remove(main_panel.cpn);
@@ -182,8 +180,7 @@ public class friend_slice extends JLabel {
         setHorizontalTextPosition(JLabel.RIGHT);
     }
     public void setunread(String sender) {
-        System.out.println(11111);
-        if((main_panel.cpn!=null)&&( main_panel.cpn.getFriend().getId().equals(sender))){
+        if((main_panel.cpn!=null)&&(main_panel.cpn.isVisible())&&( main_panel.cpn.getFriend().getId().equals(sender))){
             try {
                 Client_qicq.get_message(sender);
             } catch (IOException ex) {
@@ -192,6 +189,7 @@ public class friend_slice extends JLabel {
         }
         else{
             setForeground(Color.red);
+            update();
         }
     }
 }

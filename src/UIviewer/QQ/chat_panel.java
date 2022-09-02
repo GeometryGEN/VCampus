@@ -51,7 +51,6 @@ public class chat_panel extends JPanel {
     }
     public static void show_message(ArrayList<Message> messages){
         jTextPane.setText(null);
-        System.out.println(12);
         //开头空格
         SimpleAttributeSet set = new SimpleAttributeSet();
         StyleConstants.setFontSize(set, 0);//设置文本大小
