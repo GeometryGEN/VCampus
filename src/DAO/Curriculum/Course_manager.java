@@ -400,11 +400,15 @@ public class Course_manager {
         st= conn.prepareStatement(sql);
         st.setString(1,c.id);
         ResultSet rs=st.executeQuery();
+        rs.next();
         String tid=rs.getString(1);
         sql="insert into teaching(tea_id,course_id) values(?,?);";
-        conn.prepareStatement(sql);
-        st.setString(2,new_id);
+        System.out.println(tid+"    "+new_id);
+        st=conn.prepareStatement(sql);
         st.setString(1,tid);
+        st.setString(2,new_id);
+        st.executeUpdate();
+
         rs.close();
         st.close();
     }
