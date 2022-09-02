@@ -314,6 +314,7 @@ public class ServerToClientThread extends Thread{
                 else if(m.getType().equals(MessageType.RETURN_ALL_PRODUCT)){
                     List<Product> ps  = buyers_Shop_utils.returnAllProduct();
                     if(ps.size()!=0){
+                        System.out.println("!!="+ps.size());
                         sendback.setData(ps);
                         sendback.setType(MessageType.RETURN_ALL_PRODUCT_SUCCEED);
                         oos.writeObject(sendback);
@@ -409,6 +410,16 @@ public class ServerToClientThread extends Thread{
                     oos.writeObject(sendback);
                 }
 
+                else if(m.getType().equals(MessageType.GET_MONEY_TEACHER)){
+                    String idcard = m.getSender();
+                    System.out.println("2222@");
+                    double b = buyers_Shop_utils.getMoney_teacher(idcard);
+                    sendback.setType(MessageType.GET_MONEY_TEACHER_SUCCEED);
+                    System.out.println("1111@");
+                    sendback.setData(b);
+                    oos.writeObject(sendback);
+                }
+
                 else if(m.getType().equals(MessageType.DELETE_PRODUCT)){
                     if(Admin_Shop_utils.deleteProduct(Integer.parseInt(m.getSender()))){
                         sendback.setType(MessageType.DELETE_PRODUCT_SUCCEED);
@@ -455,6 +466,19 @@ public class ServerToClientThread extends Thread{
                     }
                 }
 
+                else if(m.getType().equals(MessageType.BUY_CERTAIN_PRODUCT_TEACHER)){
+                    String ps  = buyers_Shop_utils.buyCertainProduct_Teacher(m.getGetter(),Integer.parseInt(m.getSender()),m.getCode(),m.getMoney());
+                    if(ps.equals("购买成功")){
+                        sendback.setData(ps);
+                        sendback.setType(MessageType.BUY_CERTAIN_PRODUCT_TEACHER_SUCCEED);
+                        oos.writeObject(sendback);
+                    } else{
+                        sendback.setData(ps);
+                        sendback.setType(MessageType.BUY_CERTAIN_PRODUCT_TEACHER_FAILED);
+                        oos.writeObject(sendback);
+                        //socket.close();
+                    }
+                }
 
                 //学籍管理
                 /*if(m.getType().equals(MessageType.RETURN_STUDENT_INFO)){

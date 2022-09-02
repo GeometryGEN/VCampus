@@ -153,5 +153,6 @@ public class giveTicket extends JPanel {
         pic1.setBounds(0,0 , (int) (1300*width_r), (int) (650*height_r));
         p11.add(pic1);
         add(p11);
+
     }
 }

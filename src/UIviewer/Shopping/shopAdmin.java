@@ -70,6 +70,10 @@ public class shopAdmin extends JPanel {
             tt[4]=t.get(i).getProduct_type();
             temp[i]=tt;
         }
+        System.out.println("temp="+temp.length);
+        Client_shop.setId(String.valueOf(myInfo.getType()));
+        Client_shop.setIdcard(myInfo.getId());
+        //functionChoose.jf.setContentPane(new shopAdmin());
         AllGoods.setTableDate(temp);
         AllGoods f11=new AllGoods();
         panel.add(f11,"f11");
