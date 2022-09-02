@@ -81,7 +81,7 @@ public class Students_utils {
       //      System.out.println("学生已存在！");
             return false;
         }
-        String sql = "insert into students values(?,?,?,?,?,?,?,null,null,null,null,null,null)";
+        String sql = "insert into students values(?,?,?,?,?,?,?,null,null,null,null,null,null,null,null,null,null,null)";
         //(Student_idcard,Student_id,Student_pwd,Student_name,Student_age,Student_gender,Student_email,Student_class,Student_money)
         PreparedStatement ps = connection.prepareStatement(sql);
         ps.setString(1,s.getStudent_idcard());

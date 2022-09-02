@@ -67,7 +67,7 @@ public class Teachers_utils {
     //        System.out.println("教师已存在！");
             return false;
         }
-        String sql = "insert into teachers values(?,?,?,?,?,?,?,null,null,null)";
+        String sql = "insert into teachers values(?,?,?,?,?,?,?,null,null)";
         PreparedStatement ps = connection.prepareStatement(sql);
         ps.setString(1,s.getTeacher_idcard());
         ps.setString(2,s.getTeacher_id());
