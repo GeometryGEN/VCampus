@@ -43,9 +43,15 @@ public class chat_panel extends JPanel {
     }
     public static void send_file(String src,String filename){
         Client_qicq.send_file(src,Client_qicq.getId(),friend.getId(),filename);
+        try {
+            Client_qicq.get_message(friend.getId());
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
         System.out.println(friend.getId());
     }
     public static void receive_file(Filetrans src,String filepath) throws IOException {
+        System.out.println("receive");
         Client_qicq.receive_file(src,filepath);
         //System.out.println(friend.getId());
     }

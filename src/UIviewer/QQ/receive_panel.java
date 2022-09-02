@@ -98,6 +98,7 @@ public class receive_panel {
                 else{
                     for(int i=0;i<files.size();i++){
                         try {
+                            System.out.println("receive");
                             chat_panel.receive_file(files.get(i),file.getAbsolutePath()+"\\"+files.get(i).getName());
                         } catch (IOException ex) {
                             throw new RuntimeException(ex);
