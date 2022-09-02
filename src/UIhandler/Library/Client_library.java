@@ -168,12 +168,12 @@ public class Client_library {
         message.setData(searchInfo);
         message.setType(MessageType.MESSAGE_LIBRARY_QUERY);
         oos.writeObject(message);
-        System.out.println("search  "+searchInfo);
+     //   System.out.println("search  "+searchInfo);
     }
 
     public static void showSearchResult(ArrayList<Book_borrower> books)throws IOException{
         int n= books.size();
-        System.out.println(n);
+      //  System.out.println(n);
         searchResult.searchresult=new String[n][9];
         Iterator b= books.iterator();
         int count=0;
@@ -240,7 +240,7 @@ public class Client_library {
     }
     public static void admin_enter_result(ArrayList<Book_admin>books) throws IOException {
         int n= books.size();
-        System.out.println(n);
+      //  System.out.println(n);
         AllBooks.tableDate=new String[n][11];
         for(int i=0;i<n;i++)
         {
