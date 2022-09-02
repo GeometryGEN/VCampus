@@ -146,6 +146,7 @@ public class ClientToServerThread extends Thread {
 
                 if(message.getType().equals(MessageType.RETURN_ALL_PRODUCT_SUCCEED)){
                     List<Product> ps = ((List<Product>) message.getData());
+                    System.out.println("@@"+ps.size());
                     Client_shop.setProducts(ps);
                 }
 
@@ -214,6 +215,14 @@ public class ClientToServerThread extends Thread {
                     Client_shop.setSign_delete("3");
                 }
 
+                else if(message.getType().equals(MessageType.GET_MONEY_TEACHER_SUCCEED)){
+                    Client_shop.setCurrent_money((double) message.getData());
+                    Client_shop.setSign_delete("2");
+                }
+                else if(message.getType().equals(MessageType.GET_MONEY_TEACHER_FAILED)){
+                    Client_shop.setSign_delete("3");
+                }
+
                 else if(message.getType().equals(MessageType.CHECK_CERTAIN__PRODUCT_SUCCEED)){
                     Product ps = (Product) message.getData();
                     Client_shop.setCertainProducts(ps);
@@ -229,6 +238,15 @@ public class ClientToServerThread extends Thread {
                     Client_shop.setNow_Buy_product(ps);
                 }
                 else if(message.getType().equals(MessageType.BUY_CERTAIN__PRODUCT_FAILED)){
+                    String ps = (String) message.getData();
+                    Client_shop.setNow_Buy_product(ps);
+                }
+
+                else if(message.getType().equals(MessageType.BUY_CERTAIN_PRODUCT_TEACHER_SUCCEED)){
+                    String ps = (String) message.getData();
+                    Client_shop.setNow_Buy_product(ps);
+                }
+                else if(message.getType().equals(MessageType.BUY_CERTAIN_PRODUCT_TEACHER_FAILED)){
                     String ps = (String) message.getData();
                     Client_shop.setNow_Buy_product(ps);
                 }

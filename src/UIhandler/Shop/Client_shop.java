@@ -323,6 +323,22 @@ public class Client_shop {
         return Now_Buy_product.equals("购买成功");
     }
 
+    public static boolean buyProduct_Teacher(String user_idcard, String id, int num, double money) throws Exception {
+        resetNow_Buy_product();
+        Message message = new Message();
+        message.setType(MessageType.BUY_CERTAIN_PRODUCT_TEACHER);
+        message.setGetter(user_idcard); //用户id
+        message.setSender(id);  //商品id
+        message.setCode(num);   //商品数量
+        message.setMoney(money); //商品总价格
+        oos.writeObject(message);
+        while (Now_Buy_product.equals("正在买")) Thread.onSpinWait();
+        if(Now_Buy_product.equals("数量不够"))
+            JOptionPane.showMessageDialog(null,"数量不够！");
+        return Now_Buy_product.equals("购买成功");
+    }
+
+
     public static Boolean addToShopCar(String user_idcard, int id, int num) throws Exception {
         resetSign_add();
         resetNow_Buy_product();
@@ -398,6 +414,22 @@ public class Client_shop {
         oos.writeObject(message);
         //等待接受学生
         while (sign_delete.equals("1")) Thread.onSpinWait();
+        return current_money;
+    }
+
+    public static double getMoney_Teacher(String idcard) throws IOException {
+        resetSign_delete();
+        Message message = new Message();
+        message.setType(MessageType.GET_MONEY_TEACHER);
+        message.setSender(idcard);
+        //得到Object对象
+        //MyObjectOutputStream oos = new MyObjectOutputStream(ManageClientToServerThread.getThread(idcard).getSocket().getOutputStream());
+        //发送学生对象
+        oos.writeObject(message);
+        //等待接受学生
+        System.out.println("@@@@@");
+        while (sign_delete.equals("1")) Thread.onSpinWait();
+        System.out.println("22222222");
         return current_money;
     }
 

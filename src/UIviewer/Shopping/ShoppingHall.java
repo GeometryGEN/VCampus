@@ -13,6 +13,10 @@ import java.awt.*;
 import ClientToServer.myInfo;
 import UIviewer.login.functionChoose;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import static UIhandler.Shop.Client_shop.checktypeProduct;
 import static UIviewer.Shopping.shopCustomer.cardLayout;
 import static UIviewer.Shopping.shopCustomer.panel;
@@ -1372,10 +1376,22 @@ public class ShoppingHall extends JPanel {
                         double money= Double.parseDouble((String) table_want.getValueAt(table_want.getSelectedRow(),2));
                         int Num = Integer.parseInt((String) table_want.getValueAt(table_want.getSelectedRow(),4));
                         try {
-                            if(Client_shop.getMoney(myInfo.getId())>=(money*Num)){
-                                if(Client_shop.buyProduct(myInfo.getId(),id,Num,Client_shop.getMoney(myInfo.getId())-money*Num))
-                                    JOptionPane.showMessageDialog(null,"购买成功！");
-
+                            double temp1;
+                            if(myInfo.getType()==1){
+                                temp1=Client_shop.getMoney(myInfo.getId());
+                            }
+                            else{
+                                temp1=Client_shop.getMoney_Teacher(myInfo.getId());
+                            }
+                            if(temp1>=(money*Num)){
+                                if(myInfo.getType()==1){
+                                    if(Client_shop.buyProduct(myInfo.getId(),id,Num,Client_shop.getMoney(myInfo.getId())-money*Num))
+                                        JOptionPane.showMessageDialog(null,"购买成功！");
+                                }
+                                else {
+                                    if(Client_shop.buyProduct_Teacher(myInfo.getId(),id,Num,Client_shop.getMoney_Teacher(myInfo.getId())-money*Num))
+                                        JOptionPane.showMessageDialog(null,"购买成功！");
+                                }
                                 List<Product> t = Client_shop.returnAllProduct();
                                 String[][] temp = new String[t.size()][];
                                 for(int i =0;i<t.size();i++){

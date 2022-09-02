@@ -175,6 +175,45 @@ public class buyers_Shop_utils {
         return "购买成功";
     }
 
+    public static String buyCertainProduct_Teacher(String idcard, int id, int num, double money) throws SQLException {
+        String sql="select * from products where Product_id=?";
+        PreparedStatement ps = connection.prepareStatement(sql);
+        ps.setInt(1, id);
+        ResultSet rs = ps.executeQuery();
+        int current = 0;
+        if (rs.next()) {
+            current=rs.getInt("Product_currentNumbers");
+        }
+        if(current<num){
+            System.out.println("数量不够");
+            return "数量不够";
+        }
+        else{
+            sql = "update teachers SET Teacher_money =? WHERE Teacher_idcard =" + idcard;
+            ps = connection.prepareStatement(sql);
+            ps.setDouble(1,money);
+            boolean re = ps.executeUpdate()>0;
+            if(re){
+                sql = "update products SET Product_currentNumbers =? WHERE Product_id =" + id;
+                ps = connection.prepareStatement(sql);
+                ps.setInt(1,current-num);
+                re = ps.executeUpdate()>0;
+                if(re){
+                    System.out.println("商品数量更新成功");
+                }else {
+                    System.out.println("商品数量更新失败");
+                    return "商品数量更新失败";
+                }
+            }else{
+                System.out.println("更新钱失败");
+                return "更新钱失败";
+            }
+        }
+        addToHaveShopped(idcard,id,num);
+        return "购买成功";
+    }
+
+
     public static boolean addToShopCar(String idcard, int id, int num) throws SQLException {
         String sql="insert into readytobuyproducts values(?,?,?)";
         PreparedStatement ps = connection.prepareStatement(sql);
@@ -228,6 +267,19 @@ public class buyers_Shop_utils {
         }
         return money;
     }
+
+    public static double getMoney_teacher(String idcard) throws SQLException {
+        String sql="select * from teachers where Teacher_idcard=? ";
+        PreparedStatement st= connection.prepareStatement(sql);
+        st.setString(1, idcard);
+        ResultSet rs=st.executeQuery();
+        double money = 0;
+        while(rs.next()){
+            money=rs.getDouble("Teacher_money");
+        }
+        return money;
+    }
+
 
 //    public static void main(String[] args) throws Exception {
 ////        if(checkCertainProduct(111)!=null)

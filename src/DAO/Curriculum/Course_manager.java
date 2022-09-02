@@ -18,6 +18,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Random;
+
 //gsh
 public class Course_manager {
     private String id;
@@ -384,22 +386,26 @@ public class Course_manager {
         st.setString(1,"同意开课");
         st.setString(2,c.id);
         st.executeUpdate();
+        Random r=new Random();
+        String new_id="B09"+String.valueOf(r.nextInt(900)+100)+String.valueOf(r.nextInt(900)+100)+"01";
+        sql="insert into curriculum(id,name,teacher,hour,point,size,classroom,time) values(?,?,?,?,?,null,null,null);";
+        st= conn.prepareStatement(sql);
+        st.setString(1,new_id);
+        st.setString(2,c.name);
+        st.setString(3,c.teacher);
+        st.setInt(4,c.getHour());
+        st.setDouble(5,c.point);
+        st.executeUpdate();
         sql="select teacher_id from opencourse where id=?;";
         st= conn.prepareStatement(sql);
         st.setString(1,c.id);
         ResultSet rs=st.executeQuery();
-        String teacher_id=rs.getString("teacher_id");
-        sql="insert into curriculum(id,name,teacher,hour,point,size,classroom,time) values('新开课',?,?,?,?,null,null,null);";
-        st= conn.prepareStatement(sql);
-        st.setString(1,c.name);
-        st.setString(2,c.teacher);
-        st.setInt(3,c.getHour());
-        st.setDouble(4,c.point);
-        st.executeUpdate();
+        String tid=rs.getString(1);
         sql="insert into teaching(tea_id,course_id) values(?,?);";
-        st= conn.prepareStatement(sql);
-        st.setString(1,teacher_id);
-        st.setString(2,c.id);
+        conn.prepareStatement(sql);
+        st.setString(2,new_id);
+        st.setString(1,tid);
+        rs.close();
         st.close();
     }
     public ArrayList<Opencourse> list_tea_opencourse(String id) throws SQLException{

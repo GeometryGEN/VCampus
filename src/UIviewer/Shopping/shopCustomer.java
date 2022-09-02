@@ -46,7 +46,12 @@ public class shopCustomer extends JPanel {
     public shopCustomer() throws Exception {
         String name=myInfo.getName();
         getName(name);
-        double money=Client_shop.getMoney(myInfo.getId());
+        double money = 0;
+        if(myInfo.getType()==1)
+             money=Client_shop.getMoney(myInfo.getId());
+        else
+             money=Client_shop.getMoney_Teacher(myInfo.getId());
+
         setBounds(0,0, (int) (1273*width_r), (int) (784*height_r));
         setLayout(null);
 
@@ -104,7 +109,7 @@ public class shopCustomer extends JPanel {
         l19.setFont(font5);
         add(l19);
         //文字
-        JLabel l1 = new JLabel("您好！"+name+"。您的余额为"+money+"元。");
+        JLabel l1 = new JLabel("您好！"+name+"。您的余额为"+String.format("%.2f", money)+"元。");
         l1.setBounds((int) (900*width_r), (int) (35*height_r), (int) (420*width_r), (int) (55*height_r));
         l1.setForeground(new Color(248, 248, 255));
         Font font = new Font("楷体", Font.BOLD, (int) (20*width_r));
