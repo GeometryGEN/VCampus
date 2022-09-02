@@ -51,6 +51,7 @@ public class chat_panel extends JPanel {
     }
     public static void show_message(ArrayList<Message> messages){
         jTextPane.setText(null);
+        System.out.println(12);
         //开头空格
         SimpleAttributeSet set = new SimpleAttributeSet();
         StyleConstants.setFontSize(set, 0);//设置文本大小
@@ -75,7 +76,7 @@ public class chat_panel extends JPanel {
                 else{
                     Filetrans f=(Filetrans)messages.get(i).getData();
                     insertText(messages.get(i).getSendTime(),new Color(122,122,123),(int)(16*width_r),1);
-                    insertText(messages.get(i).getSender()+":",new Color(0, 181, 181),(int)(22*width_r),0);
+                    insertText( friend.getName()+":",new Color(0, 181, 181),(int)(22*width_r),0);
                     insertText((String)(String)"收到对方发送的文件:  "+f.getName(),new Color(164, 1, 1),(int)(42*width_r),0);
                     files.add(f);
                 }
@@ -88,7 +89,7 @@ public class chat_panel extends JPanel {
                 }
                 else{
                     insertText(messages.get(i).getSendTime(),new Color(122,122,123),(int)(16*width_r),1);
-                    insertText(messages.get(i).getSender()+":",new Color(0, 181, 181),(int)(22*width_r),0);
+                    insertText(friend.getName()+":",new Color(0, 181, 181),(int)(22*width_r),0);
                     insertText((String)(messages.get(i).getData()),new Color(0, 181, 181),(int)(42*width_r),0);
                 }
             }

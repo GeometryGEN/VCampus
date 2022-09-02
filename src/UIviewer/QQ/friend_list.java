@@ -105,7 +105,9 @@ public class friend_list{
         jPanel.updateUI();
     }
     public static void show_unread(String sender){
-        for(int i=0;i<count_friend;i++){
+        System.out.println(11111);
+        for(int i=1;i<count_friend;i++){
+            System.out.println(friendslice[i].getFriend().getId());
             if(friendslice[i].getFriend().getId().equals(sender)){
                 friendslice[i].setunread(sender);
             }

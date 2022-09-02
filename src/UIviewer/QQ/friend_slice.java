@@ -182,6 +182,7 @@ public class friend_slice extends JLabel {
         setHorizontalTextPosition(JLabel.RIGHT);
     }
     public void setunread(String sender) {
+        System.out.println(11111);
         if((main_panel.cpn!=null)&&( main_panel.cpn.getFriend().getId().equals(sender))){
             try {
                 Client_qicq.get_message(sender);
