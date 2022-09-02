@@ -147,7 +147,7 @@ public class buyers_Shop_utils {
             current=rs.getInt("Product_currentNumbers");
         }
         if(current<num){
-            System.out.println("数量不够");
+       //     System.out.println("数量不够");
             return "数量不够";
         }
         else{
@@ -161,13 +161,13 @@ public class buyers_Shop_utils {
                 ps.setInt(1,current-num);
                 re = ps.executeUpdate()>0;
                 if(re){
-                    System.out.println("商品数量更新成功");
+          //          System.out.println("商品数量更新成功");
                 }else {
-                    System.out.println("商品数量更新失败");
+            //        System.out.println("商品数量更新失败");
                     return "商品数量更新失败";
                 }
             }else{
-                System.out.println("更新钱失败");
+           //     System.out.println("更新钱失败");
                 return "更新钱失败";
             }
         }
@@ -185,7 +185,7 @@ public class buyers_Shop_utils {
             current=rs.getInt("Product_currentNumbers");
         }
         if(current<num){
-            System.out.println("数量不够");
+          //  System.out.println("数量不够");
             return "数量不够";
         }
         else{
@@ -199,13 +199,13 @@ public class buyers_Shop_utils {
                 ps.setInt(1,current-num);
                 re = ps.executeUpdate()>0;
                 if(re){
-                    System.out.println("商品数量更新成功");
+            //        System.out.println("商品数量更新成功");
                 }else {
-                    System.out.println("商品数量更新失败");
+             //       System.out.println("商品数量更新失败");
                     return "商品数量更新失败";
                 }
             }else{
-                System.out.println("更新钱失败");
+            //    System.out.println("更新钱失败");
                 return "更新钱失败";
             }
         }
@@ -222,10 +222,10 @@ public class buyers_Shop_utils {
         ps.setInt(2,id);
         ps.setInt(3,num);
         boolean re = ps.executeUpdate()>0;
-        if(re)
-            System.out.println("添加成功！");
-        else
-            System.out.println("添加失败！");
+        //if(re)
+         //   System.out.println("添加成功！");
+        //else
+         //   System.out.println("添加失败！");
         return re;
     }
 
@@ -236,10 +236,10 @@ public class buyers_Shop_utils {
         ps.setInt(2,id);
         ps.setInt(3,num);
         boolean re = ps.executeUpdate()>0;
-        if(re)
-            System.out.println("添加成功！");
-        else
-            System.out.println("添加失败！");
+       // if(re)
+         //   System.out.println("添加成功！");
+       // else
+         //   System.out.println("添加失败！");
         return re;
     }
 
@@ -249,10 +249,10 @@ public class buyers_Shop_utils {
         ps.setString(1,idcard);
         ps.setInt(2,id);
         boolean re = ps.executeUpdate()>0;
-        if(re)
-            System.out.println("删除成功！");
-        else
-            System.out.println("删除失败！");
+        //if(re)
+       //     System.out.println("删除成功！");
+        //else
+        //    System.out.println("删除失败！");
         return re;
     }
 

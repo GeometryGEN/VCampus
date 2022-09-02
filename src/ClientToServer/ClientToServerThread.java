@@ -59,7 +59,7 @@ public class ClientToServerThread extends Thread {
         while (!exit){
             try {
                 Message message = (Message) ois.readObject();
-                System.out.println(message.getType());
+             //   System.out.println(message.getType());
                 //如果服务器没有发送Message对象，线程会一直堵塞在这里
                 if(message.getType().equals(MessageType.MESSAGE_LIBRARY_ADMIN_LIST_RET)){
                     ArrayList<Book_admin> books=(ArrayList<Book_admin>)message.getData();
@@ -146,7 +146,7 @@ public class ClientToServerThread extends Thread {
 
                 if(message.getType().equals(MessageType.RETURN_ALL_PRODUCT_SUCCEED)){
                     List<Product> ps = ((List<Product>) message.getData());
-                    System.out.println("@@"+ps.size());
+             //       System.out.println("@@"+ps.size());
                     Client_shop.setProducts(ps);
                 }
 
@@ -294,7 +294,7 @@ public class ClientToServerThread extends Thread {
                 //站内通信
                 if(message.getType().equals(MessageType.MESSAGE_QICQ_LIST_FRIENDS_RET)){
                      HashMap<String,ArrayList<Friend>>friends=(HashMap<String,ArrayList<Friend>>)message.getData();
-                     System.out.println("shit1");
+              //       System.out.println("shit1");
                      Client_qicq.show_friend(friends);
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_QICQ_GET_MESSAGE_RET)){
@@ -312,7 +312,7 @@ public class ClientToServerThread extends Thread {
                     Client_qicq.receive_message(sender);
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_QICQ_FRIEND_ONLINE_RET)){
-                    System.out.println("received...");
+          //          System.out.println("received...");
                     Client_qicq.Require_friend_list();
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_QICQ_FRIEND_OFFLINE_RET)){

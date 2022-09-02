@@ -103,11 +103,11 @@ public class shopCar extends JPanel {
                                                 temp[i] = tt;
                                             }
                                             shopCar.setMyBook(temp);
-                                            System.out.println(temp.length + "  11111");
+                                         //   System.out.println(temp.length + "  11111");
                                         }
                                     } else {
                                         shopCar.setMyBook(null);
-                                        System.out.println("空");
+                                    //    System.out.println("空");
                                     }
 
                                 }
@@ -149,11 +149,11 @@ public class shopCar extends JPanel {
                                             temp[i] = tt;
                                         }
                                         shopCar.setMyBook(temp);
-                                        System.out.println(temp.length + "  11111");
+                                     //   System.out.println(temp.length + "  11111");
                                     }
                                 } else {
                                     shopCar.setMyBook(null);
-                                    System.out.println("空");
+                                //    System.out.println("空");
                                 }
 
                             }
@@ -211,12 +211,12 @@ public class shopCar extends JPanel {
                                     temp[i]=tt;
                                 }
                                 shopCar.setMyBook(temp);
-                                System.out.println(temp.length+"  11111");
+                              //  System.out.println(temp.length+"  11111");
                             }
                         }
                         else {
                             shopCar.setMyBook(null);
-                            System.out.println("空");
+                            //System.out.println("空");
                         }
 
                         shopCar f12=new shopCar();

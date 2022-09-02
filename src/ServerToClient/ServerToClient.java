@@ -48,7 +48,7 @@ public class ServerToClient extends Thread{
     private static HashMap<String,ArrayList<String>>new_message=new HashMap<>();*/
     public ServerToClient() throws IOException {
         try{
-            System.out.println("服务器在"+MessageType.PORT+"端口监听中，"+"IP地址为"+Message.returnIP());
+        //    System.out.println("服务器在"+MessageType.PORT+"端口监听中，"+"IP地址为"+Message.returnIP());
             ss=new ServerSocket(MessageType.PORT);
             while (true){
                 // if(punish.size()!=0&&getOnline_admin()!=null) send_ticket(getOnline_admin());
@@ -64,6 +64,7 @@ public class ServerToClient extends Thread{
                 if(s.getType().equals(MessageType.MESSAGE_STUDENT_LOGIN)) {
                     Student stu = (Student) s.getData();
                     if(Students_utils.checkStudentAccount(stu.getStudent_idcard(),stu.getStudent_pwd())){
+
                         m.setType(MessageType.MESSAGE_LOGIN_SUCCEED);
                         //将message对象回复客户端
                         m.setData(Students_utils.returninfo(stu.getStudent_idcard()));
@@ -75,6 +76,7 @@ public class ServerToClient extends Thread{
                         ManageServerToClientThread.addThread(stu.getStudent_idcard(),stct);
                         addOnline(stu.getStudent_idcard(),0);
                     }else {  //登录失败
+                    //    System.out.println(stu.getStudent_idcard()+"  ..  "+stu.getStudent_pwd());
                         m.setType(MessageType.MESSAGE_LOGIN_FAIL);
                         //将message对象回复客户端
                         oos.writeObject(m);

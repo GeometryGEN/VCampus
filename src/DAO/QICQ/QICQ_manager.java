@@ -104,16 +104,13 @@ public class QICQ_manager {
     }
     public void send_online_file(Message msg) throws IOException, SQLException {
         String to=msg.getGetter();
-        msg.setType(MessageType.MESSAGE_QICQ_RECERIVE_FILE);
-        ManageServerToClientThread.getThread(id).oos.writeObject(msg);
-        String sql="insert into file(sender,getter,sendtime,file,isfile,isread,filename) values(?,?,?,?,1,0,?);";
+        String sql="insert into message(sender,getter,sendtime,file,isfile,isread,filename) values(?,?,?,?,1,0,?);";
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,msg.getSender());
         st.setString(2,msg.getGetter());
         st.setString(3,msg.getSendTime());
-
         Filetrans f=(Filetrans)msg.getData();
-        System.out.println(f.getName());
+   //     System.out.println(f.getName());
         InputStream is = new ByteArrayInputStream(f.getContent());
         st.setBlob(4,is);
         st.setString(5,f.getName());
@@ -129,7 +126,7 @@ public class QICQ_manager {
         st.setString(2,msg.getGetter());
         st.setString(3,msg.getSendTime());
         Filetrans f=(Filetrans)msg.getData();
-        System.out.println(f.getName());
+      //  System.out.println(f.getName());
         InputStream is = new ByteArrayInputStream(f.getContent());
         st.setBlob(4,is);
         st.setString(5,f.getName());
@@ -169,7 +166,7 @@ public class QICQ_manager {
         String sql="select * from students where Student_idcard=?;";
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,app.to_id);
-        System.out.println(app.to_id);
+      //  System.out.println(app.to_id);
         ResultSet rs=st.executeQuery();
         if(rs.next()){
             String sql1="insert into new_friend(sender,getter,sendtime,status,nickname,group) values(?,?,?,0,?,?);";
@@ -338,7 +335,7 @@ public class QICQ_manager {
                 while((len=is.read(filetrans.content))!=-1) {
                     i++;
                 }
-                System.out.println(filetrans.getContent());
+        //        System.out.println(filetrans.getContent());
                 filetrans.setName(rs.getString("filename"));
                 x.isfile=1;
                 x.setData(filetrans);
@@ -393,7 +390,7 @@ public class QICQ_manager {
                 while ((len = in.read(buf)) != -1) {
                    // out.write(buf, 0, len);
                 }
-                System.out.println("图片读取成功！");
+         //       System.out.println("图片读取成功！");
             //    JDBC_Connector.close(rs,ps,conn);
                 rs.close();
                 ps.close();
@@ -424,7 +421,7 @@ public class QICQ_manager {
         String sql="select * from students where Student_idcard=?;";
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,app.to_id);
-        System.out.println(app.to_id);
+    //    System.out.println(app.to_id);
         ResultSet rs=st.executeQuery();
         if(rs.next()){
             String sql1="insert into friends(user_id,friend_id,relation,nickname) values(?,?,?,?);";

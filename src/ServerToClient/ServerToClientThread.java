@@ -69,15 +69,15 @@ public class ServerToClientThread extends Thread{
 
     public void run(){
         while (true){
-            System.out.println("客户端和服务端 "+userid+" 保持通信，读取数据...");
+        //    System.out.println("客户端和服务端 "+userid+" 保持通信，读取数据...");
             try {
                 Message m = (Message) ois.readObject();
                 Message sendback = new Message();
-                System.out.println(m.getType());
+            //    System.out.println(m.getType());
 
                 //退出系统
                 if(m.getType().equals(MessageType.MESSAGE_CLIENT_EXIT)){
-                    System.out.println(m.getSender()+"退出系统");
+               //     System.out.println(m.getSender()+"退出系统");
                     ServerToClient.removeOnline(userid);
                     ManageServerToClientThread.removeServerToClientThread(m.getSender());
                     break;

@@ -100,7 +100,7 @@ public class ShoppingHall extends JPanel {
                         }
                         setShoptable(temp);
                     }else {
-                        System.out.println("kong");
+                       // System.out.println("kong");
                         setShoptable(null);
                     }
                     ShoppingHall f112=new ShoppingHall();

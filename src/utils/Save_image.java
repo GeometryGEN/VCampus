@@ -20,7 +20,7 @@ public class Save_image {
                 throw new RuntimeException(e);
             }*/
             String path = p+"try.png";
-            System.out.println(path);
+         //   System.out.println(path);
             File file = new File(path);
             FileInputStream fis=new FileInputStream(file);
             try {
@@ -30,7 +30,7 @@ public class Save_image {
                 ps.setString(1, null);
                 ps.setBinaryStream(2,fis,(int)file.length());
                 int change=ps.executeUpdate();
-                System.out.println(change);
+              //  System.out.println(change);
               //  ps.close();
               //  JDBC_Connector.ConnectMySQL().close();
             } catch (Exception e) {

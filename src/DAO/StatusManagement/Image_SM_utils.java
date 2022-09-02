@@ -26,9 +26,9 @@ public class Image_SM_utils {
             ps.setBinaryStream(3, in, in.available());
             int count = ps.executeUpdate();
             if (count > 0) {
-                System.out.println("插入成功！");
+           //     System.out.println("插入成功！");
             } else {
-                System.out.println("插入失败！");
+            //    System.out.println("插入失败！");
             }
         } catch (Exception e) {
             e.printStackTrace();
