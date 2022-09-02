@@ -104,14 +104,11 @@ public class QICQ_manager {
     }
     public void send_online_file(Message msg) throws IOException, SQLException {
         String to=msg.getGetter();
-        msg.setType(MessageType.MESSAGE_QICQ_RECERIVE_FILE);
-        ManageServerToClientThread.getThread(id).oos.writeObject(msg);
-        String sql="insert into file(sender,getter,sendtime,file,isfile,isread,filename) values(?,?,?,?,1,0,?);";
+        String sql="insert into message(sender,getter,sendtime,file,isfile,isread,filename) values(?,?,?,?,1,0,?);";
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,msg.getSender());
         st.setString(2,msg.getGetter());
         st.setString(3,msg.getSendTime());
-
         Filetrans f=(Filetrans)msg.getData();
         System.out.println(f.getName());
         InputStream is = new ByteArrayInputStream(f.getContent());
