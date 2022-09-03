@@ -2,6 +2,8 @@ package utils;
 import java.io.*;
 
 /**
+ * The type My object output stream.
+ *
  * @author : [Tongwei_L]
  * @version : [v1.0]
  * @description : [一句话描述该类的功能]
@@ -9,6 +11,12 @@ import java.io.*;
  */
 public class MyObjectOutputStream extends ObjectOutputStream {
 
+    /**
+     * Instantiates a new My object output stream.
+     *
+     * @param out the out
+     * @throws IOException the io exception
+     */
     public MyObjectOutputStream(OutputStream out) throws IOException {
         super(out);
     }

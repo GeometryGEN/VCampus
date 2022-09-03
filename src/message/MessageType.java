@@ -195,20 +195,54 @@ public interface MessageType {
     String MESSAGE_STATUS_CONFIRM="202";
     String MESSAGE_STATUS_CONFIRM_RET="202.5";
 
-    String ADD_TO_SHOPCAR = "133.1111";             //添加购物车
+    /**
+     * 添加购物车标志
+     */
+    String ADD_TO_SHOPCAR = "133.1111";
+    /**
+     * 添加购物车成功信号
+     */
     String ADD_TO_SHOPCAR_SUCCEED = "133.1111q";
+    /**
+     * 添加购物车失败信号
+     */
     String ADD_TO_SHOPCAR_FAILED = "133.1111s";
-
-    String GET_MONEY = "133.11112";             //得到钱
+    /**
+     * 得到用户余额
+     */
+    String GET_MONEY = "133.11112";
+    /**
+     * 得到用户余额成功
+     */
     String GET_MONEY_SUCCEED = "133.1111q2";
+    /**
+     * 得到用户余额失败
+     */
     String GET_MONEY_FAILED = "133.1111s2";
-
-    String GET_MONEY_TEACHER = "133.1111211";             //得到钱
+    /**
+     * 得到老师余额
+     */
+    String GET_MONEY_TEACHER = "133.1111211";
+    /**
+     * 得到钱老师成功
+     */
     String GET_MONEY_TEACHER_SUCCEED = "133.1111q211";
+    /**
+     * 得到老师余额失败
+     */
     String GET_MONEY_TEACHER_FAILED = "133.1111s211";
 
-    String BUY_CERTAIN_PRODUCT_TEACHER = "133.11112111";             //得到钱
+    /**
+     * 买某些产品老师
+     */
+    String BUY_CERTAIN_PRODUCT_TEACHER = "133.11112111";
+    /**
+     * 买某些产品老师成功
+     */
     String BUY_CERTAIN_PRODUCT_TEACHER_SUCCEED = "133.1111q2111";
+    /**
+     * 买某些产品老师失败了
+     */
     String BUY_CERTAIN_PRODUCT_TEACHER_FAILED = "133.1111s2111";
 
 

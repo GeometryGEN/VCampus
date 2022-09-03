@@ -18,7 +18,13 @@ import java.sql.SQLException;
  */
 public class image_Shop_utils {
 
-    // 将图片插入数据库
+    /**
+     * 将图片插入数据库
+     * <p>show 将图片插入数据库</p>
+     * @author : [Tongwei_L]
+     * @param path  : 路径
+     * @param id  : 图片id
+     */
     public static void sendImageDB(String path,int id) throws SQLException {
         Connection conn = null;
         PreparedStatement ps = null;
@@ -50,7 +56,13 @@ public class image_Shop_utils {
             }
         }
     }
-    // 读取数据库中图片
+
+    /**
+     * 读取数据库图片
+     * <p>show 读取数据库图片</p>
+     * @author : [Tongwei_L]
+     * @param id  : 图片id
+     */
     public static boolean readDBImage(int id) throws SQLException {
         Connection conn = null;
         PreparedStatement ps = null;
@@ -76,10 +88,4 @@ public class image_Shop_utils {
         return true;
     }
 
-//
-//    public static void main(String[] args) throws SQLException {
-//        sendImageDB("C:\\Users\\28468\\Desktop\\1111.jpg",1);
-//        sendImageDB("C:\\Users\\28468\\Desktop\\3.jpg",3);
-//        sendImageDB("C:\\Users\\28468\\Desktop\\3.jpg",11);
-//    }
 }

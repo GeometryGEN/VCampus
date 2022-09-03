@@ -48,7 +48,7 @@ public class ServerToClient extends Thread{
     private static HashMap<String,ArrayList<String>>new_message=new HashMap<>();*/
     public ServerToClient() throws IOException {
         try{
-        //    System.out.println("服务器在"+MessageType.PORT+"端口监听中，"+"IP地址为"+Message.returnIP());
+            System.out.println("服务器在"+MessageType.PORT+"端口监听中，"+"IP地址为"+Message.returnIP());
             ss=new ServerSocket(MessageType.PORT);
             while (true){
                 // if(punish.size()!=0&&getOnline_admin()!=null) send_ticket(getOnline_admin());

@@ -6,7 +6,17 @@ import net.coobird.thumbnailator.Thumbnails;
 import java.io.*;
 import java.sql.*;
 
+/**
+ * The type Save image.
+ */
 public class Save_image {
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     * @throws FileNotFoundException the file not found exception
+     * @throws SQLException          the sql exception
+     */
     public static void main(String[] args) throws FileNotFoundException, SQLException {
      //   JDBC_Connector.first_connect();
         String p="src/image/";

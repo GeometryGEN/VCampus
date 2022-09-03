@@ -5,6 +5,8 @@ import java.net.NetworkInterface;
 import java.util.Enumeration;
 
 /**
+ * The type Get ip.
+ *
  * @author : [Tongwei_L]
  * @version : [v1.0]
  * @description : [得到局域网的IP地址]
@@ -12,6 +14,11 @@ import java.util.Enumeration;
  */
 public class getIP {
 
+    /**
+     * Get host ip string.
+     *
+     * @return the string
+     */
     public static String getHostIp(){
         try{
             Enumeration<NetworkInterface> allNetInterfaces = NetworkInterface.getNetworkInterfaces();

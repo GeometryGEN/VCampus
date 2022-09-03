@@ -16,6 +16,13 @@ import java.sql.SQLException;
  */
 public class User_SM_utils {
 
+    /**
+     * 返回学生信息
+     * <p>show 返回学生信息</p>
+     * @author : [Tongwei_L]
+     * @param username  : 学生idcard
+     * @return return :  返回学生对象，可以为NULL
+     */
     public static Student returnStudentAllInfo(String username) {
         try {
             Connection connection= JDBC_Connector.ConnectMySQL();                  //连接数据库
@@ -53,6 +60,7 @@ public class User_SM_utils {
         }
         return null;
     }
+
     public static boolean search(String id) throws SQLException{
         Connection connection= JDBC_Connector.ConnectMySQL();                  //连接数据库
         String sql="select * from students where Student_idcard=?";

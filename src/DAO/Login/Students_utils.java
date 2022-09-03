@@ -1,18 +1,24 @@
 package DAO.Login;
-import java.io.IOException;
 import java.sql.*;
 import User.Student;
-import User.Teacher;
 import connection.JDBC_Connector;
 
 /**
  * @author : [Tongwei_L]
  * @version : [v1.0]
- * @description : [一句话描述该类的功能]
+ * @description : [服务器与数据库的连接类，用来实现学生的相关操作]
  * @createTime : [2022.08.16 22:35]
  */
 public class Students_utils {
 
+    /**
+     * 检测学生账号
+     * <p>show 检测输入学生账号是否存在</p>
+     * @author : [Tongwei_L]
+     * @param username  : 用户idcard
+     * @param userpassword  : 用户密码
+     * @return return :  true 表示此账号密码输入正确  false 表示此账号密码输入错误
+     */
     public static boolean checkStudentAccount(String username, String userpassword)  {
         try {
             Connection connection=JDBC_Connector.ConnectMySQL();                  //连接数据库
@@ -39,6 +45,14 @@ public class Students_utils {
         }
         return false;
     }
+
+    /**
+     * 检测学生姓名
+     * <p>show 输出学生账号</p>
+     * @author : [Tongwei_L]
+     * @param userid  : 用户idcard
+     * @return return :  String 为用户姓名
+     */
     public static String getname(String userid){
         String name = null;
         try {
@@ -52,12 +66,19 @@ public class Students_utils {
             }
             rs.close();
             state.close();
-         //   connection.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
         return name;
     }
+
+    /**
+     * 查找学生账号
+     * <p>show 检测输入老师账号是否存在</p>
+     * @author : [Tongwei_L]
+     * @param username  : 用户idcard
+     * @return return :  true 表示此学生存在
+     */
     public static boolean findStudentAccount(String username) {
         Boolean re = null;
         try {
@@ -66,7 +87,6 @@ public class Students_utils {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, username);
             ResultSet rs = ps.executeQuery();
-            //JDBC_Connector.close(rs, ps, connection);
             rs.close();
             ps.close();
         } catch (SQLException e) {
@@ -75,6 +95,13 @@ public class Students_utils {
         return true;
     }
 
+    /**
+     * 向数据库中添加学生
+     * <p>show 向数据库中添加学生用于登录</p>
+     * @author : [Tongwei_L]
+     * @param s  : 学生实例对象
+     * @return return :   true 数据库中添加正确  false 数据库中添加错误
+     */
     public static boolean addStudent(Student s) throws SQLException {
         Connection connection=JDBC_Connector.ConnectMySQL();                  //连接数据库
         if(checkStudentAccount(s.getStudent_idcard(),s.getStudent_pwd())){
@@ -101,6 +128,13 @@ public class Students_utils {
         return re;
     }
 
+    /**
+     * 向数据库中删除学生
+     * <p>show 向数据库中删除学生</p>
+     * @author : [Tongwei_L]
+     * @param username  : 学生实例对象
+     * @return return :   true 数据库中删除正确  false 数据库中删除错误
+     */
     public static boolean deleteStudent(String username) throws SQLException {
         Connection connection=JDBC_Connector.ConnectMySQL();
         if(findStudentAccount(username)){
@@ -122,6 +156,13 @@ public class Students_utils {
         return re;
     }
 
+    /**
+     * 数据库中匹配学生信息
+     * <p>show 数据库中匹配学生信息</p>
+     * @author : [Tongwei_L]
+     * @param s  : 学生实例对象
+     * @return return :   true 数据库中匹配学生信息正确  false 数据库中匹配学生信息错误
+     */
     public static boolean changeStudentPwd(String username,Student s) throws SQLException {
         Connection connection=JDBC_Connector.ConnectMySQL();
         String sql = "update students SET Student_pwd =? WHERE Student_idcard =" +username;
@@ -139,6 +180,13 @@ public class Students_utils {
         return re;
     }
 
+    /**
+     * 数据库中修改学生密码
+     * <p>show 数据库中修改学生密码</p>
+     * @author : [Tongwei_L]
+     * @param s  : 老师idcard
+     * @return return :   true 数据库中修改学生密码正确  false 数据库中修改学生密码错误
+     */
     public static boolean findForgetpwdStudent(Student s) throws SQLException {
         try {
             Connection connection= JDBC_Connector.ConnectMySQL();                  //连接数据库
@@ -162,33 +210,13 @@ public class Students_utils {
         return false;
     }
 
-    public static String  returnStudentName(String username, String userpassword) {
-        try {
-            Connection connection=JDBC_Connector.ConnectMySQL();                  //连接数据库
-            Statement state = connection.createStatement();
-            String sql="select * from students where Student_idcard='"+username+"' and Student_pwd='"+userpassword+"'";
-            ResultSet resultSet= state.executeQuery(sql);            //执行sql
-            String passWord = "";
-            while (resultSet.next()) {
-                passWord = resultSet.getString("Student_pwd").trim();
-                if (passWord == userpassword || passWord.equals(userpassword)) {
-                    resultSet.close();
-                    state.close();
-                //    connection.close();
-                    return resultSet.getString("Student_name");
-                } else{
-                    resultSet.close();
-                    state.close();
-                //    connection.close();
-                    return null;
-                }
-
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
+    /**
+     * 数据库中返回学生信息
+     * <p>show 数据库中返回学生信息</p>
+     * @author : [Tongwei_L]
+     * @param id  : 学生idcard
+     * @return return :   true 数据库中返回学生信息正确  false 数据库中返回学生信息错误
+     */
     public static Student returninfo(String id)throws SQLException {
         String sql="select * from students where Student_idcard=?;";
         Connection connection=JDBC_Connector.ConnectMySQL();
@@ -206,4 +234,5 @@ public class Students_utils {
         //connection.close();
         return stu;
     }
+
 }

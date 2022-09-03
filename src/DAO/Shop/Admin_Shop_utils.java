@@ -9,11 +9,18 @@ import java.util.List;
 /**
  * @author : [Tongwei_L]
  * @version : [v1.0]
- * @description : [一句话描述该类的功能]
+ * @description : [管理员的操作]
  * @createTime : [2022.08.19 15:31]
  */
 public class Admin_Shop_utils {
 
+    /**
+     * 管理员添加商品
+     * <p>show 管理员添加商品</p>
+     * @author : [Tongwei_L]
+     * @param p  : 添加的商品对象实例
+     * @return return :  true 添加成功  false 表示添加失败
+     */
     public static boolean addProduct(Product p) throws SQLException {
         Connection connection=JDBC_Connector.ConnectMySQL();                  //连接数据库
         String sql = "insert into products values(?,?,?,?,?,?,?,?)";
@@ -36,6 +43,13 @@ public class Admin_Shop_utils {
         return re;
     }
 
+    /**
+     * 管理员删除商品
+     * <p>show 管理员删除商品</p>
+     * @author : [Tongwei_L]
+     * @param id  : 管理员删除商品的id
+     * @return return :  true 删除成功  false 表示删除失败
+     */
     public static boolean deleteProduct(int id) throws SQLException {
         Connection connection=JDBC_Connector.ConnectMySQL();
         String sql = "delete from products where Product_id=?";
@@ -50,23 +64,5 @@ public class Admin_Shop_utils {
       //  JDBC_Connector.close(null, ps, connection);
         return re;
     }
-
-
-//    public static void main(String[] args) throws Exception {
-//        Product p = new Product();
-//        p.setProduct_id(15);
-//        p.setProduct_takeaway(false);
-//        p.setProduct_name("冰绿茶");
-//        addProduct(p);
-//        List<Product> list = checkProduct();
-//        for (int i = 0; i < list.size(); i++) {
-//            System.out.println(list.get(i).getProduct_name());
-//        }
-//        Product p = new Product();
-//        p.setProduct_id(15);
-//        p.setProduct_takeaway(false);
-//        p.setProduct_name("冰绿茶");
-//        deleteProduct("15");
-//    }
 
 }

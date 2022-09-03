@@ -15,7 +15,13 @@ import java.sql.SQLException;
  */
 public class Admin_SM_utils {
 
-    //可能空格有问题
+    /**
+     * 管理员修改学生信息
+     * <p>show 管理员修改学生信息</p>
+     * @author : [Tongwei_L]
+     * @param s  : 添加的商学生对象实例
+     * @return return :  true 修改成功  false 表示修改失败
+     */
     public static boolean changeStudentInfo(Student s) throws SQLException {
         Connection connection= JDBC_Connector.ConnectMySQL();
         String sql = "update students set Student_id= ?,Student_name= ?,Student_age= ?,Student_gender= ?,Student_email= ?,Student_class= ?,Student_nation= ?,Student_birthday= ?,Student_native_place= ?,Student_major= ?,Student_type= ?,Student_Due_graduate_date= ?,Student_Campus= ?,Student_Sclass= ?,Students_shenfenzheng= ? where Student_idcard=? ";

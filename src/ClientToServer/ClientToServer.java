@@ -31,8 +31,8 @@ public class ClientToServer {
     private static Socket socket;
     public static MyObjectOutputStream oos=null;
     public static MyObjectInputStream ois=null;
-    public static String serverIP = Message.returnIP();
-    //public static String serverIP = "10.203.149.128";
+   // public static String serverIP = Message.returnIP();
+    public static String serverIP = "192.168.43.164";
 
     public String getIDcard() {
         return switch (ID) {
@@ -82,6 +82,16 @@ public class ClientToServer {
     public void setSocket(Socket socket) {
         this.socket = socket;
     }
+
+    /**
+     * show 检测学生id
+     * <p>show 1行用来检测id</p>
+     * show 第二行
+     * @author : [Tongwei_L]
+     * @param id  : 用户id
+     * @param pwd  : 用户密码
+     * @return return :  true 表示显示 false 表示隐藏
+     */
 
     public boolean checkStudent(String id, String pwd) throws Exception {
         s.setStudent_idcard(id);

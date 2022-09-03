@@ -13,8 +13,12 @@ import static DAO.Shop.image_Shop_utils.readDBImage;
  * @description : [商店与数据库连接类]
  * @createTime : [2022.08.19 15:31]
  */
+
 public class buyers_Shop_utils {
 
+    /**
+     * 连接数据库
+     */
     public static Connection connection;    //连接数据库
 
     static {
@@ -25,7 +29,13 @@ public class buyers_Shop_utils {
         }
     }
 
-    //模糊查找
+    /**
+     * 用户查找商品
+     * <p>show 用户查找商品</p>
+     * @author : [Tongwei_L]
+     * @param product_name  : 查找的商品名字
+     * @return return :  返回查找到的商品，可以为null
+     */
     public static List<Product> checkProduct(String product_name) throws SQLException {
         List<Product> list = new ArrayList<>();
         Statement state = connection.createStatement();
@@ -46,6 +56,13 @@ public class buyers_Shop_utils {
         return list;
     }
 
+    /**
+     * 用户查找已购信息
+     * <p>show 用户查找商品</p>
+     * @author : [Tongwei_L]
+     * @param idcard  : 用户id
+     * @return return :  返回已购商品，可以为null
+     */
     public static List<ProductPair> getBuyedandNum(String idcard) throws SQLException {
         List<ProductPair> s = new ArrayList<>();
         Statement state = connection.createStatement();
@@ -60,6 +77,13 @@ public class buyers_Shop_utils {
         return s;
     }
 
+    /**
+     * 用户查找购物车商品信息
+     * <p>show 用户查找购物车商品</p>
+     * @author : [Tongwei_L]
+     * @param idcard  : 用户id
+     * @return return :  返回购物车商品，可以为null
+     */
     public static List<ProductPair> getReadytoBuyandNum(String idcard) throws SQLException {
         List<ProductPair> s = new ArrayList<>();
         Statement state = connection.createStatement();
@@ -74,6 +98,12 @@ public class buyers_Shop_utils {
         return s;
     }
 
+    /**
+     * 用户查找商店所有商品信息
+     * <p>show 用户查找商店所有商品信息</p>
+     * @author : [Tongwei_L]
+     * @return return :  返回商店所有商品，可以为null
+     */
     public static List<Product> returnAllProduct() throws SQLException {
         List<Product> list = new ArrayList<>();
         Statement state = connection.createStatement();
@@ -95,6 +125,13 @@ public class buyers_Shop_utils {
         return list;
     }
 
+    /**
+     * 用户查找商店某一类商品信息
+     * <p>show 用户查找商店某一类商品信息</p>
+     * @author : [Tongwei_L]
+     * @param type  : 商品类型
+     * @return return :  返回商店某一类商品，可以为null
+     */
     public static List<Product> findTypeProduct(String type) throws SQLException {
         List<Product> list = new ArrayList<>();
         Statement state = connection.createStatement();
@@ -115,6 +152,13 @@ public class buyers_Shop_utils {
         return list;
     }
 
+    /**
+     * 查找商店某一个商品信息
+     * <p>show 查找商店某一个商品信息</p>
+     * @author : [Tongwei_L]
+     * @param id  : 商品id
+     * @return return :  返回商店某一个商品，可以为null
+     */
     public static Product checkCertainProduct(int id) throws SQLException {
         Product temp = new Product();
         String sql="select * from products where Product_id=?";
@@ -136,7 +180,16 @@ public class buyers_Shop_utils {
         return temp;
     }
 
-    //UI界面先直接判断钱够不够，这里判断数量够不够，假设可以买 更新用户余额，更新商品num
+    /**
+     * 学生购买商店某一个商品
+     * <p>show 学生购买商店某一个商品</p>
+     * @author : [Tongwei_L]
+     * @param idcard  : 用户id
+     * @param id  : 商品id
+     * @param num  : 用户购买数量
+     * @param money  : 用户现在的余额
+     * @return return :  购买情况：可以失败或者成功
+     */
     public static String buyCertainProduct(String idcard, int id, int num, double money) throws SQLException {
         String sql="select * from products where Product_id=?";
         PreparedStatement ps = connection.prepareStatement(sql);
@@ -175,6 +228,16 @@ public class buyers_Shop_utils {
         return "购买成功";
     }
 
+    /**
+     * 教师购买商店某一个商品
+     * <p>show 教师购买商店某一个商品</p>
+     * @author : [Tongwei_L]
+     * @param idcard  : 教师id
+     * @param id  : 商品id
+     * @param num  : 用户购买数量
+     * @param money  : 教师现在的余额
+     * @return return :  购买情况：可以失败或者成功
+     */
     public static String buyCertainProduct_Teacher(String idcard, int id, int num, double money) throws SQLException {
         String sql="select * from products where Product_id=?";
         PreparedStatement ps = connection.prepareStatement(sql);
@@ -213,7 +276,15 @@ public class buyers_Shop_utils {
         return "购买成功";
     }
 
-
+    /**
+     * 用户添加购物车
+     * <p>show 用户添加购物车</p>
+     * @author : [Tongwei_L]
+     * @param idcard  : 用户id
+     * @param id  : 商品id
+     * @param num  : 用户添加数量
+     * @return return :  添加购物车情况：false失败 ture成功
+     */
     public static boolean addToShopCar(String idcard, int id, int num) throws SQLException {
         String sql="insert into readytobuyproducts values(?,?,?)";
         PreparedStatement ps = connection.prepareStatement(sql);
@@ -229,7 +300,16 @@ public class buyers_Shop_utils {
         return re;
     }
 
-    public static Boolean addToHaveShopped(String idcard, int id, int num) throws SQLException {
+    /**
+     * 用户购买商品
+     * <p>show 用户购买商品</p>
+     * @author : [Tongwei_L]
+     * @param idcard  : 用户id
+     * @param id  : 商品id
+     * @param num  : 用户购买商品数量
+     * @return return :  添加到已购商品情况：false失败 ture成功
+     */
+    public static boolean addToHaveShopped(String idcard, int id, int num) throws SQLException {
         String sql="insert into buyedproducted values(?,?,?)";
         PreparedStatement ps = connection.prepareStatement(sql);
         ps.setString(1, idcard);
@@ -243,6 +323,15 @@ public class buyers_Shop_utils {
         return re;
     }
 
+    /**
+     * 用户从购物车删除商品
+     * <p>show 用户从购物车删除商品</p>
+     * @author : [Tongwei_L]
+     * @param idcard  : 用户id
+     * @param id  : 商品id
+     * @param num  : 用户删除商品数量
+     * @return return :  删除购物车商品情况：false失败 ture成功
+     */
     public static boolean deleteShopCar(String idcard, int id, int num) throws SQLException {
         String sql="delete from readytobuyproducts where (Stu_Tea_id=? and product_id=?)";
         PreparedStatement ps = connection.prepareStatement(sql);
@@ -256,6 +345,13 @@ public class buyers_Shop_utils {
         return re;
     }
 
+    /**
+     * 得到学生余额
+     * <p>show 得到学生余额</p>
+     * @author : [Tongwei_L]
+     * @param idcard  : 用户id
+     * @return return :  返回学生余额
+     */
     public static double getMoney(String idcard) throws SQLException {
         String sql="select * from students where Student_idcard=? ";
         PreparedStatement st= connection.prepareStatement(sql);
@@ -268,6 +364,13 @@ public class buyers_Shop_utils {
         return money;
     }
 
+    /**
+     * 得到老师余额
+     * <p>show 得到学生余额</p>
+     * @author : [Tongwei_L]
+     * @param idcard  : 用户id
+     * @return return :  返回老师余额
+     */
     public static double getMoney_teacher(String idcard) throws SQLException {
         String sql="select * from teachers where Teacher_idcard=? ";
         PreparedStatement st= connection.prepareStatement(sql);
@@ -280,15 +383,4 @@ public class buyers_Shop_utils {
         return money;
     }
 
-
-//    public static void main(String[] args) throws Exception {
-////        if(checkCertainProduct(111)!=null)
-//        System.out.println(deleteShopCar("09020201",1,1));
-////        else
-////            System.out.println("checkCertainProduct(1).getProduct_name()");
-////        List<Product> list = findTypeProduct("饮料");
-////        for (int i = 0; i < list.size(); i++) {
-////            System.out.println(list.get(i).getProduct_name());
-////        }
-//    }
 }
