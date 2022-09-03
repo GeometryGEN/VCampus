@@ -11,8 +11,18 @@ import java.io.IOException;
 
 import ClientToServer.myInfo;
 
+/**
+ * 添加朋友
+ *
+ * @author Zhangyang_Ge
+ * @date 2022/09/03
+ */
 public class add_friend {
     static JFrame jf;
+
+    /**
+     * 添加朋友
+     */
     public static void add_friend() {
         jf = new JFrame("添加好友");
         jf.setLayout(null);
@@ -73,10 +83,16 @@ public class add_friend {
         jf.setVisible(true);
     }
 
+    /**
+     * 添加好友成功
+     */
     public static void add_friend_succeed() {
         jf.dispose();
     }
 
+    /**
+     * 添加好友失败
+     */
     public static void add_friend_fail() {
         JOptionPane.showMessageDialog(null, "未查找到该用户", "WARNING!", JOptionPane.PLAIN_MESSAGE);
     }

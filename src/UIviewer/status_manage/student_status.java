@@ -16,9 +16,25 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import ClientToServer.myInfo;
 
+/**
+ * 学生地位
+ *
+ * @author Zhangyang_Ge
+ * @date 2022/09/03
+ */
 public class student_status extends JPanel {
 
-    //信息面板
+    /**
+     * 状态面板
+     *
+     * @param width_r  宽度r
+     * @param height_r 高r
+     * @param width    宽度
+     * @param height   高度
+     * @param iat      iat
+     * @return {@link JPanel}
+     * @throws Exception 异常
+     *///信息面板
     public static JPanel status_panel(double width_r, double height_r, double width, double height, ImageAndTable iat) throws Exception {
         JPanel status=new JPanel();
         status.setBackground(new Color(255,255,255));
@@ -62,6 +78,14 @@ public class student_status extends JPanel {
         return status;
     }
 
+    /**
+     * 学生地位
+     *
+     * @param width  宽度
+     * @param height 高度
+     * @param iat    iat
+     * @throws Exception 异常
+     */
     public student_status(int width, int height, ImageAndTable iat) throws Exception {
         double width_r=(double)(width)/1920;
         double height_r=(double)(height)/1080;
