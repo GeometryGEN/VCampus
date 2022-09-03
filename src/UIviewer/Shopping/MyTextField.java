@@ -13,15 +13,31 @@ import java.awt.geom.RoundRectangle2D;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 
+/**
+ * 我文本字段
+ *
+ * @author Chen_GuanZhi
+ * @date 2022/09/03
+ */
 public class MyTextField extends JTextField {
 
      private static final long serialVersionUID = -1946802815417758252L;
 
-     public MyTextField(int columns) {
+    /**
+     * 我文本字段
+     *
+     * @param columns 列
+     */
+    public MyTextField(int columns) {
          super(columns);
          setMargin(new Insets(0, 5, 0, 5));
      }
 
+    /**
+     * 油漆边界
+     *
+     * @param g g
+     */
     protected void paintBorder(Graphics g) {
          setBackground(new Color(251, 244, 242));
         int h = getHeight();// 从JComponent类获取高宽

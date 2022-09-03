@@ -15,6 +15,12 @@ import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * 申请机票
+ *
+ * @author Chen_GuanZhi
+ * @date 2022/09/03
+ */
 public class applyTicket extends JPanel {
     public static volatile String[][] myPunish=null;
     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
@@ -22,6 +28,10 @@ public class applyTicket extends JPanel {
     int height=(int ) screensize.getHeight();//获得高度
     double width_r=(double)(width)/1273;
     double height_r=(double)(height)/784;
+
+    /**
+     * 申请机票
+     */
     public applyTicket(){
         setLayout(null);
         String[] tableTitle = {"罚单编号","罚单金额","书籍编号","罚单备注","缴费"};

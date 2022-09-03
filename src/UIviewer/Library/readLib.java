@@ -11,6 +11,12 @@ import UIviewer.login.functionChoose;
 import net.coobird.thumbnailator.Thumbnails;
 import ClientToServer.myInfo;
 
+/**
+ * 阅读自由
+ *
+ * @author Chen_GuanZhi
+ * @date 2022/09/03
+ */
 public class readLib extends JPanel {
     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
     int width=(int ) screensize.getWidth(); //得到宽度
@@ -22,6 +28,12 @@ public class readLib extends JPanel {
     public static JButton b1=new JButton("馆藏查询");
     public static JButton b2=new JButton("我的借阅");
     public static JButton b3=new JButton("罚单缴费");
+
+    /**
+     * 得到名字
+     *
+     * @param a 一个
+     */
     static void getName(String a)
     {
         name=a;
@@ -30,7 +42,10 @@ public class readLib extends JPanel {
     public static CardLayout cardLayout=new CardLayout();
 
 
-        public readLib(){
+    /**
+     * 阅读自由
+     */
+    public readLib(){
             String name=myInfo.getName();
             getName(name);
         setBounds(0,0, (int) (1273*width_r), (int) (784*height_r));

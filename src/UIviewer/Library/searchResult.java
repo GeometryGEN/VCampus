@@ -17,6 +17,12 @@ import java.util.Timer;
 import DAO.Library.Book_borrower;
 import UIhandler.Library.Client_library;
 
+/**
+ * 搜索结果
+ *
+ * @author Chen_GuanZhi
+ * @date 2022/09/03
+ */
 public class searchResult extends JPanel {
 
     public static volatile String[][] searchresult=null;
@@ -25,6 +31,10 @@ public class searchResult extends JPanel {
     int height=(int ) screensize.getHeight();//获得高度
     double width_r=(double)(width)/1273;
     double height_r=(double)(height)/784;
+
+    /**
+     * 搜索结果
+     */
     public searchResult() {
         setLayout(null);
         String[] tableTitle = {"书籍编号", "书名", "作者", "出版社", "国家", "是否可借", "归还日期", "馆藏地", "借阅"};

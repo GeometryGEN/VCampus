@@ -22,6 +22,12 @@ import static UIviewer.Shopping.ShoppingHall.resetshoptable;
 import static UIviewer.Shopping.shopCustomer.cardLayout;
 import static UIviewer.Shopping.shopCustomer.panel;
 
+/**
+ * 汽车商店
+ *
+ * @author Chen_GuanZhi
+ * @date 2022/09/03
+ */
 public class shopCar extends JPanel {
     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
     int width=(int ) screensize.getWidth(); //得到宽度
@@ -30,14 +36,27 @@ public class shopCar extends JPanel {
     double height_r=(double)(height)/784;
     public static volatile String[][] myBook;
 
+    /**
+     * 得到我书
+     *
+     * @return {@link String[][]}
+     */
     public static String[][] getMyBook() {
         return myBook;
     }
 
+    /**
+     * 设置我书
+     *
+     * @param myBook 我书
+     */
     public static void setMyBook(String[][] myBook) {
         shopCar.myBook = myBook;
     }
 
+    /**
+     * 汽车商店
+     */
     public shopCar(){
         setLayout(null);
         String[] tableTitle = {"商品编号","商品名称","商品购买数量","商品价格","购买","删除"};

@@ -5,8 +5,17 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * 忘记pwd
+ *
+ * @author Chen_GuanZhi
+ * @date 2022/09/03
+ */
 public class forgetPWD {
 
+    /**
+     * 忘记pwdui
+     */
     public static void forgetPWDUI() {
         JFrame jf = new JFrame("forgetPWD");
         //找回密码
