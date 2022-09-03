@@ -81,7 +81,9 @@ public class friend_slice extends JLabel {
                 public void mouseClicked(java.awt.event.MouseEvent e) {
                     int c = e.getButton();
                     if (c == MouseEvent.BUTTON1) {
-                        setForeground(Color.black);
+                        if(getForeground()==Color.red){
+                            setForeground(Color.black);
+                        }
                         //聊天面板
                         try {
                             Client_qicq.get_message(friend.getId());
