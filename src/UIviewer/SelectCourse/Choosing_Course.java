@@ -15,6 +15,13 @@ import java.io.IOException;
 import DAO.Curriculum.Course;
 import UIhandler.Currirulum.Client_curriculum;
 import java.util.Timer;
+
+/**
+ * 选择课程
+ *
+ * @author Chen_GuanZhi
+ * @date 2022/09/03
+ */
 public class Choosing_Course extends JPanel {
 
         Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
@@ -23,6 +30,10 @@ public class Choosing_Course extends JPanel {
         double width_r=(double)(width)/1273;
         double height_r=(double)(height)/790;
         public static  volatile String [][] selectcourse=null;
+
+        /**
+         * 选择课程
+         */
         public Choosing_Course()
         {
         //小头像

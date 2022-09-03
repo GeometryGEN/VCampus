@@ -11,6 +11,12 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.channels.spi.AbstractInterruptibleChannel;
 
+/**
+ * selcourse老师
+ *
+ * @author Chen_GuanZhi
+ * @date 2022/09/03
+ */
 public class Selcourse_teacher extends JPanel {
     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
     int width=(int ) screensize.getWidth(); //得到宽度
@@ -22,6 +28,9 @@ public class Selcourse_teacher extends JPanel {
     public static CardLayout cardLayout1=new CardLayout();
     public static JPanel panel1=new JPanel();
 
+    /**
+     * selcourse老师
+     */
     public Selcourse_teacher()
     {
         setBounds(0,0,(int)(1273*width_r),(int)(790*height_r));

@@ -4,6 +4,13 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
+
+/**
+ * searchresselect
+ *
+ * @author Chen_GuanZhi
+ * @date 2022/09/03
+ */
 public class Searchresselect extends JPanel{
     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
     int width=(int ) screensize.getWidth(); //得到宽度
@@ -11,7 +18,11 @@ public class Searchresselect extends JPanel{
     double width_r=(double)(width)/1273;
     double height_r=(double)(height)/790;
      public static volatile String[][] searchresult=null;
-     public Searchresselect()
+
+    /**
+     * searchresselect
+     */
+    public Searchresselect()
      {
          setLayout(null);
          String[]tableTitle={"课程编号","课程名","时间","学分","地点","选择"};

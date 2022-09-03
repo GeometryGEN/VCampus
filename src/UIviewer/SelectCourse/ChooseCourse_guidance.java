@@ -7,12 +7,22 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * 选择课程指导
+ *
+ * @author Chen_GuanZhi
+ * @date 2022/09/03
+ */
 public class ChooseCourse_guidance extends JPanel{
     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
     int width=(int ) screensize.getWidth(); //得到宽度
     int height=(int ) screensize.getHeight();//获得高度
     double width_r=(double)(width)/1273;
     double height_r=(double)(height)/790;
+
+    /**
+     * 选择课程指导
+     */
     public ChooseCourse_guidance()
     {
         setLayout(null);

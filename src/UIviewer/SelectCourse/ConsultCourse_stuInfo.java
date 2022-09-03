@@ -13,6 +13,10 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
 
+/**
+ * @author Chen_GuanZhi
+ * @date 2022/09/03
+ */
 public class ConsultCourse_stuInfo extends JPanel {
     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
     int width=(int ) screensize.getWidth(); //得到宽度
@@ -22,6 +26,9 @@ public class ConsultCourse_stuInfo extends JPanel {
     public static volatile String[][] students=null;
     public static volatile String[][] consult_stu=null;
 
+    /**
+     * 咨询课程斯图信息
+     */
     public ConsultCourse_stuInfo()
     {
         setLayout(null);

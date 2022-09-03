@@ -16,6 +16,13 @@ import java.util.Timer;
 
 import DAO.Library.Book_borrower;
 import UIhandler.Library.Client_library;
+
+/**
+ * 搜索结果
+ *
+ * @author Chen_GuanZhi
+ * @date 2022/09/03
+ */
 public class Search_result extends JPanel{
     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
     int width=(int ) screensize.getWidth(); //得到宽度
@@ -23,6 +30,10 @@ public class Search_result extends JPanel{
     double width_r=(double)(width)/1273;
     double height_r=(double)(height)/790;
     public static volatile String[][] search_result=null;
+
+    /**
+     * 搜索结果
+     */
     public Search_result()
     {
         setLayout(null);

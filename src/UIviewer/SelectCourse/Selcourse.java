@@ -11,6 +11,12 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
+/**
+ * selcourse
+ *
+ * @author Chen_GuanZhi
+ * @date 2022/09/03
+ */
 public class Selcourse extends JPanel {
     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
     int width=(int ) screensize.getWidth(); //得到宽度
@@ -20,6 +26,9 @@ public class Selcourse extends JPanel {
     public static CardLayout cardLayout=new CardLayout();
     public static JPanel panel=new JPanel();
 
+    /**
+     * selcourse
+     */
     public Selcourse()
     {
         setBounds(0,0,width,height);

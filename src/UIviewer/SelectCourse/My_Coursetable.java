@@ -14,6 +14,12 @@ import java.util.Date;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * 我coursetable
+ *
+ * @author Chen_GuanZhi
+ * @date 2022/09/03
+ */
 public class My_Coursetable extends JPanel{
     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
     int width=(int ) screensize.getWidth(); //得到宽度
@@ -22,6 +28,12 @@ public class My_Coursetable extends JPanel{
     double height_r=(double)(height)/790;
     public static volatile  String[][][] tableDate=new String[16][13][6];
     TableColumn column;
+
+    /**
+     * 我coursetable
+     *
+     * @param week 周
+     */
     public My_Coursetable(int week)
     {
         setLayout(null);

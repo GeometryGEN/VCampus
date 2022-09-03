@@ -6,6 +6,12 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * 检查coustatus
+ *
+ * @author Chen_GuanZhi
+ * @date 2022/09/03
+ */
 public class Check_Coustatus extends JPanel{
     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
     int width=(int ) screensize.getWidth(); //得到宽度
@@ -13,6 +19,10 @@ public class Check_Coustatus extends JPanel{
     double width_r=(double)(width)/1273;
     double height_r=(double)(height)/790;
     public static volatile String[][] checkcourse_status=null;
+
+    /**
+     * 检查coustatus
+     */
     public Check_Coustatus()
     {
         setLayout(null);

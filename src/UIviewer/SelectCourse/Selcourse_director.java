@@ -13,6 +13,12 @@ import java.io.IOException;
 
 import static UIhandler.Currirulum.Client_curriculum.RequireallCourse;
 
+/**
+ * selcourse导演
+ *
+ * @author Chen_GuanZhi
+ * @date 2022/09/03
+ */
 public class Selcourse_director extends JPanel {
     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
     int width=(int ) screensize.getWidth(); //得到宽度
@@ -23,6 +29,9 @@ public class Selcourse_director extends JPanel {
     public static CardLayout cardLayout=new CardLayout();
     public static JPanel panel=new JPanel();
 
+    /**
+     * selcourse导演
+     */
     public Selcourse_director()
     {
         setBounds(0,0,(int)(1273*width_r),(int)(790*height_r));

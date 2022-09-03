@@ -4,6 +4,12 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
+/**
+ * 我学生
+ *
+ * @author Chen_GuanZhi
+ * @date 2022/09/03
+ */
 public class My_students extends JPanel{
     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
     int width=(int ) screensize.getWidth(); //得到宽度
@@ -12,6 +18,9 @@ public class My_students extends JPanel{
     double height_r=(double)(height)/790;
     public static volatile String[][] students=null;
 
+    /**
+     * 我学生
+     */
     public My_students() {
 
         setLayout(null);

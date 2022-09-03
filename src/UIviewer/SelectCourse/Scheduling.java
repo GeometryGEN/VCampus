@@ -16,7 +16,12 @@ import java.io.IOException;
 
 import static UIviewer.login.forgetPWD.forgetPWDUI;
 
-//可以修改课程的时间、地点、课容量   排课功能
+/**
+ * 调度
+ *
+ * @author Chen_GuanZhi
+ * @date 2022/09/03
+ *///可以修改课程的时间、地点、课容量   排课功能
 public class Scheduling extends JPanel {
     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
     int width=(int ) screensize.getWidth(); //得到宽度
@@ -25,6 +30,10 @@ public class Scheduling extends JPanel {
     double height_r=(double)(height)/784;
 
     public static volatile String[][] courses=null;
+
+    /**
+     * 调度
+     */
     public Scheduling() {
         setLayout(null);
         String[] tableTitle = {"课程编号", "课程名", "任课老师","学时", "时间", "课容量", "地点"};

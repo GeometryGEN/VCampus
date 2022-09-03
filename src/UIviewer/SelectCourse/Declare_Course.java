@@ -12,6 +12,12 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * 申报课程
+ *
+ * @author Chen_GuanZhi
+ * @date 2022/09/03
+ */
 public class Declare_Course extends JPanel{
     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
     int width=(int ) screensize.getWidth(); //得到宽度
@@ -19,6 +25,9 @@ public class Declare_Course extends JPanel{
     double width_r=(double)(width)/1273;
     double height_r=(double)(height)/790;
 
+    /**
+     * 申报课程
+     */
     public Declare_Course()
     {
         setLayout(null);
