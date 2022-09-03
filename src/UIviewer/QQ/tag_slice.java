@@ -5,14 +5,38 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+/**
+ * 标签片
+ *
+ * @author Zhangyang_Ge
+ * @date 2022/09/03
+ */
 public class tag_slice extends JLabel {
+    /**
+     * 交流输入
+     *
+     * @param jLabel j标签
+     */
     private void exchangeEnter(JLabel jLabel) {
         jLabel.setBackground(new Color(242,242,242));
     }
 
+    /**
+     * 交易所退出
+     *
+     * @param jLabel j标签
+     */
     private void exchangeExited(JLabel jLabel) {
         jLabel.setBackground(new Color(255,255,255));
     }
+
+    /**
+     * 标签片
+     *
+     * @param width_r  宽度r
+     * @param height_r 高r
+     * @param s        年代
+     */
     public tag_slice(double width_r,double height_r,String s){
         setOpaque(true);
         setBackground(new Color(255,255,255));

@@ -8,6 +8,12 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import javax.swing.*;
 
+/**
+ * 朋友列表
+ *
+ * @author Zhangyang_Ge
+ * @date 2022/09/03
+ */
 public class friend_list{
     public static JPanel jPanel;
     public static JPanel roll_panel;
@@ -24,6 +30,11 @@ public class friend_list{
     static friend_slice[] friendslice=new friend_slice[50];//好友
     static JScrollPane scrollPane;
 
+    /**
+     * 给朋友
+     *
+     * @param friend 朋友
+     */
     public static void show_Friend(HashMap<String, ArrayList<Friend>> friend) {
         jPanel.removeAll();
         roll_panel=new JPanel();
@@ -101,9 +112,18 @@ public class friend_list{
         update();
     }
 
+    /**
+     * 更新
+     */
     public static void update(){//更新UI界面；
         jPanel.updateUI();
     }
+
+    /**
+     * 显示未读
+     *
+     * @param sender 发送方
+     */
     public static void show_unread(String sender){
       //  System.out.println(11111);
         for(int i=1;i<count_friend;i++){
@@ -114,7 +134,17 @@ public class friend_list{
         }
     }
 
-   friend_list(int width, int height, double width_r, double height_r, int x, int y){
+    /**
+     * 朋友列表
+     *
+     * @param width    宽度
+     * @param height   高度
+     * @param width_r  宽度r
+     * @param height_r 高r
+     * @param x        x
+     * @param y        y
+     */
+    friend_list(int width, int height, double width_r, double height_r, int x, int y){
         jPanel=new JPanel();
         this.width=width;
         this.height=height;

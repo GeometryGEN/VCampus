@@ -14,14 +14,31 @@ import java.io.File;
 
 import javax.swing.*;
 
+/**
+ * 文件面板
+ *
+ * @author Zhangyang_Ge
+ * @date 2022/09/03
+ */
 public class file_panel {
     static File file;
+
+    /**
+     * 主要
+     *
+     * @param args arg游戏
+     */
     public static void main(String[] args) {
 
         //createWindow();
 
     }
 
+    /**
+     * 创建窗口
+     *
+     * @param type 类型
+     */
     public static void createWindow(int type) {
         JFrame frame;
         if(type==0)  {frame= new JFrame("发送文件");}
@@ -39,6 +56,12 @@ public class file_panel {
 
     }
 
+    /**
+     * 创建用户界面
+     *
+     * @param frame 框架
+     * @param type  类型
+     */
     private static void createUI(final JFrame frame,int type) {
 
         JPanel panel = new JPanel();

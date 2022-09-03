@@ -13,6 +13,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * 主面板
+ *
+ * @author Zhangyang_Ge
+ * @date 2022/09/03
+ */
 public class main_panel {
     public static JPanel mjp;
     public static JButton close_button;
@@ -20,6 +26,14 @@ public class main_panel {
     public HashMap<String, ArrayList<Friend>> friend;
     static button_panel buttonPanel;
 
+    /**
+     * 主面板
+     *
+     * @param width  宽度
+     * @param height 高度
+     * @param type   类型
+     * @throws IOException ioexception
+     */
     public main_panel(int width, int height,int type) throws IOException {
         double width_r=(double)(width)/1920;
         double height_r=(double)(height)/1080;

@@ -12,9 +12,27 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 
 import ClientToServer.myInfo;
+
+/**
+ * 学生状态表
+ *
+ * @author Zhangyang_Ge
+ * @date 2022/09/03
+ */
 public class student_status_table extends JPanel{
     public JButton jb1,jb2,jb3;
     public JTextField text1,text2,text3,text4,text5,text6,text7,text8,text9,text10,text11,text12,text13,text14,text15,text16,text17,text18,text19,text20,text21,text22,text23,text24,text25,text26,text27,text28,text29,text30,text31,text32;
+
+    /**
+     * 文本标题
+     *
+     * @param s        年代
+     * @param width_r  宽度r
+     * @param height_r 高r
+     * @param x        x
+     * @param y        y
+     * @return {@link JTextField}
+     */
     private JTextField text_title(String s, double width_r, double height_r, int x, int y){
         JTextField text=new JTextField("   "+s);
         text.setBackground(new Color(247,248,252));
@@ -26,6 +44,17 @@ public class student_status_table extends JPanel{
         text.setBounds((int)(x*width_r),(int)(y*height_r),(int)(230*width_r),(int)(65*height_r));
         return text;
     }
+
+    /**
+     * 文本信息
+     *
+     * @param s        年代
+     * @param width_r  宽度r
+     * @param height_r 高r
+     * @param x        x
+     * @param y        y
+     * @return {@link JTextField}
+     */
     private JTextField text_info(String s, double width_r, double height_r, int x, int y){
         JTextField text=new JTextField("   "+s);
         text.setBackground(new Color(255,255,255));
@@ -37,6 +66,10 @@ public class student_status_table extends JPanel{
         text.setBounds((int)(x*width_r),(int)(y*height_r),(int)(310*width_r),(int)(65*height_r));
         return text;
     }
+
+    /**
+     * 切换到编辑
+     */
     public void switch_to_edit(){
         text2.setEditable(true);
         text4.setEditable(true);
@@ -55,6 +88,10 @@ public class student_status_table extends JPanel{
         text30.setEditable(true);
         text32.setEditable(true);
     }
+
+    /**
+     * 切换到unedit
+     */
     public void switch_to_unedit(){
         text2.setEditable(false);
         text4.setEditable(false);
@@ -73,6 +110,17 @@ public class student_status_table extends JPanel{
         text30.setEditable(false);
         text32.setEditable(false);
     }
+
+    /**
+     * 学生状态表
+     *
+     * @param width_r  宽度r
+     * @param height_r 高r
+     * @param width    宽度
+     * @param height   高度
+     * @param sinfo    sinfo
+     * @throws Exception 异常
+     */
     public student_status_table(double width_r, double height_r, double width, double height,Student sinfo) throws Exception {
         setBackground(new Color(255,255,255));
         setBorder(BorderFactory.createEtchedBorder());

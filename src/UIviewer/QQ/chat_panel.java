@@ -18,6 +18,12 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * 聊天面板
+ *
+ * @author Zhangyang_Ge
+ * @date 2022/09/03
+ */
 public class chat_panel extends JPanel {
     public JPanel type_panel;
     private static JScrollPane scrollPane;
@@ -29,6 +35,15 @@ public class chat_panel extends JPanel {
     static StyledDocument doc = jTextPane.getStyledDocument();
     static JButton  receive_button,close_button,send_button,send_file_button;
     static ArrayList<Filetrans>files=new ArrayList<>();
+
+    /**
+     * 插入文本
+     *
+     * @param text      文本
+     * @param colorName 颜色名称
+     * @param textSize  文字大小
+     * @param textAlign 文本对齐
+     */
     public static void insertText(String text, Color colorName, int textSize, int textAlign){
         SimpleAttributeSet set = new SimpleAttributeSet();
         StyleConstants.setForeground(set, colorName);//设置文本颜色
@@ -41,6 +56,13 @@ public class chat_panel extends JPanel {
             e.printStackTrace();
         }
     }
+
+    /**
+     * 发送文件
+     *
+     * @param src      src
+     * @param filename 文件名
+     */
     public static void send_file(String src,String filename){
         Client_qicq.send_file(src,Client_qicq.getId(),friend.getId(),filename);
         try {
@@ -50,10 +72,24 @@ public class chat_panel extends JPanel {
         }
       //  System.out.println(friend.getId());
     }
+
+    /**
+     * 接收文件
+     *
+     * @param src      src
+     * @param filepath filepath
+     * @throws IOException ioexception
+     */
     public static void receive_file(Filetrans src,String filepath) throws IOException {
         Client_qicq.receive_file(src,filepath);
         //System.out.println(friend.getId());
     }
+
+    /**
+     * 显示消息
+     *
+     * @param messages 消息
+     */
     public static void show_message(ArrayList<Message> messages){
         jTextPane.setText(null);
         //开头空格
@@ -115,6 +151,18 @@ public class chat_panel extends JPanel {
         jTextPane.updateUI();
         jTextPane.setCaretPosition(jTextPane.getStyledDocument().getLength());
     }
+
+    /**
+     * 聊天面板
+     *
+     * @param width    宽度
+     * @param height   高度
+     * @param width_r  宽度r
+     * @param height_r 高r
+     * @param x        x
+     * @param y        y
+     * @param friend   朋友
+     */
     public chat_panel( int width, int height, double width_r, double height_r, int x, int y, Friend friend){
         main_panel.buttonPanel.setVisible(false);
         this.friend=friend;
@@ -244,6 +292,11 @@ public class chat_panel extends JPanel {
         add(scrollPane);
     }
 
+    /**
+     * 显示公告
+     *
+     * @param messages 消息
+     */
     public static void show_announcement(ArrayList<Message> messages) {
         jTextPane.setText(null);
         //开头空格
@@ -271,10 +324,18 @@ public class chat_panel extends JPanel {
         jTextPane.setCaretPosition(jTextPane.getStyledDocument().getLength());
     }
 
+    /**
+     * 得到朋友
+     *
+     * @return {@link Friend}
+     */
     public Friend getFriend() {
         return friend;
     }
 
+    /**
+     * 设置关闭
+     */
     public void set_Close() {
         close_button.setLocation((int)((width-send_button_width-1)*width_r),(int)((height/4-send_button_height-30)*height_r));
     }

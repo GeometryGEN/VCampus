@@ -10,8 +10,20 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
 
+/**
+ * 改变面板
+ *
+ * @author Zhangyang_Ge
+ * @date 2022/09/03
+ */
 public class change_panel {
     static JFrame jf;
+
+    /**
+     * 改变面板
+     *
+     * @param friend 朋友
+     */
     public static void change_panel(Friend friend) {
         jf = new JFrame("修改备注与分组");
         jf.setLayout(null);
@@ -59,6 +71,9 @@ public class change_panel {
         jf.setVisible(true);
     }
 
+    /**
+     * 改变成功
+     */
     public static void change_succeed() {
         jf.dispose();
     }
