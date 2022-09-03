@@ -20,36 +20,80 @@ import static UIviewer.SelectCourse.Selcourse.cardLayout;
 import static UIviewer.SelectCourse.Selcourse.panel;
 import UIviewer.SelectCourse.*;
 
+/**
+ * 客户课程
+ *
+ * @author Chen_GuanZhi
+ * @date 2022/09/03
+ */
 public class Client_curriculum {
 
     String id;
     public static String lastconsult;
     static MyObjectOutputStream oos=null;
 
+    /**
+     * 组id
+     *
+     * @param id id
+     */
     public void setId(String id) {
         this.id = id;
     }
+
+    /**
+     * 安排
+     *
+     * @param c c
+     * @throws IOException ioexception
+     */
     public static void arrange(Course c) throws IOException {
         Message message=new Message();
         message.setData(c);
         message.setType(MessageType.MESSAGE_CURRICULUM_ADMIN_ARRANGEMENT);
         oos.writeObject(message);
     }
+
+    /**
+     * 设置oos
+     *
+     * @param mos 金属氧化物半导体
+     * @throws IOException ioexception
+     */
     public static void setOos(MyObjectOutputStream mos) throws IOException {
         oos=mos;
     }
+
+    /**
+     * 需要选择
+     *
+     * @param curri curri
+     * @throws IOException ioexception
+     */
     public static void requireToChoose(Course curri)throws IOException{
             Message message=new Message();
             message.setData(curri);
             message.setType(MessageType.MESSAGE_CURRICULUM_CHOOSE);
             oos.writeObject(message);
     }
+
+    /**
+     * 需要我选择
+     *
+     * @throws IOException ioexception
+     */
     public static void RequireMyChoice() throws IOException {
         Message message=new Message();
         message.setData(myInfo.getId());
         message.setType(MessageType.MESSAGE_CURRICULUM_LIST_MINE);
         oos.writeObject(message);
     }
+
+    /**
+     * 显示我选择
+     *
+     * @param courses 课程
+     */
     public static void showMyChoice(ArrayList<Course>courses){
         int n=courses.size();
         ConsultCourse_Chosen.consultCourse_chosen=new String[n][6];
@@ -70,6 +114,12 @@ public class Client_curriculum {
         Selcourse.panel.add(chosen,"chosen");
         Selcourse.cardLayout.show(Selcourse.panel,"chosen");
     }
+
+    /**
+     * 给老师选择
+     *
+     * @param courses 课程
+     */
     public static void showTeacherChoice(ArrayList<Course>courses){
         int n=courses.size();
         ConsultCourse_stuInfo.consult_stu=new String[n][6];
@@ -90,12 +140,24 @@ public class Client_curriculum {
         Selcourse_teacher.panel.add(tea_course,"tea_course");
         Selcourse_teacher.cardLayout.show(Selcourse_teacher.panel,"tea_course");
     }
-    //显示所有的课程进行选择
+
+    /**
+     * requireall课程
+     *
+     * @throws IOException ioexception
+     *///显示所有的课程进行选择
     public static void RequireallCourse()throws IOException{
         Message message=new Message();
         message.setType(MessageType.MESSAGE_CURRICULUM_LIST_ALL);
         oos.writeObject(message);
     }
+
+    /**
+     * 显示choosable
+     *
+     * @param allchoosing allchoosing
+     * @throws IOException ioexception
+     */
     public static void show_choosable(ArrayList<Course>allchoosing)throws IOException{
         int n=allchoosing.size();
         Choosing_Course.selectcourse=new String[n][7];
@@ -117,6 +179,13 @@ public class Client_curriculum {
         Selcourse.panel.add(choosing,"show_choosable");
         Selcourse.cardLayout.show(Selcourse.panel,"show_choosable");
     }
+
+    /**
+     * 管理所有课程
+     *
+     * @param allchoosing allchoosing
+     * @throws IOException ioexception
+     */
     public static void admin_all_course(ArrayList<Course>allchoosing)throws IOException{
         int n=allchoosing.size();
         Scheduling.courses=new String[n][7];
@@ -138,6 +207,13 @@ public class Client_curriculum {
         Selcourse_director.panel.add(sch,"scheduling");
         Selcourse_director.cardLayout.show(Selcourse_director.panel,"scheduling");
     }
+
+    /**
+     * 需要咨询结果
+     *
+     * @param consultInfo 咨询信息
+     * @throws IOException ioexception
+     */
     public static void RequireConsultResult(String consultInfo)throws IOException{
         lastconsult=consultInfo;
         Message message=new Message();
@@ -145,6 +221,13 @@ public class Client_curriculum {
         message.setType(MessageType.MESSAGE_CURRICULUM_QUERY);
         oos.writeObject(message);
     }
+
+    /**
+     * 显示咨询结果
+     *
+     * @param course 课程
+     * @throws IOException ioexception
+     */
     public static void showConsultResult(ArrayList<Course> course)throws IOException{
         int n=course.size();
         Search_result.search_result=new String[n][6];
@@ -169,6 +252,13 @@ public class Client_curriculum {
         {Selcourse_teacher.panel.add(search,"search");
             Selcourse_teacher.cardLayout.show(Selcourse_teacher.panel,"search");}
     }
+
+    /**
+     * 需要给我学生
+     *
+     * @param Id id
+     * @throws IOException ioexception
+     */
     public static void Require_show_my_students(String Id)throws IOException{
     //    System.out.println("require");
         Message message=new Message();
@@ -177,6 +267,13 @@ public class Client_curriculum {
         oos.writeObject(message);
 
     }
+
+    /**
+     * 应用
+     *
+     * @param course 课程
+     * @throws IOException ioexception
+     */
     public static void apply(Opencourse course) throws IOException{
         Check_Coustatus.checkcourse_status=null;
         Message message=new Message();
@@ -185,6 +282,11 @@ public class Client_curriculum {
         oos.writeObject(message);
     }
 
+    /**
+     * 给我学生
+     *
+     * @param students 学生
+     */
     public static void show_my_students(ArrayList<Student>students){
         int n=students.size();
         ConsultCourse_stuInfo.students=new String[n][2];
@@ -202,6 +304,12 @@ public class Client_curriculum {
         Selcourse_teacher.panel.add(stuInfo,"stuInfo");
         Selcourse_teacher.cardLayout.show(Selcourse_teacher.panel,"stuInfo");
     }
+
+    /**
+     * 结果显示应用
+     *
+     * @param opencourses opencourses
+     */
     public static void showApplyResult(ArrayList<Opencourse>opencourses) {
         int n=opencourses.size();
         Check_Coustatus.checkcourse_status=new String[n][5];
@@ -231,6 +339,12 @@ public class Client_curriculum {
         Selcourse_teacher.cardLayout.show(Selcourse_teacher.panel,"apply");
 
     }
+
+    /**
+     * 我需要申请
+     *
+     * @throws IOException ioexception
+     */
     public static void Require_my_apply() throws IOException {
 
         Message message=new Message();
@@ -238,6 +352,12 @@ public class Client_curriculum {
         message.setType(MessageType.MESSAGE_CURRICULUM_LIST_APPLICATION);
         oos.writeObject(message);
     }
+
+    /**
+     * 显示我日程安排
+     *
+     * @param schedule 时间表
+     */
     public static void show_my_schedule(String [][][]schedule){
         My_Coursetable.tableDate=new String[17][13][6];
         for(int i=0;i<16;i++)
@@ -254,18 +374,36 @@ public class Client_curriculum {
         Selcourse.panel.add(table,"schedule");
         Selcourse.cardLayout.show(Selcourse.panel,"schedule");
     }
+
+    /**
+     * 需要安排
+     *
+     * @throws IOException ioexception
+     */
     public static void RequireSchedule() throws IOException {
         Message message=new Message();
         message.setData(myInfo.getId());
         message.setType(MessageType.MESSAGE_CURRICULUM_SHOW_SCHEDULE);
         oos.writeObject(message);
     }
+
+    /**
+     * 需要茶时间表
+     *
+     * @throws IOException ioexception
+     */
     public static void RequireTeaSchedule() throws IOException {
         Message message=new Message();
         message.setData(myInfo.getId());
         message.setType(MessageType.MESSAGE_CURRICULUM_TEACHER_SCHEDULE);
         oos.writeObject(message);
     }
+
+    /**
+     * 展示茶时间表
+     *
+     * @param schedule 时间表
+     */
     public static void show_tea_schedule(String [][][]schedule){
         My_Coursetable.tableDate=new String[17][13][6];
         for(int i=0;i<16;i++)
@@ -283,6 +421,12 @@ public class Client_curriculum {
         Selcourse_teacher.panel.add(table,"schedule");
         Selcourse_teacher.cardLayout.show(Selcourse_teacher.panel,"schedule");
     }
+
+    /**
+     * 显示所有应用程序
+     *
+     * @param opencourses opencourses
+     */
     public static void show_all_application(ArrayList<Opencourse>opencourses){
         int n=opencourses.size();
         Check_Course.checkcourse=new String[n][7];
@@ -305,23 +449,51 @@ public class Client_curriculum {
         Selcourse_director.cardLayout.show(Selcourse_director.panel,"application");
 
     }
+
+    /**
+     * 要求所有应用程序
+     *
+     * @throws IOException ioexception
+     */
     public static void Require_all_application() throws IOException {
         Message message=new Message();
         message.setType(MessageType.MESSAGE_CURRICULUM_LIST_ADMIN_APPLICATION);
         oos.writeObject(message);
     }
+
+    /**
+     * 需要删除课程
+     *
+     * @param deleteID 删除id
+     * @throws IOException ioexception
+     */
     public static void Require_deleteCourse(String deleteID) throws IOException {
         Message message=new Message();
         message.setData(deleteID);
         message.setType(MessageType.MESSAGE_CURRICULUM_DELETE);
         oos.writeObject(message);
     }
+
+    /**
+     * 需要同意添加课程
+     *
+     * @param c c
+     * @throws IOException ioexception
+     */
     public static void Require_AgreeAddCourse(Course c) throws IOException {
         Message message=new Message();
         message.setData(c);
         message.setType(MessageType.MESSAGE_CURRICULUM_APPLICATION_APPROVE);
         oos.writeObject(message);
     }
+
+    /**
+     * 需要拒绝添加课程
+     *
+     * @param id     id
+     * @param reason 原因
+     * @throws IOException ioexception
+     */
     public static void Require_RefuseAddCourse(String id,String reason) throws IOException {
         Message message=new Message();
         message.setGetter(id);
@@ -329,17 +501,36 @@ public class Client_curriculum {
         message.setType(MessageType.MESSAGE_CURRICULUM_APPLICATION_REFUSE);
         oos.writeObject(message);
     }
+
+    /**
+     * 减少课程
+     *
+     * @param id id
+     * @throws IOException ioexception
+     */
     public static void DropCourse(String id) throws IOException {
         Message message=new Message();
         message.setData(id);
         message.setType(MessageType.MESSAGE_CURRICULUM_DROP);
         oos.writeObject(message);
     }
+
+    /**
+     * 需要合适
+     *
+     * @throws IOException ioexception
+     */
     public static void Require_suitable()throws IOException{
         Message message=new Message();
         message.setType(MessageType.MESSAGE_CURRICULUM_MY_CHOOSING);
         oos.writeObject(message);
     }
+
+    /**
+     * 需要老师课程
+     *
+     * @throws IOException ioexception
+     */
     public static void requireTeacherCourse() throws IOException{
         Message message=new Message();
         message.setType(MessageType.MESSAGE_CURRICULUM_LIST_TEACHER_COURSE);

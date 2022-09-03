@@ -14,6 +14,12 @@ import utils.MyObjectOutputStream;
 
 import javax.swing.*;
 
+/**
+ * 客户车间
+ *
+ * @author Chen_GuanZhi
+ * @date 2022/09/03
+ */
 public class Client_shop {
 
     public static String id;    //区分 1：学生  2：老师  3：管理员
@@ -39,184 +45,395 @@ public class Client_shop {
 
     static MyObjectOutputStream oos=null;
 
+    /**
+     * 设置oos
+     *
+     * @param mos 金属氧化物半导体
+     */
     public static void setOos(MyObjectOutputStream mos) {
         Client_shop.oos = mos;
     }
 
     //////////////////记得每次点击按钮先reset null
 
+    /**
+     * 现在重新购买产品
+     */
     public static void resetNow_Buy_product(){
         Now_Buy_product="正在买";
     }
+
+    /**
+     * 重置特定产品标志
+     */
     public static void resetCertainProduct_sign(){
         sign_Certain="1";
     }
+
+    /**
+     * 重置符号加
+     */
     public static void resetSign_add(){
         sign_add="1";
     }
+
+    /**
+     * 重置符号删除
+     */
     public static void resetSign_delete(){
         sign_delete="1";
     }
 
+    /**
+     * 重置符号找到打字
+     */
     public static void resetSign_find_tpye(){
         sign_find_type="1";
     }
 
+    /**
+     * 重新购买
+     */
     public static void resetBuyed(){
         Buyed=null;
     }
 
+    /**
+     * 重置准备买
+     */
     public static void resetReadytoBuy(){
         ReadyToBuy=null;
     }
 
+    /**
+     * 重置符号零
+     */
     public static void resetSign_zero(){
         sign_zero=true;
     }
 
+    /**
+     * 重置某些产品
+     */
     public static void resetCertainProducts(){
         CertainProducts=null;
     }
+
+    /**
+     * 重置所有产品
+     */
     public static void resetAllProducts(){
         products=null;
     }
+
+    /**
+     * 重新检查产品
+     */
     public static void resetCheckedProducts(){
             checkproducts=null;
     }
 
+    /**
+     * 重置checkedtype产品
+     */
     public static void resetCheckedtypeProducts(){
         checkproductsType=null;
     }
 
+    /**
+     * 得到某些产品
+     *
+     * @return {@link Product}
+     */
     public static Product getCertainProducts() {
         return CertainProducts;
     }
 
+    /**
+     * 得到当前钱
+     *
+     * @return double
+     */
     public static double getCurrent_money() {
         return current_money;
     }
 
+    /**
+     * 设置当前钱
+     *
+     * @param current_money 现在钱
+     */
     public static void setCurrent_money(double current_money) {
         Client_shop.current_money = current_money;
     }
 
+    /**
+     * 设置某些产品
+     *
+     * @param certainProducts 某些产品
+     */
     public static void setCertainProducts(Product certainProducts) {
         CertainProducts = certainProducts;
     }
 
+    /**
+     * 得到某些迹象
+     *
+     * @return {@link String}
+     */
     public static String getSign_Certain() {
         return sign_Certain;
     }
 
+    /**
+     * 设置某些迹象
+     *
+     * @param sign_Certain 某些迹象
+     */
     public static void setSign_Certain(String sign_Certain) {
         Client_shop.sign_Certain = sign_Certain;
     }
 
+    /**
+     * 获得购买
+     *
+     * @return {@link List}<{@link ProductPair}>
+     */
     public static List<ProductPair> getBuyed() {
         return Buyed;
     }
 
+    /**
+     * 设置买
+     *
+     * @param buyed 买
+     */
     public static void setBuyed(List<ProductPair> buyed) {
         Buyed = buyed;
     }
 
+    /**
+     * 准备买
+     *
+     * @return {@link List}<{@link ProductPair}>
+     */
     public static List<ProductPair> getReadyToBuy() {
         return ReadyToBuy;
     }
 
+    /**
+     * 设置准备买
+     *
+     * @param readyToBuy 准备买
+     */
     public static void setReadyToBuy(List<ProductPair> readyToBuy) {
         ReadyToBuy = readyToBuy;
     }
 
+    /**
+     * 得到信号添加
+     *
+     * @return {@link String}
+     */
     public static String getSign_add() {
         return sign_add;
     }
 
+    /**
+     * 设置标志添加
+     *
+     * @param sign_add 标志添加
+     */
     public static void setSign_add(String sign_add) {
         Client_shop.sign_add = sign_add;
     }
 
+    /**
+     * 得到信号找到类型
+     *
+     * @return {@link String}
+     */
     public static String getSign_find_type() {
         return sign_find_type;
     }
 
+    /**
+     * 设置标志找到类型
+     *
+     * @param sign_find_type 找到信号类型
+     */
     public static void setSign_find_type(String sign_find_type) {
         Client_shop.sign_find_type = sign_find_type;
     }
 
+    /**
+     * 得到checkproducts类型
+     *
+     * @return {@link List}<{@link Product}>
+     */
     public static List<Product> getCheckproductsType() {
         return checkproductsType;
     }
 
+    /**
+     * 设置checkproducts类型
+     *
+     * @param checkproductsType checkproducts类型
+     */
     public static void setCheckproductsType(List<Product> checkproductsType) {
         Client_shop.checkproductsType = checkproductsType;
     }
 
+    /**
+     * 得到签
+     *
+     * @return {@link Boolean}
+     */
     public static Boolean getSign() {
         return sign_zero;
     }
 
+    /**
+     * 设置标志
+     *
+     * @param sign 标志
+     */
     public static void setSign(Boolean sign) {
         Client_shop.sign_zero = sign;
     }
 
+    /**
+     * 得到删除标志
+     *
+     * @return {@link String}
+     */
     public static String getSign_delete() {
         return sign_delete;
     }
 
+    /**
+     * 设置删除标志
+     *
+     * @param sign_delete 删除标志
+     */
     public static void setSign_delete(String sign_delete) {
         Client_shop.sign_delete = sign_delete;
     }
 
+    /**
+     * 得到checkproducts
+     *
+     * @return {@link List}<{@link Product}>
+     */
     public static List<Product> getCheckproducts() {
         return checkproducts;
     }
 
+    /**
+     * 设置checkproducts
+     *
+     * @param checkproducts checkproducts
+     */
     public static void setCheckproducts(List<Product> checkproducts) {
         Client_shop.checkproducts = checkproducts;
     }
 
+    /**
+     * 得到id
+     *
+     * @return {@link String}
+     */
     public static String getId() {
         return id;
     }
 
+    /**
+     * 组id
+     *
+     * @param id id
+     */
     public static void setId(String id) {
         Client_shop.id = id;
     }
 
+    /**
+     * 有经办人身份证
+     *
+     * @return {@link String}
+     */
     public static String getIdcard() {
         return idcard;
     }
 
+    /**
+     * 设置经办人身份证
+     *
+     * @param idcard 经办人身份证
+     */
     public static void setIdcard(String idcard) {
         Client_shop.idcard = idcard;
     }
 
+    /**
+     * 得到信号零
+     *
+     * @return {@link Boolean}
+     */
     public static Boolean getSign_zero() {
         return sign_zero;
     }
 
+    /**
+     * 设置信号零
+     *
+     * @param sign_zero 0标志
+     */
     public static void setSign_zero(Boolean sign_zero) {
         Client_shop.sign_zero = sign_zero;
     }
 
+    /**
+     * 获得产品
+     *
+     * @return {@link List}<{@link Product}>
+     */
     public static List<Product> getProducts() {
         return products;
     }
 
+    /**
+     * 现在买产品
+     *
+     * @return {@link String}
+     */
     public static String getNow_Buy_product() {
         return Now_Buy_product;
     }
 
+    /**
+     * 现在设置购买产品
+     *
+     * @param now_Buy_product 现在购买产品
+     */
     public static void setNow_Buy_product(String now_Buy_product) {
         Now_Buy_product = now_Buy_product;
     }
 
+    /**
+     * 集产品
+     *
+     * @param products 产品
+     */
     public static void setProducts(List<Product> products) {
         Client_shop.products = products;
     }
 
-    //刚开始登录界面就显示所有的商品
+    /**
+     * 返回所有产品
+     *
+     * @return {@link List}<{@link Product}>
+     * @throws Exception 异常
+     *///刚开始登录界面就显示所有的商品
     public static List<Product> returnAllProduct() throws Exception {
         setSign(true);
         resetAllProducts();
@@ -234,6 +451,13 @@ public class Client_shop {
         return products;
     }
 
+    /**
+     * 检查产品
+     *
+     * @param name 名字
+     * @return {@link List}<{@link Product}>
+     * @throws Exception 异常
+     */
     public static List<Product> checkProduct(String name) throws Exception {
         resetSign_find_tpye();
         Message message = new Message();
@@ -248,7 +472,13 @@ public class Client_shop {
         return checkproducts;
     }
 
-    //返回的Product 可能为null!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    /**
+     * 检查特定产品
+     *
+     * @param id_product 标识产品
+     * @return {@link Product}
+     * @throws Exception 异常
+     *///返回的Product 可能为null!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     public static Product checkCertainProduct(int id_product) throws Exception {
         resetCertainProducts();
         resetCertainProduct_sign();
@@ -263,7 +493,14 @@ public class Client_shop {
         while ( sign_Certain.equals("1")) Thread.onSpinWait();
         return CertainProducts;
     }
-    //商品Product_id唯一
+
+    /**
+     * 删除产品
+     *
+     * @param id id
+     * @return {@link Boolean}
+     * @throws Exception 异常
+     *///商品Product_id唯一
     public static Boolean deleteProduct(String id) throws Exception {
         resetSign_delete();
         Message message = new Message();
@@ -277,6 +514,14 @@ public class Client_shop {
         while (sign_delete.equals("1")) Thread.onSpinWait();
         return sign_delete.equals("2");
     }
+
+    /**
+     * checktype产品
+     *
+     * @param type_name 类型名称
+     * @return {@link List}<{@link Product}>
+     * @throws Exception 异常
+     */
     public static List<Product> checktypeProduct(String type_name) throws Exception {
         resetCheckedProducts();
         resetSign_find_tpye();
@@ -292,6 +537,13 @@ public class Client_shop {
         return checkproductsType;
     }
 
+    /**
+     * 添加产品
+     *
+     * @param p p
+     * @return boolean
+     * @throws Exception 异常
+     */
     public static boolean addProduct(Product p) throws Exception{
         resetSign_add();
         Message message = new Message();
@@ -303,7 +555,16 @@ public class Client_shop {
         return sign_add.equals("2");
     }
 
-    //购买商品  ui里先进行判断够不够，余额够不够，这里只更改信息 money为修改之后的钱
+    /**
+     * 购买产品
+     *
+     * @param user_idcard 用户经办人身份证
+     * @param id          id
+     * @param num         全国矿工工会
+     * @param money       钱
+     * @return boolean
+     * @throws Exception 异常
+     *///购买商品  ui里先进行判断够不够，余额够不够，这里只更改信息 money为修改之后的钱
     public static boolean buyProduct(String user_idcard, String id, int num, double money) throws Exception {
         resetNow_Buy_product();
         Message message = new Message();
@@ -323,6 +584,16 @@ public class Client_shop {
         return Now_Buy_product.equals("购买成功");
     }
 
+    /**
+     * 购买产品老师
+     *
+     * @param user_idcard 用户经办人身份证
+     * @param id          id
+     * @param num         全国矿工工会
+     * @param money       钱
+     * @return boolean
+     * @throws Exception 异常
+     */
     public static boolean buyProduct_Teacher(String user_idcard, String id, int num, double money) throws Exception {
         resetNow_Buy_product();
         Message message = new Message();
@@ -339,6 +610,15 @@ public class Client_shop {
     }
 
 
+    /**
+     * 增加商店车
+     *
+     * @param user_idcard 用户经办人身份证
+     * @param id          id
+     * @param num         全国矿工工会
+     * @return {@link Boolean}
+     * @throws Exception 异常
+     */
     public static Boolean addToShopCar(String user_idcard, int id, int num) throws Exception {
         resetSign_add();
         resetNow_Buy_product();
@@ -357,6 +637,13 @@ public class Client_shop {
         return sign_add.equals("2");
     }
 
+    /**
+     * 检查购买
+     *
+     * @param idcard 经办人身份证
+     * @return {@link List}<{@link ProductPair}>
+     * @throws IOException ioexception
+     */
     public static List<ProductPair> checkBuyed(String idcard) throws IOException {
         resetBuyed();
         resetSign_zero();
@@ -372,6 +659,13 @@ public class Client_shop {
         return Buyed;
     }
 
+    /**
+     * 检查准备买
+     *
+     * @param idcard 经办人身份证
+     * @return {@link List}<{@link ProductPair}>
+     * @throws IOException ioexception
+     */
     public static List<ProductPair> checkReadyToBuy(String idcard) throws IOException {
         resetReadytoBuy();
         resetSign_zero();
@@ -387,6 +681,15 @@ public class Client_shop {
         return ReadyToBuy;
     }
 
+    /**
+     * 删除准备买
+     *
+     * @param idcard 经办人身份证
+     * @param id     id
+     * @param num    全国矿工工会
+     * @return boolean
+     * @throws IOException ioexception
+     */
     public static boolean deleteReadyToBuy(String idcard, int id, int num) throws IOException {
         resetSign_delete();
         ProductPair p = new ProductPair();p.setNum(num);p.setId(id);
@@ -403,6 +706,13 @@ public class Client_shop {
         return sign_delete.equals("2");
     }
 
+    /**
+     * 得到钱
+     *
+     * @param idcard 经办人身份证
+     * @return double
+     * @throws IOException ioexception
+     */
     public static double getMoney(String idcard) throws IOException {
         resetSign_delete();
         Message message = new Message();
@@ -417,6 +727,13 @@ public class Client_shop {
         return current_money;
     }
 
+    /**
+     * 得到钱老师
+     *
+     * @param idcard 经办人身份证
+     * @return double
+     * @throws IOException ioexception
+     */
     public static double getMoney_Teacher(String idcard) throws IOException {
         resetSign_delete();
         Message message = new Message();

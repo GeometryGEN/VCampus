@@ -23,32 +23,63 @@ import javax.swing.*;
 import static UIviewer.Library.readLib.cardLayout;
 import static UIviewer.Library.readLib.panel;
 
+/**
+ * 客户端库
+ *
+ * @author Chen_GuanZhi
+ * @date 2022/09/03
+ */
 public class Client_library {
     static String id;
     public static String lastsearch;
     public static MyObjectOutputStream oos=null;
 
+    /**
+     * 得到id
+     *
+     * @return {@link String}
+     */
     public static String getId() {
         return id;
     }
 
+    /**
+     * 设置oos
+     *
+     * @param mos 金属氧化物半导体
+     */
     public static void setOos(MyObjectOutputStream mos){
         oos=mos;
     }
 
+    /**
+     * 组id
+     *
+     * @param id id
+     */
     public static void setId(String id) {
         Client_library.id = id;
     }
 
 
-    //管理员查看所有图书的请求和处理
+    /**
+     * requireshow所有书
+     *
+     * @throws IOException ioexception
+     *///管理员查看所有图书的请求和处理
     public static void RequireshowAllBooks()throws IOException{
         AllBooks.tableDate=null;
         Message message=new Message();
         message.setType(MessageType.MESSAGE_LIBRARY_ADMIN_LIST);
         oos.writeObject(message);
     }
-    
+
+    /**
+     * 显示所有图书
+     *
+     * @param books 书
+     * @throws IOException ioexception
+     */
     public static void showAllBooks(ArrayList<Book_admin>books)throws IOException{
         int n= books.size();
        // System.out.println(n);
@@ -78,7 +109,12 @@ public class Client_library {
         UIviewer.Library.adminLib.cardLayout.show(UIviewer.Library.adminLib.panel,"fa");
     }
 
-    //增加书籍的请求和处理
+    /**
+     * 需要添加书
+     *
+     * @param b b
+     * @throws IOException ioexception
+     *///增加书籍的请求和处理
     public static void RequireAddBook(Book_admin b)throws IOException{
         Message message=new Message();
         message.setData(b);
@@ -86,7 +122,12 @@ public class Client_library {
         oos.writeObject(message);
     }
 
-    //删除书籍的请求和处理
+    /**
+     * 需要删除书
+     *
+     * @param deleteID 删除id
+     * @throws IOException ioexception
+     *///删除书籍的请求和处理
     public static void RequireDeleteBook(String deleteID) throws IOException {
         Message message=new Message();
         message.setData(deleteID);
@@ -94,7 +135,12 @@ public class Client_library {
         oos.writeObject(message);
     }
 
-    //管理员新开一个罚单
+    /**
+     * 需要新惩罚
+     *
+     * @param p p
+     * @throws IOException ioexception
+     *///管理员新开一个罚单
     public static void RequireNewPunishment(Punishment p)throws IOException{
         applyTicket.myPunish=null;
         Message message=new Message();
@@ -103,7 +149,11 @@ public class Client_library {
         oos.writeObject(message);
     }
 
-    //用户查看自己图书
+    /**
+     * 需要我书
+     *
+     * @throws IOException ioexception
+     *///用户查看自己图书
     public static void RequireMyBooks()throws IOException{
         myBook.myBook=null;
         Message message=new Message();
@@ -111,6 +161,13 @@ public class Client_library {
         oos.writeObject(message);
     }
 
+    /**
+     * 给我书
+     *
+     * @param books 书
+     * @throws IOException          ioexception
+     * @throws InterruptedException 中断异常
+     */
     public static void showMyBooks(ArrayList<Book_borrower>books) throws IOException, InterruptedException {
         int n= books.size();
         myBook.myBook=new String[n][10];
@@ -133,7 +190,11 @@ public class Client_library {
         cardLayout.show(panel, "f2");
     }
 
-//查看自己的罚单
+    /**
+     * 需要我惩罚
+     *
+     * @throws IOException ioexception
+     *///查看自己的罚单
     public static void RequireMyPunishments()throws IOException{
         applyTicket.myPunish=null;
         Message message=new Message();
@@ -142,6 +203,12 @@ public class Client_library {
     }
 
 
+    /**
+     * 给我惩罚
+     *
+     * @param myPunishments 我惩罚
+     * @throws IOException ioexception
+     */
     public static void showMyPunishments(ArrayList<Punishment>myPunishments)throws IOException{
         int n= myPunishments.size();
        // System.out.println(n);
@@ -160,7 +227,12 @@ public class Client_library {
         cardLayout.show(panel, "f3");
     }
 
-    //搜索书籍
+    /**
+     * 需要搜索结果
+     *
+     * @param searchInfo 搜索信息
+     * @throws IOException ioexception
+     *///搜索书籍
     public static void RequireSearchResult(String searchInfo)throws IOException{
         lastsearch=searchInfo;
         searchResult.searchresult=null;
@@ -171,6 +243,12 @@ public class Client_library {
      //   System.out.println("search  "+searchInfo);
     }
 
+    /**
+     * 显示搜索结果
+     *
+     * @param books 书
+     * @throws IOException ioexception
+     */
     public static void showSearchResult(ArrayList<Book_borrower> books)throws IOException{
         int n= books.size();
       //  System.out.println(n);
@@ -208,6 +286,12 @@ public class Client_library {
         cardLayout.show(panel,"search");
     }
 
+    /**
+     * reqire返回
+     *
+     * @param rBook r书
+     * @throws IOException ioexception
+     */
     public static void reqireReturn(Book_borrower rBook)throws IOException{
         Message message=new Message();
         message.setData(rBook);
@@ -215,29 +299,62 @@ public class Client_library {
         oos.writeObject(message);
     }
 
+    /**
+     * reqire扩展
+     *
+     * @param eBook e书
+     * @throws IOException ioexception
+     */
     public static void reqireExtend(Book_borrower eBook)throws IOException{
         Message message=new Message();
         message.setData(eBook);
         message.setType(MessageType.MESSAGE_LIBRARY_EXTEND);
         oos.writeObject(message);
     }
+
+    /**
+     * reqire借
+     *
+     * @param bBook b书
+     * @throws IOException ioexception
+     */
     public static void reqireBorrow(Book_borrower bBook)throws IOException{
         Message message=new Message();
         message.setData(bBook);
         message.setType(MessageType.MESSAGE_LIBRARY_BORROW);
         oos.writeObject(message);
     }
+
+    /**
+     * reqire支付
+     *
+     * @param punishment 惩罚
+     * @throws IOException ioexception
+     */
     public static void reqirePay(Punishment punishment)throws IOException{
         Message message=new Message();
         message.setData(punishment);
         message.setType(MessageType.MESSAGE_LIBRARY_PAY);
         oos.writeObject(message);
     }
+
+    /**
+     * 管理员输入
+     *
+     * @throws IOException ioexception
+     */
     public static void admin_enter()throws IOException{
         Message message=new Message();
         message.setType(MessageType.MESSAGE_LIBRARY_ENTER);
         oos.writeObject(message);
     }
+
+    /**
+     * 管理员输入结果
+     *
+     * @param books 书
+     * @throws IOException ioexception
+     */
     public static void admin_enter_result(ArrayList<Book_admin>books) throws IOException {
         int n= books.size();
       //  System.out.println(n);
