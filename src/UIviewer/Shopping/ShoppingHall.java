@@ -22,6 +22,12 @@ import static UIviewer.Shopping.shopCustomer.cardLayout;
 import static UIviewer.Shopping.shopCustomer.panel;
 import static UIviewer.login.forgetPWD.forgetPWDUI;
 
+/**
+ * 购物大厅
+ *
+ * @author Chen_GuanZhi
+ * @date 2022/09/03
+ */
 public class ShoppingHall extends JPanel {
     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
     int width=(int ) screensize.getWidth(); //得到宽度
@@ -31,28 +37,54 @@ public class ShoppingHall extends JPanel {
 
     public static Object[][] data;
 
+    /**
+     * 获取数据
+     *
+     * @return {@link Object[][]}
+     */
     public static Object[][] getData() {
         return data;
     }
 
+    /**
+     * 集数据
+     *
+     * @param data 数据
+     */
     public static void setData(Object[][] data) {
         ShoppingHall.data = data;
     }
 
     public static String[][] shoptable;
 
+    /**
+     * resetshoptable
+     */
     public static void resetshoptable(){
         shoptable=null;
     }
 
+    /**
+     * 得到shoptable
+     *
+     * @return {@link String[][]}
+     */
     public static String[][] getShoptable() {
         return shoptable;
     }
 
+    /**
+     * 设置shoptable
+     *
+     * @param shoptable shoptable
+     */
     public static void setShoptable(String[][] shoptable) {
         ShoppingHall.shoptable = shoptable;
     }
 
+    /**
+     * 购物大厅
+     */
     public ShoppingHall() {
         setLayout(null);
 

@@ -19,34 +19,16 @@ import static UIviewer.login.forgetPWD.forgetPWDUI;
 /**
  * 调度
  *
- * @author 28468
+ * @author Chen_GuanZhi
  * @date 2022/09/03
  *///可以修改课程的时间、地点、课容量   排课功能
 public class Scheduling extends JPanel {
-    /**
-     * 拉
-     */
     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
-    /**
-     * 宽度
-     */
     int width=(int ) screensize.getWidth(); //得到宽度
-    /**
-     * 高度
-     */
     int height=(int ) screensize.getHeight();//获得高度
-    /**
-     * 宽度r
-     */
     double width_r=(double)(width)/1273;
-    /**
-     * 高r
-     */
     double height_r=(double)(height)/784;
 
-    /**
-     * 课程
-     */
     public static volatile String[][] courses=null;
 
     /**

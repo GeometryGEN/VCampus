@@ -11,6 +11,12 @@ import java.awt.event.ActionListener;
 import java.util.Timer;
 import UIhandler.Library.Client_library;
 
+/**
+ * 所有书
+ *
+ * @author Chen_GuanZhi
+ * @date 2022/09/03
+ */
 public class AllBooks extends JPanel {
     public static volatile String[][] tableDate=null;
     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
@@ -18,6 +24,10 @@ public class AllBooks extends JPanel {
     int height=(int ) screensize.getHeight();//获得高度
     double width_r=(double)(width)/1273;
     double height_r=(double)(height)/784;
+
+    /**
+     * 所有书
+     */
     public AllBooks(){
      setLayout(null);
         String[] tableTitle = {"书籍编号","书名", "作者","出版社","国家","价格", "是否可借","借出日期","借书人","归还日期","馆藏地"};

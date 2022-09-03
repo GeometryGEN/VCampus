@@ -10,6 +10,12 @@ import java.awt.Color;
 import static UIviewer.login.register.registerUI;
 import static UIviewer.login.forgetPWD.forgetPWDUI;
 
+/**
+ * 登录框
+ *
+ * @author Chen_GuanZhi
+ * @date 2022/09/03
+ */
 public class LoginFrame extends JFrame{
 
     private ClientToServer ucs = new ClientToServer();
@@ -18,6 +24,10 @@ public class LoginFrame extends JFrame{
     public static JPasswordField passwordField;
 
     public static JFrame jf = new JFrame("Login");
+
+    /**
+     * 登录框
+     */
     public LoginFrame(){
         //随机背景图片
         JLabel lblBackground = new JLabel(); // 创建一个标签组件对象
@@ -208,6 +218,11 @@ public class LoginFrame extends JFrame{
     }
 
 
+    /**
+     * 主要
+     *
+     * @param args arg游戏
+     */
     public static void main(String[] args) {
         EventQueue.invokeLater(new Runnable() {
             public void run() {

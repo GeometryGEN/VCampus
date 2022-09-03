@@ -32,7 +32,7 @@ public class ClientToServer {
     public static MyObjectOutputStream oos=null;
     public static MyObjectInputStream ois=null;
     public static String serverIP = Message.returnIP();
-    //public static String serverIP = "192.168.43.164";
+    //public static String serverIP = "10.210.97.60";
 
     public String getIDcard() {
         return switch (ID) {
@@ -94,6 +94,7 @@ public class ClientToServer {
      */
 
     public boolean checkStudent(String id, String pwd) throws Exception {
+        System.out.print(serverIP);
         s.setStudent_idcard(id);
         s.setStudent_pwd(pwd);
         socket = new Socket(serverIP, MessageType.PORT);

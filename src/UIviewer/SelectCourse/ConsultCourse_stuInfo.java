@@ -14,39 +14,16 @@ import java.awt.event.MouseListener;
 import java.io.IOException;
 
 /**
- * 咨询课程斯图信息
- *
- * @author 28468
+ * @author Chen_GuanZhi
  * @date 2022/09/03
  */
 public class ConsultCourse_stuInfo extends JPanel {
-    /**
-     * 拉
-     */
     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
-    /**
-     * 宽度
-     */
     int width=(int ) screensize.getWidth(); //得到宽度
-    /**
-     * 高度
-     */
     int height=(int ) screensize.getHeight();//获得高度
-    /**
-     * 宽度r
-     */
     double width_r=(double)(width)/1273;
-    /**
-     * 高r
-     */
     double height_r=(double)(height)/790;
-    /**
-     * 学生
-     */
     public static volatile String[][] students=null;
-    /**
-     * 咨询斯图
-     */
     public static volatile String[][] consult_stu=null;
 
     /**

@@ -10,13 +10,29 @@ import java.awt.event.ActionListener;
 import java.util.Timer;
 import UIhandler.Library.Client_library;
 
+/**
+ * 所有商品
+ *
+ * @author Chen_GuanZhi
+ * @date 2022/09/03
+ */
 public class AllGoods extends JPanel {
     public static String[][] tableDate;
 
+    /**
+     * 得到表日期
+     *
+     * @return {@link String[][]}
+     */
     public static String[][] getTableDate() {
         return tableDate;
     }
 
+    /**
+     * 设置表日期
+     *
+     * @param tableDate 表日期
+     */
     public static void setTableDate(String[][] tableDate) {
         AllGoods.tableDate = tableDate;
     }
@@ -26,6 +42,10 @@ public class AllGoods extends JPanel {
     int height=(int ) screensize.getHeight();//获得高度
     double width_r=(double)(width)/1273;
     double height_r=(double)(height)/784;
+
+    /**
+     * 所有商品
+     */
     public AllGoods(){
         setLayout(null);
         String[] tableTitle = {"商品编号","商品名称","商品价格","商品剩余数量","商品种类"};

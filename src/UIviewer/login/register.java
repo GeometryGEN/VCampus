@@ -8,8 +8,17 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * 注册
+ *
+ * @author Chen_GuanZhi
+ * @date 2022/09/03
+ */
 public class register {
 
+    /**
+     * 注册界面
+     */
     public static void registerUI() {
         JFrame jf = new JFrame("register");
         //东南大学logo

@@ -10,6 +10,12 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * 添加删除本
+ *
+ * @author Chen_GuanZhi
+ * @date 2022/09/03
+ */
 public class AddDeleteBook extends JPanel {
     public static String[] addinfo=new String[7];
     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
@@ -18,6 +24,10 @@ public class AddDeleteBook extends JPanel {
     double width_r=(double)(width)/1273;
     double height_r=(double)(height)/784;
     public static String deleteID;
+
+    /**
+     * 添加删除本
+     */
     public AddDeleteBook(){
         setLayout(null);
 

@@ -10,6 +10,12 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
 
+/**
+ * 我书
+ *
+ * @author Chen_GuanZhi
+ * @date 2022/09/03
+ */
 public class myBook extends JPanel {
     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
     int width=(int ) screensize.getWidth(); //得到宽度
@@ -18,6 +24,9 @@ public class myBook extends JPanel {
     double height_r=(double)(height)/784;
     public static volatile String[][] myBook=null;
 
+    /**
+     * 我书
+     */
     public myBook(){
         setLayout(null);
         String[] tableTitle = {"书籍编号","书名", "作者","出版社","国家","借出日期","应还日期","归还","续借"};

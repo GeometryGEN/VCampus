@@ -12,6 +12,12 @@ import java.io.File;
 import java.io.IOException;
 import ClientToServer.myInfo;
 
+/**
+ * 管理自由
+ *
+ * @author Chen_GuanZhi
+ * @date 2022/09/03
+ */
 public class adminLib extends JPanel {
     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
     int width=(int ) screensize.getWidth(); //得到宽度
@@ -20,13 +26,22 @@ public class adminLib extends JPanel {
     double height_r=(double)(height)/784;
     static String name;
     public static JPanel panel = new JPanel();
+
+    /**
+     * 得到名字
+     *
+     * @param a 一个
+     */
     static void getName(String a)
     {
         name=a;
     }
     public static CardLayout cardLayout=new CardLayout();
 
-        public adminLib(){
+    /**
+     * 管理自由
+     */
+    public adminLib(){
             String name=myInfo.getName();
             getName(name);
         setBounds(0,0, (int) (1273*width_r), (int) (790*height_r));

@@ -12,6 +12,12 @@ import java.io.IOException;
 import static UIviewer.Library.readLib.cardLayout;
 import static UIviewer.Library.readLib.panel;
 
+/**
+ * 图书搜索
+ *
+ * @author Chen_GuanZhi
+ * @date 2022/09/03
+ */
 public class bookSearch extends JPanel {
     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
     int width=(int ) screensize.getWidth(); //得到宽度
@@ -19,6 +25,9 @@ public class bookSearch extends JPanel {
     double width_r=(double)(width)/1273;
     double height_r=(double)(height)/784;
 
+    /**
+     * 图书搜索
+     */
     public bookSearch(){
         setLayout(null);
         //setBackground(Color.BLUE);

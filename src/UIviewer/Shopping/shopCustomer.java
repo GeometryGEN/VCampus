@@ -20,6 +20,12 @@ import ClientToServer.myInfo;
 import static UIviewer.Shopping.ShoppingHall.resetshoptable;
 import static UIviewer.Shopping.ShoppingHall.setShoptable;
 
+/**
+ * 店客户
+ *
+ * @author Chen_GuanZhi
+ * @date 2022/09/03
+ */
 public class shopCustomer extends JPanel {
     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
     int width=(int ) screensize.getWidth(); //得到宽度
@@ -32,17 +38,31 @@ public class shopCustomer extends JPanel {
     public static JButton b1=new JButton("主商城");
     public static JButton b2=new JButton("我的购物车");
     public static JButton b3=new JButton("订单记录");
+
+    /**
+     * 得到名字
+     *
+     * @param a 一个
+     */
     static void getName(String a)
     {
         name=a;
     }
     public static CardLayout cardLayout=new CardLayout();
 
+    /**
+     * 刷新
+     */
     public void refresh()
     {
 
     }
 
+    /**
+     * 店客户
+     *
+     * @throws Exception 异常
+     */
     public shopCustomer() throws Exception {
         String name=myInfo.getName();
         getName(name);

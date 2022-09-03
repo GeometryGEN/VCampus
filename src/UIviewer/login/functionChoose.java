@@ -29,11 +29,21 @@ import UIviewer.status_manage.student_status;
 import net.coobird.thumbnailator.Thumbnails;
 import ClientToServer.myInfo;
 
+/**
+ * 功能选择
+ *
+ * @author Chen_GuanZhi
+ * @date 2022/09/03
+ */
 public class functionChoose {
 
     public static JButton back_from_student_status;
     public static JFrame jf;
     public static JPanel fc_panel;
+
+    /**
+     * 功能选择界面
+     */
     public static void functionChooseUI() {
         Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
         int width=(int ) screensize.getWidth(); //得到宽度

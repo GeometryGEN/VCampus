@@ -7,6 +7,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+
+/**
+ * 订单历史
+ *
+ * @author Chen_GuanZhi
+ * @date 2022/09/03
+ */
 public class OrderHistory extends JPanel{
     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
     int width=(int ) screensize.getWidth(); //得到宽度
@@ -15,14 +22,27 @@ public class OrderHistory extends JPanel{
     double height_r=(double)(height)/784;
     public static volatile String [][] con_bought;
 
+    /**
+     * 得到反对买
+     *
+     * @return {@link String[][]}
+     */
     public static String[][] getCon_bought() {
         return con_bought;
     }
 
+    /**
+     * 设置骗买了
+     *
+     * @param con_bought 缺点买了
+     */
     public static void setCon_bought(String[][] con_bought) {
         OrderHistory.con_bought = con_bought;
     }
 
+    /**
+     * 订单历史
+     */
     public OrderHistory()
     {
         setLayout(null);
