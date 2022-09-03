@@ -48,10 +48,9 @@ public class chat_panel extends JPanel {
         } catch (IOException ex) {
             throw new RuntimeException(ex);
         }
-        System.out.println(friend.getId());
+      //  System.out.println(friend.getId());
     }
     public static void receive_file(Filetrans src,String filepath) throws IOException {
-        System.out.println("receive");
         Client_qicq.receive_file(src,filepath);
         //System.out.println(friend.getId());
     }
@@ -265,7 +264,7 @@ public class chat_panel extends JPanel {
         }
 
         jTextPane.setEditable(false);
-        System.out.println(1);
+       // System.out.println(1);
         jTextPane.updateUI();
         scrollPane.updateUI();
 

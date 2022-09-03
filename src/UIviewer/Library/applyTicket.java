@@ -43,7 +43,7 @@ public class applyTicket extends JPanel {
                         punishment.setCustomer_iD(Client_library.getId());
                         punishment.setPunishmentID(id);
                         punishment.setPrice(p);
-                        System.out.println(id);
+                   //     System.out.println(id);
                         Client_library.reqirePay(punishment);
                     } catch (IOException ex) {
                         throw new RuntimeException(ex);

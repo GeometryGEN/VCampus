@@ -85,7 +85,7 @@ public class searchResult extends JPanel {
                     try {
                         String id= (String) table_want.getValueAt(table_want.getSelectedRow(),0);
                         book.setId(id);
-                        System.out.println(id);
+                    //    System.out.println(id);
                         Client_library.reqireBorrow(book);
                     } catch (IOException ex) {
                         throw new RuntimeException(ex);

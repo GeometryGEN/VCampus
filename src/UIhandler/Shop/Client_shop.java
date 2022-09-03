@@ -427,9 +427,9 @@ public class Client_shop {
         //发送学生对象
         oos.writeObject(message);
         //等待接受学生
-        System.out.println("@@@@@");
+       // System.out.println("@@@@@");
         while (sign_delete.equals("1")) Thread.onSpinWait();
-        System.out.println("22222222");
+       // System.out.println("22222222");
         return current_money;
     }
 

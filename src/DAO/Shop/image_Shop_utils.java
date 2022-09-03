@@ -32,9 +32,9 @@ public class image_Shop_utils {
             ps.setBinaryStream(2, in, in.available());
             int count = ps.executeUpdate();
             if (count > 0) {
-                System.out.println("插入成功！");
+           //     System.out.println("插入成功！");
             } else {
-                System.out.println("插入失败！");
+            //    System.out.println("插入失败！");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -64,7 +64,7 @@ public class image_Shop_utils {
             while (rs.next()) {
                 InputStream in = rs.getBinaryStream("photo");
                 Image_utils.readBin2Image(in,String.valueOf(id));
-                System.out.println("图片读取成功！");
+            //    System.out.println("图片读取成功！");
              //   JDBC_Connector.close(rs,ps,conn);
                 ps.close();
                 rs.close();

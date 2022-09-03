@@ -38,7 +38,7 @@ public class friend_list{
         count_tag=0;
 
 
-        System.out.println("shit3");
+       //System.out.println("shit3");
         //admin
         if(myInfo.getType()!=3){
             tag[count_tag]=new tag_slice(width_r,height_r,"管理员");
@@ -47,7 +47,7 @@ public class friend_list{
             admin.setName("公告");
             admin.setOnline(1);
             friend_start_tag[count_tag]=count_friend;
-            System.out.println("shit4");
+         //   System.out.println("shit4");
             friendslice[count_friend]=new friend_slice(width-1,height/number_per_page,width_r,height_r,admin);
             roll_panel.add(friendslice[count_friend++]);
             friend_end_tag[count_tag]=count_friend;
@@ -105,9 +105,9 @@ public class friend_list{
         jPanel.updateUI();
     }
     public static void show_unread(String sender){
-        System.out.println(11111);
+      //  System.out.println(11111);
         for(int i=1;i<count_friend;i++){
-            System.out.println(friendslice[i].getFriend().getId());
+         //   System.out.println(friendslice[i].getFriend().getId());
             if(friendslice[i].getFriend().getId().equals(sender)){
                 friendslice[i].setunread(sender);
             }

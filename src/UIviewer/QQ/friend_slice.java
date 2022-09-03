@@ -169,7 +169,7 @@ public class friend_slice extends JLabel {
                 }
             });
         }
-        System.out.println("shit5");
+       // System.out.println("shit5");
         if ((friend.getOnline() == 1) || (myInfo.getType()==3)) {
             setText(friend.getName() + "                                                 ");
             setForeground(Color.black);
