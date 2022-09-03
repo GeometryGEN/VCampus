@@ -334,7 +334,7 @@ public class ClientToServerThread extends Thread {
                     Client_qicq.Require_friend_list();
                     change_panel.change_succeed();
                 }
-                else if(message.getType().equals(MessageType.MESSAGE_QICQ_GET_ANNOUNCEMENT_RET)){
+               // else if(message.getType().equals(MessageType.MESSAGE_QICQ_GET_ANNOUNCEMENT_RET)){
                     System.out.println(2);
                     ArrayList<Message>messages=(ArrayList<Message>)message.getData();
                     Client_qicq.Show_announcement(messages);
@@ -374,7 +374,7 @@ public class ClientToServerThread extends Thread {
                     JOptionPane.showMessageDialog(null,"课程申报失败，已经存在相同课程！");
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_CURRICULUM_SHOW_STU_RET)){
-                    System.out.println("return");
+               //     System.out.println("return");
                      Client_curriculum.show_my_students((ArrayList<Student>)message.getData());
 
                 }
@@ -388,7 +388,7 @@ public class ClientToServerThread extends Thread {
                 else if(message.getType().equals(MessageType.MESSAGE_CURRICULUM_LIST_TEACHER_COURSE_RET)){
                     Client_curriculum.showTeacherChoice((ArrayList<Course>) message.getData());
                 }
-                System.out.println("next");
+             //   System.out.println("next");
             } catch (InterruptedIOException e){
                 break;
             }

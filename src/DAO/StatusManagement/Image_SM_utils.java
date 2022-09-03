@@ -74,7 +74,7 @@ public class Image_SM_utils {
                 while ((len = in.read(buf)) != -1) {
                  //   out.write(buf, 0, len);
                 }
-                System.out.println("图片读取成功！");
+              //  System.out.println("图片读取成功！");
              //   JDBC_Connector.close(rs,ps,conn);
                 rs.close();
                 ps.close();

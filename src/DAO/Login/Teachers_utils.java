@@ -144,10 +144,10 @@ public class Teachers_utils {
         ps.setString(1,t.getTeacher_pwd());
         boolean re = ps.executeUpdate()>0;
         ps.close();
-        if(re)
-            System.out.println("教师"+username+"密码修改成功！");
-        else
-            System.out.println("教师"+username+"密码修改失败！");
+        //if(re)
+        //    System.out.println("教师"+username+"密码修改成功！");
+        //else
+        //    System.out.println("教师"+username+"密码修改失败！");
         ps.close();
         return re;
     }

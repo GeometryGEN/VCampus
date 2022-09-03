@@ -34,10 +34,10 @@ public class Admin_Shop_utils {
         ps.setInt(7,p.getProduct_toshop());
         ps.setString(8,p.getProduct_type());
         boolean re = ps.executeUpdate()>0;
-        if(re)
-            System.out.println("商品"+p.getProduct_name()+"添加成功！");
-        else
-            System.out.println("商品添加失败！");
+       // if(re)
+        //    System.out.println("商品"+p.getProduct_name()+"添加成功！");
+        //else
+         //   System.out.println("商品添加失败！");
         ps.close();
        // JDBC_Connector.close(null, ps, connection);
         return re;

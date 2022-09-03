@@ -249,13 +249,13 @@ public class Library_manager implements Serializable{
             }
             String ex=myTime.dateToString(rs.getDate("expire_date"));
             String bookid=rs.getString("id");
-            System.out.println("original "+ex);
+         //   System.out.println("original "+ex);
             Date next=new SimpleDateFormat("yyyy-MM-dd").parse(ex);
             Calendar rightNow = Calendar.getInstance();
             rightNow.setTime(next);
             rightNow.add(Calendar.DAY_OF_YEAR,30);//日期加30天
             Date new_expire=rightNow.getTime();
-            System.out.println(myTime.dateToString(new_expire));
+        //    System.out.println(myTime.dateToString(new_expire));
             sql="update library set expire_date=?, extended=1 where id=?";
             st=conn.prepareStatement(sql);
             st.setString(1,myTime.dateToString(new_expire));
@@ -288,7 +288,7 @@ public class Library_manager implements Serializable{
         String sql="select * from students where Student_idcard=?;";
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,p.Customer_iD);
-        System.out.println("punish  "+p.Customer_iD);
+     //   System.out.println("punish  "+p.Customer_iD);
         ResultSet rs=st.executeQuery();
         if(rs.next()){
             double curmoney=rs.getDouble("Student_money")-p.price;

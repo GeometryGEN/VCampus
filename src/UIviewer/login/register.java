@@ -153,7 +153,7 @@ public class register {
                         s.setStudent_email(mail);
                         s.setStudent_gender(gender);
                         if(ClientToServer.registerStudent(s)) {
-                            System.out.println("学生"+name+"注册成功！");
+                        //    System.out.println("学生"+name+"注册成功！");
                             JOptionPane.showMessageDialog(jf, "注册成功!");
                             jf.dispose();
                         }

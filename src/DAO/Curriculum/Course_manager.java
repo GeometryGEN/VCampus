@@ -353,7 +353,7 @@ public class Course_manager {
             ResultSet rs1=st1.executeQuery();
             rs1.next();
             String newid=String.valueOf(rs1.getInt("total")+1);
-            System.out.println(newid);
+          //  System.out.println(newid);
             //ServerToClient.add_opencourse(c);
             sql="insert into opencourse(name,teacher_name,teacher_id,point,hour,status,id) values(?,?,?,?,?,0,?);";
             st= conn.prepareStatement(sql);
