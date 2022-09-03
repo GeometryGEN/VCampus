@@ -11,15 +11,45 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 
+/**
+ * selcourse
+ *
+ * @author 28468
+ * @date 2022/09/03
+ */
 public class Selcourse extends JPanel {
+    /**
+     * 拉
+     */
     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
+    /**
+     * 宽度
+     */
     int width=(int ) screensize.getWidth(); //得到宽度
+    /**
+     * 高度
+     */
     int height=(int ) screensize.getHeight();//获得高度
+    /**
+     * 宽度r
+     */
     double width_r=(double)(width)/1273;
+    /**
+     * 高r
+     */
     double height_r=(double)(height)/790;
+    /**
+     * 卡布局
+     */
     public static CardLayout cardLayout=new CardLayout();
+    /**
+     * 面板
+     */
     public static JPanel panel=new JPanel();
 
+    /**
+     * selcourse
+     */
     public Selcourse()
     {
         setBounds(0,0,width,height);

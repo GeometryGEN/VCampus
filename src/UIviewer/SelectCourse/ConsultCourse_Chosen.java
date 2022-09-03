@@ -11,13 +11,41 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
 
+/**
+ * 咨询课程选择
+ *
+ * @author 28468
+ * @date 2022/09/03
+ */
 public class ConsultCourse_Chosen extends JPanel {
+    /**
+     * 拉
+     */
     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
+    /**
+     * 宽度
+     */
     int width=(int ) screensize.getWidth(); //得到宽度
+    /**
+     * 高度
+     */
     int height=(int ) screensize.getHeight();//获得高度
+    /**
+     * 宽度r
+     */
     double width_r=(double)(width)/1273;
+    /**
+     * 高r
+     */
     double height_r=(double)(height)/790;
+    /**
+     * 咨询课程选择
+     */
     public static volatile String[][] consultCourse_chosen=null;
+
+    /**
+     * 咨询课程选择
+     */
     public ConsultCourse_Chosen()
     {
         setLayout(null);

@@ -14,13 +14,41 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
 
+/**
+ * 检查过程
+ *
+ * @author 28468
+ * @date 2022/09/03
+ */
 public class Check_Course extends JPanel{
-public static volatile String[][] checkcourse=null;
+    /**
+     * checkcourse
+     */
+    public static volatile String[][] checkcourse=null;
+    /**
+     * 拉
+     */
     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
+    /**
+     * 宽度
+     */
     int width=(int ) screensize.getWidth(); //得到宽度
+    /**
+     * 高度
+     */
     int height=(int ) screensize.getHeight();//获得高度
+    /**
+     * 宽度r
+     */
     double width_r=(double)(width)/1273;
+    /**
+     * 高r
+     */
     double height_r=(double)(height)/790;
+
+    /**
+     * 检查过程
+     */
     public Check_Course()
     {
         setLayout(null);

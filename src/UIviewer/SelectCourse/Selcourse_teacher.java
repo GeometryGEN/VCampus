@@ -11,17 +11,53 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.channels.spi.AbstractInterruptibleChannel;
 
+/**
+ * selcourse老师
+ *
+ * @author 28468
+ * @date 2022/09/03
+ */
 public class Selcourse_teacher extends JPanel {
+    /**
+     * 拉
+     */
     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
+    /**
+     * 宽度
+     */
     int width=(int ) screensize.getWidth(); //得到宽度
+    /**
+     * 高度
+     */
     int height=(int ) screensize.getHeight();//获得高度
+    /**
+     * 宽度r
+     */
     double width_r=(double)(width)/1273;
+    /**
+     * 高r
+     */
     double height_r=(double)(height)/790;
+    /**
+     * 卡布局
+     */
     public static CardLayout cardLayout=new CardLayout();
+    /**
+     * 面板
+     */
     public static JPanel panel=new JPanel();
+    /**
+     * 卡layout1
+     */
     public static CardLayout cardLayout1=new CardLayout();
+    /**
+     * panel1
+     */
     public static JPanel panel1=new JPanel();
 
+    /**
+     * selcourse老师
+     */
     public Selcourse_teacher()
     {
         setBounds(0,0,(int)(1273*width_r),(int)(790*height_r));

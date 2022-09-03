@@ -4,14 +4,41 @@ import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
+/**
+ * 我学生
+ *
+ * @author 28468
+ * @date 2022/09/03
+ */
 public class My_students extends JPanel{
+    /**
+     * 拉
+     */
     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
+    /**
+     * 宽度
+     */
     int width=(int ) screensize.getWidth(); //得到宽度
+    /**
+     * 高度
+     */
     int height=(int ) screensize.getHeight();//获得高度
+    /**
+     * 宽度r
+     */
     double width_r=(double)(width)/1273;
+    /**
+     * 高r
+     */
     double height_r=(double)(height)/790;
+    /**
+     * 学生
+     */
     public static volatile String[][] students=null;
 
+    /**
+     * 我学生
+     */
     public My_students() {
 
         setLayout(null);

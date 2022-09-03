@@ -4,6 +4,13 @@ import ClientToServer.myInfo;
 
 import javax.swing.*;
 import java.awt.*;
+
+/**
+ * 当前课程人
+ *
+ * @author 28468
+ * @date 2022/09/03
+ */
 public class CurrentCourse_Man extends JPanel {
 
     /*public CurrentCourse_Man()

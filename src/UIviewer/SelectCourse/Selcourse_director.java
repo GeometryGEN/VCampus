@@ -13,16 +13,46 @@ import java.io.IOException;
 
 import static UIhandler.Currirulum.Client_curriculum.RequireallCourse;
 
+/**
+ * selcourse导演
+ *
+ * @author 28468
+ * @date 2022/09/03
+ */
 public class Selcourse_director extends JPanel {
+    /**
+     * 拉
+     */
     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
+    /**
+     * 宽度
+     */
     int width=(int ) screensize.getWidth(); //得到宽度
+    /**
+     * 高度
+     */
     int height=(int ) screensize.getHeight();//获得高度
+    /**
+     * 宽度r
+     */
     double width_r=(double)(width)/1273;
+    /**
+     * 高r
+     */
     double height_r=(double)(height)/790;
 
+    /**
+     * 卡布局
+     */
     public static CardLayout cardLayout=new CardLayout();
+    /**
+     * 面板
+     */
     public static JPanel panel=new JPanel();
 
+    /**
+     * selcourse导演
+     */
     public Selcourse_director()
     {
         setBounds(0,0,(int)(1273*width_r),(int)(790*height_r));
