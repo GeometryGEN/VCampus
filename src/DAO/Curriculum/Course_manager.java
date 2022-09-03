@@ -20,11 +20,31 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Random;
 
-//gsh
+/**
+ * 课程管理
+ *@description 管理选课模块的数据库操作
+ * @author Shuheng_Gu
+ * @date 2022/09/03
+ *///gsh
 public class Course_manager {
+    /**
+     * id
+     */
     private String id;
+    /**
+     * JDBC链接
+     */
     private static Connection conn;
+    /**
+     * 类型
+     */
     private int type;
+
+    /**
+     * 课程管理构造函数
+     *
+     * @param id id
+     */
     public Course_manager(String id) {
         this.id = id;
         try {
@@ -33,6 +53,13 @@ public class Course_manager {
             e.printStackTrace();
         }
     }
+
+    /**
+     * 把上课时间从String转为数组，方便设计课表
+     *
+     * @param s 年代
+     * @return {@link int[][][]}
+     */
     public int[][][] change(String s){
         int[][][] a = new int[17][6][14];
         int week_l,week_r,day,sec_l,sec_r;
@@ -66,7 +93,7 @@ public class Course_manager {
             sec_l=Integer.parseInt(ss[i].substring(index+4,index3));
             int index4=ss[i].indexOf("节");
             sec_r=Integer.parseInt(ss[i].substring(index3+1,index4));
-         //   System.out.println(week_l+"->"+week_r+" "+day+" "+sec_l+"->"+sec_r);
+            //   System.out.println(week_l+"->"+week_r+" "+day+" "+sec_l+"->"+sec_r);
             for(int p=week_l;p<=week_r;p++){
                 for(int q=sec_l;q<=sec_r;q++){
                     a[p][day][q]=1;
@@ -75,6 +102,14 @@ public class Course_manager {
         }
         return a;
     }
+
+    /**
+     * 查询课程
+     *
+     * @param s 课程名/教师/编号
+     * @return {@link ArrayList}<{@link Course}>
+     * @throws SQLException sqlexception异常
+     */
     public ArrayList<Course> query_courses(String s) throws SQLException {
         ArrayList<Course> courses = new ArrayList<Course>();
         String sql="select * from curriculum where id like ? or name like ? or teacher like ? order by id;";
@@ -99,6 +134,13 @@ public class Course_manager {
         }
         return courses;
     }
+
+    /**
+     * 列出所有课程
+     *
+     * @return {@link ArrayList}<{@link Course}>
+     * @throws SQLException sqlexception异常
+     */
     public ArrayList<Course> list_all_courses() throws SQLException {
         ArrayList<Course> courses = new ArrayList<Course>();
         String sql="select * from curriculum order by id;";
@@ -122,6 +164,13 @@ public class Course_manager {
         st.close();
         return courses;
     }
+
+    /**
+     * 得到我的课程列表
+     *
+     * @return {@link ArrayList}<{@link Course}>
+     * @throws SQLException sqlexception异常
+     */
     public ArrayList<Course> list_my_courses() throws SQLException {
         ArrayList<Course> courses = new ArrayList<Course>();
         String sql="select * from elective where stu_id=? order by course_id;";
@@ -152,6 +201,13 @@ public class Course_manager {
         st.close();
         return courses;
     }
+
+    /**
+     * 老师的课程列表
+     *
+     * @return {@link ArrayList}<{@link Course}>
+     * @throws SQLException sqlexception异常
+     */
     public ArrayList<Course>list_tea_course() throws SQLException{
         ArrayList<Course> courses = new ArrayList<Course>();
         String sql="select * from teaching where tea_id=? order by course_id;";
@@ -183,6 +239,14 @@ public class Course_manager {
         st.close();
         return courses;
     }
+
+    /**
+     * 选课
+     *
+     * @param c 课程
+     * @return {@link Message}
+     * @throws SQLException sqlexception异常
+     */
     public Message choose(Course c) throws SQLException {
         ArrayList<Course> courses = list_my_courses();
         int [][][]a=new int[17][6][14];
@@ -240,6 +304,13 @@ public class Course_manager {
         st.close();
         return message;
     }
+
+    /**
+     * 我可以选择的课程列表
+     *
+     * @return {@link ArrayList}<{@link Course}>
+     * @throws SQLException sqlexception异常
+     */
     public ArrayList<Course> list_I_can_choose() throws SQLException {
         ArrayList<Course>courses=new ArrayList<>();
         String sql="select * from curriculum order by id;";
@@ -271,6 +342,13 @@ public class Course_manager {
         st.close();
         return courses;
     }
+
+    /**
+     * 退选课程
+     *
+     * @param s 课程id
+     * @throws SQLException sqlexception异常
+     */
     public void drop(String s) throws SQLException {
         String sql="delete from elective where course_id=? and stu_id=?;";
         PreparedStatement st=conn.prepareStatement(sql);
@@ -279,6 +357,13 @@ public class Course_manager {
         st.executeUpdate();
         st.close();
     }
+
+    /**
+     * 添加课程
+     *
+     * @param c 课程
+     * @throws SQLException sqlexception异常
+     */
     public void add(Course c) throws SQLException {
         String sql="insert into curriculum(name,time,point,teacher,size,id,classroom) values(?,?,?,?,?,?,?,?);";
         PreparedStatement st=conn.prepareStatement(sql);
@@ -292,6 +377,13 @@ public class Course_manager {
         st.executeUpdate();
         st.close();
     }
+
+    /**
+     * 删除课程
+     *
+     * @param s 课程id
+     * @throws SQLException sqlexception异常
+     */
     public void delete(String s) throws SQLException {
         String sql="delete from curriculum where id=?;";
         PreparedStatement st=conn.prepareStatement(sql);
@@ -299,6 +391,13 @@ public class Course_manager {
         st.executeUpdate();
         st.close();
     }
+
+    /**
+     * 时间表
+     *
+     * @return {@link String[][][]}
+     * @throws SQLException sqlexception异常
+     */
     public String[][][] schedule() throws SQLException {
         String [][][]ans=new String[17][6][14];
         ArrayList<Course>courses=list_my_courses();
@@ -310,7 +409,7 @@ public class Course_manager {
                     for(int r=1;r<=13;r++){
                         if(cc.class_time[p][q][r]==1) {
                             ans[p][q][r]=cc.name;
-                    //        System.out.println(cc.name);
+                            //        System.out.println(cc.name);
                         }
                     }
                 }
@@ -318,6 +417,13 @@ public class Course_manager {
         }
         return ans;
     }
+
+    /**
+     * 老师课程表
+     *
+     * @return {@link String[][][]}
+     * @throws SQLException sqlexception异常
+     */
     public String[][][] list_tea_schedule()throws SQLException{
         String [][][]ans=new String[17][6][14];
         ArrayList<Course>courses=list_tea_course();
@@ -328,7 +434,7 @@ public class Course_manager {
                 for(int q=1;q<=5;q++){
                     for(int r=1;r<=13;r++){
                         if(cc.class_time[p][q][r]==1) {
-                    //        System.out.println(cc.name);
+                            //        System.out.println(cc.name);
                             ans[p][q][r]=cc.name;
                         }
                     }
@@ -337,6 +443,14 @@ public class Course_manager {
         }
         return ans;
     }
+
+    /**
+     * 申请开课
+     *
+     * @param c 开课
+     * @return {@link Message}
+     * @throws SQLException sqlexception异常
+     */
     public Message apply(Opencourse c) throws SQLException {
         String sql="select * from curriculum where name=?;";
         PreparedStatement st=conn.prepareStatement(sql);
@@ -353,7 +467,7 @@ public class Course_manager {
             ResultSet rs1=st1.executeQuery();
             rs1.next();
             String newid=String.valueOf(rs1.getInt("total")+1);
-          //  System.out.println(newid);
+            System.out.println(newid);
             //ServerToClient.add_opencourse(c);
             sql="insert into opencourse(name,teacher_name,teacher_id,point,hour,status,id) values(?,?,?,?,?,0,?);";
             st= conn.prepareStatement(sql);
@@ -371,6 +485,15 @@ public class Course_manager {
         st.close();
         return message;
     }
+
+    /**
+     * 拒绝开课
+     *
+     * @param course_id 课程id
+     * @param reason    原因
+     * @throws IOException  ioexception
+     * @throws SQLException sqlexception异常
+     */
     public void refuse(String course_id,String reason) throws IOException, SQLException {
         String sql="update opencourse set status=1, comment=? where id=?;";
         PreparedStatement st= conn.prepareStatement(sql);
@@ -380,6 +503,13 @@ public class Course_manager {
         st.close();
 
     }
+
+    /**
+     * 批准开课
+     *
+     * @param c 课程
+     * @throws SQLException sqlexception异常
+     */
     public void approve(Course c) throws SQLException {
         String sql="update opencourse set status=2, comment=? where id=?;";
         PreparedStatement st= conn.prepareStatement(sql);
@@ -412,6 +542,14 @@ public class Course_manager {
         rs.close();
         st.close();
     }
+
+    /**
+     * opencourse列表
+     *
+     * @param id 教师id
+     * @return {@link ArrayList}<{@link Opencourse}>
+     * @throws SQLException sqlexception异常
+     */
     public ArrayList<Opencourse> list_tea_opencourse(String id) throws SQLException{
         ArrayList<Opencourse>opencourses=new ArrayList<>();
         String sql="select * from opencourse where teacher_id=?";
@@ -434,6 +572,13 @@ public class Course_manager {
         st.close();
         return opencourses;
     }
+
+    /**
+     * 管理员列出开课申请
+     *
+     * @return {@link Message}
+     * @throws SQLException sqlexception异常
+     */
     public Message admin_list_application() throws SQLException {
         Message message=new Message();
         message.setType(MessageType.MESSAGE_CURRICULUM_LIST_ADMIN_APPLICATION_RET);
@@ -456,6 +601,14 @@ public class Course_manager {
         message.setData(opencourses);
         return message;
     }
+
+    /**
+     * 得到选课的学生
+     *
+     * @param s 课程id
+     * @return {@link ArrayList}<{@link Student}>
+     * @throws SQLException sqlexception异常
+     */
     public ArrayList<Student>get_student(String s) throws SQLException {
         ArrayList<Student>res=new ArrayList<Student>();
         String sql="select * from curriculum where id=?;";
@@ -485,8 +638,15 @@ public class Course_manager {
         st.close();
         return res;
     }
+
+    /**
+     * 管理安排课程
+     *
+     * @param c 课程
+     * @throws SQLException sqlexception异常
+     */
     public void admin_arrange(Course c) throws SQLException {
-   //     System.out.print("    "+c.classroom);
+        //     System.out.print("    "+c.classroom);
         String sql="update curriculum set classroom=?, time=?, size=? where id=?";
         PreparedStatement st= conn.prepareStatement(sql);
         st.setString(1,c.classroom);
@@ -496,6 +656,12 @@ public class Course_manager {
         st.executeUpdate();
         st.close();
     }
+
+    /**
+     * 自动排课（待实现）
+     *
+     * @throws SQLException sqlexception异常
+     */
     public void auto_arrage() throws SQLException {
         String sql="select * from curriculum;";
         PreparedStatement st=conn.prepareStatement(sql);

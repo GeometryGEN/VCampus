@@ -12,13 +12,37 @@ import java.io.Serializable;
  */
 public class Message implements Serializable {
 
+    /**
+     * 发送方
+     */
     private String sender;    //发送者
+    /**
+     * 接受者
+     */
     private String getter;    //接受者
+    /**
+     * 发送时间
+     */
     private String sendTime;  //发送时间
+    /**
+     * 标志号
+     */
     private String uid;       // 标志号
+    /**
+     * 消息类型
+     */
     private String mesType;   // 消息类型
+    /**
+     * 状态码
+     */
     private int code;         // 状态码
+    /**
+     * 数据
+     */
     private Object data;      // 数据
+    /**
+     * 是否为文件
+     */
     public int isfile;
 
     public Message() {
@@ -31,6 +55,9 @@ public class Message implements Serializable {
         data=null;
     }
 
+    /**
+     * 钱
+     */
     private double money;    //钱
     public static String returnIP(){
         return getIP.getHostIp();

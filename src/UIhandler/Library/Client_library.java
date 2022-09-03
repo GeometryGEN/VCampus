@@ -46,7 +46,7 @@ public class Client_library {
     /**
      * 设置oos
      *
-     * @param mos 金属氧化物半导体
+     * @param mos socket.outpustream
      */
     public static void setOos(MyObjectOutputStream mos){
         oos=mos;

@@ -7,11 +7,14 @@ import java.io.*;
 import java.sql.*;
 
 /**
- * The type Save image.
+ * 在数据库保存图像
+ *
+ * @author Shuheng_Gu
+ * @date 2022/09/03
  */
 public class Save_image {
     /**
-     * The entry point of application.
+     * 加入图片
      *
      * @param args the input arguments
      * @throws FileNotFoundException the file not found exception
