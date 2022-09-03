@@ -13,12 +13,26 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * 管理状态
+ *
+ * @author Zhangyang_Ge
+ * @date 2022/09/03
+ */
 public class manage_status{
     static JButton jb_back_to_search;
     static public JPanel search_panel;
     static public JPanel status_jpanel;
     static public JPanel manage_panel;
     public static final JTextField search_text=new RoundJTextField(15);
+
+    /**
+     * 管理状态
+     *
+     * @param width  宽度
+     * @param height 高度
+     * @throws Exception 异常
+     */
     public manage_status(int width, int height) throws Exception {
         double width_r=(double)(width)/1920;
         double height_r=(double)(height)/1080;

@@ -16,6 +16,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
 
+/**
+ * 客户端状态
+ *
+ * @author Zhangyang_Ge
+ * @date 2022/09/03
+ */
 public class Client_status {
 
     public static volatile Student s = null;   //当前已登录账号的那个学生对象
@@ -25,11 +31,20 @@ public class Client_status {
     public static volatile Admin a;
     static MyObjectOutputStream oos=null;
 
+    /**
+     * 设置oos
+     *
+     * @param mos 金属氧化物半导体
+     */
     public static void setOos(MyObjectOutputStream mos) {
         Client_status.oos = mos;
     }
 
-    /*public static String sign_renew;          //是否更新成功的标志 1 正在更新  2 成功  3 失败
+    /**
+     * 斯图输入
+     *
+     * @throws Exception 异常
+     *//*public static String sign_renew;          //是否更新成功的标志 1 正在更新  2 成功  3 失败
 
     public static void resetS(){
         s=null;
@@ -134,6 +149,13 @@ public class Client_status {
         message.setData(myInfo.getId());
         oos.writeObject(message);
     }
+
+    /**
+     * 显示studata
+     *
+     * @param iat iat
+     * @throws Exception 异常
+     */
     public static void show_studata(ImageAndTable iat) throws Exception {
       //  System.out.println("opening  "+width+" "+height);
         //functionChoose.jf.remove(functionChoose.jf.getContentPane());
@@ -142,6 +164,10 @@ public class Client_status {
     }
     static double width_r,height_r;
     static int height,width,icon1_width,icon1_height;
+
+    /**
+     * ini
+     */
     public static void ini()
     {
         Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
@@ -152,6 +178,13 @@ public class Client_status {
         icon1_width =160;
         icon1_height=50;
     }
+
+    /**
+     * 显示信息
+     *
+     * @param iat iat
+     * @throws Exception 异常
+     */
     public static void show_info(ImageAndTable iat) throws Exception {
 
         manage_status.status_jpanel=student_status.status_panel(width_r,height_r,width-2*(60+icon1_width)*width_r,(1080-70-icon1_height)*height_r,iat);
@@ -162,12 +195,25 @@ public class Client_status {
         //manage_status.status_jpanel.setVisible(true);
     }
 
+    /**
+     * 改变
+     *
+     * @param s 年代
+     * @throws IOException ioexception
+     */
     public static void change(Student s) throws IOException {
         Message message=new Message();
         message.setData(s);
         message.setType(MessageType.MESSAGE_STATUS_CONFIRM);
         oos.writeObject(message);
     }
+
+    /**
+     * 需要信息
+     *
+     * @param s 年代
+     * @throws IOException ioexception
+     */
     public static void requireInfo(String s) throws IOException {
         Message message=new Message();
         message.setData(s);

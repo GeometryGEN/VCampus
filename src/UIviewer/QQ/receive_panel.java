@@ -18,14 +18,32 @@ import java.util.ArrayList;
 
 import javax.swing.*;
 
+/**
+ * 接收板
+ *
+ * @author Zhangyang_Ge
+ * @date 2022/09/03
+ */
 public class receive_panel {
     static File file;
+
+    /**
+     * 主要
+     *
+     * @param args arg游戏
+     */
     public static void main(String[] args) {
 
         //createWindow();
 
     }
     static ArrayList<Filetrans>files;
+
+    /**
+     * 创建窗口
+     *
+     * @param f f
+     */
     public static void createWindow(ArrayList<Filetrans> f) {
         JFrame frame;
         frame = new JFrame("接收文件");
@@ -42,6 +60,11 @@ public class receive_panel {
 
     }
 
+    /**
+     * 创建用户界面
+     *
+     * @param frame 框架
+     */
     private static void createUI(final JFrame frame) {
 
         JPanel panel = new JPanel();

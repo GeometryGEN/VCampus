@@ -20,26 +20,62 @@ import java.io.IOException;
 import static UIviewer.QQ.chat_panel.send_button_height;
 import static UIviewer.QQ.chat_panel.send_button_width;
 
+/**
+ * 朋友片
+ *
+ * @author Zhangyang_Ge
+ * @date 2022/09/03
+ */
 public class friend_slice extends JLabel {
+    /**
+     * 更新
+     */
     private void update(){//更新UI界面；
         this.updateUI();
     }
     private double width_r;
     private double height_r;
+
+    /**
+     * 交流输入
+     *
+     * @param jLabel j标签
+     */
     private void exchangeEnter(JLabel jLabel) {
         jLabel.setBackground(new Color(242,242,242));
         update();
     }
 
+    /**
+     * 交易所退出
+     *
+     * @param jLabel j标签
+     */
     private void exchangeExited(JLabel jLabel) {
         jLabel.setBackground(new Color(255,255,255));
         update();
     }
 
     Friend friend;
+
+    /**
+     * 得到朋友
+     *
+     * @return {@link Friend}
+     */
     public Friend getFriend(){
         return this.friend;
     }
+
+    /**
+     * 朋友片
+     *
+     * @param width    宽度
+     * @param height   高度
+     * @param width_r  宽度r
+     * @param height_r 高r
+     * @param friend   朋友
+     */
     public friend_slice( int width, int height, double width_r, double height_r, Friend friend) {
         this.friend = friend;
         this.width_r = width_r;
@@ -181,6 +217,12 @@ public class friend_slice extends JLabel {
         setFont(new Font("宋体", Font.BOLD, (int) (25 * width_r)));
         setHorizontalTextPosition(JLabel.RIGHT);
     }
+
+    /**
+     * setunread
+     *
+     * @param sender 发送方
+     */
     public void setunread(String sender) {
         if((main_panel.cpn!=null)&&(main_panel.cpn.isVisible())&&( main_panel.cpn.getFriend().getId().equals(sender))){
             try {
