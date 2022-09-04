@@ -34,39 +34,87 @@ import utils.MyObjectInputStream;
 import utils.MyObjectOutputStream;
 
 /**
- * @author : [Tongwei_L]
+ * 服务器客户端线程
+ *
+ * @author 28468
  * @version : [v1.0]
  * @description : [该类的一个对象和某个客户端保持通信]
  * @createTime : [2022.08.14 21:05]
+ * @date 2022/09/04
  */
 public class ServerToClientThread extends Thread{
+    /**
+     * 套接字
+     */
     private Socket socket;
+    /**
+     * 用户标识
+     */
     private String userid;//连接到服务器的用户id
 
+    /**
+     * 服务器客户端线程
+     *
+     * @param mos    金属氧化物半导体
+     * @param mis    管理信息系统
+     * @param userid 用户标识
+     * @param s      年代
+     */
     public ServerToClientThread(MyObjectOutputStream mos,MyObjectInputStream mis,String userid,Socket s){
         this.oos=mos;
         this.ois=mis;
         this.userid=userid;
         socket=s;
     }
+
+    /**
+     * oos
+     */
     public MyObjectOutputStream oos;
+    /**
+     * ois
+     */
     public MyObjectInputStream ois;
+
+    /**
+     * 获取套接字
+     *
+     * @return {@link Socket}
+     */
     public Socket getSocket() {
         return socket;
     }
 
+    /**
+     * 设置套接字
+     *
+     * @param socket 套接字
+     */
     public void setSocket(Socket socket) {
         this.socket = socket;
     }
 
+    /**
+     * 获取用户标识
+     *
+     * @return {@link String}
+     */
     public String getUserid() {
         return userid;
     }
 
+    /**
+     * 设置用户名
+     *
+     * @param userid 用户标识
+     */
     public void setUserid(String userid) {
         this.userid = userid;
     }
 
+    /**
+     * 运行
+     */
     public void run(){
         while (true){
         //    System.out.println("客户端和服务端 "+userid+" 保持通信，读取数据...");

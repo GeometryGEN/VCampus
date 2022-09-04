@@ -685,7 +685,7 @@ public interface MessageType {
      */
     String BUY_CERTAIN_PRODUCT_TEACHER_SUCCEED = "133.1111q2111";
     /**
-     * 买某些产品老师失败了
+     * 买某些产品老师失败
      */
     String BUY_CERTAIN_PRODUCT_TEACHER_FAILED = "133.1111s2111";
 

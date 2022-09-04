@@ -35,48 +35,97 @@ import java.util.List;
 import static UIviewer.Library.readLib.*;
 
 /**
- * @author : [Tongwei_L]
+ * 客户端服务器线程
+ *
+ * @author 28468
  * @version : [v1.0]
  * @description : [客户端连接服务端线程]
  * @createTime : [2022.08.14 20:23]
+ * @date 2022/09/04
  */
 public class ClientToServerThread extends Thread {
+    /**
+     * 套接字
+     */
     private Socket socket;
 
-    //volatile修饰符用来保证其它线程读取的总是该变量的最新的值
+    /**
+     * 退出
+     *///volatile修饰符用来保证其它线程读取的总是该变量的最新的值
     public volatile boolean exit = false;
+    /**
+     * ois
+     */
     private static MyObjectInputStream ois=null;
+
+    /**
+     * 客户端服务器线程
+     *
+     * @param mis 管理信息系统
+     * @param s   socket
+     */
     public ClientToServerThread(MyObjectInputStream mis,Socket s){
         ois=mis;
         socket=s;
     }
 
+    /**
+     * 获取套接字
+     *
+     * @return {@link Socket}
+     */
     public Socket getSocket(){
         return socket;
     }
 
+    /**
+     * 运行
+     */
     public void run(){
         while (!exit){
             try {
-                Message message = (Message) ois.readObject();
-             //   System.out.println(message.getType());
+                Message message = null;
+                try {
+                    message = (Message) ois.readObject();
+                } catch (Exception e) {
+                    throw new RuntimeException(e);
+                }
+                //   System.out.println(message.getType());
                 //如果服务器没有发送Message对象，线程会一直堵塞在这里
                 if(message.getType().equals(MessageType.MESSAGE_LIBRARY_ADMIN_LIST_RET)){
                     ArrayList<Book_admin> books=(ArrayList<Book_admin>)message.getData();
-                    Client_library.showAllBooks(books);
+                    try {
+                        Client_library.showAllBooks(books);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
                 else if (message.getType().equals(MessageType.MESSAGE_LIBRARY_LIST_MY_BOOK_RET)) {
                     ArrayList<Book_borrower>mybook=(ArrayList<Book_borrower>) message.getData();
-                    Client_library.showMyBooks(mybook);
+                    try {
+                        Client_library.showMyBooks(mybook);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
 
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_LIST_MY_TICKET_RET)){
                     ArrayList<Punishment>myPunishments=(ArrayList<Punishment>) message.getData();
-                    Client_library.showMyPunishments(myPunishments);
+                    try {
+                        Client_library.showMyPunishments(myPunishments);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_QUERY_RET)){
                     ArrayList<Book_borrower> searchResult=(ArrayList<Book_borrower>) message.getData();
-                    Client_library.showSearchResult(searchResult);
+                    try {
+                        Client_library.showSearchResult(searchResult);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_RET_SUCCEED)){
                     JOptionPane.showMessageDialog(null,"还书成功!");
@@ -131,7 +180,11 @@ public class ClientToServerThread extends Thread {
                     JOptionPane.showMessageDialog(null,"余额不足，缴费失败！");
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_ENTER_RET)){
-                    Client_library.admin_enter_result((ArrayList<Book_admin>) message.getData());
+                    try {
+                        Client_library.admin_enter_result((ArrayList<Book_admin>) message.getData());
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_LIBRARY_ADMIN_DELETE_SUCCEED)){
                     JOptionPane.showMessageDialog(null,"删除成功");
@@ -280,10 +333,18 @@ public class ClientToServerThread extends Thread {
                     Client_status.setS_s(stu);
                 }*/
                 if(message.getType().equals(MessageType.MESSAGE_STATUS_STU_ENTER_RET)){
-                    Client_status.show_studata((ImageAndTable)message.getData());
+                    try {
+                        Client_status.show_studata((ImageAndTable)message.getData());
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_STATUS_ADMIN_QUERY_RET)){
-                    Client_status.show_info((ImageAndTable)message.getData());
+                    try {
+                        Client_status.show_info((ImageAndTable)message.getData());
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
+                    }
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_STATUS_ADMIN_QUERY_FAIL)){
                     JOptionPane.showMessageDialog(null,"    查询失败! 学生不存在");
@@ -313,14 +374,26 @@ public class ClientToServerThread extends Thread {
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_QICQ_FRIEND_ONLINE_RET)){
           //          System.out.println("received...");
-                    Client_qicq.Require_friend_list();
+                    try {
+                        Client_qicq.Require_friend_list();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_QICQ_FRIEND_OFFLINE_RET)){
-                    Client_qicq.Require_friend_list();
+                    try {
+                        Client_qicq.Require_friend_list();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
                 else if (message.getType().equals(MessageType.MESSAGE_QICQ_ADD_FRIEND_SUCCEED)) {
                     Client_qicq.add_friend_succeed();
-                    Client_qicq.Require_friend_list();
+                    try {
+                        Client_qicq.Require_friend_list();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_QICQ_ADD_FRIEND_FAIL_CANNOT_FIND_USER)){
                     Client_qicq.add_friend_fail();
@@ -331,14 +404,18 @@ public class ClientToServerThread extends Thread {
                 }
                 else if(message.getType().equals(MessageType.MESSAGE_QICQ_MODIFY_RET)){
                     JOptionPane.showMessageDialog(null,"修改成功");
-                    Client_qicq.Require_friend_list();
+                    try {
+                        Client_qicq.Require_friend_list();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
                     change_panel.change_succeed();
                 }
                // else if(message.getType().equals(MessageType.MESSAGE_QICQ_GET_ANNOUNCEMENT_RET)){
-                    System.out.println(2);
-                    ArrayList<Message>messages=(ArrayList<Message>)message.getData();
-                    Client_qicq.Show_announcement(messages);
-                }
+//                    System.out.println(2);
+//                    ArrayList<Message>messages=(ArrayList<Message>)message.getData();
+//                    Client_qicq.Show_announcement(messages);
+//                }
             //    System.out.println("next");
 
                 //选课

@@ -30,7 +30,7 @@ public class adminLib extends JPanel {
     /**
      * 得到名字
      *
-     * @param a 一个
+     * @param a 名字
      */
     static void getName(String a)
     {
@@ -39,7 +39,7 @@ public class adminLib extends JPanel {
     public static CardLayout cardLayout=new CardLayout();
 
     /**
-     * 管理自由
+     * 管理员图书馆主界面
      */
     public adminLib(){
             String name=myInfo.getName();

@@ -16,24 +16,56 @@ import java.io.IOException;
 import java.net.Socket;
 
 /**
- * @author : [Tongwei_L]
+ * 客户端服务器
+ *
+ * @author 28468
  * @version : [v1.0]
  * @description : [一句话描述该类的功能]
  * @createTime : [2022.08.14 20:01]
+ * @date 2022/09/04
  */
 
 public class ClientToServer {
 
+    /**
+     * id
+     */
     private String ID;  //1-学生 2-老师 3-管理员
+    /**
+     * 同学
+     */
     private Student s = new Student();
+    /**
+     * 老师
+     */
     private Teacher t = new Teacher();
+    /**
+     * 管理员
+     */
     private Admin a = new Admin();
+    /**
+     * 套接字
+     */
     private static Socket socket;
+    /**
+     * oos
+     */
     public static MyObjectOutputStream oos=null;
+    /**
+     * ois
+     */
     public static MyObjectInputStream ois=null;
+    /**
+     * 服务器ip
+     */
     public static String serverIP = Message.returnIP();
     //public static String serverIP = "10.210.97.60";
 
+    /**
+     * 得到一卡通
+     *
+     * @return {@link String}
+     */
     public String getIDcard() {
         return switch (ID) {
             case "1" -> s.getStudent_idcard();
@@ -43,54 +75,107 @@ public class ClientToServer {
         };
     }
 
+    /**
+     * 得到id
+     *
+     * @return {@link String}
+     */
     public String getID() {
         return ID;
     }
 
+    /**
+     * 组id
+     *
+     * @param ID id
+     */
     public void setID(String ID) {
         this.ID = ID;
     }
 
+    /**
+     * 得到学生对象
+     *
+     * @return {@link Student}
+     */
     public Student getS() {
         return s;
     }
 
+    /**
+     * 设置学生对象
+     *
+     * @param s 学生
+     */
     public void setS(Student s) {
         this.s = s;
     }
 
+    /**
+     * 得到老师对象
+     *
+     * @return {@link Teacher}
+     */
     public Teacher getT() {
         return t;
     }
 
+    /**
+     * 设置老师对象
+     *
+     * @param t t
+     */
     public void setT(Teacher t) {
         this.t = t;
     }
 
+    /**
+     * 得到管理员对象
+     *
+     * @return {@link Admin}
+     */
     public Admin getA() {
         return a;
     }
 
+    /**
+     * 设置管理员对象
+     *
+     * @param a 一个
+     */
     public void setA(Admin a) {
         this.a = a;
     }
 
+    /**
+     * 获取套接字
+     *
+     * @return {@link Socket}
+     */
     public Socket getSocket() {
         return socket;
     }
 
+    /**
+     * 设置套接字
+     *
+     * @param socket 套接字
+     */
     public void setSocket(Socket socket) {
         this.socket = socket;
     }
 
     /**
+     * 检查学生
      * show 检测学生id
      * <p>show 1行用来检测id</p>
      * show 第二行
-     * @author : [Tongwei_L]
+     *
      * @param id  : 用户id
-     * @param pwd  : 用户密码
+     * @param pwd : 用户密码
      * @return return :  true 表示显示 false 表示隐藏
+     * @throws Exception 异常
+     * @author : [Tongwei_L]
      */
 
     public boolean checkStudent(String id, String pwd) throws Exception {
@@ -127,6 +212,14 @@ public class ClientToServer {
         }
     }
 
+    /**
+     * 检查老师
+     *
+     * @param id  id
+     * @param pwd 密码
+     * @return boolean
+     * @throws Exception 异常
+     */
     public boolean checkTeacher(String id, String pwd) throws Exception {
         t.setTeacher_idcard(id);
         t.setTeacher_pwd(pwd);
@@ -163,6 +256,14 @@ public class ClientToServer {
         }
     }
 
+    /**
+     * 检查管理员
+     *
+     * @param id  id
+     * @param pwd 密码
+     * @return boolean
+     * @throws Exception 异常
+     */
     public boolean checkAdmin(String id, String pwd) throws Exception {
         a.setAdmin_idcard(id);
         a.setAdmin_pwd(pwd);
@@ -199,6 +300,13 @@ public class ClientToServer {
         }
     }
 
+    /**
+     * 注册学生
+     *
+     * @param st 学生
+     * @return boolean
+     * @throws Exception 异常
+     */
     public static boolean registerStudent(Student st) throws Exception {
         socket = new Socket(serverIP, MessageType.PORT);
         oos = new MyObjectOutputStream(socket.getOutputStream());     //得到Object对象
@@ -216,6 +324,13 @@ public class ClientToServer {
         }
     }
 
+    /**
+     * 注册老师
+     *
+     * @param te 老师
+     * @return boolean
+     * @throws Exception 异常
+     */
     public static boolean registerTeacher(Teacher te) throws Exception {
         socket = new Socket(serverIP, MessageType.PORT);
         oos = new MyObjectOutputStream(socket.getOutputStream());     //得到Object对象
@@ -233,6 +348,15 @@ public class ClientToServer {
         }
     }
 
+    /**
+     * forgetpwd
+     *
+     * @param card   一卡通
+     * @param email  电子邮件
+     * @param select 选择
+     * @return boolean
+     * @throws Exception 异常
+     */
     public static boolean forgetpwd(String card, String email, String select) throws Exception {
         socket = new Socket(serverIP, MessageType.PORT);
         oos = new MyObjectOutputStream(socket.getOutputStream());     //得到Object对象
@@ -262,6 +386,15 @@ public class ClientToServer {
         }
     }
 
+    /**
+     * 重置pwd
+     *
+     * @param card    一卡通
+     * @param new_pwd 新pwd
+     * @param select  选择
+     * @return boolean
+     * @throws Exception 异常
+     */
     public static boolean resetPwd(String card, String new_pwd, String select) throws Exception {
         socket = new Socket(serverIP, MessageType.PORT);
         oos = new MyObjectOutputStream(socket.getOutputStream());     //得到Object对象
@@ -291,6 +424,11 @@ public class ClientToServer {
         }
     }
 
+    /**
+     * 注销
+     *
+     * @throws IOException ioexception
+     */
     public static void logout() throws IOException {
         Message message = new Message();
         message.setType(MessageType.MESSAGE_CLIENT_EXIT);

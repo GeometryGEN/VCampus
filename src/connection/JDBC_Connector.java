@@ -1,13 +1,39 @@
 package connection;
 import java.sql.*;
 
+/**
+ * jdbc连接器
+ *
+ * @author 28468
+ * @date 2022/09/04
+ */
 public class JDBC_Connector {
 
+    /**
+     * 连接
+     */
     static Connection connection;        //创建java程序与数据库的连接对象
+
+    /**
+     * 连接我sql1
+     *
+     * @return {@link Connection}
+     */
     public static Connection ConnectMySQL1(){
         return connection;
     }
+
+    /**
+     * 开始
+     */
     static int start=0;
+
+    /**
+     * 连接sql
+     *
+     * @return {@link Connection}
+     * @throws SQLException sqlexception异常
+     */
     public static Connection ConnectMySQL() throws SQLException{
         //
         String driver = "com.mysql.cj.jdbc.Driver";         //将MySQL数据库驱动名称封装在字符串中
@@ -27,6 +53,14 @@ public class JDBC_Connector {
         return connection;
     }
 
+    /**
+     * 关闭
+     *
+     * @param rs   rs
+     * @param ps   ps
+     * @param conn 连接
+     * @throws SQLException sqlexception异常
+     */
     public static void close(ResultSet rs, PreparedStatement ps, Connection conn) throws SQLException {
         if(rs!=null){
             rs.close();

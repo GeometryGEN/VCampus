@@ -29,16 +29,33 @@ import java.util.HashSet;
 import java.util.Iterator;
 
 /**
- * @author : [Tongwei_L]
+ * 服务器客户端
+ *
+ * @author 28468
  * @version : [v1.0]
  * @description : [服务器，监听8080，等待客户端连接，保持通信]
  * @createTime : [2022.08.14 19:36]
+ * @date 2022/09/04
  */
 public class ServerToClient extends Thread{
+    /**
+     * 服务器socket
+     */
     private ServerSocket ss = null;
+    /**
+     * 学生实例
+     */
     private Student s1;
+    /**
+     * 老师实例
+     */
     private Teacher t1;
-    /*private static HashSet<Punishment> punish=new HashSet<Punishment>();
+
+    /**
+     * 服务器客户端
+     *
+     * @throws IOException ioexception
+     *//*private static HashSet<Punishment> punish=new HashSet<Punishment>();
 
     private static HashSet<Opencourse>opencourses=new HashSet<Opencourse>();
     private static HashMap<String, ArrayList<Message>>QQbox=new HashMap<String, ArrayList<Message>>();
@@ -206,17 +223,47 @@ public class ServerToClient extends Thread{
         }
     }
 
+    /**
+     * 在线
+     */
     private static HashMap<String, Integer>online=new HashMap<>();
+
+    /**
+     * 添加在线
+     *
+     * @param id id
+     * @param ty 泰
+     */
     public static void addOnline(String id,int ty){
         online.put(id,ty);
     }
+
+    /**
+     * 删除网上
+     *
+     * @param id id
+     */
     public static void removeOnline(String id){
        online.remove(id);
     }
+
+    /**
+     * 在线
+     *
+     * @param id id
+     * @return int
+     */
     public static int isOnline(String id){
         if(online.containsKey(id)) return online.get(id);
         else return -1;
     }
+
+    /**
+     * main方法
+     *
+     * @param args arg
+     * @throws IOException ioexception
+     */
     public static void main(String[] args) throws IOException {
         new ServerToClient();
     }

@@ -142,7 +142,7 @@ public class Admin implements Serializable {
     }
 
     /**
-     * 集管理员电子邮件
+     * 管理员电子邮件
      *
      * @param admin_email 管理员电子邮件
      */
@@ -160,7 +160,7 @@ public class Admin implements Serializable {
     }
 
     /**
-     * 集管理员一卡通
+     * 管理员一卡通
      *
      * @param admin_idcard 管理员一卡通
      */
