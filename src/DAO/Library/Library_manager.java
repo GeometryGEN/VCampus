@@ -20,9 +20,27 @@ import java.util.*;
 import java.util.Date;
 import java.io.Serializable;
 
+/**
+ * 图书馆管理类
+ *@description 用于图书馆模块和数据库进行操作
+ * @author Shuheng_Gu
+ * @date 2022/09/03
+ */
 public class Library_manager implements Serializable{
+    /**
+     * 用户id
+     */
     private String ID;
+    /**
+     * JDBC数据库链接
+     */
     private static Connection conn;
+
+    /**
+     * 构造函数
+     *
+     * @param ID 用户id
+     */
     public Library_manager(String ID){
 
         this.ID = ID;
@@ -32,6 +50,13 @@ public class Library_manager implements Serializable{
             e.printStackTrace();
         }
     }
+
+    /**
+     * 登录信息
+     *
+     * @return {@link Message}
+     * @throws SQLException sqlexception异常
+     */
     public Message enter_info() throws SQLException {
         Message message=new Message();
         message.setType(MessageType.MESSAGE_LIBRARY_ENTER_RET);
@@ -71,6 +96,13 @@ public class Library_manager implements Serializable{
         st.close();
         return message;
     }
+
+    /**
+     * 列出我借阅的书
+     *
+     * @return {@link ArrayList}<{@link Book_borrower}>
+     * @throws SQLException sqlexception异常
+     */
     public ArrayList<Book_borrower> list_my_book() throws SQLException {
         ArrayList<Book_borrower> books = new ArrayList<Book_borrower>();
         String sql="select * from library  where borrow_to=? order by expire_date;";
@@ -94,6 +126,14 @@ public class Library_manager implements Serializable{
         st.close();
         return books;
     }
+
+    /**
+     * 查询书
+     *
+     * @param s 年代
+     * @return {@link ArrayList}<{@link Book_borrower}>
+     * @throws SQLException sqlexception异常
+     */
     public ArrayList<Book_borrower> query_book(String s) throws SQLException {
         ArrayList<Book_borrower> books = new ArrayList<>();
         String sql="select * from library where name like ? or author like ? or id like ? order by name;";
@@ -123,6 +163,14 @@ public class Library_manager implements Serializable{
         st.close();
         return books;
     }
+
+    /**
+     * 列出所有书
+     *
+     * @param s 年代
+     * @return {@link ArrayList}<{@link Book_admin}>
+     * @throws SQLException sqlexception异常
+     */
     public ArrayList<Book_admin> list_all_book(String s) throws SQLException {
         ArrayList<Book_admin> books = new ArrayList<Book_admin>();
         String sql="select * from library where id like ? or name like ? or author like ? order by name;";
@@ -155,6 +203,14 @@ public class Library_manager implements Serializable{
         st.close();
         return books;
     }
+
+    /**
+     * 借书
+     *
+     * @param b b
+     * @return {@link Message}
+     * @throws SQLException sqlexception异常
+     */
     public Message borrow(Book_borrower b) throws SQLException {
         String sql="select * from library where borrow_to =?;";
         PreparedStatement st=conn.prepareStatement(sql);
@@ -197,6 +253,14 @@ public class Library_manager implements Serializable{
         st.close();
         return msg;
     }
+
+    /**
+     * 还书
+     *
+     * @param b b
+     * @return {@link Message}
+     * @throws SQLException sqlexception异常
+     */
     public Message ret(Book_borrower b) throws SQLException{
 
         String sql;
@@ -223,7 +287,9 @@ public class Library_manager implements Serializable{
         st.close();
         return msg;
     }
-   /* public void handle(Punishment punishment) throws SQLException, IOException {
+
+
+     /* public void handle(Punishment punishment) throws SQLException, IOException {
         Iterator it=ServerToClient.getPunish().iterator();
         while(it.hasNext()){
             Punishment p=(Punishment)it.next();
@@ -235,6 +301,15 @@ public class Library_manager implements Serializable{
             }
         }
     }*/
+
+    /**
+     * 延长借阅
+     *
+     * @param b 书
+     * @return {@link Message}
+     * @throws SQLException   sqlexception异常
+     * @throws ParseException 解析异常
+     */
     public Message extend(Book_borrower b) throws SQLException, ParseException {
         String sql="select * from library where id=?;";
         PreparedStatement st=conn.prepareStatement(sql);
@@ -249,13 +324,13 @@ public class Library_manager implements Serializable{
             }
             String ex=myTime.dateToString(rs.getDate("expire_date"));
             String bookid=rs.getString("id");
-            System.out.println("original "+ex);
+            //     System.out.println("original "+ex);
             Date next=new SimpleDateFormat("yyyy-MM-dd").parse(ex);
             Calendar rightNow = Calendar.getInstance();
             rightNow.setTime(next);
             rightNow.add(Calendar.DAY_OF_YEAR,30);//日期加30天
             Date new_expire=rightNow.getTime();
-            System.out.println(myTime.dateToString(new_expire));
+            //     System.out.println(myTime.dateToString(new_expire));
             sql="update library set expire_date=?, extended=1 where id=?";
             st=conn.prepareStatement(sql);
             st.setString(1,myTime.dateToString(new_expire));
@@ -267,6 +342,14 @@ public class Library_manager implements Serializable{
         st.close();
         return message;
     }
+
+    /**
+     * 申请
+     *
+     * @param b b
+     * @return {@link Punishment}
+     * @throws SQLException sqlexception异常
+     */
     public Punishment apply(Book_borrower b) throws SQLException {
         Punishment pp=new Punishment();
         String sql="select * from library where name=? and author=? and borrow_to=?;";
@@ -283,12 +366,20 @@ public class Library_manager implements Serializable{
         }
         return pp;
     }
+
+    /**
+     * 支付罚单
+     *
+     * @param p p
+     * @return {@link Message}
+     * @throws SQLException sqlexception异常
+     */
     public Message pay(Punishment p) throws SQLException{
         Message msg=new Message();
         String sql="select * from students where Student_idcard=?;";
         PreparedStatement st=conn.prepareStatement(sql);
         st.setString(1,p.Customer_iD);
-        System.out.println("punish  "+p.Customer_iD);
+        //    System.out.println("punish  "+p.Customer_iD);
         ResultSet rs=st.executeQuery();
         if(rs.next()){
             double curmoney=rs.getDouble("Student_money")-p.price;
@@ -333,6 +424,13 @@ public class Library_manager implements Serializable{
         }
         return msg;
     }
+
+    /**
+     * 添加书籍
+     *
+     * @param book 书
+     * @throws SQLException sqlexception异常
+     */
     public void addbook(Book_admin book) throws SQLException{
         String sql="insert into library(name,author,ID,place,price,publisher,country,available,extended) values(?,?,?,?,?,?,?,1,0);";
         PreparedStatement st=conn.prepareStatement(sql);
@@ -345,6 +443,14 @@ public class Library_manager implements Serializable{
         st.setDouble(5,book.price);
         st.executeUpdate();
     }
+
+    /**
+     * 删除书籍
+     *
+     * @param id id
+     * @return {@link Message}
+     * @throws SQLException sqlexception异常
+     */
     public Message deletebook(String id) throws SQLException{
         Message message=new Message();
         String sql="delete from library where ID=?;";
@@ -359,7 +465,7 @@ public class Library_manager implements Serializable{
         st.close();
         return message;
     }
-   /* public ArrayList<Punishment>admin_list_tickets(){
+    /* public ArrayList<Punishment>admin_list_tickets(){
         ArrayList<Punishment>punishments=new ArrayList<>();
         Iterator it=ServerToClient.getPunish().iterator();
         while(it.hasNext()){
@@ -368,6 +474,12 @@ public class Library_manager implements Serializable{
         }
         return punishments;
     }*/
+    /**
+     * 列出我的罚单
+     *
+     * @return {@link ArrayList}<{@link Punishment}>
+     * @throws SQLException sqlexception异常
+     */
     public ArrayList<Punishment>list_my_tickets() throws SQLException {
         String sql="select * from ticket where customer=? and status=0 order by id+0 ;";
         PreparedStatement st=conn.prepareStatement(sql);
@@ -388,6 +500,13 @@ public class Library_manager implements Serializable{
         st.close();
         return punishments;
     }
+
+    /**
+     * 开罚单
+     *
+     * @param p p
+     * @throws SQLException sqlexception异常
+     */
     public void admin_give_ticket(Punishment p) throws SQLException {
         String sql="insert into ticket(id,customer,notice,book,price,status) values(?,?,?,?,?,0);";
         PreparedStatement st=conn.prepareStatement(sql);

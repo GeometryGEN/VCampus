@@ -2,10 +2,36 @@ package DAO.QICQ;
 
 import java.io.Serializable;
 
+/**
+ * 站内通信好友信息
+ *
+ * @author Shuheng_Gu
+ * @date 2022/09/03
+ */
 public class Friend implements Serializable {
-    String id,name,type;
+    /**
+     * id
+     */
+    String id;
+     /**
+     * 名字
+     */
+    String name;
+    /**
+     * 分组
+     */
+    String type;
+    /**
+     * 未读 0=此朋友处没有未读消息 1=次朋友处有未读消息
+     */
     int unread; //0=此朋友处没有未读消息 1=次朋友处有未读消息
+    /**
+     * 在线 0=不在线 1=在线
+     */
     int online; //0=不在线 1=在线
+    /**
+     * 头像
+     */
     public byte[]image;
     public String getId() {
         return id;

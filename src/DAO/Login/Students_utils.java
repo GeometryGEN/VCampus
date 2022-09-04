@@ -171,10 +171,10 @@ public class Students_utils {
         boolean re = ps.executeUpdate()>0;
    //     JDBC_Connector.close(null, ps, connection);
         ps.close();
-        if(re)
-            System.out.println("学生"+username+"密码修改成功！");
-        else
-            System.out.println("学生"+username+"密码修改失败！");
+      //  if(re)
+      //      System.out.println("学生"+username+"密码修改成功！");
+       // else
+       //     System.out.println("学生"+username+"密码修改失败！");
         ps.close();
         //JDBC_Connector.close(null, ps, connection);
         return re;

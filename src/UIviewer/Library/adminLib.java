@@ -13,7 +13,7 @@ import java.io.IOException;
 import ClientToServer.myInfo;
 
 /**
- * 管理自由
+ * 管理员界面
  *
  * @author Chen_GuanZhi
  * @date 2022/09/03

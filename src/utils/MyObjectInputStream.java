@@ -5,7 +5,7 @@ import java.io.InputStream;
 import java.io.ObjectInputStream;
 
 /**
- * The type My object input stream.
+ * 重写ObjectInputStream 防止通信流读取错误
  */
 public class MyObjectInputStream extends ObjectInputStream {
     /**

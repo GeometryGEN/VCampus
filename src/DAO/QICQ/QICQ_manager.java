@@ -15,9 +15,22 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Date;
 
+/**
+ * 站内通信模块与数据库对接类
+ *
+ * @author Shuheng_Gu
+ * @date 2022/09/03
+ */
 public class QICQ_manager {
+    /**
+     * 用户id
+     */
     String id;
+    /**
+     * JDBC数据库链接
+     */
     private static Connection conn;
+
     public QICQ_manager(String id) {
         this.id = id;
         try {
@@ -26,6 +39,14 @@ public class QICQ_manager {
             e.printStackTrace();
         }
     }
+
+    /**
+     * 朋友上线
+     *
+     * @param id id
+     * @throws SQLException sqlexception异常
+     * @throws IOException  ioexception
+     */
     public void friend_is_online(String id) throws SQLException, IOException {
     //    System.out.println("wanting online");
         Message msg=new Message();
@@ -44,6 +65,14 @@ public class QICQ_manager {
             }
         }
     }
+
+    /**
+     * 朋友离线
+     *
+     * @param id id
+     * @throws SQLException sqlexception异常
+     * @throws IOException  ioexception
+     */
     public void friend_is_offline(String id) throws SQLException, IOException {
         Message msg=new Message();
         msg.setType(MessageType.MESSAGE_QICQ_FRIEND_OFFLINE_RET);
@@ -61,6 +90,14 @@ public class QICQ_manager {
         rs.close();
         st.close();
     }
+
+    /**
+     * 得到好友列表
+     *
+     * @return {@link Message}
+     * @throws SQLException sqlexception异常
+     * @throws IOException  ioexception
+     */
     public Message get_friends() throws SQLException, IOException {
         HashMap<String, ArrayList<Friend>> friends = new HashMap<>();
         String sql="select * from friends where user_id=? order by friend_id+0;";
@@ -102,6 +139,14 @@ public class QICQ_manager {
     //    MyObjectOutputStream oos=new MyObjectOutputStream(ManageServerToClientThread.getThread(to).getSocket().getOutputStream());
         return msg;
     }
+
+    /**
+     * 在线发送文件
+     *
+     * @param msg 消息
+     * @throws IOException  ioexception
+     * @throws SQLException sqlexception异常
+     */
     public void send_online_file(Message msg) throws IOException, SQLException {
         String to=msg.getGetter();
         String sql="insert into message(sender,getter,sendtime,file,isfile,isread,filename) values(?,?,?,?,1,0,?);";
@@ -118,6 +163,14 @@ public class QICQ_manager {
         st.close();
       //  return msg;
     }
+
+    /**
+     * 发送离线文件
+     *
+     * @param msg 消息
+     * @throws IOException  ioexception
+     * @throws SQLException sqlexception异常
+     */
     public void send_offline_file(Message msg) throws IOException, SQLException {
         String to=msg.getGetter();
         String sql="insert into message(sender,getter,sendtime,file,isfile,isread,filename) values(?,?,?,?,1,0,?);";
@@ -133,6 +186,14 @@ public class QICQ_manager {
         st.executeUpdate();
         st.close();
     }
+
+    /**
+     * 发送在西安消息
+     *
+     * @param msg 消息
+     * @throws IOException  ioexception
+     * @throws SQLException sqlexception异常
+     */
     public void send_online_message(Message msg) throws IOException, SQLException {
         String to=msg.getGetter();
         msg.setType(MessageType.MESSAGE_QICQ_RECERIVE_MESSAGE);
@@ -148,6 +209,14 @@ public class QICQ_manager {
        // oos.writeObject(msg);
         st.close();
     }
+
+    /**
+     * 发送离线消息
+     *
+     * @param msg 消息
+     * @throws IOException  ioexception
+     * @throws SQLException sqlexception异常
+     */
     public void send_offline_message(Message msg) throws IOException, SQLException {
         String to=msg.getGetter();
         String sql="insert into message(sender,getter,sendtime,content,isread,isfile) values(?,?,?,?,0,0);";
@@ -160,6 +229,14 @@ public class QICQ_manager {
         //ServerToClient.addQQbox(to,msg);
         st.close();
     }
+
+    /**
+     * 添加朋友
+     *
+     * @param message 消息
+     * @throws IOException  ioexception
+     * @throws SQLException sqlexception异常
+     */
     public void add_friend(Message message) throws IOException, SQLException {
         Application app=(Application)message.getData();
         int flag=0;
@@ -210,6 +287,14 @@ public class QICQ_manager {
         }
 
     }
+
+    /**
+     * 列出我的申请
+     *
+     * @return {@link Message}
+     * @throws SQLException sqlexception异常
+     * @throws IOException  ioexception
+     */
     public Message list_my_application() throws SQLException, IOException {
         ArrayList<Application>app=new ArrayList<>();
         String sql="select * from new_friend where sender=? order by sendtime";
@@ -231,6 +316,13 @@ public class QICQ_manager {
         st.close();
         return msg;
     }
+
+    /**
+     * 列出我待处理的申请
+     *
+     * @throws SQLException sqlexception异常
+     * @throws IOException  ioexception
+     */
     public void list_my_application_handled() throws SQLException, IOException {
         ArrayList<Application>app=new ArrayList<>();
         String sql="select * from new_friend where getter=? order by sendtime DESC";
@@ -250,6 +342,13 @@ public class QICQ_manager {
         rs.close();
         st.close();
     }
+
+    /**
+     * 管理员添加公告
+     *
+     * @param m 米
+     * @throws SQLException sqlexception异常
+     */
     public void admin_add_announcement(Message m) throws SQLException {
         String sql="insert into message(sender,getter,sendtime,content) values(?,'all',?,?);";
         PreparedStatement st=conn.prepareStatement(sql);
@@ -258,6 +357,14 @@ public class QICQ_manager {
         st.setString(3,(String)m.getData());
         st.executeUpdate();
     }
+
+    /**
+     * 查看公告
+     *
+     * @return {@link Message}
+     * @throws IOException  ioexception
+     * @throws SQLException sqlexception异常
+     */
     public Message list_announcement() throws IOException, SQLException {
         Message message=new Message();
         String sql="select * from message where getter='all' order by sendtime DESC;";
@@ -278,6 +385,13 @@ public class QICQ_manager {
       //  oos.writeObject(message);
         return message;
     }
+
+    /**
+     * 接受新朋友
+     *
+     * @param application 申请
+     * @throws SQLException sqlexception异常
+     */
     public void accept_new_friend(Application application) throws SQLException {
         String sql="update new_friend set status=2 where sender=? and getter=? and status=0;";
         PreparedStatement st= conn.prepareStatement(sql);
@@ -306,6 +420,13 @@ public class QICQ_manager {
         rs.close();
         st.close();
     }
+
+    /**
+     * 拒绝新朋友
+     *
+     * @param application 申请
+     * @throws SQLException sqlexception异常
+     */
     public void deny_new_friend(Application application) throws SQLException {
         String sql="update new_friend set status=1 where sender=? and getter=? and status=0;";
         PreparedStatement st= conn.prepareStatement(sql);
@@ -313,6 +434,15 @@ public class QICQ_manager {
         st.setString(2,application.to_id);
         st.executeUpdate();
     }
+
+    /**
+     * 我与好友的信息列表
+     *
+     * @param to_id 为id
+     * @return {@link Message}
+     * @throws IOException  ioexception
+     * @throws SQLException sqlexception异常
+     */
     public Message list_my_message_with(String to_id) throws IOException, SQLException {
         String sql="select * from message where (sender=? and getter=?) or (sender=? and getter=?) order by sendtime DESC;";
         PreparedStatement st= conn.prepareStatement(sql);
@@ -362,6 +492,13 @@ public class QICQ_manager {
         return sendback;
     }
 
+    /**
+     * 读取头像
+     *
+     * @param id id
+     * @return {@link byte[]}
+     * @throws SQLException sqlexception异常
+     */
     public byte[] readicon(String id) throws SQLException {
        /* String path = "src/image/QQ/temp.jpg";
         File file = new File(path);
@@ -405,6 +542,12 @@ public class QICQ_manager {
         }
     }
 
+    /**
+     * 修改朋友信息
+     *
+     * @param f f
+     * @throws SQLException sqlexception异常
+     */
     public void modify_friend_info(Friend f) throws SQLException {
         String sql="update friends set relation=?, nickname=? where user_id=? and friend_id=?;";
         PreparedStatement st=conn.prepareStatement(sql);
@@ -415,6 +558,14 @@ public class QICQ_manager {
         st.executeUpdate();
         st.close();
     }
+
+    /**
+     * 新加朋友
+     *
+     * @param message 消息
+     * @throws IOException  ioexception
+     * @throws SQLException sqlexception异常
+     */
     public void new_add_friend(Message message) throws IOException, SQLException {
         Application app=(Application)message.getData();
         int flag=0;

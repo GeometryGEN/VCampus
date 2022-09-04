@@ -33,7 +33,7 @@ public class Client_curriculum {
     static MyObjectOutputStream oos=null;
 
     /**
-     * 组id
+     * 用户id
      *
      * @param id id
      */
@@ -57,7 +57,7 @@ public class Client_curriculum {
     /**
      * 设置oos
      *
-     * @param mos 金属氧化物半导体
+     * @param mos 输出流
      * @throws IOException ioexception
      */
     public static void setOos(MyObjectOutputStream mos) throws IOException {
@@ -67,7 +67,7 @@ public class Client_curriculum {
     /**
      * 需要选择
      *
-     * @param curri curri
+     * @param curri 课程
      * @throws IOException ioexception
      */
     public static void requireToChoose(Course curri)throws IOException{

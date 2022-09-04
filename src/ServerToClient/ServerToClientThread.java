@@ -257,7 +257,7 @@ public class ServerToClientThread extends Thread{
                      }
                 }
                 else if(m.getType().equals(MessageType.MESSAGE_QICQ_SEND_FILE)){
-                    System.out.println("123456");
+               //     System.out.println("123456");
                     String getter=m.getGetter();
                     if(ServerToClient.isOnline(getter)!=-1){
                         new QICQ_manager(userid).send_online_file(m);
@@ -314,7 +314,7 @@ public class ServerToClientThread extends Thread{
                 else if(m.getType().equals(MessageType.RETURN_ALL_PRODUCT)){
                     List<Product> ps  = buyers_Shop_utils.returnAllProduct();
                     if(ps.size()!=0){
-                        System.out.println("!!="+ps.size());
+                    //    System.out.println("!!="+ps.size());
                         sendback.setData(ps);
                         sendback.setType(MessageType.RETURN_ALL_PRODUCT_SUCCEED);
                         oos.writeObject(sendback);
@@ -339,7 +339,7 @@ public class ServerToClientThread extends Thread{
                 else if(m.getType().equals(MessageType.CHECK_CERTAIN_PRODUCT)){
                     Product ps  = buyers_Shop_utils.checkCertainProduct(m.getCode());
                     if(ps!=null){
-                        System.out.println(ps.getProduct_name());
+                    //    System.out.println(ps.getProduct_name());
                         sendback.setData(ps);
                         sendback.setType(MessageType.CHECK_CERTAIN__PRODUCT_SUCCEED);
                         oos.writeObject(sendback);

@@ -5,7 +5,10 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
- * The type My time.
+ * 自己定义的字符串和Date数据转换类
+ *
+ * @author Shuheng_Gu
+ * @date 2022/09/03
  */
 public class myTime {
     /**
