@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Main-Class: ServerToClient.ServerToClient
+Class-Path: thumbnailator-0.4.17.jar mysql-connector-java-8.0.30.jar
+
