@@ -32,7 +32,7 @@ public class LoginFrame extends JFrame{
         //随机背景图片
         JLabel lblBackground = new JLabel(); // 创建一个标签组件对象
         //URL resource = this.getClass().getResource("/back1.png"); // 获取背景图片路径
-        ImageIcon icon = new ImageIcon("src/image/back1.png"); // 创建背景图片对象
+        ImageIcon icon = new ImageIcon("src/image/background_test.jpg"); // 创建背景图片对象
         lblBackground.setIcon(icon); // 设置标签组件要显示的图标
         lblBackground.setBounds(0, 0, icon.getIconWidth(), icon.getIconHeight()); // 设置组件的显示位置及大小
 
@@ -44,12 +44,12 @@ public class LoginFrame extends JFrame{
         JLabel logo = new JLabel();
         ImageIcon icon1 = new ImageIcon("src/image/logodz.png");
         logo.setIcon(icon1);
-        logo.setBounds(20, 30, 310, 100);
+        logo.setBounds(520, 30, 310, 100);
         jf.getContentPane().add(logo);
 
         //文字
         JLabel l1 = new JLabel("欢迎使用东南大学虚拟校园系统!");
-        l1.setBounds(40, 120, 290, 80);
+        l1.setBounds(560, 120, 290, 80);
         Font font = new Font("宋体", Font.BOLD, 17);
         l1.setFont(font);
         //l1.setForeground(new Color(111,222,0));
