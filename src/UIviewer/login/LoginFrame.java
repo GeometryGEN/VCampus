@@ -13,13 +13,14 @@ import static UIviewer.login.forgetPWD.forgetPWDUI;
 /**
  * 登录框
  *
- * @author Chen_GuanZhi
- * @date 2022/09/03
+ * @author Tong_tuoyi
+ * @date 2023/8/26
  */
 public class LoginFrame extends JFrame{
 
     private ClientToServer ucs = new ClientToServer();
     private JPanel p1;
+    private JPanel p2;
     private JTextField textField;
     public static JPasswordField passwordField;
 
@@ -29,7 +30,7 @@ public class LoginFrame extends JFrame{
      * 登录框
      */
     public LoginFrame(){
-        //随机背景图片
+        //背景图片
         JLabel lblBackground = new JLabel(); // 创建一个标签组件对象
         //URL resource = this.getClass().getResource("/back1.png"); // 获取背景图片路径
         ImageIcon icon = new ImageIcon("src/image/Background/bg01.jpg"); // 创建背景图片对象
@@ -204,14 +205,22 @@ public class LoginFrame extends JFrame{
 
         jf.getContentPane().add(btnNewButton_5);
 
-        //左侧面板
+        //白色蒙版
         p1 = new JPanel();
-        p1.setBounds(0, 0, 340, 780);
+        p1.setBounds(10, 30, icon.getIconWidth()-30, icon.getIconHeight()-90);
         //p1.setBackground(null);
-        p1.setBackground(new Color(255, 240, 245, 180));
+        p1.setBackground(new Color(255, 240, 245, 100));
         //panel1.BackColor = Color.FromArgb(80, 255, 0, 0);
         //p1.setOpaque(false);
         jf.getContentPane().add(p1);
+        jf.getContentPane().add(lblBackground); // 将组件添加到面板中
+        jf.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        jf.setVisible(true);
+        //上方蓝色导航条
+        p2 = new JPanel();
+        p2.setBounds(0, 0, icon.getIconWidth(), 30);
+        p2.setBackground(new Color(2, 106, 203 ,190));
+        jf.getContentPane().add(p2);
         jf.getContentPane().add(lblBackground); // 将组件添加到面板中
         jf.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         jf.setVisible(true);
