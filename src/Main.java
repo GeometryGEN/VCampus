@@ -3,13 +3,15 @@ import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import javax.mail.MessagingException;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.security.GeneralSecurityException;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
-        //test04();
+    public static void main(String[] args) throws MessagingException, GeneralSecurityException {
+        test04();
     }
     public static void test01() {
         Address a = new Address();
@@ -25,8 +27,8 @@ public class Main {
 
     }
 
-    public static void test04() throws IOException{
-
-
+    public static void test04() throws MessagingException, GeneralSecurityException {
+        Mail mail = new Mail();
+        mail.SendEmail();
     }
 }
