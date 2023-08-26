@@ -97,7 +97,7 @@ public class LoginFrame extends JFrame{
                     String pwd=String.valueOf(passwordField.getPassword());
                     if(ucs.checkStudent(username,pwd)) {
                         System.out.println(username+"登录成功！");
-                        functionChoose.functionChooseUI();
+                        functionChoose.functionChooseUI(true);
                         jf.setVisible(false);
                     }else
                         JOptionPane.showMessageDialog(p1, "用户名或密码错误,请重试!");
@@ -124,7 +124,7 @@ public class LoginFrame extends JFrame{
                     String pwd=String.valueOf(passwordField.getPassword());
                     if(ucs.checkTeacher(username,pwd)) {
                         System.out.println(username+"登录成功！");
-                        functionChoose.functionChooseUI();
+                        functionChoose.functionChooseUI(true);
                         jf.setVisible(false);
                     }else
                         JOptionPane.showMessageDialog(p1, "用户名或密码错误,请重试!");
@@ -151,7 +151,7 @@ public class LoginFrame extends JFrame{
                     String pwd=String.valueOf(passwordField.getPassword());
                     if(ucs.checkAdmin(username,pwd)) {
                         System.out.println(username+"登录成功！");
-                        functionChoose.functionChooseUI();
+                        functionChoose.functionChooseUI(true);
                         jf.setVisible(false);
                     }else
                         JOptionPane.showMessageDialog(p1, "用户名或密码错误,请重试!");
