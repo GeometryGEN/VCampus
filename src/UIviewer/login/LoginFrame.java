@@ -126,7 +126,7 @@ public class LoginFrame extends JFrame{
         });
         jf.getContentPane().add(btnNewButton_1);
 
-        /*
+
         // 管理员登录
         JButton btnNewButton_3 = new JButton("管理员登录");
         btnNewButton_3.setBounds(50, 480, 220, 30);
@@ -154,7 +154,7 @@ public class LoginFrame extends JFrame{
         });
         jf.getContentPane().add(btnNewButton_3);
 
-         */
+
 
         //注册
         JButton btnNewButton_4 = new JButton("注册");
