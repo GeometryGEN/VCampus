@@ -16,6 +16,8 @@ import static UIviewer.login.forgetPWD.forgetPWDUI;
  * @author Tong_tuoyi
  * @date 2023/8/26
  */
+//#7DB6BF 125,182,191 薄荷绿色
+    //未实现功能：管理员登录；在输入为空时跳出提醒；注册验证之后；忘记密码
 public class LoginFrame extends JFrame{
 
     private ClientToServer ucs = new ClientToServer();
@@ -69,28 +71,27 @@ public class LoginFrame extends JFrame{
         JLabel chooselabel = new JLabel("请选择您的身份： ");
         chooselabel.setBounds(900,400,120,15);
         jf.add(chooselabel);
-        JRadioButton rbtnstu= new JRadioButton("学生");
-        rbtnstu.setSelected(true);
+        JRadioButton rbtnstu= new JRadioButton("学生",false);
+        //rbtnstu.setSelected(true);
         rbtnstu.setContentAreaFilled(false);
         rbtnstu.setBounds(900,430,75,22);
         jf.add(rbtnstu);
-        JRadioButton rbtntea= new JRadioButton("教师");
-        rbtntea.setSelected(true);
+        JRadioButton rbtntea= new JRadioButton("教师",false);
+        //rbtntea.setSelected(true);
         rbtntea.setContentAreaFilled(false);
         rbtntea.setBounds(1000,430,75,22);
         jf.add(rbtntea);
         ButtonGroup group1=new ButtonGroup();
         group1.add(rbtnstu);
         group1.add(rbtntea);
-        // 判断单选按钮是否选中
-        //boolean isSelected()
 
         //登录
         JButton btnNewButton_1 = new JButton("登录");
         btnNewButton_1.setBounds(900, 500, 220, 30);
         Font myfont = new Font("楷体", Font.PLAIN, 20);
         btnNewButton_1.setFont(myfont);
-        btnNewButton_1.setBackground(new Color(34, 139, 34));
+        //btnNewButton_1.setBackground(new Color(34, 139, 34));
+        btnNewButton_1.setBackground(new Color(54,90,95));
         btnNewButton_1.setForeground(new Color(248, 248, 255));
         btnNewButton_1.setFocusPainted(false);
         btnNewButton_1.addActionListener(new ActionListener() {
@@ -105,7 +106,6 @@ public class LoginFrame extends JFrame{
                             System.out.println(username + "登录成功！");
                             functionChoose.functionChooseUI();
                             jf.setVisible(false);
-
                         } else
                             JOptionPane.showMessageDialog(p1, "用户名或密码错误,请重试!");
                     }
@@ -127,33 +127,6 @@ public class LoginFrame extends JFrame{
         jf.getContentPane().add(btnNewButton_1);
 
         /*
-        // 教师登录
-        JButton btnNewButton_2 = new JButton("教师登录");
-        btnNewButton_2.setBounds(50, 430, 220, 30);
-        btnNewButton_2.setFont(myfont);
-        btnNewButton_2.setBackground(new Color(34, 139, 34));
-        btnNewButton_2.setForeground(new Color(248, 248, 255));
-        btnNewButton_2.setFocusPainted(false);
-        btnNewButton_2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
-                try {
-                    String username=textField.getText();
-                    String pwd=String.valueOf(passwordField.getPassword());
-                    if(ucs.checkTeacher(username,pwd)) {
-                        System.out.println(username+"登录成功！");
-                        functionChoose.functionChooseUI();
-                        jf.setVisible(false);
-                    }else
-                        JOptionPane.showMessageDialog(p1, "用户名或密码错误,请重试!");
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-            }
-        });
-
-        jf.getContentPane().add(btnNewButton_2);
         // 管理员登录
         JButton btnNewButton_3 = new JButton("管理员登录");
         btnNewButton_3.setBounds(50, 480, 220, 30);
