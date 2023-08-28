@@ -40,7 +40,7 @@ public class functionChoose {
     public static JButton back_from_student_status;
     public static JFrame jf;
     public static JPanel fc_panel;
-    public static boolean color_switch=false;
+    public static boolean color_switch=true;
 
     /**
      * 功能选择界面

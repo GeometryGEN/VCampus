@@ -1,12 +1,12 @@
 package UIviewer.login;
 import ClientToServer.ClientToServer;
 import connection.JDBC_Connector;
-import java.awt.EventQueue;
+
+import java.awt.*;
 import javax.swing.*;
-import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.Color;
+
 import static UIviewer.login.register.registerUI;
 import static UIviewer.login.forgetPWD.forgetPWDUI;
 
@@ -21,6 +21,7 @@ public class LoginFrame extends JFrame{
     private ClientToServer ucs = new ClientToServer();
     private JPanel p1;
     private JPanel p2;
+    private JPanel p3;
     private JTextField textField;
     public static JPasswordField passwordField;
 
@@ -32,21 +33,23 @@ public class LoginFrame extends JFrame{
     public LoginFrame(){
         //背景图片
         JLabel lblBackground = new JLabel(); // 创建一个标签组件对象
-        //URL resource = this.getClass().getResource("/back1.png"); // 获取背景图片路径
-        ImageIcon icon = new ImageIcon("src/image/Background/bg01.jpg"); // 创建背景图片对象
+        ImageIcon icon = new ImageIcon("src/image/登录/01.png"); // 创建背景图片对象
         lblBackground.setIcon(icon); // 设置标签组件要显示的图标
         lblBackground.setBounds(0, 0, icon.getIconWidth(), icon.getIconHeight()); // 设置组件的显示位置及大小
 
-
         jf.setBounds(0, 0, icon.getIconWidth(), icon.getIconHeight());
         jf.setLocationRelativeTo(null);
+        jf.getContentPane().add(lblBackground); // 将组件添加到面板中
 
+/*
         //东南大学标志图片
         JLabel logo = new JLabel();
-        ImageIcon icon1 = new ImageIcon("src/image/logodz.png");
+        ImageIcon icon1 = new ImageIcon("src/image/logo/03.png");
         logo.setIcon(icon1);
-        logo.setBounds(520, 30, 310, 100);
+        logo.setBounds(-140, -300, 1500, 1500);
         jf.getContentPane().add(logo);
+
+
 
         //文字
         JLabel l1 = new JLabel("欢迎使用东南大学虚拟校园系统!");
@@ -79,6 +82,8 @@ public class LoginFrame extends JFrame{
         passwordField.setFont(new Font("宋体", Font.BOLD, 12));
         passwordField.setBounds(140, 310, 125, 20);
         jf.add(passwordField);
+
+ */
 
         //三个按钮
         // 学生登录
@@ -205,23 +210,7 @@ public class LoginFrame extends JFrame{
 
         jf.getContentPane().add(btnNewButton_5);
 
-        //白色蒙版
-        p1 = new JPanel();
-        p1.setBounds(10, 30, icon.getIconWidth()-30, icon.getIconHeight()-90);
-        //p1.setBackground(null);
-        p1.setBackground(new Color(255, 240, 245, 100));
-        //panel1.BackColor = Color.FromArgb(80, 255, 0, 0);
-        //p1.setOpaque(false);
-        jf.getContentPane().add(p1);
-        jf.getContentPane().add(lblBackground); // 将组件添加到面板中
-        jf.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        jf.setVisible(true);
-        //上方蓝色导航条
-        p2 = new JPanel();
-        p2.setBounds(0, 0, icon.getIconWidth(), 30);
-        p2.setBackground(new Color(2, 106, 203 ,190));
-        jf.getContentPane().add(p2);
-        jf.getContentPane().add(lblBackground); // 将组件添加到面板中
+
         jf.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         jf.setVisible(true);
     }

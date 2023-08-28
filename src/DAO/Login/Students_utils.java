@@ -1,7 +1,10 @@
 package DAO.Login;
+import java.security.GeneralSecurityException;
 import java.sql.*;
 import User.Student;
 import connection.JDBC_Connector;
+
+import javax.mail.MessagingException;
 
 /**
  * @author : [Tongwei_L]
