@@ -91,7 +91,7 @@ public class Mail {
         //邮件标题
         mimeMessage.setSubject("Vcampus 验证码");
 
-        String content = "【Vcampus】您好！欢迎使用Vcamous系统！您的验证码是："+this.verifiCode + "。如非本人操作，请检查账号安全！";
+        String content = "【Vcampus】您好！欢迎使用Vcampus系统！您的验证码是："+this.verifiCode + "。如非本人操作，请检查账号安全！";
 
         //邮件内容
         mimeMessage.setContent(content,"text/html;charset=UTF-8");
