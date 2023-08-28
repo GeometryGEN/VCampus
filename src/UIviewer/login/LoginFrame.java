@@ -82,13 +82,12 @@ public class LoginFrame extends JFrame{
         ButtonGroup group1=new ButtonGroup();
         group1.add(rbtnstu);
         group1.add(rbtntea);
-        //btnNewButton_4.setContentAreaFilled(false);//设置按钮透明
+        // 判断单选按钮是否选中
+        //boolean isSelected()
 
-
-        //三个按钮
-        // 学生登录
-        JButton btnNewButton_1 = new JButton("学生登录");
-        btnNewButton_1.setBounds(50, 380, 220, 30);
+        //登录
+        JButton btnNewButton_1 = new JButton("登录");
+        btnNewButton_1.setBounds(900, 500, 220, 30);
         Font myfont = new Font("楷体", Font.PLAIN, 20);
         btnNewButton_1.setFont(myfont);
         btnNewButton_1.setBackground(new Color(34, 139, 34));
@@ -101,19 +100,33 @@ public class LoginFrame extends JFrame{
                 try {
                     String username=textField.getText();
                     String pwd=String.valueOf(passwordField.getPassword());
-                    if(ucs.checkStudent(username,pwd)) {
-                        System.out.println(username+"登录成功！");
-                        functionChoose.functionChooseUI();
-                        jf.setVisible(false);
-                    }else
-                        JOptionPane.showMessageDialog(p1, "用户名或密码错误,请重试!");
+                    if(rbtnstu.isSelected()) {
+                        if (ucs.checkStudent(username, pwd)) {
+                            System.out.println(username + "登录成功！");
+                            functionChoose.functionChooseUI();
+                            jf.setVisible(false);
+
+                        } else
+                            JOptionPane.showMessageDialog(p1, "用户名或密码错误,请重试!");
+                    }
+                    else if (rbtntea.isSelected()) {
+                        if(ucs.checkTeacher(username,pwd)) {
+                            System.out.println(username+"登录成功！");
+                            functionChoose.functionChooseUI();
+                            jf.setVisible(false);
+                        }else
+                            JOptionPane.showMessageDialog(p1, "用户名或密码错误,请重试!");
+                        }
+                    else
+                        JOptionPane.showMessageDialog(p1, "身份选择错误,请重试!");
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
             }
         });
-
         jf.getContentPane().add(btnNewButton_1);
+
+        /*
         // 教师登录
         JButton btnNewButton_2 = new JButton("教师登录");
         btnNewButton_2.setBounds(50, 430, 220, 30);
@@ -167,6 +180,8 @@ public class LoginFrame extends JFrame{
             }
         });
         jf.getContentPane().add(btnNewButton_3);
+
+         */
 
         //注册
         JButton btnNewButton_4 = new JButton("注册");
