@@ -89,7 +89,7 @@ public class student_status extends JPanel {
      * @param iat    iat
      * @throws Exception 异常
      */
-    public student_status(int width, int height, ImageAndTable iat) throws Exception {
+    public student_status(int width, int height, ImageAndTable iat,boolean color_switch) throws Exception {
         double width_r = (double) (width) / 1920;
         double height_r = (double) (height) / 1080;
         //设置屏幕大小、背景颜色
@@ -144,6 +144,28 @@ public class student_status extends JPanel {
         blue_back.setBackground(new Color(63, 81, 181));
         blue_back.setBounds(0, 0, width, height * 3/ 5);
         add(blue_back);
+        //日夜切换的按钮
+        final JButton lswitch = new JButton();
+        if(color_switch){
+            lswitch.setText("日间");
+        }else{
+            lswitch.setText("夜间");
+        }
+        Font myfont2 = new Font("微软雅黑", Font.PLAIN, (int) (12*width_r));
+        lswitch.setBounds((int) (995*width_r), (int) (600*height_r), (int) (100*width_r), (int) (30*height_r));
+        lswitch.setFont(myfont2);
+        if(color_switch){
+            lswitch.setBackground(new Color(200,224,228));
+            lswitch.setForeground(new Color(0,0,0));
+        }else{
+            lswitch.setBackground(new Color(68,84,105));
+            lswitch.setForeground(new Color(255,255,255));
+        }
+        lswitch.setContentAreaFilled(true);
+        lswitch.setFocusPainted(false);
+       add(lswitch);
+       
+
 
     }
 }
