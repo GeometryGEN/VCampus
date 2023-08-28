@@ -1,5 +1,6 @@
 package UIviewer.login;
 import ClientToServer.ClientToServer;
+import DAO.Login.Mail;
 import User.Student;
 import User.Teacher;
 
@@ -8,6 +9,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import static UIviewer.login.register2.registerUI2;
+import static DAO.Login.Mail.*;
 
 /**
  * 注册
@@ -18,6 +20,7 @@ import static UIviewer.login.register2.registerUI2;
 
 public class register {
 
+    public static String captcha;//验证码
     /**
      * 注册界面
      */
@@ -69,33 +72,54 @@ public class register {
         b2.setBounds(360,300,100,25);
         b2.setBackground(new Color(250,250,210));
         b2.setFocusPainted(false);
+        jf.add(b2);
         b2.addActionListener(new ActionListener(){
             @Override
-            public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
-                try{
-                    String idcard=textField3.getText(); //一卡通号
-                    String mail=textField10.getText(); //邮箱
-                    if(idcard==null||(mail.length()==0)){
-                        JOptionPane.showMessageDialog(jf,"信息填写不完整，请重新填写!");}
+                try {
+                    String idcard = textField3.getText(); //一卡通号
+                    String mail = textField10.getText(); //邮箱
+                    if (idcard == null || (mail.length() == 0)) {
+                        JOptionPane.showMessageDialog(jf, "信息填写不完整，请重新填写!");
+                    }
                     //registerUI2();
-
-                }catch(Exception ex){
+                } catch (Exception ex) {
                     ex.printStackTrace();
+                }
+                String mail = textField10.getText();
+                try{
+                    Mail send_mail=new Mail(mail);
+                    captcha=send_mail.getVerifiCode();
+                }catch (Exception a){
+                    a.printStackTrace();
                 }
             }
         });
-        jf.add(b2);
 
 
         JButton b1=new JButton("确认");
         b1.setBounds(360,450,100,30);
         b1.setBackground(new Color(250,250,210));
         b1.setFocusPainted(false);
+
+        //点击确认之后对比输入的验证码是否正确，若正确调用注册的函数
+        b1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String mycaptcha=textField11.getText();
+                if(mycaptcha==captcha){
+                    //继续注册
+                }else{
+                    //报填写错误，验证码不对
+                }
+            }
+        });
 //对于确定注册进行监听
         b1.addActionListener(new ActionListener(){
 @Override
-public void actionPerformed(ActionEvent e){
+
+        public void actionPerformed(ActionEvent e){
         // TODO Auto-generated method stub
         try{
 

@@ -10,7 +10,7 @@ import java.util.Properties;
 import java.util.Random;
 
 public class Mail {
-    Mail(String e_mail) throws MessagingException, GeneralSecurityException {  //传参为要接收验证码的邮箱
+    public Mail(String e_mail) throws MessagingException, GeneralSecurityException {  //传参为要接收验证码的邮箱
         this.email = e_mail;
         GenerateCode(6);
         SendEmail();
