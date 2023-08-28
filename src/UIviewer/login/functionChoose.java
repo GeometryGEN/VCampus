@@ -40,7 +40,7 @@ public class functionChoose {
     public static JButton back_from_student_status;
     public static JFrame jf;
     public static JPanel fc_panel;
-    public static boolean color_switch=true;
+    public static boolean color_switch=false;
 
     /**
      * 功能选择界面
@@ -185,27 +185,27 @@ public class functionChoose {
             fc_panel.add(lswitch);
 
             //label背景
-        JLabel l11 = new JLabel();
-        ImageIcon icon4 = new ImageIcon("src/image/label2.png");
-        int icon4_width=300;
-        int icon4_height=900;
-        try {
-                Thumbnails.of(new File("src/image/label2.png"))
-                        .size((int)(icon4_width*width_r), (int)(icon4_height*height_r))
-                        .toFile(new File("src/image/label2_min.png"));
-                Thumbnails.of(new File("src/image/label2(1).png"))
-                        .size((int)(icon4_width*width_r), (int)(icon4_height*height_r))
-                        .toFile(new File("src/image/label2_min_dark.png"));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        if(color_switch){
-            l11.setIcon(new ImageIcon("src/image/label2_min.png"));
-        }else{
-            l11.setIcon(new ImageIcon("src/image/label2_min_dark.png"));
-        }
-        l11.setBounds((int) (950*width_r), (int)(5*height_r), (int) (300*width_r), (int) (725*height_r));
-        fc_panel.add(l11);
+            JLabel l11 = new JLabel();
+            ImageIcon icon4 = new ImageIcon("src/image/label2.png");
+            int icon4_width=300;
+            int icon4_height=900;
+            try {
+                    Thumbnails.of(new File("src/image/label2.png"))
+                            .size((int)(icon4_width*width_r), (int)(icon4_height*height_r))
+                            .toFile(new File("src/image/label2_min.png"));
+                    Thumbnails.of(new File("src/image/label2(1).png"))
+                            .size((int)(icon4_width*width_r), (int)(icon4_height*height_r))
+                            .toFile(new File("src/image/label2_min_dark.png"));
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+            if(color_switch){
+                l11.setIcon(new ImageIcon("src/image/label2_min.png"));
+            }else{
+                l11.setIcon(new ImageIcon("src/image/label2_min_dark.png"));
+            }
+            l11.setBounds((int) (950*width_r), (int)(5*height_r), (int) (300*width_r), (int) (725*height_r));
+            fc_panel.add(l11);
 
         //五个按钮
             //教育管理
@@ -608,18 +608,25 @@ public class functionChoose {
 
         //校徽横幅
         JLabel l15=new JLabel();
-        ImageIcon icon22=new ImageIcon("src/image/banner3.png");
-        int icon22_width=2700;
-        int icon22_height=120;
+        ImageIcon icon22=new ImageIcon("src/image/横幅.png");
+        int icon22_width=1650;
+        int icon22_height=650;
         try {
-            Thumbnails.of(new File("src/image/banner3.png"))
+            Thumbnails.of(new File("src/image/横幅.png"))
                     .size((int)(icon22_width*width_r), (int)(icon22_height*height_r))
-                    .toFile(new File("src/image/banner3_min.png"));
+                    .toFile(new File("src/image/横幅_min.png"));
+            Thumbnails.of(new File("src/image/横幅_dark.png"))
+                    .size((int)(icon22_width*width_r), (int)(icon22_height*height_r))
+                    .toFile(new File("src/image/横幅_min_dark.png"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        l15.setIcon(new ImageIcon("src/image/banner3_min.png"));
-        l15.setBounds((int)(20*width_r), (int)(35*height_r), (int) (icon22_width*width_r), (int) (icon22_height*height_r));
+        if(color_switch){
+            l15.setIcon(new ImageIcon("src/image/横幅_min.png"));
+        }else{
+            l15.setIcon(new ImageIcon("src/image/横幅_min_dark.png"));
+        }
+        l15.setBounds((int)(34*width_r),(int)(50*height_r), (int) (icon22_width*width_r), (int) (icon22_height*height_r));
         fc_panel.add(l15);
 
 
@@ -627,7 +634,7 @@ public class functionChoose {
         JPanel p2 = new JPanel();
         p2.setBounds(0, 0, (int) (1800*width_r), (int) (125*height_r));
         if(color_switch){
-            p2.setBackground(new Color(245,245,245));
+            p2.setBackground(new Color(200,224,228));
         }else{
             p2.setBackground(new Color(50,50,50));
         }
@@ -637,6 +644,29 @@ public class functionChoose {
         jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         jf.setVisible(true);
 
+        ImageIcon icon_back = new ImageIcon("src/image/Background/背景_大.jpg"); // 创建背景图片对象
+        ImageIcon icon_back_dark=new ImageIcon("src/image/Background/背景_大_dark.jpg");
+
+        //白色蒙版
+        JPanel p1 = new JPanel();
+        p1.setBounds(30, 200, icon_back.getIconWidth()-675, icon_back.getIconHeight()-650);
+        if(color_switch){
+            p1.setBackground(new Color(255, 240, 245, 100));
+        }else{
+            p1.setBackground(new Color(0, 15, 5, 100));
+        }
+        fc_panel.add(p1);
+
+        //背景图片
+        JLabel lblBackground = new JLabel(); // 创建一个标签组件对象
+        if(color_switch){
+            lblBackground.setIcon(icon_back);
+        }else{
+            lblBackground.setIcon(icon_back_dark);
+        }
+        lblBackground.setBounds(0, 0, icon_back.getIconWidth(), icon_back.getIconHeight()); // 设置组件的显示位置及大小
+        fc_panel.add(lblBackground);
+
         //颜色切换按钮
         lswitch.addActionListener(new ActionListener() {
             @Override
@@ -644,7 +674,7 @@ public class functionChoose {
                 color_switch=!color_switch;
 
                 if(color_switch){
-                    p2.setBackground(new Color(245,245,245));
+                    p2.setBackground(new Color(200,224,228));
                     btnNewButton_7.setBackground(new Color(245,245,245));
                     btnNewButton_7.setForeground(new Color(0,0,0));
                     btnNewButton_3.setBackground(new Color(245,245,245));
@@ -674,6 +704,10 @@ public class functionChoose {
                     l42.setIcon(new ImageIcon("src/image/label3(1)_min.png"));
                     l41.setIcon(new ImageIcon("src/image/label3(1)_min.png"));
                     l11.setIcon(new ImageIcon("src/image/label2_min.png"));
+                    l15.setIcon(new ImageIcon("src/image/横幅_min.png"));
+
+                    p1.setBackground(new Color(255, 240, 245, 100));
+                    lblBackground.setIcon(icon_back);
                 }else{
                     p2.setBackground(new Color(50,50,50));
                     btnNewButton_4.setBackground(new Color(50,50,50));
@@ -705,6 +739,10 @@ public class functionChoose {
                     l42.setIcon(new ImageIcon("src/image/label3(1)_min_dark.png"));
                     l41.setIcon(new ImageIcon("src/image/label3(1)_min_dark.png"));
                     l11.setIcon(new ImageIcon("src/image/label2_min_dark.png"));
+                    l15.setIcon(new ImageIcon("src/image/横幅_min_dark.png"));
+
+                    p1.setBackground(new Color(0, 15, 5, 100));
+                    lblBackground.setIcon(icon_back_dark);
                 }
             }
         });
