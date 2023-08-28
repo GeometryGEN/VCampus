@@ -45,24 +45,24 @@ public class LoginFrame extends JFrame{
         JLabel lblNewLabel = new JLabel("用户名:");
         lblNewLabel.setIcon(new ImageIcon("src/image/用户名.png"));
         lblNewLabel.setFont(new Font("宋体", Font.BOLD, 15));
-        lblNewLabel.setBounds(50, 280, 250, 25);
+        lblNewLabel.setBounds(900, 280, 250, 25);
         jf.add(lblNewLabel);
 
         JLabel lblNewLabel_1 = new JLabel("密  码:");
         lblNewLabel_1.setIcon(new ImageIcon("src/image/密码.png"));
         lblNewLabel_1.setFont(new Font("楷体", Font.BOLD, 15));
-        lblNewLabel_1.setBounds(50, 315, 250, 25);
+        lblNewLabel_1.setBounds(900, 315, 250, 25);
         jf.add(lblNewLabel_1);
 
         textField=new JTextField();
         textField.setFont(new Font("宋体", Font.BOLD, 12));
-        textField.setBounds(140, 285, 125, 20);
+        textField.setBounds(1000, 285, 125, 20);
         jf.add(textField);
         textField.setColumns(10);
 
         passwordField=new JPasswordField();
         passwordField.setFont(new Font("宋体", Font.BOLD, 12));
-        passwordField.setBounds(140, 310, 125, 20);
+        passwordField.setBounds(1000, 310, 125, 20);
         jf.add(passwordField);
 
         //三个按钮
@@ -150,7 +150,7 @@ public class LoginFrame extends JFrame{
 
         //注册
         JButton btnNewButton_4 = new JButton("注册");
-        btnNewButton_4.setBounds(150, 550, 220, 30);
+        btnNewButton_4.setBounds(1000, 0, 220, 30);
         Font myfont1 = new Font("宋体 ", Font.PLAIN, 14);
         btnNewButton_4.setFont(myfont1);
         btnNewButton_4.setContentAreaFilled(false);//设置按钮透明
@@ -171,7 +171,7 @@ public class LoginFrame extends JFrame{
         jf.getContentPane().add(btnNewButton_4);
         //忘记密码
         JButton btnNewButton_5 = new JButton("忘记密码");
-        btnNewButton_5.setBounds(150, 570, 220, 30);
+        btnNewButton_5.setBounds(1090, 0, 220, 30);
         btnNewButton_5.setFont(myfont1);
         btnNewButton_5.setContentAreaFilled(false);//设置按钮透明
         btnNewButton_5.setBorder(null);//取消边框
