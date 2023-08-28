@@ -39,25 +39,7 @@ public class LoginFrame extends JFrame{
 
         jf.setBounds(0, 0, icon.getIconWidth(), icon.getIconHeight());
         jf.setLocationRelativeTo(null);
-        jf.getContentPane().add(lblBackground); // 将组件添加到面板中
 
-/*
-        //东南大学标志图片
-        JLabel logo = new JLabel();
-        ImageIcon icon1 = new ImageIcon("src/image/logo/03.png");
-        logo.setIcon(icon1);
-        logo.setBounds(-140, -300, 1500, 1500);
-        jf.getContentPane().add(logo);
-
-
-
-        //文字
-        JLabel l1 = new JLabel("欢迎使用东南大学虚拟校园系统!");
-        l1.setBounds(560, 120, 290, 80);
-        Font font = new Font("宋体", Font.BOLD, 17);
-        l1.setFont(font);
-        //l1.setForeground(new Color(111,222,0));
-        jf.getContentPane().add(l1);
 
         //账号密码
         JLabel lblNewLabel = new JLabel("用户名:");
@@ -82,8 +64,6 @@ public class LoginFrame extends JFrame{
         passwordField.setFont(new Font("宋体", Font.BOLD, 12));
         passwordField.setBounds(140, 310, 125, 20);
         jf.add(passwordField);
-
- */
 
         //三个按钮
         // 学生登录
@@ -210,7 +190,7 @@ public class LoginFrame extends JFrame{
 
         jf.getContentPane().add(btnNewButton_5);
 
-
+        jf.getContentPane().add(lblBackground); // 将组件添加到面板中
         jf.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         jf.setVisible(true);
     }
