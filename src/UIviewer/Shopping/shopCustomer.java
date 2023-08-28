@@ -101,7 +101,7 @@ public class shopCustomer extends JPanel {
         add(logo);
 
 
-        t = Client_shop.returnAllProduct();
+        t = Client_shop.returnAllProduct();//问题所在
         String[][] temp = new String[t.size()][];
         for(int i =0;i<t.size();i++){
             String[] tt =new String[7];
