@@ -24,6 +24,8 @@ import ClientToServer.myInfo;
  */
 public class student_status extends JPanel {
 
+    public static boolean color_switch=true;
+
     /**
      * 状态面板
      *
