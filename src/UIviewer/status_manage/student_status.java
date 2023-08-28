@@ -38,7 +38,7 @@ public class student_status extends JPanel {
     public static JPanel status_panel(double width_r, double height_r, double width, double height, ImageAndTable iat) throws Exception {
         JPanel status=new JPanel();
         status.setBackground(new Color(255,255,255));
-        status.setBorder(BorderFactory.createEtchedBorder());
+        status.setBorder(BorderFactory.createEtchedBorder());//使用组件的当前背景颜色创建具有“蚀刻”外观的边框，以突出显示和着色
         status.setLayout(null);//设置绝对布局
         //个人照片
         JLabel image = new JLabel();
@@ -70,10 +70,13 @@ public class student_status extends JPanel {
         name_label.setForeground(new Color(0,0,0));
         status.add(name_label);
 
-        //添加表格
-        JPanel table_jpanel = new student_status_table(width_r,height_r,width-(icon1_width+60)*width_r,height-140*height_r,iat.student);
-        table_jpanel.setBounds((int)((icon1_width+60)*width_r),(int)(85*height_r), (int)(width-(icon1_width+100)*width_r),(int)(height-140*height_r));
-        status.add(table_jpanel);
+        //添加基本信息表格
+        JPanel basicInformation_table = new student_status_table(width_r,height_r,width-(icon1_width+60)*width_r,height-140*height_r,iat.student);
+        basicInformation_table.setBounds((int)((icon1_width+60)*width_r),(int)(85*height_r), (int)(width-(icon1_width+100)*width_r),(int)(height-140*height_r));
+        status.add(basicInformation_table);
+//        JPanel  statusInformation_table=new student_status_table(width_r,height_r,width-(icon1_width+60)*width_r,height-140*height_r,iat.student);
+//        statusInformation_table.setBounds((int)((icon1_width+60)*width_r),(int)(85*height_r), (int)(width-(icon1_width+100)*width_r),(int)(height-140*height_r));
+//        status.add(statusInformation_table);
 
         return status;
     }

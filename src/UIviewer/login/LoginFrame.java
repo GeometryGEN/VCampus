@@ -64,7 +64,7 @@ public class LoginFrame extends JFrame{
 
         JLabel lblNewLabel_1 = new JLabel("密  码:");
         lblNewLabel_1.setIcon(new ImageIcon("src/image/密码.png"));
-        lblNewLabel_1.setFont(new Font("宋体", Font.BOLD, 15));
+        lblNewLabel_1.setFont(new Font("楷体", Font.BOLD, 15));
         lblNewLabel_1.setBounds(50, 315, 250, 25);
         jf.add(lblNewLabel_1);
 
