@@ -47,50 +47,6 @@ public class register {
         textField3.setBounds(295,100,125,25);
         jf.add(textField3);
         textField3.setColumns(10);
-/*
-        JLabel l4=new JLabel("密码:");
-        l4.setFont(new Font("宋体",Font.BOLD,15));
-        l4.setBounds(220,140,250,25);
-        jf.add(l4);
-        JPasswordField pwd=new JPasswordField();
-        pwd.setFont(new Font("宋体",Font.BOLD,12));
-        pwd.setBounds(295,140,125,25);
-        jf.add(pwd);
-        pwd.setColumns(10);
-
-
-
-        JLabel l5=new JLabel("姓名:");
-        l5.setFont(new Font("宋体",Font.BOLD,15));
-        l5.setBounds(220,180,250,25);
-        jf.add(l5);
-        JTextField textField5=new JTextField();
-        textField5.setFont(new Font("宋体",Font.BOLD,12));
-        textField5.setBounds(295,180,125,25);
-        jf.add(textField5);
-        textField5.setColumns(10);
-
-        JLabel l6=new JLabel("学/工号:");
-        l6.setFont(new Font("宋体",Font.BOLD,15));
-        l6.setBounds(220,220,250,25);
-        jf.add(l6);
-        JTextField textField6=new JTextField();
-        textField6.setFont(new Font("宋体",Font.BOLD,12));
-        textField6.setBounds(295,220,125,25);
-        jf.add(textField6);
-        textField6.setColumns(10);
-
-        JLabel l7=new JLabel("年龄:");
-        l7.setFont(new Font("宋体",Font.BOLD,15));
-        l7.setBounds(220,260,250,25);
-        jf.add(l7);
-        JTextField textField7=new JTextField();
-        textField7.setFont(new Font("宋体",Font.BOLD,12));
-        textField7.setBounds(295,260,125,25);
-        jf.add(textField7);
-        textField7.setColumns(10);
-
- */
 
         JLabel l10=new JLabel("邮箱:");
         l10.setFont(new Font("宋体",Font.BOLD,15));
@@ -101,30 +57,7 @@ public class register {
         textField10.setBounds(295,200,125,25);
         jf.add(textField10);
         textField10.setColumns(10);
-/*
-        JLabel l8=new JLabel("性别：");
-        l8.setFont(new Font("宋体",Font.BOLD,15));
-        l8.setBounds(220,340,250,25);
-        jf.add(l8);
-        JComboBox jc=new JComboBox();
-        jc.setBounds(295,340,125,25);//使用绝对布局，自定义大小
-        jc.addItem("--请选择--");
-        jc.addItem("男");
-        jc.addItem("女");
-        jf.add(jc);
 
-        JLabel l9=new JLabel("身份：");
-        l9.setFont(new Font("宋体",Font.BOLD,15));
-        l9.setBounds(220,380,250,25);
-        jf.add(l9);
-        JComboBox jc1=new JComboBox();
-        jc1.setBounds(295,380,125,25);//使用绝对布局，自定义大小
-        jc1.addItem("--请选择--");
-        jc1.addItem("学生");
-        jc1.addItem("教师");
-        jf.add(jc1);
-
- */
         //填写验证码的地方
         JTextField textField11=new JTextField();
         textField11.setFont(new Font("宋体",Font.BOLD,12));
@@ -136,7 +69,24 @@ public class register {
         b2.setBounds(360,300,100,25);
         b2.setBackground(new Color(250,250,210));
         b2.setFocusPainted(false);
+        b2.addActionListener(new ActionListener(){
+            @Override
+            public void actionPerformed(ActionEvent e){
+                // TODO Auto-generated method stub
+                try{
+                    String idcard=textField3.getText(); //一卡通号
+                    String mail=textField10.getText(); //邮箱
+                    if(idcard==null||(mail.length()==0)){
+                        JOptionPane.showMessageDialog(jf,"信息填写不完整，请重新填写!");}
+                    //registerUI2();
+
+                }catch(Exception ex){
+                    ex.printStackTrace();
+                }
+            }
+        });
         jf.add(b2);
+
 
         JButton b1=new JButton("确认");
         b1.setBounds(360,450,100,30);
