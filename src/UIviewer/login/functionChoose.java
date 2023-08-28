@@ -233,7 +233,7 @@ public class functionChoose {
                                 Client_status.stu_enter();
                             }
                             else if(myInfo.getType()==3){
-                                jf.setContentPane(new manage_status(width,height).manage_panel);
+                                jf.setContentPane(new manage_status(width,height,color_switch).manage_panel);
                                 jf.setTitle("admin_status_management");
                             } else {
                                 JOptionPane.showMessageDialog(null,"抱歉，您暂无学籍管理权限！");
