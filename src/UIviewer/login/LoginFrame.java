@@ -127,7 +127,7 @@ public class LoginFrame extends JFrame{
         jf.getContentPane().add(btnNewButton_1);
 
 
-        // 管理员登录
+        // 管理员登录c
         JButton btnNewButton_3 = new JButton("管理员登录");
         btnNewButton_3.setBounds(50, 480, 220, 30);
         btnNewButton_3.setFont(myfont);
