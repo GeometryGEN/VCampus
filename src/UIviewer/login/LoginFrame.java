@@ -65,6 +65,26 @@ public class LoginFrame extends JFrame{
         passwordField.setBounds(1000, 310, 125, 20);
         jf.add(passwordField);
 
+        boolean choice;
+        JLabel chooselabel = new JLabel("请选择您的身份： ");
+        chooselabel.setBounds(900,400,120,15);
+        jf.add(chooselabel);
+        JRadioButton rbtnstu= new JRadioButton("学生");
+        rbtnstu.setSelected(true);
+        rbtnstu.setContentAreaFilled(false);
+        rbtnstu.setBounds(900,430,75,22);
+        jf.add(rbtnstu);
+        JRadioButton rbtntea= new JRadioButton("教师");
+        rbtntea.setSelected(true);
+        rbtntea.setContentAreaFilled(false);
+        rbtntea.setBounds(1000,430,75,22);
+        jf.add(rbtntea);
+        ButtonGroup group1=new ButtonGroup();
+        group1.add(rbtnstu);
+        group1.add(rbtntea);
+        //btnNewButton_4.setContentAreaFilled(false);//设置按钮透明
+
+
         //三个按钮
         // 学生登录
         JButton btnNewButton_1 = new JButton("学生登录");
