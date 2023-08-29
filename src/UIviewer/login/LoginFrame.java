@@ -160,9 +160,7 @@ public class LoginFrame extends JFrame{
         });
         jf.getContentPane().add(btnNewButton_3);
 
-
-
-        //注册
+        //注册1
         JButton btnNewButton_4 = new JButton("注册");
         btnNewButton_4.setBounds(1000, 0, 100, 30);
         Font myfont1 = new Font("宋体 ", Font.PLAIN, 14);
