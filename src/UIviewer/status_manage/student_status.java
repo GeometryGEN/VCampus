@@ -23,9 +23,9 @@ import ClientToServer.myInfo;
  * @date 2022/09/03
  */
 public class student_status extends JPanel {
-
+    static JPanel status = new JPanel();
     public static boolean color_switch=true;
-
+    static final JButton lswitch = new JButton();
     /**
      * 状态面板
      *
@@ -38,7 +38,7 @@ public class student_status extends JPanel {
      * @throws Exception 异常
      *///信息面板
     public static JPanel status_panel(double width_r, double height_r, double width, double height, ImageAndTable iat) throws Exception {
-        JPanel status = new JPanel();
+
         if(student_status.color_switch){
         status.setBackground(new Color(200,224,228));}
         else{
@@ -88,7 +88,7 @@ public class student_status extends JPanel {
 //        JPanel  statusInformation_table=new student_status_table(width_r,height_r,width-(icon1_width+60)*width_r,height-140*height_r,iat.student);
 //        statusInformation_table.setBounds((int)((icon1_width+60)*width_r),(int)(85*height_r), (int)(width-(icon1_width+100)*width_r),(int)(height-140*height_r));
 //        status.add(statusInformation_table);
-        final JButton lswitch = new JButton();
+
         if(color_switch){
             lswitch.setText("日间");
         }else{
@@ -107,7 +107,23 @@ public class student_status extends JPanel {
         lswitch.setContentAreaFilled(true);
         lswitch.setFocusPainted(false);
         status.add(lswitch);
-
+//        lswitch.addActionListener((e)->{
+//            color_switch=!color_switch;
+//            if(color_switch){
+//
+//                name_label.setForeground(new Color(0, 0, 0));
+//                lswitch.setText("日间");
+//                lswitch.setBackground(new Color(200,224,228));
+//                lswitch.setForeground(new Color(0,0,0));
+//            }
+//            else{
+//                status.setBackground(new Color(68,84,105));
+//                name_label.setForeground(new Color(255,255,255));
+//                lswitch.setText("夜间");
+//                lswitch.setBackground(new Color(68,84,105));
+//                lswitch.setForeground(new Color(255,255,255));
+//            }
+//        });
 
         return status;
     }
@@ -120,7 +136,8 @@ public class student_status extends JPanel {
      * @param iat    iat
      * @throws Exception 异常
      */
-    public student_status(int width, int height, ImageAndTable iat,boolean color_switch) throws Exception {
+//    public student_status(int width, int height, ImageAndTable iat,boolean color_switch) throws Exception {
+    public student_status(int width, int height, ImageAndTable iat) throws Exception {
         double width_r = (double) (width) / 1920;
         double height_r = (double) (height) / 1080;
         //设置屏幕大小、背景颜色
@@ -198,11 +215,54 @@ public class student_status extends JPanel {
         }
         blue_back.setBounds(0, 0, width, height * 3/ 5);
         add(blue_back);
+//
+        lswitch.addActionListener((e)->{
+            color_switch=!color_switch;
+                        if(color_switch){
+                status.setBackground(new Color(200,224,228));
+                setBackground(new Color(200,224,228));
+                lswitch.setText("日间");
+                lswitch.setBackground(new Color(200,224,228));
+                lswitch.setForeground(new Color(0,0,0));
+                blue_back.setBackground(new Color(125,182,191));
+                front_title.setForeground(new Color(240, 241, 249));
+                white_front_slice.setBackground(new Color(164,204,210));
+                title.setForeground(new Color(0,0,0));
+            }
+            else{
+               status.setBackground(new Color(200,224,228));
+                setBackground(new Color(68,84,105));
+                lswitch.setText("夜间");
+                lswitch.setBackground(new Color(68,84,105));
+                lswitch.setForeground(new Color(255,255,255));
+                blue_back.setBackground(new Color(42,52,65));
+                front_title.setForeground(new Color(15,15,6));
+                white_front_slice.setBackground(new Color(106,113,122));
+                title.setForeground(new Color(255,255,255));
 
-
+            }
+        });
 
 
     }
+//     public void setColor()throws Exception {//            color_switch=!color_switch;
+//            if(color_switch){
+//                status.setBackground(new Color(200,224,228));
+//                setBackground(new Color(200,224,228));
+//                lswitch.setText("日间");
+//                lswitch.setBackground(new Color(200,224,228));
+//                lswitch.setForeground(new Color(0,0,0));
+//
+//            }
+//            else{
+//               status.setBackground(new Color(200,224,228));
+//                setBackground(new Color(68,84,105));
+//                lswitch.setText("夜间");
+//                lswitch.setBackground(new Color(68,84,105));
+//                lswitch.setForeground(new Color(255,255,255));
+//            }
+//        };
+
 }
 
 
