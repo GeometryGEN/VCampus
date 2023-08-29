@@ -39,7 +39,11 @@ public class student_status extends JPanel {
      *///信息面板
     public static JPanel status_panel(double width_r, double height_r, double width, double height, ImageAndTable iat) throws Exception {
         JPanel status = new JPanel();
-        status.setBackground(new Color(255, 255, 255));
+        if(student_status.color_switch){
+        status.setBackground(new Color(200,224,228));}
+        else{
+            status.setBackground(new Color(68,84,105));
+            }
         status.setBorder(BorderFactory.createEtchedBorder());//使用组件的当前背景颜色创建具有“蚀刻”外观的边框，以突出显示和着色
         status.setLayout(null);//设置绝对布局
         //个人照片
@@ -69,7 +73,12 @@ public class student_status extends JPanel {
         name_label.setBounds((int) (57 * width_r), (int) ((155 + icon1_height) * height_r), (int) (110 * width_r), (int) (45 * height_r));
         Font name_font = new Font("微软雅黑", Font.PLAIN, (int) (26 * width_r));
         name_label.setFont(name_font);
-        name_label.setForeground(new Color(0, 0, 0));
+        if(color_switch)
+        {
+            name_label.setForeground(new Color(0, 0, 0));
+        }else {
+            name_label.setForeground(new Color(255,255,255));
+        }
         status.add(name_label);
 
         //添加基本信息表格
@@ -79,6 +88,26 @@ public class student_status extends JPanel {
 //        JPanel  statusInformation_table=new student_status_table(width_r,height_r,width-(icon1_width+60)*width_r,height-140*height_r,iat.student);
 //        statusInformation_table.setBounds((int)((icon1_width+60)*width_r),(int)(85*height_r), (int)(width-(icon1_width+100)*width_r),(int)(height-140*height_r));
 //        status.add(statusInformation_table);
+        final JButton lswitch = new JButton();
+        if(color_switch){
+            lswitch.setText("日间");
+        }else{
+            lswitch.setText("夜间");
+        }
+        Font myfont2 = new Font("微软雅黑", Font.PLAIN, (int) (12*width_r));
+        lswitch.setBounds((int)(40*width_r),(int)(700*height_r),(int)(150*width_r),(int)(50*height_r));
+        lswitch.setFont(myfont2);
+        if(student_status.color_switch){
+            lswitch.setBackground(new Color(200,224,228));
+            lswitch.setForeground(new Color(0,0,0));
+        }else{
+            lswitch.setBackground(new Color(68,84,105));
+            lswitch.setForeground(new Color(255,255,255));
+        }
+        lswitch.setContentAreaFilled(true);
+        lswitch.setFocusPainted(false);
+        status.add(lswitch);
+
 
         return status;
     }
@@ -96,7 +125,13 @@ public class student_status extends JPanel {
         double height_r = (double) (height) / 1080;
         //设置屏幕大小、背景颜色
         setBounds(0, 0, width, height);
-        setBackground(new Color(255, 255, 255));
+        if(color_switch)
+        {
+            setBackground(new Color(200,224,228));
+        }
+        else{
+            setBackground(new Color(68,84,105));
+        }
         //设置绝对布局
         setLayout(null);
 
@@ -119,7 +154,12 @@ public class student_status extends JPanel {
         title.setBounds((int) ((40 + icon1_width) * width_r), (int) (3 * height_r), (int) (300 * width_r), (int) (icon1_height * height_r));
         Font title_font = new Font("微软雅黑", Font.BOLD, (int) (31 * width_r));
         title.setFont(title_font);
-        title.setForeground(new Color(255, 255, 255));
+        if(color_switch){
+            title.setForeground(new Color(0,0,0));
+        }else{
+            title.setForeground(new Color(255,255,255));
+        }
+
         add(title);
 
         //信息面板
@@ -129,7 +169,11 @@ public class student_status extends JPanel {
 
         //信息面板上透明条
         JPanel white_front_slice = new JPanel();
-        white_front_slice.setBackground(new Color(124, 136, 204));
+        if(color_switch) {
+            white_front_slice.setBackground(new Color(164,204,210));
+        }else{
+            white_front_slice.setBackground(new Color(106,113,122));
+        }
         white_front_slice.setBounds((int) ((90 + icon1_width) * width_r), (int) ((7 + icon1_height) * height_r), (int) (width - 2 * (90 + icon1_width) * width_r), (int) (40 * height_r));
         add(white_front_slice);
         white_front_slice.setLayout(null);//设置绝对布局
@@ -138,35 +182,24 @@ public class student_status extends JPanel {
         front_title.setBounds((int) (20 * width_r), (int) (0 * height_r), (int) (300 * width_r), (int) (40 * height_r));
         Font front_title_font = new Font("微软雅黑", Font.PLAIN, (int) (19 * width_r));
         front_title.setFont(front_title_font);
-        front_title.setForeground(new Color(240, 241, 249));
+        if(color_switch) {
+            front_title.setForeground(new Color(240, 241, 249));
+        }else {
+            front_title.setForeground(new Color(15,15,6));
+        }
         white_front_slice.add(front_title);
 
         //上方蓝色背景
         JPanel blue_back = new JPanel();
-        blue_back.setBackground(new Color(63, 81, 181));
+        if(color_switch){
+            blue_back.setBackground(new Color(125,182,191));
+        }else {
+            blue_back.setBackground(new Color(42,52,65));
+        }
         blue_back.setBounds(0, 0, width, height * 3/ 5);
         add(blue_back);
-        //日夜切换的按钮
-        final JButton lswitch = new JButton();
-        if(color_switch){
-            lswitch.setText("日间");
-        }else{
-            lswitch.setText("夜间");
-        }
-        Font myfont2 = new Font("微软雅黑", Font.PLAIN, (int) (12*width_r));
-        lswitch.setBounds((int) (995*width_r), (int) (600*height_r), (int) (100*width_r), (int) (30*height_r));
-        lswitch.setFont(myfont2);
-        if(color_switch){
-            lswitch.setBackground(new Color(200,224,228));
-            lswitch.setForeground(new Color(0,0,0));
-        }else{
-            lswitch.setBackground(new Color(68,84,105));
-            lswitch.setForeground(new Color(255,255,255));
-        }
-        lswitch.setContentAreaFilled(true);
-        lswitch.setFocusPainted(false);
-       add(lswitch);
-       
+
+
 
 
     }

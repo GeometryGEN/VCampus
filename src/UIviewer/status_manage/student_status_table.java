@@ -23,7 +23,7 @@ public class student_status_table extends JPanel{
     public JButton jb1,jb2,jb3;
     public JTextField text1,text2,text3,text4,text5,text6,text7,text8,text9,text10,text11,text12,text13,text14,text15,text16,text17,text18,text19,text20,text21,text22,text23,text24,text25,text26,text27,text28,text29,text30,text31,text32;
 
-    /**
+        /**
      * 文本标题
      *
      * @param s        年代
@@ -35,12 +35,22 @@ public class student_status_table extends JPanel{
      */
     private JTextField text_title(String s, double width_r, double height_r, int x, int y){
         JTextField text=new JTextField("   "+s);
-        text.setBackground(new Color(247,248,252));
-        text.setBorder(BorderFactory.createLineBorder(new Color(216,220,240)));
+        if(student_status.color_switch){
+            text.setBackground(new Color(200,200,200));
+        }
+        else{
+            text.setBackground(new Color(100,108,114));
+        }
+
+        text.setBorder(BorderFactory.createLineBorder(new Color(110,118,124)));
         text.setEditable(false);
         Font font = new Font("微软雅黑", Font.BOLD, (int)(25*width_r));
         text.setFont(font);
-        text.setForeground(new Color(51,51,51));
+        if(student_status.color_switch) {
+            text.setForeground(new Color(51, 51, 51));
+        }else{
+            text.setForeground(new Color(204,204,204));
+        }
         text.setBounds((int)(x*width_r),(int)(y*height_r),(int)(230*width_r),(int)(65*height_r));
         return text;
     }
@@ -57,12 +67,20 @@ public class student_status_table extends JPanel{
      */
     private JTextField text_info(String s, double width_r, double height_r, int x, int y){
         JTextField text=new JTextField("   "+s);
-        text.setBackground(new Color(255,255,255));
-        text.setBorder(BorderFactory.createLineBorder(new Color(216,220,240)));
+        if(student_status.color_switch){
+            text.setBackground(new Color(200,224,228));}
+        else{
+            text.setBackground(new Color(68,84,105));
+        }
+        text.setBorder(BorderFactory.createLineBorder(new Color(110,118,124)));
         text.setEditable(false);
         Font font = new Font("微软雅黑", Font.PLAIN, (int)(25*width_r));
         text.setFont(font);
-        text.setForeground(new Color(51,51,51));
+        if(student_status.color_switch) {
+            text.setForeground(new Color(51, 51, 51));
+        }else{
+            text.setForeground(new Color(204,204,204));
+        }
         text.setBounds((int)(x*width_r),(int)(y*height_r),(int)(310*width_r),(int)(65*height_r));
         return text;
     }
@@ -122,7 +140,11 @@ public class student_status_table extends JPanel{
      * @throws Exception 异常
      */
     public student_status_table(double width_r, double height_r, double width, double height,Student sinfo) throws Exception {
-        setBackground(new Color(255,255,255));
+        if(student_status.color_switch){
+            setBackground(new Color(200,224,228));
+        }else {
+        setBackground(new Color(68,84,105));
+        }
         setBorder(BorderFactory.createEtchedBorder());
         setBorder(BorderFactory.createLineBorder(new Color(232,237,239)));
         setLayout(null);//设置绝对布局
@@ -132,7 +154,11 @@ public class student_status_table extends JPanel{
         title_label1.setBounds((int)(50*width_r), (int)(10*height_r), (int)(250*width_r), (int)(50*height_r));
         Font title_font1 = new Font("微软雅黑", Font.BOLD, (int)(27*width_r));
         title_label1.setFont(title_font1);
-        title_label1.setForeground(new Color(102,102,102));
+        if(student_status.color_switch){
+        title_label1.setForeground(new Color(102,102,102));}
+        else{
+            title_label1.setForeground(new Color(170,170,170));
+        }
         add(title_label1);
         /*if(myInfo.getType()==3){
             sinfo = Client_status.returnStatus_Admin(IDcard);
@@ -176,7 +202,11 @@ public class student_status_table extends JPanel{
         title_label2.setBounds((int)(50*width_r), (int)(350*height_r), (int)(250*width_r), (int)(50*height_r));
         Font title_font2 = new Font("微软雅黑", Font.BOLD, (int)(27*width_r));
         title_label2.setFont(title_font2);
-        title_label2.setForeground(new Color(102,102,102));
+        if(student_status.color_switch) {
+            title_label2.setForeground(new Color(102, 102, 102));
+        }else{
+            title_label2.setForeground(new Color(170,170,170));
+        }
         add(title_label2);
         text17=text_title("一卡通号",width_r, height_r,50,405);
         add(text17);
@@ -210,7 +240,6 @@ public class student_status_table extends JPanel{
         add(text31);
         text32=text_info(sinfo.getCampus(),width_r, height_r,820,595);
         add(text32);
-
 
 
 
