@@ -31,7 +31,7 @@ public class register {
 
         //注册信息
         JLabel l2=new JLabel("注册邮箱");
-        l2.setBounds(300,100,290,80);
+        l2.setBounds(300,50,290,80);
         Font font=new Font("等线",Font.BOLD,26);
         l2.setFont(font);
         //l1.setForeground(new Color(111,222,0));
@@ -39,34 +39,35 @@ public class register {
 
         //账号密码
         JLabel l3=new JLabel("一卡通:");
-        l3.setFont(new Font("等线",Font.BOLD,15));
-        l3.setBounds(260,230,250,25);
+        l3.setFont(new Font("等线",Font.BOLD,18));
+        l3.setBounds(260,130,250,25);
         jf.add(l3);
         JTextField textField3=new JTextField();
-        textField3.setFont(new Font("宋体",Font.BOLD,12));
-        textField3.setBounds(325,230,100,25);
+        textField3.setFont(new Font("宋体",Font.BOLD,17));
+        textField3.setBounds(325,130,120,25);
         jf.add(textField3);
         textField3.setColumns(10);
 
         JLabel l10=new JLabel("邮箱:");
-        l10.setFont(new Font("等线",Font.BOLD,15));
-        l10.setBounds(260,280,250,25);
+        l10.setFont(new Font("等线",Font.BOLD,18));
+        l10.setBounds(260,180,250,25);
         jf.add(l10);
         JTextField textField10=new JTextField();
-        textField10.setFont(new Font("宋体",Font.BOLD,12));
-        textField10.setBounds(325,280,100,25);
+        textField10.setFont(new Font("宋体",Font.BOLD,15));
+        textField10.setBounds(325,180,120,25);
         jf.add(textField10);
         textField10.setColumns(10);
 
         //填写验证码的地方
         JTextField textField11=new JTextField();
-        textField11.setFont(new Font("宋体",Font.BOLD,12));
-        textField11.setBounds(260,330,80,25);
+        textField11.setFont(new Font("宋体",Font.BOLD,17));
+        textField11.setBounds(260,230,70,25);
         jf.add(textField11);
         textField10.setColumns(11);
         //发送验证码
         JButton b2=new JButton("发送验证码");
-        b2.setBounds(360,330,100,25);
+        b2.setFont(new Font("等线",Font.BOLD,15));
+        b2.setBounds(336,230,110,25);
         b2.setBackground(new Color(235,236,240));
         b2.setFocusPainted(false);
         jf.add(b2);
@@ -95,7 +96,7 @@ public class register {
         });
 
         JButton b1=new JButton("确认");
-        b1.setBounds(360,390,100,30);
+        b1.setBounds(360,290,100,30);
         b1.setBackground(new Color(235,236,240));
         b1.setFocusPainted(false);
 

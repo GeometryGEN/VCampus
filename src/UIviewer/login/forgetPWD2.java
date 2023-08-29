@@ -19,37 +19,37 @@ public class forgetPWD2{
         //账号密码
         JLabel l1=new JLabel("新密码:");
         l1.setFont(new Font("等线",Font.BOLD,15));
-        l1.setBounds(240,200,250,25);
+        l1.setBounds(240,100,250,25);
         jf.add(l1);
         JPasswordField pwd=new JPasswordField();
         pwd.setFont(new Font("宋体",Font.BOLD,12));
-        pwd.setBounds(310,200,125,25);
+        pwd.setBounds(310,100,125,25);
         jf.add(pwd);
         pwd.setColumns(10);
 
         JLabel l2=new JLabel("确认密码:");
         l2.setFont(new Font("等线",Font.BOLD,15));
-        l2.setBounds(240,250,250,25);
+        l2.setBounds(240,150,250,25);
         jf.add(l2);
         JPasswordField textField2=new JPasswordField();
         textField2.setFont(new Font("宋体",Font.BOLD,12));
-        textField2.setBounds(310,250,125,25);
+        textField2.setBounds(310,150,125,25);
         jf.add(textField2);
         textField2.setColumns(10);
 
         JLabel l7=new JLabel("身份:");
         l7.setFont(new Font("等线",Font.BOLD,15));
-        l7.setBounds(240,300,250,25);
+        l7.setBounds(240,200,250,25);
         jf.add(l7);
         JComboBox<String> comboBox2 =new JComboBox<String>();
-        comboBox2.setBounds(310,300,80,21);
+        comboBox2.setBounds(310,200,80,21);
         comboBox2.addItem("学生");
         comboBox2.addItem("教师");
         comboBox2.setEditable(false);//不可修改的文字
         jf.add(comboBox2);
 
         JButton b1=new JButton("确认修改");
-        b1.setBounds(360,350,100,30);
+        b1.setBounds(360,250,100,30);
         b1.setBackground(new Color(235,236,240));
         b1.setFocusPainted(false);
 
