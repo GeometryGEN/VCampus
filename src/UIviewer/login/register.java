@@ -28,17 +28,9 @@ public class register {
      */
     public static void registerUI(){
         JFrame jf=new JFrame("注册账号");
-        /*
-        //东南大学logo
-        JLabel l1=new JLabel(); // 创建一个标签组件对象
-        ImageIcon icon1=new ImageIcon("src/image/logo-mini.png"); // 创建背景图片对象
-        l1.setIcon(icon1); // 设置标签组件要显示的图标
-        l1.setBounds(0,10,210,65); // 设置组件的显示位置及大小
-        jf.getContentPane().add(l1);
 
-         */
         //注册信息
-        JLabel l2=new JLabel("注册信息");
+        JLabel l2=new JLabel("注册邮箱");
         l2.setBounds(300,100,290,80);
         Font font=new Font("等线",Font.BOLD,26);
         l2.setFont(font);
@@ -113,22 +105,22 @@ public class register {
             public void actionPerformed(ActionEvent e) {
                 String mycaptcha=textField11.getText();//填验证码的文本框
                 //测试中先直接点进去，不用验证
-                jf.setVisible(false);
-                registerUI2(textField10.getText(),textField3.getText());
+                //jf.setVisible(false);
+                //registerUI2(textField10.getText(),textField3.getText());
                 //if(mycaptcha==captcha)
-                /*
+
                 if(Objects.equals(mycaptcha, captcha))
                 {
                     //继续注册
                     jf.setVisible(false);
-                    registerUI2();
+                    registerUI2(textField10.getText(),textField3.getText());
                 }
                 else{
                     //报填写错误，验证码不对
                     JOptionPane.showMessageDialog(jf, "验证码错误，请选择重新发送!");
                 }
 
-                 */
+
             }
         });
         jf.add(b1);

@@ -47,7 +47,7 @@ public class register2 {
         jf.add(textField3);
         textField3.setColumns(10);
 
-        JLabel l4=new JLabel("学工号:");
+        JLabel l4=new JLabel("学/工号:");
         l4.setFont(new Font("等线",Font.BOLD,15));
         l4.setBounds(240,250,250,25);
         jf.add(l4);
