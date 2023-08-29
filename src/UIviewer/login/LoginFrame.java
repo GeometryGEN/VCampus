@@ -9,6 +9,7 @@ import java.awt.event.ActionListener;
 
 import static UIviewer.login.register.registerUI;
 import static UIviewer.login.forgetPWD.forgetPWDUI;
+import static UIviewer.login.forgetPWD.forgetPWDUI;//之后改为修改密码UI函数
 
 /**
  * 登录框
@@ -27,7 +28,7 @@ public class LoginFrame extends JFrame{
     private JTextField textField;
     public static JPasswordField passwordField;
 
-    public static JFrame jf = new JFrame("Login");
+    public static JFrame jf = new JFrame("登录");
 
     /**
      * 登录框
@@ -113,10 +114,15 @@ public class LoginFrame extends JFrame{
                         if(ucs.checkTeacher(username,pwd)) {
                             System.out.println(username+"登录成功！");
                             functionChoose.functionChooseUI();
-                            jf.setVisible(false);
-                        }else
+                            jf.setVisible(false);}
+                            else
                             JOptionPane.showMessageDialog(p1, "用户名或密码错误,请重试!");
                         }
+                    else if (ucs.checkAdmin(username,pwd)) {
+                                System.out.println(username+"登录成功！");
+                                functionChoose.functionChooseUI();
+                                jf.setVisible(false);
+                            }
                     else
                         JOptionPane.showMessageDialog(p1, "身份选择错误,请重试!");
                 } catch (Exception ex) {
@@ -158,7 +164,7 @@ public class LoginFrame extends JFrame{
 
         //注册
         JButton btnNewButton_4 = new JButton("注册");
-        btnNewButton_4.setBounds(1000, 0, 220, 30);
+        btnNewButton_4.setBounds(1000, 0, 100, 30);
         Font myfont1 = new Font("宋体 ", Font.PLAIN, 14);
         btnNewButton_4.setFont(myfont1);
         btnNewButton_4.setContentAreaFilled(false);//设置按钮透明

@@ -23,7 +23,8 @@ import java.util.HashMap;
  * @author Zhangyang_Ge
  * @date 2022/09/03
  */
-public class Client_qicq {
+public class
+Client_qicq {
     static String id;
 
     /**
