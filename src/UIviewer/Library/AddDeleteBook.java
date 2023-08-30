@@ -97,71 +97,70 @@ public class AddDeleteBook extends JPanel {
 
     public static void addBookUI() {
         JFrame jf = new JFrame("录入书籍");
-
         //JPanel addBookPanel = new JPanel();
         JLabel l1 = new JLabel("书籍编号:");
         l1.setFont(new Font("宋体", Font.BOLD, (int) (15 * width_r)));
-        //l1.setBounds((int) (10 * width_r), (int) (10 * height_r), (int) (200 * width_r), (int) (25 * height_r));
-        l1.setBounds(40,50,30,20);
+        l1.setBounds((int) (50 * width_r), (int) (70 * height_r), (int) (250 * width_r), (int) (25 * height_r));
+
         jf.getContentPane().add(l1);
         JTextField textField1 = new JTextField();
         textField1.setFont(new Font("宋体", Font.BOLD, (int) (12 * width_r)));
-        textField1.setBounds((int) (235 * width_r), (int) (120 * height_r), (int) (125 * width_r), (int) (25 * height_r));
+        textField1.setBounds((int) (235 * width_r), (int) (70 * height_r), (int) (125 * width_r), (int) (25 * height_r));
         jf.add(textField1);
         textField1.setColumns(10);
         JLabel l2 = new JLabel("书名:");
         l2.setFont(new Font("宋体", Font.BOLD, (int) (15 * width_r)));
-        l2.setBounds((int) (160 * width_r), (int) (160 * height_r), (int) (250 * width_r), (int) (25 * height_r));
+        l2.setBounds((int) (50 * width_r), (int) (130 * height_r), (int) (250 * width_r), (int) (25 * height_r));
         jf.add(l2);
         JTextField textField2 = new JTextField();
         textField2.setFont(new Font("宋体", Font.BOLD, (int) (12 * width_r)));
-        textField2.setBounds((int) (235 * width_r), (int) (160 * height_r), (int) (125 * width_r), (int) (25 * height_r));
+        textField2.setBounds((int) (235 * width_r), (int) (130 * height_r), (int) (125 * width_r), (int) (25 * height_r));
         jf.add(textField2);
         textField2.setColumns(10);
 
         JLabel l3 = new JLabel("作者:");
         l3.setFont(new Font("宋体", Font.BOLD, (int) (15 * width_r)));
-        l3.setBounds((int) (160 * width_r), (int) (200 * height_r), (int) (250 * width_r), (int) (25 * height_r));
+        l3.setBounds((int) (50 * width_r), (int) (190 * height_r), (int) (250 * width_r), (int) (25 * height_r));
         jf.add(l3);
         JTextField textField3 = new JTextField();
         textField3.setFont(new Font("宋体", Font.BOLD, (int) (12 * width_r)));
-        textField3.setBounds((int) (235 * width_r), (int) (200 * height_r), (int) (125 * width_r), (int) (25 * height_r));
+        textField3.setBounds((int) (235 * width_r), (int) (190 * height_r), (int) (125 * width_r), (int) (25 * height_r));
         jf.add(textField3);
         textField3.setColumns(10);
 
         JLabel l4 = new JLabel("价格:");
         l4.setFont(new Font("宋体", Font.BOLD, (int) (15 * width_r)));
-        l4.setBounds((int) (160 * width_r), (int) (240 * height_r), (int) (250 * width_r), (int) (25 * height_r));
+        l4.setBounds((int) (50 * width_r), (int) (250 * height_r), (int) (250 * width_r), (int) (25 * height_r));
         jf.add(l4);
         JTextField textField4 = new JTextField();
         textField4.setFont(new Font("宋体", Font.BOLD, (int) (12 * width_r)));
-        textField4.setBounds((int) (235 * width_r), (int) (240 * height_r), (int) (125 * width_r), (int) (25 * height_r));
+        textField4.setBounds((int) (235 * width_r), (int) (250 * height_r), (int) (125 * width_r), (int) (25 * height_r));
         jf.add(textField4);
         textField4.setColumns(10);
 
         JLabel l5 = new JLabel("国家:");
         l5.setFont(new Font("宋体", Font.BOLD, (int) (15 * width_r)));
-        l5.setBounds((int) (160 * width_r), (int) (280 * height_r), (int) (250 * width_r), (int) (25 * height_r));
+        l5.setBounds((int) (50 * width_r), (int) (310 * height_r), (int) (250 * width_r), (int) (25 * height_r));
         jf.add(l5);
         JTextField textField5 = new JTextField();
         textField5.setFont(new Font("宋体", Font.BOLD, (int) (12 * width_r)));
-        textField5.setBounds((int) (235 * width_r), (int) (280 * height_r), (int) (125 * width_r), (int) (25 * height_r));
+        textField5.setBounds((int) (235 * width_r), (int) (310 * height_r), (int) (125 * width_r), (int) (25 * height_r));
         jf.add(textField5);
         textField5.setColumns(10);
 
         JLabel l6 = new JLabel("馆藏地:");
         l6.setFont(new Font("宋体", Font.BOLD, (int) (15 * width_r)));
-        l6.setBounds((int) (160 * width_r), (int) (320 * height_r), (int) (250 * width_r), (int) (25 * height_r));
+        l6.setBounds((int) (50 * width_r), (int) (370 * height_r), (int) (250 * width_r), (int) (25 * height_r));
         jf.add(l6);
         JTextField textField6 = new JTextField();
         textField6.setFont(new Font("宋体", Font.BOLD, (int) (12 * width_r)));
-        textField6.setBounds((int) (235 * width_r), (int) (320 * height_r), (int) (125 * width_r), (int) (25 * height_r));
+        textField6.setBounds((int) (235 * width_r), (int) (370 * height_r), (int) (125 * width_r), (int) (25 * height_r));
         jf.add(textField6);
         textField6.setColumns(10);
 
         JLabel l7 = new JLabel("出版社:");
         l7.setFont(new Font("宋体", Font.BOLD, (int) (15 * width_r)));
-        l7.setBounds((int) (160 * width_r), (int) (360 * height_r), (int) (250 * width_r), (int) (25 * height_r));
+        l7.setBounds((int) (50 * width_r), (int) (40 * height_r), (int) (250 * width_r), (int) (25 * height_r));
         jf.add(l7);
         JTextField textField7 = new JTextField();
         textField7.setFont(new Font("宋体", Font.BOLD, (int) (12 * width_r)));
@@ -171,12 +170,12 @@ public class AddDeleteBook extends JPanel {
         jf.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jf.setVisible(true);
         jf.setSize(400,600);
-//        JButton b1 = new JButton("确定录入");
-//        b1.setFont(new Font("楷体", Font.BOLD, (int) (18 * width_r)));
-//        b1.setBounds(200,500,5,5);
-//        b1.setBackground(new Color(124, 143, 18));
-//        b1.setFocusPainted(false);
-//        jf.add(b1);
+        JButton b1 = new JButton("确定录入");
+        b1.setFont(new Font("楷体", Font.BOLD, (int) (18 * width_r)));
+        b1.setBounds((int) (235*width_r), (int) (420*height_r), (int) (120*width_r), (int) (50*height_r));
+        b1.setBackground(new Color(124, 143, 18));
+        b1.setFocusPainted(false);
+        //jf.add(b1);
 //        b1.addActionListener(new ActionListener() {
 //                                 @Override
 //                                 public void actionPerformed(ActionEvent e) {
