@@ -463,7 +463,7 @@ public class functionChoose {
 
                 //校园超市
         //先初始化一下超市的数据
-        Connection connection= JDBC_Connector.ConnectMySQL(); //连接数据库\
+        Connection connection= JDBC_Connector.ConnectMySQL(); //连接数据库
         String sqlShop0 = "select * from products";
         String sqlShop1 = "insert into products values('苹果',1,1,1,1,'生鲜',1,1)";
         Statement stmt = connection.createStatement();
@@ -473,7 +473,6 @@ public class functionChoose {
         }
         rs.close();
         stmt.close();
-        connection.close();
 
                 JButton btnNewButton_3 = new JButton("校园超市");
                 btnNewButton_3.setFocusPainted(false);
