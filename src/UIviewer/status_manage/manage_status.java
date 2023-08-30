@@ -25,7 +25,8 @@ public class manage_status{
     static public JPanel status_jpanel;
     static public JPanel manage_panel;
     public static final JTextField search_text=new RoundJTextField(15);
-
+    final static JButton lswitch = new JButton();
+    public static boolean color_switch=true;
     /**
      * 管理状态
      *
@@ -33,16 +34,37 @@ public class manage_status{
      * @param height 高度
      * @throws Exception 异常
      */
-    public manage_status(int width, int height,boolean color_switch) throws Exception {
+    public manage_status(int width, int height) throws Exception {
         double width_r=(double)(width)/1920;
         double height_r=(double)(height)/1080;
         manage_panel=new JPanel();
         //设置屏幕大小、背景颜色
         manage_panel.setBounds(0,0,width,height);
-        manage_panel.setBackground(new Color(255,255,255));
+        if(color_switch){
+            manage_panel.setBackground(new Color(200,224,228));}
+        else{
+            manage_panel.setBackground(new Color(68,84,105));
+        }
         //设置绝对布局
         manage_panel.setLayout(null);
-
+        if(color_switch){
+            lswitch.setText("日间");
+        }else{
+            lswitch.setText("夜间");
+        }
+        Font myfont2 = new Font("微软雅黑", Font.PLAIN, (int) (12*width_r));
+        lswitch.setBounds((int)(40*width_r),(int)(800*height_r),(int)(150*width_r),(int)(50*height_r));
+        lswitch.setFont(myfont2);
+        if(color_switch){
+            lswitch.setBackground(new Color(200,224,228));
+            lswitch.setForeground(new Color(0,0,0));
+        }else{
+            lswitch.setBackground(new Color(68,84,105));
+            lswitch.setForeground(new Color(255,255,255));
+        }
+        lswitch.setContentAreaFilled(true);
+        lswitch.setFocusPainted(false);
+        manage_panel.add(lswitch);
 
         //SEU logo
         JLabel logo = new JLabel();
@@ -63,15 +85,20 @@ public class manage_status{
         title.setBounds((int)((40+icon1_width)*width_r), (int)(3*height_r), (int)(300*width_r), (int)(icon1_height*height_r));
         Font title_font = new Font("微软雅黑", Font.BOLD, (int)(31*width_r));
         title.setFont(title_font);
-        title.setForeground(new Color(255,255,255));
+        if(color_switch)
+        {
+            title.setForeground(new Color(0, 0, 0));
+        }else {
+            title.setForeground(new Color(255,255,255));
+        }
         manage_panel.add(title);
-
-
-
-
         //搜索面板
         search_panel=new JPanel();
-        search_panel.setBackground(new Color(255,255,255));
+        if(color_switch){
+            search_panel.setBackground(new Color(200,224,228));}
+        else{
+            search_panel.setBackground(new Color(68,84,105));
+        }
         search_panel.setBorder(BorderFactory.createEtchedBorder());
         search_panel.setLayout(null);//设置绝对布局
         search_panel.setBounds((int)((60+icon1_width)*width_r),(int)((47+icon1_height)*height_r), (int)(width-2*(60+icon1_width)*width_r),(int)((1080-70-icon1_height)*height_r));
@@ -142,7 +169,11 @@ public class manage_status{
 
         //信息面板上透明条
         JPanel white_front_slice=new JPanel();
-        white_front_slice.setBackground(new Color(124,136,204));
+        if(color_switch) {
+            white_front_slice.setBackground(new Color(164,204,210));
+        }else{
+            white_front_slice.setBackground(new Color(106,113,122));
+        }
         white_front_slice.setBounds((int)((90+icon1_width)*width_r),(int)((7+icon1_height)*height_r), (int)(width-2*(90+icon1_width)*width_r),(int)(40*height_r));
         manage_panel.add(white_front_slice);
         white_front_slice.setLayout(null);//设置绝对布局
@@ -151,15 +182,49 @@ public class manage_status{
         front_title.setBounds((int)(20*width_r), (int)(0*height_r), (int)(300*width_r), (int)(40*height_r));
         Font front_title_font = new Font("微软雅黑", Font.PLAIN, (int)(19*width_r));
         front_title.setFont(front_title_font);
-        front_title.setForeground(new Color(240,241,249));
+        if(color_switch){
+            front_title.setForeground(new Color(0,0,0));
+        }else{
+            front_title.setForeground(new Color(255,255,255));
+        }
         white_front_slice.add(front_title);
 
 
         //上方蓝色背景
         JPanel blue_back=new JPanel();
-        blue_back.setBackground(new Color(63,81,181));
-        blue_back.setBounds(0,0,width,height*2/5);
+        if(color_switch){
+            blue_back.setBackground(new Color(125,182,191));
+        }else {
+            blue_back.setBackground(new Color(42,52,65));
+        }
+        blue_back.setBounds(0,0,width,height*3/5);
         manage_panel.add(blue_back);
+        lswitch.addActionListener((e)->{
+            color_switch=!color_switch;
+            if(color_switch){
+                blue_back.setBackground(new Color(125,182,191));
+                manage_panel.setBackground(new Color(200,224,228));
+                lswitch.setText("日间");
+                lswitch.setBackground(new Color(200,224,228));
+                lswitch.setForeground(new Color(0,0,0));
+                title.setForeground(new Color(0, 0, 0));
+                search_panel.setBackground(new Color(200,224,228));
+                white_front_slice.setBackground(new Color(164,204,210));
+                front_title.setForeground(new Color(0,0,0));
+            }else{
+                manage_panel.setBackground(new Color(68,84,105));
+                lswitch.setText("夜间");
+                lswitch.setBackground(new Color(68,84,105));
+                lswitch.setForeground(new Color(255,255,255));
+                title.setForeground(new Color(255, 255, 255));
+                search_panel.setBackground(new Color(68,84,105));
+                blue_back.setBackground(new Color(42,52,65));
+                white_front_slice.setBackground(new Color(106,113,122));
+                front_title.setForeground(new Color(0,0,0));
+            }
+
+        });
+
     }
 
 //    public static void main(String[] args) {
