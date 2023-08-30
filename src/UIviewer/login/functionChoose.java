@@ -609,8 +609,8 @@ public class functionChoose {
         //校徽横幅
         JLabel l15=new JLabel();
         ImageIcon icon22=new ImageIcon("src/image/横幅.png");
-        int icon22_width=1650;
-        int icon22_height=650;
+        int icon22_width=2100;
+        int icon22_height=670;
         try {
             Thumbnails.of(new File("src/image/横幅.png"))
                     .size((int)(icon22_width*width_r), (int)(icon22_height*height_r))
@@ -626,7 +626,7 @@ public class functionChoose {
         }else{
             l15.setIcon(new ImageIcon("src/image/横幅_min_dark.png"));
         }
-        l15.setBounds((int)(34*width_r),(int)(50*height_r), (int) (icon22_width*width_r), (int) (icon22_height*height_r));
+        l15.setBounds((int)(30),(int)(50*height_r), (int) (icon22_width*width_r), (int) (icon22_height*height_r));
         fc_panel.add(l15);
 
 
