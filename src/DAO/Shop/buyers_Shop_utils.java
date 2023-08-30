@@ -66,12 +66,12 @@ public class buyers_Shop_utils {
     public static List<ProductPair> getBuyedandNum(String idcard) throws SQLException {
         List<ProductPair> s = new ArrayList<>();
         Statement state = connection.createStatement();
-        String sql= "select * from buyedproducted where Stu_Tea_id= "+idcard;
+        String sql= "select * from buyedproducts where Stu_Tea_id= "+idcard;
         ResultSet rs= state.executeQuery(sql);            //执行sql
         while(rs.next()) {
             ProductPair p = new ProductPair();
-            p.setId(rs.getInt("buyedProductedid"));
-            p.setNum(rs.getInt("buyedproductedNum"));
+            p.setId(rs.getInt(2));
+            p.setNum(rs.getInt(3));
             s.add(p);
         }
         return s;
@@ -87,7 +87,7 @@ public class buyers_Shop_utils {
     public static List<ProductPair> getReadytoBuyandNum(String idcard) throws SQLException {
         List<ProductPair> s = new ArrayList<>();
         Statement state = connection.createStatement();
-        String sql= "select * from readytobuyproducts where Stu_Tea_id= "+idcard;
+        String sql= "select * from readytobuy where Stu_Tea_id= "+idcard;
         ResultSet rs= state.executeQuery(sql);            //执行sql
         while(rs.next()) {
             ProductPair p = new ProductPair();
