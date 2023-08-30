@@ -88,7 +88,7 @@ public class adminLib extends JPanel {
         //上方面板
         JPanel p1 = new JPanel();
         p1.setBounds(0, 0, (int) (1280*width_r), (int) (100*height_r));
-        p1.setBackground(new Color(5,44,5));
+        p1.setBackground(new Color(42,52,65));
         add(p1);
 
         //按钮
@@ -167,7 +167,7 @@ public class adminLib extends JPanel {
         //按钮面板
         JPanel p2 = new JPanel();
         p2.setBounds(0, (int) (100*height_r), (int) (1280*width_r), (int) (50*height_r));
-        p2.setBackground(new Color(57,106,57));
+        p2.setBackground(new Color(68,84,105));
         add(p2);
 
     }
