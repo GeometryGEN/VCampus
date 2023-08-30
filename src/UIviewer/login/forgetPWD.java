@@ -95,10 +95,10 @@ public class forgetPWD {
             public void actionPerformed(ActionEvent e) {
                 String mycaptcha=textField11.getText();//填验证码的文本框
                 //测试中先直接点进去，不用验证
-                jf.setVisible(false);
-                forgetPWDUI2(textField10.getText(),textField3.getText());
+                //jf.setVisible(false);
+                //forgetPWDUI2(textField10.getText(),textField3.getText());
                 //if(mycaptcha==captcha)
-/*
+
                 if(Objects.equals(mycaptcha, captcha))
                 {
                     //继续注册
@@ -110,11 +110,9 @@ public class forgetPWD {
                     JOptionPane.showMessageDialog(jf, "验证码错误，请选择重新发送!");
                 }
 
- */
             }
         });
         jf.add(b1);
-
 
         //随机背景图片
         JLabel lblBackground=new JLabel(); // 创建一个标签组件对象
