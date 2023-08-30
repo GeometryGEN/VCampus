@@ -9,6 +9,10 @@ import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.IOException;
 import java.net.Socket;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.List;
 import UIhandler.Shop.Client_shop;
 import UIhandler.StatusManagement.Client_status;
@@ -26,6 +30,7 @@ import UIviewer.Shopping.shopAdmin;
 import UIviewer.Shopping.shopCustomer;
 import UIviewer.status_manage.manage_status;
 import UIviewer.status_manage.student_status;
+import connection.JDBC_Connector;
 import net.coobird.thumbnailator.Thumbnails;
 import ClientToServer.myInfo;
 
@@ -45,7 +50,7 @@ public class functionChoose {
     /**
      * 功能选择界面
      */
-    public static void functionChooseUI() {
+    public static void functionChooseUI() throws SQLException {
         Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
         int width=(int) screensize.getWidth(); //得到宽度
         int height=(int) screensize.getHeight();//获得高度
@@ -455,7 +460,20 @@ public class functionChoose {
             }
             l53.setBounds((int)(720*width_r),(int)(210*height_r),(int)(250*width_r),(int)(50*height_r));
             fc_panel.add(l53);
+
                 //校园超市
+        //先初始化一下超市的数据
+        Connection connection= JDBC_Connector.ConnectMySQL(); //连接数据库
+        String sqlShop0 = "select * from products";
+        String sqlShop1 = "insert into products values('苹果',1,1,1,1,'生鲜',1,1)";
+        Statement stmt = connection.createStatement();
+        ResultSet rs = stmt.executeQuery(sqlShop0);
+        if(!rs.next()){
+            int count1 = stmt.executeUpdate(sqlShop1);
+        }
+        rs.close();
+        stmt.close();
+
                 JButton btnNewButton_3 = new JButton("校园超市");
                 btnNewButton_3.setFocusPainted(false);
                 btnNewButton_3.addActionListener(new ActionListener() {

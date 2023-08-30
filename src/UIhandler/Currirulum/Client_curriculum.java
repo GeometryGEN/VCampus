@@ -152,12 +152,7 @@ public class Client_curriculum {
         oos.writeObject(message);
     }
 
-    /**
-     * 显示choosable
-     *
-     * @param allchoosing allchoosing
-     * @throws IOException ioexception
-     */
+     //显示选课界面
     public static void show_choosable(ArrayList<Course>allchoosing)throws IOException{
         int n=allchoosing.size();
         Choosing_Course.selectcourse=new String[n][7];
@@ -387,23 +382,16 @@ public class Client_curriculum {
         oos.writeObject(message);
     }
 
-    /**
-     * 需要茶时间表
-     *
-     * @throws IOException ioexception
-     */
+
+    //我的
     public static void RequireTeaSchedule() throws IOException {
         Message message=new Message();
         message.setData(myInfo.getId());
-        message.setType(MessageType.MESSAGE_CURRICULUM_TEACHER_SCHEDULE);
+        message.setType(MessageType.MESSAGE_CURRICULUM_SHOW_SCHEDULE);
         oos.writeObject(message);
     }
 
-    /**
-     * 展示茶时间表
-     *
-     * @param schedule 时间表
-     */
+    //显示教师课程时间表
     public static void show_tea_schedule(String [][][]schedule){
         My_Coursetable.tableDate=new String[17][13][6];
         for(int i=0;i<16;i++)

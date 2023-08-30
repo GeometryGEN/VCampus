@@ -1,5 +1,6 @@
 package UIviewer.SelectCourse;
 
+import DAO.Curriculum.Course;
 import UIhandler.Currirulum.Client_curriculum;
 
 import javax.swing.*;
@@ -9,6 +10,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * 咨询课程信息
@@ -44,7 +46,6 @@ public class ConsultCourse_Info extends JPanel {
         add(textField);
         textField.setColumns(10);
         //五个按钮
-
         JButton btnNewButton_9 = new JButton("查询");
         btnNewButton_9.setBounds((int)(890*width_r), (int)(295*height_r), (int)(150*width_r), (int)(40*height_r));
         Font myfont = new Font("微软雅黑", Font.BOLD, 20);

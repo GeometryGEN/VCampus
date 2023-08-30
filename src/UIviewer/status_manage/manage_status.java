@@ -150,6 +150,7 @@ public class manage_status{
                 }
             }
         });
+
         //返回功能选择模块
         functionChoose.back_from_student_status =new RoundJButton();
         functionChoose.back_from_student_status.setText("返回功能选择");
