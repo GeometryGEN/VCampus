@@ -30,9 +30,9 @@ public class Admin_Shop_utils {
         ps.setDouble(3,p.getProduct_price());
         ps.setInt(4,p.getProduct_currentNumbers());
         ps.setInt(5,p.getProduct_sumNumbers());
-        ps.setBoolean(6,p.getProduct_takeaway());
+        ps.setString(6,p.getProduct_type());
         ps.setInt(7,p.getProduct_toshop());
-        ps.setString(8,p.getProduct_type());
+        ps.setBoolean(8,p.getProduct_takeaway());
         boolean re = ps.executeUpdate()>0;
        // if(re)
         //    System.out.println("商品"+p.getProduct_name()+"添加成功！");
