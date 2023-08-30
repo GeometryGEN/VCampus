@@ -21,8 +21,9 @@ import ClientToServer.myInfo;
  */
 public class student_status_table extends JPanel{
     public JButton jb1,jb2,jb3;
-    public JTextField text1,text2,text3,text4,text5,text6,text7,text8,text9,text10,text11,text12,text13,text14,text15,text16,text17,text18,text19,text20,text21,text22,text23,text24,text25,text26,text27,text28,text29,text30,text31,text32;
-
+    public static JTextField text1,text2,text3,text4,text5,text6,text7,text8,text9,text10,text11,text12,text13,text14,text15,text16,text17,text18,text19,text20,text21,text22,text23,text24,text25,text26,text27,text28,text29,text30,text31,text32;
+    static JLabel title_label1=new JLabel("基本信息");
+    static   JLabel title_label2=new JLabel("学业信息");
         /**
      * 文本标题
      *
@@ -33,9 +34,11 @@ public class student_status_table extends JPanel{
      * @param y        y
      * @return {@link JTextField}
      */
-    private JTextField text_title(String s, double width_r, double height_r, int x, int y){
-        JTextField text=new JTextField("   "+s);
-        if(student_status.color_switch){
+
+    private JTextField text_title(String s, double width_r, double height_r, int x, int y,boolean color_switch){
+       JTextField text=new JTextField();
+        text.setText("   "+s);
+        if(color_switch){
             text.setBackground(new Color(200,200,200));
         }
         else{
@@ -139,8 +142,8 @@ public class student_status_table extends JPanel{
      * @param sinfo    sinfo
      * @throws Exception 异常
      */
-    public student_status_table(double width_r, double height_r, double width, double height,Student sinfo) throws Exception {
-        if(student_status.color_switch){
+    public student_status_table(double width_r, double height_r, double width, double height,Student sinfo,boolean color_switch) throws Exception {
+        if(color_switch){
             setBackground(new Color(200,224,228));
         }else {
         setBackground(new Color(68,84,105));
@@ -150,7 +153,7 @@ public class student_status_table extends JPanel{
         setLayout(null);//设置绝对布局
 
         //个人基本信息文字
-        JLabel title_label1=new JLabel("基本信息");
+//        JLabel title_label1=new JLabel("基本信息");
         title_label1.setBounds((int)(50*width_r), (int)(10*height_r), (int)(250*width_r), (int)(50*height_r));
         Font title_font1 = new Font("微软雅黑", Font.BOLD, (int)(27*width_r));
         title_label1.setFont(title_font1);
@@ -166,39 +169,39 @@ public class student_status_table extends JPanel{
             sinfo = Client_status.returnStatusInfo(IDcard);
         }*/
         //信息表格
-        text1=text_title("姓名",width_r,height_r,50,80);
+        text1=text_title("姓名",width_r,height_r,50,80,student_status.color_switch);
         add(text1);
         text2=text_info(sinfo.getStudent_name(),width_r, height_r,280,80);
         add(text2);
-        text3=text_title("民族",width_r,height_r,590,80);
+        text3=text_title("民族",width_r,height_r,590,80,student_status.color_switch);
         add(text3);
         text4=text_info(sinfo.getNation(),width_r, height_r,820,80);
         add(text4);
-        text5=text_title("年龄",width_r, height_r,50,145);
+        text5=text_title("年龄",width_r, height_r,50,145,student_status.color_switch);
         add(text5);
         text6=text_info(Integer.toString(sinfo.getStudent_age()),width_r, height_r,280,145);
         add(text6);
-        text7=text_title("籍贯",width_r, height_r,590,145);
+        text7=text_title("籍贯",width_r, height_r,590,145,student_status.color_switch);
         add(text7);
         text8=text_info(sinfo.getNative_place(),width_r, height_r,820,145);
         add(text8);
-        text9=text_title("出生日期",width_r, height_r,50,210);
+        text9=text_title("出生日期",width_r, height_r,50,210,student_status.color_switch);
         add(text9);
         text10=text_info(sinfo.getBirthday(),width_r, height_r,280,210);
         add(text10);
-        text11=text_title("身份证号",width_r, height_r,590,210);
+        text11=text_title("身份证号",width_r, height_r,590,210,student_status.color_switch);
         add(text11);
         text12=text_info(sinfo.getID(),width_r, height_r,820,210);
         add(text12);
-        text13=text_title("性别",width_r, height_r,50,275);
+        text13=text_title("性别",width_r, height_r,50,275,student_status.color_switch);
         add(text13);
         text14=text_info(sinfo.getStudent_gender(),width_r, height_r,280,275);
         add(text14);
-        text15=text_title("邮箱",width_r, height_r,590,275);
+        text15=text_title("邮箱",width_r, height_r,590,275,student_status.color_switch);
         add(text15);
         text16=text_info(sinfo.getStudent_email(), width_r, height_r,820,275);
         add(text16);
-        JLabel title_label2=new JLabel("学业信息");
+//        JLabel title_label2=new JLabel("学业信息");
         title_label2.setBounds((int)(50*width_r), (int)(350*height_r), (int)(250*width_r), (int)(50*height_r));
         Font title_font2 = new Font("微软雅黑", Font.BOLD, (int)(27*width_r));
         title_label2.setFont(title_font2);
@@ -208,35 +211,35 @@ public class student_status_table extends JPanel{
             title_label2.setForeground(new Color(170,170,170));
         }
         add(title_label2);
-        text17=text_title("一卡通号",width_r, height_r,50,405);
+        text17=text_title("一卡通号",width_r, height_r,50,405,student_status.color_switch);
         add(text17);
         text18=text_info(sinfo.getStudent_idcard(), width_r, height_r,280,405);
         add(text18);
-        text19=text_title("学号",width_r, height_r,590,405);
+        text19=text_title("学号",width_r, height_r,590,405,student_status.color_switch);
         add(text19);
         text20=text_info(sinfo.getStudent_id(),width_r, height_r,820,405);
         add(text20);
-        text21=text_title("专业",width_r, height_r,50,465);
+        text21=text_title("专业",width_r, height_r,50,465,student_status.color_switch);
         add(text21);
         text22=text_info(sinfo.getMajor(),width_r, height_r,280,465);
         add(text22);
-        text23=text_title("班级",width_r, height_r,590,465);
+        text23=text_title("班级",width_r, height_r,590,465,student_status.color_switch);
         add(text23);
         text24=text_info(sinfo.getSclass(),width_r, height_r,820,465);
         add(text24);
-        text25=text_title("入学年级",width_r, height_r,50,530);
+        text25=text_title("入学年级",width_r, height_r,50,530,student_status.color_switch);
         add(text25);
         text26=text_info(sinfo.getStudent_class(),width_r, height_r,280,530);
         add(text26);
-        text27=text_title("预计毕业日期",width_r, height_r,590,530);
+        text27=text_title("预计毕业日期",width_r, height_r,590,530,student_status.color_switch);
         add(text27);
         text28=text_info(sinfo.getDue_graduate_date(),width_r, height_r,820,530);
         add(text28);
-        text29=text_title("学生类别",width_r, height_r,50,595);
+        text29=text_title("学生类别",width_r, height_r,50,595,student_status.color_switch);
         add(text29);
         text30=text_info(sinfo.getStudent_type(),width_r, height_r,280,595);
         add(text30);
-        text31=text_title("校区",width_r, height_r,590,595);
+        text31=text_title("校区",width_r, height_r,590,595,student_status.color_switch);
         add(text31);
         text32=text_info(sinfo.getCampus(),width_r, height_r,820,595);
         add(text32);

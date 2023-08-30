@@ -23,9 +23,14 @@ import ClientToServer.myInfo;
  * @date 2022/09/03
  */
 public class student_status extends JPanel {
-    static JPanel status = new JPanel();
+
     public static boolean color_switch=true;
-    static final JButton lswitch = new JButton();
+    static JPanel status = new JPanel();
+    final static JButton lswitch = new JButton();
+    static JLabel name_label=new JLabel();
+    static JPanel basicInformation_table;
+            //= new student_status_table(width_r, height_r, width - (icon1_width + 60) * width_r, height - 140 * height_r, iat.student,color_switch);
+    //
     /**
      * 状态面板
      *
@@ -39,7 +44,7 @@ public class student_status extends JPanel {
      *///信息面板
     public static JPanel status_panel(double width_r, double height_r, double width, double height, ImageAndTable iat) throws Exception {
 
-        if(student_status.color_switch){
+        if(color_switch){
         status.setBackground(new Color(200,224,228));}
         else{
             status.setBackground(new Color(68,84,105));
@@ -69,7 +74,9 @@ public class student_status extends JPanel {
         image.setBounds((int) (40 * width_r), (int) (145 * height_r), (int) (icon1_width * width_r), (int) (icon1_height * height_r));
         //头像下名字
         String name = iat.student.getStudent_name();
-        JLabel name_label = new JLabel(name, JLabel.CENTER);
+        name_label.setText(name);
+        name_label.setHorizontalAlignment(SwingConstants.CENTER);
+       // JLabel name_label = new JLabel(name, JLabel.CENTER);
         name_label.setBounds((int) (57 * width_r), (int) ((155 + icon1_height) * height_r), (int) (110 * width_r), (int) (45 * height_r));
         Font name_font = new Font("微软雅黑", Font.PLAIN, (int) (26 * width_r));
         name_label.setFont(name_font);
@@ -82,7 +89,9 @@ public class student_status extends JPanel {
         status.add(name_label);
 
         //添加基本信息表格
-        JPanel basicInformation_table = new student_status_table(width_r, height_r, width - (icon1_width + 60) * width_r, height - 140 * height_r, iat.student);
+       // JPanel
+        basicInformation_table = new student_status_table(width_r, height_r, width - (icon1_width + 60) * width_r, height - 140 * height_r, iat.student,color_switch);
+        //JPanel basicInformation_table = new student_status_table(width_r, height_r, width - (icon1_width + 60) * width_r, height - 140 * height_r, iat.student);
         basicInformation_table.setBounds((int) ((icon1_width + 60) * width_r), (int) (85 * height_r), (int) (width - (icon1_width + 100) * width_r), (int) (height - 140 * height_r));
         status.add(basicInformation_table);
 //        JPanel  statusInformation_table=new student_status_table(width_r,height_r,width-(icon1_width+60)*width_r,height-140*height_r,iat.student);
@@ -215,53 +224,175 @@ public class student_status extends JPanel {
         }
         blue_back.setBounds(0, 0, width, height * 3/ 5);
         add(blue_back);
-//
         lswitch.addActionListener((e)->{
             color_switch=!color_switch;
-                        if(color_switch){
+            if(color_switch){
                 status.setBackground(new Color(200,224,228));
                 setBackground(new Color(200,224,228));
                 lswitch.setText("日间");
                 lswitch.setBackground(new Color(200,224,228));
                 lswitch.setForeground(new Color(0,0,0));
-                blue_back.setBackground(new Color(125,182,191));
-                front_title.setForeground(new Color(240, 241, 249));
-                white_front_slice.setBackground(new Color(164,204,210));
                 title.setForeground(new Color(0,0,0));
+                white_front_slice.setBackground(new Color(164,204,210));
+                front_title.setForeground(new Color(240, 241, 249));
+                blue_back.setBackground(new Color(125,182,191));
+                name_label.setForeground(new Color(0, 0, 0));
+               // student_status_table.text.setBackground(new Color(200,200,200));
+                student_status_table.title_label1.setForeground(new Color(102,102,102));
+                student_status_table.title_label2.setForeground(new Color(102, 102, 102));
+                student_status_table.text1.setBackground(new Color(200,200,200));
+                student_status_table.text1.setForeground(new Color(51, 51, 51));
+                student_status_table.text3.setBackground(new Color(200,200,200));
+                student_status_table.text3.setForeground(new Color(51, 51, 51));
+                student_status_table.text5.setBackground(new Color(200,200,200));
+                student_status_table.text5.setForeground(new Color(51, 51, 51));
+                student_status_table.text7.setBackground(new Color(200,200,200));
+                student_status_table.text7.setForeground(new Color(51, 51, 51));
+                student_status_table.text9.setBackground(new Color(200,200,200));
+                student_status_table.text9.setForeground(new Color(51, 51, 51));
+                student_status_table.text11.setBackground(new Color(200,200,200));
+                student_status_table.text11.setForeground(new Color(51, 51, 51));
+                student_status_table.text13.setBackground(new Color(200,200,200));
+                student_status_table.text13.setForeground(new Color(51, 51, 51));
+                student_status_table.text15.setBackground(new Color(200,200,200));
+                student_status_table.text15.setForeground(new Color(51, 51, 51));
+                student_status_table.text17.setBackground(new Color(200,200,200));
+                student_status_table.text17.setForeground(new Color(51, 51, 51));
+                student_status_table.text19.setBackground(new Color(200,200,200));
+                student_status_table.text19.setForeground(new Color(51, 51, 51));
+                student_status_table.text21.setBackground(new Color(200,200,200));
+                student_status_table.text21.setForeground(new Color(51, 51, 51));
+                student_status_table.text23.setBackground(new Color(200,200,200));
+                student_status_table.text23.setForeground(new Color(51, 51, 51));
+                student_status_table.text25.setBackground(new Color(200,200,200));
+                student_status_table.text25.setForeground(new Color(51, 51, 51));
+                student_status_table.text27.setBackground(new Color(200,200,200));
+                student_status_table.text27.setForeground(new Color(51, 51, 51));
+                student_status_table.text29.setBackground(new Color(200,200,200));
+                student_status_table.text29.setForeground(new Color(51, 51, 51));
+                student_status_table.text31.setBackground(new Color(200,200,200));
+                student_status_table.text31.setForeground(new Color(51, 51, 51));
+                student_status_table.text2.setBackground(new Color(200,224,228));
+                student_status_table.text2.setForeground(new Color(51, 51, 51));
+                student_status_table.text4.setBackground(new Color(200,224,228));
+                student_status_table.text4.setForeground(new Color(51, 51, 51));
+                student_status_table.text6.setBackground(new Color(200,224,228));
+                student_status_table.text6.setForeground(new Color(51, 51, 51));
+                student_status_table.text8.setBackground(new Color(200,224,228));
+                student_status_table.text8.setForeground(new Color(51, 51, 51));
+                student_status_table.text10.setBackground(new Color(200,224,228));
+                student_status_table.text10.setForeground(new Color(51, 51, 51));
+                student_status_table.text12.setBackground(new Color(200,224,228));
+                student_status_table.text12.setForeground(new Color(51, 51, 51));
+                student_status_table.text14.setBackground(new Color(200,224,228));
+                student_status_table.text14.setForeground(new Color(51, 51, 51));
+                student_status_table.text16.setBackground(new Color(200,224,228));
+                student_status_table.text16.setForeground(new Color(51, 51, 51));
+                student_status_table.text18.setBackground(new Color(200,224,228));
+                student_status_table.text18.setForeground(new Color(51, 51, 51));
+                student_status_table.text20.setBackground(new Color(200,224,228));
+                student_status_table.text20.setForeground(new Color(51, 51, 51));
+                student_status_table.text22.setBackground(new Color(200,224,228));
+                student_status_table.text22.setForeground(new Color(51, 51, 51));
+                student_status_table.text24.setBackground(new Color(200,224,228));
+                student_status_table.text24.setForeground(new Color(51, 51, 51));
+                student_status_table.text26.setBackground(new Color(200,224,228));
+                student_status_table.text26.setForeground(new Color(51, 51, 51));
+                student_status_table.text28.setBackground(new Color(200,224,228));
+                student_status_table.text28.setForeground(new Color(51, 51, 51));
+                student_status_table.text30.setBackground(new Color(200,224,228));
+                student_status_table.text30.setForeground(new Color(51, 51, 51));
+                student_status_table.text32.setBackground(new Color(200,224,228));
+                student_status_table.text32.setForeground(new Color(51, 51, 51));
+                basicInformation_table. setBackground(new Color(200,224,228));
+
+
             }
             else{
-               status.setBackground(new Color(200,224,228));
+                status.setBackground(new Color(68,84,105));
                 setBackground(new Color(68,84,105));
                 lswitch.setText("夜间");
                 lswitch.setBackground(new Color(68,84,105));
                 lswitch.setForeground(new Color(255,255,255));
-                blue_back.setBackground(new Color(42,52,65));
-                front_title.setForeground(new Color(15,15,6));
-                white_front_slice.setBackground(new Color(106,113,122));
                 title.setForeground(new Color(255,255,255));
+                white_front_slice.setBackground(new Color(106,113,122));
+                front_title.setForeground(new Color(15,15,6));
+                blue_back.setBackground(new Color(42,52,65));
+                name_label.setForeground(new Color(255,255,255));
+                student_status_table.text1.setBackground(new Color(100,108,114));
+                student_status_table.text1.setForeground(new Color(204,204,204));
+                student_status_table.text3.setBackground(new Color(100,108,114));
+                student_status_table.text3.setForeground(new Color(204,204,204));
+                student_status_table.text5.setBackground(new Color(100,108,114));
+                student_status_table.text5.setForeground(new Color(204,204,204));
+                student_status_table.text7.setBackground(new Color(100,108,114));
+                student_status_table.text7.setForeground(new Color(204,204,204));
+                student_status_table.text9.setBackground(new Color(100,108,114));
+                student_status_table.text9.setForeground(new Color(204,204,204));
+                student_status_table.text11.setBackground(new Color(100,108,114));
+                student_status_table.text11.setForeground(new Color(204,204,204));
+                student_status_table.text13.setBackground(new Color(100,108,114));
+                student_status_table.text13.setForeground(new Color(204,204,204));
+                student_status_table.text15.setBackground(new Color(100,108,114));
+                student_status_table.text15.setForeground(new Color(204,204,204));
+                student_status_table.text17.setBackground(new Color(100,108,114));
+                student_status_table.text17.setForeground(new Color(204,204,204));
+                student_status_table.text19.setBackground(new Color(100,108,114));
+                student_status_table.text19.setForeground(new Color(204,204,204));
+                student_status_table.text21.setBackground(new Color(100,108,114));
+                student_status_table.text21.setForeground(new Color(204,204,204));
+                student_status_table.text23.setBackground(new Color(100,108,114));
+                student_status_table.text23.setForeground(new Color(204,204,204));
+                student_status_table.text25.setBackground(new Color(100,108,114));
+                student_status_table.text25.setForeground(new Color(204,204,204));
+                student_status_table.text27.setBackground(new Color(100,108,114));
+                student_status_table.text27.setForeground(new Color(204,204,204));
+                student_status_table.text29.setBackground(new Color(100,108,114));
+                student_status_table.text29.setForeground(new Color(204,204,204));
+                student_status_table.text31.setBackground(new Color(100,108,114));
+                student_status_table.text31.setForeground(new Color(204,204,204));
+                student_status_table.text2.setBackground(new Color(68,84,105));
+                student_status_table.text2.setForeground(new Color(204,204,204));
+                student_status_table.text4.setBackground(new Color(68,84,105));
+                student_status_table.text4.setForeground(new Color(204,204,204));
+                student_status_table.text6.setBackground(new Color(68,84,105));
+                student_status_table.text6.setForeground(new Color(204,204,204));
+                student_status_table.text8.setBackground(new Color(68,84,105));
+                student_status_table.text8.setForeground(new Color(204,204,204));
+                student_status_table.text10.setBackground(new Color(68,84,105));
+                student_status_table.text10.setForeground(new Color(204,204,204));
+                student_status_table.text12.setBackground(new Color(68,84,105));
+                student_status_table.text12.setForeground(new Color(204,204,204));
+                student_status_table.text14.setBackground(new Color(68,84,105));
+                student_status_table.text14.setForeground(new Color(204,204,204));
+                student_status_table.text16.setBackground(new Color(68,84,105));
+                student_status_table.text16.setForeground(new Color(204,204,204));
+                student_status_table.text18.setBackground(new Color(68,84,105));
+                student_status_table.text18.setForeground(new Color(204,204,204));
+                student_status_table.text20.setBackground(new Color(68,84,105));
+                student_status_table.text20.setForeground(new Color(204,204,204));
+                student_status_table.text22.setBackground(new Color(68,84,105));
+                student_status_table.text22.setForeground(new Color(204,204,204));
+                student_status_table.text24.setBackground(new Color(68,84,105));
+                student_status_table.text24.setForeground(new Color(204,204,204));
+                student_status_table.text26.setBackground(new Color(68,84,105));
+                student_status_table.text26.setForeground(new Color(204,204,204));
+                student_status_table.text28.setBackground(new Color(68,84,105));
+                student_status_table.text28.setForeground(new Color(204,204,204));
+                student_status_table.text30.setBackground(new Color(68,84,105));
+                student_status_table.text30.setForeground(new Color(204,204,204));
+                student_status_table.text32.setBackground(new Color(68,84,105));
+                student_status_table.text32.setForeground(new Color(204,204,204));
+                basicInformation_table.setBackground(new Color(68,84,105));
+
+
+                student_status_table.title_label1.setForeground(new Color(170,170,170));
+                student_status_table.title_label2.setForeground(new Color(170,170,170));
 
             }
         });
 
-
     }
-//     public void setColor()throws Exception {//            color_switch=!color_switch;
-//            if(color_switch){
-//                status.setBackground(new Color(200,224,228));
-//                setBackground(new Color(200,224,228));
-//                lswitch.setText("日间");
-//                lswitch.setBackground(new Color(200,224,228));
-//                lswitch.setForeground(new Color(0,0,0));
-//
-//            }
-//            else{
-//               status.setBackground(new Color(200,224,228));
-//                setBackground(new Color(68,84,105));
-//                lswitch.setText("夜间");
-//                lswitch.setBackground(new Color(68,84,105));
-//                lswitch.setForeground(new Color(255,255,255));
-//            }
-//        };
 
 }
 
