@@ -286,7 +286,7 @@ public class buyers_Shop_utils {
      * @return return :  添加购物车情况：false失败 ture成功
      */
     public static boolean addToShopCar(String idcard, int id, int num) throws SQLException {
-        String sql="insert into readytobuyproducts values(?,?,?)";
+        String sql="insert into readytobuy values(?,?,?)";
         PreparedStatement ps = connection.prepareStatement(sql);
         ps = connection.prepareStatement(sql);
         ps.setString(1, idcard);
@@ -310,7 +310,7 @@ public class buyers_Shop_utils {
      * @return return :  添加到已购商品情况：false失败 ture成功
      */
     public static boolean addToHaveShopped(String idcard, int id, int num) throws SQLException {
-        String sql="insert into buyedproducted values(?,?,?)";
+        String sql="insert into buyedproducts values(?,?,?)";
         PreparedStatement ps = connection.prepareStatement(sql);
         ps.setString(1, idcard);
         ps.setInt(2,id);
@@ -333,7 +333,7 @@ public class buyers_Shop_utils {
      * @return return :  删除购物车商品情况：false失败 ture成功
      */
     public static boolean deleteShopCar(String idcard, int id, int num) throws SQLException {
-        String sql="delete from readytobuyproducts where (Stu_Tea_id=? and product_id=?)";
+        String sql="delete from readytobuy where (Stu_Tea_id=? and product_id=?)";
         PreparedStatement ps = connection.prepareStatement(sql);
         ps.setString(1,idcard);
         ps.setInt(2,id);

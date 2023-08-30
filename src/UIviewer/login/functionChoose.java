@@ -460,27 +460,16 @@ public class functionChoose {
             }
             l53.setBounds((int)(720*width_r),(int)(210*height_r),(int)(250*width_r),(int)(50*height_r));
             fc_panel.add(l53);
+
                 //校园超市
         //先初始化一下超市的数据
         Connection connection= JDBC_Connector.ConnectMySQL(); //连接数据库\
         String sqlShop0 = "select * from products";
-        String sqlShop1 = "insert into products values('apple',1,1,1,1,1,1,1)";
-        String sqlShopBought0 = "select * from buyedproducts";
-        String sqlShopBought1 = "insert into buyedproducts values(1,1,1)";
-        String sqlShopReady0 = "select * from readytobuy";
-        String sqlShopReady1 = "insert into readytobuy values(1,1,1)";
+        String sqlShop1 = "insert into products values('苹果',1,1,1,1,'生鲜',1,1)";
         Statement stmt = connection.createStatement();
         ResultSet rs = stmt.executeQuery(sqlShop0);
         if(!rs.next()){
             int count1 = stmt.executeUpdate(sqlShop1);
-        }
-        rs = stmt.executeQuery(sqlShopBought0);
-        if(!rs.next()){
-            int count = stmt.executeUpdate(sqlShopBought1);
-        }
-        rs = stmt.executeQuery(sqlShopReady0);
-        if(!rs.next()){
-            int count = stmt.executeUpdate(sqlShopReady1);
         }
         rs.close();
         stmt.close();
