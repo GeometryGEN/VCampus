@@ -103,19 +103,19 @@ public class student_status extends JPanel {
         }else{
             lswitch.setText("夜间");
         }
-        Font myfont2 = new Font("微软雅黑", Font.PLAIN, (int) (12*width_r));
-        lswitch.setBounds((int)(40*width_r),(int)(700*height_r),(int)(150*width_r),(int)(50*height_r));
-        lswitch.setFont(myfont2);
-        if(student_status.color_switch){
-            lswitch.setBackground(new Color(200,224,228));
-            lswitch.setForeground(new Color(0,0,0));
-        }else{
-            lswitch.setBackground(new Color(68,84,105));
-            lswitch.setForeground(new Color(255,255,255));
-        }
-        lswitch.setContentAreaFilled(true);
-        lswitch.setFocusPainted(false);
-        status.add(lswitch);
+//        Font myfont2 = new Font("微软雅黑", Font.PLAIN, (int) (12*width_r));
+//        lswitch.setBounds((int)(40*width_r),(int)(700*height_r),(int)(150*width_r),(int)(50*height_r));
+//        lswitch.setFont(myfont2);
+//        if(student_status.color_switch){
+//            lswitch.setBackground(new Color(200,224,228));
+//            lswitch.setForeground(new Color(0,0,0));
+//        }else{
+//            lswitch.setBackground(new Color(68,84,105));
+//            lswitch.setForeground(new Color(255,255,255));
+//        }
+//        lswitch.setContentAreaFilled(true);
+//        lswitch.setFocusPainted(false);
+//        status.add(lswitch);
 //        lswitch.addActionListener((e)->{
 //            color_switch=!color_switch;
 //            if(color_switch){
@@ -214,7 +214,19 @@ public class student_status extends JPanel {
             front_title.setForeground(new Color(15,15,6));
         }
         white_front_slice.add(front_title);
-
+        Font myfont2 = new Font("微软雅黑", Font.PLAIN, (int) (12*width_r));
+        lswitch.setBounds((int)(40*width_r),(int)(700*height_r),(int)(150*width_r),(int)(50*height_r));
+        lswitch.setFont(myfont2);
+        if(student_status.color_switch){
+            lswitch.setBackground(new Color(200,224,228));
+            lswitch.setForeground(new Color(0,0,0));
+        }else{
+            lswitch.setBackground(new Color(68,84,105));
+            lswitch.setForeground(new Color(255,255,255));
+        }
+        lswitch.setContentAreaFilled(true);
+        lswitch.setFocusPainted(false);
+        add(lswitch);
         //上方蓝色背景
         JPanel blue_back = new JPanel();
         if(color_switch){
