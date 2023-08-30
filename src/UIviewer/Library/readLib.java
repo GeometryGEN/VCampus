@@ -12,8 +12,7 @@ import net.coobird.thumbnailator.Thumbnails;
 import ClientToServer.myInfo;
 
 /**
- * 阅读自由
- *
+ * 用户界面
  * @author Chen_GuanZhi
  * @date 2022/09/03
  */
@@ -41,7 +40,7 @@ public class readLib extends JPanel {
     }
     static searchResult f4=new searchResult();
     public static CardLayout cardLayout=new CardLayout();
-
+    static Color white=new Color(248, 248, 255);
 
     /**
      * 阅读自由
@@ -83,25 +82,25 @@ public class readLib extends JPanel {
         //文字
             JLabel l1 = new JLabel("你好！"+name);
             l1.setBounds((int) (1100*width_r), (int) (30*height_r), (int) (200*width_r), (int) (55*height_r));
-            l1.setForeground(new Color(248, 248, 255));
-            Font font = new Font("楷体", Font.BOLD, (int) (20*width_r));
+            l1.setForeground(white);
+            Font font = new Font("微软雅黑", Font.BOLD, (int) (20*width_r));
             l1.setFont(font);
             add(l1);
 
         //上方面板
         JPanel p1 = new JPanel();
         p1.setBounds(0, 0, (int) (1280*width_r), (int) (100*height_r));
-        p1.setBackground(new Color(5,44,5));
+        p1.setBackground(new Color(37,51,30));
         add(p1);
 
         //按钮
-
+        //b1馆藏查询
         b1.setBounds((int) (100*width_r), (int) (100*height_r), (int) (250*width_r), (int) (50*height_r));
         Font myfont1 = new Font("微软雅黑", Font.BOLD, (int) (18*width_r));
         b1.setFont(myfont1);
         b1.setContentAreaFilled(false);//设置按钮透明
-        b1.setFocusPainted(false);
-        b1.setForeground(new Color(248, 248, 255));
+        b1.setFocusPainted(false);//把选中后出现的小方框去掉
+        b1.setForeground(white);
         b1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -115,7 +114,8 @@ public class readLib extends JPanel {
         b2.setFont(myfont1);
         b2.setContentAreaFilled(false);//设置按钮透明
         b2.setFocusPainted(false);
-        b2.setForeground(new Color(248, 248, 255));
+        //b2.setForeground(new Color(248, 248, 255));
+        b2.setForeground(white);
         b2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -133,7 +133,7 @@ public class readLib extends JPanel {
         b3.setFont(myfont1);
         b3.setContentAreaFilled(false);//设置按钮透明
         b3.setFocusPainted(false);
-        b3.setForeground(new Color(248, 248, 255));
+        b3.setForeground(white);
         b3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -153,7 +153,7 @@ public class readLib extends JPanel {
         b4.setFont(myfont1);
         b4.setContentAreaFilled(false);//设置按钮透明
         b4.setFocusPainted(false);
-        b4.setForeground(new Color(248, 248, 255));
+        b4.setForeground(white);
             b4.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -168,7 +168,7 @@ public class readLib extends JPanel {
         //按钮面板
         JPanel p2 = new JPanel();
         p2.setBounds(0, (int) (100*height_r), (int) (1280*width_r), (int) (50*height_r));
-        p2.setBackground(new Color(57,106,57));
+        p2.setBackground(new Color(64,81,51));
         //p2.setBackground(new Color(125,182,191));
         add(p2);
         setVisible(true);

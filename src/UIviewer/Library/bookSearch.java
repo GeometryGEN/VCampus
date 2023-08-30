@@ -38,15 +38,20 @@ public class bookSearch extends JPanel {
         JLabel pic1 = new JLabel();
         int icon1_width= 1280;
         int icon1_height=660;
+        /*
         try {
             Thumbnails.of(new File("src/image/bg2.jpg"))
                     .size((int)(icon1_width*width_r), (int)(icon1_height*height_r))
                     .keepAspectRatio(false)
-                    .toFile(new File("src/image/bg2_min.jpg"));
+                    .toFile(new File("src/image/background/bg03.jpg"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        pic1.setIcon(new ImageIcon("src/image/bg2_min.jpg"));
+
+         */
+
+
+        pic1.setIcon(new ImageIcon("src/image/图书馆/3.png"));
         pic1.setBounds(0,0 , (int) (1280*width_r), (int) (660*height_r));
         p11.add(pic1);
 

@@ -671,9 +671,9 @@ public class functionChoose {
         lswitch.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                color_switch=!color_switch;
+                color_switch=!color_switch;//取反
 
-                if(color_switch){
+                if(color_switch){//根据当前color_switch的值重新设置控件颜色，复制粘贴一遍就可以了
                     p2.setBackground(new Color(200,224,228));
                     btnNewButton_7.setBackground(new Color(245,245,245));
                     btnNewButton_7.setForeground(new Color(0,0,0));

@@ -45,16 +45,16 @@ public class LoginFrame extends JFrame{
 
 
         //账号密码
-        JLabel lblNewLabel = new JLabel("用户名:");
+        JLabel lblNewLabel = new JLabel("一卡通号:");
         lblNewLabel.setIcon(new ImageIcon("src/image/用户名.png"));
-        lblNewLabel.setFont(new Font("等线", Font.BOLD, 20));
+        lblNewLabel.setFont(new Font("等线", Font.BOLD, 17));
         lblNewLabel.setForeground(new Color(235,236,240));
         lblNewLabel.setBounds(900, 280, 250, 25);
         jf.add(lblNewLabel);
 
         JLabel lblNewLabel_1 = new JLabel("密  码:");
         lblNewLabel_1.setIcon(new ImageIcon("src/image/密码.png"));
-        lblNewLabel_1.setFont(new Font("等线", Font.BOLD, 20));
+        lblNewLabel_1.setFont(new Font("等线", Font.BOLD, 17));
         lblNewLabel_1.setForeground(new Color(235,236,240));
         lblNewLabel_1.setBounds(900, 325, 250, 25);
         jf.add(lblNewLabel_1);
