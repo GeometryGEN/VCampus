@@ -17,6 +17,7 @@ import ClientToServer.myInfo;
  * @author Chen_GuanZhi
  * @date 2022/09/03
  */
+
 public class readLib extends JPanel {
     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
     int width=(int ) screensize.getWidth(); //得到宽度
@@ -168,6 +169,7 @@ public class readLib extends JPanel {
         JPanel p2 = new JPanel();
         p2.setBounds(0, (int) (100*height_r), (int) (1280*width_r), (int) (50*height_r));
         p2.setBackground(new Color(57,106,57));
+        //p2.setBackground(new Color(125,182,191));
         add(p2);
         setVisible(true);
     }

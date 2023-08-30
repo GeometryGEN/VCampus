@@ -33,7 +33,7 @@ public class manage_status{
      * @param height 高度
      * @throws Exception 异常
      */
-    public manage_status(int width, int height) throws Exception {
+    public manage_status(int width, int height,boolean color_switch) throws Exception {
         double width_r=(double)(width)/1920;
         double height_r=(double)(height)/1080;
         manage_panel=new JPanel();
