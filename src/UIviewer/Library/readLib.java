@@ -50,8 +50,8 @@ public class readLib extends JPanel {
      */
     public readLib(){
             //测试UI时先不获取名字。将其设为空
-        // String name=myInfo.getName();
-        String name=null;
+        String name=myInfo.getName();
+        //String name=null;
         getName(name);
         setBounds(0,0, (int) (1273*width_r), (int) (784*height_r));
         setLayout(null);
@@ -67,8 +67,8 @@ public class readLib extends JPanel {
         bookSearch f1=new bookSearch();
 //		将面板添加到住面板中，注意:add()方法里有两个参数，第一个是要添加的对象，第二个给这个对象所放置的卡片
 //		起个名字，后面调用显示的时候要用到这个名字
-        panel.add(f1,"f1");
-        panel.add(f4,"f4");
+        panel.add(f1,"f1");//查找书
+        panel.add(f4,"f4");//查找结果
 
         //图书馆标志与背景
         JLabel logo = new JLabel();
@@ -173,6 +173,8 @@ public class readLib extends JPanel {
         //p2.setBackground(new Color(125,182,191));
         add(p2);
         setVisible(true);
+
+        //setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 /*
     public static void main(String[] args) {
@@ -192,7 +194,7 @@ public class readLib extends JPanel {
         jf.setVisible(true);
 
         };
+*/
 
- */
 
 }
