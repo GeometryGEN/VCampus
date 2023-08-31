@@ -28,7 +28,7 @@ public class myBook extends JPanel {
     Color color2=new Color(125,182,191);
     Color color3=new Color(143,172,211);
     Color color4=new Color(161,181,206);
-
+    Color color5=new Color(228,232,235);
 
 
     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
@@ -63,7 +63,6 @@ public class myBook extends JPanel {
         jTableHeader.setFont(new Font("等线", Font.BOLD, 25));
         jTableHeader.setBackground(new Color(42,52,65,200));
         jTableHeader.setForeground(new Color(255,255,255));
-        jTableHeader.setSize(width,50);
 
         table_want.addMouseListener(new MouseListener() {
             @Override
@@ -137,12 +136,11 @@ public class myBook extends JPanel {
             }
         });
 
-
         //支持滚动
         JScrollPane jsp = new JScrollPane(table_want);
         jsp.setBounds(0,0, width, height);
         table_want.setRowHeight((int) (30*height_r));
-        jsp.setBackground(new Color(245,249,250));
+        jsp.setBackground(color1);
         jsp.getViewport().setOpaque(false);
         // 设置面板为不透明的
 
@@ -166,7 +164,6 @@ public class myBook extends JPanel {
             };
 
 
-
             for (int i = 0; i < table_want.getColumnCount(); i++)
             {
                 table_want.getColumn(table_want.getColumnName(i)).setCellRenderer(tcr);
@@ -175,16 +172,11 @@ public class myBook extends JPanel {
             ex.printStackTrace();
         }
 
-
-
-
-
-
         add(jsp);
         //add(p21);
 
     }
-    /*
+
     public static void main(String[] args) {
         Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
         int width=(int) screensize.getWidth(); //得到宽度
@@ -199,7 +191,7 @@ public class myBook extends JPanel {
 
     };
 
-     */
+
 
 }
 /*

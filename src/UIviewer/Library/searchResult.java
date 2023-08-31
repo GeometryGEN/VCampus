@@ -2,6 +2,7 @@ package UIviewer.Library;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
@@ -24,6 +25,11 @@ import UIhandler.Library.Client_library;
  * @date 2022/09/03
  */
 public class searchResult extends JPanel {
+    Color color1=new Color(233,244,255);
+    Color color2=new Color(125,182,191);
+    Color color3=new Color(143,172,211);
+    Color color4=new Color(161,181,206);
+    Color color5=new Color(228,232,235);
 
     public static volatile String[][] searchresult=null;
     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
@@ -45,11 +51,15 @@ public class searchResult extends JPanel {
                 return false;
             }
         };
-
+        JTableHeader jTableHeader=table_want.getTableHeader();
+        jTableHeader.setFont(new Font("等线", Font.BOLD, 25));
+        jTableHeader.setBackground(new Color(42,52,65,200));
+        jTableHeader.setForeground(new Color(255,255,255));
 
         //支持滚动
         JScrollPane jsp = new JScrollPane(table_want);
         jsp.setBounds(0, 0, (int) (1280*width_r), (int) (680*height_r));
+        jsp.setBackground(color1);
         add(jsp);
         JScrollBar scrollBar = new JScrollBar(JScrollBar.VERTICAL) {
             @Override
@@ -58,6 +68,7 @@ public class searchResult extends JPanel {
             }
         };
         jsp.setVerticalScrollBar(scrollBar);
+        jsp.getViewport().setOpaque(false);
         jsp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_NEVER);
         scrollBar.setUnitIncrement(30);
 
@@ -67,12 +78,13 @@ public class searchResult extends JPanel {
             DefaultTableCellRenderer tcr = new DefaultTableCellRenderer() {
                 @Override
                 public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-                    if (column!=8) {
-                        setBackground(Color.white);
-                    }else {
-                        setBackground(new Color(60,179,113));
-                        //setForeground(new Color(255,255,255));
-                        //setFont(new Font("微软雅黑",Font.BOLD,18));
+                    setFont(new Font("微软雅黑",Font.BOLD,18));
+                    setHorizontalAlignment(DefaultTableCellRenderer.CENTER);
+                    if(row%2==0){
+                        setBackground(color1);
+                    }
+                    else{
+                        setBackground(color4);
                     }
                     return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
                 }
