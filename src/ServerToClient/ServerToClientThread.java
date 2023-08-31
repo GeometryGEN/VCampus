@@ -39,8 +39,9 @@ import utils.MyObjectOutputStream;
  * @author 28468
  * @version : [v1.0]
  * @description : [该类的一个对象和某个客户端保持通信]
- * @createTime : [2022.08.14 21:05]
- * @date 2022/09/04
+ * @creaMESSAGE_LIBRARY_QUERY
+ *
+ * 2022/09/04
  */
 public class ServerToClientThread extends Thread{
     /**

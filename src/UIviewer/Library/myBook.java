@@ -10,6 +10,8 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.IOException;
 
+//163,203,209
+//124,181,190
 /**
  * 我书
  *
@@ -36,6 +38,7 @@ public class myBook extends JPanel {
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
+            //指定单元格不可编辑
         };
         table_want.setCellSelectionEnabled(true);
 
@@ -43,6 +46,7 @@ public class myBook extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if(table_want.getSelectedColumn()==7){
+                    //还书
                     Book_borrower book=new Book_borrower();
                     try {
                         String id= (String) table_want.getValueAt(table_want.getSelectedRow(),0);
@@ -56,6 +60,7 @@ public class myBook extends JPanel {
                     }
                 }
                 if(table_want.getSelectedColumn()==8){
+                    //续借
                     Book_borrower book=new Book_borrower();
                     try {
                         String id= (String) table_want.getValueAt(table_want.getSelectedRow(),0);
@@ -71,13 +76,10 @@ public class myBook extends JPanel {
 
             @Override
             public void mousePressed(MouseEvent e) {
-
-
             }
 
             @Override
             public void mouseReleased(MouseEvent e) {
-
             }
 
             @Override
@@ -87,9 +89,9 @@ public class myBook extends JPanel {
                         @Override
                         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
                             if (column!=8&&column!=7) {
-                                setBackground(Color.white);
+                                setBackground(new Color(163,203,209));
                             }else {
-                                setBackground(new Color(255,255,255));
+                                setBackground(new Color(163,203,209));
                                 //setForeground(new Color(255,255,255));
                                 //setFont(new Font("微软雅黑",Font.BOLD,18));
                             }
@@ -126,7 +128,7 @@ public class myBook extends JPanel {
                     if (column!=8&&column!=7) {
                         setBackground(Color.white);
                     }else {
-                        setBackground(new Color(60,179,113));
+                        setBackground(new Color(124,181,190));
                         //setForeground(new Color(255,255,255));
                         //setFont(new Font("微软雅黑",Font.BOLD,18));
                     }

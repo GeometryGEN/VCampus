@@ -7,10 +7,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+
+import UIviewer.login.LoginFrame;
 import UIviewer.login.functionChoose;
 import net.coobird.thumbnailator.Thumbnails;
 import ClientToServer.myInfo;
 
+//68,84,105 灰色色号
 /**
  * 用户界面
  * @author Chen_GuanZhi
@@ -46,14 +49,18 @@ public class readLib extends JPanel {
      * 阅读自由
      */
     public readLib(){
-            String name=myInfo.getName();
-            getName(name);
+            //测试UI时先不获取名字。将其设为空
+        // String name=myInfo.getName();
+        String name=null;
+        getName(name);
         setBounds(0,0, (int) (1273*width_r), (int) (784*height_r));
         setLayout(null);
 
         panel.setBounds(0, (int) (150*height_r), (int) (1273*width_r), (int) (634*height_r));
-        panel.setBackground(new Color(0,0,0));
+        //panel.setBackground(new Color(0,0,0));
         add(panel);
+
+
 //		给主要显示面板添加布局方式
         panel.setLayout(cardLayout);
 //		创建相应面板类的对象
@@ -68,13 +75,6 @@ public class readLib extends JPanel {
         ImageIcon icon = new ImageIcon("src/image/logonew.png");
             int icon1_width= 600;
             int icon1_height=75;
-            try {
-                Thumbnails.of(new File("src/image/logonew.png"))
-                        .size((int)(icon1_width*width_r), (int)(icon1_height*height_r))
-                        .toFile(new File("src/image/logonew_min.png"));
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
             logo.setIcon(new ImageIcon("src/image/logonew_min.png"));
         logo.setBounds((int) (30*width_r), (int) (10*height_r), (int) (600*width_r), (int) (75*height_r));
         add(logo);
@@ -90,17 +90,17 @@ public class readLib extends JPanel {
         //上方面板
         JPanel p1 = new JPanel();
         p1.setBounds(0, 0, (int) (1280*width_r), (int) (100*height_r));
-        p1.setBackground(new Color(37,51,30));
+        p1.setBackground(new Color(42,52,65));
         add(p1);
 
         //按钮
         //b1馆藏查询
-        b1.setBounds((int) (100*width_r), (int) (100*height_r), (int) (250*width_r), (int) (50*height_r));
+        b1.setBounds((int) (0*width_r), (int) (100*height_r), (int) (200*width_r), (int) (50*height_r));
         Font myfont1 = new Font("微软雅黑", Font.BOLD, (int) (18*width_r));
         b1.setFont(myfont1);
         b1.setContentAreaFilled(false);//设置按钮透明
         b1.setFocusPainted(false);//把选中后出现的小方框去掉
-        b1.setForeground(white);
+        b1.setForeground(white); //字体颜色设置为白色
         b1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -110,7 +110,7 @@ public class readLib extends JPanel {
         });
         add(b1);
 
-        b2.setBounds((int) (370*width_r), (int) (100*height_r), (int) (250*width_r), (int) (50*height_r));
+        b2.setBounds((int) (200*width_r), (int) (100*height_r), (int) (200*width_r), (int) (50*height_r));
         b2.setFont(myfont1);
         b2.setContentAreaFilled(false);//设置按钮透明
         b2.setFocusPainted(false);
@@ -129,7 +129,7 @@ public class readLib extends JPanel {
         });
         add(b2);
 
-        b3.setBounds((int) (640*width_r), (int) (100*height_r), (int) (250*width_r), (int) (50*height_r));
+        b3.setBounds((int) (400*width_r), (int) (100*height_r), (int) (200*width_r), (int) (50*height_r));
         b3.setFont(myfont1);
         b3.setContentAreaFilled(false);//设置按钮透明
         b3.setFocusPainted(false);
@@ -149,11 +149,12 @@ public class readLib extends JPanel {
         add(b3);
 
         JButton b4=new JButton("退出图书馆");
-        b4.setBounds((int) (910*width_r), (int) (100*height_r), (int) (250*width_r), (int) (50*height_r));
+        b4.setBounds((int) (1100*width_r), (int) (100*height_r), (int) (173*width_r), (int) (50*height_r));
         b4.setFont(myfont1);
         b4.setContentAreaFilled(false);//设置按钮透明
         b4.setFocusPainted(false);
         b4.setForeground(white);
+        b4.setBorder(null);
             b4.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -168,9 +169,30 @@ public class readLib extends JPanel {
         //按钮面板
         JPanel p2 = new JPanel();
         p2.setBounds(0, (int) (100*height_r), (int) (1280*width_r), (int) (50*height_r));
-        p2.setBackground(new Color(64,81,51));
+        p2.setBackground(new Color(68,84,105));
         //p2.setBackground(new Color(125,182,191));
         add(p2);
         setVisible(true);
     }
+/*
+    public static void main(String[] args) {
+        Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
+        int width=(int) screensize.getWidth(); //得到宽度
+        int height=(int) screensize.getHeight();//获得高度
+        System.out.println(width);
+        System.out.println(height);
+        JFrame jf=new JFrame("readLib");
+        //jf = new JFrame("欢迎使用VCampus虚拟校园系统，请选择您的服务！");
+        jf.setSize(width,height);
+        jf.setExtendedState(JFrame.MAXIMIZED_BOTH);
+
+        jf.setContentPane(new readLib());
+        jf.setTitle("readLib");
+        jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        jf.setVisible(true);
+
+        };
+
+ */
+
 }
