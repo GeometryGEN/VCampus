@@ -152,7 +152,6 @@ public class Selcourse extends JPanel {
         });
         add(btnNewButton_6);
 
-
         //东南大学标志图片
         JLabel l15 = new JLabel();
         try {

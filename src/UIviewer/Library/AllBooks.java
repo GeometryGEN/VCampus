@@ -51,7 +51,7 @@ public class AllBooks extends JPanel {
         //jsp.getViewport().setOpaque(false);//将JScrollPane设置为透明
         //jsp.setOpaque(false);//将中间的viewport设置为透明
         jsp.setBounds(0,0, (int) (1273*width_r), (int) (620*height_r));
-        jsp.setBackground(new Color(255, 240, 245, 80));
+        jsp.setBackground(new Color(25, 240, 249, 220));
         add(jsp);
 
         JScrollBar scrollBar = new JScrollBar(JScrollBar.VERTICAL) {
@@ -68,7 +68,7 @@ public class AllBooks extends JPanel {
         JPanel p1 = new JPanel();
         p1.setBounds(0, 0, (int) (1280*width_r), (int) (650*height_r));
         //p1.setBackground(null);
-        p1.setBackground(new Color(255, 240, 245, 10));
+        p1.setBackground(new Color(25, 24, 245));
         //panel1.BackColor = Color.FromArgb(80, 255, 0, 0);
         //p1.setOpaque(false);
         add(p1);

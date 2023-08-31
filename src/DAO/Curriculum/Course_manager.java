@@ -60,46 +60,46 @@ public class Course_manager {
      * @param s 年代
      * @return {@link int[][][]}
      */
+    //上课时间格式：1-2周,1-2节,星期一
     public int[][][] change(String s){
         int[][][] a = new int[17][6][14];
         int week_l,week_r,day,sec_l,sec_r;
         String ss[]=s.split(",");
         //System.out.println(s);
-        for(int i=0;i<ss.length;i++){
-            int index=ss[i].indexOf("星期");
-            switch (ss[i].substring(index+2, index+3)){
-                case "一":
-                    day=1;
-                    break;
-                case "二":
-                    day=2;
-                    break;
-                case "三":
-                    day=3;
-                    break;
-                case "四":
-                    day=4;
-                    break;
-                default:
-                    day=5;
-                    break;
-            }
-            int index1=ss[i].indexOf("-");
-            week_l=Integer.parseInt(ss[i].substring(0,index1));
-            int index2=ss[i].indexOf("周");
-            week_r=Integer.parseInt(ss[i].substring(index1+1,index2));
+        int index = ss[2].indexOf("星期");
+        switch (ss[2].substring(index+2, index + 3)) {
+            case "一":
+                day = 1;
+                break;
+            case "二":
+                day = 2;
+                break;
+            case "三":
+                day = 3;
+                break;
+            case "四":
+                day = 4;
+                break;
+            default:
+                day = 5;
+                break;
+        }
 
-            int index3=ss[i].indexOf("-",index+1);
-            sec_l=Integer.parseInt(ss[i].substring(index+4,index3));
-            int index4=ss[i].indexOf("节");
-            sec_r=Integer.parseInt(ss[i].substring(index3+1,index4));
+        int index1=ss[0].indexOf("-");
+        week_l=Integer.parseInt(ss[0].substring(0,index1));
+        int index2=ss[0].indexOf("周");
+        week_r=Integer.parseInt(ss[0].substring(index1+1,index2));
+
+        int index3=ss[1].indexOf("-");
+        sec_l=Integer.parseInt(ss[1].substring(0,index3));
+        int index4=ss[1].indexOf("节");
+        sec_r=Integer.parseInt(ss[1].substring(index3+1,index4));
             //   System.out.println(week_l+"->"+week_r+" "+day+" "+sec_l+"->"+sec_r);
             for(int p=week_l;p<=week_r;p++){
                 for(int q=sec_l;q<=sec_r;q++){
                     a[p][day][q]=1;
                 }
             }
-        }
         return a;
     }
 

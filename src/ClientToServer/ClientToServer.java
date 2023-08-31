@@ -59,7 +59,7 @@ public class ClientToServer {
      * 服务器ip
      */
     public static String serverIP = Message.returnIP();
-    //public static String serverIP = "10.210.97.60";
+    //public static String serverIP = "172.20.10.2";
 
     /**
      * 得到一卡通

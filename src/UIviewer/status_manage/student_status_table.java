@@ -249,7 +249,7 @@ public class student_status_table extends JPanel{
 
         if(myInfo.getType()==3){
             jb1=new JButton("修改学籍信息");
-            jb1.setBounds((int)(360*width_r),(int)(650*height_r),(int)(170*width_r),(int)(50*height_r));
+            jb1.setBounds((int)(300*width_r),(int)(680*height_r),(int)(170*width_r),(int)(50*height_r));
             jb1.setBackground(new Color(33,150,243));
             jb1.setForeground(new Color(255,255,255));
             jb1.setFont(new Font("微软雅黑",Font.PLAIN,(int)(22*width_r)));
@@ -263,7 +263,7 @@ public class student_status_table extends JPanel{
                 }
             });
             manage_status.jb_back_to_search =new JButton("返回");
-            manage_status.jb_back_to_search.setBounds((int)(550*width_r),(int)(650*height_r),(int)(100*width_r),(int)(50*height_r));
+            manage_status.jb_back_to_search.setBounds((int)(550*width_r),(int)(680*height_r),(int)(100*width_r),(int)(50*height_r));
             manage_status.jb_back_to_search.setBackground(new Color(96,190,41));
             manage_status.jb_back_to_search.setForeground(new Color(255,255,255));
             manage_status.jb_back_to_search.setFont(new Font("微软雅黑",Font.PLAIN,(int)(22*width_r)));
@@ -280,7 +280,7 @@ public class student_status_table extends JPanel{
                 }
             });
             jb3=new JButton("提交学籍信息");
-            jb3.setBounds((int)(360*width_r),(int)(650*height_r),(int)(170*width_r),(int)(50*height_r));
+            jb3.setBounds((int)(300*width_r),(int)(680*height_r),(int)(170*width_r),(int)(50*height_r));
             jb3.setBackground(new Color(33,150,243));
             jb3.setForeground(new Color(255,255,255));
             jb3.setFont(new Font("微软雅黑",Font.PLAIN,(int)(22*width_r)));
