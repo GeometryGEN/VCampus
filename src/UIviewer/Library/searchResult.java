@@ -127,7 +127,30 @@ public class searchResult extends JPanel {
 
             @Override
             public void mouseEntered(MouseEvent e) {
+                try {
+                    DefaultTableCellRenderer tcr = new DefaultTableCellRenderer() {
+                        @Override
+                        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                            setFont(new Font("微软雅黑",Font.BOLD,18));
+                            setHorizontalAlignment(DefaultTableCellRenderer.CENTER);
+                            if (column!=8&&column!=7&&(!isSelected)) {
+                                //setBackground(new Color(163,203,209));
+                            }else {
+                                setBackground(color3);
+                                //setForeground(new Color(255,255,255));
+                                //setFont(new Font("微软雅黑",Font.BOLD,18));
+                            }
+                            return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+                        }
+                    };
 
+                    for (int i = 0; i < table_want.getColumnCount(); i++)
+                    {
+                        table_want.getColumn(table_want.getColumnName(i)).setCellRenderer(tcr);
+                    }
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
             }
 
             @Override
