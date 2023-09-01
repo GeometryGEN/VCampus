@@ -23,6 +23,8 @@ import static ClientToServer.ClientToServer.oos;
  * @author Zhangyang_Ge
  * @date 2022/09/03
  */
+
+
 public class main_panel {
     public static JPanel mjp;
     public static JButton close_button;
@@ -57,7 +59,7 @@ public class main_panel {
             JButton addFriend= new RoundJButton();
             addFriend.setFocusPainted(false);
             addFriend.setText("   添加好友   ");
-            addFriend.setBounds(0,(int)(0*height_r),(int)(170*width_r),(int)(50*height_r));
+            addFriend.setBounds(0,-20,(int)(170*width_r),(int)(50*height_r));
             addFriend.setBackground(new Color(30,111,255));
             addFriend.setForeground(Color.white);
             addFriend.setFont(new Font("微软雅黑",Font.PLAIN,(int)(22*width_r)));
@@ -74,7 +76,7 @@ public class main_panel {
             functionChoose.back_from_student_status=new RoundJButton();
             functionChoose.back_from_student_status.setFocusPainted(false);
             functionChoose.back_from_student_status.setText("返回功能选择");
-            functionChoose.back_from_student_status.setBounds(0,(int)(50*height_r),(int)(170*width_r),(int)(50*height_r));
+            functionChoose.back_from_student_status.setBounds(0,20,(int)(170*width_r),(int)(50*height_r));
             functionChoose.back_from_student_status.setBackground(new Color(96,190,41));
             functionChoose.back_from_student_status.setForeground(new Color(255,255,255));
             functionChoose.back_from_student_status.setFont(new Font("微软雅黑",Font.PLAIN,(int)(22*width_r)));
@@ -91,7 +93,7 @@ public class main_panel {
         else{
             //侧边按钮面板
             buttonPanel=new button_panel();
-            buttonPanel.setBounds((int)(width_r*1920/3+0),(int)((height-80*height_r)),(int)(170*width_r),(int)(400*height_r));
+            buttonPanel.setBounds(0,0,(int)(170*width_r),(int)(400*height_r));
             mjp.add(buttonPanel);
             //返回功能选择模块
             functionChoose.back_from_student_status=new RoundJButton();

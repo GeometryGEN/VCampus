@@ -16,6 +16,15 @@ import static DAO.Shop.image_Shop_utils.readDBImage;
 
 public class buyers_Shop_utils {
 
+    /*
+    public static void main(String[] args) throws SQLException {
+        String returnValue = addMoney_Student("1",100);
+        System.out.println(returnValue);
+        returnValue = addMoney_Teacher("1",1000);
+        System.out.println(returnValue);
+    }
+    */
+
     /**
      * 连接数据库
      */
@@ -178,6 +187,58 @@ public class buyers_Shop_utils {
             return null;
         }
         return temp;
+    }
+
+    /**
+     * 学生充值
+     * @param idcard  学生卡号
+     * @param addMoneyAmount 增加的钱的数量
+     */
+    public static String addMoney_Student(String idcard,double addMoneyAmount) throws SQLException{
+        String sql = "select * from students where Student_idcard=?";
+        PreparedStatement ps = connection.prepareStatement(sql);
+        ps.setString(1,idcard);
+        ResultSet rs = ps.executeQuery();
+        double curMoney=0; //当前该用户钱数
+        if(rs.next()){
+            curMoney = rs.getDouble("Student_money");
+            curMoney += addMoneyAmount;
+        }
+        sql = "update students SET Student_money =? WHERE Student_idcard =" + idcard;
+        ps = connection.prepareStatement(sql);
+        ps.setDouble(1,curMoney);
+        boolean re = ps.executeUpdate()>0;
+        if(re){
+            return "充值成功";
+        }else{
+            return "充值失败";
+        }
+    }
+
+    /**
+     * 教师充值
+     * @param idcard  教师卡号
+     * @param addMoneyAmount 增加的钱的数量
+     */
+    public static String addMoney_Teacher(String idcard,double addMoneyAmount) throws SQLException{
+        String sql = "select * from teachers where Teacher_idcard=?";
+        PreparedStatement ps = connection.prepareStatement(sql);
+        ps.setString(1,idcard);
+        ResultSet rs = ps.executeQuery();
+        double curMoney=0; //当前该用户钱数
+        if(rs.next()){
+            curMoney = rs.getDouble("Teacher_money");
+            curMoney += addMoneyAmount;
+        }
+        sql = "update teachers SET Teacher_money =? WHERE Teacher_idcard =" + idcard;
+        ps = connection.prepareStatement(sql);
+        ps.setDouble(1,curMoney);
+        boolean re = ps.executeUpdate()>0;
+        if(re){
+            return "充值成功";
+        }else{
+            return "充值失败";
+        }
     }
 
     /**

@@ -161,20 +161,17 @@ public class ShoppingHall extends JPanel {
                 btnNewButton_1.setContentAreaFilled(false);//设置按钮透明
                 btnNewButton_1.setBackground(new Color(255,160,122));
             }
-
             @Override
             public void mouseReleased(MouseEvent e) {
                 super.mouseReleased(e);
                 btnNewButton_1.setContentAreaFilled(true);//设置按钮透明
                 btnNewButton_1.setBackground(new Color(254,178,148));
             }
-
             @Override
             public void mouseEntered(MouseEvent e) {
                 super.mouseEntered(e);
                 btnNewButton_1.setFont(new Font("楷体",Font.BOLD, (int) (20*width_r)));
             }
-
             @Override
             public void mouseExited(MouseEvent e) {
                 super.mouseExited(e);
