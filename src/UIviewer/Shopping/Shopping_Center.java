@@ -1,5 +1,8 @@
-package UIviewer.Library;
+package UIviewer.Shopping;
+import javax.swing.*;
 import ClientToServer.ClientToServer;
+import DAO.Shop.Product;
+import DAO.Shop.ProductPair;
 import UIhandler.Library.Client_library;
 import javax.swing.*;
 import java.awt.*;
@@ -7,90 +10,96 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
-
-import UIviewer.login.LoginFrame;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import UIhandler.Shop.Client_shop;
+import UIviewer.Library.bookSearch;
 import UIviewer.login.functionChoose;
 import net.coobird.thumbnailator.Thumbnails;
 import ClientToServer.myInfo;
 
-//68,84,105 灰色色号
-/**
- * 用户界面
- * @author Chen_GuanZhi
- * @date 2022/09/03
- */
-
-public class readLib extends JPanel {
+import static UIviewer.Shopping.ShoppingHall.resetshoptable;
+import static UIviewer.Shopping.ShoppingHall.setShoptable;
+public class Shopping_Center extends JPanel{
     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
     int width=(int ) screensize.getWidth(); //得到宽度
     int height=(int ) screensize.getHeight();//获得高度
     double width_r=(double)(width)/1273;
     double height_r=(double)(height)/784;
-    public static JPanel panel = new JPanel();;
-    static String name;
-    public static JButton b1=new JButton("馆藏查询");
-    public static JButton b2=new JButton("我的借阅");
-    public static JButton b3=new JButton("罚单缴费");
 
-    /**
-     * 得到名字
-     *
-     * @param a 一个
-     */
+    //public static JPanel panel = new JPanel();;
+    static String name;
+    public static List<Product> t;
+    public static JButton b1=new JButton("商城");
+    public static JButton b2=new JButton("购物车");
+    public static JButton b3=new JButton("我的订单");
+    public static CardLayout cardLayout=new CardLayout();
+    public static JPanel panel = new JPanel();;
     static void getName(String a)
     {
         name=a;
     }
-    static searchResult f4=new searchResult();
-    public static CardLayout cardLayout=new CardLayout();
-    static Color white=new Color(248, 248, 255);
 
-    /**
-     * 阅读自由
-     */
-    public readLib(){
+    Color color1=new Color(233,244,255);
+    Color color2=new Color(23,58,26);
+    Color color3=new Color(57,94,50);
+    Color color4=new Color(72,115,78);
+    Color color5=new Color(211,229,210);
+    Color white=Color.white;
+
+    public Shopping_Center() {
         //测试UI时先不获取名字。将其设为空
-        String name=myInfo.getName();
-        //String name=null;
+        name=myInfo.getName();
+        name=null;
         getName(name);
+
+        setSize(width,height);
+        setVisible(true);
+        //setBackground(color5);
         setBounds(0,0, (int) (1273*width_r), (int) (784*height_r));
         setLayout(null);
-
+        //设置布局
         panel.setBounds(0, (int) (150*height_r), (int) (1273*width_r), (int) (634*height_r));
         //panel.setBackground(new Color(0,0,0));
         add(panel);
-
-
 //		给主要显示面板添加布局方式
         panel.setLayout(cardLayout);
 //		创建相应面板类的对象
-        bookSearch f1=new bookSearch();
+        Item_Rearch_Customer f1=new Item_Rearch_Customer();
 //		将面板添加到住面板中，注意:add()方法里有两个参数，第一个是要添加的对象，第二个给这个对象所放置的卡片
 //		起个名字，后面调用显示的时候要用到这个名字
         panel.add(f1,"f1");//查找书
-        panel.add(f4,"f4");//查找结果
 
-        //图书馆标志与背景
+        //商店标志与背景
         JLabel logo = new JLabel();
-        ImageIcon icon = new ImageIcon("src/image/logonew.png");
-            int icon1_width= 600;
-            int icon1_height=75;
-            logo.setIcon(new ImageIcon("src/image/logonew_min.png"));
-        logo.setBounds((int) (30*width_r), (int) (10*height_r), (int) (600*width_r), (int) (75*height_r));
+        int icon1_width=  (int) (850*width_r);
+        int icon1_height=(int) (90*height_r);
+        //裁减2到min的尺寸
+        try {
+            Thumbnails.of(new File("src/image/商店/Store_logo.png"))
+                    .size((int)(icon1_width*width_r), (int)(icon1_height*height_r))
+                    .keepAspectRatio(false)
+                    .toFile(new File("src/image/商店/Store_logo_fit.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        logo.setIcon(new ImageIcon("src/image/商店/Store_logo_fit.png"));
+        logo.setBounds((int) (10*width_r), (int) (0*height_r), (int) (600*width_r), (int) (100*height_r));
         add(logo);
 
         //文字
-            JLabel l1 = new JLabel("你好！"+name);
-            l1.setBounds((int) (1100*width_r), (int) (30*height_r), (int) (200*width_r), (int) (55*height_r));
-            l1.setForeground(white);
-            Font font = new Font("微软雅黑", Font.BOLD, (int) (20*width_r));
-            l1.setFont(font);
-            add(l1);
+        JLabel l1 = new JLabel("你好！"+name);
+        l1.setBounds((int) (1100*width_r), (int) (30*height_r), (int) (200*width_r), (int) (55*height_r));
+        l1.setForeground(white);
+        Font font = new Font("微软雅黑", Font.BOLD, (int) (20*width_r));
+        l1.setFont(font);
+        add(l1);
 
         //上方面板
         JPanel p1 = new JPanel();
         p1.setBounds(0, 0, (int) (1280*width_r), (int) (100*height_r));
-        p1.setBackground(new Color(42,52,65));
+        p1.setBackground(color2);
         add(p1);
 
         //按钮
@@ -114,7 +123,6 @@ public class readLib extends JPanel {
         b2.setFont(myfont1);
         b2.setContentAreaFilled(false);//设置按钮透明
         b2.setFocusPainted(false);
-        //b2.setForeground(new Color(248, 248, 255));
         b2.setForeground(white);
         b2.addActionListener(new ActionListener() {
             @Override
@@ -148,53 +156,46 @@ public class readLib extends JPanel {
         });
         add(b3);
 
-        JButton b4=new JButton("退出图书馆");
+        JButton b4=new JButton("退出商城");
         b4.setBounds((int) (1100*width_r), (int) (100*height_r), (int) (173*width_r), (int) (50*height_r));
         b4.setFont(myfont1);
         b4.setContentAreaFilled(false);//设置按钮透明
         b4.setFocusPainted(false);
         b4.setForeground(white);
         b4.setBorder(null);
-            b4.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    // TODO Auto-generated method stub
+        b4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
                 functionChoose.jf.setContentPane(functionChoose.fc_panel);
                 functionChoose.jf.setTitle("functionChoose");
                 cardLayout.show(panel, "f1");
-                }
-            });
+            }
+        });
         add(b4);
 
         //按钮面板
         JPanel p2 = new JPanel();
         p2.setBounds(0, (int) (100*height_r), (int) (1280*width_r), (int) (50*height_r));
-        p2.setBackground(new Color(68,84,105));
+        p2.setBackground(color3);
         //p2.setBackground(new Color(125,182,191));
         add(p2);
         setVisible(true);
 
-        //setDefaultCloseOperation(EXIT_ON_CLOSE);
+        add(panel);
     }
 
     public static void main(String[] args) {
-        Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
-        int width=(int) screensize.getWidth(); //得到宽度
-        int height=(int) screensize.getHeight();//获得高度
-        System.out.println(width);
-        System.out.println(height);
-        JFrame jf=new JFrame("readLib");
-        //jf = new JFrame("欢迎使用VCampus虚拟校园系统，请选择您的服务！");
-        jf.setSize(width,height);
-        jf.setExtendedState(JFrame.MAXIMIZED_BOTH);
-
-        jf.setContentPane(new readLib());
-        jf.setTitle("readLib");
-        jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        // 创建并显示 JFrame
+        JFrame jf=new JFrame();
+        jf.setContentPane(new Shopping_Center());
         jf.setVisible(true);
-
-        };
-
+        jf.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        Dimension screensize2=Toolkit.getDefaultToolkit().getScreenSize();
+        int width=(int ) screensize2.getWidth(); //得到宽度
+        int height=(int ) screensize2.getHeight();//获得高度
+        jf.setSize(width,height);
+    }
 
 
 }

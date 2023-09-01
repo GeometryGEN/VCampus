@@ -26,6 +26,7 @@ import UIhandler.QICQ.Client_qicq;
 import UIviewer.Library.AllBooks;
 import UIviewer.Library.readLib;
 import UIviewer.Library.adminLib;
+import UIviewer.Shopping.Shopping_Center;
 import UIviewer.Shopping.shopAdmin;
 import UIviewer.Shopping.shopCustomer;
 import UIviewer.status_manage.manage_status;
@@ -486,8 +487,8 @@ public class functionChoose {
                             {
                                 Client_shop.setId(String.valueOf(myInfo.getType()));
                                 Client_shop.setIdcard(myInfo.getId());
-                                jf.setContentPane(new shopCustomer());
-                                jf.setTitle("shopCustomer");
+                                jf.setContentPane(new Shopping_Center());
+                                jf.setTitle("Shopping_Center");
                             }
                             else
                             {

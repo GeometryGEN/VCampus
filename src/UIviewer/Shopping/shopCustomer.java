@@ -119,8 +119,6 @@ public class shopCustomer extends JPanel {
         panel.add(f1,"f1");
 
 
-
-
         //文字
         JLabel l19 = new JLabel("『欢迎光临东南大学天猫校园商店』");
         l19.setBounds((int) (220*width_r), (int) (15*height_r), (int) (700*width_r), (int) (80*height_r));
@@ -320,5 +318,4 @@ public class shopCustomer extends JPanel {
 
         setVisible(true);
     }
-
 }
