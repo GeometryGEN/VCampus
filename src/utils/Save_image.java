@@ -20,9 +20,8 @@ public class Save_image {
      * @throws FileNotFoundException the file not found exception
      * @throws SQLException          the sql exception
      */
-    public static void main(String[] args) throws FileNotFoundException, SQLException {
+    public static void main(String args,String id) throws FileNotFoundException, SQLException {
      //   JDBC_Connector.first_connect();
-        String p="src/image/QQ/";
       //  for(int i=41;i<=41;i++)
       //  {
             /*try {
@@ -32,7 +31,7 @@ public class Save_image {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }*/
-            String path = p+"213214444.jpg";
+            String path = args;
          //   System.out.println(path);
             File file = new File(path);
             FileInputStream fis=new FileInputStream(file);
@@ -40,7 +39,7 @@ public class Save_image {
                 Connection conn = JDBC_Connector.ConnectMySQL();
                 String sql = "insert into qqimage(id,image) values(?,?);";
                 PreparedStatement ps = JDBC_Connector.ConnectMySQL().prepareStatement(sql);
-                ps.setString(1, null);
+                ps.setString(1, id);
                 ps.setBinaryStream(2,fis,(int)file.length());
                 int change=ps.executeUpdate();
               //  System.out.println(change);

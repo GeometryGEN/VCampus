@@ -9,12 +9,41 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.sql.SQLException;
 import java.util.Arrays;
+import utils.Save_image.*;
 
 //加入限制：两次输入的密码必须一致
 public class register2 {
-    public static void registerUI2(String email,String id){
+    public static void registerUI2(String email,String id) throws SQLException, FileNotFoundException {
         JFrame jf=new JFrame("注册账号");
+
+        //添加头像
+        JFileChooser choose_image=new JFileChooser();
+        choose_image.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        choose_image.showOpenDialog(null);
+        choose_image.setBounds(10,10,200,200);
+        jf.add(choose_image);
+
+        JButton save_image=new JButton("保存图片");
+        save_image.setBounds(10,100,200,200);
+        jf.add(save_image);
+        save_image.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                File file=choose_image.getSelectedFile();
+                try {
+                    String path=file.getAbsolutePath();
+                    utils.Save_image.main(path,register.getIdCard());
+                } catch (FileNotFoundException ex) {
+                    throw new RuntimeException(ex);
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
 
         //账号密码
         JLabel l1=new JLabel("密码:");
