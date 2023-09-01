@@ -178,7 +178,7 @@ public class chat_panel extends JPanel {
         //发消息界面
         type_panel=new JPanel();
         type_panel.setLayout(null);
-        type_panel.setBounds(0,(int)(3*height/4*height_r),(int)(width*width_r),(int)(height/4*height_r));
+        type_panel.setBounds(0,0,10000,10000);
         type_panel.setBorder(BorderFactory.createLineBorder(new Color(234,234,234)));
         type_panel.setBackground(new Color(224,224,224));
         add(type_panel);
@@ -215,7 +215,7 @@ public class chat_panel extends JPanel {
         close_button.setFont(new Font("宋体",Font.PLAIN,(int)(25*width_r)));
         close_button.setText("关闭");
         close_button.setForeground(new Color(255,255,255));
-        close_button.setBounds((int)((width-3*send_button_width-1.5)*width_r),(int)((height/4-send_button_height-30)*height_r),(int)(send_button_width*width_r),(int)(send_button_height*height_r));
+        close_button.setBounds((int)((width-3*send_button_width-1.5)*width_r),0,(int)(send_button_width*width_r),(int)(send_button_height*height_r));
         type_panel.add(close_button);
         close_button.addActionListener(new ActionListener() {
             @Override
