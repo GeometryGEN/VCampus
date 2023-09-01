@@ -36,7 +36,7 @@ public class applyTicket extends JPanel {
     double height_r=(double)(height)/784;
 
     /**
-     * 申请机票
+     * 申请罚单
      */
     public applyTicket(){
         setLayout(null);

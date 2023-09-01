@@ -220,7 +220,7 @@ public class Client_library {
             applyTicket.myPunish[i][1]=String.valueOf(punishment.getPrice());
             applyTicket.myPunish[i][2]=punishment.getBook_id();
             applyTicket.myPunish[i][3]=punishment.getNotice();
-            applyTicket.myPunish[i][4]="            缴费";
+            applyTicket.myPunish[i][4]="缴费";
         }
         applyTicket f3= new applyTicket();
         panel.add(f3,"f3");
