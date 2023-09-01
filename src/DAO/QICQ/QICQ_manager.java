@@ -188,7 +188,7 @@ public class QICQ_manager {
     }
 
     /**
-     * 发送在西安消息
+     * 发送在线消息
      *
      * @param msg 消息
      * @throws IOException  ioexception
