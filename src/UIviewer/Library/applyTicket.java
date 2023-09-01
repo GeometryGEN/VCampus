@@ -15,12 +15,11 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.io.File;
 import java.io.IOException;
-
 /**
- * 申请机票
+ *申请罚单
  *
- * @author Chen_GuanZhi
- * @date 2022/09/03
+ * @author Liu lewei
+ * @date 2023/09/03
  */
 public class applyTicket extends JPanel {
     Color color1=new Color(233,244,255);
@@ -34,9 +33,9 @@ public class applyTicket extends JPanel {
     int height=(int ) screensize.getHeight();//获得高度
     double width_r=(double)(width)/1273;
     double height_r=(double)(height)/784;
-
     /**
-     * 申请罚单
+     * 开罚单
+     *
      */
     public applyTicket(){
         setLayout(null);
