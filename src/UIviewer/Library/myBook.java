@@ -12,6 +12,7 @@ import java.io.IOException;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.JTable;
+import javax.swing.text.TableView;
 import java.util.Vector;
 
 
@@ -64,6 +65,8 @@ public class myBook extends JPanel {
         jTableHeader.setBackground(new Color(42,52,65,200));
         jTableHeader.setForeground(new Color(255,255,255));
 
+        //TableRow tableRow=table_want.getr
+
         table_want.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -103,17 +106,20 @@ public class myBook extends JPanel {
             @Override
             public void mouseReleased(MouseEvent e) {
             }
-
+            //实现当前选中的行变色
+            //TableRow tableRow=
             @Override
             public void mouseEntered(MouseEvent e) {
                 try {
                     DefaultTableCellRenderer tcr = new DefaultTableCellRenderer() {
                         @Override
                         public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-                            if (column!=8&&column!=7) {
-                                setBackground(new Color(163,203,209));
+                            setFont(new Font("微软雅黑",Font.BOLD,18));
+                            setHorizontalAlignment(DefaultTableCellRenderer.CENTER);
+                            if (column!=8&&column!=7&&(!isSelected)) {
+                                //setBackground(new Color(163,203,209));
                             }else {
-                                setBackground(new Color(163,203,209));
+                                setBackground(color3);
                                 //setForeground(new Color(255,255,255));
                                 //setFont(new Font("微软雅黑",Font.BOLD,18));
                             }
