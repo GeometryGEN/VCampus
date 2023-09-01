@@ -4,6 +4,8 @@ import DAO.QICQ.Friend;
 import UIhandler.QICQ.Client_qicq;
 import UIviewer.login.functionChoose;
 import UIviewer.status_manage.RoundJButton;
+import message.Message;
+import message.MessageType;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,6 +14,8 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import static ClientToServer.ClientToServer.oos;
 
 /**
  * 主面板
@@ -22,8 +26,8 @@ import java.util.HashMap;
 public class main_panel {
     public static JPanel mjp;
     public static JButton close_button;
-    public static chat_panel cpn;
     public HashMap<String, ArrayList<Friend>> friend;
+    public static chat_panel cpn;
     static button_panel buttonPanel;
 
     /**
@@ -63,7 +67,9 @@ public class main_panel {
                     add_friend.add_friend();
                 }
             });
+            //
             buttonPanel.add(addFriend);
+
             //返回功能选择模块
             functionChoose.back_from_student_status=new RoundJButton();
             functionChoose.back_from_student_status.setFocusPainted(false);
@@ -105,6 +111,7 @@ public class main_panel {
                 }
             });
         }
+
         //好友列表
         Client_qicq.Require_friend_list();
         friend_list friend_list_panel=new friend_list(1920/3,1080,width_r,height_r,0,0);

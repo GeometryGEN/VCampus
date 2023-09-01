@@ -17,6 +17,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * 聊天面板
@@ -174,7 +175,6 @@ public class chat_panel extends JPanel {
         setBounds((int)(x*width_r),(int)(y*height_r),(int)(width*width_r),(int)(height*height_r));
         setBackground(new Color(224,224,224));
         setBorder(BorderFactory.createLineBorder(new Color(234,234,234)));
-
         //发消息界面
         type_panel=new JPanel();
         type_panel.setLayout(null);
@@ -194,6 +194,7 @@ public class chat_panel extends JPanel {
         send_button.setBounds((int)((width-send_button_width-1)*width_r),(int)((height/4-send_button_height-30)*height_r),(int)(send_button_width*width_r),(int)(send_button_height*height_r));
         type_panel.add(send_button);
         //发送文件按钮
+        /*
         send_file_button= new JButton();
         send_file_button.setFocusPainted(false);
         send_file_button.setBackground(new Color(30,111,255));
@@ -207,7 +208,7 @@ public class chat_panel extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 file_panel.createWindow(0);
             }
-        });
+        });*/
         //关闭该聊天框按钮
         close_button= new JButton();
         close_button.setFocusPainted(false);
@@ -226,6 +227,7 @@ public class chat_panel extends JPanel {
         });
 
         //接受文件按钮
+        /*
         int receive_button_height=70;
         int receive_button_width=140;
         receive_button= new JButton();
@@ -243,6 +245,7 @@ public class chat_panel extends JPanel {
                 receive_panel.createWindow(files);
             }
         });
+         */
         //输入消息框
         type_field=new JTextArea();
         type_field.setBounds(0,0,(int)(width*width_r),(int)((height/4-1)*height_r));
@@ -309,7 +312,6 @@ public class chat_panel extends JPanel {
         } catch (BadLocationException e) {
             e.printStackTrace();
         }
-        insertText("公告",Color.black,(int)(45*width_r*height_r),1);
         int num=messages.size();
         for(int i=num-1;i>=0;i--) {
                 insertText(messages.get(i).getSendTime(),new Color(122,122,123),(int)(16*width_r),1);

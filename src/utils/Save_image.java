@@ -22,7 +22,7 @@ public class Save_image {
      */
     public static void main(String[] args) throws FileNotFoundException, SQLException {
      //   JDBC_Connector.first_connect();
-        String p="src/image/";
+        String p="src/image/QQ/";
       //  for(int i=41;i<=41;i++)
       //  {
             /*try {
@@ -32,7 +32,7 @@ public class Save_image {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }*/
-            String path = p+"try.png";
+            String path = p+"213214444.jpg";
          //   System.out.println(path);
             File file = new File(path);
             FileInputStream fis=new FileInputStream(file);

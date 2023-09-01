@@ -67,15 +67,7 @@ public class friend_slice extends JLabel {
         return this.friend;
     }
 
-    /**
-     * 朋友片
-     *
-     * @param width    宽度
-     * @param height   高度
-     * @param width_r  宽度r
-     * @param height_r 高r
-     * @param friend   朋友
-     */
+    //朋友名片
     public friend_slice( int width, int height, double width_r, double height_r, Friend friend) {
         this.friend = friend;
         this.width_r = width_r;
@@ -110,6 +102,7 @@ public class friend_slice extends JLabel {
                 }
             });
             jpopupmenu1.add(jmenuitem1);
+
             //鼠标移进去变色，移出复原，右键菜单修改备注与分组
             JLabel jLabel = this;//提供指针
             jLabel.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -141,12 +134,10 @@ public class friend_slice extends JLabel {
 
                 @Override
                 public void mousePressed(MouseEvent e) {
-
                 }
 
                 @Override
                 public void mouseReleased(MouseEvent e) {
-
                 }
 
                 @Override
