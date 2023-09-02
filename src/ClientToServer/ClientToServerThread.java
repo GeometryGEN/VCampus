@@ -411,12 +411,12 @@ public class ClientToServerThread extends Thread {
                     }
                     change_panel.change_succeed();
                 }
-               // else if(message.getType().equals(MessageType.MESSAGE_QICQ_GET_ANNOUNCEMENT_RET)){
-//                    System.out.println(2);
-//                    ArrayList<Message>messages=(ArrayList<Message>)message.getData();
-//                    Client_qicq.Show_announcement(messages);
-//                }
-            //    System.out.println("next");
+               else if(message.getType().equals(MessageType.MESSAGE_QICQ_GET_ANNOUNCEMENT_RET)) {
+                   System.out.println(2);
+                   ArrayList<Message>messages=(ArrayList<Message>)message.getData();
+                    Client_qicq.Show_announcement(messages);
+                }
+                //System.out.println("next");
 
                 //选课
                 if(message.getType().equals(MessageType.MESSAGE_CURRICULUM_QUERY_RET)){

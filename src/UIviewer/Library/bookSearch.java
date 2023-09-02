@@ -32,17 +32,17 @@ public class bookSearch extends JPanel {
      */
     public bookSearch(){
 
-
         setLayout(null);
         //setBackground(Color.BLUE);
         //馆藏查询
         JPanel p11=new JPanel();
         //p11.setBackground(Color.green);
-        p11.setBounds(0,-5, (int) (1273*width_r), (int) (650*height_r));
+
         JLabel pic1 = new JLabel();
         int icon1_width= 1280;
         int icon1_height=660;
         //裁减2到min的尺寸
+
         try {
             Thumbnails.of(new File("src/image/图书馆/2.jpg"))
                     .size((int)(icon1_width*width_r), (int)(icon1_height*height_r))
@@ -55,6 +55,7 @@ public class bookSearch extends JPanel {
         pic1.setIcon(new ImageIcon("src/image/图书馆/2_min.jpg"));
         pic1.setBounds(0,0 , (int) (1280*width_r), (int) (660*height_r));
         p11.add(pic1);
+
 
         JPanel p21=new JPanel();
         p21.setBounds((int) (445*width_r), (int) (100*height_r), (int) (730*width_r), (int) (300*height_r));
@@ -173,6 +174,7 @@ public class bookSearch extends JPanel {
         add(b14);
         add(p31);
         add(p21);
+
         add(p11);
 
     }

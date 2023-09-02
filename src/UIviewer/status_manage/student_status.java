@@ -2,8 +2,11 @@ package UIviewer.status_manage;
 
 import ClientToServer.ClientToServer;
 import DAO.StatusManagement.ImageAndTable;
+import UIhandler.QICQ.Client_qicq;
 import UIhandler.Shop.Client_shop;
 import UIhandler.StatusManagement.Client_status;
+import UIviewer.QQ.main_panel;
+import UIviewer.login.functionChoose;
 import User.Student;
 import net.coobird.thumbnailator.Thumbnails;
 import ClientToServer.ManageClientToServerThread;
@@ -14,11 +17,14 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import ClientToServer.myInfo;/**
+import ClientToServer.myInfo;
+import UIviewer.login.functionChoose.*;
+
+/**
  * 学生地位
  *
- * @author Liu lewei
- * @date 2023/08/25
+ * @author Zhangyang_Ge
+ * @date 2022/09/03
  */
 public class student_status extends JPanel {
 
@@ -101,9 +107,40 @@ public class student_status extends JPanel {
         }else{
             lswitch.setText("夜间");
         }
+//        Font myfont2 = new Font("微软雅黑", Font.PLAIN, (int) (12*width_r));
+//        lswitch.setBounds((int)(40*width_r),(int)(700*height_r),(int)(150*width_r),(int)(50*height_r));
+//        lswitch.setFont(myfont2);
+//        if(student_status.color_switch){
+//            lswitch.setBackground(new Color(200,224,228));
+//            lswitch.setForeground(new Color(0,0,0));
+//        }else{
+//            lswitch.setBackground(new Color(68,84,105));
+//            lswitch.setForeground(new Color(255,255,255));
+//        }
+//        lswitch.setContentAreaFilled(true);
+//        lswitch.setFocusPainted(false);
+//        status.add(lswitch);
+//        lswitch.addActionListener((e)->{
+//            color_switch=!color_switch;
+//            if(color_switch){
+//
+//                name_label.setForeground(new Color(0, 0, 0));
+//                lswitch.setText("日间");
+//                lswitch.setBackground(new Color(200,224,228));
+//                lswitch.setForeground(new Color(0,0,0));
+//            }
+//            else{
+//                status.setBackground(new Color(68,84,105));
+//                name_label.setForeground(new Color(255,255,255));
+//                lswitch.setText("夜间");
+//                lswitch.setBackground(new Color(68,84,105));
+//                lswitch.setForeground(new Color(255,255,255));
+//            }
+//        });
 
         return status;
     }
+
     /**
      * 学生地位
      *
@@ -127,6 +164,50 @@ public class student_status extends JPanel {
         }
         //设置绝对布局
         setLayout(null);
+
+        //导航条
+        JPanel guide=new JPanel();
+            /*
+            //学籍管理
+            JButton btnNewButton_1 = new JButton("学籍管理");
+            btnNewButton_1.setFocusPainted(false);
+            guide.add(btnNewButton_1);
+            btnNewButton_1.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    functionChoose.jf.remove(status);
+                    functionChoose.jf.setContentPane(functionChoose.fc_panel);
+                }
+            });
+             */
+            //站内通信
+            JButton btnNewButton_5 = new JButton("站内通信");
+            btnNewButton_5.setFocusPainted(false);
+            btnNewButton_5.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    functionChoose.jf.remove(status);
+                    try {
+                        Client_qicq.setId(myInfo.getId());
+                        if(myInfo.getType()!=3)
+                        {
+                            functionChoose.jf.setContentPane(new main_panel(width,height,myInfo.getType()).mjp);
+                            functionChoose.jf.setTitle("userqq");
+                        }
+                        else
+                        {
+                            functionChoose.jf.setContentPane(new main_panel(width,height,myInfo.getType()).mjp);
+                            functionChoose.jf.setTitle("adminqq");
+                        }
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            });
+            guide.add(btnNewButton_5);
+            //图书馆
+        guide.setBounds(0,0,500,500);
+        add(guide);
 
         //SEU logo
         JLabel logo = new JLabel();

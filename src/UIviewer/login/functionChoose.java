@@ -26,6 +26,7 @@ import UIhandler.QICQ.Client_qicq;
 import UIviewer.Library.AllBooks;
 import UIviewer.Library.readLib;
 import UIviewer.Library.adminLib;
+import UIviewer.Shopping.Shopping_Center;
 import UIviewer.Shopping.shopAdmin;
 import UIviewer.Shopping.shopCustomer;
 import UIviewer.status_manage.manage_status;
@@ -279,6 +280,7 @@ public class functionChoose {
                 //选课系统
                 JButton btnNewButton_2 = new JButton("选课系统");
                 btnNewButton_2.setFocusPainted(false);
+                /*
                 btnNewButton_2.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
@@ -306,6 +308,7 @@ public class functionChoose {
                         }
                     }
                 });
+                */
                 btnNewButton_2.setBounds((int) (80*width_r), (int) (595*height_r), (int) (200*width_r), (int) (28*height_r));
                 btnNewButton_2.setFont(myfont);
                 if(color_switch){
@@ -342,7 +345,8 @@ public class functionChoose {
             }
             l52.setBounds((int)(425*width_r),(int)(210*height_r),(int)(250*width_r),(int)(50*height_r));
             fc_panel.add(l52);
-                //图书馆
+
+            //图书馆
                 JButton btnNewButton_4 = new JButton("图书管理");
                 btnNewButton_4.setFocusPainted(false);
                 btnNewButton_4.addActionListener(new ActionListener() {
@@ -476,6 +480,7 @@ public class functionChoose {
 
                 JButton btnNewButton_3 = new JButton("校园超市");
                 btnNewButton_3.setFocusPainted(false);
+                /*
                 btnNewButton_3.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
@@ -486,8 +491,8 @@ public class functionChoose {
                             {
                                 Client_shop.setId(String.valueOf(myInfo.getType()));
                                 Client_shop.setIdcard(myInfo.getId());
-                                jf.setContentPane(new shopCustomer());
-                                jf.setTitle("shopCustomer");
+                                jf.setContentPane(new Shopping_Center());
+                                jf.setTitle("Shopping_Center");
                             }
                             else
                             {
@@ -503,6 +508,8 @@ public class functionChoose {
                         }
                     }
                 });
+
+                 */
                 btnNewButton_3.setBounds((int) (670*width_r), (int) (410*height_r), (int) (200*width_r), (int) (28*height_r));
                 btnNewButton_3.setFont(myfont);
                 if(color_switch){

@@ -8,6 +8,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileNotFoundException;
+import java.sql.SQLException;
 import java.util.Objects;
 
 import static UIviewer.login.register2.registerUI2;
@@ -23,6 +25,7 @@ import static DAO.Login.Mail.*;
 public class register {
 
     public static String captcha;//验证码
+    public static String idcard;//一卡通
     /**
      * 注册界面
      */
@@ -76,7 +79,7 @@ public class register {
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
                 try {
-                    String idcard = textField3.getText(); //一卡通号
+                    idcard = textField3.getText(); //一卡通号
                     String mail = textField10.getText(); //邮箱
                     if (idcard == null || (mail.isEmpty())) {
                         JOptionPane.showMessageDialog(jf, "信息填写不完整，请重新填写!");
@@ -114,7 +117,13 @@ public class register {
                 {
                     //继续注册
                     jf.setVisible(false);
-                    registerUI2(textField10.getText(),textField3.getText());
+                    try {
+                        registerUI2(textField10.getText(),textField3.getText());
+                    } catch (SQLException ex) {
+                        throw new RuntimeException(ex);
+                    } catch (FileNotFoundException ex) {
+                        throw new RuntimeException(ex);
+                    }
                 }
                 else{
                     //报填写错误，验证码不对
@@ -138,6 +147,10 @@ public class register {
         jf.setLocationRelativeTo(null);
         jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         jf.setVisible(true);
+        }
+
+        public static String getIdCard(){
+            return idcard;
         }
 
 }

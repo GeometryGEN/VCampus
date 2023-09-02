@@ -276,11 +276,7 @@ Client_qicq {
         oos.writeObject(message);
     }
 
-    /**
-     * 需要朋友列表
-     *
-     * @throws IOException ioexception
-     */
+    //获取好友列表
     public static void Require_friend_list() throws IOException {
         Message message=new Message();
         message.setType(MessageType.MESSAGE_QICQ_LIST_FRIENDS);
