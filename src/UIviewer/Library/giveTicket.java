@@ -40,8 +40,9 @@ public class giveTicket extends JPanel {
         add(l);
 
         JLabel l1 = new JLabel("罚单编号:");
-        l1.setBackground(new Color(255,255,255));
-        l1.setOpaque(true);
+        //l1.setBackground(new Color(255,255,255));
+        l1.setForeground(new Color(255,255,255));
+        //l1.setOpaque(true);
         l1.setFont(new Font("宋体", Font.BOLD, (int) (25*width_r)));
         l1.setBounds((int) (640*width_r), (int) (151*height_r), (int) (200*width_r), (int) (50*height_r));
         add(l1);
@@ -49,8 +50,12 @@ public class giveTicket extends JPanel {
         textField1.setFont(new Font("宋体", Font.BOLD, (int) (25*width_r)));
         textField1.setBounds((int) (775*width_r), (int) (151*height_r), (int) (200*width_r), (int) (50*height_r));
         add(textField1);
+
+
         textField1.setColumns((int) (200*width_r));
-        textField1.setBackground(new Color(255,255,255,250));
+        textField1.setBackground(null);
+        //textField1.setOpaque(true);
+//        textField1.setForeground(new Color(255,255,255));
 
         JLabel l2 = new JLabel(" 罚款金额");
         l2.setFont(new Font("宋体", Font.BOLD, (int) (25*width_r)));
