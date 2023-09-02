@@ -10,13 +10,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
-import ClientToServer.myInfo;
-
-/**
+import ClientToServer.myInfo;/**
  * 管理员界面
  *
- * @author Chen_GuanZhi
- * @date 2022/09/03
+ * @author Liu Lewei
+ * @date 2023/09/02
  */
 public class adminLib extends JPanel {
     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
@@ -93,7 +91,7 @@ public class adminLib extends JPanel {
 
         //按钮
         JButton b1=new JButton("查看图书状态");
-        b1.setBounds((int) (100*width_r), (int) (100*height_r), (int) (250*width_r), (int) (50*height_r));
+        b1.setBounds((int) (0*width_r), (int) (100*height_r), (int) (200*width_r), (int) (50*height_r));
         Font myfont1 = new Font("微软雅黑", Font.BOLD, (int) (18*width_r));
         b1.setFont(myfont1);
         b1.setContentAreaFilled(false);//设置按钮透明
@@ -118,7 +116,7 @@ public class adminLib extends JPanel {
         add(b1);
 
         JButton b2=new JButton("录入/删除书籍");
-        b2.setBounds((int) (370*width_r), (int) (100*height_r), (int) (250*width_r), (int) (50*height_r));
+        b2.setBounds((int) (200*width_r), (int) (100*height_r), (int) (200*width_r), (int) (50*height_r));
         b2.setFont(myfont1);
         b2.setContentAreaFilled(false);//设置按钮透明
         b2.setFocusPainted(false);
@@ -133,7 +131,7 @@ public class adminLib extends JPanel {
         add(b2);
 
         JButton b3=new JButton("开罚单");
-        b3.setBounds((int) (640*width_r), (int) (100*height_r), (int) (250*width_r), (int) (50*height_r));
+        b3.setBounds((int) (400*width_r), (int) (100*height_r), (int) (200*width_r), (int) (50*height_r));
         b3.setFont(myfont1);
         b3.setContentAreaFilled(false);//设置按钮透明
         b3.setFocusPainted(false);
@@ -148,11 +146,12 @@ public class adminLib extends JPanel {
         add(b3);
 
         JButton b4=new JButton("退出图书馆");
-        b4.setBounds((int) (910*width_r), (int) (100*height_r), (int) (250*width_r), (int) (50*height_r));
+        b4.setBounds((int) (1100*width_r), (int) (100*height_r), (int) (173*width_r), (int) (50*height_r));
         b4.setFont(myfont1);
         b4.setContentAreaFilled(false);//设置按钮透明
         b4.setFocusPainted(false);
         b4.setForeground(new Color(248, 248, 255));
+        b4.setBorder(null);
             b4.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {

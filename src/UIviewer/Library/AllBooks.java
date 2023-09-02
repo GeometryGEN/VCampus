@@ -2,6 +2,7 @@ package UIviewer.Library;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import java.util.*;
 import java.awt.Robot;
 import java.util.Date;
@@ -39,11 +40,15 @@ public class AllBooks extends JPanel {
           return false;
          }
         };
+        JTableHeader jTableHeader=table_want.getTableHeader();
+        jTableHeader.setFont(new Font("宋体", Font.BOLD, 20));
+        jTableHeader.setBackground(new Color(42,52,65,200));
+        jTableHeader.setForeground(new Color(255,255,255));
         //table_want.setOpaque(false);
         table_want.setRowHeight((int) (30*height_r));
         Font myfont1 = new Font("宋体", Font.PLAIN, (int) (14*width_r));
         table_want.setFont(myfont1);
-        //table_want.setForeground(new Color(255,255,255));
+        table_want.setForeground(new Color(0,0,0));
 
         //支持滚动
         JScrollPane jsp = new JScrollPane(table_want);

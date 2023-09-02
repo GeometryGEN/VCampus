@@ -10,13 +10,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.IOException;
-
-/**
+import java.io.IOException;/**
  * 给票
  *
- * @author Chen_GuanZhi
- * @date 2022/09/03
+ * @author Liu lewei
+ * @date 2023/09/02
  */
 public class giveTicket extends JPanel {
 
@@ -112,7 +110,7 @@ public class giveTicket extends JPanel {
         JButton b1=new JButton("确定提交");
         b1.setForeground(new Color(255,255,255));
         b1.setFont(new Font("楷体", Font.BOLD, (int) (18*width_r)));
-        b1.setBounds((int) (575*width_r), (int) (450*height_r), (int) (120*width_r), (int) (50*height_r));
+        b1.setBounds((int) (575*width_r), (int) (455*height_r), (int) (120*width_r), (int) (50*height_r));
         b1.setBackground(new Color(68,84,105));
         add(b1);
         b1.setFocusPainted(false);
