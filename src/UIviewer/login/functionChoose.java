@@ -280,7 +280,6 @@ public class functionChoose {
                 //选课系统
                 JButton btnNewButton_2 = new JButton("选课系统");
                 btnNewButton_2.setFocusPainted(false);
-                /*
                 btnNewButton_2.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
@@ -308,7 +307,6 @@ public class functionChoose {
                         }
                     }
                 });
-                */
                 btnNewButton_2.setBounds((int) (80*width_r), (int) (595*height_r), (int) (200*width_r), (int) (28*height_r));
                 btnNewButton_2.setFont(myfont);
                 if(color_switch){
@@ -480,7 +478,7 @@ public class functionChoose {
 
                 JButton btnNewButton_3 = new JButton("校园超市");
                 btnNewButton_3.setFocusPainted(false);
-                /*
+
                 btnNewButton_3.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
@@ -509,7 +507,7 @@ public class functionChoose {
                     }
                 });
 
-                 */
+
                 btnNewButton_3.setBounds((int) (670*width_r), (int) (410*height_r), (int) (200*width_r), (int) (28*height_r));
                 btnNewButton_3.setFont(myfont);
                 if(color_switch){
