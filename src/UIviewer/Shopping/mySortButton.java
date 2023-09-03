@@ -7,6 +7,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.ArrayList;
 import java.util.List;
 import static UIviewer.Shopping.shopCustomer.cardLayout;
 import static UIviewer.Shopping.shopCustomer.panel;
@@ -85,7 +86,40 @@ public class mySortButton extends JButton {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    List <Product> t = Client_shop.checktypeProduct("零食");
+                    List <Product> t =new ArrayList<>();
+                    if(text=="食品/酒水"){
+                        //tn!=null时才能addall
+                        t.addAll(Client_shop.checktypeProduct("零食"));
+                        System.out.println("1111111111111111");
+                        List <Product> t2=(Client_shop.checktypeProduct("饼干"));
+                        //t.addAll(t2);
+                        System.out.println("t2 creat !!!!");
+                        if(t2==null){System.out.println("t2==null!!!!!!");}
+                        t.addAll(Client_shop.checktypeProduct("茶"));
+                        t.addAll(Client_shop.checktypeProduct("生鲜"));
+                    } else if (text=="医药/保健") {
+                        t.addAll(Client_shop.checktypeProduct("医药"));
+                        t.addAll(Client_shop.checktypeProduct("保健"));
+                    }else if (text=="电子数码") {
+                        t.addAll(Client_shop.checktypeProduct("手机"));
+                        t.addAll(Client_shop.checktypeProduct("数码"));
+                        t.addAll(Client_shop.checktypeProduct("电器"));
+                    }else if (text=="图书/文娱") {
+                        t.addAll(Client_shop.checktypeProduct("手机"));
+                    }else if (text=="服饰/运动") {
+                        t.addAll(Client_shop.checktypeProduct("饰品"));
+                        t.addAll(Client_shop.checktypeProduct("男装"));
+                        t.addAll(Client_shop.checktypeProduct("运动"));
+                    }
+                    else if (text=="生活百货") {
+                        t.addAll(Client_shop.checktypeProduct("百货"));
+                        t.addAll(Client_shop.checktypeProduct("厨具"));
+                        t.addAll(Client_shop.checktypeProduct("家装"));
+                        t.addAll(Client_shop.checktypeProduct("礼品"));
+                        t.addAll(Client_shop.checktypeProduct("洗护"));
+                        t.addAll(Client_shop.checktypeProduct("美妆"));
+                    }
+                    Item_Rearch_Customer f11= new Item_Rearch_Customer();
                     if (t != null) {
                         String[][] temp = new String[t.size()][];
                         for (int i = 0; i < t.size(); i++) {
@@ -99,11 +133,11 @@ public class mySortButton extends JButton {
                             tt[6] = "购买";
                             temp[i] = tt;
                         }
-                        setShoptable(temp);
+                        f11.setShoptable(temp);
                     } else {
-                        setShoptable(null);
+                        f11.setShoptable(null);
                     }
-                    ShoppingHall f11 = new ShoppingHall();
+
                     panel.add(f11, "f11");
                     cardLayout.show(panel, "f11");
                 } catch (Exception ex) {

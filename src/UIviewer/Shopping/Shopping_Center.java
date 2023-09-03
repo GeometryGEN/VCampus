@@ -18,7 +18,6 @@ import UIviewer.Library.bookSearch;
 import UIviewer.login.functionChoose;
 import net.coobird.thumbnailator.Thumbnails;
 import ClientToServer.myInfo;
-
 import static UIviewer.Shopping.ShoppingHall.resetshoptable;
 import static UIviewer.Shopping.ShoppingHall.setShoptable;
 public class Shopping_Center extends JPanel{
@@ -48,11 +47,16 @@ public class Shopping_Center extends JPanel{
     Color color5=new Color(211,229,210);
     Color white=Color.white;
 
-    public Shopping_Center() {
+    public Shopping_Center() throws IOException {
         //测试UI时先不获取名字。将其设为空
         name=myInfo.getName();
         name=null;
         getName(name);
+        double money = 0;
+        if(myInfo.getType()==1)
+            money=Client_shop.getMoney(myInfo.getId());
+        else
+            money=Client_shop.getMoney_Teacher(myInfo.getId());
 
         setSize(width,height);
         setVisible(true);
@@ -89,7 +93,7 @@ public class Shopping_Center extends JPanel{
         add(logo);
 
         //文字
-        JLabel l1 = new JLabel("你好！"+name);
+        JLabel l1 = new JLabel("你好！"+name+"。您的余额为"+String.format("%.2f", money)+"元。");
         l1.setBounds((int) (1100*width_r), (int) (30*height_r), (int) (200*width_r), (int) (55*height_r));
         l1.setForeground(white);
         Font font = new Font("微软雅黑", Font.BOLD, (int) (20*width_r));
@@ -185,7 +189,7 @@ public class Shopping_Center extends JPanel{
         add(panel);
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         // 创建并显示 JFrame
         JFrame jf=new JFrame();
         jf.setContentPane(new Shopping_Center());

@@ -36,8 +36,7 @@ public class bookSearch extends JPanel {
         //setBackground(Color.BLUE);
         //馆藏查询
         JPanel p11=new JPanel();
-        //p11.setBackground(Color.green);
-
+        p11.setBounds(0,-5, (int) (1273*width_r), (int) (650*height_r));
         JLabel pic1 = new JLabel();
         int icon1_width= 1280;
         int icon1_height=660;
@@ -177,5 +176,8 @@ public class bookSearch extends JPanel {
 
         add(p11);
 
+
+
     }
+
 }

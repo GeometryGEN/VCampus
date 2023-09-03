@@ -21,29 +21,47 @@ public class register2 {
         JFrame jf=new JFrame("注册账号");
 
         //添加头像
-        JFileChooser choose_image=new JFileChooser();
-        choose_image.setFileSelectionMode(JFileChooser.FILES_ONLY);
-        choose_image.showOpenDialog(null);
-        choose_image.setBounds(10,10,200,200);
-        jf.add(choose_image);
+        JButton b2=new JButton("添加头像");
+        b2.setBounds(360,500,100,30);
+        b2.setBackground(new Color(235,236,240));
+        b2.setFocusPainted(false);
 
-        JButton save_image=new JButton("保存图片");
-        save_image.setBounds(10,100,200,200);
-        jf.add(save_image);
-        save_image.addActionListener(new ActionListener() {
+        b2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                File file=choose_image.getSelectedFile();
+                // TODO Auto-generated method stub
                 try {
-                    String path=file.getAbsolutePath();
-                    utils.Save_image.main(path,register.getIdCard());
-                } catch (FileNotFoundException ex) {
-                    throw new RuntimeException(ex);
-                } catch (SQLException ex) {
-                    throw new RuntimeException(ex);
+                    JFileChooser choose_image=new JFileChooser();
+                    choose_image.setFileSelectionMode(JFileChooser.FILES_ONLY);
+                    choose_image.showOpenDialog(null);
+                    choose_image.setBounds(10,10,200,200);
+                    jf.add(choose_image);
+
+                    JButton save_image=new JButton("保存图片");
+                    save_image.setBounds(260,500,100,30);
+                    jf.add(save_image);
+                    save_image.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent e) {
+                            File file=choose_image.getSelectedFile();
+                            try {
+                                String path=file.getAbsolutePath();
+                                utils.Save_image.main(path,register.getIdCard());
+                            } catch (FileNotFoundException ex) {
+                                throw new RuntimeException(ex);
+                            } catch (SQLException ex) {
+                                throw new RuntimeException(ex);
+                            }
+                        }
+                    });
+                } catch (Exception ex) {
+                    ex.printStackTrace();
                 }
             }
         });
+        jf.add(b2);
+
+
 
         //账号密码
         JLabel l1=new JLabel("密码:");

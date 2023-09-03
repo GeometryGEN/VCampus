@@ -7,7 +7,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
-
 import UIviewer.login.LoginFrame;
 import UIviewer.login.functionChoose;
 import net.coobird.thumbnailator.Thumbnails;
