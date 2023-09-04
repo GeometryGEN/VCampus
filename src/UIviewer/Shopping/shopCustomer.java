@@ -75,12 +75,12 @@ public class shopCustomer extends JPanel {
         String name="1";
         double money = 0;
 
-//        name=myInfo.getName();
-//        getName(name);
-//        if(myInfo.getType()==1)
-//             money=Client_shop.getMoney(myInfo.getId());
-//        else
-//             money=Client_shop.getMoney_Teacher(myInfo.getId());
+        name=myInfo.getName();
+        getName(name);
+        if(myInfo.getType()==1)
+             money=Client_shop.getMoney(myInfo.getId());
+        else
+             money=Client_shop.getMoney_Teacher(myInfo.getId());
         System.out.println("after creat11111");
 
         setBounds(0,0, (int) (1273*width_r), (int) (784*height_r));
@@ -94,9 +94,9 @@ public class shopCustomer extends JPanel {
 //		创建相应面板类的对象
         System.out.println("after creat2222222222");
 
-        //t = Client_shop.returnAllProduct();
+        t = Client_shop.returnAllProduct();
         //测试的时候先让列表为空
-        t =new ArrayList<>();
+        //t =new ArrayList<>();
         String[][] temp = new String[t.size()][];
         for(int i =0;i<t.size();i++){
             String[] tt =new String[7];
@@ -110,10 +110,14 @@ public class shopCustomer extends JPanel {
             temp[i]=tt;
         }
         ShoppingHall.setShoptable(temp);
+
+        //测试各个界面
         ShoppingHall f1=new ShoppingHall();
         panel.add(f1,"f1");
-        System.out.println("after creat333333333333");
-
+//        shopCar f2=new shopCar();
+//        //panel.add(f2,"f2");
+//        OrderHistory f3=new OrderHistory();
+//        panel.add(f3,"f3");
 
         //商店标志与背景
         JLabel logo = new JLabel();
@@ -154,6 +158,7 @@ public class shopCustomer extends JPanel {
         b1.setContentAreaFilled(false);//设置按钮透明
         b1.setFocusPainted(false);//把选中后出现的小方框去掉
         b1.setForeground(white); //字体颜色设置为白色
+        //b1.setBorder(BorderFactory.createLineBorder(Color.white));
         b1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -169,6 +174,7 @@ public class shopCustomer extends JPanel {
         b2.setContentAreaFilled(false);//设置按钮透明
         b2.setFocusPainted(false);
         b2.setForeground(white);
+        //b2.setBorder(BorderFactory.createLineBorder(Color.white));
         b2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -228,6 +234,7 @@ public class shopCustomer extends JPanel {
         b3.setContentAreaFilled(false);//设置按钮透明
         b3.setFocusPainted(false);
         b3.setForeground(white);
+        //b3.setBorder(BorderFactory.createLineBorder(Color.white));
         b3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -279,7 +286,7 @@ public class shopCustomer extends JPanel {
         });
         add(b3);
 
-        JButton b4=new JButton("退出商城");
+        JButton b4=new JButton("退出商店");
         b4.setBounds((int) (1100*width_r), (int) (100*height_r), (int) (173*width_r), (int) (50*height_r));
         b4.setFont(myfont1);
         b4.setContentAreaFilled(false);//设置按钮透明

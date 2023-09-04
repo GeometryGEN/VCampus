@@ -2,6 +2,7 @@ package UIviewer.Shopping;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import java.util.*;
 import java.util.Date;
 import java.awt.*;
@@ -17,6 +18,14 @@ import UIhandler.Library.Client_library;
  * @date 2022/09/03
  */
 public class AllGoods extends JPanel {
+    Color color1=new Color(233,244,255);
+    Color color2=new Color(23,58,26);
+    Color color3=new Color(57,94,50);
+    Color color4=new Color(72,115,78);
+    Color color5=new Color(211,229,210);
+    Color color6=new Color(243,248,242);
+    Font myfont1=new Font("微软雅黑", Font.BOLD, 20);
+
     public static String[][] tableDate;
 
     /**
@@ -58,32 +67,39 @@ public class AllGoods extends JPanel {
                 return false;
             }
         };
+        //将表格数据数组放入表格模型,并重写getColumnClass方法
+        table_want.setModel(dtm);
+        JTableHeader jTableHeader=table_want.getTableHeader();
+        jTableHeader.setFont(new Font("等线", Font.BOLD, 25));
+        jTableHeader.setBackground(color3);
+        jTableHeader.setForeground(Color.white);
         table_want.setRowHeight((int) (30*height_r));
         Font myfont1 = new Font("宋体", Font.PLAIN, (int) (14*width_r));
         table_want.setFont(myfont1);
-
+        //调整美化
+        table_want.setFont(new Font("宋体",Font.BOLD, (int) (16*width_r)));
+        table_want.setBackground(color5);
+        table_want.setOpaque(false);
+        setBackground(color5);
         //支持滚动
         JScrollPane jsp = new JScrollPane();
         jsp.setViewportView(table_want);
         jsp.setBounds(0,0, (int) (1280*width_r), (int) (620*height_r));
-        jsp.setBackground(new Color(255, 240, 245, 80));
+        jsp.setBackground(color5);
+        jsp.getViewport().setOpaque(false);
         add(jsp);
-
-        JPanel p1 = new JPanel();
-        p1.setBounds(0, 0, (int) (1280*width_r), (int) (650*height_r));
-        p1.setBackground(new Color(255, 240, 245, 10));
-        add(p1);
-
         DefaultTableCellRenderer render = new DefaultTableCellRenderer();
         render.setOpaque(false); //将渲染器设置为透明
         table_want.setDefaultRenderer(Object.class,render);
-
-        table_want.setFont(new Font("宋体",Font.BOLD, (int) (16*width_r)));
         try {
             DefaultTableCellRenderer tcr = new DefaultTableCellRenderer() {
                 @Override
                 public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-
+                    if (row % 2 == 0) {
+                        setBackground(color5);
+                    } else {
+                        setBackground(color6);
+                    }
                     return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
                 }
             };
