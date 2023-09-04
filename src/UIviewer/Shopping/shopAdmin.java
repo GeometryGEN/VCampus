@@ -225,18 +225,18 @@ public class shopAdmin extends JPanel {
         });
         guide.add(btnNewButton_7);
         //导航条
-        guide.setBounds(0,0,500,500);
-        add(guide);
+        guide.setSize(500,200);
+        guide.setBounds(0,0,500,200);
+
 
         //测试页面！！！
         AllGoods f11=new AllGoods();
         panel.add(f11,"f11");
-        AddDeleteGoods f12=new AddDeleteGoods(true);
+        //AddDeleteGoods f12=new AddDeleteGoods(false);
         //panel.add(f12,"f12");
 
         //商店标志与背景
         JLabel logo = new JLabel();
-
         int icon1_width=  (int) (850*width_r);
         int icon1_height=(int) (90*height_r);
         //裁减2到min的尺寸
@@ -340,6 +340,7 @@ public class shopAdmin extends JPanel {
         p2.setBackground(color3);
         //p2.setBackground(new Color(125,182,191));
         add(p2);
+        add(guide);
 
         setVisible(true);
     }

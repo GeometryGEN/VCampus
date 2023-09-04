@@ -14,10 +14,9 @@ public class AddDel_TextField extends JTextField{
     Font myfont1=new Font("微软雅黑", Font.BOLD, 19);
     Font myfont2=new Font("微软雅黑", Font.BOLD, 20);
 
-    private String text;
     private Font font;
-    private Color foreground;
-    private Color background;
+    private Color foregroundColor;
+    private Color backgroundColor;
     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
     int width=(int ) screensize.getWidth(); //得到宽度
     int height=(int ) screensize.getHeight();//获得高度
@@ -25,39 +24,12 @@ public class AddDel_TextField extends JTextField{
     double height_r=(double)(height)/784;
 
 
-    public AddDel_TextField(String text,int x,int y) {
-        this.text = text;
+    public AddDel_TextField(int x,int y) {
         this.font = new Font("微软雅黑", Font.BOLD, 24);
         setBounds((int) (x * width_r), (int) (y * height_r), (int) (330 * width_r), (int) (70 * height_r));
-        this.foreground = color6;
-        this.background = Color.WHITE;
+        this.foregroundColor = color6;
+        this.backgroundColor = Color.WHITE;
         setBorder(BorderFactory.createLineBorder(color6));
-        init();
-    }
-    private void init() {
-        setText(text);
-        setBackground(background);
-        setForeground(foreground);
-        setFont(font);
     }
 
-    public void setText(String text) {
-        this.text = text;
-        super.setText(text);
-    }
-
-    public void setBackgroundColor(Color color) {
-        this.background= color;
-        super.setBackground(color);
-    }
-
-    public void setForegroundColor(Color color) {
-        this.foreground = color;
-        super.setForeground(color);
-    }
-
-    public void setFont(Font font) {
-        this.font = font;
-        super.setFont(font);
-    }
 }
