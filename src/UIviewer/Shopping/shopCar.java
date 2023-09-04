@@ -10,6 +10,7 @@ import UIviewer.login.functionChoose;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -54,6 +55,12 @@ public class shopCar extends JPanel {
         shopCar.myBook = myBook;
     }
 
+    Color color1=new Color(233,244,255);
+    Color color2=new Color(23,58,26);
+    Color color3=new Color(57,94,50);
+    Color color4=new Color(72,115,78);
+    Color color5=new Color(211,229,210);
+
     /**
      * 汽车商店
      */
@@ -69,6 +76,11 @@ public class shopCar extends JPanel {
                 }else {return false;}
             }
         };
+        JTableHeader jTableHeader=table_want.getTableHeader();
+        jTableHeader.setFont(new Font("等线", Font.BOLD, 25));
+        jTableHeader.setBackground(color3);
+        jTableHeader.setForeground(Color.white);
+
         table_want.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -273,6 +285,8 @@ public class shopCar extends JPanel {
         JScrollPane jsp = new JScrollPane(table_want);
         jsp.setBounds(0,0, (int) (1280*width_r), (int) (680*height_r));
         add(jsp);
+        jsp.setBackground(color5);
+        jsp.getViewport().setOpaque(false);
         table_want.setRowHeight((int) (30*height_r));
 
         //调整美化
@@ -281,12 +295,16 @@ public class shopCar extends JPanel {
             DefaultTableCellRenderer tcr = new DefaultTableCellRenderer() {
                 @Override
                 public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                    setFont(new Font("微软雅黑", Font.BOLD, 18));
                     if (column!=5&&column!=4) {
                         setBackground(Color.white);
                     }else {
-                        setBackground(new Color(250,128,114,100));
-                        //setForeground(new Color(255,255,255));
-                        //setFont(new Font("微软雅黑",Font.BOLD,18));
+                        setBackground(color5);
+                    }
+                    if (row % 2 == 0) {
+                        setBackground(color5);
+                    } else {
+                        setBackground(color4);
                     }
                     return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
                 }

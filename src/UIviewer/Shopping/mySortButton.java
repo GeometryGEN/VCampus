@@ -11,6 +11,20 @@ import java.util.ArrayList;
 import java.util.List;
 import static UIviewer.Shopping.shopCustomer.cardLayout;
 import static UIviewer.Shopping.shopCustomer.panel;
+import ClientToServer.myInfo;
+import UIhandler.Library.Client_library;
+import UIviewer.login.functionChoose;
+import net.coobird.thumbnailator.Thumbnails;
+
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+import java.awt.*;
+import java.awt.event.*;
+import java.io.File;
+import java.io.IOException;
+import static UIhandler.Shop.Client_shop.checktypeProduct;
+import static UIviewer.login.forgetPWD.forgetPWDUI;
 
 public class mySortButton extends JButton {
 
@@ -35,6 +49,15 @@ public class mySortButton extends JButton {
     public static void setShoptable(String[][] shoptable) {
         ShoppingHall.shoptable = shoptable;
     }
+
+    //将t2的元素添加到t1中
+    public static List <Product> additem(List <Product> t1,List <Product> t2) {
+        if(t2!=null){
+            t1.addAll(t2);
+        }
+        return t1;
+    }
+
     Color color1=new Color(233,244,255);
     Color color2=new Color(23,58,26);
     Color color3=new Color(57,94,50);
@@ -90,13 +113,15 @@ public class mySortButton extends JButton {
                     if(text=="食品/酒水"){
                         //tn!=null时才能addall
                         t.addAll(Client_shop.checktypeProduct("零食"));
-                        System.out.println("1111111111111111");
                         List <Product> t2=(Client_shop.checktypeProduct("饼干"));
-                        //t.addAll(t2);
-                        System.out.println("t2 creat !!!!");
-                        if(t2==null){System.out.println("t2==null!!!!!!");}
-                        t.addAll(Client_shop.checktypeProduct("茶"));
-                        t.addAll(Client_shop.checktypeProduct("生鲜"));
+                        t=additem(t,t2);
+                        System.out.println("additem(t,t2); !!!!");
+                        List <Product> t3=(Client_shop.checktypeProduct("茶"));
+                        t=additem(t,t3);
+                        List <Product> t4=(Client_shop.checktypeProduct("生鲜"));
+                        t=additem(t,t4);
+                        //记得把下面的都改了！！！不能加空的！！！！！！
+                        //！！！！
                     } else if (text=="医药/保健") {
                         t.addAll(Client_shop.checktypeProduct("医药"));
                         t.addAll(Client_shop.checktypeProduct("保健"));
@@ -119,7 +144,7 @@ public class mySortButton extends JButton {
                         t.addAll(Client_shop.checktypeProduct("洗护"));
                         t.addAll(Client_shop.checktypeProduct("美妆"));
                     }
-                    Item_Rearch_Customer f11= new Item_Rearch_Customer();
+                    ShoppingHall f11= new ShoppingHall();
                     if (t != null) {
                         String[][] temp = new String[t.size()][];
                         for (int i = 0; i < t.size(); i++) {
@@ -174,67 +199,3 @@ public class mySortButton extends JButton {
         super.setFont(font);
     }
 }
-
-/*
-JButton btnNewButton_1 = new JButton("零食");
-        btnNewButton_1.setBounds((int) (20*width_r), (int) (150*height_r), (int) (80*width_r), (int) (30*height_r));
-        btnNewButton_1.setFont(myfont1);
-        btnNewButton_1.setForeground(new Color(255,255,255));
-        btnNewButton_1.setBackground(new Color(254,178,148));
-        btnNewButton_1.setBorder(BorderFactory.createLineBorder(new Color(254,178,148)));
-        btnNewButton_1.setFocusPainted(false);
-        btnNewButton_1.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent e) {
-                super.mousePressed(e);
-                btnNewButton_1.setContentAreaFilled(false);//设置按钮透明
-                btnNewButton_1.setBackground(new Color(255,160,122));
-            }
-            @Override
-            public void mouseReleased(MouseEvent e) {
-                super.mouseReleased(e);
-                btnNewButton_1.setContentAreaFilled(true);//设置按钮透明
-                btnNewButton_1.setBackground(new Color(254,178,148));
-            }
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                super.mouseEntered(e);
-                btnNewButton_1.setFont(new Font("楷体",Font.BOLD, (int) (20*width_r)));
-            }
-            @Override
-            public void mouseExited(MouseEvent e) {
-                super.mouseExited(e);
-                btnNewButton_1.setFont(new Font("楷体 ", Font.PLAIN, (int) (18*width_r)));
-            }
-        });
-        btnNewButton_1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    List<Product> t = Client_shop.checktypeProduct("零食");
-                    if(t!=null) {
-                        String[][] temp = new String[t.size()][];
-                        for (int i = 0; i < t.size(); i++) {
-                            String[] tt = new String[7];
-                            tt[0] = String.valueOf(t.get(i).getProduct_id());
-                            tt[1] = t.get(i).getProduct_name();
-                            tt[2] = String.valueOf(t.get(i).getProduct_price());
-                            tt[3] = String.valueOf(t.get(i).getProduct_currentNumbers());
-                            tt[4] = "1";
-                            tt[5] = "加入购物车";
-                            tt[6] = "购买";
-                            temp[i] = tt;
-                        }
-                        setShoptable(temp);
-                    }else {
-                        setShoptable(null);
-                    }
-                    ShoppingHall f11=new ShoppingHall();
-                    panel.add(f11,"f11");
-                    cardLayout.show(panel, "f11");
-                } catch (Exception ex) {
-                    throw new RuntimeException(ex);
-                } }
-        });
-
- */

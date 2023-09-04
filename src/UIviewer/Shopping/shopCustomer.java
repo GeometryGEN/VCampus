@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import UIhandler.Shop.Client_shop;
+import UIviewer.Library.readLib;
 import UIviewer.login.functionChoose;
 import net.coobird.thumbnailator.Thumbnails;
 import ClientToServer.myInfo;
@@ -27,12 +28,19 @@ import static UIviewer.Shopping.ShoppingHall.setShoptable;
  * @date 2022/09/03
  */
 public class shopCustomer extends JPanel {
+    Color color1=new Color(233,244,255);
+    Color color2=new Color(23,58,26);
+    Color color3=new Color(57,94,50);
+    Color color4=new Color(72,115,78);
+    Color color5=new Color(211,229,210);
+    Color white=Color.white;
+
     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
     int width=(int ) screensize.getWidth(); //得到宽度
     int height=(int ) screensize.getHeight();//获得高度
     double width_r=(double)(width)/1273;
     double height_r=(double)(height)/784;
-    public static JPanel panel = new JPanel();;
+    public static JPanel panel = new JPanel();
     static String name;
     public static List<Product> t;
     public static JButton b1=new JButton("主商城");
@@ -64,44 +72,31 @@ public class shopCustomer extends JPanel {
      * @throws Exception 异常
      */
     public shopCustomer() throws Exception {
-        String name=myInfo.getName();
-        getName(name);
+        String name="1";
         double money = 0;
-        if(myInfo.getType()==1)
-             money=Client_shop.getMoney(myInfo.getId());
-        else
-             money=Client_shop.getMoney_Teacher(myInfo.getId());
+
+//        name=myInfo.getName();
+//        getName(name);
+//        if(myInfo.getType()==1)
+//             money=Client_shop.getMoney(myInfo.getId());
+//        else
+//             money=Client_shop.getMoney_Teacher(myInfo.getId());
+        System.out.println("after creat11111");
 
         setBounds(0,0, (int) (1273*width_r), (int) (784*height_r));
         setLayout(null);
 
-        //cardLayout.show(panel, "f1");
-
         panel.setBounds(0, (int) (150*height_r), (int) (1273*width_r), (int) (634*height_r));
-        panel.setBackground(new Color(0,0,0));
+        panel.setBackground(color5);
         add(panel);
 //		给主要显示面板添加布局方式
         panel.setLayout(cardLayout);
 //		创建相应面板类的对象
+        System.out.println("after creat2222222222");
 
-        //商店标志
-        JLabel logo = new JLabel();
-        ImageIcon icon = new ImageIcon("src/image/780.png");
-        int icon1_width= 600;
-        int icon1_height=100;
-        try {
-            Thumbnails.of(new File("src/image/780.png"))
-                    .size((int)(icon1_width*width_r), (int)(icon1_height*height_r))
-                    .toFile(new File("src/image/780_min.png"));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        logo.setIcon(new ImageIcon("src/image/780_min.png"));
-        logo.setBounds((int) (0*width_r), (int) (0*height_r), (int) (600*width_r), (int) (100*height_r));
-        add(logo);
-
-
-        t = Client_shop.returnAllProduct();//问题所在
+        //t = Client_shop.returnAllProduct();
+        //测试的时候先让列表为空
+        t =new ArrayList<>();
         String[][] temp = new String[t.size()][];
         for(int i =0;i<t.size();i++){
             String[] tt =new String[7];
@@ -117,73 +112,63 @@ public class shopCustomer extends JPanel {
         ShoppingHall.setShoptable(temp);
         ShoppingHall f1=new ShoppingHall();
         panel.add(f1,"f1");
+        System.out.println("after creat333333333333");
 
 
+        //商店标志与背景
+        JLabel logo = new JLabel();
+        int icon1_width=  (int) (850*width_r);
+        int icon1_height=(int) (90*height_r);
+        //裁减2到min的尺寸
+        try {
+            Thumbnails.of(new File("src/image/商店/Store_logo.png"))
+                    .size((int)(icon1_width*width_r), (int)(icon1_height*height_r))
+                    .keepAspectRatio(false)
+                    .toFile(new File("src/image/商店/Store_logo_fit.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        logo.setIcon(new ImageIcon("src/image/商店/Store_logo_fit.png"));
+        logo.setBounds((int) (10*width_r), (int) (0*height_r), (int) (600*width_r), (int) (100*height_r));
+        add(logo);
+
         //文字
-        JLabel l19 = new JLabel("『欢迎光临东南大学天猫校园商店』");
-        l19.setBounds((int) (220*width_r), (int) (15*height_r), (int) (700*width_r), (int) (80*height_r));
-        l19.setForeground(new Color(248, 248, 255));
-        Font font5 = new Font("楷体", Font.BOLD, (int) (30*width_r));
-        l19.setFont(font5);
-        add(l19);
-        //文字
-        JLabel l1 = new JLabel("您好！"+name+"。您的余额为"+String.format("%.2f", money)+"元。");
-        l1.setBounds((int) (900*width_r), (int) (35*height_r), (int) (420*width_r), (int) (55*height_r));
-        l1.setForeground(new Color(248, 248, 255));
-        Font font = new Font("楷体", Font.BOLD, (int) (20*width_r));
+        JLabel l1 = new JLabel("你好！"+name+"。您的余额为"+String.format("%.2f", money)+"元。");
+        l1.setBounds((int) (930*width_r), (int) (30*height_r), (int) (400*width_r), (int) (55*height_r));
+        l1.setForeground(white);
+        Font font = new Font("微软雅黑", Font.BOLD, (int) (20*width_r));
         l1.setFont(font);
         add(l1);
 
         //上方面板
         JPanel p1 = new JPanel();
         p1.setBounds(0, 0, (int) (1280*width_r), (int) (100*height_r));
-        p1.setBackground(new Color(255,127,80));
+        p1.setBackground(color2);
         add(p1);
 
-        //主商城
-        b1.setBounds((int) (100*width_r), (int) (100*height_r), (int) (250*width_r), (int) (50*height_r));
+        //按钮
+        //b1查询
+        b1.setBounds((int) (0*width_r), (int) (100*height_r), (int) (200*width_r), (int) (50*height_r));
         Font myfont1 = new Font("微软雅黑", Font.BOLD, (int) (18*width_r));
         b1.setFont(myfont1);
         b1.setContentAreaFilled(false);//设置按钮透明
-        b1.setFocusPainted(false);
-        b1.setForeground(new Color(248, 248, 255));
+        b1.setFocusPainted(false);//把选中后出现的小方框去掉
+        b1.setForeground(white); //字体颜色设置为白色
         b1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
-                     t = null;
-                try {
-                    t = Client_shop.returnAllProduct();
-                    String[][] temp = new String[t.size()][];
-                    for(int i =0;i<t.size();i++){
-                        String[] tt =new String[7];
-                        tt[0]=String.valueOf(t.get(i).getProduct_id());
-                        tt[1]=t.get(i).getProduct_name();
-                        tt[2]=String.valueOf(t.get(i).getProduct_price());
-                        tt[3]=String.valueOf(t.get(i).getProduct_currentNumbers());
-                        tt[4]="1";
-                        tt[5]="加入购物车";
-                        tt[6]="购买";
-                        temp[i]=tt;
-                    }
-                    setShoptable(temp);
-                    ShoppingHall f11=new ShoppingHall();
-                    panel.add(f11,"f11");
-                    cardLayout.show(panel, "f11");
-                } catch (Exception ex) {
-                    throw new RuntimeException(ex);
-                }
-
+                cardLayout.show(panel, "f1");
             }
         });
         add(b1);
 
-        //我的购物车
-        b2.setBounds((int) (370*width_r), (int) (100*height_r), (int) (250*width_r), (int) (50*height_r));
+        //b2购物车
+        b2.setBounds((int) (200*width_r), (int) (100*height_r), (int) (200*width_r), (int) (50*height_r));
         b2.setFont(myfont1);
         b2.setContentAreaFilled(false);//设置按钮透明
         b2.setFocusPainted(false);
-        b2.setForeground(new Color(248, 248, 255));
+        b2.setForeground(white);
         b2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -201,7 +186,6 @@ public class shopCustomer extends JPanel {
                                 all.put(productPair.getId(), productPair.getNum());
                             }
                         }
-
                         List<Product> book = new ArrayList<>();
                         for (Integer i : all.keySet()) {
                             Product tempt = Client_shop.checkCertainProduct(i);
@@ -221,17 +205,16 @@ public class shopCustomer extends JPanel {
                                 temp[i]=tt;
                             }
                             shopCar.setMyBook(temp);
-                           // System.out.println(temp.length+"  11111");
                         }
                     }
                     else {
                         shopCar.setMyBook(null);
-                        //System.out.println("空");
                     }
                     shopCar f2=new shopCar();
                     panel.add(f2,"f2");
                     cardLayout.show(panel,"f2");
-
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 }
@@ -239,12 +222,12 @@ public class shopCustomer extends JPanel {
         });
         add(b2);
 
-        //订单记录
-        b3.setBounds((int) (640*width_r), (int) (100*height_r), (int) (250*width_r), (int) (50*height_r));
+        //b3我的订单
+        b3.setBounds((int) (400*width_r), (int) (100*height_r), (int) (200*width_r), (int) (50*height_r));
         b3.setFont(myfont1);
         b3.setContentAreaFilled(false);//设置按钮透明
         b3.setFocusPainted(false);
-        b3.setForeground(new Color(248, 248, 255));
+        b3.setForeground(white);
         b3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -286,19 +269,23 @@ public class shopCustomer extends JPanel {
                     OrderHistory f3=new OrderHistory();
                     panel.add(f3,"f3");
                     cardLayout.show(panel,"f3");
-                }catch (Exception ex) {
+                } catch (IOException ex) {
+                    throw new RuntimeException(ex);
+                } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 }
+
             }
         });
         add(b3);
 
-        JButton b4=new JButton("退出商店");
-        b4.setBounds((int) (910*width_r), (int) (100*height_r), (int) (250*width_r), (int) (50*height_r));
+        JButton b4=new JButton("退出商城");
+        b4.setBounds((int) (1100*width_r), (int) (100*height_r), (int) (173*width_r), (int) (50*height_r));
         b4.setFont(myfont1);
         b4.setContentAreaFilled(false);//设置按钮透明
         b4.setFocusPainted(false);
-        b4.setForeground(new Color(248, 248, 255));
+        b4.setForeground(white);
+        b4.setBorder(null);
         b4.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -309,13 +296,31 @@ public class shopCustomer extends JPanel {
             }
         });
         add(b4);
-
         //按钮面板
         JPanel p2 = new JPanel();
         p2.setBounds(0, (int) (100*height_r), (int) (1280*width_r), (int) (50*height_r));
-        p2.setBackground(new Color(255,160,122));
+        p2.setBackground(color3);
+        //p2.setBackground(new Color(125,182,191));
         add(p2);
 
         setVisible(true);
+
     }
+    public static void main(String[] args) throws Exception {
+        Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
+        int width=(int) screensize.getWidth(); //得到宽度
+        int height=(int) screensize.getHeight();//获得高度
+        System.out.println(width);
+        System.out.println(height);
+        JFrame jf=new JFrame("shopCustomer");
+        //jf = new JFrame("欢迎使用VCampus虚拟校园系统，请选择您的服务！");
+        jf.setSize(width,height);
+        jf.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        System.out.println("before creat");
+        jf.setContentPane(new shopCustomer());
+        System.out.println("after creat");
+        jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        jf.setVisible(true);
+
+    };
 }

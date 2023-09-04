@@ -4,6 +4,8 @@ import UIhandler.Library.Client_library;
 import UIhandler.Shop.Client_shop;
 
 import java.awt.event.*;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
@@ -12,6 +14,7 @@ import javax.swing.table.TableModel;
 import java.awt.*;
 import ClientToServer.myInfo;
 import UIviewer.login.functionChoose;
+import net.coobird.thumbnailator.Thumbnails;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -29,6 +32,18 @@ import static UIviewer.login.forgetPWD.forgetPWDUI;
  * @date 2022/09/03
  */
 public class ShoppingHall extends JPanel {
+    Color color1=new Color(233,244,255);
+    Color color2=new Color(23,58,26);
+    Color color3=new Color(57,94,50);
+    Color color4=new Color(72,115,78);
+    Color color5=new Color(211,229,210);
+    Font myfont1=new Font("微软雅黑", Font.BOLD, 20);
+
+    public static JButton b11=new JButton("商城");
+    public static JButton b12=new JButton("购物车");
+    public static JButton b13=new JButton("我的订单");
+
+
     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
     int width=(int ) screensize.getWidth(); //得到宽度
     int height=(int ) screensize.getHeight();//获得高度
@@ -88,26 +103,49 @@ public class ShoppingHall extends JPanel {
     public ShoppingHall() {
         setLayout(null);
 
-        setBackground(new Color(251, 244, 242));
-        //文字
-        JLabel l19 = new JLabel("       商品分类");
-        l19.setBounds((int) (40*width_r), (int) (0*height_r), (int) (300*width_r), (int) (80*height_r));
-        l19.setForeground(new Color(255,69,0));
-        Font font5 = new Font("楷体", Font.BOLD, (int) (24*width_r));
+        setBackground(color5);
+        //左侧的分类面板背景
+        JPanel p12=new JPanel();
+        p12.setBounds(0,-5, (int) (330*width_r), (int) (1900*height_r));
+        p12.setBackground(color4);
+        //分类标题
+        JLabel l19 = new JLabel("类别选择");
+        l19.setBounds(135,-5, (int) (150*width_r), (int) (50*height_r));
+        l19.setForeground(Color.white);
+        Font font5 = new Font("微软雅黑", Font.BOLD, (int) (22*width_r));
         l19.setFont(font5);
         add(l19);
 
-        JTextField textField=new MyTextField(20);
+        //输入搜索内容的文本框
+        JTextField textField=new JTextField();
         textField.setFont(new Font("微软雅黑", Font.BOLD, (int) (18*width_r)));
-        textField.setBounds((int) (460*width_r), (int) (30*height_r), (int) (430*width_r), (int) (40*height_r));
-        add(textField);
+        textField.setBounds((int)(600*width_r), (int) (80*height_r), (int) (420*width_r), (int) (50*height_r));
+        textField.setBackground(color1);
         textField.setColumns((int) (10*height_r));
+        add(textField);
 
-        JButton b11=new NewButton("检索");
-        b11.setBounds((int) (980*width_r), (int) (30*height_r), (int) (80*width_r), (int) (40*height_r));
-        Font myfont = new Font("楷体", Font.BOLD, (int) (20*width_r));
+        //东南大学logo
+        JLabel logo = new JLabel();
+        int icon1_width=  (int) (60*width_r);
+        int icon1_height=(int) (60*height_r);
+        //裁减2到min的尺寸
+        try {
+            Thumbnails.of(new File("src/image/商店/1.png"))
+                    .size((int)(icon1_width*width_r), (int)(icon1_height*height_r))
+                    .keepAspectRatio(false)
+                    .toFile(new File("src/image/商店/1_fit.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        logo.setIcon(new ImageIcon("src/image/商店/1_fit.png"));
+        logo.setBounds((int) (510*width_r), (int) (70*height_r), (int) (70*width_r), (int) (70*height_r));
+        add(logo);
+
+        JButton b11=new JButton("搜索");
+        b11.setBounds((int) (1018*width_r), (int) (80*height_r), (int) (80*width_r), (int) (50*height_r));
+        Font myfont = new Font("黑体", Font.BOLD, (int) (22*width_r));
         b11.setFont(myfont);
-        b11.setBackground(new Color(255,127,80));
+        b11.setBackground(color3);
         b11.setForeground(new Color(255,255,255));
         b11.setFocusPainted(false);
         b11.addActionListener(new ActionListener() {
@@ -145,6 +183,19 @@ public class ShoppingHall extends JPanel {
         });
         add(b11);
 
+        mySortButton b12=new mySortButton("食品/酒水",20,150);
+        mySortButton b13=new mySortButton("图书/文娱",20,250);
+        mySortButton b14=new mySortButton("服饰/运动",20,350);
+        mySortButton b15=new mySortButton("电子数码",20,450);
+        mySortButton b16=new mySortButton("医药/保健",20,550);
+        mySortButton b17=new mySortButton("生活百货",20,650);
+        add(b12);
+        add(b13);
+        add(b14);
+        add(b15);
+        add(b16);
+        add(b17);
+        /*
         Font myfont1 = new Font("楷体 ", Font.BOLD, (int) (18*width_r));
 
         JButton btnNewButton_1 = new JButton("零食");
@@ -1316,15 +1367,7 @@ public class ShoppingHall extends JPanel {
         });
         add(btnNewButton_18);
 
-        //左侧面板
-        JPanel p1=new JPanel();
-        p1 = new JPanel();
-        p1.setBounds(0, 0, (int) (340*width_r), (int) (780*height_r));
-        //p1.setBackground(null);
-        p1.setBackground(new Color(255,160,122, 200));
-        //panel1.BackColor = Color.FromArgb(80, 255, 0, 0);
-        //p1.setOpaque(false);
-        add(p1);
+         */
 
 
         String[] tableTitle = {"商品编号","商品名称","价格","剩余数量","购买数量","加入购物车","购买"};
@@ -1336,12 +1379,6 @@ public class ShoppingHall extends JPanel {
 //        };
 
         TableModel dtm = new DefaultTableModel(shoptable, tableTitle);
-//            @Override   //核心步骤：重写getColumnClass方法
-//            public Class<?> getColumnClass(int columnIndex) {
-//                return getValueAt(0, columnIndex).getClass();
-//                //return (columnIndex == 0) ? Icon.class : Object.class;
-//            }
-//        };
         JTable table_want = new JTable(dtm){
             public boolean isCellEditable(int row, int column) {
                 if(column==4)
@@ -1364,10 +1401,15 @@ public class ShoppingHall extends JPanel {
             DefaultTableCellRenderer tcr = new DefaultTableCellRenderer() {
                 @Override
                 public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                    if (row % 2 == 0) {
+                        setBackground(color5);
+                    } else {
+                        setBackground(color4);
+                    }
                     if (column!=5&&column!=6) {
-                        setBackground(Color.white);
+                        ;
                     }else {
-                        setBackground(new Color(250,128,114,100));
+                        setBackground(color4);
                         //setForeground(new Color(255,255,255));
                         //setFont(new Font("微软雅黑",Font.BOLD,18));
                     }
@@ -1477,11 +1519,12 @@ public class ShoppingHall extends JPanel {
             });
             //支持滚动
             JScrollPane jsp = new JScrollPane(table_want);
-            jsp.setBounds((int) (340*width_r), (int) (100*height_r), (int) (940*width_r), (int) (460*height_r));
+            jsp.setBounds((int) (340*width_r), (int) (200*height_r), (int) (900*width_r), (int) (460*height_r));
             add(jsp);
             table_want.setRowHeight(30);
 
         setVisible(true);
+        add(p12);
         }
 }
 

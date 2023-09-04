@@ -1,6 +1,5 @@
 package UIviewer.login;
 import ClientToServer.ClientToServer;
-import DAO.Shop.Product;
 import UIhandler.Library.Client_library;
 import javax.swing.*;
 import java.awt.*;
@@ -8,12 +7,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.io.File;
 import java.io.IOException;
-import java.net.Socket;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.List;
+
 import UIhandler.Shop.Client_shop;
 import UIhandler.StatusManagement.Client_status;
 import UIviewer.QQ.main_panel;
@@ -23,14 +21,10 @@ import UIviewer.SelectCourse.Selcourse_teacher;
 
 
 import UIhandler.QICQ.Client_qicq;
-import UIviewer.Library.AllBooks;
 import UIviewer.Library.readLib;
-import UIviewer.Library.adminLib;
-import UIviewer.Shopping.Shopping_Center;
 import UIviewer.Shopping.shopAdmin;
 import UIviewer.Shopping.shopCustomer;
 import UIviewer.status_manage.manage_status;
-import UIviewer.status_manage.student_status;
 import connection.JDBC_Connector;
 import net.coobird.thumbnailator.Thumbnails;
 import ClientToServer.myInfo;
@@ -489,8 +483,8 @@ public class functionChoose {
                             {
                                 Client_shop.setId(String.valueOf(myInfo.getType()));
                                 Client_shop.setIdcard(myInfo.getId());
-                                jf.setContentPane(new Shopping_Center());
-                                jf.setTitle("Shopping_Center");
+                                jf.setContentPane(new shopCustomer());
+                                jf.setTitle("shopCustomer");
                             }
                             else
                             {

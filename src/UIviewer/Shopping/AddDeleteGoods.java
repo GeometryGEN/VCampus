@@ -18,6 +18,12 @@ import java.io.IOException;
  * @date 2022/09/03
  */
 public class AddDeleteGoods extends JPanel {
+    Color color1=new Color(233,244,255);
+    Color color2=new Color(23,58,26);
+    Color color3=new Color(57,94,50);
+    Color color4=new Color(72,115,78);
+    Color color5=new Color(211,229,210);
+
     public static String[] addinfo=new String[7];
     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
     int width=(int ) screensize.getWidth(); //得到宽度
@@ -111,7 +117,7 @@ public class AddDeleteGoods extends JPanel {
         JButton b1=new JButton("确定加入");
         b1.setFont(new Font("楷体", Font.BOLD, (int) (18*width_r)));
         b1.setBounds((int) (235*width_r), (int) (380*height_r), (int) (120*width_r), (int) (50*height_r));
-        b1.setBackground(new Color(255,160,122));
+        b1.setBackground(color3);
         add(b1);
         b1.setFocusPainted(false);
         b1.addActionListener(new ActionListener() {
@@ -154,7 +160,7 @@ public class AddDeleteGoods extends JPanel {
         //中间面板
         JPanel p = new JPanel();
         p.setBounds((int) (150*width_r), (int) (3*height_r), (int) (290*width_r), (int) (630*height_r));
-        p.setBackground(new Color(233,150,122,150));
+        p.setBackground(color3);
         add(p);
 
         JLabel l8 = new JLabel("商品编号:");
@@ -170,7 +176,7 @@ public class AddDeleteGoods extends JPanel {
         JButton b2=new JButton("确定删除");
         b2.setFont(new Font("楷体", Font.BOLD, (int) (18*width_r)));
         b2.setBounds((int) (885*width_r), (int) (350*height_r), (int) (120*width_r), (int) (50*height_r));
-        b2.setBackground(new Color(255,160,122));
+        b2.setBackground(color3);
         add(b2);
         b2.addActionListener(new ActionListener() {
             @Override
@@ -192,9 +198,9 @@ public class AddDeleteGoods extends JPanel {
         //中间面板
         JPanel p0 = new JPanel();
         p0.setBounds((int) (800*width_r), (int) (180*height_r), (int) (290*width_r), (int) (250*height_r));
-        p0.setBackground(new Color(233,150,122,150));
+        p0.setBackground(color3);
         add(p0);
-
+/*
         JPanel p11=new JPanel();
         p11.setBounds(0,0, (int) (1280*width_r), (int) (650*height_r));
         JLabel pic1 = new JLabel();
@@ -213,5 +219,7 @@ public class AddDeleteGoods extends JPanel {
         pic1.setBounds(0,0 , (int) (1280*width_r), (int) (650*height_r));
         p11.add(pic1);
         add(p11);
+
+ */
     }
 }

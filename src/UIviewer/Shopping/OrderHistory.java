@@ -2,6 +2,7 @@ package UIviewer.Shopping;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -40,21 +41,33 @@ public class OrderHistory extends JPanel{
         OrderHistory.con_bought = con_bought;
     }
 
+    Color color1=new Color(233,244,255);
+    Color color2=new Color(23,58,26);
+    Color color3=new Color(57,94,50);
+    Color color4=new Color(72,115,78);
+    Color color5=new Color(211,229,210);
+
     /**
      * 订单历史
      */
     public OrderHistory()
     {
         setLayout(null);
-        String[] tableTitle={"商品编号","商品名称","购买数量","购买价格"};
+        String[] tableTitle={"商品编号","商品名称","购买数量","价格"};
         DefaultTableModel dtm=new DefaultTableModel(con_bought,tableTitle);
         JTable table_want = new JTable(dtm){
             public boolean isCellEditable(int row, int column) {
                 return false;
             }
         };
+        JTableHeader jTableHeader=table_want.getTableHeader();
+        jTableHeader.setFont(new Font("等线", Font.BOLD, 25));
+        jTableHeader.setBackground(color3);
+        jTableHeader.setForeground(Color.white);
+
         JScrollPane jsp=new JScrollPane(table_want);
-        jsp.setBounds(0,0, (int) (1280*width_r), (int) (650*height_r));
+        //jsp.setBounds(0,0, (int) (1280*width_r), (int) (650*height_r));
+        jsp.setBounds(200,200, (int) (1280*width_r), (int) (650*height_r));
         add(jsp);
         table_want.setRowHeight(30);
         setVisible(true);
@@ -64,6 +77,11 @@ public class OrderHistory extends JPanel{
             DefaultTableCellRenderer tcr = new DefaultTableCellRenderer() {
                 @Override
                 public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                    if (row % 2 == 0) {
+                        setBackground(color5);
+                    } else {
+                        setBackground(color4);
+                    }
                     return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
                 }
             };

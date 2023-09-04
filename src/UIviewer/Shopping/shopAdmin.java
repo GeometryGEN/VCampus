@@ -26,6 +26,13 @@ import static UIviewer.Shopping.ShoppingHall.setShoptable;
  * @date 2022/09/03
  */
 public class shopAdmin extends JPanel {
+    Color color1=new Color(233,244,255);
+    Color color2=new Color(23,58,26);
+    Color color3=new Color(57,94,50);
+    Color color4=new Color(72,115,78);
+    Color color5=new Color(211,229,210);
+    Color white=Color.white;
+
     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
     int width=(int ) screensize.getWidth(); //得到宽度
     int height=(int ) screensize.getHeight();//获得高度
@@ -45,6 +52,10 @@ public class shopAdmin extends JPanel {
     }
     public static CardLayout cardLayout=new CardLayout();
 
+    public static JButton b1=new JButton("查看商品");
+    public static JButton b2=new JButton("商品管理（删除/添加）");
+    public static JButton b3=new JButton("订单记录");
+
     /**
      * 店管理
      *
@@ -62,18 +73,19 @@ public class shopAdmin extends JPanel {
 //		创建相应面板类的对象
 
         JLabel logo = new JLabel();
-        ImageIcon icon = new ImageIcon("src/image/780.png");
-        int icon1_width= 600;
-        int icon1_height=100;
+        int icon1_width=  (int) (850*width_r);
+        int icon1_height=(int) (90*height_r);
+        //裁减2到min的尺寸
         try {
-            Thumbnails.of(new File("src/image/780.png"))
+            Thumbnails.of(new File("src/image/商店/Store_logo.png"))
                     .size((int)(icon1_width*width_r), (int)(icon1_height*height_r))
-                    .toFile(new File("src/image/780_min.png"));
+                    .keepAspectRatio(false)
+                    .toFile(new File("src/image/商店/Store_logo_fit.png"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        logo.setIcon(new ImageIcon("src/image/780_min.png"));
-        logo.setBounds((int) (0*width_r), (int) (0*height_r), (int) (600*width_r), (int) (100*height_r));
+        logo.setIcon(new ImageIcon("src/image/商店/Store_logo_fit.png"));
+        logo.setBounds((int) (10*width_r), (int) (0*height_r), (int) (600*width_r), (int) (100*height_r));
         add(logo);
 
         List<Product> t = Client_shop.returnAllProduct();
@@ -98,34 +110,33 @@ public class shopAdmin extends JPanel {
 
 
         //文字
-        JLabel l19 = new JLabel("『东南大学天猫校园商店管理系统』");
-        l19.setBounds((int) (220*width_r), (int) (15*height_r), (int) (700*width_r), (int) (80*height_r));
+        JLabel l19 = new JLabel("『东南大学商店管理系统』");
+        l19.setBounds((int) (320*width_r), (int) (15*height_r), (int) (700*width_r), (int) (80*height_r));
         l19.setForeground(new Color(248, 248, 255));
-        Font font5 = new Font("楷体", Font.BOLD, (int) (30*width_r));
+        Font font5 = new Font("黑体", Font.BOLD, (int) (30*width_r));
         l19.setFont(font5);
         add(l19);
         //文字
         JLabel l1 = new JLabel("你好！"+name);
         l1.setBounds((int) (1100*width_r), (int) (30*height_r), (int) (200*width_r), (int) (55*height_r));
         l1.setForeground(new Color(248, 248, 255));
-        Font font = new Font("楷体", Font.BOLD, (int) (20*width_r));
+        Font font = new Font("微软雅黑", Font.BOLD, (int) (20*width_r));
         l1.setFont(font);
         add(l1);
 
         //上方面板
         JPanel p1 = new JPanel();
         p1.setBounds(0, 0, (int) (1280*width_r), (int) (100*height_r));
-        p1.setBackground(new Color(255,127,80));
+        p1.setBackground(color2);
         add(p1);
 
         //按钮
-        JButton b1=new JButton("查看所有商品");
-        b1.setBounds((int) (100*width_r), (int) (100*height_r), (int) (250*width_r), (int) (50*height_r));
+        b1.setBounds((int) (0*width_r), (int) (100*height_r), (int) (200*width_r), (int) (50*height_r));
         Font myfont1 = new Font("微软雅黑", Font.BOLD, (int) (18*width_r));
         b1.setFont(myfont1);
         b1.setContentAreaFilled(false);//设置按钮透明
-        b1.setFocusPainted(false);
-        b1.setForeground(new Color(248, 248, 255));
+        b1.setFocusPainted(false);//把选中后出现的小方框去掉
+        b1.setForeground(white); //字体颜色设置为白色
         b1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -155,12 +166,11 @@ public class shopAdmin extends JPanel {
         });
         add(b1);
 
-        JButton b2=new JButton("录入/删除商品");
-        b2.setBounds((int) (505*width_r), (int) (100*height_r), (int) (250*width_r), (int) (50*height_r));
+        b2.setBounds((int) (200*width_r), (int) (100*height_r), (int) (200*width_r), (int) (50*height_r));
         b2.setFont(myfont1);
         b2.setContentAreaFilled(false);//设置按钮透明
         b2.setFocusPainted(false);
-        b2.setForeground(new Color(248, 248, 255));
+        b2.setForeground(white);
         b2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -172,15 +182,12 @@ public class shopAdmin extends JPanel {
         });
         add(b2);
 
-
-
-        JButton b4=new JButton("退出商店管理");
-        b4.setBounds((int) (910*width_r), (int) (100*height_r), (int) (250*width_r), (int) (50*height_r));
-        b4.setFont(myfont1);
-        b4.setContentAreaFilled(false);//设置按钮透明
-        b4.setFocusPainted(false);
-        b4.setForeground(new Color(248, 248, 255));
-        b4.addActionListener(new ActionListener() {
+        b3.setBounds((int) (400*width_r), (int) (100*height_r), (int) (200*width_r), (int) (50*height_r));
+        b3.setFont(myfont1);
+        b3.setContentAreaFilled(false);//设置按钮透明
+        b3.setFocusPainted(false);
+        b3.setForeground(white);
+        b3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
@@ -189,13 +196,15 @@ public class shopAdmin extends JPanel {
                 //cardLayout.show(panel, "f1");
             }
         });
-        add(b4);
+        add(b3);
 
         //按钮面板
         JPanel p2 = new JPanel();
         p2.setBounds(0, (int) (100*height_r), (int) (1280*width_r), (int) (50*height_r));
-        p2.setBackground(new Color(255,160,122));
+        p2.setBackground(color3);
+        //p2.setBackground(new Color(125,182,191));
         add(p2);
 
+        setVisible(true);
     }
 }
