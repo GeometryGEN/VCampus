@@ -36,23 +36,36 @@ public class AddDeleteGoods extends JPanel {
      * 添加删除商品
      */
     public AddDeleteGoods(){
+        Color color1=new Color(233,244,255);
+        Color color2=new Color(23,58,26);
+        Color color3=new Color(57,94,50);
+        Color color4=new Color(72,115,78);
+        Color color5=new Color(211,229,210);
+        Color color6=new Color(243,248,242);
+
         setLayout(null);
-        //录入信息
-        JLabel l = new JLabel("   加入商品");
-        l.setBounds((int) (200*width_r), (int) (10*height_r), (int) (290*width_r), (int) (80*height_r));
-        Font font = new Font("楷体", Font.BOLD, (int) (26*width_r));
-        l.setFont(font);
-        //l1.setForeground(new Color(111,222,0));
-        add(l);
-        //删除书籍
-        JLabel l0 = new JLabel("  删除商品");
-        l0.setBounds((int) (860*width_r), (int) (180*height_r), (int) (290*width_r), (int) (80*height_r));
-        l0.setFont(font);
-        //l1.setForeground(new Color(111,222,0));
-        add(l0);
+        setBackground(color5);
+        //左侧的分类面板背景
+        JPanel p12=new JPanel();
+        p12.setBounds(0,-5, (int) (330*width_r), (int) (1900*height_r));
+        p12.setBackground(new Color(72,115,78,220));
+        JPanel p13=new JPanel();
+        p13.setBounds(0,-5,(int) (330*width_r), (int) (1900*height_r));
+        JLabel pic1 = new JLabel();
+        pic1.setIcon(new ImageIcon("src/image/商店/2.jpg"));
+        pic1.setBounds(0,0 ,(int) (330*width_r), (int) (1900*height_r));
+        p13.add(pic1);
 
+        //左侧的一些分类选择的按钮
+        adminChoiceButton b12=new adminChoiceButton(0,100);
+        adminChoiceButton b13=new adminChoiceButton(0,370);
+        b12.setText("添加商品");
+        b13.setText("删除商品");
+        add(b12);
+        add(b13);
 
-        //账号密码
+        /*
+        //输入商品信息
         JLabel l1 = new JLabel("商品名称:");
         l1.setFont(new Font("宋体", Font.BOLD, (int) (15*width_r)));
         l1.setBounds((int) (160*width_r), (int) (120*height_r), (int) (250*width_r), (int) (25*height_r));
@@ -157,11 +170,6 @@ public class AddDeleteGoods extends JPanel {
             }
         });
 
-        //中间面板
-        JPanel p = new JPanel();
-        p.setBounds((int) (150*width_r), (int) (3*height_r), (int) (290*width_r), (int) (630*height_r));
-        p.setBackground(color3);
-        add(p);
 
         JLabel l8 = new JLabel("商品编号:");
         l8.setFont(new Font("宋体", Font.BOLD, (int) (15*width_r)));
@@ -195,31 +203,10 @@ public class AddDeleteGoods extends JPanel {
             }
         });
 
-        //中间面板
-        JPanel p0 = new JPanel();
-        p0.setBounds((int) (800*width_r), (int) (180*height_r), (int) (290*width_r), (int) (250*height_r));
-        p0.setBackground(color3);
-        add(p0);
-/*
-        JPanel p11=new JPanel();
-        p11.setBounds(0,0, (int) (1280*width_r), (int) (650*height_r));
-        JLabel pic1 = new JLabel();
-        ImageIcon icon1 = new ImageIcon("src/image/bg8.jpg");
-        int icon1_width= 1280;
-        int icon1_height=650;
-        try {
-            Thumbnails.of(new File("src/image/bg8.jpg"))
-                    .size((int)(icon1_width*width_r+30), (int)(icon1_height*height_r+20))
-                    .keepAspectRatio(false)
-                    .toFile(new File("src/image/bg8_min.jpg"));
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-        pic1.setIcon(new ImageIcon("src/image/bg8_min.jpg"));
-        pic1.setBounds(0,0 , (int) (1280*width_r), (int) (650*height_r));
-        p11.add(pic1);
-        add(p11);
+         */
 
- */
+        add(p12);
+        add(p13);
+
     }
 }

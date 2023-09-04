@@ -126,25 +126,35 @@ public class mySortButton extends JButton {
                         //！！！！
                     } else if (text=="医药/保健") {
                         t.addAll(Client_shop.checktypeProduct("医药"));
-                        t.addAll(Client_shop.checktypeProduct("保健"));
+                        List <Product> t2=(Client_shop.checktypeProduct("保健"));
+                        t=additem(t,t2);
                     }else if (text=="电子数码") {
                         t.addAll(Client_shop.checktypeProduct("手机"));
-                        t.addAll(Client_shop.checktypeProduct("数码"));
-                        t.addAll(Client_shop.checktypeProduct("电器"));
+                        List <Product> t2=(Client_shop.checktypeProduct("数码"));
+                        t=additem(t,t2);
+                        List <Product> t3=(Client_shop.checktypeProduct("电器"));
+                        t=additem(t,t3);
                     }else if (text=="图书/文娱") {
                         t.addAll(Client_shop.checktypeProduct("手机"));
                     }else if (text=="服饰/运动") {
                         t.addAll(Client_shop.checktypeProduct("饰品"));
-                        t.addAll(Client_shop.checktypeProduct("男装"));
-                        t.addAll(Client_shop.checktypeProduct("运动"));
+                        List <Product> t2=(Client_shop.checktypeProduct("男装"));
+                        t=additem(t,t2);
+                        List <Product> t3=(Client_shop.checktypeProduct("运动"));
+                        t=additem(t,t3);
                     }
                     else if (text=="生活百货") {
                         t.addAll(Client_shop.checktypeProduct("百货"));
-                        t.addAll(Client_shop.checktypeProduct("厨具"));
-                        t.addAll(Client_shop.checktypeProduct("家装"));
-                        t.addAll(Client_shop.checktypeProduct("礼品"));
-                        t.addAll(Client_shop.checktypeProduct("洗护"));
-                        t.addAll(Client_shop.checktypeProduct("美妆"));
+                        List <Product> t2=(Client_shop.checktypeProduct("厨具"));
+                        t=additem(t,t2);
+                        List <Product> t3=(Client_shop.checktypeProduct("家装"));
+                        t=additem(t,t3);
+                        List <Product> t4=(Client_shop.checktypeProduct("礼品"));
+                        t=additem(t,t4);
+                        List <Product> t5=(Client_shop.checktypeProduct("洗护"));
+                        t=additem(t,t5);
+                        List <Product> t6=(Client_shop.checktypeProduct("美妆"));
+                        t=additem(t,t6);
                     }
                     ShoppingHall f11= new ShoppingHall();
                     if (t != null) {

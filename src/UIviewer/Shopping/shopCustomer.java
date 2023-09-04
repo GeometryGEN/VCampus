@@ -286,7 +286,7 @@ public class shopCustomer extends JPanel {
         });
         add(b3);
 
-        JButton b4=new JButton("退出商城");
+        JButton b4=new JButton("退出商店");
         b4.setBounds((int) (1100*width_r), (int) (100*height_r), (int) (173*width_r), (int) (50*height_r));
         b4.setFont(myfont1);
         b4.setContentAreaFilled(false);//设置按钮透明
