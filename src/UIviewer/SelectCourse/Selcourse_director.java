@@ -187,16 +187,21 @@ public class Selcourse_director extends JPanel {
         add(panel);
         panel.setLayout(cardLayout);
 
-        try {
-            RequireallCourse();
-        } catch (IOException ex) {
-            throw new RuntimeException(ex);
-        }
+//        try {
+//            RequireallCourse();
+//        } catch (IOException ex) {
+//            throw new RuntimeException(ex);
+//        }
 
-        Check_Course f1=new Check_Course();
-        panel.add(f1,"f1");
+//        ConsultCourse_Info f3=new ConsultCourse_Info();
+//        panel.add(f3,"f3");
         Scheduling f2=new Scheduling();
         panel.add(f2,"f2");
+        Check_Course f1=new Check_Course();
+        panel.add(f1,"f1");
+
+
+
         JLabel logo = new JLabel();
         ImageIcon icon = new ImageIcon("src/image/xuanke1_bg.png");
         int icon1_width= 600;
@@ -255,7 +260,7 @@ public class Selcourse_director extends JPanel {
 
         //按钮4
         JButton btnNewButton_4 = new JButton("审核课程");
-        btnNewButton_4.setBounds((int)(160*width_r), (int)(100*height_r), (int)(160*width_r), (int)(50*height_r));
+        btnNewButton_4.setBounds((int)(160*width_r), (int)(10*height_r), (int)(160*width_r), (int)(50*height_r));
         btnNewButton_4.setFont(myfont);
         btnNewButton_4.setFocusPainted(false);
         btnNewButton_4.setForeground(new Color(220, 220, 220));

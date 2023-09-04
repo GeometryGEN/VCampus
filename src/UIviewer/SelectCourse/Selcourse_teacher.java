@@ -369,12 +369,12 @@ public class Selcourse_teacher extends JPanel {
 
         });
         add(btnNewButton_6);
+
         //按钮面板
         JPanel p2 = new JPanel();
         p2.setBounds(0, (int) (100*height_r), (int) (1280*width_r), (int) (50*height_r));
         p2.setBackground(new Color(68,84,105));
         add(p2);
-
 
         //东南大学标志图片
 //        JLabel l15 = new JLabel();
