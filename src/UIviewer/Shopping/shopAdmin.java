@@ -63,9 +63,9 @@ public class shopAdmin extends JPanel {
      * @throws Exception 异常
      */
     public shopAdmin() throws Exception {
-        String name=null;
-        //String name=myInfo.getName();
-        //getName(name);
+        //String name=null;
+        String name=myInfo.getName();
+        getName(name);
         setBounds(0,0, (int) (1273*width_r), (int) (790*height_r));
         setLayout(null);
         panel.setBounds(0, (int) (150*height_r), (int) (1273*width_r), (int) (790*height_r));
@@ -75,8 +75,8 @@ public class shopAdmin extends JPanel {
 //		创建相应面板类的对象
 
         //测试的时候先让列表为空
-        List<Product> t =new ArrayList<>();
-        //List<Product> t = Client_shop.returnAllProduct();
+        //List<Product> t =new ArrayList<>();
+        List<Product> t = Client_shop.returnAllProduct();
         String[][] temp = new String[t.size()][];
         for(int i =0;i<t.size();i++){
             String[] tt =new String[5];
@@ -94,9 +94,9 @@ public class shopAdmin extends JPanel {
 
         //测试页面！！！
         AllGoods f11=new AllGoods();
-        //panel.add(f11,"f11");
-        AddDeleteGoods f12=new AddDeleteGoods();
-        panel.add(f12,"f12");
+        panel.add(f11,"f11");
+        AddDeleteGoods f12=new AddDeleteGoods(true);
+        //panel.add(f12,"f12");
 
         //商店标志与背景
         JLabel logo = new JLabel();
@@ -175,7 +175,7 @@ public class shopAdmin extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
-                AddDeleteGoods f12=new AddDeleteGoods();
+                AddDeleteGoods f12=new AddDeleteGoods(true);
                 panel.add(f12,"f12");
                 cardLayout.show(panel,"f12");
             }

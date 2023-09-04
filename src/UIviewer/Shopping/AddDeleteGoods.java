@@ -10,6 +10,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import static UIviewer.Shopping.shopAdmin.cardLayout;
+import static UIviewer.Shopping.shopAdmin.panel;
 
 /**
  * 添加删除商品
@@ -31,18 +33,12 @@ public class AddDeleteGoods extends JPanel {
     double width_r=(double)(width)/1273;
     double height_r=(double)(height)/784;
     public static String deleteID;
+    //static Boolean choice=true;//true为添加，false为删除,初始设置为添加商品
 
     /**
      * 添加删除商品
      */
-    public AddDeleteGoods(){
-        Color color1=new Color(233,244,255);
-        Color color2=new Color(23,58,26);
-        Color color3=new Color(57,94,50);
-        Color color4=new Color(72,115,78);
-        Color color5=new Color(211,229,210);
-        Color color6=new Color(243,248,242);
-
+    public AddDeleteGoods(Boolean choice){
         setLayout(null);
         setBackground(color5);
         //左侧的分类面板背景
@@ -57,12 +53,42 @@ public class AddDeleteGoods extends JPanel {
         p13.add(pic1);
 
         //左侧的一些分类选择的按钮
-        adminChoiceButton b12=new adminChoiceButton(0,100);
-        adminChoiceButton b13=new adminChoiceButton(0,370);
+        adminChoiceButton b12=new adminChoiceButton(true,0,100);
+        adminChoiceButton b13=new adminChoiceButton(false,0,370);
         b12.setText("添加商品");
+        b12.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    AddDeleteGoods f11= new AddDeleteGoods(true);
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
         b13.setText("删除商品");
+        b13.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    AddDeleteGoods f11= new AddDeleteGoods(false);
+                } catch (Exception ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
         add(b12);
         add(b13);
+
+        //添加商品的面板
+        JPanel p14=new JPanel();
+        p14.setBounds((int) (330*width_r), (int) (1900*height_r),(int) (530*width_r), (int) (1900*height_r));
+        p14.setBackground(color5);
+
+        //删除商品的面板
+        JPanel p15=new JPanel();
+        p15.setBounds((int) (330*width_r), (int) (1900*height_r),(int) (530*width_r), (int) (1900*height_r));
+        p15.setBackground(color5);
 
         /*
         //输入商品信息
@@ -207,6 +233,11 @@ public class AddDeleteGoods extends JPanel {
 
         add(p12);
         add(p13);
+        if(choice==true){
+            add(p14);
+        }else{
+            add(p15);
+        }
 
     }
 }
