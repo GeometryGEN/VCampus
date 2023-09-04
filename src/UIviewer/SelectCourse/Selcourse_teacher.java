@@ -86,7 +86,7 @@ public class Selcourse_teacher extends JPanel {
         //六个按钮
         // 按钮1
         JButton btnNewButton_1 = new JButton("查询课程信息");
-        btnNewButton_1.setBounds((int)(95*width_r), (int)(50*height_r), (int)(160*width_r), (int)(50*height_r));
+        btnNewButton_1.setBounds((int)(70*width_r), (int)(100*height_r), (int)(160*width_r), (int)(75*height_r));
         Font myfont = new Font("微软雅黑 ", Font.BOLD, 18);
         btnNewButton_1.setFont(myfont);
         btnNewButton_1.setFocusPainted(false);
@@ -101,7 +101,7 @@ public class Selcourse_teacher extends JPanel {
 
         // 按钮2
         JButton btnNewButton_2 = new JButton("查询选课情况");
-        btnNewButton_2.setBounds((int)(275*width_r), (int)(50*height_r), (int)(160*width_r), (int)(50*height_r));
+        btnNewButton_2.setBounds((int)(70*width_r), (int)(225*height_r), (int)(160*width_r), (int)(75*height_r));
         btnNewButton_2.setFont(myfont);
         btnNewButton_2.setFocusPainted(false);
         btnNewButton_2.setBackground(new Color(250, 255, 240));
@@ -119,7 +119,7 @@ public class Selcourse_teacher extends JPanel {
 
         // 按钮3
         JButton btnNewButton_3 = new JButton("申报课程状态");
-        btnNewButton_3.setBounds((int)(455*width_r), (int)(50*height_r), (int)(160*width_r), (int)(50*height_r));
+        btnNewButton_3.setBounds((int)(70*width_r), (int)(350*height_r), (int)(160*width_r), (int)(75*height_r));
         btnNewButton_3.setFont(myfont);
         btnNewButton_3.setFocusPainted(false);
         btnNewButton_3.setBackground(new Color(250, 240, 230));
@@ -138,7 +138,7 @@ public class Selcourse_teacher extends JPanel {
 
         //按钮4
         JButton btnNewButton_4 = new JButton("申报课程");
-        btnNewButton_4.setBounds((int)(635*width_r), (int)(50*height_r), (int)(160*width_r), (int)(50*height_r));
+        btnNewButton_4.setBounds((int)(70*width_r), (int)(475*height_r), (int)(160*width_r), (int)(75*height_r));
         btnNewButton_4.setFont(myfont);
         btnNewButton_4.setFocusPainted(false);
         btnNewButton_4.setBackground(new Color(220, 220, 220));
@@ -152,7 +152,7 @@ public class Selcourse_teacher extends JPanel {
 
         //按钮5
         JButton btnNewButton_5 = new JButton("我的课表");
-        btnNewButton_5.setBounds((int)(815*width_r), (int)(50*height_r), (int)(160*width_r), (int)(50*height_r));
+        btnNewButton_5.setBounds((int)(50*width_r), (int)(600*height_r), (int)(160*width_r), (int)(75*height_r));
         btnNewButton_5.setFont(myfont);
         btnNewButton_5.setFocusPainted(false);
         btnNewButton_5.setBackground(new Color(250, 255, 240));
