@@ -2,10 +2,17 @@ package UIviewer.status_manage;
 
 import ClientToServer.ClientToServer;
 import DAO.StatusManagement.ImageAndTable;
+import UIhandler.Library.Client_library;
 import UIhandler.QICQ.Client_qicq;
 import UIhandler.Shop.Client_shop;
 import UIhandler.StatusManagement.Client_status;
+import UIviewer.Library.readLib;
 import UIviewer.QQ.main_panel;
+import UIviewer.SelectCourse.Selcourse;
+import UIviewer.SelectCourse.Selcourse_director;
+import UIviewer.SelectCourse.Selcourse_teacher;
+import UIviewer.Shopping.shopAdmin;
+import UIviewer.Shopping.shopCustomer;
 import UIviewer.login.functionChoose;
 import User.Student;
 import net.coobird.thumbnailator.Thumbnails;
@@ -180,6 +187,97 @@ public class student_status extends JPanel {
                 }
             });
              */
+            //图书管理
+            JButton btnNewButton_2 = new JButton("图书管理");
+            btnNewButton_2.setFocusPainted(false);
+            btnNewButton_2.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    functionChoose.jf.remove(status);
+                    try {
+                        Client_qicq.setId(myInfo.getId());
+                        if(myInfo.getType()!=3)
+                        {
+                            functionChoose.jf.setContentPane(new readLib());
+                            functionChoose.jf.setTitle("readLib");
+                            functionChoose.jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                            functionChoose.jf.setVisible(true);
+                        }
+                        else
+                        {
+                            //Client_library.RequireshowAllBooks();
+                            Client_library.admin_enter();
+                            //jf.setContentPane(new adminLib());
+                            //jf.setTitle("adminLib");
+                            //jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                            //jf.setVisible(true);
+                        }
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            });
+            guide.add(btnNewButton_2);
+            //校园超市
+            JButton btnNewButton_3 = new JButton("校园超市");
+            btnNewButton_3.setFocusPainted(false);
+            btnNewButton_3.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    // TODO Auto-generated method stub
+                    try {
+                        if(myInfo.getType()!=3)
+                        {
+                            Client_shop.setId(String.valueOf(myInfo.getType()));
+                            Client_shop.setIdcard(myInfo.getId());
+                            functionChoose.jf.setContentPane(new shopCustomer());
+                            functionChoose.jf.setTitle("shopCustomer");
+                        }
+                        else
+                        {
+                            Client_shop.setId(String.valueOf(myInfo.getType()));
+                            Client_shop.setIdcard(myInfo.getId());
+                            functionChoose.jf.setContentPane(new shopAdmin());
+                            functionChoose.jf.setTitle("shopAdmin");
+                        }
+                        functionChoose.jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                        functionChoose.jf.setVisible(true);
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            });
+            guide.add(btnNewButton_3);
+            //选课系统
+            JButton btnNewButton_4 = new JButton("选课系统");
+            btnNewButton_4.setFocusPainted(false);
+            btnNewButton_4.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    // TODO Auto-generated method stub
+                    try {
+                        if(myInfo.getType()==1)
+                        {
+                            functionChoose.jf.setContentPane(new Selcourse());
+                            functionChoose.jf.setTitle("Selcourse");
+                        }
+                        else if(myInfo.getType()==2)
+                        {
+
+                            functionChoose.jf.setContentPane(new Selcourse_teacher());
+                            functionChoose.jf.setTitle("Selcourse_teacher");
+                        }
+                        else {
+                            functionChoose.jf.setContentPane(new Selcourse_director());
+                            functionChoose.jf.setTitle("Selcourse_director");
+                        }
+
+                    } catch (Exception ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            });
+            guide.add(btnNewButton_4);
             //站内通信
             JButton btnNewButton_5 = new JButton("站内通信");
             btnNewButton_5.setFocusPainted(false);
@@ -205,9 +303,20 @@ public class student_status extends JPanel {
                 }
             });
             guide.add(btnNewButton_5);
-            //图书馆
-        guide.setBounds(0,0,500,500);
-        add(guide);
+            //敬请期待
+                JButton btnNewButton_7 = new JButton("敬请期待");
+                btnNewButton_7.setFocusPainted(false);
+                btnNewButton_7.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        // TODO Auto-generated method stub
+                        JOptionPane.showMessageDialog(null,"正在开发中，敬请期待！");
+                    }
+                });
+                guide.add(btnNewButton_7);
+            //导航条
+            guide.setBounds(0,0,500,500);
+            add(guide);
 
         //SEU logo
         JLabel logo = new JLabel();
