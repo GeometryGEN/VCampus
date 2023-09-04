@@ -41,7 +41,6 @@ public class buyers_Shop_utils {
     /**
      * 用户查找商品
      * <p>show 用户查找商品</p>
-     * @author : [Tongwei_L]
      * @param product_name  : 查找的商品名字
      * @return return :  返回查找到的商品，可以为null
      */
