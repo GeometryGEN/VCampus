@@ -46,6 +46,7 @@ public class OrderHistory extends JPanel{
     Color color3=new Color(57,94,50);
     Color color4=new Color(72,115,78);
     Color color5=new Color(211,229,210);
+    Color color6=new Color(243,248,242);
 
     /**
      * 订单历史
@@ -53,6 +54,7 @@ public class OrderHistory extends JPanel{
     public OrderHistory()
     {
         setLayout(null);
+        setBackground(color5);
         String[] tableTitle={"商品编号","商品名称","购买数量","价格"};
         DefaultTableModel dtm=new DefaultTableModel(con_bought,tableTitle);
         JTable table_want = new JTable(dtm){
@@ -65,11 +67,22 @@ public class OrderHistory extends JPanel{
         jTableHeader.setBackground(color3);
         jTableHeader.setForeground(Color.white);
 
+        //文字
+        JLabel l1 = new JLabel("//我的历史订单//");
+        l1.setBounds(0,10, (int) (1248*width_r), (int) (55*height_r));
+        l1.setHorizontalAlignment(JLabel.CENTER); // 将文本居中
+        l1.setForeground(color2);
+        Font font = new Font("微软雅黑", Font.BOLD, (int) (23*width_r));
+        l1.setFont(font);
+        add(l1);
+
         JScrollPane jsp=new JScrollPane(table_want);
         //jsp.setBounds(0,0, (int) (1280*width_r), (int) (650*height_r));
-        jsp.setBounds(200,200, (int) (1280*width_r), (int) (650*height_r));
+        jsp.setBounds(40,100, (int) (1207*width_r), (int) (480*height_r));
         add(jsp);
-        table_want.setRowHeight(30);
+        jsp.setBackground(color5);
+        jsp.getViewport().setOpaque(false);
+        table_want.setRowHeight((int) (30*height_r));
         setVisible(true);
 
         table_want.setFont(new Font("宋体",Font.BOLD, (int) (16*width_r)));
@@ -80,7 +93,7 @@ public class OrderHistory extends JPanel{
                     if (row % 2 == 0) {
                         setBackground(color5);
                     } else {
-                        setBackground(color4);
+                        setBackground(color6);
                     }
                     return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
                 }

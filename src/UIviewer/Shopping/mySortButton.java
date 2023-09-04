@@ -63,16 +63,18 @@ public class mySortButton extends JButton {
     Color color3=new Color(57,94,50);
     Color color4=new Color(72,115,78);
     Color color5=new Color(211,229,210);
+    Color color6=new Color(72,115,78,20);
+    Color color7=new Color(23,58,26,20);
     Font myfont1=new Font("微软雅黑", Font.BOLD, 19);
     Font myfont2=new Font("微软雅黑", Font.BOLD, 20);
 
     public mySortButton(String text,int x,int y) {
         this.text = text;
-        this.font = new Font("微软雅黑", Font.BOLD, 19);
-        setBounds((int) (x * width_r), (int) (y * height_r), (int) (80 * width_r), (int) (30 * height_r));
-        this.backgroundColor = color4;
+        this.font = new Font("微软雅黑", Font.BOLD, 24);
+        setBounds((int) (x * width_r), (int) (y * height_r), (int) (330 * width_r), (int) (70 * height_r));
+        this.backgroundColor = color6;
         this.foregroundColor = Color.WHITE;
-        setBorder(BorderFactory.createLineBorder(color4));
+        setBorder(BorderFactory.createLineBorder(color6));
         setFocusPainted(false);
         init();
 
