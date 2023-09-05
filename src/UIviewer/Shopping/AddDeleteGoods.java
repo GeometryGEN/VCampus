@@ -25,6 +25,7 @@ public class AddDeleteGoods extends JPanel {
     Color color3=new Color(57,94,50);
     Color color4=new Color(72,115,78);
     Color color5=new Color(211,229,210);
+    Font myfont1=new Font("微软雅黑", Font.BOLD, 24);
 
     public static String[] addinfo=new String[7];
     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
@@ -33,7 +34,7 @@ public class AddDeleteGoods extends JPanel {
     double width_r=(double)(width)/1273;
     double height_r=(double)(height)/784;
     public static String deleteID;
-    //static Boolean choice=true;//true为添加，false为删除,初始设置为添加商品
+    //Boolean choice=true;//true为添加，false为删除,初始设置为添加商品
 
     /**
      * 添加删除商品
@@ -60,7 +61,9 @@ public class AddDeleteGoods extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    AddDeleteGoods f11= new AddDeleteGoods(true);
+                    AddDeleteGoods f111= new AddDeleteGoods(true);
+                    panel.add(f111,"f111");
+                    cardLayout.show(shopAdmin.panel, "f111");
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 }
@@ -71,7 +74,9 @@ public class AddDeleteGoods extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    AddDeleteGoods f11= new AddDeleteGoods(false);
+                    AddDeleteGoods f112= new AddDeleteGoods(false);
+                    shopAdmin.panel.add(f112,"f112");
+                    shopAdmin.cardLayout.show(shopAdmin.panel, "f112");
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);
                 }
@@ -82,82 +87,90 @@ public class AddDeleteGoods extends JPanel {
 
         //添加商品的面板
         JPanel p14=new JPanel();
-        p14.setBounds((int) (330*width_r), (int) (1900*height_r),(int) (530*width_r), (int) (1900*height_r));
+        p14.setBounds((int) (330*width_r), 0,(int) (930*width_r), (int) (1900*height_r));
         p14.setBackground(color5);
+        p14.setLayout(null);
 
         //删除商品的面板
         JPanel p15=new JPanel();
-        p15.setBounds((int) (330*width_r), (int) (1900*height_r),(int) (530*width_r), (int) (1900*height_r));
+        p15.setBounds((int) (330*width_r),0,(int) (930*width_r), (int) (1900*height_r));
         p15.setBackground(color5);
+        p15.setLayout(null);
 
-        /*
         //输入商品信息
         JLabel l1 = new JLabel("商品名称:");
-        l1.setFont(new Font("宋体", Font.BOLD, (int) (15*width_r)));
+        l1.setFont(myfont1);
+        l1.setForeground(color2);
         l1.setBounds((int) (160*width_r), (int) (120*height_r), (int) (250*width_r), (int) (25*height_r));
-        add(l1);
+        p14.add(l1);
         JTextField textField1=new JTextField();
         textField1.setFont(new Font("宋体", Font.BOLD, (int) (12*width_r)));
-        textField1.setBounds((int) (235*width_r), (int) (120*height_r), (int) (125*width_r), (int) (25*height_r));
-        add(textField1);
+        textField1.setBounds((int) (255*width_r), (int) (120*height_r), (int) (125*width_r), (int) (25*height_r));
+        p14.add(textField1);
         textField1.setColumns(10);
 
         JLabel l2 = new JLabel("商品编号:");
-        l2.setFont(new Font("宋体", Font.BOLD, (int) (15*width_r)));
-        l2.setBounds((int) (160*width_r), (int) (160*height_r), (int) (250*width_r), (int) (25*height_r));
-        add(l2);
+        l2.setFont(myfont1);
+        l2.setForeground(color2);
+        l2.setBounds((int) (460*width_r), (int) (120*height_r), (int) (250*width_r), (int) (25*height_r));
+        p14.add(l2);
         JTextField textField2=new JTextField();
         textField2.setFont(new Font("宋体", Font.BOLD, (int) (12*width_r)));
-        textField2.setBounds((int) (235*width_r), (int) (160*height_r), (int) (125*width_r), (int) (25*height_r));
-        add(textField2);
+        textField2.setBounds((int) (555*width_r), (int) (120*height_r), (int) (125*width_r), (int) (25*height_r));
+        p14.add(textField2);
         textField2.setColumns(10);
 
         JLabel l3 = new JLabel("商品价格:");
-        l3.setFont(new Font("宋体", Font.BOLD, (int) (15*width_r)));
+        l3.setFont(myfont1);
+        l3.setForeground(color2);
         l3.setBounds((int) (160*width_r), (int) (200*height_r), (int) (250*width_r), (int) (25*height_r));
-        add(l3);
+        p14.add(l3);
         JTextField textField3=new JTextField();
         textField3.setFont(new Font("宋体", Font.BOLD, (int) (12*width_r)));
-        textField3.setBounds((int) (235*width_r), (int) (200*height_r), (int) (125*width_r), (int) (25*height_r));
-        add(textField3);
+        textField3.setBounds((int) (255*width_r), (int) (200*height_r), (int) (125*width_r), (int) (25*height_r));
+        p14.add(textField3);
         textField3.setColumns(10);
 
         JLabel l4 = new JLabel("总数量:");
-        l4.setFont(new Font("宋体", Font.BOLD, (int) (15*width_r)));
-        l4.setBounds((int) (160*width_r), (int) (240*height_r), (int) (250*width_r), (int) (25*height_r));
-        add(l4);
+        l4.setFont(myfont1);
+        l4.setForeground(color2);
+        l4.setBounds((int) (460*width_r), (int) (200*height_r), (int) (250*width_r), (int) (25*height_r));
+        p14.add(l4);
         JTextField textField4=new JTextField();
         textField4.setFont(new Font("宋体", Font.BOLD, (int) (12*width_r)));
-        textField4.setBounds((int) (235*width_r), (int) (240*height_r), (int) (125*width_r), (int) (25*height_r));
-        add(textField4);
+        textField4.setBounds((int) (555*width_r), (int) (200*height_r), (int) (125*width_r), (int) (25*height_r));
+        p14.add(textField4);
         textField4.setColumns(10);
 
         JLabel l5 = new JLabel("剩余数量:");
-        l5.setFont(new Font("宋体", Font.BOLD, (int) (15*width_r)));
+        l5.setFont(myfont1);
+        l5.setForeground(color2);
         l5.setBounds((int) (160*width_r), (int) (280*height_r), (int) (250*width_r), (int) (25*height_r));
-        add(l5);
+        p14.add(l5);
         JTextField textField5=new JTextField();
         textField5.setFont(new Font("宋体", Font.BOLD, (int) (12*width_r)));
-        textField5.setBounds((int) (235*width_r), (int) (280*height_r), (int) (125*width_r), (int) (25*height_r));
-        add(textField5);
+        textField5.setBounds((int) (255*width_r), (int) (280*height_r), (int) (125*width_r), (int) (25*height_r));
+        p14.add(textField5);
         textField5.setColumns(10);
 
         JLabel l6 = new JLabel("商品种类:");
-        l6.setFont(new Font("宋体", Font.BOLD, (int) (15*width_r)));
-        l6.setBounds((int) (160*width_r), (int) (320*height_r), (int) (250*width_r), (int) (25*height_r));
-        add(l6);
+        l6.setFont(myfont1);
+        l6.setForeground(color2);
+        l6.setBounds((int) (460*width_r), (int) (280*height_r), (int) (250*width_r), (int) (25*height_r));
+        p14.add(l6);
         JTextField textField6=new JTextField();
         textField6.setFont(new Font("宋体", Font.BOLD, (int) (12*width_r)));
-        textField6.setBounds((int) (235*width_r), (int) (320*height_r), (int) (125*width_r), (int) (25*height_r));
-        add(textField6);
+        textField6.setBounds((int) (555*width_r), (int) (280*height_r), (int) (125*width_r), (int) (25*height_r));
+        p14.add(textField6);
         textField6.setColumns(10);
 
 
         JButton b1=new JButton("确定加入");
-        b1.setFont(new Font("楷体", Font.BOLD, (int) (18*width_r)));
-        b1.setBounds((int) (235*width_r), (int) (380*height_r), (int) (120*width_r), (int) (50*height_r));
+        b1.setFont(new Font("微软雅黑", Font.BOLD, (int) (18*width_r)));
+        b1.setBounds((int) (360*width_r), (int) (380*height_r), (int) (120*width_r), (int) (50*height_r));
+        b1.setForeground(Color.white);
         b1.setBackground(color3);
-        add(b1);
+        p14.add(b1);
         b1.setFocusPainted(false);
         b1.addActionListener(new ActionListener() {
             @Override
@@ -198,24 +211,27 @@ public class AddDeleteGoods extends JPanel {
 
 
         JLabel l8 = new JLabel("商品编号:");
-        l8.setFont(new Font("宋体", Font.BOLD, (int) (15*width_r)));
-        l8.setBounds((int) (810*width_r), (int) (280*height_r), (int) (250*width_r), (int) (25*height_r));
-        add(l8);
+        l8.setFont(myfont1);
+        l8.setForeground(color2);
+        l8.setBounds((int) (310*width_r), (int) (180*height_r), (int) (250*width_r), (int) (25*height_r));
+        p15.add(l8);
         JTextField textField8=new JTextField();
         textField8.setFont(new Font("宋体", Font.BOLD, (int) (12*width_r)));
-        textField8.setBounds((int) (885*width_r), (int) (280*height_r), (int) (125*width_r), (int) (25*height_r));
-        add(textField8);
+        textField8.setBounds((int) (425*width_r), (int) (180*height_r), (int) (125*width_r), (int) (25*height_r));
+        p15.add(textField8);
         textField8.setColumns(10);
 
         JButton b2=new JButton("确定删除");
-        b2.setFont(new Font("楷体", Font.BOLD, (int) (18*width_r)));
-        b2.setBounds((int) (885*width_r), (int) (350*height_r), (int) (120*width_r), (int) (50*height_r));
+        b2.setFont(new Font("微软雅黑", Font.BOLD, (int) (18*width_r)));
+        b2.setBounds((int) (380*width_r), (int) (250*height_r), (int) (120*width_r), (int) (50*height_r));
+        b2.setForeground(Color.white);
         b2.setBackground(color3);
-        add(b2);
+        p15.add(b2);
         b2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
+                //choice=false;
                 try {
                     if(Client_shop.deleteProduct(textField8.getText()))
                         JOptionPane.showMessageDialog(null, "删除成功!");
@@ -229,15 +245,16 @@ public class AddDeleteGoods extends JPanel {
             }
         });
 
-         */
-
-        add(p12);
-        add(p13);
         if(choice==true){
+            System.out.println("应该显示添加的面板");
+            p14.setVisible(true);
             add(p14);
         }else{
+            p15.setVisible(true);
             add(p15);
         }
 
+        add(p12);
+        add(p13);
     }
 }

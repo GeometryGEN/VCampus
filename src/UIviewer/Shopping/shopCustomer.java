@@ -54,6 +54,7 @@ public class shopCustomer extends JPanel {
     public static JButton b1=new JButton("主商城");
     public static JButton b2=new JButton("我的购物车");
     public static JButton b3=new JButton("订单记录");
+    public static JButton b4=new JButton("充值");
 
     /**
      * 得到名字
