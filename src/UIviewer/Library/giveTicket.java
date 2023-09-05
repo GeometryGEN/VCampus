@@ -39,16 +39,18 @@ public class giveTicket extends JPanel {
         //l1.setForeground(new Color(111,222,0));
         add(l);
 
-        JLabel l1 = new JLabel("罚单编号:");
+        JLabel l1 = new JLabel(" 罚单编号");
         //l1.setBackground(new Color(255,255,255));
-        l1.setForeground(new Color(255,255,255));
-        //l1.setOpaque(true);
+        l1.setForeground(new Color(0,0,0));
+        l1.setOpaque(true);
         l1.setFont(new Font("宋体", Font.BOLD, (int) (25*width_r)));
-        l1.setBounds((int) (640*width_r), (int) (151*height_r), (int) (200*width_r), (int) (50*height_r));
+        l1.setBounds((int) (251*width_r), (int) (126*height_r), (int) (165*width_r), (int) (75*height_r));
         add(l1);
+        l1.setBackground(new Color(255,255,255));
+        l1.setBorder(blackline);
         JTextField textField1=new JTextField();
         textField1.setFont(new Font("宋体", Font.BOLD, (int) (25*width_r)));
-        textField1.setBounds((int) (775*width_r), (int) (151*height_r), (int) (200*width_r), (int) (50*height_r));
+        textField1.setBounds((int) (415*width_r), (int) (126*height_r), (int) (560*width_r), (int) (75*height_r));
         add(textField1);
 
 
