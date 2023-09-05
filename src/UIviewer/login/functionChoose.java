@@ -28,6 +28,7 @@ import UIviewer.status_manage.manage_status;
 import connection.JDBC_Connector;
 import net.coobird.thumbnailator.Thumbnails;
 import ClientToServer.myInfo;
+import UIviewer.QQ.main_panel.*;
 
 /**
  * 功能选择
@@ -41,6 +42,7 @@ public class functionChoose {
     public static JFrame jf;
     public static JPanel fc_panel;
     public static boolean color_switch=true;
+    public static JButton lswitch=new JButton();
 
     /**
      * 功能选择界面
@@ -165,7 +167,6 @@ public class functionChoose {
                 }
             });
             //日/夜切换按钮
-            final JButton lswitch = new JButton();
             if(color_switch){
                 lswitch.setText("日间");
             }else{
@@ -407,12 +408,12 @@ public class functionChoose {
                             Client_qicq.setId(myInfo.getId());
                             if(myInfo.getType()!=3)
                             {
-                                jf.setContentPane(new main_panel(width,height,myInfo.getType()).mjp);
+                                jf.setContentPane(new main_panel(width,height,myInfo.getType(),color_switch).mjp);
                                 jf.setTitle("userqq");
                             }
                             else
                             {
-                                jf.setContentPane(new main_panel(width,height,myInfo.getType()).mjp);
+                                jf.setContentPane(new main_panel(width,height,myInfo.getType(),color_switch).mjp);
                                 jf.setTitle("adminqq");
                             }
                         } catch (Exception ex) {

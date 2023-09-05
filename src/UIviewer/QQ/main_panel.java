@@ -50,6 +50,8 @@ public class main_panel {
     public HashMap<String, ArrayList<Friend>> friend;
     public static chat_panel cpn;
     static button_panel buttonPanel;
+    public static RoundJButton color_choose=new RoundJButton();
+
 
     /**
      * 主面板
@@ -59,15 +61,215 @@ public class main_panel {
      * @param type   类型
      * @throws IOException ioexception
      */
-    public main_panel(int width, int height,int type) throws IOException {
+    public main_panel(int width, int height,int type,boolean color_switch1) throws IOException {
+        final boolean[] color_switch = {color_switch1};
         double width_r=(double)(width)/1920;
         double height_r=(double)(height)/1080;
         mjp=new JPanel();
         //设置屏幕大小、背景颜色
         mjp.setBounds(0,0,width,height);
-        mjp.setBackground(new Color(255,255,255));
+        if(color_switch[0]){
+            mjp.setBackground(new Color(255,255,255));
+        }else{
+            mjp.setBackground(new Color(0,0,0));
+        }
         //设置绝对布局
         mjp.setLayout(null);
+
+        if(type!=3){
+            //侧边按钮面板
+            buttonPanel=new button_panel();
+            buttonPanel.setBounds((int)(175),(int)((height-135*height_r-100)),(int)(170*width_r+20),(int)(120+40*height_r));
+            if(color_switch[0]){
+                buttonPanel.setBackground(new Color(200,224,228));
+            }else{
+                buttonPanel.setBackground(new Color(68,84,105));
+            }
+            mjp.add(buttonPanel);
+            //添加好友按钮
+            JButton addFriend= new RoundJButton();
+            addFriend.setFocusPainted(false);
+            addFriend.setText("添加好友");
+            addFriend.setBounds(5,10,(int)(170*width_r+10),(int)(40*height_r));
+            if(color_switch[0]){
+                addFriend.setBackground(new Color(125,182,191));
+                addFriend.setForeground(Color.black);
+            }else{
+                addFriend.setBackground(new Color(42,52,65));
+                addFriend.setForeground(Color.white);
+            }
+            addFriend.setFont(new Font("微软雅黑",Font.PLAIN,(int)(22*width_r)));
+            addFriend.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    add_friend.add_friend();
+                }
+            });
+            //
+            buttonPanel.add(addFriend);
+            //返回功能选择模块
+            functionChoose.back_from_student_status=new RoundJButton();
+            functionChoose.back_from_student_status.setFocusPainted(false);
+            functionChoose.back_from_student_status.setText("返回功能选择");
+            functionChoose.back_from_student_status.setBounds(5,60,(int)(170*width_r+10),(int)(40*height_r));
+            if(color_switch[0]){
+                functionChoose.back_from_student_status.setBackground(new Color(125,182,191));
+                functionChoose.back_from_student_status.setForeground(Color.black);
+            }else{
+                functionChoose.back_from_student_status.setBackground(new Color(42,52,65));
+                functionChoose.back_from_student_status.setForeground(Color.white);
+            }
+            functionChoose.back_from_student_status.setFont(new Font("微软雅黑",Font.PLAIN,(int)(22*width_r)));
+            buttonPanel.add(functionChoose.back_from_student_status);
+            functionChoose.back_from_student_status.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    functionChoose.jf.remove(functionChoose.jf.getContentPane());
+                    functionChoose.jf.setContentPane(functionChoose.fc_panel);
+                    functionChoose.jf.setTitle("functionChoose");
+                    functionChoose.color_switch=!color_switch[0];
+                    functionChoose.lswitch.doClick();
+                }
+            });
+            //日夜切换按钮
+            color_choose.setFocusPainted(false);
+            color_choose.setBounds(5,110,(int)(170*width_r+10),(int)(40*height_r));
+            if(color_switch[0]){
+                color_choose.setText("日间");
+                color_choose.setBackground(new Color(125,182,191));
+                color_choose.setForeground(Color.black);
+            }else{
+                color_choose.setText("夜间");
+                color_choose.setBackground(new Color(42,52,65));
+                color_choose.setForeground(Color.white);
+            }
+            color_choose.setFont(new Font("微软雅黑",Font.PLAIN,(int)(22*width_r)));
+            color_choose.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    color_switch[0] =!color_switch[0];
+                    functionChoose.color_switch=color_switch[0];
+                    if(color_switch[0]){
+                        mjp.setBackground(new Color(255,255,255));
+                        buttonPanel.setBackground(new Color(200,224,228));
+                        addFriend.setBackground(new Color(125,182,191));
+                        addFriend.setForeground(Color.black);
+                        functionChoose.back_from_student_status.setBackground(new Color(125,182,191));
+                        functionChoose.back_from_student_status.setForeground(Color.black);
+                        color_choose.setText("日间");
+                        color_choose.setBackground(new Color(125,182,191));
+                        color_choose.setForeground(Color.black);
+                        buttonPanel.setBackground(new Color(200,224,228));
+                        functionChoose.back_from_student_status.setBackground(new Color(125,182,191));
+                        functionChoose.back_from_student_status.setForeground(Color.black);
+                        friend_list.jPanel.setBorder(BorderFactory.createLineBorder(new Color(244,244,244)));
+                        friend_list.jPanel.setBackground(new Color(255,255,255));
+                        friend_list.roll_panel.setBackground(new Color(200,224,228));
+                    }else{
+                        mjp.setBackground(new Color(0,0,0));
+                        buttonPanel.setBackground(new Color(68,84,105));
+                        addFriend.setBackground(new Color(42,52,65));
+                        addFriend.setForeground(Color.white);
+                        functionChoose.back_from_student_status.setBackground(new Color(42,52,65));
+                        functionChoose.back_from_student_status.setForeground(Color.white);
+                        color_choose.setText("夜间");
+                        color_choose.setBackground(new Color(42,52,65));
+                        color_choose.setForeground(Color.white);
+                        buttonPanel.setBackground(new Color(68,84,105));
+                        functionChoose.back_from_student_status.setBackground(new Color(42,52,65));
+                        functionChoose.back_from_student_status.setForeground(Color.white);
+                        friend_list.jPanel.setBackground(new Color(0,0,0));
+                        friend_list.jPanel.setBorder(BorderFactory.createLineBorder(new Color(1,1,1)));
+                        friend_list.roll_panel.setBackground(new Color(68,84,105));
+                    }
+                }
+            });
+            buttonPanel.add(color_choose);
+        }
+        else{
+            //侧边按钮面板
+            //侧边按钮面板
+            buttonPanel=new button_panel();
+            buttonPanel.setBounds((int)(175),(int)((height-135*height_r-100)),(int)(170*width_r+20),(int)(120+40*height_r));
+            if(color_switch[0]){
+                buttonPanel.setBackground(new Color(200,224,228));
+            }else{
+                buttonPanel.setBackground(new Color(68,84,105));
+            }
+            mjp.add(buttonPanel);
+            //返回功能选择模块
+            functionChoose.back_from_student_status=new RoundJButton();
+            functionChoose.back_from_student_status.setFocusPainted(false);
+            functionChoose.back_from_student_status.setText("返回功能选择");
+            functionChoose.back_from_student_status.setBounds(5,60,(int)(170*width_r+10),(int)(40*height_r));
+            if(color_switch[0]){
+                functionChoose.back_from_student_status.setBackground(new Color(125,182,191));
+                functionChoose.back_from_student_status.setForeground(Color.black);
+            }else{
+                functionChoose.back_from_student_status.setBackground(new Color(42,52,65));
+                functionChoose.back_from_student_status.setForeground(Color.white);
+            }
+            functionChoose.back_from_student_status.setFont(new Font("微软雅黑",Font.PLAIN,(int)(22*width_r)));
+            buttonPanel.add(functionChoose.back_from_student_status);
+            functionChoose.back_from_student_status.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    functionChoose.jf.remove(functionChoose.jf.getContentPane());
+                    functionChoose.jf.setContentPane(functionChoose.fc_panel);
+                    functionChoose.jf.setTitle("functionChoose");
+                }
+            });
+            //日夜切换按钮
+            color_choose.setFocusPainted(false);
+            color_choose.setBounds(5,110,(int)(170*width_r+10),(int)(40*height_r));
+            if(color_switch[0]){
+                color_choose.setText("日间");
+                color_choose.setBackground(new Color(125,182,191));
+                color_choose.setForeground(Color.black);
+            }else{
+                color_choose.setText("夜间");
+                color_choose.setBackground(new Color(42,52,65));
+                color_choose.setForeground(Color.white);
+            }
+            color_choose.setFont(new Font("微软雅黑",Font.PLAIN,(int)(22*width_r)));
+            color_choose.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    color_switch[0] =!color_switch[0];
+                    functionChoose.color_switch=color_switch[0];
+                    if(color_switch[0]){
+                        mjp.setBackground(new Color(255,255,255));
+                        buttonPanel.setBackground(new Color(200,224,228));
+                        functionChoose.back_from_student_status.setBackground(new Color(125,182,191));
+                        functionChoose.back_from_student_status.setForeground(Color.black);
+                        color_choose.setText("日间");
+                        color_choose.setBackground(new Color(125,182,191));
+                        color_choose.setForeground(Color.black);
+                        buttonPanel.setBackground(new Color(200,224,228));
+                        functionChoose.back_from_student_status.setBackground(new Color(125,182,191));
+                        functionChoose.back_from_student_status.setForeground(Color.black);
+                        friend_list.jPanel.setBorder(BorderFactory.createLineBorder(new Color(244,244,244)));
+                        friend_list.jPanel.setBackground(new Color(255,255,255));
+                        friend_list.roll_panel.setBackground(new Color(200,224,228));
+                    }else{
+                        mjp.setBackground(new Color(0,0,0));
+                        buttonPanel.setBackground(new Color(68,84,105));
+                        functionChoose.back_from_student_status.setBackground(new Color(42,52,65));
+                        functionChoose.back_from_student_status.setForeground(Color.white);
+                        color_choose.setText("夜间");
+                        color_choose.setBackground(new Color(42,52,65));
+                        color_choose.setForeground(Color.white);
+                        buttonPanel.setBackground(new Color(68,84,105));
+                        functionChoose.back_from_student_status.setBackground(new Color(42,52,65));
+                        functionChoose.back_from_student_status.setForeground(Color.white);
+                        friend_list.jPanel.setBackground(new Color(0,0,0));
+                        friend_list.jPanel.setBorder(BorderFactory.createLineBorder(new Color(1,1,1)));
+                        friend_list.roll_panel.setBackground(new Color(68,84,105));
+                    }
+                }
+            });
+            buttonPanel.add(color_choose);
+        }
 
         //导航条
         JPanel guide =new JPanel();
@@ -200,76 +402,12 @@ public class main_panel {
         });
         guide.add(btnNewButton_7);
         //导航条
-        guide.setBounds(0,0,500,500);
+        guide.setBounds(200,0,700,20);
         mjp.add(guide);
-
-        if(type!=3){
-            //侧边按钮面板
-            buttonPanel=new button_panel();
-            buttonPanel.setBounds((int)(width_r*1920/3+0),(int)((height-135*height_r)),(int)(170*width_r),(int)(400*height_r));
-            mjp.add(buttonPanel);
-            //添加好友按钮
-            JButton addFriend= new RoundJButton();
-            addFriend.setFocusPainted(false);
-            addFriend.setText("   添加好友   ");
-            addFriend.setBounds(0,-20,(int)(170*width_r),(int)(50*height_r));
-            addFriend.setBackground(new Color(30,111,255));
-            addFriend.setForeground(Color.white);
-            addFriend.setFont(new Font("微软雅黑",Font.PLAIN,(int)(22*width_r)));
-            addFriend.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    add_friend.add_friend();
-                }
-            });
-            //
-            buttonPanel.add(addFriend);
-
-            //返回功能选择模块
-            functionChoose.back_from_student_status=new RoundJButton();
-            functionChoose.back_from_student_status.setFocusPainted(false);
-            functionChoose.back_from_student_status.setText("返回功能选择");
-            functionChoose.back_from_student_status.setBounds(0,20,(int)(170*width_r),(int)(50*height_r));
-            functionChoose.back_from_student_status.setBackground(new Color(96,190,41));
-            functionChoose.back_from_student_status.setForeground(new Color(255,255,255));
-            functionChoose.back_from_student_status.setFont(new Font("微软雅黑",Font.PLAIN,(int)(22*width_r)));
-            buttonPanel.add(functionChoose.back_from_student_status);
-            functionChoose.back_from_student_status.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    functionChoose.jf.remove(functionChoose.jf.getContentPane());
-                    functionChoose.jf.setContentPane(functionChoose.fc_panel);
-                    functionChoose.jf.setTitle("functionChoose");
-                }
-            });
-        }
-        else{
-            //侧边按钮面板
-            buttonPanel=new button_panel();
-            buttonPanel.setBounds(0,0,(int)(170*width_r),(int)(400*height_r));
-            mjp.add(buttonPanel);
-            //返回功能选择模块
-            functionChoose.back_from_student_status=new RoundJButton();
-            functionChoose.back_from_student_status.setFocusPainted(false);
-            functionChoose.back_from_student_status.setText("返回功能选择");
-            functionChoose.back_from_student_status.setBounds(0,(int)(0*height_r),(int)(170*width_r),(int)(50*height_r));
-            functionChoose.back_from_student_status.setBackground(new Color(96,190,41));
-            functionChoose.back_from_student_status.setForeground(new Color(255,255,255));
-            functionChoose.back_from_student_status.setFont(new Font("微软雅黑",Font.PLAIN,(int)(22*width_r)));
-            buttonPanel.add(functionChoose.back_from_student_status);
-            functionChoose.back_from_student_status.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    functionChoose.jf.remove(functionChoose.jf.getContentPane());
-                    functionChoose.jf.setContentPane(functionChoose.fc_panel);
-                    functionChoose.jf.setTitle("functionChoose");
-                }
-            });
-        }
 
         //好友列表
         Client_qicq.Require_friend_list();
-        friend_list friend_list_panel=new friend_list(1920/3,1080,width_r,height_r,0,0);
+        friend_list friend_list_panel=new friend_list(1920/3,1080,width_r,height_r,0,0, color_switch[0]);
         mjp.add(friend_list_panel.jPanel);
         friend_list_panel.jPanel.setVisible(true);
         functionChoose.back_from_student_status.setVisible(false);

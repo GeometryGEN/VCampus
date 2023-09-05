@@ -179,12 +179,12 @@ public class readLib extends JPanel {
                     Client_qicq.setId(myInfo.getId());
                     if(myInfo.getType()!=3)
                     {
-                        functionChoose.jf.setContentPane(new main_panel(width,height,myInfo.getType()).mjp);
+                        functionChoose.jf.setContentPane(new main_panel(width,height,myInfo.getType(),true).mjp);
                         functionChoose.jf.setTitle("userqq");
                     }
                     else
                     {
-                        functionChoose.jf.setContentPane(new main_panel(width,height,myInfo.getType()).mjp);
+                        functionChoose.jf.setContentPane(new main_panel(width,height,myInfo.getType(),true).mjp);
                         functionChoose.jf.setTitle("adminqq");
                     }
                 } catch (Exception ex) {

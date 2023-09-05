@@ -4,6 +4,7 @@ import ClientToServer.ClientToServer;
 import DAO.QICQ.Friend;
 import UIhandler.QICQ.Client_qicq;
 import ClientToServer.myInfo;
+import UIviewer.login.functionChoose;
 import net.coobird.thumbnailator.Thumbnails;
 
 import javax.swing.*;
@@ -42,7 +43,11 @@ public class friend_slice extends JLabel {
      * @param jLabel j标签
      */
     private void exchangeEnter(JLabel jLabel) {
-        jLabel.setBackground(new Color(242,242,242));
+        if(functionChoose.color_switch){
+            jLabel.setBackground(new Color(145,202,211));
+        }else{
+            jLabel.setBackground(new Color(22,32,45));
+        }
         update();
     }
 
@@ -52,7 +57,11 @@ public class friend_slice extends JLabel {
      * @param jLabel j标签
      */
     private void exchangeExited(JLabel jLabel) {
-        jLabel.setBackground(new Color(255,255,255));
+        if(functionChoose.color_switch){
+            jLabel.setBackground(new Color(125,182,191));
+        }else{
+            jLabel.setBackground(new Color(42,52,65));
+        }
         update();
     }
 
@@ -73,7 +82,11 @@ public class friend_slice extends JLabel {
         this.width_r = width_r;
         this.height_r = height_r;
         setOpaque(true);
-        setBackground(new Color(255, 255, 255));
+        if(functionChoose.color_switch){
+            setBackground(new Color(125,182,191));
+        }else{
+            setBackground(new Color(42,52,65));
+        }
         setBorder(null);
         int icon1_width = (int) ((height - 2 * 20) * height_r);
         FileOutputStream fileOutputStream = null;
@@ -92,6 +105,11 @@ public class friend_slice extends JLabel {
                 throw new RuntimeException(e);
             }
             setIcon(new ImageIcon("src/image/QQ/" + friend.getId() + "_min.jpg"));
+            if(functionChoose.color_switch){
+                setBackground(new Color(125,182,191));
+            }else{
+                setBackground(new Color(42,52,65));
+            }
             //弹出式菜单
             JPopupMenu jpopupmenu1 = new JPopupMenu();   //弹出式菜单
             JMenuItem jmenuitem1 = new JMenuItem("修改备注与分组");  //菜单项
@@ -161,6 +179,11 @@ public class friend_slice extends JLabel {
             }
             setIcon(new ImageIcon("src/image/QQ/manager_logo_min.png"));
             JLabel jLabel = this;//提供指针
+            if(functionChoose.color_switch){
+                setBackground(new Color(125,182,191));
+            }else{
+                setBackground(new Color(42,52,65));
+            }
             jLabel.addMouseListener(new java.awt.event.MouseAdapter() {
                 @Override
                 public void mouseClicked(java.awt.event.MouseEvent e) {
@@ -207,6 +230,18 @@ public class friend_slice extends JLabel {
         }
         setFont(new Font("宋体", Font.BOLD, (int) (25 * width_r)));
         setHorizontalTextPosition(JLabel.RIGHT);
+
+        main_panel.color_choose.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                boolean color=!functionChoose.color_switch;
+                if(color){
+                    setBackground(new Color(125,182,191));
+                }else{
+                    setBackground(new Color(42,52,65));
+                }
+            }
+        });
     }
 
     /**
