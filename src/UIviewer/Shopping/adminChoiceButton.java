@@ -47,7 +47,7 @@ public class adminChoiceButton extends JButton {
     Font myfont1=new Font("微软雅黑", Font.BOLD, 19);
     Font myfont2=new Font("微软雅黑", Font.BOLD, 20);
 
-    public adminChoiceButton(int x,int y) {
+    public adminChoiceButton(Boolean choice,int x,int y) {
         this.font = new Font("微软雅黑", Font.BOLD, 24);
         setBounds((int) (x * width_r), (int) (y * height_r), (int) (330 * width_r), (int) (70 * height_r));
         this.backgroundColor = color6;
@@ -55,7 +55,6 @@ public class adminChoiceButton extends JButton {
         setBorder(BorderFactory.createLineBorder(color6));
         setFocusPainted(false);
         init();
-
         addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
@@ -85,18 +84,7 @@ public class adminChoiceButton extends JButton {
                 setBackgroundColor(color4);
             }
         });
-        addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    AddDeleteGoods f11= new AddDeleteGoods();
-                    panel.add(f11, "f11");
-                    cardLayout.show(panel, "f11");
-                } catch (Exception ex) {
-                    throw new RuntimeException(ex);
-                }
-            }
-        });
+
     }
 
     private void init() {

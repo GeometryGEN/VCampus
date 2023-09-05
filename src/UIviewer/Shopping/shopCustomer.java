@@ -12,9 +12,17 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+
+import UIhandler.QICQ.Client_qicq;
 import UIhandler.Shop.Client_shop;
+import UIhandler.StatusManagement.Client_status;
 import UIviewer.Library.readLib;
+import UIviewer.QQ.main_panel;
+import UIviewer.SelectCourse.Selcourse;
+import UIviewer.SelectCourse.Selcourse_director;
+import UIviewer.SelectCourse.Selcourse_teacher;
 import UIviewer.login.functionChoose;
+import UIviewer.status_manage.manage_status;
 import net.coobird.thumbnailator.Thumbnails;
 import ClientToServer.myInfo;
 
@@ -46,6 +54,7 @@ public class shopCustomer extends JPanel {
     public static JButton b1=new JButton("主商城");
     public static JButton b2=new JButton("我的购物车");
     public static JButton b3=new JButton("订单记录");
+    public static JButton b4=new JButton("充值");
 
     /**
      * 得到名字
@@ -110,6 +119,134 @@ public class shopCustomer extends JPanel {
             temp[i]=tt;
         }
         ShoppingHall.setShoptable(temp);
+
+        JPanel guide =new JPanel();
+        //学籍管理
+        JButton btnNewButton_1 = new JButton("学籍管理");
+        btnNewButton_1.setFocusPainted(false);
+        guide.add(btnNewButton_1);
+        btnNewButton_1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(myInfo.getType()==1) {
+                    try {
+                        Client_status.stu_enter();
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
+                }
+                else if(myInfo.getType()==3){
+                    try {
+                        functionChoose.jf.setContentPane(new manage_status(width,height).manage_panel);
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    functionChoose.jf.setTitle("admin_status_management");
+                } else {
+                    JOptionPane.showMessageDialog(null,"抱歉，您暂无学籍管理权限！");
+                }
+            }
+        });
+        //图书管理
+        JButton btnNewButton_2 = new JButton("图书管理");
+        btnNewButton_2.setFocusPainted(false);
+        btnNewButton_2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                functionChoose.jf.remove(panel);
+                try {
+                    Client_qicq.setId(myInfo.getId());
+                    if(myInfo.getType()!=3)
+                    {
+                        functionChoose.jf.setContentPane(new readLib());
+                        functionChoose.jf.setTitle("readLib");
+                        functionChoose.jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                        functionChoose.jf.setVisible(true);
+                    }
+                    else
+                    {
+                        //Client_library.RequireshowAllBooks();
+                        Client_library.admin_enter();
+                        //jf.setContentPane(new adminLib());
+                        //jf.setTitle("adminLib");
+                        //jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                        //jf.setVisible(true);
+                    }
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+        guide.add(btnNewButton_2);
+        //选课系统
+        JButton btnNewButton_4 = new JButton("选课系统");
+        btnNewButton_4.setFocusPainted(false);
+        btnNewButton_4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
+                try {
+                    if(myInfo.getType()==1)
+                    {
+                        functionChoose.jf.setContentPane(new Selcourse());
+                        functionChoose.jf.setTitle("Selcourse");
+                    }
+                    else if(myInfo.getType()==2)
+                    {
+
+                        functionChoose.jf.setContentPane(new Selcourse_teacher());
+                        functionChoose.jf.setTitle("Selcourse_teacher");
+                    }
+                    else {
+                        functionChoose.jf.setContentPane(new Selcourse_director());
+                        functionChoose.jf.setTitle("Selcourse_director");
+                    }
+
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+        guide.add(btnNewButton_4);
+        //站内通信
+        JButton btnNewButton_5 = new JButton("站内通信");
+        btnNewButton_5.setFocusPainted(false);
+        btnNewButton_5.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                functionChoose.jf.remove(panel);
+                try {
+                    Client_qicq.setId(myInfo.getId());
+                    if(myInfo.getType()!=3)
+                    {
+                        functionChoose.jf.setContentPane(new main_panel(width,height,myInfo.getType()).mjp);
+                        functionChoose.jf.setTitle("userqq");
+                    }
+                    else
+                    {
+                        functionChoose.jf.setContentPane(new main_panel(width,height,myInfo.getType()).mjp);
+                        functionChoose.jf.setTitle("adminqq");
+                    }
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+        guide.add(btnNewButton_5);
+        //敬请期待
+        JButton btnNewButton_7 = new JButton("敬请期待");
+        btnNewButton_7.setFocusPainted(false);
+        btnNewButton_7.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
+                JOptionPane.showMessageDialog(null,"正在开发中，敬请期待！");
+            }
+        });
+        guide.add(btnNewButton_7);
+        //导航条
+        guide.setBounds(0,0,500,500);
+        add(guide);
 
         //测试各个界面
         ShoppingHall f1=new ShoppingHall();

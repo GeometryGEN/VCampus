@@ -2,8 +2,16 @@ package UIviewer.Shopping;
 import ClientToServer.ClientToServer;
 import DAO.Shop.Product;
 import UIhandler.Library.Client_library;
+import UIhandler.QICQ.Client_qicq;
 import UIhandler.Shop.Client_shop;
+import UIhandler.StatusManagement.Client_status;
+import UIviewer.Library.readLib;
+import UIviewer.QQ.main_panel;
+import UIviewer.SelectCourse.Selcourse;
+import UIviewer.SelectCourse.Selcourse_director;
+import UIviewer.SelectCourse.Selcourse_teacher;
 import UIviewer.login.functionChoose;
+import UIviewer.status_manage.manage_status;
 import net.coobird.thumbnailator.Thumbnails;
 import UIviewer.Shopping.AddDeleteGoods;
 import UIviewer.Shopping.AllGoods;
@@ -63,9 +71,9 @@ public class shopAdmin extends JPanel {
      * @throws Exception 异常
      */
     public shopAdmin() throws Exception {
-        String name=null;
-        //String name=myInfo.getName();
-        //getName(name);
+        //String name=null;
+        String name=myInfo.getName();
+        getName(name);
         setBounds(0,0, (int) (1273*width_r), (int) (790*height_r));
         setLayout(null);
         panel.setBounds(0, (int) (150*height_r), (int) (1273*width_r), (int) (790*height_r));
@@ -75,8 +83,8 @@ public class shopAdmin extends JPanel {
 //		创建相应面板类的对象
 
         //测试的时候先让列表为空
-        List<Product> t =new ArrayList<>();
-        //List<Product> t = Client_shop.returnAllProduct();
+        //List<Product> t =new ArrayList<>();
+        List<Product> t = Client_shop.returnAllProduct();
         String[][] temp = new String[t.size()][];
         for(int i =0;i<t.size();i++){
             String[] tt =new String[5];
@@ -92,15 +100,143 @@ public class shopAdmin extends JPanel {
         Client_shop.setIdcard(myInfo.getId());
         AllGoods.setTableDate(temp);
 
+        JPanel guide =new JPanel();
+        //学籍管理
+        JButton btnNewButton_1 = new JButton("学籍管理");
+        btnNewButton_1.setFocusPainted(false);
+        guide.add(btnNewButton_1);
+        btnNewButton_1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(myInfo.getType()==1) {
+                    try {
+                        Client_status.stu_enter();
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
+                }
+                else if(myInfo.getType()==3){
+                    try {
+                        functionChoose.jf.setContentPane(new manage_status(width,height).manage_panel);
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    functionChoose.jf.setTitle("admin_status_management");
+                } else {
+                    JOptionPane.showMessageDialog(null,"抱歉，您暂无学籍管理权限！");
+                }
+            }
+        });
+        //图书管理
+        JButton btnNewButton_2 = new JButton("图书管理");
+        btnNewButton_2.setFocusPainted(false);
+        btnNewButton_2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                functionChoose.jf.remove(panel);
+                try {
+                    Client_qicq.setId(myInfo.getId());
+                    if(myInfo.getType()!=3)
+                    {
+                        functionChoose.jf.setContentPane(new readLib());
+                        functionChoose.jf.setTitle("readLib");
+                        functionChoose.jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                        functionChoose.jf.setVisible(true);
+                    }
+                    else
+                    {
+                        //Client_library.RequireshowAllBooks();
+                        Client_library.admin_enter();
+                        //jf.setContentPane(new adminLib());
+                        //jf.setTitle("adminLib");
+                        //jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                        //jf.setVisible(true);
+                    }
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+        guide.add(btnNewButton_2);
+        //选课系统
+        JButton btnNewButton_4 = new JButton("选课系统");
+        btnNewButton_4.setFocusPainted(false);
+        btnNewButton_4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
+                try {
+                    if(myInfo.getType()==1)
+                    {
+                        functionChoose.jf.setContentPane(new Selcourse());
+                        functionChoose.jf.setTitle("Selcourse");
+                    }
+                    else if(myInfo.getType()==2)
+                    {
+
+                        functionChoose.jf.setContentPane(new Selcourse_teacher());
+                        functionChoose.jf.setTitle("Selcourse_teacher");
+                    }
+                    else {
+                        functionChoose.jf.setContentPane(new Selcourse_director());
+                        functionChoose.jf.setTitle("Selcourse_director");
+                    }
+
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+        guide.add(btnNewButton_4);
+        //站内通信
+        JButton btnNewButton_5 = new JButton("站内通信");
+        btnNewButton_5.setFocusPainted(false);
+        btnNewButton_5.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                functionChoose.jf.remove(panel);
+                try {
+                    Client_qicq.setId(myInfo.getId());
+                    if(myInfo.getType()!=3)
+                    {
+                        functionChoose.jf.setContentPane(new main_panel(width,height,myInfo.getType()).mjp);
+                        functionChoose.jf.setTitle("userqq");
+                    }
+                    else
+                    {
+                        functionChoose.jf.setContentPane(new main_panel(width,height,myInfo.getType()).mjp);
+                        functionChoose.jf.setTitle("adminqq");
+                    }
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+        guide.add(btnNewButton_5);
+        //敬请期待
+        JButton btnNewButton_7 = new JButton("敬请期待");
+        btnNewButton_7.setFocusPainted(false);
+        btnNewButton_7.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
+                JOptionPane.showMessageDialog(null,"正在开发中，敬请期待！");
+            }
+        });
+        guide.add(btnNewButton_7);
+        //导航条
+        guide.setSize(500,200);
+        guide.setBounds(0,0,500,200);
+
+
         //测试页面！！！
         AllGoods f11=new AllGoods();
-        //panel.add(f11,"f11");
-        AddDeleteGoods f12=new AddDeleteGoods();
-        panel.add(f12,"f12");
+        panel.add(f11,"f11");
+        //AddDeleteGoods f12=new AddDeleteGoods(false);
+        //panel.add(f12,"f12");
 
         //商店标志与背景
         JLabel logo = new JLabel();
-
         int icon1_width=  (int) (850*width_r);
         int icon1_height=(int) (90*height_r);
         //裁减2到min的尺寸
@@ -175,7 +311,7 @@ public class shopAdmin extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
-                AddDeleteGoods f12=new AddDeleteGoods();
+                AddDeleteGoods f12=new AddDeleteGoods(true);
                 panel.add(f12,"f12");
                 cardLayout.show(panel,"f12");
             }
@@ -204,6 +340,7 @@ public class shopAdmin extends JPanel {
         p2.setBackground(color3);
         //p2.setBackground(new Color(125,182,191));
         add(p2);
+        add(guide);
 
         setVisible(true);
     }
