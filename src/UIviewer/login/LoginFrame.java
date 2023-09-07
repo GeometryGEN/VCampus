@@ -31,13 +31,56 @@ public class LoginFrame extends JFrame{
     Color color2=new Color(125,182,191);
     Color color3=new Color(111,150,134);
     Color color4=new Color(207,219,212);
-
+    Font myfont1=new Font("等线", Font.BOLD, 17);
+    Font myfont2=new Font("等线", Font.BOLD, 15);
     public static JFrame jf = new JFrame("登录");
 
     /**
      * 登录框
      */
     public LoginFrame(){
+        //菜单栏
+        JMenuBar menuBar=new JMenuBar();
+        JMenu menu1=new JMenu("注册");
+        menu1.setFont(myfont1);
+        menuBar.add(menu1);
+        JMenu menu2=new JMenu("忘记密码");
+        menu2.setFont(myfont1);
+        menuBar.add(menu2);
+
+        JMenuItem item1 = new JMenuItem("注册");
+        item1.setFont(myfont2);
+        item1.setBackground(color4);
+        item1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
+                try {
+                    forgetPWDUI();
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+        JMenuItem item2 = new JMenuItem("忘记密码");
+        item2.setFont(myfont2);
+        item2.setBackground(color4);
+        item2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
+                try {
+                    registerUI();
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+        menu1.add(item1);
+        menu2.add(item2);
+        menuBar.setBackground(color3);
+        jf.setJMenuBar(menuBar);
+        //add(menuBar);
         //背景图片
         JLabel lblBackground = new JLabel(); // 创建一个标签组件对象
         ImageIcon icon = new ImageIcon("src/image/登录/12.png"); // 创建背景图片对象
@@ -158,7 +201,7 @@ public class LoginFrame extends JFrame{
 
         // 管理员登录
         JButton btnNewButton_3 = new JButton("管理员登录原始按钮（暂时保留），可尝试不选身份直接输入管理员账密登录");
-        btnNewButton_3.setBounds(50, 480, 420, 30);
+        btnNewButton_3.setBounds(50, 580, 420, 30);
         btnNewButton_3.setFont(new Font("等线",Font.BOLD,10));
         btnNewButton_3.setBackground(new Color(34, 139, 34));
         btnNewButton_3.setForeground(new Color(248, 248, 255));
@@ -183,6 +226,7 @@ public class LoginFrame extends JFrame{
         });
         jf.getContentPane().add(btnNewButton_3);
 
+        /*
         //注册
         JButton btnNewButton_4 = new JButton("注册");
         btnNewButton_4.setBounds(1000, 0, 70, 30);
@@ -222,8 +266,9 @@ public class LoginFrame extends JFrame{
                 }
             }
         });
-
         jf.getContentPane().add(btnNewButton_5);
+
+         */
 
         jf.getContentPane().add(lblBackground); // 将组件添加到面板中
         jf.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
