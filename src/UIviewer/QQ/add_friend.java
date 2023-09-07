@@ -25,6 +25,7 @@ public class add_friend {
     static Color color1=new Color(30,111,255);
     static Color color2=new Color(45,52,82);
     static Color color3=new Color(190,213,235);
+    static Font myfont1=new Font("微软雅黑", Font.BOLD, 17);
     /**
      * 添加朋友
      */
@@ -35,42 +36,46 @@ public class add_friend {
 
 
         JLabel l1 = new JLabel("一卡通:");
-        l1.setFont(new Font("宋体", Font.BOLD, 15));
+        l1.setFont(myfont1);
+        //l1.setFont(new Font("宋体", Font.BOLD, 15));
         l1.setBounds(40, 120, 120, 25);
         l1.setForeground(color2);
         jf.add(l1);
         JTextField idCard=new JTextField();
-        idCard.setFont(new Font("宋体", Font.BOLD, 12));
+        idCard.setFont(new Font("宋体", Font.BOLD, 15));
         idCard.setBounds(115, 120, 125, 25);
         jf.add(idCard);
         idCard.setColumns(10);
 
         JLabel l2 = new JLabel("分组:");
-        l2.setFont(new Font("宋体", Font.BOLD, 15));
+        l2.setFont(myfont1);
+        //l2.setFont(new Font("宋体", Font.BOLD, 15));
         l2.setBounds(40, 160, 120, 25);
         l2.setForeground(color2);
         jf.add(l2);
         JTextField group=new JTextField();
-        group.setFont(new Font("宋体", Font.BOLD, 12));
+        group.setFont(new Font("宋体", Font.BOLD, 15));
         group.setBounds(115, 160, 125, 25);
         jf.add(group);
         group.setColumns(10);
 
         JLabel l3 = new JLabel("备注:");
-        l3.setFont(new Font("宋体", Font.BOLD, 15));
+        //l3.setFont(new Font("宋体", Font.BOLD, 15));
+        l3.setFont(myfont1);
         l3.setBounds(40, 200, 120, 25);
         l3.setForeground(color2);
         jf.add(l3);
         JTextField nickname=new JTextField();
-        nickname.setFont(new Font("宋体", Font.BOLD, 12));
+        nickname.setFont(new Font("宋体", Font.BOLD, 15));
         nickname.setBounds(115, 200, 125, 25);
         jf.add(nickname);
         nickname.setColumns(10);
 
         JButton b1=new JButton("申请添加");
         b1.setFocusPainted(false);
-        b1.setBounds(100,280,100,30);
+        b1.setBounds(85,260,120,30);
         b1.setForeground(Color.white);
+        b1.setFont(myfont1);
         b1.setBackground(new Color(30,111,255));
         b1.setFocusPainted(false);
         jf.add(b1);
@@ -125,6 +130,6 @@ public class add_friend {
     }
 
     public static void main(String[] args){
-        new add_friend();
+        add_friend();
     };
 }

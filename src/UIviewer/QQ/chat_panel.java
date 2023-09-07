@@ -4,6 +4,7 @@ import DAO.QICQ.Filetrans;
 import DAO.QICQ.Friend;
 import UIhandler.QICQ.Client_qicq;
 import ClientToServer.myInfo;
+import UIviewer.Shopping.shopCustomer;
 import UIviewer.login.functionChoose;
 import UIviewer.status_manage.RoundJButton;
 import message.Message;
@@ -38,6 +39,11 @@ public class chat_panel extends JPanel {
     static StyledDocument doc = jTextPane.getStyledDocument();
     static JButton  receive_button,close_button,send_button,send_file_button;
     static ArrayList<Filetrans>files=new ArrayList<>();
+
+    static Color color1=new Color(125,182,191);
+    static Color color2=new Color(68,84,105);
+    static Color color3=new Color(51,51,51);
+    static Color color4=new Color(69,69,69);
 
     /**
      * 插入文本
@@ -348,7 +354,6 @@ public class chat_panel extends JPanel {
 
         add(scrollPane);
 
-
         main_panel.color_choose.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -451,4 +456,19 @@ public class chat_panel extends JPanel {
     public void set_Close() {
         close_button.setBounds((int)(700*width_r),(int)(900*height_r),(int)(send_button_width*width_r-20),(int)(send_button_height*height_r));
     }
+
+    public static void main(String[] args){
+        Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
+        int width=(int) screensize.getWidth(); //得到宽度
+        int height=(int) screensize.getHeight();//获得高度
+        JFrame jf=new JFrame("shopCustomer");
+        jf.setSize(width,height);
+        jf.setExtendedState(JFrame.MAXIMIZED_BOTH);
+        System.out.println("before creat");
+        jf.setContentPane(new chat_panel(width,height,width_r,height_r,500,500,null));
+        System.out.println("after creat");
+        jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        jf.setVisible(true);
+
+    };
 }
