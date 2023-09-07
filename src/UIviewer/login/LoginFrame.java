@@ -117,6 +117,7 @@ public class LoginFrame extends JFrame{
                     String pwd=String.valueOf(passwordField.getPassword());
                     if(rbtnstu.isSelected()) {
                         if (ucs.checkStudent(username, pwd)) {
+                        //if (true) {
                             System.out.println(username + "登录成功！");
                             functionChoose.functionChooseUI();
                             jf.setVisible(false);

@@ -86,6 +86,7 @@ public class main_panel {
                 buttonPanel.setBackground(new Color(68,84,105));
             }
             mjp.add(buttonPanel);
+
             //添加好友按钮
             JButton addFriend= new RoundJButton();
             addFriend.setFocusPainted(false);

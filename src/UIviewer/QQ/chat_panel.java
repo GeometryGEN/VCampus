@@ -121,13 +121,13 @@ public class chat_panel extends JPanel {
                     insertText(messages.get(i).getSendTime(),new Color(122,122,123),(int)(16*width_r),1);
                     insertText(myInfo.getName()+"(我)"+":",Color.black,(int)(22*width_r),2);
                     Filetrans f=(Filetrans)messages.get(i).getData();
-                    insertText((String)"给对方发送文件:  "+f.getName(),new Color(164, 1, 1),(int)(42*width_r),2);
+                    insertText((String)"给对方发送文件:  "+f.getName(),color2,(int)(42*width_r),2);
                 }
                 else{
                     Filetrans f=(Filetrans)messages.get(i).getData();
                     insertText(messages.get(i).getSendTime(),new Color(122,122,123),(int)(16*width_r),1);
-                    insertText( friend.getName()+":",new Color(0, 181, 181),(int)(22*width_r),0);
-                    insertText((String)(String)"收到对方发送的文件:  "+f.getName(),new Color(164, 1, 1),(int)(42*width_r),0);
+                    insertText( friend.getName()+":",color1,(int)(22*width_r),0);
+                    insertText((String)(String)"收到对方发送的文件:  "+f.getName(),color2,(int)(42*width_r),0);
                     files.add(f);
                 }
             }
@@ -145,8 +145,8 @@ public class chat_panel extends JPanel {
                 }
                 else{
                     insertText(messages.get(i).getSendTime(),new Color(122,122,123),(int)(16*width_r),1);
-                    insertText(friend.getName()+":",new Color(0, 181, 181),(int)(22*width_r),0);
-                    insertText((String)(messages.get(i).getData()),new Color(0, 181, 181),(int)(42*width_r),0);
+                    insertText(friend.getName()+":",color1,(int)(22*width_r),0);
+                    insertText((String)(messages.get(i).getData()),color1,(int)(42*width_r),0);
                 }
             }
 
@@ -465,7 +465,7 @@ public class chat_panel extends JPanel {
         jf.setSize(width,height);
         jf.setExtendedState(JFrame.MAXIMIZED_BOTH);
         System.out.println("before creat");
-        jf.setContentPane(new chat_panel(width,height,width_r,height_r,500,500,null));
+        jf.setContentPane(new chat_panel(width,height,width/1200,height/800,500,500,null));
         System.out.println("after creat");
         jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         jf.setVisible(true);
