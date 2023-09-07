@@ -23,6 +23,7 @@ import UIviewer.SelectCourse.Selcourse_director;
 import UIviewer.SelectCourse.Selcourse_teacher;
 import UIviewer.login.functionChoose;
 import UIviewer.status_manage.manage_status;
+import UIviewer.Shopping.FuctionJump;
 import net.coobird.thumbnailator.Thumbnails;
 import ClientToServer.myInfo;
 
@@ -41,6 +42,7 @@ public class shopCustomer extends JPanel {
     Color color3=new Color(57,94,50);
     Color color4=new Color(72,115,78);
     Color color5=new Color(211,229,210);
+    Font myfont1=new Font("微软雅黑", Font.BOLD, 19);
     Color white=Color.white;
 
     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
@@ -49,6 +51,7 @@ public class shopCustomer extends JPanel {
     double width_r=(double)(width)/1273;
     double height_r=(double)(height)/784;
     public static JPanel panel = new JPanel();
+    public static JPanel panel2 = new JPanel();
     static String name;
     public static List<Product> t;
     public static JButton b1=new JButton("主商城");
@@ -94,6 +97,29 @@ public class shopCustomer extends JPanel {
 
         setBounds(0,0, (int) (1273*width_r), (int) (784*height_r));
         setLayout(null);
+
+        panel2.setSize(80,100);
+        panel2.setBounds(width-80,height/2-75,80,150);
+        panel2.setBackground(color5);
+        panel2.setLayout(null);
+        new FuctionJump();
+        add(panel2);
+        panel2.setVisible(false);
+
+        JButton Fucchoose = new JButton("功能");
+        Fucchoose.setBounds(width-80,height/2-105,80,30);
+        Fucchoose.setFont(myfont1);
+        Fucchoose.setForeground(Color.white);
+        Fucchoose.setBackground(color3);
+        Fucchoose.setBorderPainted(false);
+        Fucchoose.setFocusPainted(false);
+        Fucchoose.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                panel2.setVisible(true);
+            }
+        });
+        add(Fucchoose);
 
         panel.setBounds(0, (int) (150*height_r), (int) (1273*width_r), (int) (634*height_r));
         panel.setBackground(color5);
