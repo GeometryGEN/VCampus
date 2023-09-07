@@ -4,8 +4,9 @@ import java.io.Serializable;
 
 /**
  * 教师新开课类
- * @description 可存储数据库中新开可的数据用于传输
+ *
  * @author Shuheng_Gu
+ * @description 可存储数据库中新开可的数据用于传输
  * @date 2022/09/03
  */
 public class Opencourse implements Serializable {

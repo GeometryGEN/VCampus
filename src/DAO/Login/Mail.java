@@ -16,10 +16,10 @@ public class Mail {
         SendEmail();
     }
 
-    public void GenerateCode(int figuresNum){
+    public void GenerateCode(int figuresNum) {
         Random random = new Random();
-        String tempCode="";
-        for(int i=0;i<figuresNum;i++){
+        String tempCode = "";
+        for (int i = 0; i < figuresNum; i++) {
             int tempFigure = random.nextInt(10);
             tempCode += String.valueOf(tempFigure);
         }
@@ -45,15 +45,15 @@ public class Mail {
         this.verifiCode = verifiCode;
     }
 
-    public void SendEmail()throws MessagingException, GeneralSecurityException{
+    public void SendEmail() throws MessagingException, GeneralSecurityException {
         //创建一个配置文件并保存
         Properties properties = new Properties();
 
-        properties.setProperty("mail.host","smtp.qq.com");
+        properties.setProperty("mail.host", "smtp.qq.com");
 
-        properties.setProperty("mail.transport.protocol","smtp");
+        properties.setProperty("mail.transport.protocol", "smtp");
 
-        properties.setProperty("mail.smtp.auth","true");
+        properties.setProperty("mail.smtp.auth", "true");
 
 
         //QQ存在一个特性设置SSL加密
@@ -66,7 +66,7 @@ public class Mail {
         Session session = Session.getDefaultInstance(properties, new Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication("3341213658@qq.com","sgqtlldwzfszdbjb");
+                return new PasswordAuthentication("3341213658@qq.com", "sgqtlldwzfszdbjb");
             }
         });
 
@@ -77,7 +77,7 @@ public class Mail {
         Transport transport = session.getTransport();
 
         //连接服务器
-        transport.connect("smtp.qq.com","3341213658@qq.com","sgqtlldwzfszdbjb");
+        transport.connect("smtp.qq.com", "3341213658@qq.com", "sgqtlldwzfszdbjb");
 
         //创建邮件对象
         MimeMessage mimeMessage = new MimeMessage(session);
@@ -86,18 +86,18 @@ public class Mail {
         mimeMessage.setFrom(new InternetAddress("3341213658@qq.com"));
 
         //邮件接收人
-        mimeMessage.setRecipient(Message.RecipientType.TO,new InternetAddress(this.email));
+        mimeMessage.setRecipient(Message.RecipientType.TO, new InternetAddress(this.email));
 
         //邮件标题
         mimeMessage.setSubject("Vcampus 验证码");
 
-        String content = "【Vcampus】您好！欢迎使用Vcampus系统！您的验证码是："+this.verifiCode + "。如非本人操作，请检查账号安全！";
+        String content = "【Vcampus】您好！欢迎使用Vcampus系统！您的验证码是：" + this.verifiCode + "。如非本人操作，请检查账号安全！";
 
         //邮件内容
-        mimeMessage.setContent(content,"text/html;charset=UTF-8");
+        mimeMessage.setContent(content, "text/html;charset=UTF-8");
 
         //发送邮件
-        transport.sendMessage(mimeMessage,mimeMessage.getAllRecipients());
+        transport.sendMessage(mimeMessage, mimeMessage.getAllRecipients());
 
         //关闭连接
         transport.close();

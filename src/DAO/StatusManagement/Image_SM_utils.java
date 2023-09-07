@@ -1,18 +1,15 @@
 package DAO.StatusManagement;
 
-import java.sql.Blob;
 import connection.JDBC_Connector;
 import utils.Image_utils;
 
-import java.io.*;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.sql.*;
 
 public class Image_SM_utils {
     // 将图片插入数据库
-    public static void sendImageDB(String path,String id,String name) throws SQLException {
+    public static void sendImageDB(String path, String id, String name) throws SQLException {
         Connection conn = null;
         PreparedStatement ps = null;
         FileInputStream in = null;
@@ -22,18 +19,18 @@ public class Image_SM_utils {
             String sql = "insert into userphotos (Photo_id,Photo_name,photo) values(?,?,?)";
             ps = conn.prepareStatement(sql);
             ps.setString(1, id);
-            ps.setString(2,name);
+            ps.setString(2, name);
             ps.setBinaryStream(3, in, in.available());
             int count = ps.executeUpdate();
             if (count > 0) {
-           //     System.out.println("插入成功！");
+                //     System.out.println("插入成功！");
             } else {
-            //    System.out.println("插入失败！");
+                //    System.out.println("插入失败！");
             }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-           // JDBC_Connector.close(null,ps,conn);
+            // JDBC_Connector.close(null,ps,conn);
             ps.close();
             if (null != ps) {
                 try {
@@ -44,6 +41,7 @@ public class Image_SM_utils {
             }
         }
     }
+
     // 读取数据库中图片
     public static byte[] readDBImage(String id) throws SQLException {
         /*String path = "src/image/temp.jpg";
@@ -66,22 +64,20 @@ public class Image_SM_utils {
             ps.setString(1, id);
             rs = ps.executeQuery();
             if (rs.next()) {
-                Blob picture= rs.getBlob("photo");
+                Blob picture = rs.getBlob("photo");
                 InputStream in = picture.getBinaryStream();
-              //  OutputStream out = new FileOutputStream(file);
+                //  OutputStream out = new FileOutputStream(file);
                 int len = 0;
-                byte[] buf = new byte[(int)picture.length()];
+                byte[] buf = new byte[(int) picture.length()];
                 while ((len = in.read(buf)) != -1) {
-                 //   out.write(buf, 0, len);
+                    //   out.write(buf, 0, len);
                 }
-              //  System.out.println("图片读取成功！");
-             //   JDBC_Connector.close(rs,ps,conn);
+                //  System.out.println("图片读取成功！");
+                //   JDBC_Connector.close(rs,ps,conn);
                 rs.close();
                 ps.close();
                 return buf;
-            }
-            else
-            {
+            } else {
                 return null;
             }
         } catch (Exception e) {

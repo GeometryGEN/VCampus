@@ -4,16 +4,16 @@ import java.io.Serializable;
 
 /**
  * 课程
- * @description 课程类，包含课程信息
  *
  * @author Shuheng_Gu
+ * @description 课程类，包含课程信息
  * @date 2022/09/03
  */
 public class Course implements Serializable {
     /**
      * 课堂时间
      */
-    int [][][]class_time=new int[17][6][14];   //上课时间
+    int[][][] class_time = new int[17][6][14];   //上课时间
     /**
      * 名字
      */

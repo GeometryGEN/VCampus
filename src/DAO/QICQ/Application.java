@@ -46,6 +46,7 @@ public class Application implements Serializable {
     public String getTo_id() {
         return to_id;
     }
+
     public void setTo_id(String to_id) {
         this.to_id = to_id;
     }

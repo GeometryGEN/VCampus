@@ -12,7 +12,8 @@ public class Info implements Serializable {
     /**
      * id
      */
-    String id; /**
+    String id;
+    /**
      * 名字
      */
     String name;

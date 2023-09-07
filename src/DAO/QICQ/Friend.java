@@ -13,7 +13,7 @@ public class Friend implements Serializable {
      * id
      */
     String id;
-     /**
+    /**
      * 名字
      */
     String name;
@@ -32,7 +32,8 @@ public class Friend implements Serializable {
     /**
      * 头像
      */
-    public byte[]image;
+    public byte[] image;
+
     public String getId() {
         return id;
     }

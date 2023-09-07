@@ -3,7 +3,6 @@ package DAO.Chat;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import org.apache.hc.client5.http.classic.methods.HttpPost;
 import org.apache.hc.client5.http.config.RequestConfig;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
@@ -83,7 +82,7 @@ public class CustomChatGpt {
         // 用于设置超时时间
         RequestConfig config = RequestConfig
                 .custom()
-                .setConnectionRequestTimeout(2,TimeUnit.SECONDS)
+                .setConnectionRequestTimeout(2, TimeUnit.SECONDS)
                 .setResponseTimeout(responseTimeout, TimeUnit.MILLISECONDS)
                 .build();
         httpPost.setConfig(config);
@@ -109,7 +108,7 @@ public class CustomChatGpt {
             e.printStackTrace();
         }
         // 发生异常，移除刚刚添加的ChatGptMessage
-        chatGptRequestParameter.getMessages().remove(chatGptRequestParameter.getMessages().size()-1);
+        chatGptRequestParameter.getMessages().remove(chatGptRequestParameter.getMessages().size() - 1);
         return "您当前的网络无法访问";
     }
 }

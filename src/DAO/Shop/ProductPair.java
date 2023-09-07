@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 /**
  * The type Product pair.
+ *
  * @description : [商店已购信息以及准备购买物品信息类]
  */
 public class ProductPair implements Serializable {
@@ -14,6 +15,7 @@ public class ProductPair implements Serializable {
     public int getId() { //返回商品id
         return id;
     }
+
     public void setId(int id) {
         this.id = id;
     }

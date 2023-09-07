@@ -1,7 +1,6 @@
 package DAO.Library;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * 图书管理员
@@ -10,7 +9,7 @@ import java.util.Date;
  * @author Shuheng_Gu
  * @date 2022/09/03
  */
-public class Book_admin implements Serializable{
+public class Book_admin implements Serializable {
     /**
      * 名字
      */

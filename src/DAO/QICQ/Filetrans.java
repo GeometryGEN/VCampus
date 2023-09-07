@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 /**
  * 文件传输类
+ *
  * @author Shuheng_Gu
  * @date 2022/09/03
  */
@@ -28,6 +29,7 @@ public class Filetrans implements Serializable {
      * 文件名
      */
     String name;
+
     public String getSrc() {
         return src;
     }

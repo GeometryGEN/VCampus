@@ -4,8 +4,9 @@ import java.io.Serializable;
 
 /**
  * 罚单
- * @description 罚单信息
+ *
  * @author Shuheng_Gu
+ * @description 罚单信息
  * @date 2022/09/03
  */
 public class Punishment implements Serializable {

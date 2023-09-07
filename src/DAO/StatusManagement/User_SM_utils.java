@@ -19,19 +19,20 @@ public class User_SM_utils {
     /**
      * 返回学生信息
      * <p>show 返回学生信息</p>
-     * @author : [Tongwei_L]
-     * @param username  : 学生idcard
+     *
+     * @param username : 学生idcard
      * @return return :  返回学生对象，可以为NULL
+     * @author : [Tongwei_L]
      */
     public static Student returnStudentAllInfo(String username) {
         try {
-            Connection connection= JDBC_Connector.ConnectMySQL();                  //连接数据库
-            String sql="select * from students where Student_idcard=?";
+            Connection connection = JDBC_Connector.ConnectMySQL();                  //连接数据库
+            String sql = "select * from students where Student_idcard=?";
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, username);
             ResultSet rs = ps.executeQuery();
             Student s = new Student();
-            if (rs.next()){
+            if (rs.next()) {
                 s.setStudent_idcard(rs.getString(1));
                 s.setStudent_id(rs.getString(2));
                 s.setStudent_pwd(rs.getString(3));
@@ -54,25 +55,26 @@ public class User_SM_utils {
                 ps.close();
                 return s;
             }
-        //    JDBC_Connector.close(rs, ps, connection);
+            //    JDBC_Connector.close(rs, ps, connection);
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return null;
     }
 
-    public static boolean search(String id) throws SQLException{
-        Connection connection= JDBC_Connector.ConnectMySQL();                  //连接数据库
-        String sql="select * from students where Student_idcard=?";
+    public static boolean search(String id) throws SQLException {
+        Connection connection = JDBC_Connector.ConnectMySQL();                  //连接数据库
+        String sql = "select * from students where Student_idcard=?";
         PreparedStatement ps = connection.prepareStatement(sql);
         ps.setString(1, id);
         ResultSet rs = ps.executeQuery();
-        if(rs.next()) {
-            rs.close();ps.close();
+        if (rs.next()) {
+            rs.close();
+            ps.close();
             return true;
-        }
-        else {
-            rs.close();ps.close();
+        } else {
+            rs.close();
+            ps.close();
             return false;
         }
     }
