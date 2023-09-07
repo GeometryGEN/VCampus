@@ -105,7 +105,7 @@ public class Declare_Course extends JPanel{
 
         //信息面板
         JPanel p1 = new JPanel();
-        p1.setBounds(950, 50, (int)(250*width_r), (int)(475*height_r));
+        p1.setBounds((int)(940*width_r), (int)(50*height_r), (int)(250*width_r), (int)(475*height_r));
         p1.setBackground(new Color(125, 182, 191));
         add(p1);
 

@@ -4,6 +4,8 @@ import DAO.QICQ.Filetrans;
 import DAO.QICQ.Friend;
 import UIhandler.QICQ.Client_qicq;
 import ClientToServer.myInfo;
+import UIviewer.login.functionChoose;
+import UIviewer.status_manage.RoundJButton;
 import message.Message;
 
 import javax.swing.*;
@@ -108,6 +110,7 @@ public class chat_panel extends JPanel {
 //            System.out.println(messages.get(i).getSendTime());
             if(messages.get(i).isfile==1)
             {
+
                 if(messages.get(i).getSender().equals(myInfo.getId())){
                     insertText(messages.get(i).getSendTime(),new Color(122,122,123),(int)(16*width_r),1);
                     insertText(myInfo.getName()+"(我)"+":",Color.black,(int)(22*width_r),2);
@@ -124,9 +127,15 @@ public class chat_panel extends JPanel {
             }
             else {
                 if(messages.get(i).getSender().equals(myInfo.getId())){
+                    Color color=Color.white;
+                    if(functionChoose.color_switch){
+                        color=Color.black;
+                    }else{
+                        color=Color.white;
+                    }
                     insertText(messages.get(i).getSendTime(),new Color(122,122,123),(int)(16*width_r),1);
-                    insertText(myInfo.getName()+"(我)"+":",Color.black,(int)(22*width_r),2);
-                    insertText((String)(messages.get(i).getData()),Color.black,(int)(42*width_r),2);
+                    insertText(myInfo.getName()+"(我)"+":",color,(int)(22*width_r),2);
+                    insertText((String)(messages.get(i).getData()),color,(int)(42*width_r),2);
                 }
                 else{
                     insertText(messages.get(i).getSendTime(),new Color(122,122,123),(int)(16*width_r),1);
@@ -138,12 +147,12 @@ public class chat_panel extends JPanel {
         }
         if(files.size()!=0){
             receive_button.setVisible(true);
-            close_button.setLocation((int)((width-4*send_button_width-1.5)*width_r),(int)((height/4-send_button_height-30)*height_r));
+            close_button.setLocation((int)(650*width_r),(int)(900*height_r));
             receive_button.setFocusPainted(false);
         }
         else {
             receive_button.setVisible(false);
-            close_button.setLocation((int)((width-3*send_button_width-1.5)*width_r),(int)((height/4-send_button_height-30)*height_r));
+            close_button.setLocation((int)(650*width_r),(int)(900*height_r));
             receive_button.setFocusPainted(false);
         }
 
@@ -165,7 +174,6 @@ public class chat_panel extends JPanel {
      * @param friend   朋友
      */
     public chat_panel( int width, int height, double width_r, double height_r, int x, int y, Friend friend){
-        main_panel.buttonPanel.setVisible(false);
         this.friend=friend;
         setLayout(null);
         this.width_r=width_r;
@@ -173,50 +181,74 @@ public class chat_panel extends JPanel {
         this.width=width;
         this.height=height;
         setBounds((int)(x*width_r),(int)(y*height_r),(int)(width*width_r),(int)(height*height_r));
-        setBackground(new Color(224,224,224));
-        setBorder(BorderFactory.createLineBorder(new Color(234,234,234)));
+        if(functionChoose.color_switch){
+            setBackground(new Color(247,247,247));
+            setBorder(BorderFactory.createLineBorder(new Color(229,229,229)));
+        }else{
+            setBackground(new Color(51,51,51));
+            setBorder(BorderFactory.createLineBorder(new Color(69,69,69)));
+        }
         //发消息界面
         type_panel=new JPanel();
         type_panel.setLayout(null);
-        type_panel.setBounds(0,0,10000,10000);
-        type_panel.setBorder(BorderFactory.createLineBorder(new Color(234,234,234)));
-        type_panel.setBackground(new Color(224,224,224));
+        type_panel.setBounds(0,0,width,height);
+        if(functionChoose.color_switch){
+            type_panel.setBorder(BorderFactory.createLineBorder(new Color(229,229,229)));
+            type_panel.setBackground(new Color(200,224,228));
+        }else{
+            type_panel.setBorder(BorderFactory.createLineBorder(new Color(69,69,69)));
+            type_panel.setBackground(new Color(68,84,105));
+        }
         add(type_panel);
         //发送消息按钮
-        send_button= new JButton();
+        send_button= new RoundJButton();
         send_button.setFocusPainted(false);
-        send_button_height=70;
+        send_button_height=40;
         send_button_width=140;
-        send_button.setBackground(new Color(30,111,255));
+        if(functionChoose.color_switch){
+            send_button.setBackground(new Color(125,182,191));
+            send_button.setForeground(new Color(0,0,0));
+        }else{
+            send_button.setBackground(new Color(42,52,65));
+            send_button.setForeground(new Color(255,255,255));
+        }
         send_button.setFont(new Font("宋体",Font.PLAIN,(int)(25*width_r)));
         send_button.setText("发送");
-        send_button.setForeground(new Color(255,255,255));
-        send_button.setBounds((int)((width-send_button_width-1)*width_r),(int)((height/4-send_button_height-30)*height_r),(int)(send_button_width*width_r),(int)(send_button_height*height_r));
+        send_button.setBounds((int)(1100*width_r),(int)(900*height_r),(int)(send_button_width*width_r-20),(int)(send_button_height*height_r));
         type_panel.add(send_button);
         //发送文件按钮
-        /*
-        send_file_button= new JButton();
+        send_file_button= new RoundJButton();
         send_file_button.setFocusPainted(false);
-        send_file_button.setBackground(new Color(30,111,255));
+        if(functionChoose.color_switch){
+            send_file_button.setBackground(new Color(125,182,191));
+            send_file_button.setForeground(new Color(0,0,0));
+        }else{
+            send_file_button.setBackground(new Color(42,52,65));
+            send_file_button.setForeground(new Color(255,255,255));
+        }
         send_file_button.setFont(new Font("宋体",Font.PLAIN,(int)(25*width_r)));
         send_file_button.setText("文件");
-        send_file_button.setForeground(new Color(255,255,255));
-        send_file_button.setBounds((int)((width-send_button_width-send_button_width-1)*width_r),(int)((height/4-send_button_height-30)*height_r),(int)(send_button_width*width_r),(int)(send_button_height*height_r));
+        send_file_button.setBounds((int)(950*width_r),(int)(900*height_r),(int)(send_button_width*width_r-20),(int)(send_button_height*height_r));
         type_panel.add(send_file_button);
         send_file_button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 file_panel.createWindow(0);
             }
-        });*/
+        });
         //关闭该聊天框按钮
-        close_button= new JButton();
+        close_button= new RoundJButton();
         close_button.setFocusPainted(false);
-        close_button.setBackground(new Color(211,10,11));
+        if(functionChoose.color_switch){
+            close_button.setBackground(new Color(125,182,191));
+            close_button.setForeground(new Color(0,0,0));
+        }else{
+            close_button.setBackground(new Color(42,52,65));
+            close_button.setForeground(new Color(255,255,255));
+        }
         close_button.setFont(new Font("宋体",Font.PLAIN,(int)(25*width_r)));
         close_button.setText("关闭");
-        close_button.setForeground(new Color(255,255,255));
-        close_button.setBounds((int)((width-3*send_button_width-1.5)*width_r),0,(int)(send_button_width*width_r),(int)(send_button_height*height_r));
+        close_button.setBounds((int)(700*width_r),(int)(900*height_r),(int)(send_button_width*width_r-20),(int)(send_button_height*height_r));
         type_panel.add(close_button);
         close_button.addActionListener(new ActionListener() {
             @Override
@@ -227,16 +259,21 @@ public class chat_panel extends JPanel {
         });
 
         //接受文件按钮
-        /*
         int receive_button_height=70;
         int receive_button_width=140;
-        receive_button= new JButton();
+        receive_button= new RoundJButton();
         receive_button.setFocusPainted(false);
-        receive_button.setBackground(new Color(10, 211, 87));
+        if(functionChoose.color_switch){
+            receive_button.setBackground(new Color(125,182,191));
+            receive_button.setForeground(new Color(0,0,0));
+        }else{
+            receive_button.setBackground(new Color(42,52,65));
+            receive_button.setForeground(new Color(255,255,255));
+        }
         receive_button.setFont(new Font("宋体",Font.PLAIN,(int)(25*width_r)));
         receive_button.setText("接收");
         receive_button.setForeground(new Color(255,255,255));
-        receive_button.setBounds((int)((width-3*send_button_width-1.5)*width_r),(int)((height/4-send_button_height-30)*height_r),(int)(send_button_width*width_r),(int)(send_button_height*height_r));
+        receive_button.setBounds((int)(800*width_r),(int)(900*height_r),(int)(send_button_width*width_r-20),(int)(send_button_height*height_r));
         type_panel.add(receive_button);
         receive_button.setVisible(false);
         receive_button.addActionListener(new ActionListener() {
@@ -245,12 +282,22 @@ public class chat_panel extends JPanel {
                 receive_panel.createWindow(files);
             }
         });
-         */
+        type_panel.add(receive_button);
+
         //输入消息框
         type_field=new JTextArea();
-        type_field.setBounds(0,0,(int)(width*width_r),(int)((height/4-1)*height_r));
-        type_field.setBorder(BorderFactory.createLineBorder(new Color(224,224,224)));
-        type_field.setBackground(new Color(245,246,247));
+        type_field.setBounds(0,height-(int)((height/4-1)*height_r)-20,(int)(width*width_r),80);
+        type_field.setOpaque(false);
+        type_panel.setBorder(null);
+        if(functionChoose.color_switch){
+            type_field.setBorder(BorderFactory.createLineBorder(new Color(224,224,224)));
+            type_field.setBackground(new Color(245,246,247));
+            type_field.setForeground(Color.black);
+        }else{
+            type_field.setBorder(BorderFactory.createLineBorder(new Color(0,0,0)));
+            type_field.setBackground(new Color(1,2,3));
+            type_field.setForeground(Color.white);
+        }
         type_field.setFont(new Font("宋体",Font.PLAIN,(int)(25*width_r)));
         type_panel.add(type_field);
         //发送信息
@@ -279,8 +326,15 @@ public class chat_panel extends JPanel {
         scrollPane=new JScrollPane(jTextPane);
         scrollPane.setBounds(0,0,(int)(width*width_r),(int)(height/4*3*height_r));
         scrollPane.setBorder(BorderFactory.createLineBorder(new Color(234,234,234)));
-        scrollPane.setBackground(new Color(245,246,247));
-        jTextPane.setBackground(new Color(245,246,247));
+        if(functionChoose.color_switch){
+            scrollPane.setBackground(new Color(245,246,247));
+            jTextPane.setBackground(new Color(245,246,247));
+            jTextPane.setForeground(new Color(0,0,0));
+        }else{
+            scrollPane.setBackground(new Color(0,1,2));
+            jTextPane.setBackground(new Color(0,1,2));
+            jTextPane.setForeground(new Color(255,255,255));
+        }
 
         JScrollBar scrollBar = new JScrollBar(JScrollBar.VERTICAL) {
             @Override
@@ -293,6 +347,55 @@ public class chat_panel extends JPanel {
         scrollBar.setUnitIncrement(30);
 
         add(scrollPane);
+
+
+        main_panel.color_choose.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                boolean color=!functionChoose.color_switch;
+                if(color){
+                    setBackground(new Color(125,182,191));
+                    setBackground(new Color(247,247,247));
+                    setBorder(BorderFactory.createLineBorder(new Color(229,229,229)));
+                    type_panel.setBorder(BorderFactory.createLineBorder(new Color(229,229,229)));
+                    type_panel.setBackground(new Color(200,224,228));
+                    send_button.setBackground(new Color(125,182,191));
+                    send_button.setForeground(new Color(0,0,0));
+                    send_file_button.setBackground(new Color(125,182,191));
+                    send_file_button.setForeground(new Color(0,0,0));
+                    close_button.setBackground(new Color(125,182,191));
+                    close_button.setForeground(new Color(0,0,0));
+                    receive_button.setBackground(new Color(125,182,191));
+                    receive_button.setForeground(new Color(0,0,0));
+                    type_field.setBorder(BorderFactory.createLineBorder(new Color(224,224,224)));
+                    type_field.setBackground(new Color(245,246,247));
+                    type_field.setForeground(Color.black);
+                    scrollPane.setBackground(new Color(245,246,247));
+                    jTextPane.setBackground(new Color(245,246,247));
+                    jTextPane.setForeground(new Color(0,0,0));
+                }else{
+                    setBackground(new Color(42,52,65));
+                    setBackground(new Color(51,51,51));
+                    setBorder(BorderFactory.createLineBorder(new Color(69,69,69)));
+                    type_panel.setBorder(BorderFactory.createLineBorder(new Color(69,69,69)));
+                    type_panel.setBackground(new Color(68,84,105));
+                    send_button.setBackground(new Color(42,52,65));
+                    scrollPane.setBackground(new Color(0,1,2));
+                    jTextPane.setBackground(new Color(0,1,2));
+                    jTextPane.setForeground(new Color(255,255,255));
+                    send_button.setForeground(new Color(255,255,255));
+                    send_file_button.setBackground(new Color(42,52,65));
+                    send_file_button.setForeground(new Color(255,255,255));
+                    type_field.setBorder(BorderFactory.createLineBorder(new Color(0,0,0)));
+                    type_field.setBackground(new Color(1,2,3));
+                    type_field.setForeground(Color.white);
+                    receive_button.setBackground(new Color(42,52,65));
+                    receive_button.setForeground(new Color(255,255,255));
+                    close_button.setBackground(new Color(42,52,65));
+                    close_button.setForeground(new Color(255,255,255));
+                }
+            }
+        });
     }
 
     /**
@@ -314,8 +417,14 @@ public class chat_panel extends JPanel {
         }
         int num=messages.size();
         for(int i=num-1;i>=0;i--) {
+            Color color;
+            if(functionChoose.color_switch){
+                color=Color.black;
+            }else{
+                color=Color.white;
+            }
                 insertText(messages.get(i).getSendTime(),new Color(122,122,123),(int)(16*width_r),1);
-                insertText((String)(messages.get(i).getData()),Color.black,(int)(42*width_r),1);
+                insertText((String)(messages.get(i).getData()),color,(int)(42*width_r),1);
         }
 
         jTextPane.setEditable(false);
@@ -324,6 +433,7 @@ public class chat_panel extends JPanel {
         scrollPane.updateUI();
 
         jTextPane.setCaretPosition(jTextPane.getStyledDocument().getLength());
+
     }
 
     /**
@@ -339,6 +449,6 @@ public class chat_panel extends JPanel {
      * 设置关闭
      */
     public void set_Close() {
-        close_button.setLocation((int)((width-send_button_width-1)*width_r),(int)((height/4-send_button_height-30)*height_r));
+        close_button.setBounds((int)(700*width_r),(int)(900*height_r),(int)(send_button_width*width_r-20),(int)(send_button_height*height_r));
     }
 }

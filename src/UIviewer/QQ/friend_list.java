@@ -2,6 +2,7 @@ package UIviewer.QQ;
 
 import DAO.QICQ.Friend;
 import ClientToServer.myInfo;
+import UIviewer.login.functionChoose;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -38,12 +39,16 @@ public class friend_list{
     public static void show_Friend(HashMap<String, ArrayList<Friend>> friend) {
         jPanel.removeAll();
         roll_panel=new JPanel();
-        roll_panel.setBackground(new Color(255,255,255));
-        roll_panel.setSize((int)(width*width_r),(int)((height-200)*height_r));
+        roll_panel.setSize((int)(width*width_r),(int)((height-200)*height_r-200));
+        if(functionChoose.color_switch){
+            roll_panel.setBackground(new Color(200,224,228));
+        }else{
+            roll_panel.setBackground(new Color(68,84,105));
+        }
         roll_panel.setLayout(new BoxLayout(roll_panel, BoxLayout.Y_AXIS));
         scrollPane=new JScrollPane(roll_panel);
         scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER );//不显示水平滚动条；
-        scrollPane.setBorder(BorderFactory.createLineBorder(new Color(255,255,255)));
+        scrollPane.setBorder(BorderFactory.createLineBorder(new Color(0,0,0)));
         jPanel.add(scrollPane, BorderLayout.CENTER);
         count_friend=0;
         count_tag=0;
@@ -144,7 +149,7 @@ public class friend_list{
      * @param x        x
      * @param y        y
      */
-    friend_list(int width, int height, double width_r, double height_r, int x, int y){
+    friend_list(int width, int height, double width_r, double height_r, int x, int y,boolean color_switch){
         jPanel=new JPanel();
         this.width=width;
         this.height=height;
@@ -152,8 +157,13 @@ public class friend_list{
         this.height_r=height_r;
         jPanel.setLayout(new BorderLayout());
         jPanel.setBounds((int)(x*width_r),(int)(y*height_r),(int)(width*width_r),(int)(height*height_r));
-        jPanel.setBorder(BorderFactory.createLineBorder(new Color(244,244,244)));
-        jPanel.setBackground(new Color(255,255,255));
+        if(color_switch){
+            jPanel.setBorder(BorderFactory.createLineBorder(new Color(244,244,244)));
+            jPanel.setBackground(new Color(255,255,255));
+        }else{
+            jPanel.setBackground(new Color(0,0,0));
+            jPanel.setBorder(BorderFactory.createLineBorder(new Color(1,1,1)));
+        }
    }
 
 }

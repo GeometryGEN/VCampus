@@ -41,9 +41,6 @@ public class shopCustomer extends JPanel {
     Color color3=new Color(57,94,50);
     Color color4=new Color(72,115,78);
     Color color5=new Color(211,229,210);
-    Color color6=new Color(243,211,160);
-    Font myfont1=new Font("微软雅黑", Font.BOLD, 19);
-    Font myfont2=new Font("微软雅黑", Font.BOLD, 20);
     Color white=Color.white;
 
     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
@@ -52,7 +49,6 @@ public class shopCustomer extends JPanel {
     double width_r=(double)(width)/1273;
     double height_r=(double)(height)/784;
     public static JPanel panel = new JPanel();
-    public static JPanel panel2 = new JPanel();
     static String name;
     public static List<Product> t;
     public static JButton b1=new JButton("主商城");
@@ -85,38 +81,15 @@ public class shopCustomer extends JPanel {
      * @throws Exception 异常
      */
     public shopCustomer() throws Exception {
-        //功能跳转
-        //panel2.setOpaque(false);
-        //panel2.setBackground(new Color(0, 0, 0, 0)); // 设置透明背景颜色
-        setBackground(color6);
-        panel2.setLayout(null);
-        JButton swtich=new JButton("功能");
-        swtich.setBackground(color2);
-        swtich.setForeground(Color.white);
-        swtich.setFont(myfont1);
-        swtich.addActionListener(new ActionListener() {
-                                    @Override
-                                    public void actionPerformed(ActionEvent e) {
-                                        new FuctionJump();
-                                        //panel.repaint();
-                                    }
-                                });
-        swtich.setBounds(0,0,80,40);
-        swtich.setFocusPainted(false);
-        panel2.setSize(180,150);
-        panel2.setBounds(width-80,height/2-75,180,150);
-        panel2.add(swtich);
-        add(panel2);
-
         String name="1";
         double money = 0;
+
         name=myInfo.getName();
         getName(name);
         if(myInfo.getType()==1)
              money=Client_shop.getMoney(myInfo.getId());
         else
              money=Client_shop.getMoney_Teacher(myInfo.getId());
-
         System.out.println("after creat11111");
 
         setBounds(0,0, (int) (1273*width_r), (int) (784*height_r));
@@ -130,9 +103,9 @@ public class shopCustomer extends JPanel {
 //		创建相应面板类的对象
         System.out.println("after creat2222222222");
 
-        //t = Client_shop.returnAllProduct();
+        t = Client_shop.returnAllProduct();
         //测试的时候先让列表为空
-        t =new ArrayList<>();
+        //t =new ArrayList<>();
         String[][] temp = new String[t.size()][];
         for(int i =0;i<t.size();i++){
             String[] tt =new String[7];
@@ -146,6 +119,134 @@ public class shopCustomer extends JPanel {
             temp[i]=tt;
         }
         ShoppingHall.setShoptable(temp);
+
+        JPanel guide =new JPanel();
+        //学籍管理
+        JButton btnNewButton_1 = new JButton("学籍管理");
+        btnNewButton_1.setFocusPainted(false);
+        guide.add(btnNewButton_1);
+        btnNewButton_1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if(myInfo.getType()==1) {
+                    try {
+                        Client_status.stu_enter();
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
+                }
+                else if(myInfo.getType()==3){
+                    try {
+                        functionChoose.jf.setContentPane(new manage_status(width,height).manage_panel);
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    functionChoose.jf.setTitle("admin_status_management");
+                } else {
+                    JOptionPane.showMessageDialog(null,"抱歉，您暂无学籍管理权限！");
+                }
+            }
+        });
+        //图书管理
+        JButton btnNewButton_2 = new JButton("图书管理");
+        btnNewButton_2.setFocusPainted(false);
+        btnNewButton_2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                functionChoose.jf.remove(panel);
+                try {
+                    Client_qicq.setId(myInfo.getId());
+                    if(myInfo.getType()!=3)
+                    {
+                        functionChoose.jf.setContentPane(new readLib());
+                        functionChoose.jf.setTitle("readLib");
+                        functionChoose.jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                        functionChoose.jf.setVisible(true);
+                    }
+                    else
+                    {
+                        //Client_library.RequireshowAllBooks();
+                        Client_library.admin_enter();
+                        //jf.setContentPane(new adminLib());
+                        //jf.setTitle("adminLib");
+                        //jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                        //jf.setVisible(true);
+                    }
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+        guide.add(btnNewButton_2);
+        //选课系统
+        JButton btnNewButton_4 = new JButton("选课系统");
+        btnNewButton_4.setFocusPainted(false);
+        btnNewButton_4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
+                try {
+                    if(myInfo.getType()==1)
+                    {
+                        functionChoose.jf.setContentPane(new Selcourse());
+                        functionChoose.jf.setTitle("Selcourse");
+                    }
+                    else if(myInfo.getType()==2)
+                    {
+
+                        functionChoose.jf.setContentPane(new Selcourse_teacher());
+                        functionChoose.jf.setTitle("Selcourse_teacher");
+                    }
+                    else {
+                        functionChoose.jf.setContentPane(new Selcourse_director());
+                        functionChoose.jf.setTitle("Selcourse_director");
+                    }
+
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+        guide.add(btnNewButton_4);
+        //站内通信
+        JButton btnNewButton_5 = new JButton("站内通信");
+        btnNewButton_5.setFocusPainted(false);
+        btnNewButton_5.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                functionChoose.jf.remove(panel);
+                try {
+                    Client_qicq.setId(myInfo.getId());
+                    if(myInfo.getType()!=3)
+                    {
+                        functionChoose.jf.setContentPane(new main_panel(width,height,myInfo.getType(),true).mjp);
+                        functionChoose.jf.setTitle("userqq");
+                    }
+                    else
+                    {
+                        functionChoose.jf.setContentPane(new main_panel(width,height,myInfo.getType(),true).mjp);
+                        functionChoose.jf.setTitle("adminqq");
+                    }
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+        guide.add(btnNewButton_5);
+        //敬请期待
+        JButton btnNewButton_7 = new JButton("敬请期待");
+        btnNewButton_7.setFocusPainted(false);
+        btnNewButton_7.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
+                JOptionPane.showMessageDialog(null,"正在开发中，敬请期待！");
+            }
+        });
+        guide.add(btnNewButton_7);
+        //导航条
+        guide.setBounds(0,0,500,500);
+        add(guide);
 
         //测试各个界面
         ShoppingHall f1=new ShoppingHall();
@@ -345,7 +446,6 @@ public class shopCustomer extends JPanel {
         p2.setBackground(color3);
         //p2.setBackground(new Color(125,182,191));
         add(p2);
-
 
         setVisible(true);
 
