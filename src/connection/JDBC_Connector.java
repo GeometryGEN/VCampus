@@ -1,10 +1,6 @@
 package connection;
 import java.sql.*;
 
-//TEST
-//taohongyu
-//陶虹宇
-
 /**
  * jdbc连接器
  *
@@ -46,7 +42,7 @@ public class JDBC_Connector {
         String url = "jdbc:mysql://localhost:3306/vcampus?useUnicode=true&characterEncoding=utf8&" +
                 "serverTimezone=UTC&useSSL=false&allowPublicKeyRetrieval=true";
         String user = "root";          //指定登录账户
-        String pin = "100905";         //指定账户密码
+        String pin = "100195";         //指定账户密码
         //加载数据库驱动
         try {
             Class.forName(driver);
