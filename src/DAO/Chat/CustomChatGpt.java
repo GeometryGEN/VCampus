@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit;
 
 public class CustomChatGpt {
     /**
-     * 自己chatGpt的ApiKey
+     * chatGpt的ApiKey
      */
     private String apiKey;
     /**
