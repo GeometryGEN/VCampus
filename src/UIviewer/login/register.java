@@ -136,7 +136,7 @@ public class register {
         jf.add(b1);
 
 
-        //背景图片
+        //背景图片s
         JLabel lblBackground=new JLabel(); // 创建一个标签组件对象
         ImageIcon icon=new ImageIcon("src/image/登录/04.png"); // 创建背景图片对象
         lblBackground.setIcon(icon); // 设置标签组件要显示的图标

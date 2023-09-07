@@ -3,12 +3,14 @@ import ClientToServer.ClientToServer;
 import User.Student;
 import User.Teacher;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.sql.SQLException;
@@ -21,11 +23,11 @@ public class register2 {
         JFrame jf=new JFrame("注册账号");
 
         //添加头像
+        final File[] file = {null};
         JButton b2=new JButton("添加头像");
-        b2.setBounds(360,500,100,30);
-        b2.setBackground(new Color(235,236,240));
+        b2.setBounds(240,450,100,30);
+        //b2.setBackground(new Color(235,236,240));
         b2.setFocusPainted(false);
-
         b2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -35,32 +37,32 @@ public class register2 {
                     choose_image.setFileSelectionMode(JFileChooser.FILES_ONLY);
                     choose_image.showOpenDialog(null);
                     choose_image.setBounds(10,10,200,200);
+                    file[0] =choose_image.getSelectedFile();
                     jf.add(choose_image);
-
-                    JButton save_image=new JButton("保存图片");
-                    save_image.setBounds(260,500,100,30);
-                    jf.add(save_image);
-                    save_image.addActionListener(new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            File file=choose_image.getSelectedFile();
-                            try {
-                                String path=file.getAbsolutePath();
-                                utils.Save_image.main(path,register.getIdCard());
-                            } catch (FileNotFoundException ex) {
-                                throw new RuntimeException(ex);
-                            } catch (SQLException ex) {
-                                throw new RuntimeException(ex);
-                            }
-                        }
-                    });
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
             }
         });
+        JButton save_image=new JButton("保存图片");
+        save_image.setBounds(360,450,100,30);
+        jf.add(save_image);
+        save_image.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //File file=choose_image.getSelectedFile();
+                try {
+                    String path= file[0].getAbsolutePath();
+                    utils.Save_image.main(path,register.getIdCard());
+                    JOptionPane.showMessageDialog(jf, "保存图片成功");
+                } catch (FileNotFoundException ex) {
+                    throw new RuntimeException(ex);
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
+            }
+        });
         jf.add(b2);
-
 
 
         //账号密码
@@ -139,7 +141,7 @@ public class register2 {
 
 
         JButton b1=new JButton("确定注册");
-        b1.setBounds(360,450,100,30);
+        b1.setBounds(360,500,100,30);
         b1.setBackground(new Color(235,236,240));
         b1.setFocusPainted(false);
 

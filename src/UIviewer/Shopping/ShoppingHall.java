@@ -354,7 +354,7 @@ public class ShoppingHall extends JPanel {
             });
             //支持滚动
             JScrollPane jsp = new JScrollPane(table_want);
-            jsp.setBounds((int) (340*width_r), (int) (180*height_r), (int) (900*width_r), (int) (360*height_r));
+            jsp.setBounds((int) (340*width_r), (int) (180*height_r), (int) (860*width_r), (int) (360*height_r));
             jsp.setBackground(color5);
             jsp.getViewport().setOpaque(false);
             add(jsp);
