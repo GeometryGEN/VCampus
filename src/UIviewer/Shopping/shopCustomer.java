@@ -29,6 +29,9 @@ import ClientToServer.myInfo;
 
 import static UIviewer.Shopping.ShoppingHall.resetshoptable;
 import static UIviewer.Shopping.ShoppingHall.setShoptable;
+import static UIviewer.login.forgetPWD.forgetPWDUI;
+import static UIviewer.login.functionChoose.jf;
+import static UIviewer.login.register.registerUI;
 
 /**
  * 店客户
@@ -44,6 +47,7 @@ public class shopCustomer extends JPanel {
     Color color5=new Color(211,229,210);
     Font myfont1=new Font("微软雅黑", Font.BOLD, 19);
     Color white=Color.white;
+
 
     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
     int width=(int ) screensize.getWidth(); //得到宽度
@@ -84,6 +88,8 @@ public class shopCustomer extends JPanel {
      * @throws Exception 异常
      */
     public shopCustomer() throws Exception {
+
+
         String name="1";
         double money = 0;
 
@@ -163,11 +169,11 @@ public class shopCustomer extends JPanel {
                 }
                 else if(myInfo.getType()==3){
                     try {
-                        functionChoose.jf.setContentPane(new manage_status(width,height).manage_panel);
+                        jf.setContentPane(new manage_status(width,height).manage_panel);
                     } catch (Exception ex) {
                         throw new RuntimeException(ex);
                     }
-                    functionChoose.jf.setTitle("admin_status_management");
+                    jf.setTitle("admin_status_management");
                 } else {
                     JOptionPane.showMessageDialog(null,"抱歉，您暂无学籍管理权限！");
                 }
@@ -179,15 +185,15 @@ public class shopCustomer extends JPanel {
         btnNewButton_2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                functionChoose.jf.remove(panel);
+                jf.remove(panel);
                 try {
                     Client_qicq.setId(myInfo.getId());
                     if(myInfo.getType()!=3)
                     {
-                        functionChoose.jf.setContentPane(new readLib());
-                        functionChoose.jf.setTitle("readLib");
-                        functionChoose.jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-                        functionChoose.jf.setVisible(true);
+                        jf.setContentPane(new readLib());
+                        jf.setTitle("readLib");
+                        jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                        jf.setVisible(true);
                     }
                     else
                     {
@@ -214,18 +220,18 @@ public class shopCustomer extends JPanel {
                 try {
                     if(myInfo.getType()==1)
                     {
-                        functionChoose.jf.setContentPane(new Selcourse());
-                        functionChoose.jf.setTitle("Selcourse");
+                        jf.setContentPane(new Selcourse());
+                        jf.setTitle("Selcourse");
                     }
                     else if(myInfo.getType()==2)
                     {
 
-                        functionChoose.jf.setContentPane(new Selcourse_teacher());
-                        functionChoose.jf.setTitle("Selcourse_teacher");
+                        jf.setContentPane(new Selcourse_teacher());
+                        jf.setTitle("Selcourse_teacher");
                     }
                     else {
-                        functionChoose.jf.setContentPane(new Selcourse_director());
-                        functionChoose.jf.setTitle("Selcourse_director");
+                        jf.setContentPane(new Selcourse_director());
+                        jf.setTitle("Selcourse_director");
                     }
 
                 } catch (Exception ex) {
@@ -240,18 +246,18 @@ public class shopCustomer extends JPanel {
         btnNewButton_5.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                functionChoose.jf.remove(panel);
+                jf.remove(panel);
                 try {
                     Client_qicq.setId(myInfo.getId());
                     if(myInfo.getType()!=3)
                     {
-                        functionChoose.jf.setContentPane(new main_panel(width,height,myInfo.getType(),true).mjp);
-                        functionChoose.jf.setTitle("userqq");
+                        jf.setContentPane(new main_panel(width,height,myInfo.getType(),true).mjp);
+                        jf.setTitle("userqq");
                     }
                     else
                     {
-                        functionChoose.jf.setContentPane(new main_panel(width,height,myInfo.getType(),true).mjp);
-                        functionChoose.jf.setTitle("adminqq");
+                        jf.setContentPane(new main_panel(width,height,myInfo.getType(),true).mjp);
+                        jf.setTitle("adminqq");
                     }
                 } catch (Exception ex) {
                     ex.printStackTrace();
@@ -460,8 +466,8 @@ public class shopCustomer extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
-                functionChoose.jf.setContentPane(functionChoose.fc_panel);
-                functionChoose.jf.setTitle("functionChoose");
+                jf.setContentPane(functionChoose.fc_panel);
+                jf.setTitle("functionChoose");
                 cardLayout.show(panel, "f1");
             }
         });
@@ -472,7 +478,6 @@ public class shopCustomer extends JPanel {
         p2.setBackground(color3);
         //p2.setBackground(new Color(125,182,191));
         add(p2);
-
         setVisible(true);
 
     }

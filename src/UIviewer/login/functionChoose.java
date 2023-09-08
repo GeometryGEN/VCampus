@@ -44,18 +44,180 @@ public class functionChoose {
     public static boolean color_switch=true;
     public static JButton lswitch=new JButton();
 
+    static Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
+    static int width=(int) screensize.getWidth(); //得到宽度
+    static int height=(int) screensize.getHeight();//获得高度
+    static double width_r=(double)(width)/1273;
+    static double height_r=(double)(height)/784;
+
+    static Color color6=new Color(31,66,71);
+    static Color color7=new Color(125,182,191);
+    static Color color8=new Color(111,150,134);
+    static Color color9=new Color(207,219,212);
+    static Font myfont3=new Font("等线", Font.BOLD, 17);
+    static Font myfont2=new Font("等线", Font.BOLD, 15);
+
+    static JMenuBar menuBar=new JMenuBar();
+
     /**
      * 功能选择界面
      */
     public static void functionChooseUI() throws SQLException {
-        Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
-        int width=(int) screensize.getWidth(); //得到宽度
-        int height=(int) screensize.getHeight();//获得高度
-        System.out.println(width);
-        System.out.println(height);
-        double width_r=(double)(width)/1273;
-        double height_r=(double)(height)/784;
         jf = new JFrame("欢迎使用VCampus虚拟校园系统，请选择您的服务！");
+        //菜单栏
+        JMenu menu1=new JMenu("功能选择");
+        menu1.setFont(myfont3);
+        menuBar.add(menu1);
+
+        JMenuItem item1 = new JMenuItem("学籍管理");
+        item1.setFont(myfont2);
+        item1.setBackground(color9);
+        item1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
+
+                if(myInfo.getType()==1) {
+                    try {
+                        Client_status.stu_enter();
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
+                }
+                else if(myInfo.getType()==3){
+                    try {
+                        jf.setContentPane(new manage_status(width,height).manage_panel);
+                    } catch (Exception ex) {
+                        throw new RuntimeException(ex);
+                    }
+                    jf.setTitle("admin_status_management");
+                } else {
+                    JOptionPane.showMessageDialog(null,"抱歉，您暂无学籍管理权限！");
+                }
+            }
+
+        });
+        JMenuItem item2 = new JMenuItem("校园图书馆");
+        item2.setFont(myfont2);
+        item2.setBackground(color9);
+        item2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //jf.remove(panel);
+                try {
+                    Client_qicq.setId(myInfo.getId());
+                    if(myInfo.getType()!=3)
+                    {
+                        jf.setContentPane(new readLib());
+                        jf.setTitle("readLib");
+                        jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                        jf.setVisible(true);
+                    }
+                    else
+                    {
+                        //Client_library.RequireshowAllBooks();
+                        Client_library.admin_enter();
+                        //jf.setContentPane(new adminLib());
+                        //jf.setTitle("adminLib");
+                        //jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                        //jf.setVisible(true);
+                    }
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+        JMenuItem item3 = new JMenuItem("校园超市");
+        item3.setFont(myfont2);
+        item3.setBackground(color9);
+        item3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
+                try {
+                    if(myInfo.getType()!=3)
+                    {
+                        Client_shop.setId(String.valueOf(myInfo.getType()));
+                        Client_shop.setIdcard(myInfo.getId());
+                        functionChoose.jf.setContentPane(new shopCustomer());
+                        functionChoose.jf.setTitle("shopCustomer");
+                    }
+                    else
+                    {
+                        Client_shop.setId(String.valueOf(myInfo.getType()));
+                        Client_shop.setIdcard(myInfo.getId());
+                        functionChoose.jf.setContentPane(new shopAdmin());
+                        functionChoose.jf.setTitle("shopAdmin");
+                    }
+                    functionChoose.jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                    functionChoose.jf.setVisible(true);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+        JMenuItem item4 = new JMenuItem("站内通信");
+        item4.setFont(myfont2);
+        item4.setBackground(color9);
+        item4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //jf.remove(panel);
+                try {
+                    Client_qicq.setId(myInfo.getId());
+                    if(myInfo.getType()!=3)
+                    {
+                        jf.setContentPane(new main_panel(width,height,myInfo.getType(),true).mjp);
+                        jf.setTitle("userqq");
+                    }
+                    else
+                    {
+                        jf.setContentPane(new main_panel(width,height,myInfo.getType(),true).mjp);
+                        jf.setTitle("adminqq");
+                    }
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+        JMenuItem item5 = new JMenuItem("选课");
+        item5.setFont(myfont2);
+        item5.setBackground(color9);
+        item5.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // TODO Auto-generated method stub
+                try {
+                    if(myInfo.getType()==1)
+                    {
+                        jf.setContentPane(new Selcourse());
+                        jf.setTitle("Selcourse");
+                    }
+                    else if(myInfo.getType()==2)
+                    {
+
+                        jf.setContentPane(new Selcourse_teacher());
+                        jf.setTitle("Selcourse_teacher");
+                    }
+                    else {
+                        jf.setContentPane(new Selcourse_director());
+                        jf.setTitle("Selcourse_director");
+                    }
+
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
+
+        menu1.add(item1);
+        menu1.add(item2);
+        menu1.add(item3);
+        menu1.add(item4);
+        menu1.add(item5);
+        menuBar.setBackground(color8);
+        jf.setJMenuBar(menuBar);
+
         jf.setSize(width,height);
         jf.setExtendedState(JFrame.MAXIMIZED_BOTH);
         //jf.setSize(1273,784);
