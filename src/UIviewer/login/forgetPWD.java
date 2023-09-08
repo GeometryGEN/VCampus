@@ -71,11 +71,12 @@ public class forgetPWD {
         JTextField textField11=new JTextField();
         textField11.setFont(new Font("宋体",Font.BOLD,12));
         textField11.setBounds(100,430,70,25);
+        textField11.setBorder(null);
         jf.add(textField11);
         textField10.setColumns(11);
         //发送验证码
         JButton b2=new JButton("发送验证码");
-        b2.setBounds(190,430,110,25);
+        b2.setBounds(180,430,110,25);
         b2.setFont(new Font("等线",Font.BOLD,15));
         b2.setForeground(color1);
         b2.setBackground(color4);
@@ -121,8 +122,8 @@ public class forgetPWD {
                 //jf.setVisible(false);
                 //forgetPWDUI2(textField10.getText(),textField3.getText());
                 //if(mycaptcha==captcha)
-                if(true)
-                //if(Objects.equals(mycaptcha, captcha))
+                //if(true)
+                if(Objects.equals(mycaptcha, captcha))
                 {
                     //继续注册
                     jf.setVisible(false);
