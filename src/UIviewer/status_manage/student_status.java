@@ -171,10 +171,10 @@ public class student_status extends JPanel {
         }
         //设置绝对布局
         setLayout(null);
-
+/*
         //导航条
         JPanel guide=new JPanel();
-            /*
+
             //学籍管理
             JButton btnNewButton_1 = new JButton("学籍管理");
             btnNewButton_1.setFocusPainted(false);
@@ -186,7 +186,7 @@ public class student_status extends JPanel {
                     functionChoose.jf.setContentPane(functionChoose.fc_panel);
                 }
             });
-             */
+
             //图书管理
             JButton btnNewButton_2 = new JButton("图书管理");
             btnNewButton_2.setFocusPainted(false);
@@ -317,6 +317,7 @@ public class student_status extends JPanel {
             //导航条
             guide.setBounds(0,0,500,500);
             add(guide);
+            */
 
         //SEU logo
         JLabel logo = new JLabel();

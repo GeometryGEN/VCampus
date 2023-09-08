@@ -87,6 +87,8 @@ public class functionChoose {
             public void actionPerformed(ActionEvent e) {
                 //menuBar.setBackground(color7);
                 // TODO Auto-generated method stub
+                jf.remove(fc_panel);
+                Client_status.ini();
                 if(myInfo.getType()==1) {
                     try {
                         Client_status.stu_enter();
