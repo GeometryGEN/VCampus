@@ -303,8 +303,8 @@ public class student_status_table extends JPanel{
                         String student_idcard = text18.getText().trim();temp.setStudent_idcard(student_idcard);
                         String student_id = text20.getText().trim(); temp.setStudent_id(student_id);
                         String major=text22.getText().trim();temp.setMajor(major);
-                        String Class=text24.getText().trim();temp.setStudent_class(Class);
-                        String Sclass=text26.getText().trim();temp.setSclass(Sclass);
+                        String Sclass=text24.getText().trim();temp.setSclass(Sclass); //班级
+                        String grade=text26.getText().trim();temp.setStudent_class(grade); //入学年级
                         String due_gradute=text28.getText().trim();temp.setDue_graduate_date(due_gradute);
                         String type=text30.getText().trim(); temp.setStudent_type(type);
                         String campus=text32.getText().trim();temp.setCampus(campus);
