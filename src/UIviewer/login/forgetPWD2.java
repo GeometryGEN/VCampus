@@ -28,45 +28,47 @@ public class forgetPWD2{
 
         //账号密码
         JLabel l1=new JLabel("新密码:");
-        l1.setFont(new Font("等线",Font.BOLD,15));
+        l1.setFont(new Font("等线",Font.BOLD,18));
         l1.setForeground(color1);
-        l1.setBounds(240,100,250,25);
+        l1.setBounds(80,220,250,25);
         jf.add(l1);
         JPasswordField pwd=new JPasswordField();
-        pwd.setFont(new Font("宋体",Font.BOLD,12));
-        pwd.setBounds(310,100,125,25);
+        pwd.setFont(new Font("宋体",Font.BOLD,17));
+        pwd.setBounds(180,220,125,25);
+        pwd.setBorder(null);
         jf.add(pwd);
         pwd.setColumns(10);
 
         JLabel l2=new JLabel("确认密码:");
-        l2.setFont(new Font("等线",Font.BOLD,15));
+        l2.setFont(new Font("等线",Font.BOLD,18));
         l2.setForeground(color1);
-        l2.setBounds(240,150,250,25);
+        l2.setBounds(80,270,250,25);
         jf.add(l2);
         JPasswordField textField2=new JPasswordField();
-        textField2.setFont(new Font("宋体",Font.BOLD,12));
-        textField2.setBounds(310,150,125,25);
+        textField2.setFont(new Font("宋体",Font.BOLD,17));
+        textField2.setBounds(180,270,125,25);
+        textField2.setBorder(null);
         jf.add(textField2);
         textField2.setColumns(10);
 
         JLabel l7=new JLabel("身份:");
-        l7.setFont(new Font("等线",Font.BOLD,15));
+        l7.setFont(new Font("等线",Font.BOLD,18));
         l7.setForeground(color1);
-        l7.setBounds(240,200,250,25);
+        l7.setBounds(80,320,100,25);
         jf.add(l7);
         JComboBox<String> comboBox2 =new JComboBox<String>();
-        comboBox2.setBounds(310,200,80,21);
+        comboBox2.setBounds(180,320,125,25);
         comboBox2.addItem("学生");
         comboBox2.addItem("教师");
         comboBox2.setEditable(false);//不可修改的文字
         jf.add(comboBox2);
 
         JButton b1=new JButton("确认修改");
-        b1.setBounds(360,250,100,30);
+        b1.setBounds(90,390,205,30);
         b1.setBackground(color3);
         b1.setForeground(Color.white);
+        b1.setFont(new Font("楷体", Font.PLAIN, 25));
         b1.setFocusPainted(false);
-
         b1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -102,10 +104,10 @@ public class forgetPWD2{
         jf.add(b1);
 
         JPanel p11=new JPanel();
-        p11.setBounds(0,0, 400, 200);
+        p11.setBounds(0,0, 400, 180);
         JLabel pic1 = new JLabel();
         int icon1_width= 400;
-        int icon1_height=200;
+        int icon1_height=180;
         //裁减2到min的尺寸
         try {
             Thumbnails.of(new File("src/image/登录/13.jpg"))
@@ -116,13 +118,13 @@ public class forgetPWD2{
             throw new RuntimeException(e);
         }
         pic1.setIcon(new ImageIcon("src/image/登录/16_fit.jpg"));
-        pic1.setBounds(0,-15 ,400,200);
+        pic1.setBounds(0,-15 ,400,180);
         p11.add(pic1);
         p11.setBackground(color4);
         jf.add(p11);
 
         jf.setBackground(color4);
-        jf.setBounds(0,0,400,650);
+        jf.setBounds(0,0,400,500);
         jf.setLocationRelativeTo(null);
         jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         jf.setVisible(true);
