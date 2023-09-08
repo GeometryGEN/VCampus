@@ -48,49 +48,51 @@ public class Library_manager implements Serializable {
         }
     }
 
-    /**
-     * 登录信息
-     *
-     * @return {@link Message}
-     * @throws SQLException sqlexception异常
-     */
-    public Message enter_info() throws SQLException {
-        Message message = new Message();
-        message.setType(MessageType.MESSAGE_LIBRARY_ENTER_RET);
-        Info information = new Info();
-        String sql = "select * from students where Student_idcard=?;";
-        PreparedStatement st = conn.prepareStatement(sql);
-        st.setString(1, ID);
-        ResultSet rs = st.executeQuery();
-        if (rs.next()) {
-            information.id = rs.getString("Student_idcard");
-            information.name = rs.getString("Student_name");
-            message.setData(information);
-        } else {
-            sql = "select * from teachers where Teacher_idcard=?;";
-            st = conn.prepareStatement(sql);
-            st.setString(1, ID);
-            rs = st.executeQuery();
-            if (rs.next()) {
-                information.id = rs.getString("Teacher_idcard");
-                information.name = rs.getString("Teacher_name");
-                message.setData(information);
-            } else {
-                sql = "select * from teachers where Teacher_idcard=?;";
-                st = conn.prepareStatement(sql);
-                st.setString(1, ID);
-                rs = st.executeQuery();
-                if (rs.next()) {
-                    information.id = rs.getString("Admin_idcard");
-                    information.name = rs.getString("Admin_name");
-                    message.setData(information);
-                }
-            }
-        }
-        rs.close();
-        st.close();
-        return message;
-    }
+//    /**
+//     * 登录信息
+//     *
+//     * @return {@link Message}
+//     * @throws SQLException sqlexception异常
+//     */
+//
+//    public Message enter_info() throws SQLException {
+//        Message message = new Message();
+//        message.setType(MessageType.MESSAGE_LIBRARY_ENTER_RET);
+//        Info information = new Info();
+//        String sql = "select * from students where Student_idcard=?;";
+//        PreparedStatement st = conn.prepareStatement(sql);
+//        st.setString(1, ID);
+//        ResultSet rs = st.executeQuery();
+//        if (rs.next()) {
+//            information.id = rs.getString("Student_idcard");
+//            information.name = rs.getString("Student_name");
+//            message.setData(information);
+//        } else {
+//            sql = "select * from teachers where Teacher_idcard=?;";
+//            st = conn.prepareStatement(sql);
+//            st.setString(1, ID);
+//            rs = st.executeQuery();
+//            if (rs.next()) {
+//                information.id = rs.getString("Teacher_idcard");
+//                information.name = rs.getString("Teacher_name");
+//                message.setData(information);
+//            } else {
+//                sql = "select * from teachers where Teacher_idcard=?;";
+//                st = conn.prepareStatement(sql);
+//                st.setString(1, ID);
+//                rs = st.executeQuery();
+//                if (rs.next()) {
+//                    information.id = rs.getString("Admin_idcard");
+//                    information.name = rs.getString("Admin_name");
+//                    message.setData(information);
+//                }
+//            }
+//        }
+//        rs.close();
+//        st.close();
+//        return message;
+//    }
+
 
     /**
      * 列出我借阅的书

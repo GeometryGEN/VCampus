@@ -35,6 +35,7 @@ import ClientToServer.myInfo;
 import UIhandler.StatusManagement.Client_status.*;
 
 import static ClientToServer.ClientToServer.oos;
+import static UIviewer.login.functionChoose.jf;
 
 /**
  * 主面板
@@ -52,6 +53,12 @@ public class main_panel {
     static button_panel buttonPanel;
     public static RoundJButton color_choose=new RoundJButton();
 
+    Color color1=new Color(31,66,71);
+    Color color2=new Color(125,182,191);
+    Color color3=new Color(111,150,134);
+    Color color4=new Color(207,219,212);
+    Font myfont1=new Font("等线", Font.BOLD, 17);
+    Font myfont2=new Font("等线", Font.BOLD, 15);
 
     /**
      * 主面板
@@ -62,6 +69,9 @@ public class main_panel {
      * @throws IOException ioexception
      */
     public main_panel(int width, int height,int type,boolean color_switch1) throws IOException {
+        jf.getJMenuBar().setBackground(color2);
+        jf.getJMenuBar().getMenu(0).setForeground(color1);
+
         final boolean[] color_switch = {color_switch1};
         double width_r=(double)(width)/1920;
         double height_r=(double)(height)/1080;
@@ -215,6 +225,8 @@ public class main_panel {
             functionChoose.back_from_student_status.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
+                    jf.getJMenuBar().setBackground(new Color(125,182,191));
+                    jf.getJMenuBar().getMenu(0).setForeground(new Color(31,66,71));
                     functionChoose.jf.remove(functionChoose.jf.getContentPane());
                     functionChoose.jf.setContentPane(functionChoose.fc_panel);
                     functionChoose.jf.setTitle("functionChoose");
@@ -272,6 +284,7 @@ public class main_panel {
             buttonPanel.add(color_choose);
         }
 
+        /*
         //导航条
         JPanel guide =new JPanel();
         //学籍管理
@@ -405,6 +418,8 @@ public class main_panel {
         //导航条
         guide.setBounds(200,0,700,20);
         mjp.add(guide);
+
+         */
 
         //好友列表
         Client_qicq.Require_friend_list();

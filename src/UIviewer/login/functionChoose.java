@@ -64,6 +64,12 @@ public class functionChoose {
     static Font myfont2=new Font("等线", Font.BOLD, 15);
 
     public static JMenuBar menuBar=new JMenuBar();
+    public static JMenu menu1=new JMenu("功能选择");
+    public static JMenuItem item1 = new JMenuItem("学籍管理");
+    public static JMenuItem item2 = new JMenuItem("校园图书馆");
+    public static JMenuItem item3 = new JMenuItem("校园超市");
+    public static JMenuItem item4 = new JMenuItem("站内通信");
+    public static JMenuItem item5 = new JMenuItem("选课");
 
     /**
      * 功能选择界面
@@ -71,18 +77,19 @@ public class functionChoose {
     public static void functionChooseUI() throws SQLException {
         jf = new JFrame("欢迎使用VCampus虚拟校园系统，请选择您的服务！");
         //菜单栏
-        JMenu menu1=new JMenu("功能选择");
+
         menu1.setFont(myfont3);
         menuBar.add(menu1);
 
-        JMenuItem item1 = new JMenuItem("学籍管理");
         item1.setFont(myfont2);
         item1.setBackground(color9);
         item1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                menuBar.setBackground(color7);
+                //menuBar.setBackground(color7);
                 // TODO Auto-generated method stub
+                jf.remove(fc_panel);
+                Client_status.ini();
                 if(myInfo.getType()==1) {
                     try {
                         Client_status.stu_enter();
@@ -103,13 +110,12 @@ public class functionChoose {
             }
 
         });
-        JMenuItem item2 = new JMenuItem("校园图书馆");
         item2.setFont(myfont2);
         item2.setBackground(color9);
         item2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                menuBar.setBackground(color9);
+                //menuBar.setBackground(color9);
                 //jf.remove(panel);
                 try {
                     Client_qicq.setId(myInfo.getId());
@@ -134,9 +140,8 @@ public class functionChoose {
                 }
             }
         });
-        JMenuItem item3 = new JMenuItem("校园超市");
         item3.setFont(myfont2);
-        item3.setBackground(color1);
+        item3.setBackground(color9);
         item3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -163,9 +168,8 @@ public class functionChoose {
                 }
             }
         });
-        JMenuItem item4 = new JMenuItem("站内通信");
         item4.setFont(myfont2);
-        item4.setBackground(color7);
+        item4.setBackground(color9);
         item4.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -187,7 +191,6 @@ public class functionChoose {
                 }
             }
         });
-        JMenuItem item5 = new JMenuItem("选课");
         item5.setFont(myfont2);
         item5.setBackground(color9);
         item5.addActionListener(new ActionListener() {
@@ -216,7 +219,6 @@ public class functionChoose {
                 }
             }
         });
-
         menu1.add(item1);
         menu1.add(item2);
         menu1.add(item3);

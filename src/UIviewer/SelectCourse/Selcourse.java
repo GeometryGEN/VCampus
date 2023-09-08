@@ -20,7 +20,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-
+import UIviewer.login.functionChoose.*;
 /**
  * selcourse
  *
@@ -28,6 +28,8 @@ import java.net.URL;
  * @date 2022/09/03
  */
 public class Selcourse extends JPanel {
+
+
     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
     int width=(int ) screensize.getWidth(); //得到宽度
     int height=(int ) screensize.getHeight();//获得高度
@@ -46,6 +48,8 @@ public class Selcourse extends JPanel {
      */
     public Selcourse()
     {
+        functionChoose.jf.getJMenuBar().setBackground(new Color(68,84,105));
+        functionChoose.jf.getJMenuBar().getMenu(0).setForeground(new Color(255,255,255));
 //
 //        //导航条
 //        JPanel guide=new JPanel();

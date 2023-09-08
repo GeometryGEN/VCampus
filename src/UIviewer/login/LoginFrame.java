@@ -56,7 +56,7 @@ public class LoginFrame extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
                 try {
-                    forgetPWDUI();
+                    registerUI();
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
@@ -70,7 +70,7 @@ public class LoginFrame extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
                 try {
-                    registerUI();
+                    forgetPWDUI();
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }

@@ -25,7 +25,7 @@ public class Admin_SM_utils {
      */
     public static boolean changeStudentInfo(Student s) throws SQLException {
         Connection connection = JDBC_Connector.ConnectMySQL();
-        String sql = "update students set Student_id= ?,Student_name= ?,Student_age= ?,Student_gender= ?,Student_email= ?,Student_class= ?,Student_nation= ?,Student_birthday= ?,Student_native_place= ?,Student_major= ?,Student_type= ?,Student_Due_graduate_date= ?,Student_Campus= ?,Student_Sclass= ?,Students_shenfenzheng= ? where Student_idcard=? ";
+        String sql = "update students set Student_id= ?,Student_name= ?,Student_age= ?,Student_gender= ?,Student_email= ?,Student_class= ?,Student_nation= ?,Student_birthday= ?,Student_native_place= ?,Student_major= ?,Student_type= ?,Student_Due_graduate_date= ?,Student_Campus= ?,Student_Scalss= ?,Student_shenfenzheng= ? where Student_idcard=? ";
         PreparedStatement ps = connection.prepareStatement(sql);
         ps.setString(1, s.getStudent_id());
         ps.setString(2, s.getStudent_name());

@@ -20,7 +20,7 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.nio.channels.spi.AbstractInterruptibleChannel;
-
+import UIviewer.login.functionChoose.*;
 /**
  * selcourse老师
  *
@@ -31,6 +31,7 @@ public class Selcourse_teacher extends JPanel {
     /**
      * 拉
      */
+
     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
     /**
      * 宽度
@@ -74,6 +75,8 @@ public class Selcourse_teacher extends JPanel {
      */
     public Selcourse_teacher()
     {
+        functionChoose.jf.getJMenuBar().setBackground(new Color(68,84,105));
+        functionChoose.jf.getJMenuBar().getMenu(0).setForeground(new Color(255,255,255));
         String name=myInfo.getName();
         getName(name);
         setBounds(0,0,(int)(1273*width_r),(int)(790*height_r));
@@ -280,7 +283,7 @@ public class Selcourse_teacher extends JPanel {
 
         // 按钮2
         JButton btnNewButton_2 = new JButton("查询选课情况");
-        btnNewButton_2.setBounds((int)(160*width_r), (int)(100*height_r), (int)(160*width_r), (int)(50*height_r));
+        btnNewButton_2.setBounds((int)(320*width_r), (int)(100*height_r), (int)(160*width_r), (int)(50*height_r));
         btnNewButton_2.setFont(myfont);
         btnNewButton_2.setFocusPainted(false);
         btnNewButton_2.setForeground(new Color(220, 220, 220));
@@ -299,7 +302,8 @@ public class Selcourse_teacher extends JPanel {
 
         // 按钮3
         JButton btnNewButton_3 = new JButton("申报课程状态");
-        btnNewButton_3.setBounds((int)(320*width_r), (int)(100*height_r), (int)(160*width_r), (int)(50*height_r));
+
+        btnNewButton_3.setBounds((int)(160*width_r), (int)(100*height_r), (int)(160*width_r), (int)(50*height_r));
         btnNewButton_3.setFont(myfont);
         btnNewButton_3.setFocusPainted(false);
         btnNewButton_3.setForeground(new Color(220, 220, 220));
@@ -318,7 +322,7 @@ public class Selcourse_teacher extends JPanel {
         add(btnNewButton_3);
 
         //按钮4
-        JButton btnNewButton_4 = new JButton("申报课程");
+        JButton btnNewButton_4 = new JButton("课程申报");
         btnNewButton_4.setBounds((int)(480*width_r), (int)(100*height_r), (int)(160*width_r), (int)(50*height_r));
         btnNewButton_4.setFont(myfont);
         btnNewButton_4.setFocusPainted(false);
@@ -376,22 +380,6 @@ public class Selcourse_teacher extends JPanel {
         p2.setBackground(new Color(68,84,105));
         add(p2);
 
-        //东南大学标志图片
-//        JLabel l15 = new JLabel();
-//        ImageIcon icon6 = new ImageIcon("src/image/background2.jpg");
-//        int icon6_width= 1273;
-//        int icon6_height=790;
-//        try {
-//            Thumbnails.of(new File("src/image/background2.jpg"))
-//                    .size((int)(icon6_width*width_r), (int)(icon6_height*height_r))
-//                    .keepAspectRatio(false)
-//                    .toFile(new File("src/image/background2_min.jpg"));
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//        l15.setIcon(new ImageIcon("src/image/background2_min.jpg"));
-//        l15.setBounds(0, 0, (int)(1273*width_r), (int)(790*height_r));
-//        add(l15);
-//        setVisible(true);
+
     }
 }

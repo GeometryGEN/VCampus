@@ -292,22 +292,24 @@ public class student_status_table extends JPanel{
                     int result=JOptionPane.showConfirmDialog(null, "确认提交本次修改内容吗", "提示", JOptionPane.OK_CANCEL_OPTION);
                     if(JOptionPane.OK_OPTION==result){
                         Student temp = new Student();
-                        String idcard=text2.getText().trim();temp.setStudent_idcard(idcard);
-                        String id=text4.getText().trim();temp.setStudent_id(id);
-                        String name=text6.getText().trim();temp.setStudent_name(name);
-                        String age=text8.getText().trim();temp.setStudent_age(Integer.parseInt(age));
-                        String gender=text10.getText().trim();temp.setStudent_gender(gender);
-                        String nation=text12.getText().trim();temp.setNation(nation);
-                        String shenfenzheng=text14.getText().trim();temp.setID(shenfenzheng);
-                        String birthday=text16.getText().trim();    temp.setBirthday(birthday);
-                        String natibe_place=text18.getText().trim();temp.setNative_place(natibe_place);
-                        String major=text20.getText().trim();temp.setMajor(major);
-                        String Class=text22.getText().trim();temp.setStudent_class(Class);
-                        String type=text24.getText().trim(); temp.setStudent_type(type);
+                        String name=text2.getText().trim();temp.setStudent_name(name);
+                        String nation=text4.getText().trim();temp.setNation(nation);
+                        String age=text6.getText().trim();temp.setStudent_age(Integer.parseInt(age));
+                        String natibe_place=text8.getText().trim();temp.setNative_place(natibe_place);
+                        String birthday=text10.getText().trim();    temp.setBirthday(birthday);
+                        String shenfenzheng=text12.getText().trim();temp.setID(shenfenzheng);
+                        String gender=text14.getText().trim();temp.setStudent_gender(gender);
+                        String email=text16.getText().trim();temp.setStudent_email(email);
+                        String student_idcard = text18.getText().trim();temp.setStudent_idcard(student_idcard);
+                        String student_id = text20.getText().trim(); temp.setStudent_id(student_id);
+                        String major=text22.getText().trim();temp.setMajor(major);
+                        String Class=text24.getText().trim();temp.setStudent_class(Class);
                         String Sclass=text26.getText().trim();temp.setSclass(Sclass);
-                        String campus=text28.getText().trim();temp.setCampus(campus);
-                        String due_gradute=text30.getText().trim();temp.setDue_graduate_date(due_gradute);
-                        String email=text32.getText().trim();temp.setStudent_email(email);
+                        String due_gradute=text28.getText().trim();temp.setDue_graduate_date(due_gradute);
+                        String type=text30.getText().trim(); temp.setStudent_type(type);
+                        String campus=text32.getText().trim();temp.setCampus(campus);
+
+
                         /*try {
                             if(Client_status.renewInfo(temp))
                                 JOptionPane.showMessageDialog(null, "修改学生信息成功!");

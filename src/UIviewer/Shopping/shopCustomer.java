@@ -88,7 +88,8 @@ public class shopCustomer extends JPanel {
      * @throws Exception 异常
      */
     public shopCustomer() throws Exception {
-
+        jf.getJMenuBar().setBackground(color2);
+        jf.getJMenuBar().getMenu(0).setForeground(Color.white);
 
         String name="1";
         double money = 0;
@@ -111,7 +112,7 @@ public class shopCustomer extends JPanel {
         new FuctionJump();
         add(panel2);
         panel2.setVisible(false);
-
+/*
         JButton Fucchoose = new JButton("功能");
         Fucchoose.setBounds(width-80,height/2-105,80,30);
         Fucchoose.setFont(myfont1);
@@ -126,6 +127,8 @@ public class shopCustomer extends JPanel {
             }
         });
         add(Fucchoose);
+
+ */
 
         panel.setBounds(0, (int) (150*height_r), (int) (1273*width_r), (int) (634*height_r));
         panel.setBackground(color5);
@@ -151,7 +154,7 @@ public class shopCustomer extends JPanel {
             temp[i]=tt;
         }
         ShoppingHall.setShoptable(temp);
-
+/*
         JPanel guide =new JPanel();
         //学籍管理
         JButton btnNewButton_1 = new JButton("学籍管理");
@@ -279,6 +282,8 @@ public class shopCustomer extends JPanel {
         //导航条
         guide.setBounds(0,0,500,500);
         add(guide);
+
+ */
 
         //测试各个界面
         ShoppingHall f1=new ShoppingHall();
@@ -466,6 +471,8 @@ public class shopCustomer extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
+                jf.getJMenuBar().setBackground(new Color(125,182,191));
+                jf.getJMenuBar().getMenu(0).setForeground(new Color(31,66,71));
                 jf.setContentPane(functionChoose.fc_panel);
                 jf.setTitle("functionChoose");
                 cardLayout.show(panel, "f1");
