@@ -215,6 +215,7 @@ public class readLib extends JPanel {
         //导航条
         guide.setBounds(0,0,500,500);
         add(guide);
+        */
 
         //图书馆标志与背景
         JLabel logo = new JLabel();
@@ -232,8 +233,6 @@ public class readLib extends JPanel {
             Font font = new Font("微软雅黑", Font.BOLD, (int) (20*width_r));
             l1.setFont(font);
             add(l1);
-
-         */
 
         //上方面板
         JPanel p1 = new JPanel();

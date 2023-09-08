@@ -102,7 +102,7 @@ public class shopAdmin extends JPanel {
         Client_shop.setId(String.valueOf(myInfo.getType()));
         Client_shop.setIdcard(myInfo.getId());
         AllGoods.setTableDate(temp);
-
+/*
         JPanel guide =new JPanel();
         //学籍管理
         JButton btnNewButton_1 = new JButton("学籍管理");
@@ -231,6 +231,8 @@ public class shopAdmin extends JPanel {
         guide.setSize(500,200);
         guide.setBounds(0,0,500,200);
 
+ */
+
 
         //测试页面！！！
         AllGoods f11=new AllGoods();
@@ -345,7 +347,7 @@ public class shopAdmin extends JPanel {
         p2.setBackground(color3);
         //p2.setBackground(new Color(125,182,191));
         add(p2);
-        add(guide);
+        //add(guide);
 
         setVisible(true);
     }
