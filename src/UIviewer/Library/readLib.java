@@ -66,6 +66,7 @@ public class readLib extends JPanel {
      */
     public readLib(){
         jf.getJMenuBar().setBackground(color2);
+        jf.getJMenuBar().getMenu(0).setForeground(Color.white);
         //测试UI时先不获取名字。将其设为空
         String name=myInfo.getName();
         //String name=null;
@@ -307,6 +308,7 @@ public class readLib extends JPanel {
                 public void actionPerformed(ActionEvent e) {
                     // TODO Auto-generated method stub
                     jf.getJMenuBar().setBackground(new Color(125,182,191));
+                    jf.getJMenuBar().getMenu(0).setForeground(new Color(31,66,71));
                 functionChoose.jf.setContentPane(functionChoose.fc_panel);
                 functionChoose.jf.setTitle("functionChoose");
                 cardLayout.show(panel, "f1");

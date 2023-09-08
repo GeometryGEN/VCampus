@@ -88,7 +88,8 @@ public class shopCustomer extends JPanel {
      * @throws Exception 异常
      */
     public shopCustomer() throws Exception {
-        jf.getJMenuBar().setBackground(color5);
+        jf.getJMenuBar().setBackground(color2);
+        jf.getJMenuBar().getMenu(0).setForeground(Color.white);
 
         String name="1";
         double money = 0;
@@ -467,6 +468,7 @@ public class shopCustomer extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
                 jf.getJMenuBar().setBackground(new Color(125,182,191));
+                jf.getJMenuBar().getMenu(0).setForeground(new Color(31,66,71));
                 jf.setContentPane(functionChoose.fc_panel);
                 jf.setTitle("functionChoose");
                 cardLayout.show(panel, "f1");

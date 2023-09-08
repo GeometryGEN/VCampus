@@ -72,6 +72,8 @@ public class shopAdmin extends JPanel {
      * @throws Exception 异常
      */
     public shopAdmin() throws Exception {
+        jf.getJMenuBar().setBackground(color2);
+        jf.getJMenuBar().getMenu(0).setForeground(Color.white);
         //String name=null;
         String name=myInfo.getName();
         getName(name);
@@ -329,6 +331,7 @@ public class shopAdmin extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
                 jf.getJMenuBar().setBackground(new Color(125,182,191));
+                jf.getJMenuBar().getMenu(0).setForeground(new Color(31,66,71));
                 functionChoose.jf.setContentPane(functionChoose.fc_panel);
                 functionChoose.jf.setTitle("functionChoose");
                 //cardLayout.show(panel, "f1");
