@@ -24,7 +24,6 @@ public class QuestionModule {
             System.out.println("本次回答花费：" + questionModule.timeConsuming + "秒。虽然有点慢，但我尽力了呢~ ^.^");
             System.out.println(questionModule.answer);
         }
-
     }
 
 }
