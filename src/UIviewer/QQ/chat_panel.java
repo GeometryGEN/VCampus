@@ -44,6 +44,8 @@ public class chat_panel extends JPanel {
     static Color color2=new Color(68,84,105);
     static Color color3=new Color(51,51,51);
     static Color color4=new Color(69,69,69);
+    static String font1="Times New Roman";
+    static String font2="宋体";
 
     /**
      * 插入文本
@@ -53,11 +55,14 @@ public class chat_panel extends JPanel {
      * @param textSize  文字大小
      * @param textAlign 文本对齐
      */
-    public static void insertText(String text, Color colorName, int textSize, int textAlign){
+    public static void insertText(String text, Color colorName, int textSize, int textAlign,String fam){
         SimpleAttributeSet set = new SimpleAttributeSet();
         StyleConstants.setForeground(set, colorName);//设置文本颜色
         StyleConstants.setFontSize(set, textSize);//设置文本大小
         StyleConstants.setAlignment(set, textAlign);//设置文本对齐方式
+        //StyleConstants.setFontFamily(set, "Times New Roman"); // 设置文本字体
+        StyleConstants.setFontFamily(set, fam); // 设置文本字体
+        //set.setAttribute(org.apache.poi.xwpf.usermodel.XWPFDocument.ANNOTATION_TYPE_TEXT, "font-family", "Times New Roman");
         doc.setParagraphAttributes(jTextPane.getText().length(), doc.getLength() - jTextPane.getText().length(), set, false);
         try {
             doc.insertString(doc.getLength(), text+"\n", set);//插入文本
@@ -104,7 +109,7 @@ public class chat_panel extends JPanel {
         //开头空格
         SimpleAttributeSet set = new SimpleAttributeSet();
         StyleConstants.setFontSize(set, 0);//设置文本大小
-        StyleConstants.setAlignment(set, 1);//设置文本对齐方式
+        StyleConstants.setAlignment(set, StyleConstants.ALIGN_RIGHT);//设置文本对齐方式
         doc.setParagraphAttributes(jTextPane.getText().length(), doc.getLength() - jTextPane.getText().length(), set, false);
         try {
             doc.insertString(doc.getLength(), " ", set);//插入文本
@@ -116,37 +121,38 @@ public class chat_panel extends JPanel {
 //            System.out.println(messages.get(i).getSendTime());
             if(messages.get(i).isfile==1)
             {
-
                 if(messages.get(i).getSender().equals(myInfo.getId())){
-                    insertText(messages.get(i).getSendTime(),new Color(122,122,123),(int)(16*width_r),1);
-                    insertText(myInfo.getName()+"(我)"+":",Color.black,(int)(22*width_r),2);
+                    insertText(messages.get(i).getSendTime(),new Color(122,122,123),(int)(16*width_r),1,font1);
+                    insertText(myInfo.getName()+"(我)"+":",Color.black,(int)(22*width_r),1,font2);
                     Filetrans f=(Filetrans)messages.get(i).getData();
-                    insertText((String)"给对方发送文件:  "+f.getName(),color2,(int)(42*width_r),2);
+                    insertText((String)"给对方发送文件:  "+f.getName(),color2,(int)(42*width_r),1,font2);
                 }
                 else{
                     Filetrans f=(Filetrans)messages.get(i).getData();
-                    insertText(messages.get(i).getSendTime(),new Color(122,122,123),(int)(16*width_r),1);
-                    insertText( friend.getName()+":",color1,(int)(22*width_r),0);
-                    insertText((String)(String)"收到对方发送的文件:  "+f.getName(),color2,(int)(42*width_r),0);
+                    insertText(messages.get(i).getSendTime(),new Color(122,122,123),(int)(22*width_r),1,font1);
+                    insertText( friend.getName()+":",color1,(int)(16*width_r),0,font2);
+                    insertText((String)(String)"收到对方发送的文件:  "+f.getName(),color2,(int)(42*width_r),0,font2);
                     files.add(f);
                 }
             }
             else {
                 if(messages.get(i).getSender().equals(myInfo.getId())){
+                    //消息是由我发送的
                     Color color=Color.white;
                     if(functionChoose.color_switch){
                         color=Color.black;
                     }else{
                         color=Color.white;
                     }
-                    insertText(messages.get(i).getSendTime(),new Color(122,122,123),(int)(16*width_r),1);
-                    insertText(myInfo.getName()+"(我)"+":",color,(int)(22*width_r),2);
-                    insertText((String)(messages.get(i).getData()),color,(int)(42*width_r),2);
+                    insertText(messages.get(i).getSendTime(),new Color(122,122,123),(int)(16*width_r),1,font1);
+                    insertText(myInfo.getName()+"(我)"+":",color,(int)(16*width_r),StyleConstants.ALIGN_RIGHT,font2);
+                    insertText((String)(messages.get(i).getData()),color,(int)(20*width_r),StyleConstants.ALIGN_RIGHT,font2);
                 }
                 else{
-                    insertText(messages.get(i).getSendTime(),new Color(122,122,123),(int)(16*width_r),1);
-                    insertText(friend.getName()+":",color1,(int)(22*width_r),0);
-                    insertText((String)(messages.get(i).getData()),color1,(int)(42*width_r),0);
+                    //消息是由朋友发给我的
+                    insertText(messages.get(i).getSendTime(),new Color(122,122,123),(int)(16*width_r),1,font2);
+                    insertText(friend.getName()+":",color1,(int)(16*width_r),StyleConstants.ALIGN_LEFT,font2);
+                    insertText((String)(messages.get(i).getData()),color1,(int)(20*width_r),StyleConstants.ALIGN_LEFT,font2);
                 }
             }
 
@@ -161,9 +167,7 @@ public class chat_panel extends JPanel {
             close_button.setLocation((int)(650*width_r),(int)(900*height_r));
             receive_button.setFocusPainted(false);
         }
-
         jTextPane.setEditable(false);
-
         jTextPane.updateUI();
         jTextPane.setCaretPosition(jTextPane.getStyledDocument().getLength());
     }
@@ -428,8 +432,8 @@ public class chat_panel extends JPanel {
             }else{
                 color=Color.white;
             }
-                insertText(messages.get(i).getSendTime(),new Color(122,122,123),(int)(16*width_r),1);
-                insertText((String)(messages.get(i).getData()),color,(int)(42*width_r),1);
+                insertText(messages.get(i).getSendTime(),new Color(122,122,123),(int)(22*width_r),1,font1);
+                insertText((String)(messages.get(i).getData()),color,(int)(42*width_r),StyleConstants.ALIGN_LEFT,font2);
         }
 
         jTextPane.setEditable(false);

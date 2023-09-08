@@ -53,7 +53,6 @@ public class friend_list{
         count_friend=0;
         count_tag=0;
 
-
        //System.out.println("shit3");
         //admin
         if(myInfo.getType()!=3){

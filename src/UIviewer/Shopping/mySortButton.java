@@ -78,6 +78,9 @@ public class mySortButton extends JButton {
         setFocusPainted(false);
         init();
 
+        //JLabel labelnote=new JLabel("抱歉，暂无符合条件的商品。");
+
+
         addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
@@ -114,7 +117,8 @@ public class mySortButton extends JButton {
                     List <Product> t =new ArrayList<>();
                     if(text=="食品/酒水"){
                         //tn!=null时才能addall
-                        t.addAll(Client_shop.checktypeProduct("零食"));
+                        List <Product> t1=(Client_shop.checktypeProduct("零食"));
+                        t=additem(t,t1);
                         List <Product> t2=(Client_shop.checktypeProduct("饼干"));
                         t=additem(t,t2);
                         System.out.println("additem(t,t2); !!!!");
@@ -125,26 +129,31 @@ public class mySortButton extends JButton {
                         //记得把下面的都改了！！！不能加空的！！！！！！
                         //！！！！
                     } else if (text=="医药/保健") {
-                        t.addAll(Client_shop.checktypeProduct("医药"));
+                        List <Product> t1=(Client_shop.checktypeProduct("医药"));
+                        t=additem(t,t1);
                         List <Product> t2=(Client_shop.checktypeProduct("保健"));
                         t=additem(t,t2);
                     }else if (text=="电子数码") {
-                        t.addAll(Client_shop.checktypeProduct("手机"));
+                        List <Product> t1=(Client_shop.checktypeProduct("手机"));
+                        t=additem(t,t1);
                         List <Product> t2=(Client_shop.checktypeProduct("数码"));
                         t=additem(t,t2);
                         List <Product> t3=(Client_shop.checktypeProduct("电器"));
                         t=additem(t,t3);
                     }else if (text=="图书/文娱") {
-                        t.addAll(Client_shop.checktypeProduct("手机"));
+                        List <Product> t1=(Client_shop.checktypeProduct("手机"));
+                        t=additem(t,t1);
                     }else if (text=="服饰/运动") {
-                        t.addAll(Client_shop.checktypeProduct("饰品"));
+                        List <Product> t1=(Client_shop.checktypeProduct("饰品"));
+                        t=additem(t,t1);
                         List <Product> t2=(Client_shop.checktypeProduct("男装"));
                         t=additem(t,t2);
                         List <Product> t3=(Client_shop.checktypeProduct("运动"));
                         t=additem(t,t3);
                     }
                     else if (text=="生活百货") {
-                        t.addAll(Client_shop.checktypeProduct("百货"));
+                        List <Product> t1=(Client_shop.checktypeProduct("百货"));
+                        t=additem(t,t1);
                         List <Product> t2=(Client_shop.checktypeProduct("厨具"));
                         t=additem(t,t2);
                         List <Product> t3=(Client_shop.checktypeProduct("家装"));

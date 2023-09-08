@@ -98,22 +98,22 @@ public class LoginFrame extends JFrame{
         jf.add(vcam);
         //账号密码
         JLabel lblNewLabel = new JLabel("一卡通号:");
-        lblNewLabel.setIcon(new ImageIcon("src/image/登录/09.png"));
+        lblNewLabel.setIcon(new ImageIcon("src/image/登录/17.png"));
         lblNewLabel.setFont(new Font("等线", Font.BOLD, 20));
         lblNewLabel.setForeground(color1);
         lblNewLabel.setBounds(380, 320, 250, 25);
         jf.add(lblNewLabel);
 
-        JLabel lblNewLabel_1 = new JLabel("密  码:");
-        lblNewLabel_1.setIcon(new ImageIcon("src/image/登录/10.png"));
+        JLabel lblNewLabel_1 = new JLabel("   密  码:");
+        lblNewLabel_1.setIcon(new ImageIcon("src/image/登录/18.png"));
         lblNewLabel_1.setFont(new Font("等线", Font.BOLD, 20));
         lblNewLabel_1.setForeground(color1);
-        lblNewLabel_1.setBounds(390, 365, 250, 25);
+        lblNewLabel_1.setBounds(380, 365, 250, 25);
         jf.add(lblNewLabel_1);
 
         textField=new JTextField();
         textField.setFont(new Font("宋体", Font.BOLD, 16));
-        textField.setBounds(500, 320, 125, 20);
+        textField.setBounds(500, 320, 125, 25);
         textField.setBackground(color4);
         //textField.setBorder(null);
         jf.add(textField);
@@ -121,7 +121,7 @@ public class LoginFrame extends JFrame{
 
         passwordField=new JPasswordField();
         passwordField.setFont(new Font("宋体", Font.BOLD, 16));
-        passwordField.setBounds(500, 365, 125, 20);
+        passwordField.setBounds(500, 365, 125, 25);
         passwordField.setBackground(color4);
         //passwordField.setBorder(null);
         jf.add(passwordField);
