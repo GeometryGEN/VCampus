@@ -6,6 +6,7 @@ import UIhandler.Currirulum.Client_curriculum;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -40,10 +41,14 @@ public class ConsultCourse_stuInfo extends JPanel {
                 return false;
             }
         };
+        JTableHeader jTableHeader=table_want.getTableHeader();
+        jTableHeader.setFont(new Font("楷体",Font.BOLD,18));
+        jTableHeader.setBackground(new Color(68,84,105));
+        jTableHeader.setForeground(new Color(255,248,250));
         JScrollPane jsp=new JScrollPane(table_want);
         jsp.setBounds(0,0,(int)(1280*width_r),(int)(300*height_r));
         add(jsp);
-        table_want.setRowHeight(40);
+        table_want.setRowHeight((int)(30*height_r));
         table_want.getColumnModel().getColumn(0).setPreferredWidth(100);
         table_want.getColumnModel().getColumn(1).setPreferredWidth(150);
         table_want.getColumnModel().getColumn(2).setPreferredWidth(60);
@@ -55,13 +60,19 @@ public class ConsultCourse_stuInfo extends JPanel {
                 @Override
                 public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
                     if (column!=5) {
-                        setBackground(Color.white);
+                        if (row % 2 == 0) {
+                            setBackground(new Color(237, 253, 254));
+                        } else {
+                            setBackground(new Color(169, 189, 205));
+                        }
                     }else {
                         setBackground(new Color(54, 124, 255,100));
                     }
                     return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
                 }
             };
+            tcr.setHorizontalAlignment(JLabel.CENTER);
+            table_want.setDefaultRenderer(Object.class, tcr);
 
             for (int i = 0; i < table_want.getColumnCount(); i++)
             {
@@ -122,9 +133,34 @@ public class ConsultCourse_stuInfo extends JPanel {
         };
         jsp2.setBounds(0,(int)(320*height_r),(int)(1280*width_r),(int)(280*height_r));
         add(jsp2);
-        table_want2.setRowHeight(50);
+        JTableHeader jTableHeader2=table_want2.getTableHeader();
+        jTableHeader2.setFont(new Font("楷体",Font.BOLD,18));
+        jTableHeader2.setBackground(new Color(68,84,105));
+        jTableHeader2.setForeground(new Color(255,248,250));
         table_want.setFont(new Font("微软雅黑",Font.BOLD, (int) (14*width_r)));
         table_want2.setFont(new Font("楷体",Font.BOLD, (int) (14*width_r)));
+        try {
+            DefaultTableCellRenderer tcr1 = new DefaultTableCellRenderer() {
+                @Override
+                public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                    if (row % 2 == 0) {
+                        setBackground(new Color(237,253,254));
+                    } else {
+                        setBackground(new Color(169,189,205));
+                    }
+                    return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+                }
+            };
+            //居中
+            tcr1.setHorizontalAlignment(JLabel.CENTER);
+            table_want2.setDefaultRenderer(Object.class, tcr1);
+            for (int i = 0; i < table_want.getColumnCount(); i++)
+            {
+                table_want2.getColumn(table_want.getColumnName(i)).setCellRenderer(tcr1);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
 }

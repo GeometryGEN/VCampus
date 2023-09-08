@@ -70,6 +70,7 @@ public class functionChoose {
     public static JMenuItem item3 = new JMenuItem("校园超市");
     public static JMenuItem item4 = new JMenuItem("站内通信");
     public static JMenuItem item5 = new JMenuItem("选课");
+    public static JMenuItem item6 = new JMenuItem("智能助手");
 
     /**
      * 功能选择界面
@@ -219,11 +220,29 @@ public class functionChoose {
                 }
             }
         });
+        item6.setFont(myfont2);
+        item6.setBackground(color9);
+        item6.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        // TODO Auto-generated method stub
+                        //JOptionPane.showMessageDialog(null,"正在开发中，敬请期待！");
+                        jf.remove(fc_panel);
+                        try {
+                            jf.remove(fc_panel);
+                            jf.setContentPane(new gpt_panel());
+                            jf.setTitle("欢迎来到智能问答系统");
+                        } catch (Exception ex) {
+                            throw new RuntimeException(ex);
+                        }
+                    }
+                });
         menu1.add(item1);
         menu1.add(item2);
         menu1.add(item3);
         menu1.add(item4);
         menu1.add(item5);
+        menu1.add(item6);
         menuBar.setBackground(color7);
         jf.setJMenuBar(menuBar);
 

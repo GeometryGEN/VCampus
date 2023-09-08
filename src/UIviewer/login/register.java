@@ -127,8 +127,8 @@ public class register {
                 //测试中先直接点进去，不用验证
                 //jf.setVisible(false);
                 //registerUI2(textField10.getText(),textField3.getText());
-                //if(true)
-                if(Objects.equals(mycaptcha, captcha))
+                if(true)
+                //if(Objects.equals(mycaptcha, captcha))
                 {
                     //继续注册
                     jf.setVisible(false);
@@ -167,15 +167,7 @@ public class register {
         p11.add(pic1);
         p11.setBackground(color4);
         jf.add(p11);
-        /*
-        //背景图片
-        JLabel lblBackground=new JLabel(); // 创建一个标签组件对象
-        ImageIcon icon=new ImageIcon("src/image/登录/04.png"); // 创建背景图片对象
-        lblBackground.setIcon(icon); // 设置标签组件要显示的图标
-        lblBackground.setBounds(50,0,icon.getIconWidth(),icon.getIconHeight()); // 设置组件的显示位置及大小
-        jf.getContentPane().add(lblBackground);
 
-         */
         jf.setBackground(color4);
         jf.setBounds(0,0,400,650);
         jf.setLocationRelativeTo(null);
