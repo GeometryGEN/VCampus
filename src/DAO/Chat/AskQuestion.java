@@ -11,7 +11,7 @@ public class AskQuestion {
     public String apiKey;
     public static CustomChatGpt customChatGpt;
 
-    AskQuestion(){
+    public AskQuestion(){
         httpClient = HttpClients.createDefault();
         apiKey = "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";
         customChatGpt = new CustomChatGpt(apiKey);

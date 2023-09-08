@@ -2,6 +2,7 @@ package DAO.Chat;
 
 import java.io.IOException;
 import java.util.Scanner;
+import UIviewer.chatgpt.gpt_panel;
 
 public class QuestionModule {
     QuestionModule(double timeConsuming,String answer){
@@ -11,12 +12,11 @@ public class QuestionModule {
     public double timeConsuming;
     public String answer;
 
-    public static void main(String[] args) throws IOException {
+    public static void chatgpt(String question) throws IOException {
         AskQuestion askQuestion = new AskQuestion();
         QuestionModule questionModule;
         while (true) {
             System.out.print("\n你有什么想问我的嘛？如果想退出系统，请输入‘q’哦！^_^\n");
-            String question = new Scanner(System.in).nextLine();
             if(question.equals("q")){
                 break;
             }

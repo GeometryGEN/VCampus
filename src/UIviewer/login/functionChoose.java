@@ -24,6 +24,7 @@ import UIhandler.QICQ.Client_qicq;
 import UIviewer.Library.readLib;
 import UIviewer.Shopping.shopAdmin;
 import UIviewer.Shopping.shopCustomer;
+import UIviewer.chatgpt.gpt_panel;
 import UIviewer.status_manage.manage_status;
 import connection.JDBC_Connector;
 import net.coobird.thumbnailator.Thumbnails;
@@ -697,14 +698,21 @@ public class functionChoose {
                 l33.setIcon(new ImageIcon("src/image/校园超市_min.png"));
                 l33.setBounds((int) (675*width_r), (int) (250*height_r), (int) (icon8_width*width_r), (int) (icon8_height*height_r));
                 fc_panel.add(l33);
-                //敬请期待
-                JButton btnNewButton_7 = new JButton("敬请期待");
+                //智能助手
+                JButton btnNewButton_7 = new JButton("智能助手");
                 btnNewButton_7.setFocusPainted(false);
                 btnNewButton_7.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        // TODO Auto-generated method stub
-                        JOptionPane.showMessageDialog(null,"正在开发中，敬请期待！");
+                        try{
+                            jf.remove(fc_panel);
+                            jf.setContentPane(new gpt_panel());
+                            jf.setTitle("欢迎来到智能问答系统");
+                        }catch (Exception ex){
+                            ex.printStackTrace();
+                        }
+                        jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+                        jf.setVisible(true);
                     }
                 });
                 btnNewButton_7.setBounds((int) (670*width_r), (int) (595*height_r), (int) (200*width_r), (int) (28*height_r));
