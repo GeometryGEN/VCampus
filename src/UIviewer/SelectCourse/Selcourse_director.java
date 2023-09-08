@@ -21,6 +21,7 @@ import java.io.File;
 import java.io.IOException;
 import UIhandler.StatusManagement.Client_status.*;
 import UIviewer.status_manage.manage_status.*;
+import UIviewer.login.functionChoose.*;
 
 
 import static UIhandler.Currirulum.Client_curriculum.RequireallCourse;
@@ -49,6 +50,8 @@ public class Selcourse_director extends JPanel {
      */
     public Selcourse_director()
     {
+        functionChoose.jf.getJMenuBar().setBackground(new Color(68,84,105));
+        functionChoose.jf.getJMenuBar().getMenu(0).setForeground(new Color(255,255,255));
 //        //导航条
 //        JPanel guide=new JPanel();
 //        //学籍管理
