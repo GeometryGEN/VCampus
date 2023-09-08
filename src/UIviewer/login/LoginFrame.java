@@ -44,7 +44,7 @@ public class LoginFrame extends JFrame{
         JMenu menu1=new JMenu("注册");
         menu1.setFont(myfont1);
         menuBar.add(menu1);
-        JMenu menu2=new JMenu("忘记密码");
+        JMenu menu2=new JMenu("找回密码");
         menu2.setFont(myfont1);
         menuBar.add(menu2);
 
@@ -62,7 +62,7 @@ public class LoginFrame extends JFrame{
                 }
             }
         });
-        JMenuItem item2 = new JMenuItem("忘记密码");
+        JMenuItem item2 = new JMenuItem("找回密码");
         item2.setFont(myfont2);
         item2.setBackground(color4);
         item2.addActionListener(new ActionListener() {

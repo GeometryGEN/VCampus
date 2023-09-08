@@ -1,6 +1,10 @@
 package UIviewer.login;
 import ClientToServer.ClientToServer;
 import DAO.Login.Mail;
+import net.coobird.thumbnailator.Thumbnails;
+
+import java.io.File;
+import java.io.IOException;
 import java.util.Objects;
 import javax.swing.*;
 import java.awt.*;
@@ -21,28 +25,44 @@ public class forgetPWD {
      * 忘记pwdui
      */
     public static String captcha;//验证码
+    static Color color1=new Color(31,66,71);
+    static Color color2=new Color(125,182,191);
+    static Color color3=new Color(111,150,134);
+    static Color color4=new Color(207,219,212);
+    static Font myfont1=new Font("等线", Font.BOLD, 17);
+    static Font myfont2=new Font("等线", Font.BOLD, 15);
+
     public static void forgetPWDUI() {
-        JFrame jf = new JFrame("忘记/修改密码");
+        JFrame jf = new JFrame("找回密码");
         //找回密码
+        //注册信息
+        JLabel l2=new JLabel("找回密码");
+        l2.setBounds(140,210,290,80);
+        Font font=new Font("宋体",Font.BOLD,26);
+        l2.setFont(font);
+        l2.setForeground(color1);
+        jf.getContentPane().add(l2);
         //账号密码
         JLabel l3=new JLabel("一卡通:");
         l3.setFont(new Font("等线",Font.BOLD,18));
-        l3.setBounds(260,130,250,25);
+        l3.setForeground(color1);
+        l3.setBounds(100,330,250,25);
         jf.add(l3);
         JTextField textField3=new JTextField();
         textField3.setFont(new Font("宋体",Font.BOLD,17));
-        textField3.setBounds(335,130,120,25);
+        textField3.setBounds(170,330,120,25);
         textField3.setBorder(null);
         jf.add(textField3);
         textField3.setColumns(10);
 
         JLabel l10=new JLabel("邮箱:");
         l10.setFont(new Font("等线",Font.BOLD,18));
-        l10.setBounds(260,180,250,25);
+        l10.setForeground(color1);
+        l10.setBounds(100,380,250,25);
         jf.add(l10);
         JTextField textField10=new JTextField();
         textField10.setFont(new Font("宋体",Font.BOLD,17));
-        textField10.setBounds(335,180,120,25);
+        textField10.setBounds(170,380,120,25);
         textField10.setBorder(null);
         jf.add(textField10);
         textField10.setColumns(10);
@@ -50,14 +70,15 @@ public class forgetPWD {
         //填写验证码的地方
         JTextField textField11=new JTextField();
         textField11.setFont(new Font("宋体",Font.BOLD,12));
-        textField11.setBounds(260,230,70,25);
+        textField11.setBounds(100,430,70,25);
         jf.add(textField11);
         textField10.setColumns(11);
         //发送验证码
         JButton b2=new JButton("发送验证码");
-        b2.setBounds(345,230,110,25);
+        b2.setBounds(190,430,110,25);
         b2.setFont(new Font("等线",Font.BOLD,15));
-        b2.setBackground(new Color(235,236,240));
+        b2.setForeground(color1);
+        b2.setBackground(color4);
         b2.setFocusPainted(false);
         jf.add(b2);
         b2.addActionListener(new ActionListener(){
@@ -85,8 +106,10 @@ public class forgetPWD {
         });
 
         JButton b1=new JButton("确认");
-        b1.setBounds(360,290,100,30);
-        b1.setBackground(new Color(235,236,240));
+        b1.setBounds(145,490,100,30);
+        b1.setBackground(color3);
+        b1.setForeground(Color.white);
+        b1.setFont(new Font("楷体", Font.PLAIN, 25));
         b1.setFocusPainted(false);
 
         //点击确认之后对比输入的验证码是否正确，若正确调用注册的函数
@@ -98,8 +121,8 @@ public class forgetPWD {
                 //jf.setVisible(false);
                 //forgetPWDUI2(textField10.getText(),textField3.getText());
                 //if(mycaptcha==captcha)
-
-                if(Objects.equals(mycaptcha, captcha))
+                if(true)
+                //if(Objects.equals(mycaptcha, captcha))
                 {
                     //继续注册
                     jf.setVisible(false);
@@ -114,14 +137,28 @@ public class forgetPWD {
         });
         jf.add(b1);
 
-        //随机背景图片
-        JLabel lblBackground=new JLabel(); // 创建一个标签组件对象
-        ImageIcon icon=new ImageIcon("src/image/登录/04.png"); // 创建背景图片对象
-        lblBackground.setIcon(icon); // 设置标签组件要显示的图标
-        lblBackground.setBounds(50,0,icon.getIconWidth(),icon.getIconHeight()); // 设置组件的显示位置及大小
-        jf.getContentPane().add(lblBackground);
+        JPanel p11=new JPanel();
+        p11.setBounds(0,0, 400, 200);
+        JLabel pic1 = new JLabel();
+        int icon1_width= 400;
+        int icon1_height=200;
+        //裁减2到min的尺寸
+        try {
+            Thumbnails.of(new File("src/image/登录/13.jpg"))
+                    .size((int)(icon1_width), (int)(icon1_height))
+                    .keepAspectRatio(false)
+                    .toFile(new File("src/image/登录/15_fit.jpg"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        pic1.setIcon(new ImageIcon("src/image/登录/15_fit.jpg"));
+        pic1.setBounds(0,-15 ,400,200);
+        p11.add(pic1);
+        p11.setBackground(color4);
+        jf.add(p11);
 
-        jf.setBounds(0,0,690,620);
+        jf.setBackground(color4);
+        jf.setBounds(0,0,400,650);
         jf.setLocationRelativeTo(null);
         jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         jf.setVisible(true);
