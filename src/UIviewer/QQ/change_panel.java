@@ -91,7 +91,4 @@ public class change_panel {
 //    public static void add_friend_fail() {
 //        JOptionPane.showMessageDialog(null, "未查找到该用户", "WARNING!", JOptionPane.PLAIN_MESSAGE);
 //    }
-    public static void main(String[] args){
-        change_panel(null);
-};
 }
