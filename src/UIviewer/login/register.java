@@ -27,6 +27,13 @@ public class register {
 
     public static String captcha;//验证码
     public static String idcard;//一卡通
+
+    Color color1=new Color(31,66,71);
+    Color color2=new Color(125,182,191);
+    Color color3=new Color(111,150,134);
+    Color color4=new Color(207,219,212);
+    Font myfont1=new Font("等线", Font.BOLD, 17);
+    Font myfont2=new Font("等线", Font.BOLD, 15);
     /**
      * 注册界面
      */

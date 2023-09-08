@@ -24,6 +24,8 @@ import net.coobird.thumbnailator.Thumbnails;
 import ClientToServer.myInfo;
 import UIhandler.StatusManagement.Client_status.*;
 
+//import static UIviewer.login.functionChoose.menuBar;
+
 //68,84,105 灰色色号
 /**
  * 用户界面

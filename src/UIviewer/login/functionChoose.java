@@ -50,6 +50,11 @@ public class functionChoose {
     static double width_r=(double)(width)/1273;
     static double height_r=(double)(height)/784;
 
+    static Color color1=new Color(233,244,255);
+    static Color color2=new Color(23,58,26);
+    static Color color3=new Color(57,94,50);
+    static Color color4=new Color(72,115,78);
+    static Color color5=new Color(211,229,210);
     static Color color6=new Color(31,66,71);
     static Color color7=new Color(125,182,191);
     static Color color8=new Color(111,150,134);
@@ -57,7 +62,7 @@ public class functionChoose {
     static Font myfont3=new Font("等线", Font.BOLD, 17);
     static Font myfont2=new Font("等线", Font.BOLD, 15);
 
-    static JMenuBar menuBar=new JMenuBar();
+    public static JMenuBar menuBar=new JMenuBar();
 
     /**
      * 功能选择界面
@@ -75,8 +80,8 @@ public class functionChoose {
         item1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                menuBar.setBackground(color7);
                 // TODO Auto-generated method stub
-
                 if(myInfo.getType()==1) {
                     try {
                         Client_status.stu_enter();
@@ -103,6 +108,7 @@ public class functionChoose {
         item2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                menuBar.setBackground(color9);
                 //jf.remove(panel);
                 try {
                     Client_qicq.setId(myInfo.getId());
@@ -129,7 +135,7 @@ public class functionChoose {
         });
         JMenuItem item3 = new JMenuItem("校园超市");
         item3.setFont(myfont2);
-        item3.setBackground(color9);
+        item3.setBackground(color1);
         item3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -158,7 +164,7 @@ public class functionChoose {
         });
         JMenuItem item4 = new JMenuItem("站内通信");
         item4.setFont(myfont2);
-        item4.setBackground(color9);
+        item4.setBackground(color7);
         item4.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -215,7 +221,7 @@ public class functionChoose {
         menu1.add(item3);
         menu1.add(item4);
         menu1.add(item5);
-        menuBar.setBackground(color8);
+        menuBar.setBackground(color7);
         jf.setJMenuBar(menuBar);
 
         jf.setSize(width,height);
