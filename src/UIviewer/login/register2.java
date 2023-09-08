@@ -13,20 +13,32 @@ import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Arrays;
+
+import net.coobird.thumbnailator.Thumbnails;
 import utils.Save_image.*;
 
 //加入限制：两次输入的密码必须一致
 public class register2 {
+    static Color color1=new Color(31,66,71);
+    static Color color2=new Color(125,182,191);
+    static Color color3=new Color(111,150,134);
+    static Color color4=new Color(207,219,212);
+    static Font myfont1=new Font("等线", Font.BOLD, 17);
+    static Font myfont2=new Font("等线", Font.BOLD, 15);
+
     public static void registerUI2(String email,String id) throws SQLException, FileNotFoundException {
         JFrame jf=new JFrame("注册账号");
 
         //添加头像
         final File[] file = {null};
         JButton b2=new JButton("添加头像");
-        b2.setBounds(240,450,100,30);
-        //b2.setBackground(new Color(235,236,240));
+        b2.setBounds(110,520,100,30);
+        b2.setForeground(color1);
+        b2.setBackground(color4);
+        b2.setFont(myfont2);
         b2.setFocusPainted(false);
         b2.addActionListener(new ActionListener() {
             @Override
@@ -45,7 +57,10 @@ public class register2 {
             }
         });
         JButton save_image=new JButton("保存图片");
-        save_image.setBounds(360,450,100,30);
+        save_image.setForeground(color1);
+        save_image.setBackground(color4);
+        save_image.setFont(myfont2);
+        save_image.setBounds(235,520,100,30);
         jf.add(save_image);
         save_image.addActionListener(new ActionListener() {
             @Override
@@ -67,61 +82,67 @@ public class register2 {
 
         //账号密码
         JLabel l1=new JLabel("密码:");
-        l1.setFont(new Font("等线",Font.BOLD,15));
-        l1.setBounds(240,100,250,25);
+        l1.setFont(new Font("等线",Font.BOLD,18));
+        l1.setForeground(color1);
+        l1.setBounds(110,420,100,25);
         jf.add(l1);
         JPasswordField pwd=new JPasswordField();
-        pwd.setFont(new Font("宋体",Font.BOLD,12));
-        pwd.setBounds(310,100,125,25);
+        pwd.setFont(new Font("宋体",Font.BOLD,17));
+        pwd.setBounds(210,420,125,25);
         jf.add(pwd);
         pwd.setColumns(10);
 
         JLabel l2=new JLabel("确认密码:");
-        l2.setFont(new Font("等线",Font.BOLD,15));
-        l2.setBounds(240,150,250,25);
+        l2.setFont(new Font("等线",Font.BOLD,18));
+        l2.setForeground(color1);
+        l2.setBounds(110,470,100,25);
         jf.add(l2);
         JPasswordField textField2=new JPasswordField();
-        textField2.setFont(new Font("宋体",Font.BOLD,12));
-        textField2.setBounds(310,150,125,25);
+        textField2.setFont(new Font("宋体",Font.BOLD,17));
+        textField2.setBounds(210,470,125,25);
         jf.add(textField2);
         textField2.setColumns(10);
 
         JLabel l3=new JLabel("姓名:");
-        l3.setFont(new Font("等线",Font.BOLD,15));
-        l3.setBounds(240,200,250,25);
+        l3.setFont(new Font("等线",Font.BOLD,18));
+        l3.setForeground(color1);
+        l3.setBounds(110,220,100,25);
         jf.add(l3);
         JTextField textField3=new JTextField();
-        textField3.setFont(new Font("宋体",Font.BOLD,12));
-        textField3.setBounds(310,200,125,25);
+        textField3.setFont(new Font("宋体",Font.BOLD,17));
+        textField3.setBounds(210,220,125,25);
         jf.add(textField3);
         textField3.setColumns(10);
 
         JLabel l4=new JLabel("学/工号:");
-        l4.setFont(new Font("等线",Font.BOLD,15));
-        l4.setBounds(240,250,250,25);
+        l4.setFont(new Font("等线",Font.BOLD,18));
+        l4.setForeground(color1);
+        l4.setBounds(110,270,100,25);
         jf.add(l4);
         JTextField textField4=new JTextField();
-        textField4.setFont(new Font("宋体",Font.BOLD,12));
-        textField4.setBounds(310,250,125,25);
+        textField4.setFont(new Font("宋体",Font.BOLD,17));
+        textField4.setBounds(210,270,125,25);
         jf.add(textField4);
         textField4.setColumns(10);
 
         JLabel l5=new JLabel("年龄:");
-        l5.setFont(new Font("等线",Font.BOLD,15));
-        l5.setBounds(240,300,250,25);
+        l5.setFont(new Font("等线",Font.BOLD,18));
+        l5.setForeground(color1);
+        l5.setBounds(110,320,100,25);
         jf.add(l5);
         JTextField textField5=new JTextField();
-        textField5.setFont(new Font("宋体",Font.BOLD,12));
-        textField5.setBounds(310,300,125,25);
+        textField5.setFont(new Font("宋体",Font.BOLD,17));
+        textField5.setBounds(210,320,125,25);
         jf.add(textField5);
         textField5.setColumns(10);
 
         JLabel l6=new JLabel("性别:");
-        l6.setFont(new Font("等线",Font.BOLD,15));
-        l6.setBounds(240,350,250,25);
+        l6.setFont(new Font("等线",Font.BOLD,18));
+        l6.setForeground(color1);
+        l6.setBounds(110,370,50,25);
         jf.add(l6);
         JComboBox<String> comboBox1 =new JComboBox<String>();
-        comboBox1.setBounds(310,350,80,21);
+        comboBox1.setBounds(160,370,50,21);
         comboBox1.addItem("男");
         comboBox1.addItem("女");
         comboBox1.setEditable(false);//不可修改的文字
@@ -129,20 +150,22 @@ public class register2 {
         //comboBox.getSelectedItem
 
         JLabel l7=new JLabel("身份:");
-        l7.setFont(new Font("等线",Font.BOLD,15));
-        l7.setBounds(240,400,250,25);
+        l7.setFont(new Font("等线",Font.BOLD,18));
+        l7.setForeground(color1);
+        l7.setBounds(225,370,50,25);
         jf.add(l7);
         JComboBox<String> comboBox2 =new JComboBox<String>();
-        comboBox2.setBounds(310,400,80,21);
+        comboBox2.setBounds(275,370,60,21);
         comboBox2.addItem("学生");
         comboBox2.addItem("教师");
         comboBox2.setEditable(false);//不可修改的文字
         jf.add(comboBox2);
 
-
         JButton b1=new JButton("确定注册");
-        b1.setBounds(360,500,100,30);
-        b1.setBackground(new Color(235,236,240));
+        b1.setBounds(110,570,225,30);
+        b1.setBackground(color3);
+        b1.setForeground(Color.white);
+        b1.setFont(new Font("楷体", Font.PLAIN, 25));
         b1.setFocusPainted(false);
 
         b1.addActionListener(new ActionListener() {
@@ -208,14 +231,28 @@ public class register2 {
         });
         jf.add(b1);
 
-//随机背景图片
-        JLabel lblBackground=new JLabel(); // 创建一个标签组件对象
-        ImageIcon icon=new ImageIcon("src/image/登录/04.png"); // 创建背景图片对象
-        lblBackground.setIcon(icon); // 设置标签组件要显示的图标
-        lblBackground.setBounds(0,0,icon.getIconWidth(),icon.getIconHeight()); // 设置组件的显示位置及大小
-        jf.getContentPane().add(lblBackground);
+        JPanel p11=new JPanel();
+        p11.setBounds(0,0, 450, 200);
+        JLabel pic1 = new JLabel();
+        int icon1_width= 450;
+        int icon1_height=200;
+        //裁减2到min的尺寸
+        try {
+            Thumbnails.of(new File("src/image/登录/13.jpg"))
+                    .size((int)(icon1_width), (int)(icon1_height))
+                    .keepAspectRatio(false)
+                    .toFile(new File("src/image/登录/14_fit.jpg"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        pic1.setIcon(new ImageIcon("src/image/登录/14_fit.jpg"));
+        pic1.setBounds(0,-15 ,450,200);
+        p11.add(pic1);
+        p11.setBackground(color4);
+        jf.add(p11);
 
-        jf.setBounds(0,0,690,620);
+        jf.setBackground(color4);
+        jf.setBounds(0,0,450,680);
         jf.setLocationRelativeTo(null);
         jf.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         jf.setVisible(true);

@@ -127,8 +127,8 @@ public class register {
                 //测试中先直接点进去，不用验证
                 //jf.setVisible(false);
                 //registerUI2(textField10.getText(),textField3.getText());
-                //if(true)
-                if(Objects.equals(mycaptcha, captcha))
+                if(true)
+                //if(Objects.equals(mycaptcha, captcha))
                 {
                     //继续注册
                     jf.setVisible(false);
