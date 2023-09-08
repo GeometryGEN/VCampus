@@ -23,6 +23,7 @@ import UIviewer.status_manage.manage_status;
 import net.coobird.thumbnailator.Thumbnails;
 import ClientToServer.myInfo;
 import UIhandler.StatusManagement.Client_status.*;
+import static UIviewer.login.functionChoose.jf;
 
 //import static UIviewer.login.functionChoose.menuBar;
 
@@ -45,6 +46,8 @@ public class readLib extends JPanel {
     public static JButton b2=new JButton("我的借阅");
     public static JButton b3=new JButton("罚单缴费");
 
+    public static Color color2=new Color(68,84,105);
+
     /**
      * 得到名字
      *
@@ -62,6 +65,7 @@ public class readLib extends JPanel {
      * 阅读自由
      */
     public readLib(){
+        jf.getJMenuBar().setBackground(color2);
         //测试UI时先不获取名字。将其设为空
         String name=myInfo.getName();
         //String name=null;
@@ -83,6 +87,7 @@ public class readLib extends JPanel {
         panel.add(f1,"f1");//查找书
         panel.add(f4,"f4");//查找结果
 
+        /*
         JPanel guide =new JPanel();
         //学籍管理
         JButton btnNewButton_1 = new JButton("学籍管理");
@@ -227,6 +232,8 @@ public class readLib extends JPanel {
             l1.setFont(font);
             add(l1);
 
+         */
+
         //上方面板
         JPanel p1 = new JPanel();
         p1.setBounds(0, 0, (int) (1280*width_r), (int) (100*height_r));
@@ -299,6 +306,7 @@ public class readLib extends JPanel {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     // TODO Auto-generated method stub
+                    jf.getJMenuBar().setBackground(new Color(125,182,191));
                 functionChoose.jf.setContentPane(functionChoose.fc_panel);
                 functionChoose.jf.setTitle("functionChoose");
                 cardLayout.show(panel, "f1");

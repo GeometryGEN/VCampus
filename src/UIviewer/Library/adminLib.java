@@ -34,6 +34,9 @@ import UIviewer.status_manage.manage_status;
 import net.coobird.thumbnailator.Thumbnails;
 import ClientToServer.myInfo;
 import UIhandler.StatusManagement.Client_status.*;
+
+import static UIviewer.login.functionChoose.jf;
+
 /**
  * 管理员界面
  *
@@ -307,6 +310,8 @@ public class adminLib extends JPanel {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     // TODO Auto-generated method stub
+                    jf.getJMenuBar().setBackground(new Color(125,182,191));
+                    //jf.getJMenuBar().getMenu(0).setForeground(Color.white);
                     functionChoose.jf.setContentPane(functionChoose.fc_panel);
                     functionChoose.jf.setTitle("functionChoose");
                     cardLayout.show(panel, "f1");

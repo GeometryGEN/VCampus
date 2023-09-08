@@ -80,7 +80,7 @@ public class functionChoose {
         item1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                menuBar.setBackground(color7);
+                //menuBar.setBackground(color7);
                 // TODO Auto-generated method stub
                 if(myInfo.getType()==1) {
                     try {
@@ -108,7 +108,7 @@ public class functionChoose {
         item2.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                menuBar.setBackground(color9);
+                //menuBar.setBackground(color9);
                 //jf.remove(panel);
                 try {
                     Client_qicq.setId(myInfo.getId());
@@ -135,7 +135,7 @@ public class functionChoose {
         });
         JMenuItem item3 = new JMenuItem("校园超市");
         item3.setFont(myfont2);
-        item3.setBackground(color1);
+        item3.setBackground(color9);
         item3.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -164,7 +164,7 @@ public class functionChoose {
         });
         JMenuItem item4 = new JMenuItem("站内通信");
         item4.setFont(myfont2);
-        item4.setBackground(color7);
+        item4.setBackground(color9);
         item4.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

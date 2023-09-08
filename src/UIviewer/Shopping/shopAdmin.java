@@ -27,6 +27,7 @@ import java.util.List;
 import ClientToServer.myInfo;
 
 import static UIviewer.Shopping.ShoppingHall.setShoptable;
+import static UIviewer.login.functionChoose.jf;
 
 /**
  * 店管理
@@ -327,6 +328,7 @@ public class shopAdmin extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // TODO Auto-generated method stub
+                jf.getJMenuBar().setBackground(new Color(125,182,191));
                 functionChoose.jf.setContentPane(functionChoose.fc_panel);
                 functionChoose.jf.setTitle("functionChoose");
                 //cardLayout.show(panel, "f1");
