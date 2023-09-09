@@ -1,11 +1,14 @@
 package UIviewer.login;
 import ClientToServer.ClientToServer;
 import connection.JDBC_Connector;
+import net.coobird.thumbnailator.Thumbnails;
 
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 
 import static UIviewer.login.register.registerUI;
 import static UIviewer.login.forgetPWD.forgetPWDUI;
@@ -20,6 +23,12 @@ import static UIviewer.login.forgetPWD.forgetPWDUI;//之后改为修改密码UI�
 //#7DB6BF 125,182,191 薄荷绿色
 
 public class LoginFrame extends JFrame{
+
+    Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
+    int width=(int) screensize.getWidth(); //得到宽度
+    int height=(int) screensize.getHeight();//获得高度
+    int width_r=(int) width/1536;
+    int height_r=(int) height/960;
 
     private ClientToServer ucs = new ClientToServer();
     private JPanel p1;
@@ -81,79 +90,91 @@ public class LoginFrame extends JFrame{
         menuBar.setBackground(color3);
         jf.setJMenuBar(menuBar);
         //add(menuBar);
+
         //背景图片
         JLabel lblBackground = new JLabel(); // 创建一个标签组件对象
-        ImageIcon icon = new ImageIcon("src/image/登录/12.png"); // 创建背景图片对象
-        lblBackground.setIcon(icon); // 设置标签组件要显示的图标
-        lblBackground.setBounds(0, 0, icon.getIconWidth(), icon.getIconHeight()); // 设置组件的显示位置及大小
+        try {
+            Thumbnails.of(new File("src/image/登录/12.png"))
+                    .size((int)(width), (int)(height))
+                    .keepAspectRatio(false)
+                    .toFile(new File("src/image/登录/12_fit.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        lblBackground.setIcon(new ImageIcon("src/image/登录/12_fit.png"));
+        lblBackground.setBounds(0, 0, width,height); // 设置组件的显示位置及大小
 
-        jf.setBounds(0, 0, icon.getIconWidth(), icon.getIconHeight());
-        jf.setLocationRelativeTo(null);
+        //左侧空白的面板，用来装那些字符和按钮输入，面板设置为透明
+        JPanel panel1=new JPanel();
+        panel1.setBackground(color4);
+        panel1.setLayout(null);
+        panel1.setOpaque(false);
+        panel1.setBounds((int)width_r*330 ,(int)height_r*158,(int)width_r*510 ,(int)height_r*530);
+        jf.add(panel1);
 
         JLabel vcam = new JLabel("Welcome to Vcampus !");
-        //vcam.setIcon(new ImageIcon("src/image/登录/10.png"));
         vcam.setFont(new Font("宋体", Font.BOLD, 23));
         vcam.setForeground(color1);
-        vcam.setBounds(410, 215, 350, 25);
-        jf.add(vcam);
+        vcam.setBounds((int)width_r*(410-290), (int)height_r*(215-158), (int)width_r*350, (int)height_r*25);
+        panel1.add(vcam);
         //账号密码
         JLabel lblNewLabel = new JLabel("一卡通号:");
         lblNewLabel.setIcon(new ImageIcon("src/image/登录/17.png"));
         lblNewLabel.setFont(new Font("等线", Font.BOLD, 20));
         lblNewLabel.setForeground(color1);
-        lblNewLabel.setBounds(380, 320, 250, 25);
-        jf.add(lblNewLabel);
+        lblNewLabel.setBounds((int)width_r*(390-290), (int)height_r*(320-158), (int)width_r*250, (int)height_r*25);
+        panel1.add(lblNewLabel);
 
         JLabel lblNewLabel_1 = new JLabel("   密  码:");
         lblNewLabel_1.setIcon(new ImageIcon("src/image/登录/18.png"));
         lblNewLabel_1.setFont(new Font("等线", Font.BOLD, 20));
         lblNewLabel_1.setForeground(color1);
-        lblNewLabel_1.setBounds(380, 365, 250, 25);
-        jf.add(lblNewLabel_1);
+        lblNewLabel_1.setBounds((int)width_r*(390-290), (int)height_r*(365-158), (int)width_r*250, (int)height_r*25);
+        panel1.add(lblNewLabel_1);
 
         textField=new JTextField();
         textField.setFont(new Font("宋体", Font.BOLD, 16));
-        textField.setBounds(500, 320, 125, 25);
+        textField.setBounds((int)width_r*(500-290), (int)height_r*(320-158), (int)width_r*125, (int)height_r*25);
         textField.setBackground(color4);
         //textField.setBorder(null);
-        jf.add(textField);
+        panel1.add(textField);
         //textField.setColumns(10);
 
         passwordField=new JPasswordField();
         passwordField.setFont(new Font("宋体", Font.BOLD, 16));
-        passwordField.setBounds(500, 365, 125, 25);
+        passwordField.setBounds((int)width_r*(500-290), (int)height_r*(365-158), (int)width_r*125, (int)height_r*25);
         passwordField.setBackground(color4);
         //passwordField.setBorder(null);
-        jf.add(passwordField);
+        panel1.add(passwordField);
         //passwordField.setColumns(10);
 
         //boolean choice;
         JLabel chooselabel = new JLabel("请选择您的身份： ");
         chooselabel.setFont(new Font("等线", Font.BOLD, 20));
         chooselabel.setForeground(color1);
-        chooselabel.setBounds(400,435,180,20);
-        jf.add(chooselabel);
+        chooselabel.setBounds((int)width_r*(400-290),(int)height_r*(435-158),(int)width_r*180,(int)height_r*20);
+        panel1.add(chooselabel);
         JRadioButton rbtnstu= new JRadioButton("学生",false);
         rbtnstu.setFont(new Font("等线", Font.BOLD, 20));
         rbtnstu.setForeground(color1);
         //rbtnstu.setSelected(true);
         rbtnstu.setContentAreaFilled(false);
-        rbtnstu.setBounds(400,470,75,22);
-        jf.add(rbtnstu);
+        rbtnstu.setBounds((int)width_r*(400-290),(int)height_r*(470-158),(int)width_r*75,(int)height_r*22);
+        panel1.add(rbtnstu);
         JRadioButton rbtntea= new JRadioButton("教师",false);
         rbtntea.setFont(new Font("等线", Font.BOLD, 20));
         rbtntea.setForeground(color1);
         //rbtntea.setSelected(true);
         rbtntea.setContentAreaFilled(false);
-        rbtntea.setBounds(500,470,75,22);
-        jf.add(rbtntea);
+        rbtntea.setBounds((int)width_r*(500-290),(int)height_r*(470-158),(int)width_r*75,(int)height_r*22);
+        panel1.add(rbtntea);
         ButtonGroup group1=new ButtonGroup();
         group1.add(rbtnstu);
         group1.add(rbtntea);
 
         //登录
         JButton btnNewButton_1 = new JButton("登录");
-        btnNewButton_1.setBounds(400, 540, 220, 30);
+        btnNewButton_1.setBounds((int)width_r*(400-290), (int)height_r*(540-158), (int)width_r*220, (int)height_r*30);
         Font myfont = new Font("楷体", Font.PLAIN, 25);
         btnNewButton_1.setFont(myfont);
         //btnNewButton_1.setBackground(new Color(34, 139, 34));
@@ -196,8 +217,7 @@ public class LoginFrame extends JFrame{
                 }
             }
         });
-        jf.getContentPane().add(btnNewButton_1);
-
+        panel1.add(btnNewButton_1);
 
         // 管理员登录
         JButton btnNewButton_3 = new JButton("管理员登录原始按钮（暂时保留），可尝试不选身份直接输入管理员账密登录");
@@ -226,50 +246,8 @@ public class LoginFrame extends JFrame{
         });
         jf.getContentPane().add(btnNewButton_3);
 
-        /*
-        //注册
-        JButton btnNewButton_4 = new JButton("注册");
-        btnNewButton_4.setBounds(1000, 0, 70, 30);
-        Font myfont1 = new Font("宋体 ", Font.PLAIN, 14);
-        btnNewButton_4.setFont(myfont1);
-        btnNewButton_4.setContentAreaFilled(false);//设置按钮透明
-        //btnNewButton_4.setBorder(null);//取消边框
-        btnNewButton_4.setFocusPainted(false);
-        btnNewButton_4.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
-                try {
-                    registerUI();
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-            }
-        });
-
-        jf.getContentPane().add(btnNewButton_4);
-        //忘记密码
-        JButton btnNewButton_5 = new JButton("忘记/修改密码");
-        btnNewButton_5.setBounds(1070, 0, 160, 30);
-        btnNewButton_5.setFont(myfont1);
-        btnNewButton_5.setContentAreaFilled(false);//设置按钮透明
-        //btnNewButton_5.setBorder(null);//取消边框
-        btnNewButton_5.setFocusPainted(false);
-        btnNewButton_5.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
-                try {
-                    forgetPWDUI();
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-            }
-        });
-        jf.getContentPane().add(btnNewButton_5);
-
-         */
-
+        jf.setBounds(0,0,width,height);
+        jf.setLocationRelativeTo(null);
         jf.getContentPane().add(lblBackground); // 将组件添加到面板中
         jf.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         jf.setVisible(true);

@@ -34,6 +34,7 @@ public class forgetPWD {
 
     public static void forgetPWDUI() {
         JFrame jf = new JFrame("找回密码");
+        jf.setResizable(false);
         //找回密码
         //注册信息
         JLabel l2=new JLabel("找回密码");

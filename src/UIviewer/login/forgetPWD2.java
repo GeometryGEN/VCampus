@@ -24,7 +24,8 @@ public class forgetPWD2{
     static Font myfont2=new Font("等线", Font.BOLD, 15);
 
     public static void forgetPWDUI2(String email,String id){
-        JFrame jf=new JFrame("注册账号");
+        JFrame jf=new JFrame("找回密码");
+        jf.setResizable(false);
 
         //账号密码
         JLabel l1=new JLabel("新密码:");

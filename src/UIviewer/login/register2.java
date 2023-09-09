@@ -31,6 +31,7 @@ public class register2 {
 
     public static void registerUI2(String email,String id) throws SQLException, FileNotFoundException {
         JFrame jf=new JFrame("注册账号");
+        jf.setResizable(false);
 
         //添加头像
         final File[] file = {null};

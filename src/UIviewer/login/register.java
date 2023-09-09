@@ -42,6 +42,7 @@ public class register {
      */
     public static void registerUI(){
         JFrame jf=new JFrame("注册账号");
+        jf.setResizable(false);
 
         //注册信息
         JLabel l2=new JLabel("注册邮箱");
