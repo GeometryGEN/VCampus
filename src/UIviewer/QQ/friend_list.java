@@ -155,7 +155,7 @@ public class friend_list{
         this.width_r=width_r;
         this.height_r=height_r;
         jPanel.setLayout(new BorderLayout());
-        jPanel.setBounds((int)(x*width_r),(int)(y*height_r),(int)(width*width_r),(int)(height*height_r));
+        jPanel.setBounds((int)(x*width_r),(int)(y*height_r),(int)(width),(int)(height));
         if(color_switch){
             jPanel.setBorder(BorderFactory.createLineBorder(new Color(244,244,244)));
             jPanel.setBackground(new Color(255,255,255));

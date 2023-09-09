@@ -32,7 +32,7 @@ public class change_panel {
         jf = new JFrame(" ");
         jf.setLayout(null);
         jf.setBackground(Color.white);
-
+        jf.setResizable(false);
 
         JLabel l1 = new JLabel("备注:");
         l1.setFont(myfont1);

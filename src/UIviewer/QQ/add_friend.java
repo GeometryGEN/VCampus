@@ -33,6 +33,7 @@ public class add_friend {
         jf = new JFrame("添加好友");
         jf.setLayout(null);
         jf.setBackground(color3);
+        jf.setResizable(false);
 
 
         JLabel l1 = new JLabel("一卡通:");

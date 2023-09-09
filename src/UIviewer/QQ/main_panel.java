@@ -60,6 +60,8 @@ public class main_panel {
     Font myfont1=new Font("等线", Font.BOLD, 17);
     Font myfont2=new Font("等线", Font.BOLD, 15);
 
+    //buttonpanel放功能选择按钮
+    //jsp主面板放buttonpanel
     /**
      * 主面板
      *
@@ -72,6 +74,9 @@ public class main_panel {
         jf.getJMenuBar().setBackground(color2);
         jf.getJMenuBar().getMenu(0).setForeground(color1);
 
+        Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
+        width=(int) screensize.getWidth(); //得到宽度
+        height=(int) screensize.getHeight();//获得高度
         final boolean[] color_switch = {color_switch1};
         double width_r=(double)(width)/1920;
         double height_r=(double)(height)/1080;
@@ -89,7 +94,9 @@ public class main_panel {
         if(type!=3){
             //侧边按钮面板
             buttonPanel=new button_panel();
-            buttonPanel.setBounds((int)(175),(int)((height-135*height_r-100)),(int)(170*width_r+20),(int)(120+40*height_r));
+            buttonPanel.setBounds((int)(width/6-width_r*100),(int)((height-310*height_r)),(int)(width_r*200),(int)(200*height_r));
+            buttonPanel.setOpaque(false);
+            //buttonPanel.setBounds((int)(175),(int)((height-135*height_r-100)),(int)(170*width_r+20),(int)(120+40*height_r));
             if(color_switch[0]){
                 buttonPanel.setBackground(new Color(200,224,228));
             }else{
@@ -170,7 +177,6 @@ public class main_panel {
                         color_choose.setText("日间");
                         color_choose.setBackground(new Color(125,182,191));
                         color_choose.setForeground(Color.black);
-                        buttonPanel.setBackground(new Color(200,224,228));
                         functionChoose.back_from_student_status.setBackground(new Color(125,182,191));
                         functionChoose.back_from_student_status.setForeground(Color.black);
                         friend_list.jPanel.setBorder(BorderFactory.createLineBorder(new Color(244,244,244)));
@@ -186,7 +192,6 @@ public class main_panel {
                         color_choose.setText("夜间");
                         color_choose.setBackground(new Color(42,52,65));
                         color_choose.setForeground(Color.white);
-                        buttonPanel.setBackground(new Color(68,84,105));
                         functionChoose.back_from_student_status.setBackground(new Color(42,52,65));
                         functionChoose.back_from_student_status.setForeground(Color.white);
                         friend_list.jPanel.setBackground(new Color(0,0,0));
@@ -199,9 +204,9 @@ public class main_panel {
         }
         else{
             //侧边按钮面板
-            //侧边按钮面板
             buttonPanel=new button_panel();
-            buttonPanel.setBounds((int)(175),(int)((height-135*height_r-100)),(int)(170*width_r+20),(int)(120+40*height_r));
+            buttonPanel.setBounds((int)(width/3-width_r*490),(int)((height-310*height_r)),(int)(width_r*200),(int)(200*height_r));
+            //buttonPanel.setBounds((int)(width/3-width_r*200),(int)((height-500*height_r)),(int)(width_r*200),(int)(235*height_r));
             if(color_switch[0]){
                 buttonPanel.setBackground(new Color(200,224,228));
             }else{
@@ -420,14 +425,14 @@ public class main_panel {
         mjp.add(guide);
 
          */
-
         //好友列表
         Client_qicq.Require_friend_list();
-        friend_list friend_list_panel=new friend_list(1920/3,1080,width_r,height_r,0,0, color_switch[0]);
+        friend_list friend_list_panel=new friend_list(width/3,height,width_r,height_r,0,0, color_switch[0]);
         mjp.add(friend_list_panel.jPanel);
         friend_list_panel.jPanel.setVisible(true);
         functionChoose.back_from_student_status.setVisible(false);
         functionChoose.back_from_student_status.setVisible(true);
         mjp.updateUI();
+        //mjp.setLayout(null);
     }
 }

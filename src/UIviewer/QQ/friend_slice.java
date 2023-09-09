@@ -28,6 +28,17 @@ import static UIviewer.QQ.chat_panel.send_button_width;
  * @date 2022/09/03
  */
 public class friend_slice extends JLabel {
+    static Color color1=new Color(125,182,191);
+    static Color color2=new Color(68,84,105);
+    static Color color3=new Color(51,51,51);
+    static Color color4=new Color(69,69,69);
+    static Color color5=new Color(30,111,255);
+    static Color color6=new Color(45,52,82);
+    static Color color7=new Color(190,213,235);
+    static Color color8=new Color(31,66,71);
+    static Color color9=new Color(125,182,191);
+    static Color color10=new Color(111,150,134);
+    static Color color11=new Color(207,219,212);
     /**
      * 更新
      */
@@ -113,6 +124,9 @@ public class friend_slice extends JLabel {
             //弹出式菜单
             JPopupMenu jpopupmenu1 = new JPopupMenu();   //弹出式菜单
             JMenuItem jmenuitem1 = new JMenuItem("修改备注与分组");  //菜单项
+            jmenuitem1.setFont(new Font("微软雅黑", Font.BOLD, 14));
+            jmenuitem1.setBackground(color10);
+            jmenuitem1.setForeground(Color.white);
             jmenuitem1.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
