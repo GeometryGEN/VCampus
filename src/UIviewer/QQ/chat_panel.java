@@ -95,7 +95,7 @@ public class chat_panel extends JPanel {
      */
     public static void receive_file(Filetrans src,String filepath) throws IOException {
         Client_qicq.receive_file(src,filepath);
-        //System.out.println(friend.getId());
+        //System.out.println(friend.getId());a
     }
 
     /**
