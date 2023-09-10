@@ -199,8 +199,7 @@ public class Selcourse extends JPanel {
         panel.add(f1,"f1");
         ConsultCourse_Chosen f2=new ConsultCourse_Chosen();
         panel.add(f2,"f2");
-        ChooseCourse_guidance f3=new ChooseCourse_guidance();
-        panel.add(f3,"f3");
+
         Choosing_Course f4=new Choosing_Course();
         panel.add(f4,"f4");
         My_Coursetable f5=new My_Coursetable(1);

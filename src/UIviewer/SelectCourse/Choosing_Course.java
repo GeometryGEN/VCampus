@@ -3,6 +3,7 @@ package UIviewer.SelectCourse;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import java.awt.*;
 import java.util.*;
 import java.awt.event.ActionEvent;
@@ -46,7 +47,11 @@ public class Choosing_Course extends JPanel {
                         return false;
                 }
         };
-                table_want.setFont(new Font("宋体",Font.BOLD,16));
+                JTableHeader jTableHeader=table_want.getTableHeader();
+                jTableHeader.setFont(new Font("楷体",Font.BOLD,18));
+                jTableHeader.setBackground(new Color(68,84,105));
+                jTableHeader.setForeground(new Color(255,248,250));
+                table_want.setFont(new Font("宋体",Font.BOLD,17));
 
                 table_want.getColumnModel().getColumn(0).setPreferredWidth(70);
                 table_want.getColumnModel().getColumn(1).setPreferredWidth(180);
@@ -55,7 +60,9 @@ public class Choosing_Course extends JPanel {
                 table_want.getColumnModel().getColumn(4).setPreferredWidth(50);
                 table_want.getColumnModel().getColumn(5).setPreferredWidth(150);
                 table_want.getColumnModel().getColumn(5).setPreferredWidth(80);
-
+                table_want.setBackground(new Color(237,253,254));
+                table_want.setOpaque(false);
+                setBackground(new Color(237,253,254));
                 //支持滚动
         JScrollPane jsp=new JScrollPane(table_want);
         jsp.setBounds(0,0,(int)(1280*width_r),(int)(590*height_r));
@@ -68,9 +75,13 @@ public class Choosing_Course extends JPanel {
                                 @Override
                                 public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
                                         if (column!=6) {
-                                                setBackground(Color.white);
+                                                if (row % 2 == 0) {
+                                                        setBackground(new Color(237, 253, 254));
+                                                } else {
+                                                        setBackground(new Color(169, 189, 205));
+                                                }
                                         }else {
-                                                setBackground(new Color(43, 88, 255));
+                                                setBackground(new Color(129,194,229));
                                         }
                                         return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
                                 }

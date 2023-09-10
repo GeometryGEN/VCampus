@@ -6,6 +6,7 @@ import UIhandler.Currirulum.Client_curriculum;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import javax.swing.table.TableColumn;
 import java.awt.*;
 import java.awt.event.ItemEvent;
@@ -42,8 +43,8 @@ public class My_Coursetable extends JPanel{
         DefaultTableModel tableModel;
         String weekS=String.valueOf(week);
         JLabel l1 = new JLabel("第"+weekS+"周课表");
-        l1.setBounds((int) (1075*width_r), (int) (300*height_r), (int) (300*width_r), (int) (75*height_r));
-        Font font = new Font("楷体", Font.BOLD, (int) (25*width_r));
+        l1.setBounds((int) (0*width_r), (int) (150*height_r), (int) (200*width_r), (int) (75*height_r));
+        Font font =new Font("楷体", Font.BOLD, (int) (25*width_r)) ;
         l1.setFont(font);
         add(l1);
         for (int i=0;i<16;i++){
@@ -69,9 +70,14 @@ public class My_Coursetable extends JPanel{
                 return false;
             }
         };
+        JTableHeader jTableHeader=table.getTableHeader();
+        jTableHeader.setFont(new Font("楷体",Font.BOLD,17));
+        jTableHeader.setBackground(new Color(68,84,105));
+        jTableHeader.setForeground(new Color(255,248,250));
+        table.setFont(new Font("宋体",Font.BOLD,17));
         //scrollPane.setViewportView(table);
         scrollPane=new JScrollPane(table);
-        table.setRowHeight(48);//设置行宽
+        table.setRowHeight((int)(42*height_r));//设置行宽
 
         //table.setAutoResizeMode(JTable.AUTO_RESIZE_SUBSEQUENT_COLUMNS);
         for(int i=0;i<6;i++)
@@ -79,7 +85,7 @@ public class My_Coursetable extends JPanel{
             column=table.getColumnModel().getColumn(i);
             if(i==0)
             {
-                column.setPreferredWidth(85);
+                column.setPreferredWidth(150);
             }
             else {
                 column.setPreferredWidth(300);
@@ -87,7 +93,7 @@ public class My_Coursetable extends JPanel{
 
         }
         JComboBox jc=new JComboBox();
-        jc.addItem("--请选择--");
+        jc.addItem(" 请选择");
         jc.addItem("第一周");
         jc.addItem("第二周");
         jc.addItem("第三周");
@@ -104,7 +110,8 @@ public class My_Coursetable extends JPanel{
         jc.addItem("第十四周");
         jc.addItem("第十五周");
         jc.addItem("第十六周");
-        jc.setBounds((int)(1075*width_r),(int)(75*height_r),(int)(100*width_r),(int)(40*height_r));
+        jc.setBounds((int)(1150*width_r),(int)(250*height_r),(int)(100*width_r),(int)(50*height_r));
+        jc.setFont(new Font("楷体", Font.BOLD, (int) (15*width_r)));
         jc.addItemListener(new ItemListener() {
             @Override
             public void itemStateChanged(ItemEvent e) {
@@ -308,9 +315,32 @@ public class My_Coursetable extends JPanel{
             }
         });
         add(jc);
+        try {
+            DefaultTableCellRenderer tcr = new DefaultTableCellRenderer() {
+                @Override
+                public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
 
-        //add(scrollPane,BorderLayout.CENTER);
-        scrollPane.setBounds(0,0,(int)(1000*width_r),(int)(1000*height_r));
+                        if (row % 2 == 0) {
+                            setBackground(new Color(237, 253, 254));
+                        } else {
+                            setBackground(new Color(169, 189, 205));
+                        }
+
+                    return super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+                }
+            };
+            tcr.setHorizontalAlignment(JLabel.CENTER);
+            table.setDefaultRenderer(Object.class, tcr);
+            for (int i = 0; i < table.getColumnCount(); i++)
+            {
+                table.getColumn(table.getColumnName(i)).setCellRenderer(tcr);
+            }
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+
+        add(scrollPane,BorderLayout.CENTER);
+        scrollPane.setBounds(150,0,(int)(1000*width_r),(int)(1000*height_r));
         add(scrollPane);
         setVisible(true);
     }
