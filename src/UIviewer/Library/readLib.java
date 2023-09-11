@@ -132,7 +132,7 @@ public class readLib extends JPanel {
         b2.setFont(myfont1);
         b2.setContentAreaFilled(false);//设置按钮透明
         b2.setFocusPainted(false);
-        //b2.setForeground(new Color(248, 248, 255));
+        //b2.setForeground(new Color(248, 248, 255));hh
         b2.setForeground(white);
         b2.addActionListener(new ActionListener() {
             @Override
