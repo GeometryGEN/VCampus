@@ -398,7 +398,7 @@ public class functionChoose {
             l11.setBounds((int) (950*width_r), (int)(5*height_r), (int) (300*width_r), (int) (725*height_r));
             fc_panel.add(l11);
 
-        //五个按钮
+        //六个按钮
             //教育管理
             JLabel l51 =new JLabel("教育管理");
             Font font4=new Font("楷体",Font.BOLD,(int)(26*width_r));
@@ -864,7 +864,7 @@ public class functionChoose {
 
         //白色蒙版
         JPanel p1 = new JPanel();
-        p1.setBounds(30, 200, icon_back.getIconWidth()-675, icon_back.getIconHeight()-650);
+        p1.setBounds(30, (int)(75*height_r), icon_back.getIconWidth()-675, icon_back.getIconHeight()-650);
         if(color_switch){
             p1.setBackground(new Color(255, 240, 245, 100));
         }else{
@@ -876,10 +876,11 @@ public class functionChoose {
         JLabel lblBackground = new JLabel(); // 创建一个标签组件对象
         if(color_switch){
             lblBackground.setIcon(icon_back);
+            lblBackground.setBounds(0, -45, icon_back.getIconWidth(), icon_back.getIconHeight());
         }else{
             lblBackground.setIcon(icon_back_dark);
+            lblBackground.setBounds(0, 0, icon_back.getIconWidth(), icon_back.getIconHeight());
         }
-        lblBackground.setBounds(0, 0, icon_back.getIconWidth(), icon_back.getIconHeight()); // 设置组件的显示位置及大小
         fc_panel.add(lblBackground);
 
         //颜色切换按钮
@@ -921,6 +922,8 @@ public class functionChoose {
                     l11.setIcon(new ImageIcon("src/image/label2_min.png"));
                     l15.setIcon(new ImageIcon("src/image/横幅_min.png"));
 
+                    lblBackground.setBounds(0, -45, icon_back.getIconWidth(), icon_back.getIconHeight());
+
                     p1.setBackground(new Color(255, 240, 245, 100));
                     lblBackground.setIcon(icon_back);
                 }else{
@@ -955,6 +958,8 @@ public class functionChoose {
                     l41.setIcon(new ImageIcon("src/image/label3(1)_min_dark.png"));
                     l11.setIcon(new ImageIcon("src/image/label2_min_dark.png"));
                     l15.setIcon(new ImageIcon("src/image/横幅_min_dark.png"));
+
+                    lblBackground.setBounds(0, 0, icon_back.getIconWidth(), icon_back.getIconHeight());
 
                     p1.setBackground(new Color(0, 15, 5, 100));
                     lblBackground.setIcon(icon_back_dark);
