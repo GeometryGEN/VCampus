@@ -31,6 +31,21 @@ public class gpt_panel extends JPanel {
     }
     public static CardLayout cardLayout=new CardLayout();
     public gpt_panel() throws Exception{
+        //问题返回界面
+        JTextArea answers=new JTextArea();
+        answers.setBounds((int)(200*width_r),(int)(170*height_r),(int)(800*width_r),(int)(400*height_r));
+        //answers.setBackground(new Color(235,225,228));
+        add(answers);
+        answers.setLineWrap(true);
+        answers.setFont(new Font("楷体",Font.BOLD,20));
+        JScrollPane jsp=new JScrollPane(answers);
+        //支持滚动
+        //JScrollPane jsp = new JScrollPane(table_want);
+        jsp.setBounds((int)(200*width_r),(int)(170*height_r),(int)(800*width_r),(int)(400*height_r));
+        add(jsp);
+        //jScrollPane.setPreferredSize(new Dimension(460,100));
+        //jScrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+
 //提问按钮
         JButton ask=new JButton("ask");
         ask.setBounds((int)(900*width_r),(int)(600*height_r),(int)(100*width_r),(int)(50*height_r));
@@ -108,22 +123,22 @@ public class gpt_panel extends JPanel {
         question.setBounds((int)(200*width_r),(int)(600*height_r),(int)(600*width_r),(int)(50*height_r));
         add(question);
         question.setFont(new Font("楷体",Font.BOLD,25));
-        //提问按钮
+        String questionContent=question.getText();
+        answers.setText(questionContent);
 
-        //问题返回界面
-        JTextArea answers=new JTextArea();
-        answers.setBackground(new Color(12,241,2));
-        add(answers);
-
-        //返回按钮
-        JButton go_back=new JButton("go back");
-        add(go_back);
+//        //返回按钮
+//        JButton go_back=new JButton("go back");
+//        add(go_back);
+//        go_back.setBounds((int)(200*width_r),(int)(700*height_r),(int)(600*width_r),(int)(50*height_r));
 
         //不要改的东西
         ask.addActionListener(new ActionListener() {
             @SneakyThrows
             @Override
             public void actionPerformed(ActionEvent e) {
+                String questionContent=question.getText();
+                answers.append(questionContent);
+                answers.append("\r\n");
                 question_toask=question.getText();
                 AskQuestion askQuestion=new AskQuestion();
                 QuestionModule questionModule;
@@ -139,14 +154,14 @@ public class gpt_panel extends JPanel {
         });
 
 
-        go_back.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                jf.getJMenuBar().setBackground(new Color(125,182,191));
-                jf.getJMenuBar().getMenu(0).setForeground(new Color(31,66,71));
-                jf.setContentPane(functionChoose.fc_panel);
-                jf.setTitle("functionChoose");
-            }
-        });
+//        go_back.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                jf.getJMenuBar().setBackground(new Color(125,182,191));
+//                jf.getJMenuBar().getMenu(0).setForeground(new Color(31,66,71));
+//                jf.setContentPane(functionChoose.fc_panel);
+//                jf.setTitle("functionChoose");
+//            }
+//        });
     }
 }
