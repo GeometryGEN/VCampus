@@ -5,6 +5,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import ClientToServer.myInfo;
 import DAO.Chat.*;
 import UIviewer.login.functionChoose;
 import lombok.SneakyThrows;
@@ -19,8 +20,25 @@ public class gpt_panel extends JPanel {
     double height_r=(double)(height)/784;
     public static String question_toask;
     public static String answer_back;
+    static String name;
+    public static JPanel panel = new JPanel();
+    static void getName(String a)
+    {
+        name=a;
+    }
+    public static CardLayout cardLayout=new CardLayout();
     public gpt_panel() throws Exception{
         //主界面
+        String name= myInfo.getName();
+        getName(name);
+        functionChoose.jf.getJMenuBar().setBackground(new Color(68,84,105));
+        functionChoose.jf.getJMenuBar().getMenu(0).setForeground(new Color(255,255,255));
+        setBounds(0,0, (int) (1273*width_r), (int) (790*height_r));
+        setLayout(null);
+        panel.setBounds(0, (int) (150*height_r), (int) (1273*width_r), (int) (790*height_r));
+        add(panel);
+//		给主要显示面板添加布局方式
+        panel.setLayout(cardLayout);
         setBounds(0,0,width,height);
         setBackground(new Color(231,21,21));
 
