@@ -225,7 +225,9 @@ public class LoginFrame extends JFrame{
         panel1.add(btnNewButton_1);
 
         // 管理员登录
-        JButton btnNewButton_3 = new JButton("管理员登录原始按钮（暂时保留），可尝试不选身份直接输入管理员账密登录");
+        JButton btnNewButton_3 = new JButton("管理员登录热键为alt+A");
+        //btnNewButton_3.setAccelerator(KeyStroke.getKeyStroke('A', java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        btnNewButton_3.setMnemonic(java.awt.event.KeyEvent.VK_A);
         btnNewButton_3.setBounds(50, 580, 420, 30);
         btnNewButton_3.setFont(new Font("等线",Font.BOLD,10));
         btnNewButton_3.setBackground(new Color(34, 139, 34));
