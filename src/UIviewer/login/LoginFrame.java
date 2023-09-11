@@ -27,8 +27,8 @@ public class LoginFrame extends JFrame{
     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
     int width=(int) screensize.getWidth(); //得到宽度
     int height=(int) screensize.getHeight();//获得高度
-    int width_r=(int) width/1536;
-    int height_r=(int) height/960;
+    int width_r=(int) width/1000;
+    int height_r=(int) height/720;//1280,720
 
     private ClientToServer ucs = new ClientToServer();
     private JPanel p1;
@@ -48,6 +48,8 @@ public class LoginFrame extends JFrame{
      * 登录框
      */
     public LoginFrame(){
+        System.out.println(width);
+        System.out.println(height);
         //菜单栏aq
         JMenuBar menuBar=new JMenuBar();
         JMenu menu1=new JMenu("注册");
@@ -108,33 +110,36 @@ public class LoginFrame extends JFrame{
         JPanel panel1=new JPanel();
         panel1.setBackground(color4);
         panel1.setLayout(null);
+        panel1.setBackground(Color.BLUE);
         panel1.setOpaque(false);
-        panel1.setBounds((int)width_r*330 ,(int)height_r*158,(int)width_r*510 ,(int)height_r*530);
-        jf.add(panel1);
+        panel1.setBounds((int)width_r*240 ,(int)height_r*112,(int)width_r*430 ,(int)height_r*400);
+        //panel1.setBounds(0 ,0,510 ,530);
+        //jf.add(panel1);
+        jf.getContentPane().add(panel1);
 
         JLabel vcam = new JLabel("Welcome to Vcampus !");
         vcam.setFont(new Font("宋体", Font.BOLD, 23));
         vcam.setForeground(color1);
-        vcam.setBounds((int)width_r*(410-290), (int)height_r*(215-158), (int)width_r*350, (int)height_r*25);
+        vcam.setBounds((int)width_r*(410-290), (int)height_r*(215-168), (int)width_r*350, (int)height_r*25);
         panel1.add(vcam);
         //账号密码
         JLabel lblNewLabel = new JLabel("一卡通号:");
         lblNewLabel.setIcon(new ImageIcon("src/image/登录/17.png"));
-        lblNewLabel.setFont(new Font("等线", Font.BOLD, 20));
+        lblNewLabel.setFont(new Font("等线", Font.BOLD, 19));
         lblNewLabel.setForeground(color1);
-        lblNewLabel.setBounds((int)width_r*(390-290), (int)height_r*(320-158), (int)width_r*250, (int)height_r*25);
+        lblNewLabel.setBounds((int)width_r*(390-290), (int)height_r*(320-178), (int)width_r*250, (int)height_r*25);
         panel1.add(lblNewLabel);
 
         JLabel lblNewLabel_1 = new JLabel("   密  码:");
         lblNewLabel_1.setIcon(new ImageIcon("src/image/登录/18.png"));
         lblNewLabel_1.setFont(new Font("等线", Font.BOLD, 20));
         lblNewLabel_1.setForeground(color1);
-        lblNewLabel_1.setBounds((int)width_r*(390-290), (int)height_r*(365-158), (int)width_r*250, (int)height_r*25);
+        lblNewLabel_1.setBounds((int)width_r*(390-290), (int)height_r*(365-168), (int)width_r*250, (int)height_r*25);
         panel1.add(lblNewLabel_1);
 
         textField=new JTextField();
         textField.setFont(new Font("宋体", Font.BOLD, 16));
-        textField.setBounds((int)width_r*(500-290), (int)height_r*(320-158), (int)width_r*125, (int)height_r*25);
+        textField.setBounds((int)width_r*(500-290), (int)height_r*(320-178), (int)width_r*125, (int)height_r*25);
         textField.setBackground(color4);
         //textField.setBorder(null);
         panel1.add(textField);
@@ -142,7 +147,7 @@ public class LoginFrame extends JFrame{
 
         passwordField=new JPasswordField();
         passwordField.setFont(new Font("宋体", Font.BOLD, 16));
-        passwordField.setBounds((int)width_r*(500-290), (int)height_r*(365-158), (int)width_r*125, (int)height_r*25);
+        passwordField.setBounds((int)width_r*(500-290), (int)height_r*(365-168), (int)width_r*125, (int)height_r*25);
         passwordField.setBackground(color4);
         //passwordField.setBorder(null);
         panel1.add(passwordField);
@@ -152,21 +157,21 @@ public class LoginFrame extends JFrame{
         JLabel chooselabel = new JLabel("请选择您的身份： ");
         chooselabel.setFont(new Font("等线", Font.BOLD, 20));
         chooselabel.setForeground(color1);
-        chooselabel.setBounds((int)width_r*(400-290),(int)height_r*(435-158),(int)width_r*180,(int)height_r*20);
+        chooselabel.setBounds((int)width_r*(400-290),(int)height_r*(435-168),(int)width_r*180,(int)height_r*20);
         panel1.add(chooselabel);
         JRadioButton rbtnstu= new JRadioButton("学生",false);
         rbtnstu.setFont(new Font("等线", Font.BOLD, 20));
         rbtnstu.setForeground(color1);
         //rbtnstu.setSelected(true);
         rbtnstu.setContentAreaFilled(false);
-        rbtnstu.setBounds((int)width_r*(400-290),(int)height_r*(470-158),(int)width_r*75,(int)height_r*22);
+        rbtnstu.setBounds((int)width_r*(400-290),(int)height_r*(470-168),(int)width_r*75,(int)height_r*22);
         panel1.add(rbtnstu);
         JRadioButton rbtntea= new JRadioButton("教师",false);
         rbtntea.setFont(new Font("等线", Font.BOLD, 20));
         rbtntea.setForeground(color1);
         //rbtntea.setSelected(true);
         rbtntea.setContentAreaFilled(false);
-        rbtntea.setBounds((int)width_r*(500-290),(int)height_r*(470-158),(int)width_r*75,(int)height_r*22);
+        rbtntea.setBounds((int)width_r*(500-290),(int)height_r*(470-168),(int)width_r*75,(int)height_r*22);
         panel1.add(rbtntea);
         ButtonGroup group1=new ButtonGroup();
         group1.add(rbtnstu);
@@ -174,7 +179,7 @@ public class LoginFrame extends JFrame{
 
         //登录
         JButton btnNewButton_1 = new JButton("登录");
-        btnNewButton_1.setBounds((int)width_r*(400-290), (int)height_r*(540-158), (int)width_r*220, (int)height_r*30);
+        btnNewButton_1.setBounds((int)width_r*(400-290), (int)height_r*(520-168), (int)width_r*220, (int)height_r*30);
         Font myfont = new Font("楷体", Font.PLAIN, 25);
         btnNewButton_1.setFont(myfont);
         //btnNewButton_1.setBackground(new Color(34, 139, 34));
