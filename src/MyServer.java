@@ -30,4 +30,9 @@ public class MyServer {
             e.printStackTrace();
         }
     }
+
+    public static void main(String[] args) {
+        MyServer tcp = new MyServer();
+        tcp.start(); //启动服务器
+    }
 }

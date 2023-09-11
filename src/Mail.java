@@ -5,9 +5,45 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.security.GeneralSecurityException;
 import java.util.Properties;
+import java.util.Random;
 
 public class Mail {
-    void SendEmail()throws MessagingException, GeneralSecurityException{
+    Mail(String e_mail) throws MessagingException, GeneralSecurityException {  //传参为要接收验证码的邮箱
+        this.email = e_mail;
+        GenerateCode(6);
+        SendEmail();
+    }
+
+    public void GenerateCode(int figuresNum){
+        Random random = new Random();
+        String tempCode="";
+        for(int i=0;i<figuresNum;i++){
+            int tempFigure = random.nextInt(10);
+            tempCode += String.valueOf(tempFigure);
+        }
+        this.verifiCode = tempCode;
+    }
+
+    private String verifiCode;
+    private String email;
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getVerifiCode() {
+        return verifiCode;
+    }
+
+    public void setVerifiCode(String verifiCode) {
+        this.verifiCode = verifiCode;
+    }
+
+    public void SendEmail()throws MessagingException, GeneralSecurityException{
         //创建一个配置文件并保存
         Properties properties = new Properties();
 
@@ -48,13 +84,15 @@ public class Mail {
         mimeMessage.setFrom(new InternetAddress("3341213658@qq.com"));
 
         //邮件接收人
-        mimeMessage.setRecipient(Message.RecipientType.TO,new InternetAddress("3087698924@qq.com"));
+        mimeMessage.setRecipient(Message.RecipientType.TO,new InternetAddress(this.email));
 
         //邮件标题
-        mimeMessage.setSubject("Hello Mail");
+        mimeMessage.setSubject("Vcampus 验证码");
+
+        String content = "【Vcampus】您好！欢迎使用Vcampus系统！您的验证码是："+this.verifiCode + "。如非本人操作，请检查账号安全！";
 
         //邮件内容
-        mimeMessage.setContent("HelloWorld!","text/html;charset=UTF-8");
+        mimeMessage.setContent(content,"text/html;charset=UTF-8");
 
         //发送邮件
         transport.sendMessage(mimeMessage,mimeMessage.getAllRecipients());

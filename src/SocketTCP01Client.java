@@ -11,7 +11,7 @@ public class SocketTCP01Client {
     public static void main(String[] args)throws IOException {
 
         //1.连接服务端（ip、端口），如果连接成功返回socket对象
-        Socket socket = new Socket(InetAddress.getLocalHost(),9999); //连接本机9999端口
+        Socket socket = new Socket("10.203.213.173",9999); //连接本机9999端口
         System.out.println("客户端 socket返回="+socket.getClass());
         //2.连接上后，生成socket
         //得到和socket对象关联的输出流对象

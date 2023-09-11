@@ -12,8 +12,8 @@ public class SocketTCP02Server {
         SendReceive sr = new SendReceive(1);
         String messageRead = sr.Receive(port);
         System.out.println(messageRead);
-        messageRead = sr.Receive(port);
-        System.out.println(messageRead);
+//        messageRead = sr.Receive(port);
+//        System.out.println(messageRead);
 
         String messageWrite = "Hello client!";
         sr.Send(messageWrite,port);

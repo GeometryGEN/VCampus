@@ -28,7 +28,7 @@ public class Main {
     }
 
     public static void test04() throws MessagingException, GeneralSecurityException {
-        Mail mail = new Mail();
-        mail.SendEmail();
+        String myEmail = "1044492082@qq.com";
+        Mail mail = new Mail(myEmail);
     }
 }
