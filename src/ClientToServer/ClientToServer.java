@@ -14,15 +14,12 @@ import utils.MyObjectOutputStream;
 
 import java.io.IOException;
 import java.net.Socket;
+import java.net.UnknownHostException;
 
 /**
  * 客户端服务器
- *
- * @author 28468
  * @version : [v1.0]
  * @description : [一句话描述该类的功能]
- * @createTime : [2022.08.14 20:01]
- * @date 2022/09/04
  */
 
 public class ClientToServer {
@@ -58,7 +55,15 @@ public class ClientToServer {
     /**
      * 服务器ip
      */
-    public static String serverIP = Message.returnIP();
+    public static String serverIP;
+
+    static {
+        try {
+            serverIP = Message.returnIP();
+        } catch (UnknownHostException e) {
+            throw new RuntimeException(e);
+        }
+    }
     //public static String serverIP = "172.20.10.2";
 
     /**
@@ -198,7 +203,7 @@ public class ClientToServer {
             ClientToServerThread ctst = new ClientToServerThread(ois,socket);        //创建一个和服务器端保持通信的线程
             ctst.start();                                                        //启动线程
             ManageClientToServerThread.addThread(id, ctst);
-           // System.out.println(ManageClientToServerThread.getThread(id));
+            // System.out.println(ManageClientToServerThread.getThread(id));
             Client_curriculum.setOos(oos);
             Client_library.setOos(oos);
             Client_qicq.setOps(oos);
@@ -433,7 +438,7 @@ public class ClientToServer {
         Message message = new Message();
         message.setType(MessageType.MESSAGE_CLIENT_EXIT);
         message.setSender(myInfo.getId());
-             //得到Object对象
+        //得到Object对象
         oos.writeObject(message);
         ManageClientToServerThread.getThread(myInfo.getId()).exit = true;
         ManageClientToServerThread.getThread(myInfo.getId()).interrupt();

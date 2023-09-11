@@ -17,11 +17,8 @@ import java.util.Random;
 
 /**
  * 课程管理
- *
- * @author Shuheng_Gu
  * @description 管理选课模块的数据库操作
- * @date 2022/09/03
- *///gsh
+ */
 public class Course_manager {
     /**
      * id
