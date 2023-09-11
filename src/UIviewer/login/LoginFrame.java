@@ -48,7 +48,7 @@ public class LoginFrame extends JFrame{
      * 登录框
      */
     public LoginFrame(){
-        //菜单栏
+        //菜单栏aq
         JMenuBar menuBar=new JMenuBar();
         JMenu menu1=new JMenu("注册");
         menu1.setFont(myfont1);
