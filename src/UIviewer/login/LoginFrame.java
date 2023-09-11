@@ -228,11 +228,12 @@ public class LoginFrame extends JFrame{
         JButton btnNewButton_3 = new JButton("管理员登录热键为alt+A");
         //btnNewButton_3.setAccelerator(KeyStroke.getKeyStroke('A', java.awt.event.InputEvent.CTRL_DOWN_MASK));
         btnNewButton_3.setMnemonic(java.awt.event.KeyEvent.VK_A);
-        btnNewButton_3.setBounds(50, 580, 420, 30);
+        btnNewButton_3.setBounds(50, 880, 420, 30);
         btnNewButton_3.setFont(new Font("等线",Font.BOLD,10));
         btnNewButton_3.setBackground(new Color(34, 139, 34));
         btnNewButton_3.setForeground(new Color(248, 248, 255));
         btnNewButton_3.setOpaque(false);
+        //btnNewButton_3.setVisible(false);
         btnNewButton_3.setFocusPainted(false);
         btnNewButton_3.addActionListener(new ActionListener() {
             @Override

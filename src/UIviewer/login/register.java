@@ -83,7 +83,7 @@ public class register {
         textField10.setColumns(10);
         //发送验证码
         JButton b2=new JButton("发送验证码");
-        b2.setFont(new Font("等线",Font.BOLD,15));
+        b2.setFont(new Font("等线",Font.BOLD,14));
         b2.setBounds(190,430,110,25);
         b2.setForeground(color1);
         b2.setBackground(color4);
