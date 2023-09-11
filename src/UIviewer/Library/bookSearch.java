@@ -78,7 +78,6 @@ public class bookSearch extends JPanel {
         Font font1 = new Font("楷体", Font.PLAIN, (int) (18*width_r));
         l2.setForeground(new Color(255,255,255));
         l2.setFont(font1);
-        //l1.setForeground(new Color(111,222,0));
         add(l2);
 
         //输入搜索内容的文本框
@@ -87,6 +86,35 @@ public class bookSearch extends JPanel {
         textField.setBounds((int) (550*width_r), (int) (220*height_r), (int) (420*width_r), (int) (50*height_r));
         add(textField);
         textField.setColumns((int) (10*height_r));
+
+
+        JLabel l3 = new JLabel("您可以进行……");
+        l3.setBounds((int) (40*width_r), (int) (40*height_r), (int) (220*width_r), (int) (50*height_r));
+        l3.setForeground(new Color(255,255,255));
+        l3.setOpaque(false);
+        l3.setFont(myfont2);
+        add(l3);
+        JLabel l4 = new JLabel("按书名检索");
+        l4.setBounds((int) (55*width_r), (int) (120*height_r), (int) (220*width_r), (int) (50*height_r));
+        l4.setForeground(new Color(255,255,255));
+        l4.setIcon(new ImageIcon("src/image/图书馆/5.png"));
+        l4.setHorizontalAlignment(JLabel.CENTER);
+        l4.setFont(myfont2);
+        add(l4);
+        JLabel l5 = new JLabel("按作者检索");
+        l5.setBounds((int) (55*width_r), (int) (220*height_r), (int) (220*width_r), (int) (50*height_r));
+        l5.setForeground(new Color(255,255,255));
+        l5.setIcon(new ImageIcon("src/image/图书馆/6.png"));
+        l5.setHorizontalAlignment(JLabel.CENTER);
+        l5.setFont(myfont2);
+        add(l5);
+        JLabel l6 = new JLabel("按书籍编号检索");
+        l6.setBounds((int) (55*width_r), (int) (320*height_r), (int) (220*width_r), (int) (50*height_r));
+        l6.setForeground(new Color(255,255,255));
+        l6.setIcon(new ImageIcon("src/image/图书馆/7.png"));
+        l6.setHorizontalAlignment(JLabel.CENTER);
+        l6.setFont(myfont2);
+        add(l6);
 
         //搜索按钮
         JButton b11=new JButton("检索");
@@ -110,72 +138,10 @@ public class bookSearch extends JPanel {
             }
         });
 
-        //按书名搜索
-        JButton b12=new JButton("按书名检索");
-        b12.setBounds((int) (55*width_r), (int) (120*height_r), (int) (220*width_r), (int) (50*height_r));
-        b12.setFont(myfont2);
-        b12.setContentAreaFilled(false);//设置按钮透明
-        b12.setFocusPainted(false);//把选中后出现的小方框去掉
-        b12.setForeground(new Color(255,255,255));
-        b12.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
-                try {
-                    //按书名搜索
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-            }
-        });
-
-        //按作者搜索
-        JButton b13=new JButton("按作者检索");
-        b13.setBounds((int) (55*width_r), (int) (220*height_r), (int) (220*width_r), (int) (50*height_r));
-        b13.setFont(myfont2);
-        b13.setContentAreaFilled(false);//设置按钮透明
-        b13.setFocusPainted(false);//把选中后出现的小方框去掉
-        b13.setForeground(new Color(255,255,255));
-        b13.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
-                try {
-                    //按作者搜索
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-            }
-        });
-
-        //按书籍编号
-        JButton b14=new JButton("按书籍编号检索");
-        b14.setBounds((int) (55*width_r), (int) (320*height_r), (int) (220*width_r), (int) (50*height_r));
-        b14.setFont(myfont2);
-        b14.setContentAreaFilled(false);//设置按钮透明
-        b14.setFocusPainted(false);//把选中后出现的小方框去掉
-        b14.setForeground(new Color(255,255,255));
-        b14.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // TODO Auto-generated method stub
-                try {
-                    //按书籍编号搜索
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
-            }
-        });
-
         add(b11);
-        add(b12);
-        add(b13);
-        add(b14);
         add(p31);
         add(p21);
-
         add(p11);
-
 
 
     }
