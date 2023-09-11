@@ -24,9 +24,12 @@ import UIviewer.SelectCourse.Selcourse_teacher;
 import UIviewer.login.functionChoose;
 import UIviewer.status_manage.manage_status;
 import UIviewer.Shopping.FuctionJump;
+import lombok.SneakyThrows;
 import net.coobird.thumbnailator.Thumbnails;
 import ClientToServer.myInfo;
 
+import static DAO.Shop.buyers_Shop_utils.addMoney_Student;
+import static DAO.Shop.buyers_Shop_utils.addMoney_Teacher;
 import static UIviewer.Shopping.ShoppingHall.resetshoptable;
 import static UIviewer.Shopping.ShoppingHall.setShoptable;
 import static UIviewer.login.forgetPWD.forgetPWDUI;
@@ -349,6 +352,31 @@ public class shopCustomer extends JPanel {
             }
         });
         add(b4);
+
+        JButton b5=new JButton("充值余额");
+        b5.setBounds((int) (927*width_r), (int) (100*height_r), (int) (173*width_r), (int) (50*height_r));
+        b5.setFont(myfont1);
+        b5.setContentAreaFilled(false);//设置按钮透明
+        b5.setFocusPainted(false);
+        b5.setForeground(white);
+        b5.setBorder(null);
+
+        b5.addActionListener(new ActionListener() {
+            @SneakyThrows
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String add_money=JOptionPane.showInputDialog(null,"请输入充值金额：","充值",JOptionPane.PLAIN_MESSAGE);
+                Double add_money1=Double.valueOf(add_money);
+                if(myInfo.getType()==1){
+                    addMoney_Student(myInfo.getId(),add_money1);
+                    l1.setText("你好！"+myInfo.getName()+"。您的余额为"+String.format("%.2f", myInfo.getMoney()+add_money1)+"元。");
+                }else if(myInfo.getType()==2){
+                    addMoney_Teacher(myInfo.getId(),add_money1);
+                    l1.setText("你好！"+myInfo.getName()+"。您的余额为"+String.format("%.2f", myInfo.getMoney()+add_money1)+"元。");
+                }
+            }
+        });
+        add(b5);
         //按钮面板
         JPanel p2 = new JPanel();
         p2.setBounds(0, (int) (100*height_r), (int) (1280*width_r), (int) (50*height_r));
