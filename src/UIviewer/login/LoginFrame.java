@@ -9,6 +9,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.net.UnknownHostException;
 
 import static UIviewer.login.register.registerUI;
 import static UIviewer.login.forgetPWD.forgetPWDUI;
@@ -47,7 +48,7 @@ public class LoginFrame extends JFrame{
     /**
      * 登录框
      */
-    public LoginFrame(){
+    public LoginFrame() throws UnknownHostException {
         System.out.println(width);
         System.out.println(height);
         System.out.println(width_r);

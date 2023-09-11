@@ -3,6 +3,8 @@ import DAO.QICQ.Filetrans;
 import utils.getIP;
 
 import java.io.Serializable;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 
 /**
  * @author : [Tongwei_L]
@@ -59,7 +61,7 @@ public class Message implements Serializable {
      * 钱
      */
     private double money;    //钱
-    public static String returnIP(){
+    public static String returnIP() throws UnknownHostException {
         return getIP.getHostIp();
     }
 
