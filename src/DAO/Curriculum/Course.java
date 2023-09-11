@@ -4,10 +4,7 @@ import java.io.Serializable;
 
 /**
  * 课程
- *
- * @author Shuheng_Gu
  * @description 课程类，包含课程信息
- * @date 2022/09/03
  */
 public class Course implements Serializable {
     /**

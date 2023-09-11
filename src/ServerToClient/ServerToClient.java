@@ -20,6 +20,7 @@ import utils.myTime;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.net.InetAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.sql.SQLException;
@@ -30,12 +31,8 @@ import java.util.Iterator;
 
 /**
  * 服务器客户端
- *
- * @author 28468
  * @version : [v1.0]
  * @description : [服务器，监听8080，等待客户端连接，保持通信]
- * @createTime : [2022.08.14 19:36]
- * @date 2022/09/04
  */
 public class ServerToClient extends Thread{
     /**
@@ -65,7 +62,7 @@ public class ServerToClient extends Thread{
     private static HashMap<String,ArrayList<String>>new_message=new HashMap<>();*/
     public ServerToClient() throws IOException {
         try{
-            System.out.println("服务器在"+MessageType.PORT+"端口监听中，"+"IP地址为"+Message.returnIP());
+            System.out.println("服务器在"+MessageType.PORT+"端口监听中，"+"IP地址为"+ InetAddress.getLocalHost());
             ss=new ServerSocket(MessageType.PORT);
             while (true){
                 // if(punish.size()!=0&&getOnline_admin()!=null) send_ticket(getOnline_admin());
@@ -93,7 +90,7 @@ public class ServerToClient extends Thread{
                         ManageServerToClientThread.addThread(stu.getStudent_idcard(),stct);
                         addOnline(stu.getStudent_idcard(),0);
                     }else {  //登录失败
-                    //    System.out.println(stu.getStudent_idcard()+"  ..  "+stu.getStudent_pwd());
+                        //    System.out.println(stu.getStudent_idcard()+"  ..  "+stu.getStudent_pwd());
                         m.setType(MessageType.MESSAGE_LOGIN_FAIL);
                         //将message对象回复客户端
                         oos.writeObject(m);
@@ -244,7 +241,7 @@ public class ServerToClient extends Thread{
      * @param id id
      */
     public static void removeOnline(String id){
-       online.remove(id);
+        online.remove(id);
     }
 
     /**
