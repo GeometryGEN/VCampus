@@ -4,11 +4,14 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.IOException;
 
 import ClientToServer.myInfo;
 import DAO.Chat.*;
 import UIviewer.login.functionChoose;
 import lombok.SneakyThrows;
+import net.coobird.thumbnailator.Thumbnails;
 
 import static UIviewer.login.functionChoose.jf;
 
@@ -39,8 +42,57 @@ public class gpt_panel extends JPanel {
         add(panel);
 //		给主要显示面板添加布局方式
         panel.setLayout(cardLayout);
-        setBounds(0,0,width,height);
-        setBackground(new Color(231,21,21));
+        //setBounds(0,0,width,height);
+        setBackground(new Color(169,189,205));
+        JLabel logo = new JLabel();
+        ImageIcon icon = new ImageIcon("src/image/zhushoubg_1.png");
+        int icon1_width= 600;
+        int icon1_height=75;
+        try {
+            Thumbnails.of(new File("src/image/zhushoubg_1.png"))
+                    .size((int)(icon1_width*width_r), (int)(icon1_height*height_r))
+                    .toFile(new File("src/image/zhushoubg_1min.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        logo.setIcon(new ImageIcon("src/image/zhushoubg_1min.png"));
+        logo.setBounds((int) (30*width_r), (int) (10*height_r), (int) (600*width_r), (int) (75*height_r));
+        add(logo);
+        //文字
+        JLabel l1 = new JLabel("你好！"+name);
+        l1.setBounds((int) (1100*width_r), (int) (30*height_r), (int) (200*width_r), (int) (55*height_r));
+        l1.setForeground(new Color(248, 248, 255));
+        Font font = new Font("楷体", Font.BOLD, (int) (20*width_r));
+        l1.setFont(font);
+        add(l1);
+        JPanel p1 = new JPanel();
+        //上方面板
+        p1.setBounds(0, 0, (int) (1279*width_r), (int) (100*height_r));
+        p1.setBackground(new Color(42,52,65));
+        add(p1);
+        Font myfont = new Font("微软雅黑 ", Font.BOLD, 20);
+        JButton btnNewButton_6 = new JButton("退出智能助手");
+        btnNewButton_6.setBounds((int) (1100*width_r), (int) (100*height_r), (int) (173*width_r), (int) (50*height_r));
+        btnNewButton_6.setFont(myfont);
+        btnNewButton_6.setFocusPainted(false);
+        btnNewButton_6.setForeground(new Color(220, 220, 220));
+        btnNewButton_6.setContentAreaFilled(false);
+        btnNewButton_6.setBorder(null);
+        btnNewButton_6.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                functionChoose.jf.setContentPane(functionChoose.fc_panel);
+                functionChoose.jf.setTitle("functionChoose");
+                setVisible(false);
+            }
+
+        });
+        add(btnNewButton_6);
+        //按钮面板
+        JPanel p2 = new JPanel();
+        p2.setBounds(0, (int) (100*height_r), (int) (1280*width_r), (int) (50*height_r));
+        p2.setBackground(new Color(68,84,105));
+        add(p2);
 
         //问问题界面
         JTextPane question=new JTextPane();
