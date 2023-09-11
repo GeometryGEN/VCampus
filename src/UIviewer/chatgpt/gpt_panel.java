@@ -31,6 +31,12 @@ public class gpt_panel extends JPanel {
     }
     public static CardLayout cardLayout=new CardLayout();
     public gpt_panel() throws Exception{
+//提问按钮
+        JButton ask=new JButton("ask");
+        ask.setBounds((int)(900*width_r),(int)(600*height_r),(int)(100*width_r),(int)(50*height_r));
+        ask.setBackground(new Color(190,182,191));
+        ask.setFont(new Font("华文新魏",Font.BOLD,30));
+        add(ask);
         //主界面
         String name= myInfo.getName();
         getName(name);
@@ -65,7 +71,9 @@ public class gpt_panel extends JPanel {
         Font font = new Font("楷体", Font.BOLD, (int) (20*width_r));
         l1.setFont(font);
         add(l1);
+
         JPanel p1 = new JPanel();
+
         //上方面板
         p1.setBounds(0, 0, (int) (1279*width_r), (int) (100*height_r));
         p1.setBackground(new Color(42,52,65));
@@ -96,13 +104,11 @@ public class gpt_panel extends JPanel {
 
         //问问题界面
         JTextPane question=new JTextPane();
-        question.setBackground(new Color(0,0,0));
-        question.setBounds(0,(int)(400*height_r),width,(int)(200*height_r));
+        question.setBackground(new Color(235,225,228));
+        question.setBounds((int)(200*width_r),(int)(600*height_r),(int)(600*width_r),(int)(50*height_r));
         add(question);
-
+        question.setFont(new Font("楷体",Font.BOLD,25));
         //提问按钮
-        JButton ask=new JButton("ask");
-        ask.setBounds(900,(int)(500*height_r),40,20);
 
         //问题返回界面
         JTextArea answers=new JTextArea();
@@ -131,7 +137,7 @@ public class gpt_panel extends JPanel {
                 question.setText("");
             }
         });
-        add(ask);
+
 
         go_back.addActionListener(new ActionListener() {
             @Override
