@@ -136,7 +136,7 @@ public class gpt_panel extends JPanel {
             @SneakyThrows
             @Override
             public void actionPerformed(ActionEvent e) {
-                String questionContent=question.getText();
+                String questionContent="Q:"+question.getText();
                 answers.append(questionContent);
                 answers.append("\r\n");
                 question_toask=question.getText();
@@ -147,7 +147,7 @@ public class gpt_panel extends JPanel {
                 System.out.println("本次回答花费：" + questionModule.timeConsuming + "秒。虽然有点慢，但我尽力了呢~ ^.^");
                 System.out.println(questionModule.answer);
                 JTextPane answer_back=new JTextPane();
-                answers.append(questionModule.answer);
+                answers.append("A:"+questionModule.answer);
                 answers.append("\r\n");
                 question.setText("");
             }
