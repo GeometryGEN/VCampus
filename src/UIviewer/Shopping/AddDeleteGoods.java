@@ -25,7 +25,7 @@ public class AddDeleteGoods extends JPanel {
     Color color3=new Color(57,94,50);
     Color color4=new Color(72,115,78);
     Color color5=new Color(211,229,210);
-    Font myfont1=new Font("微软雅黑", Font.BOLD, 24);
+    Font myfont1=new Font("微软雅黑", Font.BOLD, 20);
 
     public static String[] addinfo=new String[7];
     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
@@ -104,7 +104,7 @@ public class AddDeleteGoods extends JPanel {
         l1.setBounds((int) (160*width_r), (int) (120*height_r), (int) (250*width_r), (int) (25*height_r));
         p14.add(l1);
         JTextField textField1=new JTextField();
-        textField1.setFont(new Font("宋体", Font.BOLD, (int) (12*width_r)));
+        textField1.setFont(new Font("宋体", Font.BOLD, 17));
         textField1.setBounds((int) (255*width_r), (int) (120*height_r), (int) (125*width_r), (int) (25*height_r));
         p14.add(textField1);
         textField1.setColumns(10);
@@ -115,7 +115,7 @@ public class AddDeleteGoods extends JPanel {
         l2.setBounds((int) (460*width_r), (int) (120*height_r), (int) (250*width_r), (int) (25*height_r));
         p14.add(l2);
         JTextField textField2=new JTextField();
-        textField2.setFont(new Font("宋体", Font.BOLD, (int) (12*width_r)));
+        textField2.setFont(new Font("宋体", Font.BOLD, 17));
         textField2.setBounds((int) (555*width_r), (int) (120*height_r), (int) (125*width_r), (int) (25*height_r));
         p14.add(textField2);
         textField2.setColumns(10);
@@ -126,7 +126,7 @@ public class AddDeleteGoods extends JPanel {
         l3.setBounds((int) (160*width_r), (int) (200*height_r), (int) (250*width_r), (int) (25*height_r));
         p14.add(l3);
         JTextField textField3=new JTextField();
-        textField3.setFont(new Font("宋体", Font.BOLD, (int) (12*width_r)));
+        textField3.setFont(new Font("宋体", Font.BOLD, 17));
         textField3.setBounds((int) (255*width_r), (int) (200*height_r), (int) (125*width_r), (int) (25*height_r));
         p14.add(textField3);
         textField3.setColumns(10);
@@ -137,7 +137,7 @@ public class AddDeleteGoods extends JPanel {
         l4.setBounds((int) (460*width_r), (int) (200*height_r), (int) (250*width_r), (int) (25*height_r));
         p14.add(l4);
         JTextField textField4=new JTextField();
-        textField4.setFont(new Font("宋体", Font.BOLD, (int) (12*width_r)));
+        textField4.setFont(new Font("宋体", Font.BOLD, 17));
         textField4.setBounds((int) (555*width_r), (int) (200*height_r), (int) (125*width_r), (int) (25*height_r));
         p14.add(textField4);
         textField4.setColumns(10);
@@ -148,7 +148,7 @@ public class AddDeleteGoods extends JPanel {
         l5.setBounds((int) (160*width_r), (int) (280*height_r), (int) (250*width_r), (int) (25*height_r));
         p14.add(l5);
         JTextField textField5=new JTextField();
-        textField5.setFont(new Font("宋体", Font.BOLD, (int) (12*width_r)));
+        textField5.setFont(new Font("宋体", Font.BOLD, 17));
         textField5.setBounds((int) (255*width_r), (int) (280*height_r), (int) (125*width_r), (int) (25*height_r));
         p14.add(textField5);
         textField5.setColumns(10);
@@ -158,11 +158,39 @@ public class AddDeleteGoods extends JPanel {
         l6.setForeground(color2);
         l6.setBounds((int) (460*width_r), (int) (280*height_r), (int) (250*width_r), (int) (25*height_r));
         p14.add(l6);
-        JTextField textField6=new JTextField();
-        textField6.setFont(new Font("宋体", Font.BOLD, (int) (12*width_r)));
-        textField6.setBounds((int) (555*width_r), (int) (280*height_r), (int) (125*width_r), (int) (25*height_r));
-        p14.add(textField6);
-        textField6.setColumns(10);
+        JComboBox<String> comboBox2 =new JComboBox<String>();
+        comboBox2.setBounds((int) (555*width_r), (int) (280*height_r), (int) (125*width_r), (int) (25*height_r));
+        comboBox2.setBackground(color5);
+        comboBox2.setFont(new Font("宋体", Font.BOLD, 14));
+        comboBox2.setForeground(color2);
+        comboBox2.addItem("零食");
+        comboBox2.addItem("饼干");
+        comboBox2.addItem("茶");
+        comboBox2.addItem("生鲜");
+        comboBox2.addItem("医药");
+        comboBox2.addItem("保健");
+        comboBox2.addItem("手机");
+        comboBox2.addItem("数码");
+        comboBox2.addItem("电器");
+        comboBox2.addItem("饰品");
+        comboBox2.addItem("男装");
+        comboBox2.addItem("运动");
+        comboBox2.addItem("百货");
+        comboBox2.addItem("厨具");
+        comboBox2.addItem("家装");
+        comboBox2.addItem("礼品");
+        comboBox2.addItem("洗护");
+        comboBox2.addItem("美妆");
+        comboBox2.addItem("书籍");
+        comboBox2.setEditable(false);//不可修改的文字
+        p14.add(comboBox2);
+//        JTextField textField6=new JTextField();
+//        textField6.setFont(new Font("宋体", Font.BOLD, 17));
+//        textField6.setBounds((int) (555*width_r), (int) (280*height_r), (int) (125*width_r), (int) (25*height_r));
+//        p14.add(textField6);
+//        textField6.setColumns(10);
+        //注意，原来是从textF6获取字符串
+        // String identity=(String)comboBox2.getSelectedItem();
 
 
         JButton b1=new JButton("确定加入");
@@ -181,7 +209,8 @@ public class AddDeleteGoods extends JPanel {
                 String price = textField3.getText();
                 String leftNum = textField5.getText();
                 String sumNum = textField4.getText();
-                String type = textField6.getText();
+                String type=(String)comboBox2.getSelectedItem();
+                //String type = textField6.getText();
                 Product p = new Product();
                 p.setProduct_name(name);
                 p.setProduct_id(Integer.parseInt(id));
@@ -201,7 +230,7 @@ public class AddDeleteGoods extends JPanel {
                     textField3.setText("");
                     textField4.setText("");
                     textField5.setText("");
-                    textField6.setText("");
+                    //textField6.setText("");
 
                 } catch (Exception ex) {
                     throw new RuntimeException(ex);

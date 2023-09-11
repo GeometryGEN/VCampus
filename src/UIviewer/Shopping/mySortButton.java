@@ -143,6 +143,8 @@ public class mySortButton extends JButton {
                     }else if (text=="图书/文娱") {
                         List <Product> t1=(Client_shop.checktypeProduct("手机"));
                         t=additem(t,t1);
+                        List <Product> t2=(Client_shop.checktypeProduct("书籍"));
+                        t=additem(t,t2);
                     }else if (text=="服饰/运动") {
                         List <Product> t1=(Client_shop.checktypeProduct("饰品"));
                         t=additem(t,t1);
