@@ -28,8 +28,8 @@ public class LoginFrame extends JFrame{
     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
     int width=(int) screensize.getWidth(); //得到宽度
     int height=(int) screensize.getHeight();//获得高度
-    int width_r=(int) width/1000;
-    int height_r=(int) height/720;//1280,720
+    double width_r=(double) width/1000;
+    double height_r=(double) height/720;//1280,720
 
     private ClientToServer ucs = new ClientToServer();
     private JPanel p1;
@@ -51,6 +51,8 @@ public class LoginFrame extends JFrame{
     public LoginFrame() throws UnknownHostException {
         System.out.println(width);
         System.out.println(height);
+        System.out.println(width_r);
+        System.out.println(height_r);
         //菜单栏aq
         JMenuBar menuBar=new JMenuBar();
         JMenu menu1=new JMenu("注册");
@@ -113,7 +115,7 @@ public class LoginFrame extends JFrame{
         panel1.setLayout(null);
         panel1.setBackground(Color.BLUE);
         panel1.setOpaque(false);
-        panel1.setBounds((int)width_r*240 ,(int)height_r*112,(int)width_r*430 ,(int)height_r*400);
+        panel1.setBounds((int)width_r*310 ,(int)height_r*190,(int)width_r*450 ,(int)height_r*450);
         //panel1.setBounds(0 ,0,510 ,530);
         //jf.add(panel1);
         jf.getContentPane().add(panel1);
@@ -121,7 +123,7 @@ public class LoginFrame extends JFrame{
         JLabel vcam = new JLabel("Welcome to Vcampus !");
         vcam.setFont(new Font("宋体", Font.BOLD, 23));
         vcam.setForeground(color1);
-        vcam.setBounds((int)width_r*(410-290), (int)height_r*(215-168), (int)width_r*350, (int)height_r*25);
+        vcam.setBounds((int)width_r*(410-290), (int)height_r*(200-168), (int)width_r*350, (int)height_r*25);
         panel1.add(vcam);
         //账号密码
         JLabel lblNewLabel = new JLabel("一卡通号:");
