@@ -57,6 +57,7 @@ public class AllGoods extends JPanel {
      */
     public AllGoods(){
         setLayout(null);
+        setBackground(color5);
         String[] tableTitle = {"商品编号","商品名称","商品价格","商品剩余数量","商品种类"};
         //数据
         DefaultTableModel dtm = new DefaultTableModel(tableDate, tableTitle);
@@ -81,10 +82,20 @@ public class AllGoods extends JPanel {
         table_want.setBackground(color5);
         table_want.setOpaque(false);
         setBackground(color5);
+
+        //文字
+        JLabel l1 = new JLabel("//商品信息//");
+        l1.setBounds(0,10, (int) (1248*width_r), (int) (55*height_r));
+        l1.setHorizontalAlignment(JLabel.CENTER); // 将文本居中
+        l1.setForeground(color2);
+        Font font = new Font("微软雅黑", Font.BOLD, (int) (23*width_r));
+        l1.setFont(font);
+        add(l1);
+
         //支持滚动
         JScrollPane jsp = new JScrollPane();
         jsp.setViewportView(table_want);
-        jsp.setBounds(0,0, (int) (1280*width_r), (int) (620*height_r));
+        jsp.setBounds(40,100, (int) (1207*width_r), (int) (480*height_r));
         jsp.setBackground(color5);
         jsp.getViewport().setOpaque(false);
         add(jsp);
