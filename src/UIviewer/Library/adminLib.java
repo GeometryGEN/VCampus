@@ -1,5 +1,4 @@
 package UIviewer.Library;
-import ClientToServer.ClientToServer;
 import UIhandler.Library.Client_library;
 import UIviewer.login.functionChoose;
 import net.coobird.thumbnailator.Thumbnails;
@@ -11,29 +10,6 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import ClientToServer.myInfo;
-import UIhandler.Library.Client_library;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
-import java.io.IOException;
-
-import UIhandler.QICQ.Client_qicq;
-import UIhandler.Shop.Client_shop;
-import UIhandler.StatusManagement.Client_status;
-import UIviewer.QQ.main_panel;
-import UIviewer.SelectCourse.Selcourse;
-import UIviewer.SelectCourse.Selcourse_director;
-import UIviewer.SelectCourse.Selcourse_teacher;
-import UIviewer.Shopping.shopAdmin;
-import UIviewer.Shopping.shopCustomer;
-import UIviewer.login.LoginFrame;
-import UIviewer.login.functionChoose;
-import UIviewer.status_manage.manage_status;
-import net.coobird.thumbnailator.Thumbnails;
-import ClientToServer.myInfo;
-import UIhandler.StatusManagement.Client_status.*;
 
 import static UIviewer.login.functionChoose.jf;
 
@@ -82,7 +58,7 @@ public class adminLib extends JPanel {
 //		将面板添加到住面板中，注意:add()方法里有两个参数，第一个是要添加的对象，第二个给这个对象所放置的卡片
 //		起个名字，后面调用显示的时候要用到这个名字
         panel.add(f1,"f1");
-        AddDeleteBook f2=new AddDeleteBook();
+        AddDeleteBook f2=new AddDeleteBook(true);
         panel.add(f2,"f2");
         giveTicket f3=new giveTicket();
         panel.add(f3,"f3");
