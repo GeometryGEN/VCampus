@@ -232,6 +232,7 @@ public class LoginFrame extends JFrame{
         btnNewButton_3.setFont(new Font("等线",Font.BOLD,10));
         btnNewButton_3.setBackground(new Color(34, 139, 34));
         btnNewButton_3.setForeground(new Color(248, 248, 255));
+        btnNewButton_3.setOpaque(false);
         btnNewButton_3.setFocusPainted(false);
         btnNewButton_3.addActionListener(new ActionListener() {
             @Override
