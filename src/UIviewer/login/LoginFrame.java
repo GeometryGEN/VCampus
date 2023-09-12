@@ -12,7 +12,6 @@ import java.io.IOException;
 import java.net.UnknownHostException;
 
 import static UIviewer.login.register.registerUI;
-import static UIviewer.login.forgetPWD.forgetPWDUI;
 import static UIviewer.login.forgetPWD.forgetPWDUI;//之后改为修改密码UI函数
 
 /**
@@ -99,31 +98,41 @@ public class LoginFrame extends JFrame{
         //背景图片
         JLabel lblBackground = new JLabel(); // 创建一个标签组件对象
         try {
-            Thumbnails.of(new File("src/image/登录/12.png"))
+            Thumbnails.of(new File("src/image/登录/19.png"))
                     .size((int)(width), (int)(height))
                     .keepAspectRatio(false)
-                    .toFile(new File("src/image/登录/12_fit.png"));
+                    .toFile(new File("src/image/登录/19_fit.png"));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        lblBackground.setIcon(new ImageIcon("src/image/登录/12_fit.png"));
+        lblBackground.setIcon(new ImageIcon("src/image/登录/19_fit.png"));
         lblBackground.setBounds(0, 0, width,height); // 设置组件的显示位置及大小
 
         //左侧空白的面板，用来装那些字符和按钮输入，面板设置为透明
         JPanel panel1=new JPanel();
-        panel1.setBackground(color4);
         panel1.setLayout(null);
         panel1.setBackground(Color.BLUE);
         panel1.setOpaque(false);
-        panel1.setBounds((int)width_r*310 ,(int)height_r*190,(int)width_r*450 ,(int)height_r*450);
-        //panel1.setBounds(0 ,0,510 ,530);
-        //jf.add(panel1);
+        //panel1.setSize((int)width_r*310 ,(int)height_r*190);
+        panel1.setBounds((int)width_r*310 ,(int)height_r*190,(int)width_r*850 ,(int)height_r*450);
         jf.getContentPane().add(panel1);
+        //panel的背景图片设置为圆角方形
+        JLabel lblBackground2 = new JLabel(); // 创建一个标签组件对象
+        try {
+            Thumbnails.of(new File("src/image/登录/22.png"))
+                    .size((int)width_r*850 ,(int)height_r*450)
+                    .keepAspectRatio(false)
+                    .toFile(new File("src/image/登录/22_fit.png"));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        lblBackground2.setIcon(new ImageIcon("src/image/登录/22_fit.png"));
+        lblBackground2.setBounds(0, 0, (int)width_r*850 ,(int)height_r*450); // 设置组件的显示位置及大小
 
         JLabel vcam = new JLabel("Welcome to Vcampus !");
         vcam.setFont(new Font("宋体", Font.BOLD, 23));
         vcam.setForeground(color1);
-        vcam.setBounds((int)width_r*(410-290), (int)height_r*(200-168), (int)width_r*350, (int)height_r*25);
+        vcam.setBounds((int)width_r*(410-290), (int)height_r*(218-168), (int)width_r*350, (int)height_r*25);
         panel1.add(vcam);
         //账号密码
         JLabel lblNewLabel = new JLabel("一卡通号:");
@@ -226,6 +235,7 @@ public class LoginFrame extends JFrame{
             }
         });
         panel1.add(btnNewButton_1);
+        panel1.add(lblBackground2);
 
         // 管理员登录
         JButton btnNewButton_3 = new JButton("管理员登录热键为alt+A");
