@@ -1,11 +1,8 @@
 package UIviewer.Library;
 import DAO.Library.Book_admin;
-import DAO.Shop.Product;
 import UIhandler.Library.Client_library;
-import UIhandler.Shop.Client_shop;
-import UIviewer.Shopping.AddDeleteGoods;
+
 import UIviewer.Shopping.adminChoiceButton;
-import UIviewer.Shopping.shopAdmin;
 import net.coobird.thumbnailator.Thumbnails;
 
 import javax.swing.*;
@@ -15,8 +12,8 @@ import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 
-import static UIviewer.Shopping.shopAdmin.cardLayout;
-import static UIviewer.Shopping.shopAdmin.panel;
+import static UIviewer.Library.adminLib.cardLayout;
+import static UIviewer.Library.adminLib.panel;
 
 /**
  * 添加删除本
