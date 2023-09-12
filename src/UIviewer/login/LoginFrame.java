@@ -112,7 +112,7 @@ public class LoginFrame extends JFrame{
         JPanel panel1=new JPanel();
         panel1.setLayout(null);
         panel1.setBackground(Color.BLUE);
-        //panel1.setOpaque(false);
+        panel1.setOpaque(false);
         //panel1.setSize((int)width_r*310 ,(int)height_r*190);
         //panel1.setBounds((int)width_r*310 ,(int)height_r*190,(int)width_r*850 ,(int)height_r*450);
         panel1.setBounds((int)((width-width_r*554)/2) ,(int)((height-height_r*357)/2),(int)(width_r*554) ,(int)(height_r*337));
