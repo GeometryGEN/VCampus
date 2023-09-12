@@ -160,6 +160,7 @@ public class Client_status {
       //  System.out.println("opening  "+width+" "+height);
         //functionChoose.jf.remove(functionChoose.jf.getContentPane());
        // functionChoose.jf.setContentPane(new student_status(width,height,iat,color_switch));
+        //functionChoose.jf.setContentPane(new student_status(width,height,iat));
         functionChoose.jf.setContentPane(new student_status(width,height,iat));
         functionChoose.jf.setTitle("Status management");
     }
