@@ -48,6 +48,8 @@ public class Declare_Course extends JPanel{
     {
         setLayout(null);
         setVisible(true);
+        Color color5 = new Color(199, 204, 211);
+        Color color2 = new Color(1, 15, 68);
     //        JPanel p11=new JPanel();
 //        p11.setBounds(0,0,(int)(1273*width_r),(int)(784*height_r));
 
@@ -70,7 +72,7 @@ public class Declare_Course extends JPanel{
         //信息面板
         JLabel l4 = new JLabel("基本信息");
         l4.setBounds((int)(90*width_r), (int)(225*height_r), (int)(250*width_r), (int)(60*height_r));
-        Font font2 = new Font("楷体", Font.BOLD, 35);
+        Font font2 = new Font("楷体", Font.BOLD, 30);
         l4.setFont(font2);
         l4.setForeground(new Color(255,255,248));
         add(l4);
@@ -78,7 +80,7 @@ public class Declare_Course extends JPanel{
         String name = "1";
         JLabel l2 = new JLabel(" 姓名：" + myInfo.getName());
         l2.setBounds((int)(60*width_r), (int)(320*height_r), (int)(250*width_r), (int)(60*height_r));
-        Font font1 = new Font("微软雅黑", Font.PLAIN, 25);
+        Font font1 = new Font("微软雅黑", Font.PLAIN, 20);
         l2.setFont(font1);
         l2.setForeground(new Color(255,255,248));
         add(l2);
@@ -110,66 +112,99 @@ public class Declare_Course extends JPanel{
         add(p1);
 
 
-
+        JPanel p14 = new JPanel();
         Border blackline=BorderFactory.createLineBorder(Color.black);
         //文本编辑框（输入课程编号或课程名字）
-        JLabel lblNewLabel = new JLabel("课程申报");
-        lblNewLabel.setFont(new Font("宋体", Font.BOLD, 45));
-        lblNewLabel.setBounds((int)(450*width_r), (int)(80*height_r), (int)(275*width_r), (int)(75*height_r));
-        add(lblNewLabel);
-        lblNewLabel.setForeground(new Color(255,255,255));
-
-
-
-        JLabel lblNewLabel2 = new JLabel(" 课程名称");
-        lblNewLabel2.setFont(new Font("宋体", Font.BOLD, 30));
-        lblNewLabel2.setBounds((int)(300*width_r), (int)(160*height_r), (int)(160*width_r), (int)(75*height_r));
-        add(lblNewLabel2);
-        lblNewLabel2.setBorder(blackline);
-        lblNewLabel2.setBackground(new Color(248,245,245));
-        lblNewLabel2.setForeground(new Color(0,0,0));
-        lblNewLabel2.setOpaque(true);
+//        JLabel lblNewLabel = new JLabel("课程申报");
+//        lblNewLabel.setFont(new Font("宋体", Font.BOLD, 45));
+//        lblNewLabel.setBounds((int)(450*width_r), (int)(80*height_r), (int)(275*width_r), (int)(75*height_r));
+//        add(lblNewLabel);
+//        lblNewLabel.setForeground(new Color(255,255,255));
+        Font myfont1 = new Font("微软雅黑", Font.BOLD, 20);
+        JLabel l1 = new JLabel("课程名称:");
+        l1.setFont(myfont1);
+        l1.setForeground(color2);
+        l1.setBounds((int) (160 * width_r), (int) (120 * height_r), (int) (250 * width_r), (int) (25 * height_r));
+        p14.add(l1);
         JTextField textField1 = new JTextField();
-        textField1.setFont(new Font("宋体", Font.BOLD, 25));
-        textField1.setBounds((int)(459*width_r), (int)(160*height_r), (int)(400*width_r), (int)(75*height_r));
-        add(textField1);
+        textField1.setFont(new Font("宋体", Font.BOLD, 17));
+        textField1.setBounds((int) (255 * width_r), (int) (120 * height_r), (int) (125 * width_r), (int) (25 * height_r));
+        p14.add(textField1);
         textField1.setColumns(10);
 
-        JLabel lblNewLabel3 = new JLabel(" 课程学分");
-        lblNewLabel3.setFont(new Font("宋体", Font.BOLD, 30));
-        lblNewLabel3.setBounds((int)(300*width_r), (int)(235*height_r), (int)(160*width_r), (int)(75*height_r));
-        add(lblNewLabel3);
-        lblNewLabel3.setBorder(blackline);
-        lblNewLabel3.setBackground(new Color(248,245,245));
-        lblNewLabel3.setForeground(new Color(0,0,0));
-        lblNewLabel3.setOpaque(true);
+        JLabel l12 = new JLabel("课程学分:");
+        l12.setFont(myfont1);
+        l12.setForeground(color2);
+        l12.setBounds((int) (460 * width_r), (int) (120 * height_r), (int) (250 * width_r), (int) (25 * height_r));
+        p14.add(l12);
         JTextField textField2 = new JTextField();
-        textField2.setFont(new Font("宋体", Font.BOLD, 25));
-        textField2.setBounds((int)(459*width_r), (int)(235*height_r), (int)(400*width_r), (int)(75*height_r));
-        add(textField2);
+        textField2.setFont(new Font("宋体", Font.BOLD, 17));
+        textField2.setBounds((int) (555 * width_r), (int) (120 * height_r), (int) (125 * width_r), (int) (25 * height_r));
+        p14.add(textField2);
         textField2.setColumns(10);
 
-        JLabel lblNewLabel4 = new JLabel(" 课程学时");
-        lblNewLabel4.setFont(new Font("宋体", Font.BOLD, 30));
-        lblNewLabel4.setBounds((int)(300*width_r), (int)(310*height_r), (int)(160*width_r), (int)(75*height_r));
-        add(lblNewLabel4);
-        lblNewLabel4.setBorder(blackline);
-        lblNewLabel4.setBackground(new Color(248,245,245));
-        lblNewLabel4.setForeground(new Color(0,0,0));
-        lblNewLabel4.setOpaque(true);
-
+        JLabel l13 = new JLabel("课程学时:");
+        l13.setFont(myfont1);
+        l13.setForeground(color2);
+        l13.setBounds((int) (160 * width_r), (int) (200 * height_r), (int) (250 * width_r), (int) (25 * height_r));
+        p14.add(l13);
         JTextField textField3 = new JTextField();
-        textField3.setFont(new Font("宋体", Font.BOLD, 25));
-        textField3.setBounds((int)(459*width_r), (int)(310*height_r), (int)(400*width_r), (int)(75*height_r));
-        add(textField3);
+        textField3.setFont(new Font("宋体", Font.BOLD, 17));
+        textField3.setBounds((int) (255 * width_r), (int) (200 * height_r), (int) (125 * width_r), (int) (25 * height_r));
+        p14.add(textField3);
         textField3.setColumns(10);
 
 
+
+//        JLabel lblNewLabel2 = new JLabel(" 课程名称");
+//        lblNewLabel2.setFont(new Font("宋体", Font.BOLD, 30));
+//        lblNewLabel2.setBounds((int)(300*width_r), (int)(160*height_r), (int)(160*width_r), (int)(75*height_r));
+//        add(lblNewLabel2);
+//        lblNewLabel2.setBorder(blackline);
+//        lblNewLabel2.setBackground(new Color(248,245,245));
+//        lblNewLabel2.setForeground(new Color(0,0,0));
+//        lblNewLabel2.setOpaque(true);
+//        JTextField textField1 = new JTextField();
+//        textField1.setFont(new Font("宋体", Font.BOLD, 25));
+//        textField1.setBounds((int)(459*width_r), (int)(160*height_r), (int)(400*width_r), (int)(75*height_r));
+//        add(textField1);
+//        textField1.setColumns(10);
+//
+//        JLabel lblNewLabel3 = new JLabel(" 课程学分");
+//        lblNewLabel3.setFont(new Font("宋体", Font.BOLD, 30));
+//        lblNewLabel3.setBounds((int)(300*width_r), (int)(235*height_r), (int)(160*width_r), (int)(75*height_r));
+//        add(lblNewLabel3);
+//        lblNewLabel3.setBorder(blackline);
+//        lblNewLabel3.setBackground(new Color(248,245,245));
+//        lblNewLabel3.setForeground(new Color(0,0,0));
+//        lblNewLabel3.setOpaque(true);
+//        JTextField textField2 = new JTextField();
+//        textField2.setFont(new Font("宋体", Font.BOLD, 25));
+//        textField2.setBounds((int)(459*width_r), (int)(235*height_r), (int)(400*width_r), (int)(75*height_r));
+//        add(textField2);
+//        textField2.setColumns(10);
+//
+//        JLabel lblNewLabel4 = new JLabel(" 课程学时");
+//        lblNewLabel4.setFont(new Font("宋体", Font.BOLD, 30));
+//        lblNewLabel4.setBounds((int)(300*width_r), (int)(310*height_r), (int)(160*width_r), (int)(75*height_r));
+//        add(lblNewLabel4);
+//        lblNewLabel4.setBorder(blackline);
+//        lblNewLabel4.setBackground(new Color(248,245,245));
+//        lblNewLabel4.setForeground(new Color(0,0,0));
+//        lblNewLabel4.setOpaque(true);
+//
+//        JTextField textField3 = new JTextField();
+//        textField3.setFont(new Font("宋体", Font.BOLD, 25));
+//        textField3.setBounds((int)(459*width_r), (int)(310*height_r), (int)(400*width_r), (int)(75*height_r));
+//        add(textField3);
+//        textField3.setColumns(10);
+
+
         JButton btnNewButton_7 = new JButton("确认申报");
-        btnNewButton_7.setBounds((int)(500*width_r), (int)(425*height_r), (int)(150*width_r), (int)(50*height_r));
-        Font myfont3 = new Font("微软雅黑", Font.BOLD, 20);
+        btnNewButton_7.setBounds((int) (700 * width_r), (int) (330 * height_r), (int) (120 * width_r), (int) (40 * height_r));
+        Font myfont3 = new Font("微软雅黑", Font.BOLD, 16);
         btnNewButton_7.setFont(myfont3);
-        btnNewButton_7.setBackground(new Color(68,84,105));
+        btnNewButton_7.setBackground(new Color(1, 63, 110));
         btnNewButton_7.setOpaque(true);
         btnNewButton_7.setForeground(new Color(248, 248, 255));
         btnNewButton_7.setContentAreaFilled(true);//设置按钮透明
@@ -199,9 +234,11 @@ public class Declare_Course extends JPanel{
 
         //右下面板
         JPanel p3 = new JPanel();
-        p3.setBounds((int)(250*width_r), (int)(50*height_r), (int)(650*width_r), (int)(475*height_r));
+        p3.setBounds((int) (330 * width_r), 0, (int) (930 * width_r), (int) (1900 * height_r));
         p3.setBackground(new Color(106, 113, 122,100));
         add(p3);
+
+
 //
 //        //右侧面板
 //        JPanel p2 = new JPanel();
@@ -229,6 +266,10 @@ public class Declare_Course extends JPanel{
         pic1.setIcon(new ImageIcon("src/image/xuankebg_2_min.png"));
         pic1.setBounds(0, -10, (int) (icon1_width * width_r), (int) (icon1_height * height_r));
         p11.add(pic1);
+        p14.setBounds((int) (330 * width_r), 0, (int) (930 * width_r), (int) (1900 * height_r));
+        p14.setBackground(color5);
+        p14.setLayout(null);
+        add(p14);
 
 //        JLabel l11 = new JLabel();
 //        ImageIcon icon4 = new ImageIcon("src/image/label2.png");
