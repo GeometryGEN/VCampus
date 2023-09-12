@@ -153,7 +153,6 @@ public class student_status_table extends JPanel{
         setLayout(null);//设置绝对布局
 
         //个人基本信息文字
-//        JLabel title_label1=new JLabel("基本信息");
         title_label1.setBounds((int)(50*width_r), (int)(10*height_r), (int)(250*width_r), (int)(50*height_r));
         Font title_font1 = new Font("微软雅黑", Font.BOLD, (int)(27*width_r));
         title_label1.setFont(title_font1);
@@ -163,11 +162,6 @@ public class student_status_table extends JPanel{
             title_label1.setForeground(new Color(170,170,170));
         }
         add(title_label1);
-        /*if(myInfo.getType()==3){
-            sinfo = Client_status.returnStatus_Admin(IDcard);
-        }else{
-            sinfo = Client_status.returnStatusInfo(IDcard);
-        }*/
         //信息表格
         text1=text_title("姓名",width_r,height_r,50,80,student_status.color_switch);
         add(text1);
@@ -201,7 +195,6 @@ public class student_status_table extends JPanel{
         add(text15);
         text16=text_info(sinfo.getStudent_email(), width_r, height_r,820,275);
         add(text16);
-//        JLabel title_label2=new JLabel("学业信息");
         title_label2.setBounds((int)(50*width_r), (int)(350*height_r), (int)(250*width_r), (int)(50*height_r));
         Font title_font2 = new Font("微软雅黑", Font.BOLD, (int)(27*width_r));
         title_label2.setFont(title_font2);
@@ -308,16 +301,6 @@ public class student_status_table extends JPanel{
                         String due_gradute=text28.getText().trim();temp.setDue_graduate_date(due_gradute);
                         String type=text30.getText().trim(); temp.setStudent_type(type);
                         String campus=text32.getText().trim();temp.setCampus(campus);
-
-
-                        /*try {
-                            if(Client_status.renewInfo(temp))
-                                JOptionPane.showMessageDialog(null, "修改学生信息成功!");
-                            else
-                                JOptionPane.showMessageDialog(null, "修改学生信息失败!");
-                        } catch (Exception ex) {
-                            throw new RuntimeException(ex);
-                        }*/
                         try {
                             Client_status.change(temp);
                         } catch (IOException ex) {
@@ -334,8 +317,8 @@ public class student_status_table extends JPanel{
         else if(myInfo.getType()==1){
             functionChoose.back_from_student_status =new JButton("返回功能选择");
             functionChoose.back_from_student_status.setBounds((int)(470*width_r),(int)(700*height_r),(int)(170*width_r),(int)(50*height_r));
-            functionChoose.back_from_student_status.setBackground(new Color(96,190,41));
-            functionChoose.back_from_student_status.setForeground(new Color(255,255,255));
+            functionChoose.back_from_student_status.setBackground(new Color(234,234,234));
+            functionChoose.back_from_student_status.setForeground(new Color(0,0,0));
             functionChoose.back_from_student_status.setFont(new Font("微软雅黑",Font.PLAIN,(int)(22*width_r)));
             add(functionChoose.back_from_student_status);
             functionChoose.back_from_student_status.addActionListener(new ActionListener() {
