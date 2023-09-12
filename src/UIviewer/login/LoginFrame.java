@@ -112,10 +112,13 @@ public class LoginFrame extends JFrame{
         JPanel panel1=new JPanel();
         panel1.setLayout(null);
         panel1.setBackground(Color.BLUE);
-        panel1.setOpaque(false);
+        //panel1.setOpaque(false);
         //panel1.setSize((int)width_r*310 ,(int)height_r*190);
-        panel1.setBounds((int)width_r*310 ,(int)height_r*190,(int)width_r*850 ,(int)height_r*450);
+        //panel1.setBounds((int)width_r*310 ,(int)height_r*190,(int)width_r*850 ,(int)height_r*450);
+        panel1.setBounds((int)((width-width_r*554)/2) ,(int)((height-height_r*357)/2),(int)(width_r*554) ,(int)(height_r*337));
         jf.getContentPane().add(panel1);
+        System.out.println((int)(width_r*850));
+        System.out.println((int)(width-width_r*850)/2);
         //panel的背景图片设置为圆角方形
         JLabel lblBackground2 = new JLabel(); // 创建一个标签组件对象
         try {
@@ -241,7 +244,7 @@ public class LoginFrame extends JFrame{
         JButton btnNewButton_3 = new JButton("管理员登录热键为alt+A");
         //btnNewButton_3.setAccelerator(KeyStroke.getKeyStroke('A', java.awt.event.InputEvent.CTRL_DOWN_MASK));
         btnNewButton_3.setMnemonic(java.awt.event.KeyEvent.VK_A);
-        btnNewButton_3.setBounds(50, 880, 420, 30);
+        btnNewButton_3.setBounds(50, 1880, 420, 30);
         btnNewButton_3.setFont(new Font("等线",Font.BOLD,10));
         btnNewButton_3.setBackground(new Color(34, 139, 34));
         btnNewButton_3.setForeground(new Color(248, 248, 255));
