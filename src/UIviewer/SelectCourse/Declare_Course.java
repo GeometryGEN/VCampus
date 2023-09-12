@@ -69,7 +69,7 @@ public class Declare_Course extends JPanel{
 //
         //信息面板
         JLabel l4 = new JLabel("基本信息");
-        l4.setBounds((int)(980*width_r), (int)(225*height_r), (int)(250*width_r), (int)(60*height_r));
+        l4.setBounds((int)(90*width_r), (int)(225*height_r), (int)(250*width_r), (int)(60*height_r));
         Font font2 = new Font("楷体", Font.BOLD, 35);
         l4.setFont(font2);
         l4.setForeground(new Color(255,255,248));
@@ -77,14 +77,14 @@ public class Declare_Course extends JPanel{
 
         String name = "1";
         JLabel l2 = new JLabel(" 姓名：" + myInfo.getName());
-        l2.setBounds((int)(950*width_r), (int)(320*height_r), (int)(250*width_r), (int)(60*height_r));
+        l2.setBounds((int)(60*width_r), (int)(320*height_r), (int)(250*width_r), (int)(60*height_r));
         Font font1 = new Font("微软雅黑", Font.PLAIN, 25);
         l2.setFont(font1);
         l2.setForeground(new Color(255,255,248));
         add(l2);
         String card = "";
         JLabel l3 = new JLabel(" 卡号：" + myInfo.getId());
-        l3.setBounds((int)(950*width_r), (int)(410*height_r), (int)(250*width_r), (int)(60*height_r));
+        l3.setBounds((int)(60*width_r), (int)(410*height_r), (int)(250*width_r), (int)(60*height_r));
         l3.setFont(font1);
         l3.setForeground(new Color(255,255,248));
         add(l3);
@@ -100,15 +100,14 @@ public class Declare_Course extends JPanel{
             throw new RuntimeException(e);
         }
         touxiang.setIcon(new ImageIcon("src/image/头像_min.png"));
-        touxiang.setBounds((int) (980*width_r), (int) (60*height_r), (int) (160*width_r), (int) (160*height_r));
+        touxiang.setBounds((int) (80*width_r), (int) (60*height_r), (int) (160*width_r), (int) (160*height_r));
         add(touxiang);
 
         //信息面板
         JPanel p1 = new JPanel();
-        p1.setBounds((int)(940*width_r), (int)(50*height_r), (int)(250*width_r), (int)(475*height_r));
-        p1.setBackground(new Color(125, 182, 191));
+        p1.setBounds(0,-5, (int) (330*width_r), (int) (1900*height_r));
+        p1.setBackground(new Color(42,52,65,200));
         add(p1);
-
 
 
 
