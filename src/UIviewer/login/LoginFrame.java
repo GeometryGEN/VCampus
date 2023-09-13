@@ -113,8 +113,6 @@ public class LoginFrame extends JFrame{
         panel1.setLayout(null);
         panel1.setBackground(Color.BLUE);
         panel1.setOpaque(false);
-        //panel1.setSize((int)width_r*310 ,(int)height_r*190);
-        //panel1.setBounds((int)width_r*310 ,(int)height_r*190,(int)width_r*850 ,(int)height_r*450);
         panel1.setBounds((int)((width-width_r*554)/2) ,(int)((height-height_r*357)/2),(int)(width_r*554) ,(int)(height_r*337));
         jf.getContentPane().add(panel1);
         System.out.println((int)(width_r*850));
@@ -142,14 +140,14 @@ public class LoginFrame extends JFrame{
         lblNewLabel.setIcon(new ImageIcon("src/image/登录/17.png"));
         lblNewLabel.setFont(new Font("等线", Font.BOLD, 19));
         lblNewLabel.setForeground(color1);
-        lblNewLabel.setBounds((int)(width_r*(370-290)), (int)(height_r*(292-198)), (int)(width_r*80), (int)(height_r*25));
+        lblNewLabel.setBounds((int)(width_r*(370-290)), (int)(height_r*(292-198)), (int)(width_r*100), (int)(height_r*25));
         panel1.add(lblNewLabel);
 
         JLabel lblNewLabel_1 = new JLabel("   密  码:");
         lblNewLabel_1.setIcon(new ImageIcon("src/image/登录/18.png"));
         lblNewLabel_1.setFont(new Font("等线", Font.BOLD, 20));
         lblNewLabel_1.setForeground(color1);
-        lblNewLabel_1.setBounds((int)(width_r*(370-290)), (int)(height_r*(332-198)), (int)(width_r*80), (int)(height_r*25));
+        lblNewLabel_1.setBounds((int)(width_r*(370-290)), (int)(height_r*(332-198)), (int)(width_r*100), (int)(height_r*25));
         panel1.add(lblNewLabel_1);
 
         textField=new JTextField();
@@ -179,14 +177,14 @@ public class LoginFrame extends JFrame{
         rbtnstu.setForeground(color1);
         //rbtnstu.setSelected(true);
         rbtnstu.setContentAreaFilled(false);
-        rbtnstu.setBounds((int)(width_r*(370-290)), (int)(height_r*(412-198)), (int)(width_r*50), (int)(height_r*25));
+        rbtnstu.setBounds((int)(width_r*(370-290)), (int)(height_r*(412-198)), (int)(width_r*80), (int)(height_r*25));
         panel1.add(rbtnstu);
         JRadioButton rbtntea= new JRadioButton("教师",false);
         rbtntea.setFont(new Font("等线", Font.BOLD, 20));
         rbtntea.setForeground(color1);
         //rbtntea.setSelected(true);
         rbtntea.setContentAreaFilled(false);
-        rbtntea.setBounds((int)(width_r*(430-290)), (int)(height_r*(412-198)), (int)(width_r*50), (int)(height_r*25));
+        rbtntea.setBounds((int)(width_r*(450-290)), (int)(height_r*(412-198)), (int)(width_r*80), (int)(height_r*25));
         panel1.add(rbtntea);
         ButtonGroup group1=new ButtonGroup();
         group1.add(rbtnstu);
