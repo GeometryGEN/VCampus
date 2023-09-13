@@ -32,26 +32,35 @@ public class forgetPWD {
     static Font myfont1=new Font("等线", Font.BOLD, 17);
     static Font myfont2=new Font("等线", Font.BOLD, 15);
 
+    static Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();
+    static int width=(int) screensize.getWidth(); //得到宽度
+    static int height=(int) screensize.getHeight();//获得高度
+    static double width_r=(double) width/1000;
+    static double height_r=(double) height/720;//1280,720
+
     public static void forgetPWDUI() {
         JFrame jf = new JFrame("找回密码");
         jf.setResizable(false);
         //找回密码
         //注册信息
         JLabel l2=new JLabel("找回密码");
-        l2.setBounds(140,210,290,80);
+        l2.setBounds((int)(width_r*90) ,(int)(width_r*140),(int)(width_r*200) ,(int)(height_r*60));
+        //l2.setBounds(140,210,290,80);
         Font font=new Font("宋体",Font.BOLD,26);
         l2.setFont(font);
         l2.setForeground(color1);
         jf.getContentPane().add(l2);
         //账号密码
         JLabel l3=new JLabel("一卡通:");
+        l3.setBounds((int)(width_r*65) ,(int)(width_r*200),(int)(width_r*180) ,(int)(height_r*20));
         l3.setFont(new Font("等线",Font.BOLD,18));
         l3.setForeground(color1);
-        l3.setBounds(100,330,250,25);
+        //l3.setBounds(100,330,250,25);
         jf.add(l3);
         JTextField textField3=new JTextField();
+        textField3.setBounds((int)(width_r*115) ,(int)(width_r*200),(int)(width_r*80) ,(int)(height_r*20));
         textField3.setFont(new Font("宋体",Font.BOLD,17));
-        textField3.setBounds(170,330,120,25);
+        //textField3.setBounds(170,330,120,25);
         textField3.setBorder(null);
         jf.add(textField3);
         textField3.setColumns(10);
@@ -59,25 +68,29 @@ public class forgetPWD {
         JLabel l10=new JLabel("邮箱:");
         l10.setFont(new Font("等线",Font.BOLD,18));
         l10.setForeground(color1);
-        l10.setBounds(100,380,250,25);
+        l10.setBounds((int)(width_r*65) ,(int)(width_r*240),(int)(width_r*180) ,(int)(height_r*20));
+        //l10.setBounds(100,380,250,25);
         jf.add(l10);
         JTextField textField10=new JTextField();
+        textField10.setBounds((int)(width_r*115) ,(int)(width_r*240),(int)(width_r*80) ,(int)(height_r*20));
         textField10.setFont(new Font("宋体",Font.BOLD,17));
-        textField10.setBounds(170,380,120,25);
+        //textField10.setBounds(170,380,120,25);
         textField10.setBorder(null);
         jf.add(textField10);
         textField10.setColumns(10);
 
         //填写验证码的地方
         JTextField textField11=new JTextField();
+        textField11.setBounds((int)(width_r*65) ,(int)(width_r*280),(int)(width_r*50) ,(int)(height_r*20));
         textField11.setFont(new Font("宋体",Font.BOLD,12));
-        textField11.setBounds(100,430,70,25);
+        //textField11.setBounds(100,430,70,25);
         textField11.setBorder(null);
         jf.add(textField11);
         textField10.setColumns(11);
         //发送验证码
         JButton b2=new JButton("发送验证码");
-        b2.setBounds(180,430,110,25);
+        b2.setBounds((int)(width_r*125) ,(int)(width_r*280),(int)(width_r*70) ,(int)(height_r*20));
+        //b2.setBounds(180,430,110,25);
         b2.setFont(new Font("等线",Font.BOLD,14));
         b2.setForeground(color1);
         b2.setBackground(color4);
@@ -108,7 +121,8 @@ public class forgetPWD {
         });
 
         JButton b1=new JButton("确认");
-        b1.setBounds(145,490,100,30);
+        b1.setBounds((int)(width_r*90) ,(int)(width_r*330),(int)(width_r*75) ,(int)(height_r*20));
+        //b1.setBounds(145,490,100,30);
         b1.setBackground(color3);
         b1.setForeground(Color.white);
         b1.setFont(new Font("楷体", Font.PLAIN, 25));
