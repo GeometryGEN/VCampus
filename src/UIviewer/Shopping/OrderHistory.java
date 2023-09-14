@@ -11,9 +11,6 @@ import java.awt.event.MouseListener;
 
 /**
  * 订单历史
- *
- * @author Chen_GuanZhi
- * @date 2022/09/03
  */
 public class OrderHistory extends JPanel{
     Dimension screensize=Toolkit.getDefaultToolkit().getScreenSize();

@@ -32,7 +32,8 @@ public class AskQuestion {
 
     public static void main(String[] args) throws IOException {
         CloseableHttpClient httpClient = HttpClients.createDefault();
-        String apiKey = "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";
+        //String apiKey = "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";
+        String apiKey = "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";
         CustomChatGpt customChatGpt = new CustomChatGpt(apiKey);
         customChatGpt.setResponseTimeout(200000);
         while (true) {

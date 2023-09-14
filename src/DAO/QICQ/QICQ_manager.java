@@ -17,9 +17,6 @@ import java.util.HashMap;
 
 /**
  * 站内通信模块与数据库对接类
- *
- * @author Shuheng_Gu
- * @date 2022/09/03
  */
 public class QICQ_manager {
     /**

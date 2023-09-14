@@ -4,9 +4,6 @@ import java.io.Serializable;
 
 /**
  * 站内通信加好友信息
- *
- * @author Shuheng_Gu
- * @date 2022/09/03
  */
 public class Application implements Serializable {
     /**
